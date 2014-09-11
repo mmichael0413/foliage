@@ -1,0 +1,183 @@
+@import "_mixins.scss";
+@import "_variables.scss";
+@import "_colors.scss";
+@import "_buttons.scss";
+@import "_forms.scss";
+@import "_layout_utils.scss";
+@import "_navigation.scss";
+@import "_text.scss";
+
+@import "fonts/_3cicons";
+@import "fonts/_nexa";
+
+
+body {
+  margin: 0;
+}
+html {
+  margin: 0;
+  font-size: .9rem;
+  font-family: sans-serif;
+  background-color: $main-background;
+  color: $text-color;
+}
+
+
+
+.content {
+  width: 100%;
+  padding-left: 14em;
+  padding-right: 1em;
+  overflow: auto;
+  .actions {
+    float:right;
+    a {
+      padding-left:.5em;
+    }
+  }
+}
+
+li {
+  &.list-unstyled {
+    text-decoration: none;
+  }
+}
+
+#header {
+  min-height: 3em;
+  .actions {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.table {
+  background-color: white;
+  padding: 1em;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
+  table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    padding: 1em;
+
+    th {
+      text-transform: uppercase;
+      text-align: left;
+      padding-bottom: 1em;
+      vertical-align: top;
+    }
+
+    tr {
+      td {
+        vertical-align: top;
+        padding: 1em 0;
+        border-top: 1px solid $border-color;
+      }
+
+    }
+  }
+}
+
+
+/* Logo */
+
+a.logo-link {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.logo {
+  padding: 1em 0 1em 1em;
+  background-color: white;
+
+  .tc-icons_logo, .third {
+    $size: 1em;
+    height: $size;
+    line-height: $size;
+    vertical-align: middle;
+    text-decoration: none;
+  }
+
+  .tc-icons_logo {
+    font-size: 2em;
+  }
+
+  .third, .channel {
+    font-size: 1.1em;
+  }
+
+  .tc-icons_logo, .channel {
+    color: $text-color;
+  }
+
+  .third {
+    color: $link-color;
+    font-family: 'Nexa Light';
+  }
+
+  .channel {
+    font-family: 'Nexa Bold';
+  }
+}
+
+#site-menu {
+  .submenu {
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
+  }
+  &.show-submenu .submenu {
+       @include transform($standard-nav-width);
+
+  }
+}
+
+@include bp-small {
+
+ /* #site-wrapper {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  #site-canvas {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    @include transform(0);
+    @include transition(.3s ease all);
+  }
+*/
+  #site-menu {
+    width: $mobile-nav-width;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -$mobile-nav-width;
+
+      &.show-submenu .submenu {
+        -webkit-transform:translateX($mobile-nav-width * 2);
+        -moz-transform:translateX($mobile-nav-width);
+        -ms-transform:translateX($mobile-nav-width);
+        -o-transform:translateX($mobile-nav-width);
+        transform:translateX($mobile-nav-width);
+
+
+      }
+
+  }
+  #site-wrapper.show-nav #site-canvas {
+    @include transform($mobile-nav-width);
+  }
+
+
+  .content{
+    padding-top: 3.5em;
+    padding-left:.5em;
+    padding-right: .5em;
+  }
+}

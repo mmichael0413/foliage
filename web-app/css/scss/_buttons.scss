@@ -1,0 +1,13 @@
+@mixin button-details($color) {
+  height: 3em;
+  background: none;
+  color: $color;
+  border: .2em solid $color;
+  border-radius: $border-radius-base;
+}
+
+.btn {
+  &.primary {
+    @include button-details($link-color)
+  }
+}

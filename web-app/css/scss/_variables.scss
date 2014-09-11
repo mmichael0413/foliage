@@ -1,0 +1,14 @@
+$border-radius-base: 5px;
+$mobile-nav-width: 13em;
+$standard-nav-width: 13em;
+
+
+
+
+@mixin tab-focus() {
+  // Default
+  outline: thin dotted;
+  // WebKit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}

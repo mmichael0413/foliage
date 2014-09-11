@@ -1,0 +1,34 @@
+@mixin bp-large {
+  @media only screen and (max-width: 60em) {
+    @content;
+  }
+}
+
+@mixin bp-medium {
+  @media only screen and (max-width: 40em) {
+    @content;
+  }
+}
+
+@mixin bp-small {
+  @media only screen and (max-width: 30em) {
+    @content;
+  }
+}
+
+
+@mixin transform($value) {
+  -webkit-transform:translateX($value);
+  -moz-transform:translateX($value);
+  -ms-transform:translateX($value);
+  -o-transform:translateX($value);
+  transform:translateX($value);
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}

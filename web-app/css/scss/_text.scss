@@ -1,0 +1,34 @@
+h1 {
+  font-size: 1.4em;
+  margin: 1em 0 1.5em 0;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  &:hover {
+    color: darken($link-color, 15%);
+  }
+}
+
+ul {
+  &.unstyled {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style-type: none;
+    }
+  }
+}
+
+@include bp-small {
+  h1 {
+    font-size: 1.2em;
+    div {
+
+      position: absolute;
+      top: .5em;
+      right: .5em;
+    }
+  }
+}
