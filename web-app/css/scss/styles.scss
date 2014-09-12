@@ -1,12 +1,12 @@
 @import "_mixins.scss";
 @import "_variables.scss";
 @import "_colors.scss";
+@import "_canvas_layout.scss";
 @import "_buttons.scss";
 @import "_forms.scss";
 @import "_layout_utils.scss";
 @import "_navigation.scss";
 @import "_text.scss";
-
 @import "fonts/_3cicons";
 @import "fonts/_nexa";
 
@@ -29,11 +29,15 @@ html {
   padding-left: 14em;
   padding-right: 1em;
   overflow: auto;
+  height: 100%;
   .actions {
     float:right;
     a {
       padding-left:.5em;
     }
+  }
+  &.lock-height {
+    height: initial;
   }
 }
 
@@ -125,55 +129,8 @@ a.logo-link {
   }
 }
 
-#site-menu {
-  .submenu {
-  -webkit-transition: .3s ease all;
-  transition: .3s ease all;
-  }
-  &.show-submenu .submenu {
-       @include transform($standard-nav-width);
-
-  }
-}
 
 @include bp-small {
-
- /* #site-wrapper {
-    position: absolute;
-    overflow: hidden;
-    width: 100%;
-  }
-
-  #site-canvas {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    @include transform(0);
-    @include transition(.3s ease all);
-  }
-*/
-  #site-menu {
-    width: $mobile-nav-width;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: -$mobile-nav-width;
-
-      &.show-submenu .submenu {
-        -webkit-transform:translateX($mobile-nav-width * 2);
-        -moz-transform:translateX($mobile-nav-width);
-        -ms-transform:translateX($mobile-nav-width);
-        -o-transform:translateX($mobile-nav-width);
-        transform:translateX($mobile-nav-width);
-
-
-      }
-
-  }
-  #site-wrapper.show-nav #site-canvas {
-    @include transform($mobile-nav-width);
-  }
-
 
   .content{
     padding-top: 3.5em;

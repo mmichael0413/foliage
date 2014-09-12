@@ -1,23 +1,27 @@
-<!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
+<!doctype html>
+<html>
 <head>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <title>3C</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'styles.css')}"/>
-  %{--  <link rel="stylesheet" href="${resource(dir: 'css/lib', file: 'buttons.css')}"/>--}%
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <g:layoutHead/>
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
 </head>
 
 <body>
+
 <div id="site-wrapper">
+
     <div id="site-canvas">
 
         <div id="site-menu">
-
             <div class="navigation">
                 <div class="logo">
                     <a href="/redesign/home/index">
@@ -29,7 +33,7 @@
                 </div>
 
                 <div class="nav-item">
-                    <a href="#" class="toggle-submenu">
+                    <a href="#" class="toggle-subnav">
                         <span class="fa-stack ">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-user fa-stack-1x fa-inverse"></i>
@@ -110,40 +114,44 @@
                 </div>
 
             </div>
-
-            <div class="submenu">
-                <a href="#" class="toggle-submenu close"><i class="fa fa-times"></i></a>
-
-                <ul class="unstyled">
-                    <li>
-                        <span class="fa-stack ">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-user fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="link">John Doe</span>
-                    </li>
-
-                    <li><strong>Programs</strong></li>
-                    <li class="menu-option">
-                        <a href="#">#CosmoOnCampus</a>
-                    </li>
-                    <li><strong>Account</strong></li>
-                    <li class="menu-option"><a href="#">Opportunities</a></li>
-                    <li class="menu-option"><a href="#">Profile</a></li>
-                    <li class="menu-option"><a href="#">Settings</a></li>
-                    <li class="menu-option"><a href="#">Support</a></li>
-                    <li class="menu-option"><a href="#">Contact Us</a></li>
-                    <li class="menu-option"><a href="#">Sign Out</a></li>
-                    <li class="menu-option return"><a href="#" class="toggle-submenu"><strong>Return to navigation</strong></a></li>
-                </ul>
-            </div>
         </div>
 
+        <div id="site-submenu">
+            <a href="#" class="toggle-subnav close"><i class="fa fa-times"></i></a>
 
+            <ul class="unstyled">
+                <li>
+                    <span class="fa-stack ">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="link">John Doe</span>
+                </li>
+
+                <li><strong>Programs</strong></li>
+                <li class="menu-option">
+                    <a href="#">#CosmoOnCampus</a>
+                </li>
+                <li><strong>Account</strong></li>
+                <li class="menu-option"><a href="javascript:void(0);">Opportunities</a></li>
+                <li class="menu-option"><a href="javascript:void(0);">Profile</a></li>
+                <li class="menu-option"><a href="javascript:void(0);">Settings</a></li>
+                <li class="menu-option"><a href="javascript:void(0);">Support</a></li>
+                <li class="menu-option"><a href="javascript:void(0);">Contact Us</a></li>
+                <li class="menu-option"><a href="javascript:void(0);">Sign Out</a></li>
+                <li class="menu-option return"><a href="javascript:void(0);" class="toggle-subnav"><strong>Return to navigation</strong>
+                </a></li>
+            </ul>
+
+        </div>
+
+        <div id="site-filter">
+            This is a filter
+        </div>
 
         <div id="mobile-header">
             <div id="lks">
-                <a href="#" class="toggle-nav"><i class="fa fa-bars"></i></a>
+                <a href="javascript:void(0);" class="toggle-nav"><i class="fa fa-bars"></i></a>
                 <i class="tc-icons tc-icons_logo"></i>
             </div>
         </div>
@@ -153,52 +161,69 @@
         <div class="content">
             <g:layoutBody/>
         </div>
-    </div>
 
+    </div>
 </div>
+
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
+
     $(function () {
         $('.toggle-nav').click(function () {
             // Calling a function in case you want to expand upon this.
             toggleNav();
         });
+    });
 
-        $('.toggle-submenu').click(function () {
+    $(function () {
+        $('.toggle-filter').click(function () {
             // Calling a function in case you want to expand upon this.
-            toggleSubmenu();
+            toggleFilter();
+        });
+    });
+
+    $(function () {
+        $('.toggle-subnav').click(function () {
+            // Calling a function in case you want to expand upon this.
+            toggleSubnav();
         });
     });
 
 
-    /*========================================
-     =            CUSTOM FUNCTIONS            =
-     ========================================*/
     function toggleNav() {
         if ($('#site-wrapper').hasClass('show-nav')) {
             // Do things on Nav Close
             $('#site-wrapper').removeClass('show-nav');
+            $('#site-submenu').removeClass('show-subnav');
         } else {
             // Do things on Nav Open
             $('#site-wrapper').addClass('show-nav');
         }
-
-        //$('#site-wrapper').toggleClass('show-nav');
     }
 
-    function toggleSubmenu() {
-        console.log('I got here');
-        if ($('#site-menu').hasClass('show-submenu')) {
+
+    function toggleFilter() {
+        if ($('#site-wrapper').hasClass('show-filter')) {
             // Do things on Nav Close
-            $('#site-menu').removeClass('show-submenu');
+            $('#site-wrapper').removeClass('show-filter');
         } else {
             // Do things on Nav Open
-            $('#site-menu').addClass('show-submenu');
+            $('#site-wrapper').addClass('show-filter');
         }
-
-        //$('#site-wrapper').toggleClass('show-nav');
     }
+
+    function toggleSubnav() {
+        if ($('#site-submenu').hasClass('show-subnav')) {
+            // Do things on Nav Close
+            $('#site-submenu').removeClass('show-subnav');
+        } else {
+            // Do things on Nav Open
+            $('#site-submenu').addClass('show-subnav');
+        }
+    }
+
 </script>
 
 </body>

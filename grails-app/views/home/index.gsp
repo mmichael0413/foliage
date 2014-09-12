@@ -5,10 +5,6 @@
     <title>Welcome to Grails</title>
 </head>
 
-
-
-
-
     <h1>This is a Header
         <div class="actions">
             <a href="#"><span class="fa-stack">
@@ -16,7 +12,7 @@
                 <i class="fa fa-search fa-stack-1x"></i>
             </span>
             </a>
-            <a href="#"><span class="fa-stack">
+            <a href="#" class="toggle-filter"><span class="fa-stack">
                 <i class="fa fa-circle-thin fa-stack-2x"></i>
                 <i class="fa fa-filter fa-stack-1x"></i>
             </span>

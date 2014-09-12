@@ -1,12 +1,4 @@
-.navigation, .submenu {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 13em;
-  height: 100%;
-  background-color: $nav-background;
-  overflow-y: auto;
-  z-index: 300;
+.navigation {
   .nav-item {
     display: inline-table;
     height: 3.5em;
@@ -28,15 +20,10 @@
   }
 }
 
-.submenu {
-  position: fixed;
-  left: -$standard-nav-width;
-  top: 0;
-  width: $standard-nav-width;
-  height: 100%;
+#site-submenu {
+
   background-color: $nav-background;
-  z-index: 325;
-  overflow:scroll;
+
   .close {
     position: absolute;
     top: 0;
@@ -61,7 +48,20 @@
       background-color: darken($border-color, 5%);
     }
   }
+}
 
+#filter-menu {
+  position: absolute;
+  width: $standard-nav-width;
+  right: -$standard-nav-width;
+  top: 0;
+  background-color: white;
+  height: 100%;
+  z-index: 326;
+  @include transition(300ms ease all);
+  &.show-filter {
+    @include transform(-$standard-nav-width);
+  }
 }
 
 #mobile-header {
@@ -85,13 +85,12 @@
     #lks {
       a.toggle-nav {
         color: $text-color;
-        margin-right: .5em;
+        //margin-right: .5em;
       }
       font-size: 2em;
-      position: fixed;
+      position: absolute;
       top: 50%;
       margin-top: -.5em;
-      left: -.25em;
     }
   }
   .navigation {
