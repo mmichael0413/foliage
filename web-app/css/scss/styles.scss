@@ -22,8 +22,6 @@ html {
   color: $text-color;
 }
 
-
-
 .content {
   width: 100%;
   padding-left: 14em;
@@ -36,23 +34,11 @@ html {
       padding-left:.5em;
     }
   }
-  &.lock-height {
-    height: initial;
-  }
 }
 
 li {
   &.list-unstyled {
     text-decoration: none;
-  }
-}
-
-#header {
-  min-height: 3em;
-  .actions {
-    position: absolute;
-    right: 0;
-    top: 0;
   }
 }
 
@@ -131,10 +117,14 @@ a.logo-link {
 
 
 @include bp-small {
-
   .content{
     padding-top: 3.5em;
     padding-left:.5em;
     padding-right: .5em;
   }
+
+  #site-wrapper.show-nav .content {
+      height:initial;
+    }
+
 }

@@ -39,6 +39,7 @@
                             <i class="fa fa-user fa-stack-1x fa-inverse"></i>
                         </span>
                         <span class="link">John Doe</span>
+                        <i class="fa fa-angle-right pull-right"></i>
                     </a>
                 </div>
 

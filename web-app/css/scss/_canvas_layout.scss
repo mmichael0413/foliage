@@ -2,8 +2,6 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-
-  //height: 5000px;
 }
 
 #site-canvas {
@@ -34,10 +32,9 @@
   height: 100%;
   position: absolute;
   top: 0;
-  left: -$standard-nav-width;
   -webkit-transition: .3s ease all;
   transition: .3s ease all;
-  z-index: 6;
+  z-index: 3;
 }
 
 #site-filter {
@@ -71,6 +68,7 @@
 
   #site-submenu {
     left: -$standard-nav-width * 2;
+    z-index: 6;
     &.show-subnav {
       -webkit-transform: translateX($standard-nav-width );
       transform: translateX($standard-nav-width );

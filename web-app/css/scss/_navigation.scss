@@ -15,8 +15,13 @@
     }
     a {
       color: $text-color;
+      position: relative;
+      .fa {
+        position: absolute;
+        right: -4em;
+        top: .03em;
+      }
     }
-
   }
 }
 
@@ -35,13 +40,12 @@
     padding: 1em;
     a {
       color: $text-color;
-
     }
     > strong {
       text-transform: uppercase;
     }
     &.return {
-      border-top:1px solid $border-color;
+      border-top: 1px solid $border-color;
       border-bottom: 1px solid $border-color;
     }
     &.menu-option:hover {
@@ -85,7 +89,6 @@
     #lks {
       a.toggle-nav {
         color: $text-color;
-        //margin-right: .5em;
       }
       font-size: 2em;
       position: absolute;
@@ -104,6 +107,5 @@
     left: -$mobile-nav-width * 2;
     width: $mobile-nav-width;
   }
-
 
 }
