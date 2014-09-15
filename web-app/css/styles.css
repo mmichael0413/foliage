@@ -24,7 +24,7 @@
 #site-submenu {
   background-color: #dad8d7;
   width: 13em;
-  height: 100%;
+  /*height: 100%;*/
   position: absolute;
   top: 0;
   -webkit-transition: .3s ease all;
@@ -48,6 +48,7 @@
   transform: translateX(-13em); }
 
 #site-submenu.show-subnav {
+  background-color: #dad8d7;
   -webkit-transform: translateX(13em);
   transform: translateX(13em); }
 
@@ -56,6 +57,7 @@
     left: -13em; }
 
   #site-submenu {
+    height: 100%;
     left: -26em;
     z-index: 6; }
     #site-submenu.show-subnav {
@@ -109,6 +111,12 @@ textarea {
 .pull-right {
   float: right; }
 
+.visible-xs {
+  display: none; }
+
+@media only screen and (max-width: 30em) {
+  .visible-xs {
+    display: block; } }
 .navigation .nav-item {
   display: inline-table;
   height: 3.5em;
@@ -184,12 +192,12 @@ textarea {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d; }
-    #mobile-header #lks {
+    #mobile-header #links {
       font-size: 2em;
       position: absolute;
       top: 50%;
       margin-top: -.5em; }
-      #mobile-header #lks a.toggle-nav {
+      #mobile-header #links a.toggle-nav {
         color: #474747; }
 
   .navigation {
@@ -203,7 +211,11 @@ textarea {
     width: 13em; } }
 h1 {
   font-size: 1.4em;
-  margin: 1em 0 1.5em 0; }
+  margin: .9em 0 1.5em 0; }
+
+h2 {
+  font-size: 1.3em;
+  margin: 0 0 1em 0; }
 
 a {
   color: #f15f51;
@@ -837,38 +849,45 @@ html {
   color: #474747; }
 
 .content {
+  position: relative;
   width: 100%;
   padding-left: 14em;
   padding-right: 1em;
   overflow: auto;
   height: 100%; }
   .content .actions {
-    float: right; }
+    position: absolute;
+    top: 1em;
+    right: 1em; }
     .content .actions a {
       padding-left: .5em; }
 
 li.list-unstyled {
   text-decoration: none; }
 
-.table {
+.section {
   background-color: white;
   padding: 1em;
   border: 1px solid #dad8d7;
-  border-radius: 5px; }
-  .table table {
-    width: 100%;
-    border-spacing: 0;
-    border-collapse: collapse;
-    padding: 1em; }
-    .table table th {
-      text-transform: uppercase;
-      text-align: left;
-      padding-bottom: 1em;
-      vertical-align: top; }
-    .table table tr td {
-      vertical-align: top;
-      padding: 1em 0;
-      border-top: 1px solid #dad8d7; }
+  border-radius: 5px;
+  margin-bottom: 2em; }
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  padding: 1em; }
+  table th {
+    text-transform: uppercase;
+    text-align: left;
+    padding-bottom: 1em;
+    vertical-align: top; }
+    table th a {
+      color: #474747; }
+  table tr td {
+    vertical-align: top;
+    padding: 1em 0;
+    border-top: 1px solid #dad8d7; }
 
 /* Logo */
 a.logo-link {
@@ -895,6 +914,42 @@ a.logo-link {
     font-family: 'Nexa Light'; }
   .logo .channel {
     font-family: 'Nexa Bold'; }
+
+.toggle-filter.enabled {
+  color: #19677a; }
+
+.pagination-holder {
+  margin-bottom: 1em;
+  text-align: right; }
+  .pagination-holder .pagination {
+    display: inline;
+    margin-bottom: .5em;
+    margin-left: 1em; }
+    .pagination-holder .pagination .page {
+      font-size: .8em;
+      display: inline-block;
+      min-width: 2.6em;
+      padding: .6em;
+      border: 0.1em solid #dad8d7;
+      text-align: center;
+      background-color: #ecebeb; }
+      .pagination-holder .pagination .page a {
+        color: #dad8d7; }
+      .pagination-holder .pagination .page:hover {
+        background-color: #e0dede; }
+      .pagination-holder .pagination .page.current {
+        background-color: #d3d1d1; }
+      .pagination-holder .pagination .page.gap {
+        background-color: inherit;
+        border: none; }
+      .pagination-holder .pagination .page:first-of-type {
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px; }
+      .pagination-holder .pagination .page:last-of-type {
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px; }
+  .pagination-holder .pagination-info {
+    margin-bottom: 1em; }
 
 @media only screen and (max-width: 30em) {
   .content {

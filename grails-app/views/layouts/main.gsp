@@ -121,7 +121,7 @@
             <a href="#" class="toggle-subnav close"><i class="fa fa-times"></i></a>
 
             <ul class="unstyled">
-                <li>
+                <li class="visible-xs">
                     <span class="fa-stack ">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-user fa-stack-1x fa-inverse"></i>
@@ -151,7 +151,7 @@
         </div>
 
         <div id="mobile-header">
-            <div id="lks">
+            <div id="links">
                 <a href="javascript:void(0);" class="toggle-nav"><i class="fa fa-bars"></i></a>
                 <i class="tc-icons tc-icons_logo"></i>
             </div>
@@ -209,9 +209,11 @@
         if ($('#site-wrapper').hasClass('show-filter')) {
             // Do things on Nav Close
             $('#site-wrapper').removeClass('show-filter');
+            $('.toggle-filter').removeClass('enabled');
         } else {
             // Do things on Nav Open
             $('#site-wrapper').addClass('show-filter');
+            $('.toggle-filter').addClass('enabled');
         }
     }
 

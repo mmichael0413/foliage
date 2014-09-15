@@ -20,7 +20,7 @@
         </div>
     </h1>
 
-    <div class="table">
+    <div class="section">
         <table>
             <thead>
             <tr>

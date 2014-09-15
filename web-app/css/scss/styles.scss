@@ -22,14 +22,18 @@ html {
   color: $text-color;
 }
 
+
 .content {
+  position: relative;
   width: 100%;
   padding-left: 14em;
   padding-right: 1em;
   overflow: auto;
   height: 100%;
   .actions {
-    float:right;
+    position: absolute;
+    top:1em;
+    right:1em;
     a {
       padding-left:.5em;
     }
@@ -42,11 +46,13 @@ li {
   }
 }
 
-.table {
+.section {
   background-color: white;
   padding: 1em;
   border: 1px solid $border-color;
   border-radius: $border-radius-base;
+  margin-bottom: 2em;
+}
   table {
     width: 100%;
     border-spacing: 0;
@@ -58,6 +64,9 @@ li {
       text-align: left;
       padding-bottom: 1em;
       vertical-align: top;
+      a {
+        color: $text-color;
+      }
     }
 
     tr {
@@ -66,9 +75,7 @@ li {
         padding: 1em 0;
         border-top: 1px solid $border-color;
       }
-
     }
-  }
 }
 
 
@@ -115,6 +122,52 @@ a.logo-link {
   }
 }
 
+.toggle-filter.enabled {
+  color: $active-state;
+}
+
+.pagination-holder {
+  margin-bottom: 1em;
+  text-align: right;
+  .pagination {
+      display: inline;
+    margin-bottom: .5em;
+    margin-left: 1em;
+    .page {
+      font-size: .8em;
+      display: inline-block;
+      min-width: 2.6em;
+      padding: .6em;
+      border: .1em solid $border-color;
+      text-align: center;
+      background-color: $nav-background;
+      a {
+        color: $border-color;
+      }
+      &:hover {
+        background-color: darken($nav-background, 5%);
+      }
+      &.current {
+        background-color: darken($nav-background, 10%);
+      }
+      &.gap{
+        background-color: inherit;
+        border: none;
+      }
+      &:first-of-type {
+        border-bottom-left-radius: $border-radius-base;
+        border-top-left-radius: $border-radius-base;
+      }
+      &:last-of-type{
+        border-bottom-right-radius: $border-radius-base;
+        border-top-right-radius: $border-radius-base;
+      }
+    }
+  }
+  .pagination-info {
+    margin-bottom: 1em;
+  }
+}
 
 @include bp-small {
   .content{
