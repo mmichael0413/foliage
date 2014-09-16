@@ -51,6 +51,12 @@
     &.menu-option:hover {
       background-color: darken($border-color, 5%);
     }
+    &.menu-option.active {
+      font-weight: bold;
+      background-color: darken($border-color, 5%);
+      cursor: default;
+      pointer-events: none;
+    }
   }
 }
 

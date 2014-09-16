@@ -24,12 +24,16 @@
 #site-submenu {
   background-color: #dad8d7;
   width: 13em;
-  /*height: 100%;*/
+  height: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   -webkit-transition: .3s ease all;
   transition: .3s ease all;
-  z-index: 3; }
+  z-index: 3;
+  overflow: auto; }
+  #site-submenu li:last-of-type {
+    margin-bottom: 3em; }
 
 #site-filter {
   width: 13em;
@@ -57,7 +61,6 @@
     left: -13em; }
 
   #site-submenu {
-    height: 100%;
     left: -26em;
     z-index: 6; }
     #site-submenu.show-subnav {
@@ -155,6 +158,11 @@ textarea {
       border-bottom: 1px solid #dad8d7; }
     #site-submenu ul li.menu-option:hover {
       background-color: #cecbca; }
+    #site-submenu ul li.menu-option.active {
+      font-weight: bold;
+      background-color: #cecbca;
+      cursor: default;
+      pointer-events: none; }
 
 #filter-menu {
   position: absolute;
