@@ -7,7 +7,7 @@
 @import "layout_utils";
 @import "navigation";
 @import "text";
-@import "fonts/3cicons";
+@import "fonts/tc-icons";
 @import "fonts/nexa";
 
 
@@ -92,7 +92,7 @@ a.logo-link {
   padding: 1em 0 1em 1em;
   background-color: white;
 
-  .tc-icons_logo, .third {
+  .tc_logo, .third {
     $size: 1em;
     height: $size;
     line-height: $size;
@@ -100,7 +100,7 @@ a.logo-link {
     text-decoration: none;
   }
 
-  .tc-icons_logo {
+  .tc_logo {
     font-size: 2em;
   }
 
@@ -108,7 +108,7 @@ a.logo-link {
     font-size: 1.1em;
   }
 
-  .tc-icons_logo, .channel {
+  .tc_logo, .channel {
     color: $text-color;
   }
 

@@ -6,16 +6,8 @@ This repository holds the styles used for ThirdChannel web application.
 
 **Dependencies**
 
-```
-INSTALL > gem install adsf
-```
+Install Node from http://nodejs.org/
 
-```
-INSTALL > gem install thin
-```
+To run: 
 
-To serve these styles in development run: 
-```
-: adsf -p 3031 -h thin
-```
-
+with in the project root run "node app.js"
