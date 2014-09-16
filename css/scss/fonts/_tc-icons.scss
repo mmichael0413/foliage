@@ -23,36 +23,36 @@
 [data-icon]:before { content: attr(data-icon); }
 
 [data-icon]:before,
-.tc_activity_feed:before,
-.tc_add:before,
-.tc_checkin:before,
-.tc_closed_circle:before,
-.tc_collapse:before,
-.tc_comment:before,
-.tc_dashboard:before,
-.tc_down:before,
-.tc_download:before,
-.tc_edit:before,
-.tc_exit:before,
-.tc_expand:before,
-.tc_field_team:before,
-.tc_filter:before,
-.tc_like:before,
-.tc_logo:before,
-.tc_navigate:before,
-.tc_notifications:before,
-.tc_open_circle:before,
-.tc_post:before,
-.tc_remove:before,
-.tc_report:before,
-.tc_reports:before,
-.tc_resolve_select:before,
-.tc_resources:before,
-.tc_search:before,
-.tc_stores:before,
-.tc_up:before,
-.tc_upload:before,
-.tc_user:before {
+.tc-activity_feed:before,
+.tc-add:before,
+.tc-checkin:before,
+.tc-closed_circle:before,
+.tc-collapse:before,
+.tc-comment:before,
+.tc-dashboard:before,
+.tc-down:before,
+.tc-download:before,
+.tc-edit:before,
+.tc-exit:before,
+.tc-expand:before,
+.tc-field_team:before,
+.tc-filter:before,
+.tc-like:before,
+.tc-logo:before,
+.tc-navigate:before,
+.tc-notifications:before,
+.tc-open_circle:before,
+.tc-post:before,
+.tc-remove:before,
+.tc-report:before,
+.tc-reports:before,
+.tc-resolve_select:before,
+.tc-resources:before,
+.tc-search:before,
+.tc-stores:before,
+.tc-up:before,
+.tc-upload:before,
+.tc-user:before {
   display: inline-block;
   font-family: "tc-icons";
   font-style: normal;
@@ -64,36 +64,36 @@
   text-transform: none;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
+  font-smoothing: antialiased; 
 }
 
-.tc_activity_feed:before { content: "\f100"; }
-.tc_add:before { content: "\f101"; }
-.tc_checkin:before { content: "\f102"; }
-.tc_closed_circle:before { content: "\f103"; }
-.tc_collapse:before { content: "\f104"; }
-.tc_comment:before { content: "\f105"; }
-.tc_dashboard:before { content: "\f106"; }
-.tc_down:before { content: "\f107"; }
-.tc_download:before { content: "\f108"; }
-.tc_edit:before { content: "\f109"; }
-.tc_exit:before { content: "\f10a"; }
-.tc_expand:before { content: "\f10b"; }
-.tc_field_team:before { content: "\f10c"; }
-.tc_filter:before { content: "\f10d"; }
-.tc_like:before { content: "\f10e"; }
-.tc_logo:before { content: "\f10f"; }
-.tc_navigate:before { content: "\f110"; }
-.tc_notifications:before { content: "\f111"; }
-.tc_open_circle:before { content: "\f112"; }
-.tc_post:before { content: "\f113"; }
-.tc_remove:before { content: "\f114"; }
-.tc_report:before { content: "\f115"; }
-.tc_reports:before { content: "\f116"; }
-.tc_resolve_select:before { content: "\f117"; }
-.tc_resources:before { content: "\f118"; }
-.tc_search:before { content: "\f119"; }
-.tc_stores:before { content: "\f11a"; }
-.tc_up:before { content: "\f11b"; }
-.tc_upload:before { content: "\f11c"; }
-.tc_user:before { content: "\f11d"; }
+.tc-activity_feed:before { content: "\f100"; }
+.tc-add:before { content: "\f101"; }
+.tc-checkin:before { content: "\f102"; }
+.tc-closed_circle:before { content: "\f103"; }
+.tc-collapse:before { content: "\f104"; }
+.tc-comment:before { content: "\f105"; }
+.tc-dashboard:before { content: "\f106"; }
+.tc-down:before { content: "\f107"; }
+.tc-download:before { content: "\f108"; }
+.tc-edit:before { content: "\f109"; }
+.tc-exit:before { content: "\f10a"; }
+.tc-expand:before { content: "\f10b"; }
+.tc-field_team:before { content: "\f10c"; }
+.tc-filter:before { content: "\f10d"; }
+.tc-like:before { content: "\f10e"; }
+.tc-logo:before { content: "\f10f"; }
+.tc-navigate:before { content: "\f110"; }
+.tc-notifications:before { content: "\f111"; }
+.tc-open_circle:before { content: "\f112"; }
+.tc-post:before { content: "\f113"; }
+.tc-remove:before { content: "\f114"; }
+.tc-report:before { content: "\f115"; }
+.tc-reports:before { content: "\f116"; }
+.tc-resolve_select:before { content: "\f117"; }
+.tc-resources:before { content: "\f118"; }
+.tc-search:before { content: "\f119"; }
+.tc-stores:before { content: "\f11a"; }
+.tc-up:before { content: "\f11b"; }
+.tc-upload:before { content: "\f11c"; }
+.tc-user:before { content: "\f11d"; }

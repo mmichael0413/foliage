@@ -92,7 +92,7 @@ a.logo-link {
   padding: 1em 0 1em 1em;
   background-color: white;
 
-  .tc_logo, .third {
+  .tc-logo, .third {
     $size: 1em;
     height: $size;
     line-height: $size;
@@ -100,7 +100,7 @@ a.logo-link {
     text-decoration: none;
   }
 
-  .tc_logo {
+  .tc-logo {
     font-size: 2em;
   }
 
@@ -108,7 +108,7 @@ a.logo-link {
     font-size: 1.1em;
   }
 
-  .tc_logo, .channel {
+  .tc-logo, .channel {
     color: $text-color;
   }
 
