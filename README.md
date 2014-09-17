@@ -8,6 +8,13 @@ This repository holds the styles used for ThirdChannel web application.
 
 Install Node from http://nodejs.org/
 
+```
+> npm install
+```
+
+
 To run: 
 
-with in the project root run "node app.js"
+```
+> grunt
+```
