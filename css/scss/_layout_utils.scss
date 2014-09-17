@@ -30,6 +30,14 @@
   display:none;
 }
 
+.expander {
+  cursor: pointer; 
+}
+
+.hide {
+  display: none;
+}
+
 @include bp-small() {
   .visible-xs {
     display: block;
