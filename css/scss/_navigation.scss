@@ -4,6 +4,7 @@
     height: 3.5em;
     padding: 1em;
     width: 100%;
+    white-space: nowrap;
     &:hover {
       background-color: darken($nav-background, 5%);
     }
@@ -11,6 +12,7 @@
       background-color: white;
     }
     .link {
+      opacity: 1;
       padding-left: 1em;
     }
     a {

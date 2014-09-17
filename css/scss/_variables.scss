@@ -1,8 +1,10 @@
 $border-radius-base: 5px;
-$mobile-nav-width: 13em;
-$standard-nav-width: 13em;
 
 
+$mobile-nav-width: 14em;
+$standard-nav-width: 14em;
+$collapsed-nav-width: 4em;
+$standard-collapse-difference: $standard-nav-width - $collapsed-nav-width;
 
 
 @mixin tab-focus() {
