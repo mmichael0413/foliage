@@ -117,6 +117,12 @@ textarea {
 .visible-xs {
   display: none; }
 
+.expander {
+  cursor: pointer; }
+
+.hide {
+  display: none; }
+
 @media only screen and (max-width: 30em) {
   .visible-xs {
     display: block; } }
@@ -448,13 +454,13 @@ table {
   table th {
     text-transform: uppercase;
     text-align: left;
-    padding-bottom: 1em;
+    padding: 0 1em 1em 1em;
     vertical-align: top; }
     table th a {
       color: #474747; }
   table tr td {
     vertical-align: top;
-    padding: 1em 0;
+    padding: 1em;
     border-top: 1px solid #dad8d7; }
 
 /* Logo */
@@ -518,6 +524,9 @@ a.logo-link {
         border-top-right-radius: 5px; }
   .pagination-holder .pagination-info {
     margin-bottom: 1em; }
+
+.alert-group {
+  padding-left: 2em; }
 
 @media only screen and (max-width: 30em) {
   .content {
