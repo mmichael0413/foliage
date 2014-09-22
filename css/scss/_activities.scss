@@ -1,0 +1,96 @@
+.activity-holder {
+  margin-bottom: 1.5em;
+  border-radius: $border-radius-base;
+  border: 1px solid $border-color;
+}
+
+.activity, .comment-holder {
+  padding:1em;
+}
+
+.activity {
+  background: white;
+  border-top-left-radius: $border-radius-base;
+  border-top-right-radius: $border-radius-base;
+}
+
+.comment-holder {
+  border-bottom-left-radius: $border-radius-base;
+  border-bottom-right-radius: $border-radius-base;
+}
+
+.activity-bar {
+  margin-bottom: 1em;
+  .user-image, .bar-body {
+    display: inline-block;
+  }
+  .bar-body {
+    vertical-align: top;
+    padding-left: 1em;
+    width: 80%;
+  }
+}
+
+
+.activity-content {
+  display:inline-block;
+  vertical-align: top;
+  width: 60%;
+  .issues-found {
+    margin-bottom: 1em;
+  }
+  .activity-actions {
+    margin-top: 1em;
+    vertical-align: bottom;
+    
+  }
+}
+
+
+
+.action {
+  padding-right: 1em;
+}
+
+.activity-photos {
+  display: inline-block;
+  width:39%;
+  img {
+    width:100%;
+    height: auto;
+
+  }
+}
+$img-height: 3em;
+.user-image {
+  width: $img-height;
+  height: $img-height;
+}
+
+.comment-holder {
+  background-color: #ecebeb;//$palette1; 
+  padding-top: 1em;
+  .status-bar {
+    padding-bottom: 1em;
+    border-bottom: 1px solid $palette2;
+  }
+  .comments {
+    margin-top: 1em;
+    .activity-bar:last-of-type {
+      margin-bottom: 0;
+    }
+    .comment {
+      margin-bottom: 1em;
+    }
+  }
+}
+
+@include bp-small {
+  .activity-content, .activity-photos {
+    width:100%;
+     margin-bottom: 1em;
+  }
+
+  
+}
+

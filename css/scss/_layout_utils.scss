@@ -38,6 +38,10 @@
   display: none;
 }
 
+.img-circle {
+  border-radius: 50%;
+}
+
 @include bp-small() {
   .visible-xs {
     display: block;

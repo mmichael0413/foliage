@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
 @import "fonts/tc-icons";
 @import "fonts/nexa";
 @import "mixins";
@@ -11,6 +11,7 @@
 @import "layout_utils";
 @import "navigation";
 @import "text";
+@import "activities";
 
 
 body {
@@ -105,7 +106,7 @@ a.logo-link {
     text-decoration: none;
   }
 
-  .tc-logo {
+  .ic_logo {
     font-size: 2em;
   }
 

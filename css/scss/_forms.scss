@@ -23,3 +23,24 @@ input[type=text], input[type=password], input[type=number], textarea {
 textarea {
   min-height: 5em;
 }
+
+.input-group {
+  display: flex;
+  input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;   
+    border-right: none; 
+  }
+  button {
+    width:7em;
+    background-color: $border-color;
+    height: 2em;
+    border: none;
+    border-top-right-radius: $border-radius-base;
+    border-bottom-right-radius: $border-radius-base;
+    margin-left: -1px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+}
+

@@ -1,6 +1,18 @@
-$text-color: #474747;
+$palette1: #e3e8ec;
+$palette2: #9fb2bf;
+$palette3: #575d5f;
+$palette4: #414648;
+$palette5: #f15f51;
+$palette6: #deb999;
+$palette7: #a8bc4c;
+
+
+$text-color: $palette4;
 $main-background: #f6f6f5;
-$nav-background: #ecebeb;
-$border-color: #dad8d7;
-$link-color: #f15f51;
+$nav-background: $palette4;
+$border-color: $palette1;
+$link-color: $palette5;
 $active-state: #19677a;
+
+
+
