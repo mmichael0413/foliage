@@ -32,10 +32,10 @@ h1,h2,h3,h4 {
 }
 ```
 
-__Layout__: Any __major__ structural layout concerns. General placement of items (later referred to as _organisims_ or _molecules_) within a page should be done here. There's a subtle different between high-level placement, versus low-level padding, margin, or internal structure between our smaller components. 
+__Layout__: Any __major__ structural layout concerns. General placement of items (later referred to as _organisms_ or _molecules_) within a page should be done here. There's a subtle different between high-level placement, versus low-level padding, margin, or internal structure between our smaller components. 
 In other words, these styles should be very high-level and may be relatively small compared to the other sections.
 
-__Modules__: Descrete components within a page. Navigation items, form widgets, footers, etc.,  all count as modules. If using [Sass][sass], Each module should be contained within its' own .scss file.
+__Modules__: Discrete components within a page. Navigation items, form widgets, footers, etc.,  all count as modules. If using [Sass][sass], Each module should be contained within its' own .scss file.
 
 __State__: Any rules which augment or override existing rules. Some examples could include classes which mark a section as 'collapsed', 'active', 'clicked', etc. SMACCS makes a distinction between _global_ and _module-specific_ rules; specifically, global state rules should be in their own structural section, whereas states that apply to a module should be located within or alongside the module (e.g. within the module file).
 
@@ -81,7 +81,7 @@ Our goal is to take the structural breakdown of SMACCS, but replace the concept 
 
 Foliage is designed to provide an array of Base, Layout, and Molecules/Atom files, upon which each ThirdChannel service can compose their individual `.css` file. Or, simply use the `global.css` file, which comprises most of the files contained within.
 
-We use [Sass][sass], so each module, base, and layout concept can be broken up into its own file, then rebuilt during compile time. The key part here is the `css` and `scss` folders within Foliage, which we attempt to explain here, although further explanition can be found in sub-READMEs.
+We use [Sass][sass], so each module, base, and layout concept can be broken up into its own file, then rebuilt during compile time. The key part here is the `css` and `scss` folders within Foliage, which we attempt to explain here, although further explanation can be found in sub-READMEs.
 
 __CSS Folder__
 Contains the following folders:
@@ -97,7 +97,7 @@ Contains the following folders:
 *	`base`: Contains files for base styles, according to the [SMACCS][smaccs] concept
 *	`layout`: Files for classes relating to global/major layout
 *	`lib`: Library css files in .scss format
-*	`modules`: Couldn't think of an appropriate name for this, but this folder contains files containing organisms and molecules. Atoms should __generally__ be contained within the hiearchy of the organism.
+*	`modules`: Couldn't think of an appropriate name for this, but this folder contains files containing organisms and molecules. Atoms should __generally__ be contained within the hierarchy of the organism.
 *	`theme`: Should contain overrides for the above, although - differing from SMACCS - no 'base' theme is placed here; the rest of the folders contain the 'base' style.
 
 ##### Design Guidelines
@@ -112,10 +112,9 @@ We use [NodeJS][nodejs] to serve up the files and to generated a Cross Origin Po
 ##### Dev dependencies
 
 *	Install [Node][nodejs] from [http://nodejs.org/][nodejs] or via HomeBrew
-*	Install the various node modules and libraries (specifically [grunt][grunt]):	
-* ```
-> npm install
-```
+*	Install the various node modules and libraries (specifically [grunt][grunt]) by running `npm install` from the command line.
+
+
 
 At this point you should now have [NodeJS][nodejs] and [Grunt][grunt] installed and ready to go. Grunt will allow you to execute various tasks, such as:
 
