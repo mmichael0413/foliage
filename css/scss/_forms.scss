@@ -1,4 +1,8 @@
 
+/*
+  TODO: break this up into form base and form layout
+*/
+
 input[type=text], input[type=password], input[type=number], textarea {
   width: 100%;
   border: .1em solid $border-color;
