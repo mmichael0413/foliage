@@ -18,6 +18,10 @@
             overflow: auto;
             height: 100%;
             z-index: -1;
+            @include bp-small {
+                padding: 0em;
+
+            }
         }
     }
     // collapse nav

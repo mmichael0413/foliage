@@ -520,20 +520,6 @@ th {
 .red {
   color: #f15f51; }
 
-body {
-  margin: 0; }
-
-html {
-  margin: 0;
-  font-size: .9em;
-  font-family: 'Open Sans', 'sans-serif';
-  line-height: 1.5em;
-  background-color: #f6f6f5;
-  color: #414648; }
-
-li.list-unstyled {
-  text-decoration: none; }
-
 table {
   width: 100%;
   border-spacing: 0;
@@ -550,7 +536,55 @@ table {
     vertical-align: top;
     padding: 1em;
     border-top: 1px solid #edebeb; }
+  @media only screen and (max-width: 40em) {
+    table .minor-m {
+      display: none; } }
+  @media only screen and (max-width: 30em) {
+    table {
+      /* tag a td with .minor to remove it from view on smaller sizes */ }
+      table .minor-s {
+        display: none; } }
 
+body {
+  margin: 0; }
+
+html {
+  margin: 0;
+  font-size: .9em;
+  font-family: 'Open Sans', 'sans-serif';
+  line-height: 1.5em;
+  background-color: #f6f6f5;
+  color: #414648; }
+
+li.list-unstyled {
+  text-decoration: none; }
+
+/*
+table {
+	width: 100%;
+	border-spacing: 0;
+	border-collapse: collapse;
+	padding: 1em;
+
+	th {
+	  text-transform: uppercase;
+	  text-align: left;
+	  padding: 0 1em 1em 1em;
+	  vertical-align: top;
+	  a {
+	    color: $text-color;
+	  }
+	}
+
+	tr {
+	  td {
+	    vertical-align: top;
+	    padding: 1em;
+	    border-top: 1px solid $border-color;
+	  }
+	}
+}
+*/
 @media only screen and (max-width: 30em) {
   .content {
     padding-top: 3.5em;
@@ -649,6 +683,9 @@ ul.unstyled {
       overflow: auto;
       height: 100%;
       z-index: -1; }
+      @media only screen and (max-width: 30em) {
+        #site-wrapper #site-canvas .content {
+          padding: 0em; } }
   #site-wrapper.collapsed-nav #site-canvas #site-menu {
     width: 4em;
     transition: width .3s; }

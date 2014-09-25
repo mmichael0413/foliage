@@ -1,6 +1,7 @@
 @import "./colors";
 @import "./variables";
 @import "./mixins";
+@import "./table";
 
 body {
   margin: 0;
@@ -23,7 +24,7 @@ li {
 }
 
 
-
+/*
 table {
 	width: 100%;
 	border-spacing: 0;
@@ -48,6 +49,7 @@ table {
 	  }
 	}
 }
+*/
 
 
 @include bp-small {
