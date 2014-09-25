@@ -98,6 +98,7 @@ Contains the following folders:
 *	`layout`: Files for classes relating to global/major layout
 *	`lib`: Library css files in .scss format
 *	`modules`: Couldn't think of an appropriate name for this, but this folder contains files containing organisms and molecules. Atoms should __generally__ be contained within the hierarchy of the organism.
+*	`state`: Global states should be placed here. 
 *	`theme`: Should contain overrides for the above, although - differing from SMACCS - no 'base' theme is placed here; the rest of the folders contain the 'base' style.
 
 ##### Design Guidelines
