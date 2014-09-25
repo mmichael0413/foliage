@@ -449,6 +449,9 @@ ul.unstyled {
   .navigation .nav-item .ic_right {
     position: absolute;
     right: 1em; }
+  @media only screen and (max-width: 30em) {
+    .navigation .nav-item.minor-s {
+      display: none; } }
 
 #site-submenu {
   background-color: #f6f6f5;

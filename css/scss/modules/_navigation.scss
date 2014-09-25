@@ -32,7 +32,15 @@
       position:absolute;
       right: 1em;
     }
+
+    @include bp-small {
+      &.minor-s {
+        display: none;
+      }
+    }
   }
+
+
 }
 
 #site-submenu {
