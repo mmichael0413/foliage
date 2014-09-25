@@ -1,0 +1,64 @@
+@import "./colors";
+@import "./variables";
+@import "./mixins";
+
+body {
+  margin: 0;
+}
+
+html {
+  margin: 0;
+  font-size: .9em;
+  font-family: 'Open Sans', 'sans-serif';
+  line-height: 1.5em;
+  background-color: $main-background;
+  color: $text-color;
+}
+
+
+li {
+  &.list-unstyled {
+    text-decoration: none;
+  }
+}
+
+
+
+table {
+	width: 100%;
+	border-spacing: 0;
+	border-collapse: collapse;
+	padding: 1em;
+
+	th {
+	  text-transform: uppercase;
+	  text-align: left;
+	  padding: 0 1em 1em 1em;
+	  vertical-align: top;
+	  a {
+	    color: $text-color;
+	  }
+	}
+
+	tr {
+	  td {
+	    vertical-align: top;
+	    padding: 1em;
+	    border-top: 1px solid $border-color;
+	  }
+	}
+}
+
+
+@include bp-small {
+  .content{
+    padding-top: 3.5em;
+    padding-left:.5em;
+    padding-right: .5em;
+  }
+
+  #site-wrapper.show-nav .content {
+      height:initial;
+    }
+
+}

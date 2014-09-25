@@ -1,24 +1,12 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
-@import "../../base/fonts/tc-icons";
-@import "../../base/fonts/nexa";
-@import "../../base/colors";
-@import "../../base/variables";
-@import "../../base/mixins";
+@import "../../lib/normalize";
+@import "../../base/fonts_all";
+@import "../../base/base";
 @import "../../base/text";
-
-
 @import "../../base/buttons";
 @import "../../layout/base_layout";
-@import "../../layout/layout_transitions";
-@import "../../layout/layout_utils";
 @import "../../modules/navigation";
-@import "../../modules/activities";
-@import "../../forms";
+@import "../../modules/action_row";
+@import "../../modules/pagination";
+@import "../../layout/layout_utils";
 
-@import "custom";
-
-
-
-.content {
-	color: #cccccc;
-}
+@import "./activities";

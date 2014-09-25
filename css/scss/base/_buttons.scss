@@ -1,13 +1,37 @@
 @mixin button-details($color) {
-  height: 3em;
-  background: none;
-  color: $color;
-  border: .2em solid $color;
-  border-radius: $border-radius-base;
+    height: 3em;
+    background: none;
+    color: $color;
+    border: 0.2em solid $color;
+    border-radius: $border-radius-base;
+}
+
+@mixin btn-details($color) {
+	display: inline-block;
+	font-size:.9em;
+    border: 3px solid $color;
+    background: none;
+    border-radius: $border-radius_base;
+    padding: 2px 6px;
+    &.solid {
+    	padding: 2px 1em;
+        background-color: $color;
+        color: white;      
+    }
+    &:focus {
+        outline: none;
+    }
+    &.enabled {
+        background-color: $color;
+        color: white;
+    }
 }
 
 .btn {
-  &.primary {
-    @include button-details($link-color)
-  }
+    &.default {
+        @include btn-details($text-color);
+    }
+    &.primary {
+    	@include btn-details($link-color);
+    }
 }
