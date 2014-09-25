@@ -180,12 +180,12 @@
   height: 100%;
   position: absolute;
   top: 0;
-  background: #414648;
+  background: #575d5f;
   overflow: hidden;
   z-index: 5; }
 
 #site-submenu {
-  background-color: #e3e8ec;
+  background-color: #edebeb;
   width: 14em;
   height: 100%;
   height: 100%;
@@ -204,7 +204,10 @@
   position: absolute;
   top: 0;
   right: -14em;
-  background: #414648; }
+  background: #575d5f; }
+
+.holder > div {
+  padding: 1.5em; }
 
 /* Media Queries */
 @media only screen and (max-width: 30em) {
@@ -252,7 +255,7 @@
   transform: translateX(-14em); }
 
 #site-submenu.show-subnav {
-  background-color: #e3e8ec;
+  background-color: #414648;
   -webkit-transform: translateX(14em);
   transform: translateX(14em); }
 
@@ -274,7 +277,7 @@
 
 input[type=text], input[type=password], input[type=number], textarea {
   width: 100%;
-  border: 0.1em solid #e3e8ec;
+  border: 0.1em solid #edebeb;
   border-radius: 5px;
   height: 2em;
   font-size: 1em;
@@ -299,7 +302,7 @@ textarea {
     border-right: none; }
   .input-group button {
     width: 7em;
-    background-color: #e3e8ec;
+    background-color: #e1dede;
     height: 2em;
     border: none;
     border-top-right-radius: 5px;
@@ -324,7 +327,7 @@ textarea {
 .module {
   padding: 1em;
   background-color: white;
-  border: 1px solid #e3e8ec;
+  border: 1px solid #edebeb;
   border-radius: 5px; }
 
 .pull-right {
@@ -342,19 +345,40 @@ textarea {
 .img-circle {
   border-radius: 50%; }
 
+.carousel-caption {
+  position: absolute;
+  bottom: 1em;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 5px black; }
+
+.top-aligned {
+  vertical-align: top; }
+
 @media only screen and (max-width: 30em) {
   .visible-xs {
-    display: block; } }
+    display: block; }
+
+  .hidden-xs {
+    display: none; }
+
+  .m-carousel.m-fluid > .m-carousel-inner > * {
+    width: 90%; } }
 .navigation .nav-item {
-  display: inline-table;
   height: 3.5em;
   padding: 1em;
   width: 100%;
   white-space: nowrap; }
   .navigation .nav-item:hover {
-    background-color: #35393b; }
+    background-color: #4b5052; }
   .navigation .nav-item.active {
     background-color: white; }
+    .navigation .nav-item.active a {
+      color: #414648; }
+    .navigation .nav-item.active .ic {
+      color: #f15f51; }
   .navigation .nav-item .link {
     opacity: 1;
     padding-left: 1em; }
@@ -367,27 +391,28 @@ textarea {
       top: .03em; }
 
 #site-submenu {
-  background-color: #414648; }
+  background-color: #f6f6f5;
+  color: #e3e8ec; }
   #site-submenu .close {
     position: absolute;
     top: 0;
     right: 0;
     padding: .5em .5em 0 0;
-    color: #414648; }
+    color: #e3e8ec; }
   #site-submenu ul li {
     padding: 1em; }
     #site-submenu ul li a {
-      color: #414648; }
+      color: #e3e8ec; }
     #site-submenu ul li > strong {
       text-transform: uppercase; }
     #site-submenu ul li.return {
-      border-top: 1px solid #e3e8ec;
-      border-bottom: 1px solid #e3e8ec; }
+      border-top: 1px solid #edebeb;
+      border-bottom: 1px solid #edebeb; }
     #site-submenu ul li.menu-option:hover {
-      background-color: #d4dce2; }
+      background-color: #35393b; }
     #site-submenu ul li.menu-option.active {
       font-weight: bold;
-      background-color: #d4dce2;
+      background-color: #4d5355;
       cursor: default;
       pointer-events: none; }
 
@@ -416,7 +441,7 @@ textarea {
 
 @media only screen and (max-width: 30em) {
   #mobile-header {
-    border-bottom: 1px solid #e3e8ec;
+    border-bottom: 1px solid #edebeb;
     display: block;
     position: absolute;
     top: 0;
@@ -484,10 +509,7 @@ ul.unstyled {
 .activity-holder {
   margin-bottom: 1.5em;
   border-radius: 5px;
-  border: 1px solid #e3e8ec; }
-
-.activity, .comment-holder {
-  padding: 1em; }
+  border: 1px solid #edebeb; }
 
 .activity {
   background: white;
@@ -504,13 +526,12 @@ ul.unstyled {
     display: inline-block; }
   .activity-bar .bar-body {
     vertical-align: top;
-    padding-left: 1em;
     width: 80%; }
 
 .activity-content {
   display: inline-block;
   vertical-align: top;
-  width: 60%; }
+  width: 70%; }
   .activity-content .issues-found {
     margin-bottom: 1em; }
   .activity-content .activity-actions {
@@ -522,21 +543,17 @@ ul.unstyled {
 
 .activity-photos {
   display: inline-block;
-  width: 39%; }
-  .activity-photos img {
-    width: 100%;
-    height: auto; }
+  width: 29%; }
 
 .user-image {
   width: 3em;
   height: 3em; }
 
 .comment-holder {
-  background-color: #ecebeb;
-  padding-top: 1em; }
+  background-color: #edebeb; }
   .comment-holder .status-bar {
     padding-bottom: 1em;
-    border-bottom: 1px solid #9fb2bf; }
+    border-bottom: 1px solid #f6f6f5; }
   .comment-holder .comments {
     margin-top: 1em; }
     .comment-holder .comments .activity-bar:last-of-type {
@@ -555,6 +572,7 @@ html {
   margin: 0;
   font-size: .9em;
   font-family: 'Open Sans', 'sans-serif';
+  line-height: 1.5em;
   background-color: #f6f6f5;
   color: #414648; }
 
@@ -580,7 +598,7 @@ li.list-unstyled {
 .section {
   background-color: white;
   padding: 1em;
-  border: 1px solid #e3e8ec;
+  border: 1px solid #edebeb;
   border-radius: 5px;
   margin-bottom: 2em; }
 
@@ -599,7 +617,7 @@ table {
   table tr td {
     vertical-align: top;
     padding: 1em;
-    border-top: 1px solid #e3e8ec; }
+    border-top: 1px solid #edebeb; }
 
 /* Logo */
 a.logo-link {
@@ -614,7 +632,7 @@ a.logo-link {
   .logo .tc-logo, .logo .third {
     height: 1em;
     line-height: 1em;
-    vertical-align: middle;
+    vertical-align: super;
     text-decoration: none; }
   .logo .ic_logo {
     font-size: 2em; }
@@ -629,7 +647,7 @@ a.logo-link {
     font-family: 'Nexa Bold'; }
 
 .toggle-filter.enabled {
-  color: #19677a; }
+  color: #e3e8ec; }
 
 .pagination-holder {
   margin-bottom: 1em;
@@ -643,15 +661,15 @@ a.logo-link {
       display: inline-block;
       min-width: 2.6em;
       padding: .6em;
-      border: 0.1em solid #e3e8ec;
+      border: 0.1em solid #edebeb;
       text-align: center;
-      background-color: #414648; }
+      background-color: #575d5f; }
       .pagination-holder .pagination .page a {
-        color: #e3e8ec; }
+        color: #edebeb; }
       .pagination-holder .pagination .page:hover {
-        background-color: #35393b; }
+        background-color: #4b5052; }
       .pagination-holder .pagination .page.current {
-        background-color: #292c2d; }
+        background-color: #3f4344; }
       .pagination-holder .pagination .page.gap {
         background-color: inherit;
         border: none; }

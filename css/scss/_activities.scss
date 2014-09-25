@@ -5,7 +5,7 @@
 }
 
 .activity, .comment-holder {
-  padding:1em;
+//  padding:1.5em;
 }
 
 .activity {
@@ -26,7 +26,7 @@
   }
   .bar-body {
     vertical-align: top;
-    padding-left: 1em;
+//    padding-left: 1em;
     width: 80%;
   }
 }
@@ -35,7 +35,8 @@
 .activity-content {
   display:inline-block;
   vertical-align: top;
-  width: 60%;
+  width: 70%;
+//  padding-right:1em;
   .issues-found {
     margin-bottom: 1em;
   }
@@ -54,12 +55,8 @@
 
 .activity-photos {
   display: inline-block;
-  width:39%;
-  img {
-    width:100%;
-    height: auto;
-
-  }
+  width:29%;
+ 
 }
 $img-height: 3em;
 .user-image {
@@ -68,11 +65,11 @@ $img-height: 3em;
 }
 
 .comment-holder {
-  background-color: #ecebeb;//$palette1; 
-  padding-top: 1em;
+  background-color: $border-color;//$palette1; 
+ // padding-top: 1em;
   .status-bar {
     padding-bottom: 1em;
-    border-bottom: 1px solid $palette2;
+    border-bottom: 1px solid $main-background;
   }
   .comments {
     margin-top: 1em;

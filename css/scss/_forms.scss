@@ -33,7 +33,7 @@ textarea {
   }
   button {
     width:7em;
-    background-color: $border-color;
+    background-color: darken($border-color, 5%);
     height: 2em;
     border: none;
     border-top-right-radius: $border-radius-base;

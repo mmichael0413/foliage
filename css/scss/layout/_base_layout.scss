@@ -51,6 +51,11 @@
   background: $nav-background;
 }
 
+.holder {
+  > div {
+    padding: 1.5em;
+  }
+}
 
 /* Media Queries */
 @include bp-small {

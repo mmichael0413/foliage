@@ -42,9 +42,41 @@
   border-radius: 50%;
 }
 
+.carousel-caption {
+  position:absolute;
+  bottom: 1em;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+}
+
+// .m-carousel-photos {
+//   .m-item{
+//     position: relative;
+//     & > img {
+//       box-shadow: none;
+//       border: 1px solid $palette1;
+//     }
+//   }
+// }
+
+
+.top-aligned {
+  vertical-align: top;
+}
+
 @include bp-small() {
   .visible-xs {
     display: block;
+  }
+  .hidden-xs {
+    display:none;
+  }
+
+  .m-carousel.m-fluid > .m-carousel-inner > * {
+    width:90%;
   }
 }
 

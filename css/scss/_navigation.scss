@@ -1,6 +1,7 @@
 .navigation {
+
   .nav-item {
-    display: inline-table;
+ //   display: inline-table;
     height: 3.5em;
     padding: 1em;
     width: 100%;
@@ -10,6 +11,8 @@
     }
     &.active {
       background-color: white;
+      a{ color: $text-color; }
+      .ic { color: $link-color;}
     }
     .link {
       opacity: 1;
@@ -29,19 +32,19 @@
 
 #site-submenu {
 
-  background-color: $nav-background;
-
+  background-color: $main-background;
+  color: $palette1;
   .close {
     position: absolute;
     top: 0;
     right: 0;
     padding: .5em .5em 0 0;
-    color: $text-color;
+    color: $palette1;
   }
   ul li {
     padding: 1em;
     a {
-      color: $text-color;
+      color: $palette1;
     }
     > strong {
       text-transform: uppercase;
@@ -51,11 +54,11 @@
       border-bottom: 1px solid $border-color;
     }
     &.menu-option:hover {
-      background-color: darken($border-color, 5%);
+      background-color: darken($subnav-background, 5%);
     }
     &.menu-option.active {
       font-weight: bold;
-      background-color: darken($border-color, 5%);
+      background-color: lighten($subnav-background, 5%);
       cursor: default;
       pointer-events: none;
     }

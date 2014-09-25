@@ -62,7 +62,7 @@
 }
 
 #site-submenu.show-subnav  {
-  background-color: $border-color;
+  background-color: $subnav-background;
   -webkit-transform: translateX($standard-nav-width);
   transform: translateX($standard-nav-width);
 }

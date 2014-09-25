@@ -21,6 +21,7 @@ html {
   margin: 0;
   font-size: .9em;
   font-family: 'Open Sans', 'sans-serif';
+  line-height: 1.5em;
   background-color: $main-background;
   color: $text-color;
 }
@@ -102,7 +103,7 @@ a.logo-link {
     $size: 1em;
     height: $size;
     line-height: $size;
-    vertical-align: middle;
+    vertical-align: super;
     text-decoration: none;
   }
 
