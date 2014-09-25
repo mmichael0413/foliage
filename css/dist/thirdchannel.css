@@ -630,6 +630,45 @@ ul.unstyled {
       position: absolute;
       top: .5em;
       right: .5em; } }
+/*
+  TODO: break this up into form base and form layout
+*/
+input[type=text], input[type=password], input[type=number], textarea {
+  width: 100%;
+  border: 0.1em solid #edebeb;
+  border-radius: 5px;
+  height: 2em;
+  font-size: 1em;
+  padding-left: .5em;
+  margin-bottom: 2em; }
+
+.radio-group input[type=radio] {
+  display: inline;
+  margin-left: 2em;
+  margin-right: .7em; }
+  .radio-group input[type=radio]:first-of-type {
+    margin-left: 0; }
+
+textarea {
+  min-height: 5em; }
+
+.input-group {
+  display: flex; }
+  .input-group input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none; }
+  .input-group button {
+    width: 7em;
+    background-color: #e1dede;
+    height: 2em;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-left: -1px;
+    font-size: 1em;
+    cursor: pointer; }
+
 .btn.default {
   display: inline-block;
   font-size: .9em;
@@ -1011,18 +1050,19 @@ ul.unstyled {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px; }
 
-.activity-bar {
-  margin-bottom: 1em; }
-  .activity-bar .user-image, .activity-bar .bar-body {
+.activity-meta, .comment {
+  padding: 1.5em 1.5em 0 1.5em; }
+  .activity-meta .user-image, .activity-meta .bar-body, .comment .user-image, .comment .bar-body {
     display: inline-block; }
-  .activity-bar .bar-body {
+  .activity-meta .bar-body, .comment .bar-body {
     vertical-align: top;
     width: 80%; }
 
 .activity-content {
   display: inline-block;
   vertical-align: top;
-  width: 70%; }
+  width: 70%;
+  padding: 1.5em; }
   .activity-content .issues-found {
     margin-bottom: 1em; }
   .activity-content .activity-actions {
@@ -1033,24 +1073,22 @@ ul.unstyled {
   padding-right: 1em; }
 
 .activity-photos {
+  padding: 1.5em;
   display: inline-block;
   width: 29%; }
 
 .user-image {
   width: 3em;
-  height: 3em; }
+  height: 3em;
+  margin-right: 1em; }
 
 .comment-holder {
   background-color: #edebeb; }
   .comment-holder .status-bar {
-    padding-bottom: 1em;
+    padding: 0.5em 1.5em;
     border-bottom: 1px solid #f6f6f5; }
-  .comment-holder .comments {
-    margin-top: 1em; }
-    .comment-holder .comments .activity-bar:last-of-type {
-      margin-bottom: 0; }
-    .comment-holder .comments .comment {
-      margin-bottom: 1em; }
+  .comment-holder .comments .activity-bar:last-of-type {
+    margin-bottom: 0; }
 
 @media only screen and (max-width: 30em) {
   .activity-content, .activity-photos {
