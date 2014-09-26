@@ -1,3 +1,5 @@
+$padding: 1.5em;
+
 .activity-holder {
   margin-bottom: 1.5em;
   border-radius: $border-radius-base;
@@ -19,8 +21,8 @@
   border-bottom-right-radius: $border-radius-base;
 }
 
-.activity-bar {
-  margin-bottom: 1em;
+.activity-meta, .comment {
+  padding: $padding $padding 0 $padding;
   .user-image, .bar-body {
     display: inline-block;
   }
@@ -36,7 +38,7 @@
   display:inline-block;
   vertical-align: top;
   width: 70%;
-//  padding-right:1em;
+  padding: $padding;
   .issues-found {
     margin-bottom: 1em;
   }
@@ -47,13 +49,12 @@
   }
 }
 
-
-
 .action {
   padding-right: 1em;
 }
 
 .activity-photos {
+  padding: $padding;
   display: inline-block;
   width:29%;
  
@@ -62,23 +63,21 @@ $img-height: 3em;
 .user-image {
   width: $img-height;
   height: $img-height;
+  margin-right: 1em;
 }
 
 .comment-holder {
   background-color: $border-color;//$palette1; 
- // padding-top: 1em;
   .status-bar {
-    padding-bottom: 1em;
+      padding: .5em $padding;
     border-bottom: 1px solid $main-background;
   }
   .comments {
-    margin-top: 1em;
+    
     .activity-bar:last-of-type {
       margin-bottom: 0;
     }
-    .comment {
-      margin-bottom: 1em;
-    }
+
   }
 }
 
