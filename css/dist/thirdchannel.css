@@ -1000,6 +1000,38 @@ ul.unstyled {
 
   .m-carousel.m-fluid > .m-carousel-inner > * {
     width: 90%; } }
+/*
+	Used for having a hidden, secondary table row expand on collapse.
+	Your View / raw JS must apply the .open class to the .expanding-row-container in the hidden row
+
+	Example Structure
+	<tr>
+		<td colspan="6">This is our main row. <span class="click-target">Click here to expand</span></td>
+	</tr>
+
+	<tr>
+        <td colspan="6"  class="expanding-row-container" data-id="<%=user.id%>">
+          <div  class="expanding-row">
+            <h1>Hi</h1>
+            <p>Lorem ipsum blah blah blah</p>
+          </div>
+        </td>
+  </tr>
+*/
+.expanding-row-container {
+  padding: 0; }
+  .expanding-row-container .expanding-row {
+    overflow: hidden;
+    max-height: 0;
+    /* Set our transitions up. */
+    -webkit-transition: max-height 0.8s;
+    -moz-transition: max-height 0.8s;
+    transition: max-height 0.8s; }
+  .expanding-row-container.open {
+    padding: inherit; }
+    .expanding-row-container.open .expanding-row {
+      max-height: 15em; }
+
 .activity-holder {
   margin-bottom: 1.5em;
   border-radius: 5px;
