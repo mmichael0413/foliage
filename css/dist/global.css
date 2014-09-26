@@ -530,16 +530,10 @@ ul.unstyled {
       background-color: #4b5052; }
     #site-filter .filter-item .active-filter {
       padding: 1em 0.5em; }
-    #site-filter .filter-item .active-filter-icon {
-      width: 1.5em;
-      height: 1.5em;
-      text-align: center;
-      border: 1px solid #f15f51;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      -ms-border-radius: 5px;
-      border-radius: 5px;
-      display: inline-block; }
+    #site-filter .filter-item .btn.default {
+      border-color: #f15f51; }
+      #site-filter .filter-item .btn.default:hover {
+        border-color: #f7a098; }
   #site-filter .filter-list {
     max-height: 0px;
     background-color: #ffffff;
@@ -552,7 +546,15 @@ ul.unstyled {
     transition: max-height, 0.8s; }
     #site-filter .filter-list .filter-list-item {
       padding: 1em;
-      padding-left: 2em; }
+      padding-left: 2em;
+      cursor: pointer; }
+      #site-filter .filter-list .filter-list-item .btn.default {
+        width: 2em;
+        height: 2em;
+        border-color: #9fb2bf;
+        margin-right: 0.5em; }
+      #site-filter .filter-list .filter-list-item:hover .btn.default {
+        border-color: #718da0; }
     #site-filter .filter-list.open {
       max-height: 20em; }
   #site-filter a.filter-item, #site-filter a.filter-item:hover {
