@@ -1,0 +1,58 @@
+#site-filter {
+    color: $palette1;
+    background: $nav-background;
+
+    .filter-item {
+        width: 100%;
+        display: block;
+        min-height: $menu-item-height;
+        padding: 1em;
+        cursor: pointer;
+
+        .icon, .expand-indicator {
+            position: absolute;
+            right: 1em;
+        }
+
+        &:hover {
+            background-color: $nav-background-hover;
+        }
+
+        .active-filter {
+            padding: 1em 0.5em;
+
+        }
+
+        .active-filter-icon {
+            width: 1.5em;
+            height: 1.5em;
+            text-align: center;
+            border: 1px solid $palette5;
+            @include border-radius(5px);
+            display: inline-block;
+        }
+    }
+
+    .filter-list {
+        max-height:0px;
+        background-color: #ffffff;
+        color: $nav-background;
+
+        overflow-y: scroll;
+        @include transition(max-height, 0.8s);
+        .filter-list-item {
+            padding: 1em;
+            padding-left: 2em;
+        }
+        &.open {
+            max-height:20em;
+        }
+    }
+
+
+
+
+    a.filter-item, a.filter-item:hover {
+        color: inherit;
+    }
+}

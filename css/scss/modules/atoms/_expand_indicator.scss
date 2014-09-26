@@ -1,0 +1,6 @@
+.expand-indicator {
+	@extend .ic_down;
+	&.open {
+		@extend .ic_up;
+	}
+}

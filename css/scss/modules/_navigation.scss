@@ -4,7 +4,7 @@
 
   .nav-item {
     display: block;
-    height: 3.5em;
+    height: $menu-item-height;
     padding: 1em;
     width: 100%;
     white-space: nowrap;
@@ -16,7 +16,7 @@
         top: .03em;
       }
     &:hover {
-      background-color: darken($nav-background, 5%);
+      background-color: $nav-background-hover;
     }
     &.active {
       background-color: white;
@@ -74,20 +74,6 @@
       cursor: default;
       pointer-events: none;
     }
-  }
-}
-
-#filter-menu {
-  position: absolute;
-  width: $standard-nav-width;
-  right: -$standard-nav-width;
-  top: 0;
-  background-color: white;
-  height: 100%;
-  z-index: 326;
-  @include transition(300ms ease all);
-  &.show-filter {
-    @include transform(-$standard-nav-width);
   }
 }
 
