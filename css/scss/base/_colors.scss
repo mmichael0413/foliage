@@ -10,6 +10,7 @@ $palette7: #a8bc4c;
 $text-color: $palette4;
 $main-background: #f6f6f5;
 $nav-background: $palette3;
+$nav-background-hover: darken($nav-background, 5%);
 $subnav-background: $palette4;
 $border-color: #edebeb;
 $link-color: $palette5;

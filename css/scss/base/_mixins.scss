@@ -25,6 +25,14 @@
   }
 }
 
+/* From http://sass-lang.com/guide */
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
 // media query mixins
 @mixin bp-large {
   @media only screen and (max-width: 60em) {
@@ -33,7 +41,7 @@
 }
 
 @mixin bp-medium {
-  @media only screen and (max-width: 960px) {
+  @media only screen and (max-width: 40em) {
     @content;
   }
 }
