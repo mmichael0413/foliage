@@ -378,6 +378,7 @@ th {
 .ic_comment:before,
 .ic_dashboard:before,
 .ic_down:before,
+.expand-indicator:before,
 .ic_download:before,
 .ic_envelope:before,
 .ic_filter:before,
@@ -398,6 +399,7 @@ th {
 .ic_star:before,
 .ic_store:before,
 .ic_up:before,
+.expand-indicator.open:before,
 .ic_upload:before,
 .ic_x:before {
   display: inline-block;
@@ -434,7 +436,7 @@ th {
 .ic_dashboard:before {
   content: "\f124"; }
 
-.ic_down:before {
+.ic_down:before, .expand-indicator:before {
   content: "\f125"; }
 
 .ic_download:before {
@@ -494,7 +496,7 @@ th {
 .ic_store:before {
   content: "\f138"; }
 
-.ic_up:before {
+.ic_up:before, .expand-indicator.open:before {
   content: "\f139"; }
 
 .ic_upload:before {
@@ -520,6 +522,7 @@ th {
 .red {
   color: #f15f51; }
 
+/* From http://sass-lang.com/guide */
 .loading {
   color: #414648;
   text-align: center; }
@@ -545,7 +548,7 @@ table {
     vertical-align: top;
     padding: 1em;
     border-top: 1px solid #edebeb; }
-  @media only screen and (max-width: 960px) {
+  @media only screen and (max-width: 40em) {
     table .minor-m {
       display: none; } }
   @media only screen and (max-width: 30em) {
@@ -717,6 +720,61 @@ textarea {
     background-color: #f15f51;
     color: white; }
 
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.clear:before,
+.clear:after {
+  content: " ";
+  display: table; }
+
+.clear:after {
+  clear: both; }
+
+.module {
+  padding: 1em;
+  background-color: white;
+  border: 1px solid #edebeb;
+  border-radius: 5px; }
+
+.pull-right {
+  float: right; }
+
+.visible-xs {
+  display: none; }
+
+.expander {
+  cursor: pointer; }
+
+.hide {
+  display: none; }
+
+.img-circle {
+  border-radius: 50%; }
+
+.carousel-caption {
+  position: absolute;
+  bottom: 1em;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 5px black; }
+
+.top-aligned {
+  vertical-align: top; }
+
+@media only screen and (max-width: 30em) {
+  .visible-xs {
+    display: block; }
+
+  .hidden-xs {
+    display: none; }
+
+  .m-carousel.m-fluid > .m-carousel-inner > * {
+    width: 90%; } }
 #site-wrapper {
   position: relative;
   overflow: hidden;
@@ -808,8 +866,7 @@ textarea {
     height: 100%;
     position: absolute;
     top: 0;
-    right: -14em;
-    background: #575d5f; }
+    right: -14em; }
 
 .page-heading {
   margin: 1em 0; }
@@ -1043,61 +1100,84 @@ textarea {
   .pagination-holder .pagination-info {
     margin-bottom: 1em; }
 
-*, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box; }
+#site-filter {
+  color: #e3e8ec;
+  background: #575d5f; }
+  #site-filter .filter-item {
+    width: 100%;
+    display: block;
+    min-height: 3.5em;
+    padding: 1em;
+    cursor: pointer; }
+    #site-filter .filter-item .icon, #site-filter .filter-item .expand-indicator {
+      position: absolute;
+      right: 1em; }
+    #site-filter .filter-item:hover {
+      background-color: #4b5052; }
+    #site-filter .filter-item .active-filter {
+      padding: 1em 0.5em; }
+    #site-filter .filter-item .btn.default {
+      border-color: #f15f51; }
+      #site-filter .filter-item .btn.default:hover {
+        border-color: #f7a098; }
+  #site-filter .filter-list {
+    max-height: 0px;
+    background-color: #ffffff;
+    color: #575d5f;
+    overflow-y: scroll;
+    -webkit-transition: max-height, 0.8s;
+    -moz-transition: max-height, 0.8s;
+    -ms-transition: max-height, 0.8s;
+    -o-transition: max-height, 0.8s;
+    transition: max-height, 0.8s; }
+    #site-filter .filter-list .filter-list-item {
+      padding: 1em;
+      padding-left: 2em;
+      cursor: pointer; }
+      #site-filter .filter-list .filter-list-item .btn.default {
+        width: 2em;
+        height: 2em;
+        border-color: #9fb2bf;
+        margin-right: 0.5em; }
+      #site-filter .filter-list .filter-list-item:hover .btn.default {
+        border-color: #718da0; }
+    #site-filter .filter-list.open {
+      max-height: 20em; }
+  #site-filter a.filter-item, #site-filter a.filter-item:hover {
+    color: inherit; }
 
-.clear:before,
-.clear:after {
-  content: " ";
-  display: table; }
+/*
+	Used for having a hidden, secondary table row expand on collapse.
+	Your View / raw JS must apply the .open class to the .expanding-row-container in the hidden row
 
-.clear:after {
-  clear: both; }
+	Example Structure
+	<tr>
+		<td colspan="6">This is our main row. <span class="click-target">Click here to expand</span></td>
+	</tr>
 
-.module {
-  padding: 1em;
-  background-color: white;
-  border: 1px solid #edebeb;
-  border-radius: 5px; }
+	<tr>
+        <td colspan="6"  class="expanding-row-container" data-id="<%=user.id%>">
+          <div  class="expanding-row">
+            <h1>Hi</h1>
+            <p>Lorem ipsum blah blah blah</p>
+          </div>
+        </td>
+  </tr>
+*/
+.expanding-row-container {
+  padding: 0; }
+  .expanding-row-container .expanding-row {
+    overflow: hidden;
+    max-height: 0;
+    /* Set our transitions up. */
+    -webkit-transition: max-height 0.8s;
+    -moz-transition: max-height 0.8s;
+    transition: max-height 0.8s; }
+  .expanding-row-container.open {
+    padding: inherit; }
+    .expanding-row-container.open .expanding-row {
+      max-height: 15em; }
 
-.pull-right {
-  float: right; }
-
-.visible-xs {
-  display: none; }
-
-.expander {
-  cursor: pointer; }
-
-.hide {
-  display: none; }
-
-.img-circle {
-  border-radius: 50%; }
-
-.carousel-caption {
-  position: absolute;
-  bottom: 1em;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: white;
-  text-shadow: 1px 1px 5px black; }
-
-.top-aligned {
-  vertical-align: top; }
-
-@media only screen and (max-width: 30em) {
-  .visible-xs {
-    display: block; }
-
-  .hidden-xs {
-    display: none; }
-
-  .m-carousel.m-fluid > .m-carousel-inner > * {
-    width: 90%; } }
 .activity-holder {
   margin-bottom: 1.5em;
   border-radius: 5px;
@@ -1159,7 +1239,7 @@ textarea {
   .comment-holder .comments .activity-bar:last-of-type {
     margin-bottom: 0; }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 40em) {
   .activity-content {
     width: 65%; }
 
