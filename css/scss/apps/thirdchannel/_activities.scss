@@ -12,8 +12,9 @@ $padding: 1.5em;
 
 .activity {
     background: white;
-    border-top-left-radius: $border-radius-base;
-    border-top-right-radius: $border-radius-base;
+    //border-top-left-radius: $border-radius-base;
+    //border-top-right-radius: $border-radius-base;
+    border-radius: $border-radius-base;
     &.info {
         background-color: $palette1;
         padding: 1em;
@@ -22,6 +23,18 @@ $padding: 1.5em;
     }
     &.error {
         background-color: lighten($link-color, 20%);
+    }
+    &.incomplete {
+        .activity-holder {
+            padding: 1em;
+            h3 {
+                text-transform: uppercase;
+            }
+            .fa {
+                font-size: .8em;
+                margin-left: 1.5em;
+            }
+        }
     }
 }
 

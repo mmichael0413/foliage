@@ -1185,8 +1185,7 @@ textarea {
 
 .activity {
   background: white;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px; }
+  border-radius: 5px; }
   .activity.info {
     background-color: #e3e8ec;
     padding: 1em;
@@ -1194,6 +1193,13 @@ textarea {
     margin-bottom: 1em; }
   .activity.error {
     background-color: #f9b6af; }
+  .activity.incomplete .activity-holder {
+    padding: 1em; }
+    .activity.incomplete .activity-holder h3 {
+      text-transform: uppercase; }
+    .activity.incomplete .activity-holder .fa {
+      font-size: .8em;
+      margin-left: 1.5em; }
 
 .comment-holder {
   border-bottom-left-radius: 5px;
