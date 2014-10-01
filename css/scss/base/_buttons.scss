@@ -8,14 +8,17 @@
 
 @mixin btn-details($color) {
 	display: inline-block;
-	font-size:.9em;
-    border: 3px solid $color;
+    border: 2px solid $color;
     background: none;
     border-radius: $border-radius_base;
     padding: 2px 6px;
+    font-size: 1.2em;
+    vertical-align: middle;
     &.solid {
+        font-size: inherit;
     	padding: 2px 1em;
         background-color: $color;
+        font-weight: bold;
         color: white;      
     }
     &:focus {

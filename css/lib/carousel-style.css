@@ -237,7 +237,7 @@
     max-width: none;
     width: 100%;
     height: auto;
-    border: 1px solid #edebeb;
+   /* border: 1px solid #edebeb;*/
 }
 
 .m-carousel-photos .m-caption {

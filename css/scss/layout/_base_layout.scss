@@ -119,6 +119,16 @@
     }
 }
 
+.page-heading {
+    margin: 1em 0;
+    > div {
+        display: inline-block;
+    }
+    h1 {
+        margin: 0;
+    }
+}
+
 .section {
     background-color: white;
     padding: 1em;

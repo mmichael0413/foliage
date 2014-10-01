@@ -1,135 +1,196 @@
 @import "./logo";
 
 .navigation {
-
-  .nav-item {
-    display: block;
-    height: 3.5em;
-    padding: 1em;
-    width: 100%;
-    white-space: nowrap;
-    color: $palette1;
-      position: relative;
-      .fa {
-        position: absolute;
-        right: -4em;
-        top: .03em;
-      }
-    &:hover {
-      background-color: darken($nav-background, 5%);
+    .nav-item {
+        display: block;
+        height: 3.5em;
+        padding: 1em $collapsed-nav-width / 2 1em 1em;
+        width: 100%;
+        white-space: nowrap;
+        color: $palette1;
+        position: relative;
+        .fa {
+            position: absolute;
+            right: -4em;
+            top: .03em;
+        }
+        &:hover {
+            background-color: darken($nav-background, 5%);
+        }
+        &.active {
+            background-color: white;
+            color: $text-color;
+            .ic {
+                color: $link-color;
+            }
+        }
+        .link {
+            opacity: 1;
+            padding-left: 1em;
+        }
+        .ic_right {
+            position: absolute;
+            right: 1em;
+        }
+        @include bp-small {
+            &.minor-s {
+                display: none;
+            }
+        }
     }
-    &.active {
-      background-color: white;
-      color: $text-color; 
-      .ic { color: $link-color;}
-    }
-    .link {
-      opacity: 1;
-      padding-left: 1em;
-    }
-  
-    .ic_right {
-      position:absolute;
-      right: 1em;
-    }
-
-    @include bp-small {
-      &.minor-s {
-        display: none;
-      }
-    }
-  }
-
-
 }
 
+.nav {
+  margin-bottom: 1em;
+  padding-left: 0; // Override default ul/ol
+  list-style: none;
+  @include clearfix();
+
+  > li {
+    position: relative;
+    display: block;
+
+    > a {
+      position: relative;
+      display: block;
+      padding: 0 1em .25em 1em;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+       // background-color: $nav-link-hover-bg;
+      }
+    }
+  }
+
+
+  // Prevent IE8 from misplacing imgs
+  //
+  // See https://github.com/h5bp/html5-boilerplate/issues/984#issuecomment-3985989
+  > li > a > img {
+    max-width: none;
+  }
+}
+
+.tabbed-nav {
+    list-style: none;
+     border-bottom: 1px solid $border-color;
+  > li {
+    float: left;
+    // Make the list-items overlay the bottom border
+    margin-bottom: -1px;
+
+    // Actual tabs (as links)
+    > a {
+      margin-right: 2px;
+      
+      border-bottom: 1px solid transparent;
+      //border-radius: $border-radius-base $border-radius-base 0 0;
+      &:hover {
+        border-bottom-color: $link-color;
+      }
+    }
+
+    // Active state, and its :hover to override normal :hover
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $link-color;
+       // background-color: $nav-tabs-active-link-hover-bg;
+        border-bottom: 1px solid $link-color;
+       
+        cursor: default;
+      }
+    }
+  }
+  
+}
+
+
 #site-submenu {
-  background-color: $main-background;
-  color: $palette1;
-  .close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: .5em .5em 0 0;
+    background-color: $main-background;
     color: $palette1;
-  }
-  ul li {
-    padding: 1em;
-    a {
-      color: $palette1;
+    .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: .5em .5em 0 0;
+        color: $palette1;
     }
-    > strong {
-      text-transform: uppercase;
+    ul li {
+        padding: 1em;
+        a {
+            color: $palette1;
+        }
+        > strong {
+            text-transform: uppercase;
+        }
+        &.return {
+            border-top: 1px solid $border-color;
+            border-bottom: 1px solid $border-color;
+        }
+        &.menu-option:hover {
+            background-color: darken($subnav-background, 5%);
+        }
+        &.menu-option.active {
+            font-weight: bold;
+            background-color: lighten($subnav-background, 5%);
+            cursor: default;
+            pointer-events: none;
+        }
     }
-    &.return {
-      border-top: 1px solid $border-color;
-      border-bottom: 1px solid $border-color;
-    }
-    &.menu-option:hover {
-      background-color: darken($subnav-background, 5%);
-    }
-    &.menu-option.active {
-      font-weight: bold;
-      background-color: lighten($subnav-background, 5%);
-      cursor: default;
-      pointer-events: none;
-    }
-  }
 }
 
 #filter-menu {
-  position: absolute;
-  width: $standard-nav-width;
-  right: -$standard-nav-width;
-  top: 0;
-  background-color: white;
-  height: 100%;
-  z-index: 326;
-  @include transition(300ms ease all);
-  &.show-filter {
-    @include transform(-$standard-nav-width);
-  }
+    position: absolute;
+    width: $standard-nav-width;
+    right: -$standard-nav-width;
+    top: 0;
+    background-color: white;
+    height: 100%;
+    z-index: 326;
+    @include transition(300ms ease all);
+    &.show-filter {
+        @include transform(-$standard-nav-width);
+    }
 }
 
 #mobile-header {
-  display: none;
+    display: none;
 }
 
 @include bp-small {
-  #mobile-header {
-    border-bottom: 1px solid $border-color;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 3.5em;
-    background-color: white;
-    width: 100%;
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-
-    #links {
-      a.toggle-nav {
-        color: $text-color;
-      }
-      font-size: 2em;
-      position: absolute;
-      top: 50%;
-      margin-top: -.5em;
+    #mobile-header {
+        border-bottom: 1px solid $border-color;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 3.5em;
+        background-color: white;
+        width: 100%;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        #links {
+            a.toggle-nav {
+                color: $text-color;
+            }
+            font-size: 2em;
+            position: absolute;
+            top: 50%;
+            margin-top: -.5em;
+        }
     }
-  }
-  .navigation {
-    width: $mobile-nav-width;
-    position: absolute;
-    .logo  {
-      display: none;
+    .navigation {
+        width: $mobile-nav-width;
+        position: absolute;
+        .logo {
+            display: none;
+        }
     }
-
-  }
-  .submenu {
-    left: -$mobile-nav-width * 2;
-    width: $mobile-nav-width;
-  }
-
+    .submenu {
+        left: -$mobile-nav-width * 2;
+        width: $mobile-nav-width;
+    }
 }

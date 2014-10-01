@@ -334,7 +334,6 @@ Mobify.UI.Carousel = (function($, Utils) {
             .on('mouseout.carousel', end);
 
         $element.on('click', '[data-slide]', function(e){
-            console.log('I got here');
             e.preventDefault();
             var action = $(this).attr('data-slide')
               , index = parseInt(action, 10);
