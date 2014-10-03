@@ -7,19 +7,35 @@
 }
 
 @mixin btn-details($color) {
-	display: inline-block;
+    display: inline-block;
     border: 2px solid $color;
     background: none;
     border-radius: $border-radius_base;
     padding: 2px 6px;
     font-size: 1.2em;
     vertical-align: middle;
+    @include bp-medium {
+        text-align: center;
+    }
+     &:hover {
+            color: darken($color, 10%);
+            border-color: darken($color, 10%);
+        }
+
     &.solid {
+        &:hover {
+            background: darken($color, 10%);
+            border-color: darken($color, 10%);
+        }
         font-size: inherit;
-    	padding: 2px 1em;
+        padding: 2px 1em;
         background-color: $color;
         font-weight: bold;
-        color: white;      
+        color: white;
+        @include bp-medium {
+            min-width: 2.2em;
+            padding: 2px 6px;
+        }
     }
     &:focus {
         outline: none;
@@ -28,6 +44,13 @@
         background-color: $color;
         color: white;
     }
+    span {
+        padding-left: .5em;
+        font-size: .9em;
+        @include bp-medium {
+            display: none;
+        }
+    }
 }
 
 .btn {
@@ -35,6 +58,9 @@
         @include btn-details($text-color);
     }
     &.primary {
-    	@include btn-details($link-color);
+        @include btn-details($link-color);
+    }
+    &.light {
+        @include btn-details(darken($palette1, 10%));
     }
 }

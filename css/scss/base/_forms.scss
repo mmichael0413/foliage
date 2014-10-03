@@ -23,9 +23,12 @@ input[type=text], input[type=password], input[type=number], textarea {
     }
   }
 }
-
+.expanding-wrapper {
+  width: 80%;
+  display: inline-block;
+}
 textarea {
-  min-height: 5em;
+ // min-height: 5em;
 }
 
 .input-group {
@@ -40,9 +43,9 @@ textarea {
     background-color: darken($border-color, 5%);
     height: 2em;
     border: none;
-    border-top-right-radius: $border-radius-base;
-    border-bottom-right-radius: $border-radius-base;
-    margin-left: -1px;
+    border-radius: $border-radius-base;
+
+    margin-left: 5px;
     font-size: 1em;
     cursor: pointer;
   }

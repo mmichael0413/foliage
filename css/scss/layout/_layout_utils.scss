@@ -52,16 +52,20 @@
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
 }
 
-// .m-carousel-photos {
-//   .m-item{
-//     position: relative;
-//     & > img {
-//       box-shadow: none;
-//       border: 1px solid $palette1;
-//     }
-//   }
-// }
+.scroll-top {
+  display: none;
+  font-size: 30px;
+  position: fixed;
+  right: 1em;
+  bottom: 5%;
+  color: darken($border-color, 5%);
+ 
 
+  &:hover {
+    color: $text-color;
+    text-decoration: none;
+  }
+}
 
 .top-aligned {
   vertical-align: top;
@@ -72,7 +76,7 @@
     display: block;
   }
   .hidden-xs {
-    display:none;
+    display:none !important;
   }
 
   .m-carousel.m-fluid > .m-carousel-inner > * {

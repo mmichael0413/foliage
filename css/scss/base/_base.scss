@@ -9,20 +9,15 @@ body {
 
 html {
   margin: 0;
-  font-size: .9em;
+  font-size: 1rem;
   font-family: 'Open Sans', 'sans-serif';
   line-height: 1.5em;
   background-color: $main-background;
   color: $text-color;
-}
-
-
-li {
-  &.list-unstyled {
-    text-decoration: none;
+  @include bp-small {
+  	font-size: .8rem;
   }
 }
-
 
 /*
 table {

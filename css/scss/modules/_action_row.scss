@@ -2,8 +2,12 @@
     position: absolute;
     top: 1em;
     right: 1em;
-    button {
+    button, a {
     	margin-left:.5em;
+    }
+    @include bp-small(){
+    	position: fixed;
+      top: .6em;
     }
 
 }

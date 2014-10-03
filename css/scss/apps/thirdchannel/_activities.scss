@@ -52,7 +52,15 @@ $padding: 1.5em;
         vertical-align: top;
         //    padding-left: 1em;
         width: 80%;
+        textarea, button {
+            display:inline-block;
+            vertical-align: top;
+        }
     }
+}
+
+.comment.new-comment {
+    padding-bottom: $padding;
 }
 
 .activity-content {

@@ -17,11 +17,15 @@
             padding-right: 1em;
             overflow: auto;
             height: 100%;
-            z-index: -1;
             @include bp-small {
-                padding: 0em;
+                margin-top: 3em;
+                padding: 5px;
+                .header {
+                    padding-left:1em;
+                }
 
             }
+
         }
     }
     // collapse nav
