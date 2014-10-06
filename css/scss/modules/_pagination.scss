@@ -93,6 +93,7 @@
         background-color: darken($nav-background, 5%);
       }
       &.current {
+        color: white;
         background-color: darken($nav-background, 10%);
       }
       &.gap{
