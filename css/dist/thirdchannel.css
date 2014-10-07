@@ -1001,8 +1001,8 @@ input[type=text], input[type=password], input[type=number], textarea {
     font-size: 2em; }
   .logo .third, .logo .channel {
     font-size: 1.1em; }
-  .logo .tc-logo, .logo .channel {
-    color: #414648; }
+  .logo .ic_logo, .logo .channel {
+    color: #575d5f; }
   .logo .third {
     color: #f15f51;
     font-family: 'Nexa Light'; }
@@ -1185,6 +1185,7 @@ input[type=text], input[type=password], input[type=number], textarea {
       .pagination-holder .pagination .page:hover {
         background-color: #4b5052; }
       .pagination-holder .pagination .page.current {
+        color: white;
         background-color: #3f4344; }
       .pagination-holder .pagination .page.gap {
         background-color: inherit;
