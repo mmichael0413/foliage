@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <title>3C</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Styles -->
+        <link rel="stylesheet" href="/css/lib/buttons.css"/>
+        <link rel="stylesheet" href="/css/lib/normalize.css"/>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <link rel="stylesheet" href="/css/dist/thirdchannel.css"/>
+        <link rel="stylesheet" href="/css/lib/owl.carousel.css">
+        <link rel="stylesheet" href="/css/lib/owl.theme.css">
+        <link rel="stylesheet" href="/css/lib/owl.transitions.css">
+        
+        <!--[if lte IE 9]><script src="/js/modernizr.custom.58387.js"></script><![endif]-->
+        <style>
+        #owl-demo .item img{
+        display: block;
+        width: 100%;
+        height: auto;
+        }
+
+            div.owl-item > div {
+                display:table-cell;
+                vertical-align:middle;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="activity-photos">
+            <div id="owl-demo" class="owl-carousel owl-theme">
+                
+                <div class="item">
+                    <div class="img-container">
+                        <img src="http://s3.amazonaws.com/thirdchannel-assets-dev/Users/mlittle/development/thirdChannel-extension/public/assets/images/checkin/63852/large/IMG_1753.jpg?1412602226"/>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="img-container">
+                        <img src="http://s3.amazonaws.com/thirdchannel-assets-dev/Users/mlittle/development/thirdChannel-extension/public/assets/images/checkin/63851/large/IMG_1783.jpg?1412602223"/>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="img-container">
+                        <img src="http://s3.amazonaws.com/thirdchannel-assets-dev/Users/mlittle/development/thirdChannel-extension/public/assets/images/checkin/63852/large/IMG_1753.jpg?1412602226"/>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            
+            <script src="/js/owl.carousel.js"></script>
+            <script>
+            
+            $(function(){
+            
+            
+            
+            $("#owl-demo").owlCarousel({
+            
+            navigation : true, // Show next and prev buttons
+            slideSpeed : 300,
+            paginationSpeed : 400,
+            singleItem:true
+            
+            // "singleItem:true" is a shortcut for:
+            // items : 1,
+            // itemsDesktop : false,
+            // itemsDesktopSmall : false,
+            // itemsTablet: false,
+            // itemsMobile : false
+            
+            });
+            });
+
+            $(window).load(function() {
+
+var maxH = 0;
+var maxW = 0;
+$('img','div.owl-item > div').each(function(f) {
+if ($(this).height() > maxH) { maxH = $(this).height() };
+if ($(this).width() > maxW) { maxW = $(this).width() };
+});
+$('div.owl-item > div')
+.height(maxH)
+.width(maxW);
+
+
+});
+            
+            </script>
+        </body>
+    </html>

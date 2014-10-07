@@ -85,6 +85,16 @@ $padding: 1.5em;
     padding: $padding;
     display: inline-block;
     width: 29%;
+    .img-container {
+        background-color: $palette1;
+        display: table-cell;
+        vertical-align: middle;
+       > img { 
+            display:block;
+            max-width: 100%;
+            margin: auto;
+       }
+    }
 }
 
 $img-height: 3em;
@@ -109,7 +119,29 @@ $img-height: 3em;
     }
 }
 
-@include bp-medium {
+.bbm-modal {
+    .m-carousel {
+        width:95%;
+        margin: 0;
+        margin: 0 auto;
+    }
+    .m-carousel-photos .m-item{
+        text-align: center;
+        .img-holder {
+            width: inherit;
+       
+        > img {
+            max-height: 500px;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+        }
+         }
+    }
+}
+
+
+@include bp-large {
     .activity-content {
         width: 65%;
     }
@@ -117,6 +149,14 @@ $img-height: 3em;
         width: 34%;
     }
 }
+
+@include bp-medium {
+    .activity-content, .activity-photos {
+        width: 100%;
+        margin-bottom: 1em;
+    }
+}
+
 
 
 @include bp-small {

@@ -1,0 +1,15 @@
+<img src="{{user_image}}" class="user-image img-circle" onerror="this.src='{{user_image_error_url}}'"/>
+
+<div class="bar-body">
+    <strong>{{#if user_name}}
+        <a href="/programs/{{current_program}}/profiles/{{commenter_id}}">{{user_name}}</a>
+        {{else}}Anonymous{{/if}}</strong>:
+    {{{comment}}}<br/>
+    <span class="tiny">posted  <span data-livestamp="{{posted_at}}"></span></span>
+</div>
+
+{{#if deletable}}
+<div class="pull-right">
+    <a href="#" class="fa fa-times-circle delete-comment" style="text-decoration: none; font-size: 16px;"></a>
+</div>
+{{/if}}

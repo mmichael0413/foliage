@@ -34,8 +34,14 @@
 }
 
 // media query mixins
+@mixin bp-xlarge {
+  @media only screen and (max-width: 50em) {
+    @content;
+  }
+}
+
 @mixin bp-large {
-  @media only screen and (max-width: 60em) {
+  @media only screen and (max-width: 50em) {
     @content;
   }
 }

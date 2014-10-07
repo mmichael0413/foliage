@@ -1356,6 +1356,14 @@ input[type=text], input[type=password], input[type=number], textarea {
   padding: 1.5em;
   display: inline-block;
   width: 29%; }
+  .activity-photos .img-container {
+    background-color: #e3e8ec;
+    display: table-cell;
+    vertical-align: middle; }
+    .activity-photos .img-container > img {
+      display: block;
+      max-width: 100%;
+      margin: auto; }
 
 .user-image {
   width: 3em;
@@ -1370,12 +1378,30 @@ input[type=text], input[type=password], input[type=number], textarea {
   .comment-holder .comments .activity-bar:last-of-type {
     margin-bottom: 0; }
 
-@media only screen and (max-width: 40em) {
+.bbm-modal .m-carousel {
+  width: 95%;
+  margin: 0;
+  margin: 0 auto; }
+.bbm-modal .m-carousel-photos .m-item {
+  text-align: center; }
+  .bbm-modal .m-carousel-photos .m-item .img-holder {
+    width: inherit; }
+    .bbm-modal .m-carousel-photos .m-item .img-holder > img {
+      max-height: 500px;
+      width: auto;
+      display: block;
+      margin: 0 auto; }
+
+@media only screen and (max-width: 50em) {
   .activity-content {
     width: 65%; }
 
   .activity-photos {
     width: 34%; } }
+@media only screen and (max-width: 40em) {
+  .activity-content, .activity-photos {
+    width: 100%;
+    margin-bottom: 1em; } }
 @media only screen and (max-width: 30em) {
   .activity-content, .activity-photos {
     width: 100%;

@@ -1,0 +1,89 @@
+<div class="activity-holder">
+    <div class="activity">
+        <div class="activity-meta">
+            <img src="{{user_image}}" alt="Images That Describes Me" class="user-image img-circle" onerror="this.src='{{user_image_error_url}}'"/>
+            <div class="bar-body">
+                {{#if_eq type "Checkin"}}
+                <p>
+                    <a href="#">{{location.store}}</a>, {{location.city}}, {{location.state}}
+                </p>
+                {{/if_eq}}
+                <p>
+                    <span data-livestamp="{{created_at}}"></span> by
+                    <a href="/programs/{{current_program}}/profiles/{{user_id}}">{{user_name}}</a>
+                </p>
+            </div>
+        </div>
+        <div class="activity-content">
+            {{#if_eq type "Checkin"}}
+            <div class="issues-found">
+                <h3>{{issue_length}} Issues Found</h3>
+                <ul class="unstyled">
+                    {{#each issues}}
+                    <li>- {{label}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+            {{/if_eq}}
+
+            <h3>{{subject}}</h3>
+            {{{content}}} <a href="/programs/{{current_program}}/activities/{{activity_id}}">View Full Activity</a>
+
+            <div class="activity-actions">
+                <span class="action bold">
+                    {{#if show_like_button}}
+                    <a class="activity_like_button gray" data-id="{{activity_id}}" href="#">
+                        Like
+                    </a>
+                    {{else}}
+                     Liked
+                    {{/if}}
+                </span>
+                <span class="action bold"><a href="#" class="start-comment">Comment</a></span>
+                {{#if_eq type "Checkin"}}
+                <span class="action bold">
+                    <a href="{{report_url}}" target="_new">Full Report</a>
+                </span>
+                {{/if_eq}}
+            </div>
+        </div>
+
+        <div class="activity-photos">
+            <div class="owl-carousel owl-theme">
+                {{#each images}}
+                <div class="item">
+                    <div class="img-container">
+                        <img src="{{url}}" class="img-responsive " onerror="this.src='{{../content_image_error_url}}'"/>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="comment-holder">
+        <div class="status-bar">
+            <span class="action">
+                <span class="like-count" data-likecount="{{like_count}}">{{like_count}}</span> <span class="like-label">{{pluralize like_count 'Like' 'Likes'}}</span>
+            </span>
+
+            {{#if_gt comments_count 3}}
+            <span class="action">
+                <a href="#" class="more-comments">View {{additional_comments}} More {{pluralize additional_comments 'Comment' 'Comments'}}</a>
+            </span>
+            {{/if_gt}}
+        </div>
+        <div class="comments">
+
+        </div>
+
+        {{#if current_user}}
+        <div class="comment new-comment">
+
+
+        </div>
+        {{/if}}
+    </div>
+</div>
