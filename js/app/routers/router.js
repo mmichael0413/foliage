@@ -3,7 +3,8 @@ define(function(require){
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        NavigationView = require('app/views/layout/navigation'),
+        //NavigationView = require('app/views/layout/navigation'),
+        MainLayout = require('app/views/layout/main'),
         GlobalView = require('app/views/activities/global'),
         ActivitiesView = require('app/views/activities/activities'),
         TeamsMain = require('app/views/teams/main');
@@ -33,7 +34,6 @@ define(function(require){
 
 
         teams: function () {
-            console.log("In teams");
             TeamsMain.init();
         },
 
@@ -57,7 +57,8 @@ define(function(require){
     var initialize = function(){
         var app_router = new AppRouter();
         Backbone.history.start({pushState: true});
-        new NavigationView();
+        //new NavigationView();
+        MainLayout.init();
     };
     return {
         initialize: initialize
