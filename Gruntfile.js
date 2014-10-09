@@ -108,6 +108,10 @@ module.exports = function(grunt) {
                 options: {
                     spawn: false
                 }
+            },
+            rjs: {
+                files: ['js/app/**/*.js', '!js/app/handlebars/templates.js'],
+                tasks: ['requirejs']
             }
         }
 
