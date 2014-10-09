@@ -1,17 +1,18 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'handlebars',
-    'handlebarsTemplates',
-    'handlebarsHelpers',
-    'app/utils/eventListener',
-    'app/models/activities/activity',
-    'app/views/comments/comments',
-    'app/views/comments/new_comment',
-    'app/models/activities/like',
-    'libs/owl.carousel'
-],function( $, _, Backbone, Handlebars, HandlebarsTemplates,HandlebarsHelpers, EventListener, Activity, CommentsView, NewCommentView, Like, OwlCarousel) {
+define(function(require) {
+    var $ = require('jquery'),
+        _ = require('underscore'),
+        Backbone = require('backbone'),
+        Handlebars = require('handlebars'),
+        HandlebarsTemplates = require('handlebarsTemplates'),
+        HandlebarsHelpers = require('handlebarsHelpers'),
+        EventListener = require('app/utils/eventListener'),
+        Activity = require('app/models/activities/activity'),
+        CommentsView = require('app/views/comments/comments'),
+        NewCommentView = require('app/views/comments/new_comment'),
+        Like = require('app/models/activities/like'),
+        OwlCarousel = require('libs/owl.carousel');
+
+
     return Backbone.View.extend({
         className: 'activity',
         template: HandlebarsTemplates.activity,
@@ -33,9 +34,6 @@ define([
             }
 
             this.objId = this.model.get('activity_id');
-
-
-
         },
         render: function () {
             // render the base activity
@@ -53,14 +51,6 @@ define([
                 slideSpeed : 300,
                 paginationSpeed : 400,
                 singleItem:true
-
-                // "singleItem:true" is a shortcut for:
-                // items : 1,
-                // itemsDesktop : false,
-                // itemsDesktopSmall : false,
-                // itemsTablet: false,
-                // itemsMobile : false
-
             });
             var self = this;
             // this.$('.activity-photos img').on('load', function(){self.onLoad(this)});

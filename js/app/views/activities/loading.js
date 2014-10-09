@@ -1,10 +1,10 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'handlebars',
-    'handlebarsTemplates'
-], function($, _, Backbone, Handlebars, HandlebarsTemplates){
+define(function(require){
+    var $ = require('jquery'),
+        _ = require('underscore'),
+        Backbone = require('backbone'),
+        Handlebars = require('handlebars'),
+        HandlebarsTemplates = require('handlebarsTemplates');
+        
     return Backbone.View.extend({
         className: 'isLoading',
         template: HandlebarsTemplates.loading(),

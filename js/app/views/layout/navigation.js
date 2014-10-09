@@ -1,8 +1,9 @@
 define(function(require) {
     var $ = require('jquery'),
         _ = require('underscore'),
-        Backbone = require('backbone');
-
+        Backbone = require('backbone'),
+        Ujs = require('jquery_ujs');
+        
     return Backbone.View.extend({
         el: '#site-wrapper',
         initialize: function() {

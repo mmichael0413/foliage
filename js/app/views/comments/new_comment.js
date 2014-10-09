@@ -1,11 +1,11 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'handlebars',
-    'handlebarsTemplates',
-    'app/models/comments/comment'
-], function($, _, Backbone, Handlebars, HandlebarsTemplates, Comment){
+define(function(require){
+    var $ = require('jquery'),
+        _ = require('underscore'),
+        Backbone = require('backbone'),
+        Handlebars = require('handlebars'),
+        HandlebarsTemplates = require('handlebarsTemplates'),
+        Comment = require('app/models/comments/comment');
+
    return Backbone.View.extend({
        initialize: function (options) {
            this.activity = options.activity;

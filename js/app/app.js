@@ -1,9 +1,9 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'app/routers/router'
-], function($, _, Backbone, Router){
+define(function(require){
+
+    var $ = require('jquery'),
+        _ = require('underscore'),
+        Backbone = require('backbone'),
+        Router = require('app/routers/router');
 
         var initialize = function(){
             Router.initialize();

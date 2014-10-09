@@ -1,13 +1,13 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'handlebars',
-    'handlebarsTemplates',
-    'app/views/comments/comment',
-    'app/models/comments/comment',
-    'app/collections/comments/comments'
-], function($, _, Backbone, Handlebars, HandlebarsTemplates, CommentView, Comment, CommentsCollection){
+define(function(require){
+    var $ = require('jquery'),
+        _ = require('underscore'),
+        Backbone = require('backbone'),
+        Handlebars = require('handlebars'),
+        HandlebarsTemplates = require('handlebarsTemplates'),
+        CommentView = require('app/views/comments/comment'),
+        Comment = require('app/models/comments/comment'),
+        CommentsCollection = require('app/collections/comments/comments');
+
    return Backbone.View.extend({
        el: '.comments',
        initialize: function (options) {
