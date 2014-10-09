@@ -1,6 +1,9 @@
 #site-filter {
     color: $palette1;
     background: $nav-background;
+    .global {
+        display:none;
+    }
 
 
     .filter-item {
@@ -9,6 +12,8 @@
         min-height: $menu-item-height;
         padding: 1em;
         cursor: pointer;
+        background-color: inherit;
+        border: 0;
 
         .icon, .expand-indicator {
             position: absolute;
@@ -21,6 +26,10 @@
 
         .active-filter {
             padding: 1em 0.5em;
+
+            .filter-input {
+                display: none;
+            }
         }
 
         .btn.default {

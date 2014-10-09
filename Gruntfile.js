@@ -33,6 +33,24 @@ module.exports = function(grunt) {
             }
         },
 
+        pure_grids: {
+            responsive: {
+                dest: 'css/scss/lib/pure.responsive-grid.scss',
+
+                options: {
+                    units: [2, 3, 4, 5], // 5-column grid and 12-column grid
+
+                    mediaQueries: {
+                        sm: 'screen and (max-width: 35.5em)', // 568px
+                        md: 'screen and (max-width: 48em)'   // 768px
+                        //lg: 'screen and (max-width: 64em)',   // 1024px
+                        //xl: 'screen and (max-width: 80em)'    // 1280px
+                    },
+                    selectorPrefix: '.col-'
+                }
+            }
+        },
+
         sass: {
             dist: {
                 files: {
@@ -122,6 +140,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks("grunt-nodemon");
     grunt.loadNpmTasks("grunt-concurrent");
+    grunt.loadNpmTasks('grunt-pure-grids');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-handlebars');
 

@@ -355,6 +355,213 @@ td,
 th {
   padding: 0; }
 
+.col-1,
+.col-1-1,
+.col-1-2,
+.col-2-2,
+.col-1-3,
+.col-2-3,
+.col-3-3,
+.col-1-4,
+.col-2-4,
+.col-3-4,
+.col-4-4,
+.col-1-5,
+.col-2-5,
+.col-3-5,
+.col-4-5,
+.col-5-5 {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  text-rendering: auto; }
+
+.col-1-5 {
+  width: 20%;
+  *width: 19.9690%; }
+
+.col-1-4 {
+  width: 25%;
+  *width: 24.9690%; }
+
+.col-1-3 {
+  width: 33.3333%;
+  *width: 33.3023%; }
+
+.col-2-5 {
+  width: 40%;
+  *width: 39.9690%; }
+
+.col-1-2,
+.col-2-4 {
+  width: 50%;
+  *width: 49.9690%; }
+
+.col-3-5 {
+  width: 60%;
+  *width: 59.9690%; }
+
+.col-2-3 {
+  width: 66.6667%;
+  *width: 66.6357%; }
+
+.col-3-4 {
+  width: 75%;
+  *width: 74.9690%; }
+
+.col-4-5 {
+  width: 80%;
+  *width: 79.9690%; }
+
+.col-1,
+.col-1-1,
+.col-2-2,
+.col-3-3,
+.col-4-4,
+.col-5-5 {
+  width: 100%; }
+
+@media screen and (max-width: 35.5em) {
+  .col-sm-1,
+  .col-sm-1-1,
+  .col-sm-1-2,
+  .col-sm-2-2,
+  .col-sm-1-3,
+  .col-sm-2-3,
+  .col-sm-3-3,
+  .col-sm-1-4,
+  .col-sm-2-4,
+  .col-sm-3-4,
+  .col-sm-4-4,
+  .col-sm-1-5,
+  .col-sm-2-5,
+  .col-sm-3-5,
+  .col-sm-4-5,
+  .col-sm-5-5 {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+    text-rendering: auto; }
+
+  .col-sm-1-5 {
+    width: 20%;
+    *width: 19.9690%; }
+
+  .col-sm-1-4 {
+    width: 25%;
+    *width: 24.9690%; }
+
+  .col-sm-1-3 {
+    width: 33.3333%;
+    *width: 33.3023%; }
+
+  .col-sm-2-5 {
+    width: 40%;
+    *width: 39.9690%; }
+
+  .col-sm-1-2,
+  .col-sm-2-4 {
+    width: 50%;
+    *width: 49.9690%; }
+
+  .col-sm-3-5 {
+    width: 60%;
+    *width: 59.9690%; }
+
+  .col-sm-2-3 {
+    width: 66.6667%;
+    *width: 66.6357%; }
+
+  .col-sm-3-4 {
+    width: 75%;
+    *width: 74.9690%; }
+
+  .col-sm-4-5 {
+    width: 80%;
+    *width: 79.9690%; }
+
+  .col-sm-1,
+  .col-sm-1-1,
+  .col-sm-2-2,
+  .col-sm-3-3,
+  .col-sm-4-4,
+  .col-sm-5-5 {
+    width: 100%; } }
+@media screen and (max-width: 48em) {
+  .col-md-1,
+  .col-md-1-1,
+  .col-md-1-2,
+  .col-md-2-2,
+  .col-md-1-3,
+  .col-md-2-3,
+  .col-md-3-3,
+  .col-md-1-4,
+  .col-md-2-4,
+  .col-md-3-4,
+  .col-md-4-4,
+  .col-md-1-5,
+  .col-md-2-5,
+  .col-md-3-5,
+  .col-md-4-5,
+  .col-md-5-5 {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+    text-rendering: auto; }
+
+  .col-md-1-5 {
+    width: 20%;
+    *width: 19.9690%; }
+
+  .col-md-1-4 {
+    width: 25%;
+    *width: 24.9690%; }
+
+  .col-md-1-3 {
+    width: 33.3333%;
+    *width: 33.3023%; }
+
+  .col-md-2-5 {
+    width: 40%;
+    *width: 39.9690%; }
+
+  .col-md-1-2,
+  .col-md-2-4 {
+    width: 50%;
+    *width: 49.9690%; }
+
+  .col-md-3-5 {
+    width: 60%;
+    *width: 59.9690%; }
+
+  .col-md-2-3 {
+    width: 66.6667%;
+    *width: 66.6357%; }
+
+  .col-md-3-4 {
+    width: 75%;
+    *width: 74.9690%; }
+
+  .col-md-4-5 {
+    width: 80%;
+    *width: 79.9690%; }
+
+  .col-md-1,
+  .col-md-1-1,
+  .col-md-2-2,
+  .col-md-3-3,
+  .col-md-4-4,
+  .col-md-5-5 {
+    width: 100%; } }
 @font-face {
   font-family: "tc-icons";
   src: url("../../fonts/tc-icons_372b58596943adc8d7ac4ba1e22dac97.eot");
@@ -1202,12 +1409,16 @@ input[type=text], input[type=password], input[type=number], textarea {
 #site-filter {
   color: #e3e8ec;
   background: #575d5f; }
+  #site-filter .global {
+    display: none; }
   #site-filter .filter-item {
     width: 100%;
     display: block;
     min-height: 3.5em;
     padding: 1em;
-    cursor: pointer; }
+    cursor: pointer;
+    background-color: inherit;
+    border: 0; }
     #site-filter .filter-item .icon, #site-filter .filter-item .expand-indicator {
       position: absolute;
       right: 1em; }
@@ -1215,6 +1426,8 @@ input[type=text], input[type=password], input[type=number], textarea {
       background-color: #4b5052; }
     #site-filter .filter-item .active-filter {
       padding: 1em 0.5em; }
+      #site-filter .filter-item .active-filter .filter-input {
+        display: none; }
     #site-filter .filter-item .btn.default {
       border-color: #f15f51; }
       #site-filter .filter-item .btn.default:hover {
