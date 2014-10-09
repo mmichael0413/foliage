@@ -1414,7 +1414,9 @@ input[type=text], input[type=password], input[type=number], textarea {
     display: block;
     min-height: 3.5em;
     padding: 1em;
-    cursor: pointer; }
+    cursor: pointer;
+    background-color: inherit;
+    border: 0; }
     #site-filter .filter-item .icon, #site-filter .filter-item .expand-indicator {
       position: absolute;
       right: 1em; }
@@ -1422,6 +1424,8 @@ input[type=text], input[type=password], input[type=number], textarea {
       background-color: #4b5052; }
     #site-filter .filter-item .active-filter {
       padding: 1em 0.5em; }
+      #site-filter .filter-item .active-filter .filter-input {
+        display: none; }
     #site-filter .filter-item .btn.default {
       border-color: #f15f51; }
       #site-filter .filter-item .btn.default:hover {
