@@ -4,13 +4,15 @@ define(function(require){
         _ = require('underscore'),
         Backbone = require('backbone'),
         GlobalView = require('app/views/activities/global'),
-        ActivitiesView = require('app/views/activities/activities');
+        ActivitiesView = require('app/views/activities/activities'),
+        TeamsMain = require('app/views/teams/main');
 
 
 
     var AppRouter = Backbone.Router.extend({
         routes: {
-            'programs/:program_id/activities' : 'activityFeed'
+            'programs/:program_id/activities' : 'activityFeed',
+            'programs/:program_id/teams': 'teams'
 
         },
         activityFeed: function(program_id){
@@ -25,6 +27,11 @@ define(function(require){
                 programId: program_id
             });
             activitiesView.fetch();
+        },
+
+        teams: function () {
+            console.log("In teams");
+            TeamsMain.init();
         }
     });
 
