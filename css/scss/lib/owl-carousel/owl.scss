@@ -1,0 +1,8 @@
+@import"owl.carousel";
+@import"owl.theme";
+@import"owl.transitions";
+
+div.owl-item > div {
+    display: table-cell;
+    vertical-align: middle;
+}

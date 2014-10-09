@@ -3,8 +3,9 @@ define([
     'underscore',
     'backbone',
     'app/utils/eventListener',
-    'app/modals/activities/photo-modal'
-], function($, _, Backbone, EventListener, PhotoModal){
+    'app/modals/activities/photo-modal',
+    'libs/owl.carousel'
+], function($, _, Backbone, EventListener, PhotoModal, OwlCarousel){
     return Backbone.View.extend({
         el: '#site-wrapper',
         initialize: function (options) {
@@ -16,7 +17,9 @@ define([
         openModal: function (model) {
             this.modal = new PhotoModal({model: model});
             this.$el.append(this.modal.render().el);
-         //   this.$('.m-carousel').carousel();
+            var f = this.$('.bbm-modal .owl-carousel').owlCarousel();
+
+            return this;
         },
         closeModal: function (e) {
             this.modal.remove();

@@ -42,6 +42,11 @@
                     transition: opacity 1s, width 0 1s;
                     width: 0;
                 }
+                .toggle-subnav .ic_right {
+                    visibility: hidden;
+                    opacity: 0;
+                    transition:visibility 0s linear 0.3s,opacity 0.3s linear;
+                }
             }
             #site-submenu {
                 @include transform(-$standard-collapse-difference);
@@ -62,6 +67,10 @@
                     transition: opacity 1s, width 100% 1s;
                     width: 100%;
                 }
+                .toggle-subnav .ic_right {
+                    visibility: visible;
+                    transition-delay: .3s;
+                }
             }
             #site-submenu {
                 /*   @include transform(10em); 
@@ -70,6 +79,7 @@
             .content {
                 transition: padding .3s;
             }
+
         }
     }
     &.show-nav #site-canvas {

@@ -1,23 +1,9 @@
-<div class="m-carousel m-fluid m-center m-carousel-photos">
-    <div class="m-carousel-inner photo-modal">
-        {{#each images}}
-        <div class="m-item">
-            <div class="img-container">
+<h1>Test</h1>
+<div class="owl-carousel owl-theme">
+    {{#each images}}
+    <div class="item">
+        <div class="img-container">
             <img src="{{url}}" class="img-responsive " onerror="this.src='{{../content_image_error_url}}'"/>
-
-            {{#if label}}
-            <div class="carousel-caption">
-                {{label}}
-            </div>
-            {{/if}}
-            {{#if_gt ../imageCount 1}}
-            <a href="#" class="m-carousel-controls prev" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-            <a href="#" class="m-carousel-controls next" data-slide="next"><i class="fa fa-chevron-right"></i></a>
-            {{/if_gt}}
-            </div>
         </div>
-        {{/each}}
     </div>
-
-
-</div>
+    {{/each}}
