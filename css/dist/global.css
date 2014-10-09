@@ -368,6 +368,10 @@ ul.list {
       opacity: 0;
       transition: opacity 1s, width 0 1s;
       width: 0; }
+    #site-wrapper.collapsed-nav #site-canvas #site-menu .toggle-subnav .ic_right {
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s linear 0.3s,opacity 0.3s linear; }
   #site-wrapper.collapsed-nav #site-canvas #site-submenu {
     -webkit-transform: translateX(-10em);
     -moz-transform: translateX(-10em);
@@ -383,6 +387,9 @@ ul.list {
       opacity: 1;
       transition: opacity 1s, width 100% 1s;
       width: 100%; }
+    #site-wrapper.expanded-nav #site-canvas #site-menu .toggle-subnav .ic_right {
+      visibility: visible;
+      transition-delay: .3s; }
   #site-wrapper.expanded-nav #site-canvas #site-submenu {
     /*   @include transform(10em); 
     /* transition: display .3s; */ }
@@ -545,7 +552,7 @@ ul.list {
 .navigation .nav-item {
   display: block;
   height: 3.5em;
-  padding: 1em 2em 1em 1em;
+  padding: 1em 1em 1em 1.5em;
   width: 100%;
   white-space: nowrap;
   color: #e3e8ec;
@@ -564,7 +571,7 @@ ul.list {
   .navigation .nav-item .link {
     opacity: 1;
     padding-left: 1em; }
-  .navigation .nav-item .ic_right {
+  .navigation .nav-item.toggle-subnav .ic_right {
     position: absolute;
     right: 1em; }
   @media only screen and (max-width: 30em) {

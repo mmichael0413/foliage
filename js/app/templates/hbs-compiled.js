@@ -309,47 +309,25 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["ThirdChannel"]["templates"]["photo-modal"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data,depth1) {
   
-  var buffer = "", stack1, helper, options;
-  buffer += "\n        <div class=\"m-item\">\n            <div class=\"img-container\">\n            <img src=\"";
+  var buffer = "", stack1, helper;
+  buffer += "\n    <div class=\"item\">\n        <div class=\"img-container\">\n            <img src=\"";
   if (helper = helpers.url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\" class=\"img-responsive \" onerror=\"this.src='"
     + escapeExpression(((stack1 = (depth1 && depth1.content_image_error_url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "'\"/>\n\n            ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.label), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            ";
-  stack1 = (helper = helpers.if_gt || (depth1 && depth1.if_gt),options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, (depth1 && depth1.imageCount), 1, options) : helperMissing.call(depth0, "if_gt", (depth1 && depth1.imageCount), 1, options));
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            </div>\n        </div>\n        ";
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n            <div class=\"carousel-caption\">\n                ";
-  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\n            </div>\n            ";
+    + "'\"/>\n        </div>\n    </div>\n    ";
   return buffer;
   }
 
-function program4(depth0,data) {
-  
-  
-  return "\n            <a href=\"#\" class=\"m-carousel-controls prev\" data-slide=\"prev\"><i class=\"fa fa-chevron-left\"></i></a>\n            <a href=\"#\" class=\"m-carousel-controls next\" data-slide=\"next\"><i class=\"fa fa-chevron-right\"></i></a>\n            ";
-  }
-
-  buffer += "<div class=\"m-carousel m-fluid m-center m-carousel-photos\">\n    <div class=\"m-carousel-inner photo-modal\">\n        ";
+  buffer += "<h1>Test</h1>\n<div class=\"owl-carousel owl-theme\">\n    ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.images), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n\n\n</div>";
+  buffer += "\n";
   return buffer;
   });
 

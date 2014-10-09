@@ -4,7 +4,7 @@
     .nav-item {
         display: block;
         height: 3.5em;
-        padding: 1em $collapsed-nav-width / 2 1em 1em;
+        padding: 1em 1em 1em 1.5em;
         width: 100%;
         white-space: nowrap;
         color: $palette1;
@@ -28,7 +28,7 @@
             opacity: 1;
             padding-left: 1em;
         }
-        .ic_right {
+        &.toggle-subnav .ic_right {
             position: absolute;
             right: 1em;
         }

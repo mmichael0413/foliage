@@ -1,3 +1,6 @@
+@import '../../lib/owl-carousel/owl';
+@import '../../lib/backbone.modal/modal';
+
 $padding: 1.5em;
 
 .activity-holder {
@@ -120,14 +123,14 @@ $img-height: 3em;
 }
 
 .bbm-modal {
-    .m-carousel {
+    .owl-carousel {
         width:95%;
         margin: 0;
         margin: 0 auto;
     }
-    .m-carousel-photos .m-item{
+    .item{
         text-align: center;
-        .img-holder {
+        .img-container {
             width: inherit;
        
         > img {
