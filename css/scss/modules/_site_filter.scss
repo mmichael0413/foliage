@@ -1,6 +1,9 @@
 #site-filter {
     color: $palette1;
     background: $nav-background;
+    .global {
+        display:none;
+    }
 
 
     .filter-item {

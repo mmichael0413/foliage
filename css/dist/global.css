@@ -690,6 +690,8 @@ ul.list {
 #site-filter {
   color: #e3e8ec;
   background: #575d5f; }
+  #site-filter .global {
+    display: none; }
   #site-filter .filter-item {
     width: 100%;
     display: block;
