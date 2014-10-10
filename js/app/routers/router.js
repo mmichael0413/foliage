@@ -7,7 +7,9 @@ define(function(require){
         MainLayout = require('app/views/layout/main'),
         GlobalView = require('app/views/activities/global'),
         ActivitiesView = require('app/views/activities/activities'),
-        TeamsMain = require('app/views/teams/main');
+        TeamsMain = require('app/views/teams/main'),
+        DashboardsAlertsSectionsView = require('app/views/dashboards/alerts/index/sections'),
+        DashboardsAlertsStoresView = require('app/views/dashboards/alerts/show/stores');
 
 
 
@@ -15,7 +17,9 @@ define(function(require){
         routes: {
             'programs/:program_id/activities' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
-            'programs/:program_id/teams': 'teams'
+            'programs/:program_id/teams': 'teams',
+            'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
+            'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert'
         },
         activityFeed: function(program_id){
 
@@ -51,6 +55,14 @@ define(function(require){
             });
             activitiesView.fetch();
 
+        },
+
+        dashboardAlerts: function(programId){
+            $('.dashboard').append(new DashboardsAlertsSectionsView({programId: programId}).render().$el);
+        },
+
+        dashboardAlert: function(programId, id){
+            new DashboardsAlertsStoresView({id: id, page: ""}).render();
         }
     });
 

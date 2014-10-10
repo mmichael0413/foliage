@@ -1,0 +1,21 @@
+{{#each available}}
+    <div class="filter-component" data-filter-param="{{label}}">
+        <div class="filter-item">{{label}} <span class="expand-indicator"></span>
+            {{#each ../applied }}
+                {{#if_eq filterId ../filterId}}
+                    {{#each items}}
+                        <div class="active-filter">
+                            <div class="btn default ic_check"></div>
+                            <span>&nbsp;{{this.[0]}}</span>
+                        </div>
+                    {{/each}}
+                {{/if_eq}}
+            {{/each}}
+        </div>
+        <div class="filter-list">
+            {{#each items}}
+                <div class="filter-list-item"><div class="btn default">&nbsp;</div>{{this.[0]}}</div>
+            {{/each}}
+        </div>
+    </div>
+{{/each}}

@@ -1,0 +1,33 @@
+<div class="pagination-holder">
+    <span class="pagination-info"><strong>{{infoText}}</strong> of <strong>{{totalCount}}</strong></span>
+
+    {{#if showPages}}
+        <nav class="pagination">
+        {{#if firstPage}}
+            <span class="first page">
+                <a href="?page=1">1</a>
+            </span>
+        {{/if}}
+        {{#if lessPages}}
+            <span class="page gap">...</span>
+        {{/if}}
+        {{#each pages}}
+            {{#if_eq ../currentPage this}}
+                <span class="page current">{{this}}</span>
+            {{else}}
+                <span class="page">
+                    <a href="?page={{this}}">{{this}}</a>
+                </span>
+            {{/if_eq}}
+        {{/each}}
+        {{#if morePages}}
+            <span class="page gap">...</span>
+        {{/if}}
+        {{#if lastPage}}
+            <span class="last page">
+                <a href="?page={{lastPage}}">{{lastPage}}</a>
+            </span>
+        {{/if}}
+        </nav>
+    {{/if}}
+</div>

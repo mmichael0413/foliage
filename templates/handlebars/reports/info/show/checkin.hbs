@@ -1,0 +1,15 @@
+<div class="checkin">
+    <h3 class="pull-right"><a href="{{link}}">View Report</a></h3>
+    <h3>{{created_at}}
+        {{#if user}}
+            by
+        {{/if}}
+        <a href="{{user_link}}">{{user}}</a>
+    </h3>
+
+    {{#each info}}
+        <div class="info">{{this}}</div>
+    {{/each}}
+</div>
+
+
