@@ -26,6 +26,7 @@ define(function(require) {
             var components = this.$el.find('.filter-component'),
                 qsHash = this.parseQueryString(),
                 max = components.length,
+                shouldTrigger = false,
                 view;
 
             while(max--) {
@@ -34,28 +35,44 @@ define(function(require) {
                 view.render();
 
                 this.components[view.filterParam] = view;
-                this._applyQS(view, qsHash);
-
+                // apply the query string to any components in the filter.
+                // capture the response to know if we should toggle open the filter later
+                if (this._applyQS(view, qsHash) === true) {
+                    shouldTrigger = true;
+                }
             }
+
             this._applyQSGlobal(qsHash);
 
             this.listenTo(dispatcher, 'filter:request', this.handleFilterRequest);
             this.listenTo(dispatcher, 'filter:set', this.setFromExternal);
+            // finally, check if we should Trigger the filter. This is done down here to avoid
+            // repeated triggerings if we checked this in the while loop.
+            if (shouldTrigger) {
+                // open the filter if we have filter-component filters active, not simply a pagination
+                // let my master know, yes.
+                dispatcher.trigger('filter:toggle');
+            }
         },
         /**
          *
          * @param view
          * @param qsHash
          * @private
+         * @return true if a query string item was applied
          */
         _applyQS: function(view, qsHash) {
+            var success = false;
             if (qsHash[view.filterParam]) {
+                success = true;
                 var i = 0,
                     items = qsHash[view.filterParam];
                 for (i; i < items.length; i++) {
                     view.addFilterByValue(items[i]);
                 }
             }
+            return success;
+
         },
 
         /**

@@ -3,11 +3,14 @@ define(function(require) {
         _ = require('underscore'),
         Backbone = require('backbone'),
         Ujs = require('jquery_ujs'),
-        EventListener = require('app/utils/eventListener');
+        dispatcher = require('app/utils/eventListener');
+
+
         
     return Backbone.View.extend({
         el: '#site-wrapper',
         initialize: function() {
+            this.listenTo(dispatcher, 'filter:toggle', this.toggleFilter);
             this.$siteWrapper = this.$el;
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');
