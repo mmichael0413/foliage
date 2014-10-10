@@ -1,11 +1,11 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'app/utils/eventListener',
-    'app/modals/activities/photo-modal',
-    'libs/owl.carousel'
-], function($, _, Backbone, EventListener, PhotoModal, OwlCarousel){
+define(function(require){
+    var $ = require('jquery'),
+        _ = require('underscore'),
+        Backbone = require('backbone'),
+        EventListener = require('app/utils/eventListener'),
+        PhotoModal = require('app/modals/activities/photo-modal'),
+        OwlCarousel = require('libs/owl.carousel');
+
     return Backbone.View.extend({
         el: '#site-wrapper',
         initialize: function (options) {

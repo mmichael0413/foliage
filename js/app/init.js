@@ -16,7 +16,8 @@ require.config({
         'imagesLoaded' : "libs/bower_components/imagesLoaded/imagesLoaded",
         'eventEmitter' : "libs/bower_components/eventEmitter/EventListener",
         'eventie' : "libs/bower_components/eventie/eventie",
-        'backbone.modal' : 'libs/backbone.modal'
+        'backbone.modal' : 'libs/backbone.modal',
+        'jquery_ujs' : 'libs/bower_components/jquery-ujs/src/rails'
     },
     shim: {
         "jquery": {

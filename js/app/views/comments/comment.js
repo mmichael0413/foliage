@@ -1,11 +1,11 @@
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'handlebars',
-    'handlebarsTemplates',
-    'handlebarsHelpers'
-], function($, _, Backbone, Handlebars, HandlebarsTemplates, HandlebarsHelpers){
+define(function(require){
+    var $ = require('jquery'),
+        _ = require('underscore'),
+        Backbone = require('backbone'),
+        Handlebars = require('handlebars'),
+        HandlebarsTemplates = require('handlebarsTemplates'),
+        HandlebarsHelpers = require('app/utils/HandlebarsHelpers');
+        
     return Backbone.View.extend({
         className: 'comment',
         template: HandlebarsTemplates.comment,

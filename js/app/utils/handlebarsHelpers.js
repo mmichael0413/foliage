@@ -1,4 +1,8 @@
-define(['jquery','handlebars'], function($, Handlebars){
+define(function(require){
+
+    var $ = require('jquery'),
+        Handlebars = require('handlebars');
+
     Handlebars.registerHelper('if_eq', function(a, b, opts) {
         if(a == b) // Or === depending on your needs
             return opts.fn(this);
