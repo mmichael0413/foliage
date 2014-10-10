@@ -1,11 +1,13 @@
 define(function(require) {
     var $ = require('jquery'),
         _ = require('underscore'),
-        Backbone = require('backbone');
+        Backbone = require('backbone'),
+        dispatcher = require('app/utils/eventListener');
 
     return Backbone.View.extend({
         el: '#site-wrapper',
         initialize: function() {
+            this.listenTo(dispatcher, 'filter:toggle', this.toggleFilter);
             this.$siteWrapper = this.$el;
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');
@@ -15,6 +17,7 @@ define(function(require) {
             if (navState !== null) {
            //     this.$siteWrapper.addClass(navState);
             }
+
         },
         events: {
             'click .toggle-nav': 'toggleNav',
