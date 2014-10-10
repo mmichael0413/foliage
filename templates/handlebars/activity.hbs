@@ -49,16 +49,15 @@
         </div>
 
         <div class="activity-photos">
-            <div class="owl-carousel owl-theme">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
                 {{#each images}}
-                <div class="item">
-                    <div class="img-container">
-                        <img src="{{url}}" class="img-responsive " onerror="this.src='{{../content_image_error_url}}'"/>
-                    </div>
+                        <div class="swiper-slide">
+                            <img src="{{url}}" class="img-responsive " onerror="this.src='{{../content_image_error_url}}'"/>
+                        </div>
+                    {{/each}}
                 </div>
-                {{/each}}
             </div>
-
         </div>
 
 

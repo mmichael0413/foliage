@@ -1,4 +1,4 @@
-@import '../../lib/owl-carousel/owl';
+@import '../../lib/idangerous.swiper';
 @import '../../lib/backbone.modal/modal';
 
 $padding: 1.5em;
@@ -140,6 +140,14 @@ $img-height: 3em;
             margin: 0 auto;
         }
          }
+    }
+}
+
+.swiper-slide {
+    img {
+        width: 100%;
+        display: inline-block;
+        vertical-align: middle;
     }
 }
 

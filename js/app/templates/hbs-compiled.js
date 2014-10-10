@@ -76,13 +76,13 @@ function program10(depth0,data) {
 function program12(depth0,data,depth1) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n                <div class=\"item\">\n                    <div class=\"img-container\">\n                        <img src=\"";
+  buffer += "\n                        <div class=\"swiper-slide\">\n                            <img src=\"";
   if (helper = helpers.url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\" class=\"img-responsive \" onerror=\"this.src='"
     + escapeExpression(((stack1 = (depth1 && depth1.content_image_error_url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "'\"/>\n                    </div>\n                </div>\n                ";
+    + "'\"/>\n                        </div>\n                    ";
   return buffer;
   }
 
@@ -157,10 +157,10 @@ function program16(depth0,data) {
   buffer += "\n                </span>\n                <span class=\"action bold\"><a href=\"#\" class=\"start-comment\">Comment</a></span>\n                ";
   stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.type), "Checkin", options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.type), "Checkin", options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            </div>\n        </div>\n\n        <div class=\"activity-photos\">\n            <div class=\"owl-carousel owl-theme\">\n                ";
+  buffer += "\n            </div>\n        </div>\n\n        <div class=\"activity-photos\">\n            <div class=\"swiper-container\">\n                <div class=\"swiper-wrapper\">\n                ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.images), {hash:{},inverse:self.noop,fn:self.programWithDepth(12, program12, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            </div>\n\n        </div>\n\n\n    </div>\n    <div class=\"comment-holder\">\n        <div class=\"status-bar\">\n            <span class=\"action\">\n                <span class=\"like-count\" data-likecount=\"";
+  buffer += "\n                </div>\n            </div>\n        </div>\n\n\n    </div>\n    <div class=\"comment-holder\">\n        <div class=\"status-bar\">\n            <span class=\"action\">\n                <span class=\"like-count\" data-likecount=\"";
   if (helper = helpers.like_count) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.like_count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)

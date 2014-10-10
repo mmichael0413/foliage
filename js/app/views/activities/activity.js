@@ -10,7 +10,8 @@ define(function(require) {
         CommentsView = require('app/views/comments/comments'),
         NewCommentView = require('app/views/comments/new_comment'),
         Like = require('app/models/activities/like'),
-        OwlCarousel = require('libs/owl.carousel');
+        OwlCarousel = require('libs/owl.carousel'),
+        Carousel = require('libs/idangerous.swiper');
 
 
     return Backbone.View.extend({
@@ -24,7 +25,7 @@ define(function(require) {
             'click .owl-carousel img': 'openModal'
         },
         initialize: function (options) {
-
+            var self = this;
             this.programId = options.programId;
             if (options.model === undefined) {
                 this.model = new Activity();
@@ -34,6 +35,9 @@ define(function(require) {
             }
 
             this.objId = this.model.get('activity_id');
+            this.carousel = null;
+
+            this.listenTo(EventListener, 'navigation:collapsed', this.initCarousel);
         },
         render: function () {
             // render the base activity
@@ -42,21 +46,20 @@ define(function(require) {
             }
 
             this.$el.html(this.template(this.model.attributes));
-
-            // initialize the carousel
-            //   this.$('.m-carousel').carousel();
-            this.$(".owl-carousel").owlCarousel({
-
-                navigation : true, // Show next and prev buttons
-                slideSpeed : 300,
-                paginationSpeed : 400,
-                singleItem:true
+            
+            this.carousel = this.$('.swiper-container').swiper({
+                mode:'horizontal',
+                loop: false,
+                calculateHeight: true,
+                resizeReInit: true,
+                roundLengths: true,
+                onInit: function(){ 
+                   console.log('Init');
+                    var height = self.$('.swiper-wrapper').height();
+                    self.$('.swiper-slide').css('line-height', height + 'px');
+                }
             });
-            var self = this;
-            // this.$('.activity-photos img').on('load', function(){self.onLoad(this)});
-
-
-
+          
             // render the comments view
             var c = this.$('.comments');
             this.comments = new CommentsView({el: c, activity: this.model, programId: this.programId});
@@ -139,6 +142,15 @@ define(function(require) {
                 }
             });
 
+        },
+        initCarousel: function() {
+            if (this.carousel !== null) {
+    
+                var width = this.$('.activity-photos').width();
+               console.log('Width: ' + width);
+                this.$('swiper-side').width(width);
+               // this.carousel.resizeFix();
+            }
         }
     });
 });

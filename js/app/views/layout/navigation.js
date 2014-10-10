@@ -2,7 +2,8 @@ define(function(require) {
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        Ujs = require('jquery_ujs');
+        Ujs = require('jquery_ujs'),
+        EventListener = require('app/utils/eventListener');
         
     return Backbone.View.extend({
         el: '#site-wrapper',
@@ -60,11 +61,12 @@ define(function(require) {
                 this.$siteWrapper.addClass('expanded-nav');
                 window.localStorage.setItem('main_navigation', 'expanded-nav');
             } else {
-             this.$siteWrapper.find('.collapse-nav .ic_left').removeClass('ic_left').addClass('ic_right');   
+                this.$siteWrapper.find('.collapse-nav .ic_left').removeClass('ic_left').addClass('ic_right');   
                 this.$siteWrapper.addClass('collapsed-nav');
                 this.$siteWrapper.removeClass('expanded-nav');
                 window.localStorage.setItem('main_navigation', 'collapsed-nav');
             }
+             EventListener.trigger('navigation:collapsed');
         }
     });
 });
