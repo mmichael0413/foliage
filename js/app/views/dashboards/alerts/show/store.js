@@ -5,7 +5,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         tagName: 'tr',
-        template: HandlebarsTemplates.store,
+        template: HandlebarsTemplates.dashboard_alerts_show_store,
         initialize: function (options) {
             this.model = options.model;
         },

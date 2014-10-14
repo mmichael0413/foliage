@@ -65,5 +65,9 @@ define(function(require){
         }
     });
 
+    Handlebars.registerHelper('report_view_list_link', function(object) {
+        var account = (object.report_filters.account !== undefined) ?  object.report_filters.account.id : 'all';
+        return 'reports/' + account + '/info/' + object.widget_id + '?filter[begin_date]=' + object.report_filters.begin_date +'&filter[end_date]=' + object.report_filters.end_date;
+    });
 });
 

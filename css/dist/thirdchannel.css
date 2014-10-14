@@ -2332,3 +2332,108 @@ Pagination Styles
   .activity-content, .activity-photos {
     width: 100%;
     margin-bottom: 1em; } }
+.report h2 {
+  margin-bottom: 0; }
+.report p {
+  padding: 0.5em 0; }
+.report .section > h2 {
+  text-transform: uppercase;
+  border-bottom: 1px solid #edeceb;
+  padding: 0.25em 0.85em 0.5em 0.85em;
+  margin-bottom: 0.5em; }
+.report .section {
+  page-break-inside: avoid !important; }
+.report .widget {
+  padding: 1em; }
+  .report .widget.small-padding {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em; }
+.report .border-top {
+  border-top: 1px solid #edeceb; }
+
+.overview:first-child {
+  padding-left: 1em; }
+.overview:last-child {
+  padding-right: 1em; }
+.overview > div {
+  text-align: center;
+  padding: 1em;
+  border: 1px solid #edeceb;
+  border-radius: 0.25em; }
+
+.chart.donut canvas {
+  float: left; }
+.chart.donut .legend {
+  padding-left: 130px; }
+  .chart.donut .legend table tr > td {
+    padding: 0.20em;
+    border: none; }
+    .chart.donut .legend table tr > td:first-child {
+      width: 1em; }
+.chart.quadrant h2 {
+  margin: 0.5em 0; }
+.chart.quadrant *[class*='axis-label-'] {
+  font-weight: bold; }
+.chart.quadrant *[class*='x-axis-label-'] {
+  width: 25%; }
+  .chart.quadrant *[class*='x-axis-label-'] > div {
+    position: relative;
+    margin: 0.25%;
+    width: 100%;
+    padding-bottom: 200%; }
+.chart.quadrant *[class*='y-axis-label-'] {
+  text-align: center; }
+.chart.quadrant .x-axis-label-left {
+  float: left;
+  text-align: right; }
+.chart.quadrant .chart {
+  margin: auto;
+  width: 50%; }
+.chart.quadrant .x-axis-label-right {
+  float: right; }
+.chart.quadrant .square {
+  float: left;
+  position: relative;
+  width: 49%;
+  padding-bottom: 49%;
+  margin: 0.25%;
+  color: #fff;
+  text-align: center; }
+.chart.quadrant .l_content {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 5%; }
+.chart.quadrant .l_table {
+  display: table;
+  width: 100%;
+  height: 100%; }
+.chart.quadrant .l_table-cell {
+  display: table-cell;
+  vertical-align: middle; }
+.chart.range tr > td:nth-child(2) {
+  text-align: right; }
+
+.metric-icon h2 {
+  color: #f15f51; }
+
+.leading-row {
+  margin: 0.5em 0;
+  background: image_url("dot.svg") repeat-x bottom;
+  background-size: contain; }
+  .leading-row span {
+    background-color: #FFFFFF; }
+    .leading-row span:not(.pull-right) {
+      padding-right: 0.25em; }
+  .leading-row .pull-right {
+    padding-left: 0.25em; }
+
+.resolution-row:nth-child(odd) {
+  background: #f0f0ef; }
+
+.report-info-list .checkins td {
+  border-top: none; }
+.report-info-list .checkins .checkin {
+  padding: 0.5em 1em; }
+  .report-info-list .checkins .checkin:not(:first-child) {
+    border-top: 1px solid #edeceb; }

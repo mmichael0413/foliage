@@ -1,0 +1,12 @@
+<div class="overview {{config.widget_class}}">
+    <div>
+        {{#if show_view_list}}
+        <a href="{{report_view_list_link this}}">
+        {{/if}}
+        <h2>{{format_number results.count}}</h2>
+        {{#if show_view_list}}
+        </a>
+        {{/if}}
+        <div>{{title}}</div>
+    </div>
+</div>

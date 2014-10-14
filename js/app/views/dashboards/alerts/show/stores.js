@@ -10,7 +10,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         el: '.dashboard',
-        template: HandlebarsTemplates.stores,
+        template: HandlebarsTemplates.dashboard_alerts_show_stores,
         initialize: function (options) {
             this.options = options;
             this.model = new DashboardsAlertsStoresModel({id: options.id});

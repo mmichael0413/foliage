@@ -1,0 +1,20 @@
+<div class="{{config.widget_class}}">
+    <div class="icon">
+        <p class="left {{config.title_class}}">{{title}}</p>
+        <div class="row">
+            <div class="col-xs-12 col-md-5 percent_icon_arrow">
+                <span class="tc-icons tc-icons-sm tc-icons_{{config.icon}} inverse"></span>
+            </div>
+            <div class="col-xs-12 col-md-6 percent_icon_stats">
+                 <span class="legend">
+                         <span class="legend-item center bold positive">{{value_lookup config.selected_key results.percentages}}% {{config.selected_key}}</span><br/>
+                         <span class="legend-item center">{{format_number_from_value_lookup config.selected_key results.counts}} {{config.count_text}}</span>
+                 </span>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>

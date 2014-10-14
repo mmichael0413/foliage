@@ -4,12 +4,15 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates.reports_info_show_checkin,
+        tagName: 'span',
+        template: HandlebarsTemplates.reports_widgets_range_chart,
         initialize: function (options) {
             this.model = options;
         },
         render: function () {
-            this.setElement(this.template(this.model));
+            if (_.size(this.model.results.percentages) > 0) {
+                this.setElement(this.template(this.model));
+            }
             return this;
         }
     });

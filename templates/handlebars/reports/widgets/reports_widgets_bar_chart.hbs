@@ -1,0 +1,13 @@
+<div class="{{config.widget_class}}">
+    <div class="bar-chart">
+        <div>{{title}}</div>
+        <div class='progress'>
+            <div class='progress-bar {{threshold_class config.threshold config.selected_key results.percentages}}' role='progressbar' aria-valuenow='{{value_lookup config.selected_key results.percentages}}' aria-valuemin='0' aria-valuemax='100' style='width: {{value_lookup 'Yes' results.percentages}}%;'>
+                <span>{{value_lookup config.selected_key results.percentages}}% {{config.selected_key}}</span>
+            </div>
+        </div>
+        {{#if show_view_list}}
+            <a href="{{report_view_list_link this}}">View Breakdown</a>
+        {{/if}}
+    </div>
+</div>

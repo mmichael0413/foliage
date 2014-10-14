@@ -1,0 +1,11 @@
+<div class="widget {{config.widget_class}}">
+    <div>
+        <div class="chart horizontal-bar">
+            <p>{{title}}</p>
+            {{#if show_view_list}}
+              <a href="{{report_view_list_link this}}">View Breakdown</a>
+            {{/if}}
+            <canvas></canvas>
+        </div>
+    </div>
+</div>

@@ -9,9 +9,9 @@ define(function(require){
         ActivitiesView = require('app/views/activities/activities'),
         TeamsMain = require('app/views/teams/main'),
         DashboardsAlertsSectionsView = require('app/views/dashboards/alerts/index/sections'),
-        DashboardsAlertsStoresView = require('app/views/dashboards/alerts/show/stores');
-
-
+        DashboardsAlertsStoresView = require('app/views/dashboards/alerts/show/stores'),
+        ReportView = require('app/views/reports/report'),
+        ReportInfoView = require('app/views/reports/info/show/info_list');
 
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -19,7 +19,12 @@ define(function(require){
             'programs/:program_id/profiles/:user_id' : 'programProfile',
             'programs/:program_id/teams': 'teams',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
-            'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert'
+            'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
+            'programs/:program_id/reports': 'reports',
+            'programs/:program_id/reports.pdf': 'reports',
+            'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
+
+            '*path': 'notFound'
         },
         activityFeed: function(program_id){
 
@@ -63,6 +68,21 @@ define(function(require){
 
         dashboardAlert: function(programId, id){
             new DashboardsAlertsStoresView({id: id, page: ""}).render();
+        },
+
+        reports: function(programId){
+            new ReportView({programId: programId}).render();
+        },
+
+        reportInfo: function(programId, reportId, infoId){
+            new ReportInfoView({programId: programId,reportId: reportId, infoId: infoId}).render();
+        },
+
+        notFound: function(){
+            // This maybe because we're generating a pdf
+            if (window.reportData !== undefined) {
+                new ReportView({programId: ''}).render();
+            }
         }
     });
 

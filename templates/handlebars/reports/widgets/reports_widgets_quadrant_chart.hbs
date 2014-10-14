@@ -1,0 +1,54 @@
+<div class="widget {{config.widget_class}}">
+    <div class="chart quadrant">
+        <p>{{title}}</p>
+        <div>
+            <div class="y-axis-label-top">{{config.chartLabels.top}}</div>
+            <div>
+                <div class="x-axis-label-left">
+                    <div>
+                        <div class="l_content">
+                            <div class="l_table">
+                                <div class="l_table-cell">
+                                    <div>{{config.chartLabels.left}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="x-axis-label-right">
+                    <div>
+                        <div class="l_content">
+                            <div class="l_table">
+                                <div class="l_table-cell">
+                                    <div>{{config.chartLabels.right}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart">
+                {{#each config.chartOrder}}
+                    <div class="square" style="background-color: {{value_lookup @key ../config.chartColors}}">
+                        <div class="l_content">
+                            <div class="l_table">
+                                <div class="l_table-cell">
+                                    <h2>{{value_lookup this ../results.percentages}}%</h2>
+                                    {{#if ../config.count_text}}
+                                        <div>{{format_number_from_value_lookup ../this ../../results.counts}} {{../../config.count_text}}</div>
+                                    {{/if}}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                {{/each}}
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="y-axis-label-bottom">{{config.chartLabels.bottom}}</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="widget {{config.widget_class}}">
+    <table class="chart range">
+        <thead>
+            <th colspan="2">{{title}}</th>
+        </thead>
+        {{#each config.legendOrder}}
+            {{#each this}}
+                <tr>
+                    <td>{{this}}</td>
+                    <td>{{value_lookup @key ../../results.percentages}}%</td>
+                </tr>
+            {{/each}}
+        {{/each}}
+    </table>
+</div>

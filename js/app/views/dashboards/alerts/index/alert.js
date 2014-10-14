@@ -2,10 +2,10 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        DashboardsAlertsGroupEvent = require('app/events/dashboards/alerts/group');
+        EventListener = require('app/utils/eventListener');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates.alert,
+        template: HandlebarsTemplates.dashboard_alerts_index_alert,
         initialize: function (options) {
             this.options = options;
             this.model = options.model;
@@ -15,7 +15,7 @@ define(function(require) {
             this.setElement(this.template(this.model.toJSON()));
             this.model.fetch({success: function (model) {
                 self.$el.find(".alert-count").empty().text(model.get('count'));
-                DashboardsAlertsGroupEvent.trigger('alert_group_' + self.options.groupId + ':count_update', model.get('count'));
+                EventListener.trigger('alert_group_' + self.options.groupId + ':count_update', model.get('count'));
             }});
             this.setGroupEvent();
 
@@ -29,8 +29,8 @@ define(function(require) {
         },
         setGroupEvent: function () {
             if (this.options.groupId !== undefined) {
-                DashboardsAlertsGroupEvent.on('alert_group_' + this.options.groupId + ':show', this.showView, this);
-                DashboardsAlertsGroupEvent.on('alert_group_' + this.options.groupId + ':hide', this.hideView, this);
+                this.listenTo(EventListener, 'alert_group_' + this.options.groupId + ':show', this.showView, this);
+                this.listenTo(EventListener, 'alert_group_' + this.options.groupId + ':hide', this.hideView, this);
             }
         }
     });

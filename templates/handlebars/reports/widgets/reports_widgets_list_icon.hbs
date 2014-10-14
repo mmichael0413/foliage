@@ -1,0 +1,19 @@
+<div class="{{config.widget_class}}" style="padding-left: 70px;">
+    <div class="pull-left" style="margin-left: -70px;">
+        <div class="circle-icon circle-md">
+            <div class="circle {{config.circle_css}}"><div class="tc-icons tc-icons-md tc-icons_{{config.icon}}"></div></div>
+        </div>
+    </div>
+    <div class="pull-left">
+        <div>{{title}}</div>
+
+        {{#if results.list}}
+            {{#eachRange 0 3 results.list}}
+                <h4>{{this}}</h4>
+            {{/eachRange}}
+        {{else}}
+            <h4>N/A</h4>
+        {{/if}}
+    </div>
+    <div class="clearfix"></div>
+</div>

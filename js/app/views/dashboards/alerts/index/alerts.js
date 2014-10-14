@@ -10,7 +10,7 @@ define(function(require) {
     return Backbone.View.extend({
         tagName: 'tbody',
         className: "alerts",
-        template: HandlebarsTemplates.alerts,
+        template: HandlebarsTemplates.dashboard_alerts_index_alerts,
         loadingTemplate: HandlebarsTemplates.loading,
         initialize: function (options) {
             this.options = options;

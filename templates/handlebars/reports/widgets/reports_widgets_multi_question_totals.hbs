@@ -1,0 +1,19 @@
+<div class="widget {{config.widget_class}}">
+    <table>
+        <thead>
+        <th colspan="2">{{title}}</th>
+        </thead>
+        <tbody>
+        {{#each results.rows}}
+        <tr>
+            <td>{{title}}</td>
+            <td>{{sum}}</td>
+        </tr>
+        {{/each}}
+        <tr>
+            <td><strong>Total # {{config.count_text}}</strong></td>
+            <td><strong>{{results.total}}</strong></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
