@@ -1454,8 +1454,8 @@ input[type=text], input[type=password], input[type=number], textarea {
       padding-left: 2em;
       cursor: pointer; }
       #site-filter .filter-list .filter-list-item .btn.default {
-        width: 2em;
-        height: 2em;
+        width: 1em;
+        height: 1em;
         border-color: #9fb2bf;
         margin-right: 0.5em; }
       #site-filter .filter-list .filter-list-item:hover .btn.default {

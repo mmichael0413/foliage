@@ -7,7 +7,7 @@ define(function(require) {
         initialize: function (options) {
             this.programId = options.programId;
             this.reportId = options.reportId;
-            this.infoId = options.infoId
+            this.infoId = options.infoId;
         },
         url: function () {
             return '/programs/' + this.programId + "/reports/" + this.reportId + "/info/" + this.infoId + ".json";

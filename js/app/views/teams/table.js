@@ -61,6 +61,7 @@ define(function(require) {
                 remove = 'desc';
             }
 
+
             $link.addClass('current');
             $link.addClass(direction);
             $link.removeClass(remove);
