@@ -241,7 +241,7 @@ function program5(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["dashboard_alerts_index_alert"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["dashboards/alerts/index/dashboard_alerts_index_alert"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -267,7 +267,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["dashboard_alerts_index_alerts"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["dashboards/alerts/index/dashboard_alerts_index_alerts"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
@@ -276,7 +276,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return "<tbody class=\"alerts\"></tbody>\n\n";
   });
 
-this["ThirdChannel"]["templates"]["dashboard_alerts_index_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["dashboards/alerts/index/dashboard_alerts_index_group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -290,7 +290,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["dashboard_alerts_index_section"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["dashboards/alerts/index/dashboard_alerts_index_section"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -304,7 +304,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["dashboard_alerts_show_store"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["dashboards/alerts/show/dashboard_alerts_show_store"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -332,7 +332,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["dashboard_alerts_show_stores"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["dashboards/alerts/show/dashboard_alerts_show_stores"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -608,7 +608,7 @@ function program1(depth0,data,depth1) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_info_show_checkin"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/info/show/reports_info_show_checkin"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -654,7 +654,7 @@ function program3(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_info_show_info_list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/info/show/reports_info_show_info_list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -672,7 +672,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_info_show_list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/info/show/reports_info_show_list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -706,7 +706,7 @@ function program1(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_section"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/reports_section"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -724,7 +724,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_subsection"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/reports_subsection"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -742,7 +742,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_widgets_bar_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/widgets/reports_widgets_bar_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
@@ -779,7 +779,7 @@ function program1(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_widgets_default"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/widgets/reports_widgets_default"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -791,7 +791,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_widgets_donut_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/widgets/reports_widgets_donut_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
@@ -847,7 +847,7 @@ function program4(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_widgets_horizontal_bar_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/widgets/reports_widgets_horizontal_bar_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
@@ -874,7 +874,7 @@ function program1(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_widgets_leading_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/widgets/reports_widgets_leading_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
@@ -892,7 +892,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_widgets_list_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/widgets/reports_widgets_list_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
@@ -938,7 +938,7 @@ function program4(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_widgets_metric_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/widgets/reports_widgets_metric_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
@@ -957,7 +957,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_widgets_multi_question_totals"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/widgets/reports_widgets_multi_question_totals"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -994,7 +994,7 @@ function program1(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_widgets_overview_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/widgets/reports_widgets_overview_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
@@ -1032,7 +1032,7 @@ function program3(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_widgets_percent_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/widgets/reports_widgets_percent_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
@@ -1060,7 +1060,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_widgets_quadrant_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/widgets/reports_widgets_quadrant_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
@@ -1110,7 +1110,7 @@ function program2(depth0,data,depth1,depth2) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_widgets_range_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/widgets/reports_widgets_range_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
@@ -1148,7 +1148,7 @@ function program2(depth0,data,depth2) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports_widgets_resolution_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["reports/widgets/reports_widgets_resolution_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
@@ -1188,7 +1188,7 @@ function program3(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["stores_table_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["stores/table_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
