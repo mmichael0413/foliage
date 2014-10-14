@@ -371,9 +371,18 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["ThirdChannel"]["templates"]["filters"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
-function program1(depth0,data,depth1) {
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.filterId), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;
+  }
+function program2(depth0,data) {
   
   var buffer = "", stack1, helper;
   buffer += "\n    <div class=\"filter-component\" data-filter-param=\"";
@@ -384,43 +393,13 @@ function program1(depth0,data,depth1) {
   if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " <span class=\"expand-indicator\"></span>\n            ";
-  stack1 = helpers.each.call(depth0, (depth1 && depth1.applied), {hash:{},inverse:self.noop,fn:self.programWithDepth(2, program2, data, depth0),data:data});
+    + " <span class=\"expand-indicator\"></span></div>\n        <div class=\"filter-list\">\n            ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.items), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </div>\n        <div class=\"filter-list\">\n            ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.items), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </div>\n    </div>\n";
-  return buffer;
-  }
-function program2(depth0,data,depth1) {
-  
-  var buffer = "", stack1, helper, options;
-  buffer += "\n                ";
-  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.filterId), (depth1 && depth1.filterId), options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.filterId), (depth1 && depth1.filterId), options));
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            ";
+  buffer += "\n        </div>\n    </div>\n    ";
   return buffer;
   }
 function program3(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n                    ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.items), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                ";
-  return buffer;
-  }
-function program4(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n                        <div class=\"active-filter\">\n                            <div class=\"btn default ic_check\"></div>\n                            <span>&nbsp;"
-    + escapeExpression(((stack1 = (depth0 && depth0[0])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</span>\n                        </div>\n                    ";
-  return buffer;
-  }
-
-function program6(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                <div class=\"filter-list-item\" data-value=\""
@@ -431,7 +410,7 @@ function program6(depth0,data) {
   return buffer;
   }
 
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.available), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
+  stack1 = helpers.each.call(depth0, depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { return stack1; }
   else { return ''; }
   });

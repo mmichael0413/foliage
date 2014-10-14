@@ -10,7 +10,7 @@ define(function(require){
         TeamsMain = require('app/views/teams/main'),
         DashboardsAlertsSectionsView = require('app/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('app/views/dashboards/alerts/show/stores'),
-        ReportView = require('app/views/reports/report'),
+        ReportView = require('app/views/reports/index/report'),
         ReportInfoView = require('app/views/reports/info/show/info_list');
 
     var AppRouter = Backbone.Router.extend({
