@@ -31,7 +31,6 @@ define(function(require) {
                 }});
                 this.model.fetch({success: function (model) {
                     that.constructView(model);
-                    EventListener.trigger('report post render');
                 }});
             }
             return this;
@@ -47,6 +46,7 @@ define(function(require) {
             $.each(model.get('sections'), function (key, value) {
                 that.addSection(that.$el, value);
             });
+            EventListener.trigger('report post render');
             that.$el.find('.loading-section').remove();
         },
         applyFilter: function (qs) {
