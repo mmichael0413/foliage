@@ -1,10 +1,14 @@
 define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
-        HandlebarsTemplates = require('handlebarsTemplates');
+        HandlebarsTemplates = require('handlebarsTemplates'),
+        EventListener = require('app/utils/eventListener');
 
     return Backbone.View.extend({
         template: HandlebarsTemplates.pagination,
+        events: {
+            'click .page': 'applyPageChange'
+        },
         initialize: function (config) {
             this.config = config;
             this.model = {};
@@ -80,6 +84,11 @@ define(function(require) {
         },
         totalCount: function () {
             this.model.totalCount = this.config.totalCount;
+        },
+        applyPageChange: function (e) {
+            e.preventDefault();
+            var page = $.trim($(e.currentTarget).text());
+            EventListener.trigger('filter:set', [{name: 'page', value:page}]);
         }
     });
 });

@@ -1,11 +1,9 @@
 define(function(require) {
-	var NavigationView = require('app/views/layout/navigation'),
-		FilterView = require('app/views/filter/filterControl');
+	var NavigationView = require('app/views/layout/navigation');
 
 	return  {
 		init: function () {
 			new NavigationView();
-			new FilterView();
 		}
 	};
 });

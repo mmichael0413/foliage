@@ -6,11 +6,11 @@ define(function(require) {
 
     return Backbone.View.extend({
         template: HandlebarsTemplates.reports_info_show_list_item,
-        initialize: function (options) {
-            this.model = options;
-        },
         events: {
             "click .info-toggle": "toggleCheckins"
+        },
+        initialize: function (options) {
+            this.model = options;
         },
         render: function () {
             var that = this;

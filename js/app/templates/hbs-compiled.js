@@ -377,10 +377,10 @@ function program1(depth0,data,depth1) {
   
   var buffer = "", stack1, helper;
   buffer += "\n    <div class=\"filter-component\" data-filter-param=\"";
-  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if (helper = helpers.filterId) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.filterId); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n        <div class=\"filter-item\">";
+    + "[]\">\n        <div class=\"filter-item\">";
   if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -423,9 +423,11 @@ function program4(depth0,data) {
 function program6(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                <div class=\"filter-list-item\"><div class=\"btn default\">&nbsp;</div>"
+  buffer += "\n                <div class=\"filter-list-item\" data-value=\""
+    + escapeExpression(((stack1 = (depth0 && depth0[1])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n                    <div class=\"btn default\">&nbsp;</div>\n                    <span>"
     + escapeExpression(((stack1 = (depth0 && depth0[0])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n            ";
+    + "</span>\n                </div>\n            ";
   return buffer;
   }
 
