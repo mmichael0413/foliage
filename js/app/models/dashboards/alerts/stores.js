@@ -5,10 +5,11 @@ define(function(require) {
 
     return Backbone.Model.extend({
         initialize: function (options) {
+            this.queryString = "";
             this.alertId = options.id;
         },
         url: function () {
-            return this.alertId + "/stores.json";
+            return this.alertId + "/stores.json?" + this.queryString;
         }
     });
 });
