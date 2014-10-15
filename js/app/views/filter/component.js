@@ -2,9 +2,18 @@ define(function(require) {
     var Backbone = require('backbone'),
         dispatcher = require('app/utils/eventListener'),
         ActiveFilterItemView = require('app/views/filter/activeFilterItem');
-
-    return Backbone.View.extend({
+    /**
+     * A Standard component filter view
+     * 
+     * @exports app/views/filter/component
+     * 
+     */
+    var component = {
         openClassName: 'open',
+        /**
+         * The Events that component responds to.
+         * @type {Object}
+         */
         events: {
             'click .filter-item': 'toggleOpen',
             'click .filter-list-item': 'addFilterHandler',
@@ -20,17 +29,22 @@ define(function(require) {
             return this;
         },
 
-
         toggleOpen: function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
             var $icon = this.$el.find('.expand-indicator'),
                 $list = this.$el.find('.filter-list');
             $icon.toggleClass(this.openClassName);
             $list.toggleClass(this.openClassName);
         },
-
+        /**
+         * Handler for the click event
+         * 
+         * @param {event} e A jquery click event
+         */
         addFilterHandler: function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -43,6 +57,11 @@ define(function(require) {
             this._addFilter($link);
         },
 
+        /**
+         *  Responsible for actually adding the filter to the view
+         * 
+         * @param {JQuery} $link
+         */
         _addFilter: function ($link) {
             if ($link) {
                 var view = new ActiveFilterItemView({
@@ -64,5 +83,6 @@ define(function(require) {
         restoreFilter: function (data) {
             this.$el.find(this._buildFilterItemLink(data.value)).show();
         }
-    });
+    };
+    return Backbone.View.extend(component);
 });

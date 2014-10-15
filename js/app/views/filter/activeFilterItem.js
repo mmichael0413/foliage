@@ -4,7 +4,7 @@ define(function(require) {
         dispatcher = require('app/utils/eventListener');
 
     return Backbone.View.extend({
-        className: 'active-filter',
+        className: 'active-filter flexible',
 
         initialize: function (options) {
             this.options = options;

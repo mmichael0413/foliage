@@ -1,15 +1,17 @@
 define(function(require) {
     var Backbone = require('backbone'),
         dispatcher = require('app/utils/eventListener'),
+        SingleAnswerComponentView = require('app/views/filter/singleAnswerComponent'),
         ComponentView = require('app/views/filter/component');
 
     /**
      *
      * The ultimate goal of the Filter is turn all of the selected items into inputs which
      * are fed via query string to the server
+     *
+     * @exports app/views/filter/filterControl
      */
-
-    return Backbone.View.extend({
+    var control = {
         el: '#site-filter',
 
         openClass: 'open',
@@ -18,6 +20,7 @@ define(function(require) {
             'click .clear-filters': 'clearFilters'
         },
 
+        
         initialize: function () {
 
             this.components = {};
@@ -30,9 +33,10 @@ define(function(require) {
                 view;
 
             while(max--) {
-                view = new ComponentView();
+                view = new (this.selectComponentView(components[max]))();
                 view.setElement(components[max]);
                 view.render();
+                //this.selectComponentView(components[max]);
 
                 this.components[view.filterParam] = view;
                 // apply the query string to any components in the filter.
@@ -44,6 +48,7 @@ define(function(require) {
 
             this._applyQSGlobal(qsHash);
 
+
             this.listenTo(dispatcher, 'filter:request', this.handleFilterRequest);
             this.listenTo(dispatcher, 'filter:set', this.setFromExternal);
             // finally, check if we should Trigger the filter. This is done down here to avoid
@@ -54,12 +59,30 @@ define(function(require) {
                 dispatcher.trigger('filter:toggle');
             }
         },
+
         /**
+         * Determines which ComponentView to use base on the existing markup. 
+         * 
+         * @param  {DOM} $component A  DOM object that the Component View will contain
+         * @return {Backbone.View} view
+         * 
+         */
+        selectComponentView: function (component) {
+            var view = ComponentView;
+            if (component.getAttribute('data-filter-param').indexOf('[]') === -1) {
+                view = SingleAnswerComponentView;
+            }
+            return view;
+        },
+        
+        /**
+         * Examples the component views to see if one matches the parameter in the query string hash.
          *
-         * @param view
-         * @param qsHash
          * @private
-         * @return true if a query string item was applied
+         * @param  {View} view 
+         * @param  {object} qsHash A hash of the queryString arguments currently in the url
+         * @return {boolean}
+         * 
          */
         _applyQS: function(view, qsHash) {
             var success = false;
@@ -72,7 +95,6 @@ define(function(require) {
                 }
             }
             return success;
-
         },
 
         /**
@@ -142,5 +164,7 @@ define(function(require) {
 
             return data;
         }
-    });
+    };
+
+    return Backbone.View.extend(control);
 });

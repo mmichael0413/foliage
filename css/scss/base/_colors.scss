@@ -6,13 +6,25 @@ $palette5: #f15f51;
 $palette6: #deb999;
 $palette7: #a8bc4c;
 
+/*
+	Colors from Liz's UI-Color-Guide as of 10/15/2014
+ */
+$slate: #575d5f;
+$dark-slate: #434748;
+$light-gray: #f6f6f5;
+$medium-blue: #9fb2c0;
+$light-blue: #e3e8ec;
+$red: #f15f51;
 
-$text-color: $palette4;
-$main-background: #f6f6f5;
-$nav-background: $palette3;
+
+
+$text-color: $dark-slate;
+$main-background: $light-gray;
+$nav-background: $slate;
 $nav-background-hover: darken($nav-background, 5%);
-$subnav-background: $palette4;
-$border-color: #edebeb;
+$subnav-background: $dark-slate;
+$border-color: $light-blue;
+
 $link-color: $palette5;
 $active-state: $palette1;
 
