@@ -2,7 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        Charts = require('libs/Chart'),
+        Charts = require('chartjs'),
         EventListener = require('app/utils/eventListener');
 
     return Backbone.View.extend({
@@ -17,9 +17,6 @@ define(function(require) {
                 this.canvas = this.$el.find("canvas");
                 this.setupHorizontalBarChart();
                 var self = this;
-                $(window).on('resize', function (event) {
-                    self.displayHorizontalBarChart(self);
-                });
             }
             return this;
         },
@@ -34,7 +31,9 @@ define(function(require) {
                 scaleStartValue: 0,
                 inGraphDataShow: true,
                 inGraphDataTmpl: "<%=v3+'%'%>",
-                scaleLabel: "<%= value+'%' %>"
+                scaleLabel: "<%= value+'%' %>",
+                invertXY: true,
+                responsive: true
             }, this.model.config);
 
             var labels = [];
@@ -63,19 +62,9 @@ define(function(require) {
                 ]
             };
 
-            this.maxHeight = (this.chartOptions.legendOrder.length * 26) + 50;
-            this.screenPercent = this.$el.hasClass('print_50') ? 450 : this.$el.hasClass('print_66') ? 600 : 900;
-
             this.listenTo(EventListener, 'report post render', function () {
-                that.displayHorizontalBarChart(that);
+                new Chart(that.canvas[0].getContext("2d")).Bar(that.data, that.chartOptions);
             });
-        },
-        displayHorizontalBarChart: function ($element) {
-            $element.canvas[0].getContext("2d").clearRect(0, 0, $($element.canvas).width(), $($element.canvas).height());
-            var width = $element.$el.width() || ($element.screenPercent);
-            $($element.canvas).attr("width", width);
-            $($element.canvas).attr("height", $element.maxHeight);
-            new Chart($element.canvas[0].getContext("2d")).HorizontalBar($element.data, $element.chartOptions);
         }
     });
 });

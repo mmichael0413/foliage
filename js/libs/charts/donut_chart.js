@@ -1,6 +1,6 @@
 define(function(require) {
     var $ = require('jquery'),
-        Charts = require('libs/Chart');
+        Charts = require('chartjs');
 
     return function (node, dataArray, opts) {
         var options = _.extend({
