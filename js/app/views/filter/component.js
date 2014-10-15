@@ -17,7 +17,10 @@ define(function(require) {
         events: {
             'click .filter-item': 'toggleOpen',
             'click .filter-list-item': 'addFilterHandler',
-            'click .active-filter': 'resetItem'
+            'click .active-filter': 'resetItem',
+            // used by subclasses
+            'change input[type="date"]': 'handleDateChange',
+            'blur input[type="date"]': 'handleDateBlur'
         },
 
         render: function () {
@@ -48,13 +51,13 @@ define(function(require) {
         addFilterHandler: function (e) {
             e.preventDefault();
             e.stopPropagation();
-            this._addFilter(this.$el.find(e.currentTarget));
+            this._addFilterFromLink(this.$el.find(e.currentTarget));
             dispatcher.trigger('filter:request');
         },
 
         addFilterByValue: function (value) {
             var $link = this.$el.find(this._buildFilterItemLink(value));
-            this._addFilter($link);
+            this._addFilterFromLink($link);
         },
 
         /**
@@ -62,17 +65,28 @@ define(function(require) {
          * 
          * @param {JQuery} $link
          */
-        _addFilter: function ($link) {
+        _addFilterFromLink: function ($link) {
             if ($link) {
-                var view = new ActiveFilterItemView({
-                    param: this.filterParam,
-                    label: $link.text(),
-                    value: $link.data('value')
-                }).render();
-                view.$el.appendTo(this.$el.find('.filter-item'));
+                this._addFilter($link.text(), $link.data('value'));
                 $link.hide();
-                this.activeFilters.push(view);
             }
+        },
+        _addFilter: function (label, value) {
+            var view = new ActiveFilterItemView({
+                param: this.filterParam,
+                label: label,
+                value: value
+            }).render();
+            view.$el.appendTo(this.$el.find('.filter-item'));
+            
+            this.activeFilters.push(view);
+        },
+
+        /**
+         * Removes all active filter items from the Component
+         */
+        clear: function () {
+            this.$el.find('.active-filter').remove();
         },
 
         _buildFilterItemLink: function(value) {

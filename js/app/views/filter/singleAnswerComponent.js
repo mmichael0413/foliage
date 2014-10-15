@@ -23,13 +23,12 @@ define(function(require) {
          * 
          * @param {JQuery} $link
          */
-        _addFilter: function ($link) {
+        _addFilterFromLink: function ($link) {
             // count the number of active filters
             var $activeFilters = this.$el.find('.active-filter');
             if ($activeFilters.length === 0) {
                 //proceed!
-                SingleAnswerComponent.__super__._addFilter.call(this, $link);
-                //this.$el.find('.filter-list').hide();    
+                SingleAnswerComponent.__super__._addFilterFromLink.call(this, $link);
                 this.toggleOpen();
             }
         }

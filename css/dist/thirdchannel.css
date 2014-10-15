@@ -1461,11 +1461,11 @@ input[type=text], input[type=password], input[type=number], textarea {
     max-height: 0px;
     background-color: #f6f6f5;
     color: #434748;
+    overflow-y: scroll;
     -webkit-box-shadow: inset 6px 0px 10px -8px #575d5f;
     -moz-box-shadow: inset 6px 0px 10px -8px #575d5f;
     -ms-box-shadow: inset 6px 0px 10px -8px #575d5f;
     box-shadow: inset 6px 0px 10px -8px #575d5f;
-    overflow-y: scroll;
     -webkit-transition: max-height, 0.8s;
     -moz-transition: max-height, 0.8s;
     -ms-transition: max-height, 0.8s;

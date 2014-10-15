@@ -67,10 +67,10 @@
         max-height:0px;
         background-color: $main-background;
         color: $text-color;
-        @include box-shadow-inset(6px, 0px, 10px, -8px, $slate);
-
         overflow-y: scroll;
+        @include box-shadow-inset(6px, 0px, 10px, -8px, $slate);
         @include transition(max-height, 0.8s);
+        
         .filter-list-item {
             padding: 1em;
             padding-left: 2em;

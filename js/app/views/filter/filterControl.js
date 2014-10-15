@@ -2,6 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         dispatcher = require('app/utils/eventListener'),
         SingleAnswerComponentView = require('app/views/filter/singleAnswerComponent'),
+        DateComponentView = require('app/views/filter/dateComponent'),
         ComponentView = require('app/views/filter/component');
 
     /**
@@ -69,7 +70,10 @@ define(function(require) {
          */
         selectComponentView: function (component) {
             var view = ComponentView;
-            if (component.getAttribute('data-filter-param').indexOf('[]') === -1) {
+            if (component.getAttribute('data-type') === 'date') {
+                view = DateComponentView;
+            }
+            else if (component.getAttribute('data-filter-param').indexOf('[]') === -1) {
                 view = SingleAnswerComponentView;
             }
             return view;
