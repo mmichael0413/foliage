@@ -61,6 +61,13 @@ define(function(require) {
             }
         },
 
+        clearFilters: function () {
+            for (var key in this.components) {
+                this.components[key].clear();
+            }
+            this.broadCastQueryString();
+        },
+
         /**
          * Determines which ComponentView to use base on the existing markup. 
          * 

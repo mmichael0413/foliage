@@ -59,7 +59,14 @@
             }
         }
 
-        
+        &.action {
+            background-color: $main-background;
+            color: lighten($text-color, 10%);
+            @include box-shadow-inset(6px, 0px, 10px, -8px, $slate);
+            &:hover {
+                background-color: darken($main-background, 10%);
+            }
+        }
     }
 
 

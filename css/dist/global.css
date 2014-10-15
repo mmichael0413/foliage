@@ -736,6 +736,15 @@ ul.list {
       padding: 1em 0.5em; }
       #site-filter .filter-item .active-filter .filter-input {
         display: none; }
+    #site-filter .filter-item.action {
+      background-color: #f6f6f5;
+      color: #5c6162;
+      -webkit-box-shadow: inset 6px 0px 10px -8px #575d5f;
+      -moz-box-shadow: inset 6px 0px 10px -8px #575d5f;
+      -ms-box-shadow: inset 6px 0px 10px -8px #575d5f;
+      box-shadow: inset 6px 0px 10px -8px #575d5f; }
+      #site-filter .filter-item.action:hover {
+        background-color: #dededa; }
   #site-filter .filter-list {
     max-height: 0px;
     background-color: #f6f6f5;

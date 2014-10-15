@@ -32,6 +32,13 @@ define(function(require) {
             return this;
         },
 
+        /**
+         * Removes all active filter items from the Component
+         */
+        clear: function () {
+            this.$el.find('.active-filter').remove();
+        },
+
         toggleOpen: function (e) {
             if (e) {
                 e.preventDefault();
@@ -80,13 +87,6 @@ define(function(require) {
             view.$el.appendTo(this.$el.find('.filter-item'));
             
             this.activeFilters.push(view);
-        },
-
-        /**
-         * Removes all active filter items from the Component
-         */
-        clear: function () {
-            this.$el.find('.active-filter').remove();
         },
 
         _buildFilterItemLink: function(value) {
