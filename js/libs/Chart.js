@@ -827,7 +827,7 @@
             this.stop();
             var canvas = this.chart.canvas,
                 newWidth = getMaximumWidth(this.chart.canvas),
-                newHeight = this.options.maintainAspectRatio ? newWidth / this.chart.aspectRatio : getMaximumHeight(this.chart.canvas);
+                newHeight = this.options.maintainAspectRatio ? newWidth / this.chart.aspectRatio : this.scale !== undefined && this.options.horizontalBar ? this.scale.calculateHeightHorizontalBar() : getMaximumHeight(this.chart.canvas);
 
             canvas.width = this.chart.width = newWidth;
             canvas.height =  this.chart.height = newHeight;
@@ -1453,7 +1453,7 @@
         },
         buildYLabels : function(){
             this.buildCalculatedLabels();
-            if(this.invertXY) {
+            if(this.horizontalBar) {
                 if (this.ChangeYLabel) {
                     this.ChangeYLabel = false;
                     this.yLabels = this.xLabels;
@@ -1587,7 +1587,7 @@
         },
         calculateX : function(index){
             var how = this.valuesCount;
-            if(this.invertXY)
+            if(this.horizontalBar)
                 how = this.steps;
             var isRotated = (this.xLabelRotation > 0),
             // innerWidth = (this.offsetGridLines) ? this.width - offsetLeft - this.padding : this.width - (offsetLeft + halfLabelWidth * 2) - this.padding,
@@ -1607,7 +1607,7 @@
         },
         draw : function(){
             var ctx = this.ctx,
-                yLabelGap = (this.endPoint - this.startPoint) / (this.invertXY ? this.yLabels.length : this.steps),
+                yLabelGap = (this.endPoint - this.startPoint) / (this.horizontalBar ? this.yLabels.length : this.steps),
                 xStart = Math.round(this.xScalePaddingLeft);
             if (this.display){
                 ctx.fillStyle = this.textColor;
@@ -1615,7 +1615,7 @@
                 each(this.yLabels,function(labelString,index){
                     var yLabelCenter = this.endPoint - (yLabelGap * index),
                         linePositionY = Math.round(yLabelCenter);
-                    if(this.invertXY)
+                    if(this.horizontalBar)
                         yLabelCenter -= yLabelGap / 2;
 
                     ctx.textAlign = "right";
@@ -1653,7 +1653,7 @@
 
                 each(this.xLabels,function(label,index){
                     var width = this.calculateX(1) - this.calculateX(0);
-                    var xPos = this.calculateX(index) + aliasPixel(this.lineWidth) - (this.invertXY ? width / 2 : 0),
+                    var xPos = this.calculateX(index) + aliasPixel(this.lineWidth) - (this.horizontalBar ? width / 2 : 0),
                     // Check to see if line/bar here and decide where to place the line
                         linePos = this.calculateX(index - (this.offsetGridLines ? 0.5 : 0)) + aliasPixel(this.lineWidth),
                         isRotated = (this.xLabelRotation > 0);
@@ -2026,6 +2026,12 @@
         //Number - Pixel width of the bar stroke
         barStrokeWidth : 2,
 
+        //Boolean - If this should be a horizontal bar
+        horizontalBar : false,
+
+        //Number - Pixel height of Horizontal bar
+        barHeight : 20,
+
         //Number - Spacing between each of the X value sets
         barValueSpacing : 5,
 
@@ -2065,10 +2071,12 @@
 
                     return (baseWidth / datasetCount);
                 },
-
+                calculateHeightHorizontalBar : function(){
+                    return (2 * options.barValueSpacing + options.barHeight) * this.yLabels.length + this.startPoint + (this.height - this.endPoint);
+                },
                 calculateBaseHeight : function(){
-                    if(this.invertXY)
-                        return ((this.endPoint - this.startPoint) / this.yLabels.length) - (2*options.barValueSpacing);
+                    if(this.horizontalBar)
+                        return options.barValueSpacing + (options.barHeight / 2);
                     else
                         return ((this.startPoint - this.endPoint) / (this.yLabels.length)) + (2*options.barValueSpacing);
                 },
@@ -2079,7 +2087,10 @@
                     return (baseHeight / datasetCount);
                 },
 
-                calculateXInvertXY : function(value) {
+                calculateBarWidthHorizontalBar : function(datasetCount){
+                    return this.calculateBarHeight(datasetCount);
+                },
+                calculateXHorizontalBar : function(value) {
                     var scalingFactor = (this.width - Math.round(this.xScalePaddingLeft) - this.xScalePaddingRight) / (this.max - this.min);
                     return Math.round(this.xScalePaddingLeft) + (scalingFactor * (value - this.min));
 
@@ -2087,14 +2098,10 @@
                     return this.endPoint - (scalingFactor * (value - this.min));
                 },
 
-                calculateYInvertXY : function(index){
-                    return index * ((this.startPoint - this.endPoint) / (this.yLabels.length));
-                },
-
-                calculateBarY : function(datasetCount, datasetIndex, barIndex){
+                calculateYHorizontalBar : function(datasetCount, datasetIndex, barIndex){
                     //Reusable method for calculating the yPosition of a given bar based on datasetIndex & height of the bar
                     var yHeight = this.calculateBaseHeight(),
-                        yAbsolute = this.endPoint + this.calculateYInvertXY(barIndex) - (yHeight / 2),
+                        yAbsolute = this.endPoint + (barIndex * ((this.startPoint - this.endPoint) / (this.yLabels.length))) - (yHeight / 2),
                         barHeight = this.calculateBarHeight(datasetCount);
 
                     return yAbsolute + (barHeight * (datasetIndex - 1)) - (datasetIndex * options.barDatasetSpacing) + barHeight/2;
@@ -2120,7 +2127,7 @@
             }
 
             //Declare the extension of the default point, to cater for the options passed in to the constructor
-            var cls = this.options.invertXY ?  Chart.HorizontalRectangle : Chart.Rectangle;
+            var cls = this.options.horizontalBar ?  Chart.HorizontalRectangle : Chart.Rectangle;
             this.BarClass = cls.extend({
                 strokeWidth : this.options.barStrokeWidth,
                 showStroke : this.options.barShowStroke,
@@ -2146,8 +2153,8 @@
                         label : data.labels[index],
                         datasetLabel: dataset.label,
                         strokeColor : dataset.strokeColor,
-                        fillColor : dataset.fillColor,
-                        highlightFill : dataset.highlightFill || dataset.fillColor,
+                        fillColor : dataset.fillColor[index%dataset.fillColor.length],
+                        highlightFill : dataset.highlightFill || dataset.fillColor[index%dataset.fillColor.length],
                         highlightStroke : dataset.highlightStroke || dataset.strokeColor
                     }));
                 },this);
@@ -2156,17 +2163,17 @@
 
             this.buildScale(data.labels);
 
-            if(this.options.invertXY) {
+            if(this.options.horizontalBar) {
                 this.BarClass.prototype.left = Math.round(this.scale.xScalePaddingLeft);
             } else {
                 this.BarClass.prototype.base = this.scale.endPoint;
             }
 
             this.eachBars(function(bar, index, datasetIndex){
-                if(this.options.invertXY) {
+                if(this.options.horizontalBar) {
                     var obj = {
-                        x: Math.round(this.scale.xScalePaddingLeft),
-                        y : this.scale.calculateBarY(this.datasets.length, datasetIndex, index),
+                        x: this.scale.calculateXHorizontalBar(bar.value),
+                        y : this.scale.calculateYHorizontalBar(this.datasets.length, datasetIndex, index),
                         height : this.scale.calculateBarHeight(this.datasets.length)
                     };
                 } else {
@@ -2180,7 +2187,7 @@
                 bar.save();
             }, this);
 
-            this.render();
+            this.resize(this.render, true);
         },
         update : function(){
             this.scale.update();
@@ -2260,7 +2267,7 @@
                 padding : (this.options.showScale) ? 0 : (this.options.barShowStroke) ? this.options.barStrokeWidth : 0,
                 showLabels : this.options.scaleShowLabels,
                 display : this.options.showScale,
-                invertXY : this.options.invertXY
+                horizontalBar : this.options.horizontalBar
             };
 
             if (this.options.scaleOverride){
@@ -2326,12 +2333,13 @@
             helpers.each(this.datasets,function(dataset,datasetIndex){
                 helpers.each(dataset.bars,function(bar,index){
                     if (bar.hasValue()){
-                        if(this.options.invertXY) {
+                        if(this.options.horizontalBar) {
                             bar.left = Math.round(this.scale.xScalePaddingLeft);
                             var obj = {
-                                x : this.scale.calculateXInvertXY(bar.value),
-                                y : this.scale.calculateBarY(this.datasets.length, datasetIndex, index),
-                                width : this.scale.calculateBarHeight(this.datasets.length)
+                                x : this.scale.calculateXHorizontalBar(bar.value),
+                                y : this.scale.calculateYHorizontalBar(this.datasets.length, datasetIndex, index),
+                                width : this.scale.calculateBarWidthHorizontalBar(this.datasets.length),
+                                height : this.options.barHeight
                             };
                         } else {
                             bar.base = this.scale.endPoint;

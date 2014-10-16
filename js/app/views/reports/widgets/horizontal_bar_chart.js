@@ -32,8 +32,11 @@ define(function(require) {
                 inGraphDataShow: true,
                 inGraphDataTmpl: "<%=v3+'%'%>",
                 scaleLabel: "<%= value+'%' %>",
-                invertXY: true,
-                responsive: true
+                horizontalBar: true,
+                responsive: true,
+                barValueSpacing: 10,
+                maintainAspectRatio: false,
+                showTooltips: true
             }, this.model.config);
 
             var labels = [];
