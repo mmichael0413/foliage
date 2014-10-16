@@ -11,7 +11,7 @@ define(function(require) {
         el: 'table.table',
 
         collectionClass: undefined,
-        rowTemplate: '',
+        template: '',
 
         events: {
           'click .sortable-column-header': '_applySortableColumn'
@@ -32,15 +32,11 @@ define(function(require) {
 
         render: function () {
 
-            var self = this,
-                $tbody = this.$el.find('tbody'),
-                $shadowTBody = $('<tbody></tbody>');
-            // build up the rows in de-attached node...
-            this.collection.each(function (model) {
-                $shadowTBody.append(HandlebarsTemplates[self.rowTemplate](model.toJSON()));
-            });
-            // then swap it in, replacing the attached tbody
-            $tbody.html($shadowTBody.html());
+            var $tbody = this.$el.find('tbody'),
+                data = {
+                    rows: this.collection.toJSON()
+                };
+            $tbody.html(HandlebarsTemplates[this.template](data));
             return this;
         },
 

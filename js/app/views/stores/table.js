@@ -4,6 +4,6 @@ define(function(require) {
     
     return FilterableTableView.extend({
         collectionClass: Members,
-        rowTemplate: 'stores/table_row',
+        template: 'stores/table_rows',
     });
 });

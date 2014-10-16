@@ -5,7 +5,7 @@ define(function(require) {
     return FilterableTableView.extend({
 
         collectionClass: Members,
-        rowTemplate: 'teams_table_row',
+        template: 'teams_table_rows',
 
     });
 });
