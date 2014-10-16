@@ -9,7 +9,8 @@ define(function(require) {
             showPercentage: false,
             showImage: false,
             animation: false,
-            legendColors: {'Yes': '#3FB586', 'No': '#d6d6d6', 'Maybe': 'red'}
+            legendColors: {'Yes': '#3FB586', 'No': '#d6d6d6', 'Maybe': 'red'},
+            tooltipTemplate: "<%= value+'%' %>"
         }, opts);
 
         var data = [];

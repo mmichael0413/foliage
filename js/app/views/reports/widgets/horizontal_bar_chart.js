@@ -36,7 +36,8 @@ define(function(require) {
                 responsive: true,
                 barValueSpacing: 10,
                 maintainAspectRatio: false,
-                showTooltips: true
+                showTooltips: true,
+                tooltipTemplate: "<%= value+'%' %>"
             }, this.model.config);
 
             var labels = [];

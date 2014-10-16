@@ -1245,7 +1245,7 @@
                 halfHeight = this.height/2,
                 top = this.y - halfHeight,
                 bottom = this.y + halfHeight,
-                right = this.left - (this.left - this.x),
+                right = this.x,
                 halfStroke = this.strokeWidth / 2;
 
             // Canvas doesn't allow us to stroke inside the width so we can
@@ -1274,9 +1274,10 @@
             }
         },
         inRange : function(chartX,chartY){
-            return (chartY >= this.y - this.height/2 && chartY <= this.y + this.height/2) && (chartX >= this.left && chartX <= this.right);
+            return (chartY >= this.y - this.height/2 && chartY <= this.y + this.height/2) && (chartX >= this.left && chartX <= this.x);
         }
     });
+
     Chart.Tooltip = Chart.Element.extend({
         draw : function(){
 
