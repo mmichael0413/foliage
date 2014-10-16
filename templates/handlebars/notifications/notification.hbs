@@ -1,0 +1,34 @@
+{{#rows}}
+<tr>
+    <td class="<%= note.read ? 'read' : 'unread' %>">
+        <p>
+            {{{author_url}}}
+                    <span>
+                        {{verb}}
+                        {{#if_eq 'Comment' note_type}}
+
+                            {{#if_eq parent_type 'message'}}
+                                on
+                                {{#if_eq parent_user.id current_user}}
+                                    your
+                                {{else}}
+                                   {{{parent_user.url}}}
+                                {{/if_eq}}
+
+                                {{parent_type}}
+                            {{/if_eq}}
+                        {{/if_eq}}
+                        on {{created_at}}:
+                      </span>
+        </p>
+        {{{content}}}
+        <div class="table-actions">
+            {{{activity_url}}}
+        </div>
+    </td>
+</tr>
+{{else}}
+<tr>
+    <td>You have no notifications</td>
+</tr>
+{{/rows}}

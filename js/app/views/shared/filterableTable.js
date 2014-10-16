@@ -36,6 +36,9 @@ define(function(require) {
                 data = {
                     rows: this.collection.toJSON()
                 };
+
+            $tbody.html("<tr><td><i class='fa fa-spin fa-spinner'></i></td></tr>");
+
             $tbody.html(HandlebarsTemplates[this.template](data));
             return this;
         },
@@ -44,6 +47,11 @@ define(function(require) {
             // set the Query String on the collection, then force it to reset
             // backbone will automatically trigger the redrawing of the
             // members
+            console.log('apply filter');
+            $tbody = this.$('tbody');
+            $tbody.html("<tr><td><i class='fa fa-spin fa-spinner'></i></td></tr>");
+
+
             this.collection.queryString = qs;
             this.collection.fetch({reset:true});
         },

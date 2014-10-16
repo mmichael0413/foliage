@@ -13,10 +13,12 @@ define(function(require){
         DashboardsAlertsStoresView = require('app/views/dashboards/alerts/show/stores'),
         ReportView = require('app/views/reports/index/report'),
         ReportInfoView = require('app/views/reports/info/show/info_list');
+        NotificationSectionView = require('app/views/notifications/notification_section');
 
     var AppRouter = Backbone.Router.extend({
         routes: {
-            'programs/:program_id/activities' : 'activityFeed',
+            'programs/:program_id/activities' : 'activitiesFeed',
+            'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
             'programs/:program_id/teams': 'teams',
             'programs/:program_id/stores': 'stores',
@@ -25,10 +27,11 @@ define(function(require){
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
             'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
+            'programs/:program_id/notifications' : 'notificationList',
 
             '*path': 'notFound'
         },
-        activityFeed: function(program_id){
+        activitiesFeed: function(program_id){
 
             var queryString = window.location.search;
             var url = '/programs/' + program_id + '/activities/posts' + queryString;
@@ -42,7 +45,17 @@ define(function(require){
             });
             activitiesView.fetch();
         },
+        activityFeed: function(program_id, activity_id) {
+            var queryString = window.location.search;
+            var url = '/programs/' + program_id + '/activities/' + activity_id;
 
+            new GlobalView();
+            var activitiesView = new ActivitiesView({
+                url: url,
+                programId: program_id
+            });
+            activitiesView.fetch();
+        },
 
         teams: function () {
             TeamsMain.init();
@@ -82,6 +95,11 @@ define(function(require){
 
         reportInfo: function(programId, reportId, infoId){
             new ReportInfoView({programId: programId,reportId: reportId, infoId: infoId}).render();
+        },
+
+        notificationList: function(programId) {
+            var unreadView = new NotificationSectionView({el: '.new-notifications', url_action: 'unread', emptyParams: {unread: 'new'}, bootstrap: window.unread}).start();
+            var readView = new NotificationSectionView({el: '.past-notifications', url_action: 'read', bootstrap: window.read}).start();
         },
 
         notFound: function(){

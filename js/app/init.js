@@ -13,12 +13,12 @@ require.config({
         'handlebarsHelpers' : 'app/utils/handlebarsHelpers',
         'eventListener': "app/utils/eventListener",
         'backbone.paginator': "libs/bower_components/backbone.paginator/lib/backbone.paginator",
-        'imagesLoaded' : "libs/bower_components/imagesLoaded/imagesLoaded",
-        'eventEmitter' : "libs/bower_components/eventEmitter/EventListener",
-        'eventie' : "libs/bower_components/eventie/eventie",
+        'imagesloaded' : "libs/bower_components/imagesloaded/imagesloaded.pkgd",
         'backbone.modal' : 'libs/backbone.modal',
         'jquery_ujs' : 'libs/bower_components/jquery-ujs/src/rails',
-        'chartjs' : 'libs/Chart'
+        'chartjs' : 'libs/Chart',
+        'owl_carousel': 'libs/owl.carousel',
+        'slick_carousel': 'libs/bower_components/slick.js/slick/slick'
     },
     shim: {
         "jquery": {
@@ -45,16 +45,15 @@ require.config({
             deps: ["backbone"],
             exports: "EventListener"
         },
-        "imagesLoaded" : {
-            deps: ["eventEmitter", "eventie"],
-            exports: "ImagesLoaded"
-        },
         "backbone.paginator" : {
             deps: ["backbone"]
         },
         "backbone.modal" : {
             deps: ["backbone"],
             exports: "BackboneModal"
+        },
+        "owl_carousel" : {
+            exports: 'OwlCarousel'
         }
     }
 });
