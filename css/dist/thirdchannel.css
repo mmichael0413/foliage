@@ -2450,7 +2450,7 @@ Pagination Styles
 
 .leading-row {
   margin: 0.5em 0;
-  background: image_url("dot.svg") repeat-x bottom;
+  background: url("/images/dot.svg") repeat-x bottom;
   background-size: contain; }
   .leading-row span {
     background-color: #FFFFFF; }
