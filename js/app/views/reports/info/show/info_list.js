@@ -12,7 +12,7 @@ define(function(require) {
         el: ".report-info",
         template: HandlebarsTemplates['reports/info/show/info_list'],
         initialize: function (options) {
-            this.model = new InfoListModel(options);
+            this.model = new InfoListModel($.extend(options, {queryString: window.bootstrap}));
             this.listenTo(EventListener, 'filter:query', this.applyFilter);
             this.loadingView = new LoadingView();
         },

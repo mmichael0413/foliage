@@ -51,6 +51,7 @@ define(function(require) {
 
 
             this.listenTo(dispatcher, 'filter:request', this.handleFilterRequest);
+            this.listenTo(dispatcher, 'filter:request:queryString', this.handleFilterRequestQueryString);
             this.listenTo(dispatcher, 'filter:set', this.setFromExternal);
             // finally, check if we should Trigger the filter. This is done down here to avoid
             // repeated triggerings if we checked this in the while loop.
@@ -127,6 +128,10 @@ define(function(require) {
         handleFilterRequest: function () {
             this.$el.find('input[name="page"]').val(1);
             this.broadCastQueryString();
+        },
+
+        handleFilterRequestQueryString: function () {
+            dispatcher.trigger('filter:queryString', this.$el.serialize());
         },
 
         broadCastQueryString: function () {

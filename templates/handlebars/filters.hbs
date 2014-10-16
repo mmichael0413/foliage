@@ -1,6 +1,6 @@
 {{#each this}}
-    {{#if filterId}}
-    <div class="filter-component" data-filter-param="{{filterId}}[]">
+    {{#if name}}
+    <div class="filter-component" data-filter-param="{{name}}">
         <div class="filter-item">{{label}} <span class="expand-indicator"></span></div>
         <div class="filter-list">
             {{#each items}}

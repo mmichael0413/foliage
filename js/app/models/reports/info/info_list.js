@@ -5,7 +5,7 @@ define(function(require) {
 
     return Backbone.Model.extend({
         initialize: function (options) {
-            this.queryString = "";
+            this.queryString = options.queryString;
             this.programId = options.programId;
             this.reportId = options.reportId;
             this.infoId = options.infoId;

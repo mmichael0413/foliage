@@ -10,17 +10,7 @@ define(function(require) {
         template: HandlebarsTemplates['reports/widgets/horizontal_bar_chart'],
         initialize: function (options) {
             this.model = options;
-        },
-        render: function () {
-            if (_.size(this.model.results.percentages) > 0) {
-                this.setElement(this.template(this.model));
-                this.canvas = this.$el.find("canvas");
-                this.setupHorizontalBarChart();
-                var self = this;
-            }
-            return this;
-        },
-        setupHorizontalBarChart: function () {
+
             this.chartOptions = _.extend({
                 scaleFontSize: 14,
                 animation: false,
@@ -39,19 +29,29 @@ define(function(require) {
                 showTooltips: true,
                 tooltipTemplate: "<%= value+'%' %>"
             }, this.model.config);
-
-            var labels = [];
-            var fillColor = [];
-            var strokeColor = [];
-            var values = [];
-
-            var that = this;
+        },
+        render: function () {
+            if (_.size(this.model.results.percentages) > 0) {
+                this.$el.html(this.template(this.model));
+                this.setupHorizontalBarChart();
+                this.listenTo(EventListener, 'filter:queryString', this.updateViewBreakDownLink);
+                EventListener.trigger('filter:request:queryString');
+            }
+            return this;
+        },
+        setupHorizontalBarChart: function () {
+            var self = this,
+                canvas = this.$el.find("canvas"),
+                labels = [],
+                fillColor = [],
+                strokeColor = [],
+                values = [];
 
             $.each(this.chartOptions.legendOrder.reverse(), function (index, value) {
                 labels.push(value);
-                fillColor.push(that.chartOptions.legendColors[value]);
-                strokeColor.push(that.chartOptions.legendColors[value]);
-                values.push(that.model.results.percentages[value]);
+                fillColor.push(self.chartOptions.legendColors[value]);
+                strokeColor.push(self.chartOptions.legendColors[value]);
+                values.push(self.model.results.percentages[value]);
             });
 
             this.data = {
@@ -67,8 +67,12 @@ define(function(require) {
             };
 
             this.listenTo(EventListener, 'report post render', function () {
-                new Chart(that.canvas[0].getContext("2d")).Bar(that.data, that.chartOptions);
+                new Chart(canvas[0].getContext("2d")).Bar(self.data, self.chartOptions);
             });
+        },
+        updateViewBreakDownLink : function (qs) {
+            var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
+            this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
         }
     });
 });

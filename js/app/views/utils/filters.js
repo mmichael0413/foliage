@@ -2,6 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
+        EventListener = require('app/utils/eventListener'),
         FilterControlView = require('app/views/filter/filterControl');
 
     return Backbone.View.extend({
@@ -13,6 +14,7 @@ define(function(require) {
         render: function () {
             this.$el.append(this.template(this.filters));
             new FilterControlView();
+            EventListener.trigger('filter:request:queryString');
             return this;
         }
     });
