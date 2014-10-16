@@ -5,7 +5,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         tagName: 'span',
-        template: HandlebarsTemplates.reports_widgets_range_chart,
+        template: HandlebarsTemplates['reports/widgets/range_chart'],
         initialize: function (options) {
             this.model = options;
         },

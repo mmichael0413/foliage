@@ -3,21 +3,22 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates'),
         EventListener = require('app/utils/eventListener'),
         FiltersView = require('app/views/utils/filters'),
+        LoadingView = require('app/views/utils/loading'),
         PaginationView = require('app/views/utils/pagination'),
         InfoListModel = require('app/models/reports/info/info_list'),
         ReportInfoListItemView = require('app/views/reports/info/show/list_item');
 
     return Backbone.View.extend({
         el: ".report-info",
-        template: HandlebarsTemplates.reports_info_show_info_list,
-        loadingTemplate: HandlebarsTemplates.loading,
+        template: HandlebarsTemplates['reports/info/show/info_list'],
         initialize: function (options) {
             this.model = new InfoListModel(options);
             this.listenTo(EventListener, 'filter:query', this.applyFilter);
+            this.loadingView = new LoadingView();
         },
         render: function () {
             var that = this;
-            this.$el.append(this.loadingTemplate);
+            this.$el.append(this.loadingView.render().$el);
             this.model.fetch({success: function (model) {
                 that.addFilters(model.get('filters'));
                 that.constructView(model);
@@ -44,12 +45,12 @@ define(function(require) {
             } else {
                 this.$el.find('.list-items').append(HandlebarsTemplates.no_results);
             }
-            this.$el.find('.loading-section').remove();
+            this.loadingView.remove();
         },
         applyFilter: function (qs) {
             var that = this;
             this.$el.empty();
-            this.$el.append(this.loadingTemplate);
+            this.$el.append(this.loadingView.render().$el);
             this.model.queryString = qs;
             this.model.fetch({success: function (model) {
                 that.$el.find('.report-info-list').remove();

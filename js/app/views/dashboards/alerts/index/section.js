@@ -6,7 +6,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         className: 'section',
-        template: HandlebarsTemplates.dashboard_alerts_index_section,
+        template: HandlebarsTemplates['dashboards/alerts/index/section'],
         initialize: function (options) {
             this.options = options;
             this.model = options.model;

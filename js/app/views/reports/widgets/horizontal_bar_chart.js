@@ -7,7 +7,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         tagName: 'span',
-        template: HandlebarsTemplates.reports_widgets_horizontal_bar_chart,
+        template: HandlebarsTemplates['reports/widgets/horizontal_bar_chart'],
         initialize: function (options) {
             this.model = options;
         },

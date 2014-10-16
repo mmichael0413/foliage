@@ -5,7 +5,7 @@ define(function(require) {
         ReportWidgetView = require('app/views/reports/index/widget');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates.reports_subsection,
+        template: HandlebarsTemplates['reports/index/subsection'],
         initialize: function (options) {
             this.model = options;
         },

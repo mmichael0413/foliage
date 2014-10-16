@@ -5,7 +5,7 @@ define(function(require) {
         EventListener = require('app/utils/eventListener');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates.dashboard_alerts_index_alert,
+        template: HandlebarsTemplates['dashboards/alerts/index/alert'],
         initialize: function (options) {
             this.options = options;
             this.model = options.model;

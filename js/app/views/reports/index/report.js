@@ -6,19 +6,20 @@ define(function(require) {
         ReportModel = require('app/models/reports/report'),
         ReportFilterModel = require('app/models/reports/filters'),
         FiltersView = require('app/views/utils/filters'),
+        LoadingView = require('app/views/utils/loading'),
         ReportSectionView = require('app/views/reports/index/section');
 
     return Backbone.View.extend({
         el: ".report",
-        loadingTemplate: HandlebarsTemplates.loading,
         initialize: function (options) {
             this.model = new ReportModel(options);
             this.filters = new ReportFilterModel(options);
             this.listenTo(EventListener, 'filter:query', this.applyFilter);
+            this.loadingView = new LoadingView();
         },
         render: function (options) {
             var that = this;
-            this.$el.append(this.loadingTemplate);
+            this.$el.append(this.loadingView.render().$el);
             if (window.reportData !== undefined) {
                 $.each(window.reportData.sections, function (key, value) {
                     that.addSection(that.$el, value);
@@ -47,12 +48,13 @@ define(function(require) {
                 that.addSection(that.$el, value);
             });
             EventListener.trigger('report post render');
-            that.$el.find('.loading-section').remove();
+            this.loadingView.remove();
+            //that.$el.find('.loading-section').remove();
         },
         applyFilter: function (qs) {
             var that = this;
             this.$el.empty();
-            this.$el.append(this.loadingTemplate);
+            this.$el.append(this.loadingView.render().$el);
             this.model.queryString = qs;
             this.model.fetch({success: function (model) {
                 that.constructView(model);

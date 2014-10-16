@@ -4,7 +4,7 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates.reports_widgets_metric_icon,
+        template: HandlebarsTemplates['reports/widgets/metric_icon'],
         initialize: function (options) {
             this.model = options;
         },

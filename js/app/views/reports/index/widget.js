@@ -18,7 +18,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         tagName: "span",
-        defaultTemplate: HandlebarsTemplates.reports_widgets_default,
+        defaultTemplate: HandlebarsTemplates['reports/widgets/default'],
         initialize: function (options) {
             this.model = options;
         },
