@@ -94,8 +94,7 @@ module.exports = function(grunt) {
                     amd: true,
                     namespace: "ThirdChannel.templates",
                     processName: function(filename) {
-                        var names = filename.split("/");
-                        return names[names.length - 1].substring(0, names[names.length - 1].length - 4);
+                        return filename.replace('templates/handlebars/', '').replace('.hbs', '');
                     }
                 },
                 files: {

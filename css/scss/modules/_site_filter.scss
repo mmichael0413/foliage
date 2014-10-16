@@ -1,8 +1,28 @@
 #site-filter {
-    color: $palette1;
-    background: $nav-background;
+    color: $text-color;
+    background: #ffffff;
+    @include box-shadow-inset(6px, 0px, 10px, -8px, $slate);
+    
     .global {
         display:none;
+    }
+
+    .action {
+
+    }
+
+    .flexible {
+        display: flex;
+        .btn {
+            align-self: center;
+        }
+    }
+
+    .btn.default {
+        border-color: $border-color; 
+        &:hover {
+            border-color: $medium-blue;
+        }           
     }
 
 
@@ -14,14 +34,21 @@
         cursor: pointer;
         background-color: inherit;
         border: 0;
-
+        border-bottom: 1px solid $border-color;
+        
         .icon, .expand-indicator {
             position: absolute;
             right: 1em;
         }
 
         &:hover {
-            background-color: $nav-background-hover;
+            background-color: darken($main-background, 10%);
+        }
+
+        .btn.default {
+            font-size: 0.7em;
+            padding: 0em 0.6em;
+            margin-right: 0.5em;
         }
 
         .active-filter {
@@ -32,37 +59,38 @@
             }
         }
 
-        .btn.default {
-            border-color: $palette5;
-            
+        &.action {
+            background-color: $main-background;
+            color: lighten($text-color, 10%);
+            @include box-shadow-inset(6px, 0px, 10px, -8px, $slate);
             &:hover {
-                border-color: lighten($palette5, 15%);
+                background-color: darken($main-background, 10%);
             }
         }
-
     }
 
 
     .filter-list {
         max-height:0px;
-        background-color: #ffffff;
-        color: $nav-background;
-
+        background-color: $main-background;
+        color: $text-color;
         overflow-y: scroll;
+        @include box-shadow-inset(6px, 0px, 10px, -8px, $slate);
         @include transition(max-height, 0.8s);
+        
         .filter-list-item {
             padding: 1em;
             padding-left: 2em;
             cursor: pointer;
             .btn.default {
-                width: 2em;
-                height: 2em;
-                border-color: $palette2;
+                width: 1em;
+                height: 1em;
+                background-color: #ffffff;
                 margin-right: 0.5em;
             }
             &:hover {
                 .btn.default {
-                    border-color: darken($palette2, 15%);
+                    border-color: $medium-blue;
                 }
             }
         }

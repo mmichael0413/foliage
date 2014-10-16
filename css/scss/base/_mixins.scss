@@ -33,6 +33,13 @@
           border-radius: $radius;
 }
 
+@mixin box-shadow-inset($h-shadow, $v-shadow, $blur, $spread, $color) {
+  -webkit-box-shadow: inset $h-shadow $v-shadow $blur $spread $color;
+     -moz-box-shadow: inset $h-shadow $v-shadow $blur $spread $color;
+      -ms-box-shadow: inset $h-shadow $v-shadow $blur $spread $color;
+          box-shadow: inset $h-shadow $v-shadow $blur $spread $color;
+}
+
 // media query mixins
 @mixin bp-xlarge {
   @media only screen and (max-width: 50em) {

@@ -3,9 +3,7 @@ define(function(require) {
         Members = require('app/collections/teams/members');
     
     return FilterableTableView.extend({
-
         collectionClass: Members,
-        rowTemplate: 'teams_table_row',
-
+        rowTemplate: 'stores/table_row',
     });
 });

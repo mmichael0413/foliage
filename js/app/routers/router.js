@@ -8,6 +8,7 @@ define(function(require){
         GlobalView = require('app/views/activities/global'),
         ActivitiesView = require('app/views/activities/activities'),
         TeamsMain = require('app/views/teams/main'),
+        StoresMain = require('app/views/stores/main'),
         DashboardsAlertsSectionsView = require('app/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('app/views/dashboards/alerts/show/stores'),
         ReportView = require('app/views/reports/index/report'),
@@ -18,6 +19,7 @@ define(function(require){
             'programs/:program_id/activities' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
             'programs/:program_id/teams': 'teams',
+            'programs/:program_id/stores': 'stores',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
             'programs/:program_id/reports': 'reports',
@@ -44,6 +46,10 @@ define(function(require){
 
         teams: function () {
             TeamsMain.init();
+        },
+
+        stores: function () {
+            StoresMain.init();
         },
 
         programProfile: function(program_id, user_id) {

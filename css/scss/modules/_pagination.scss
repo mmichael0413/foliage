@@ -79,22 +79,25 @@
     margin-bottom: .5em;
     margin-left: 1em;
     .page {
-      font-size: .8em;
+      font-size: .9em;
       display: inline-block;
       min-width: 2.6em;
-      padding: .6em;
+      padding: .25em;
       border: .1em solid $border-color;
       text-align: center;
-      background-color: $nav-background;
+      background-color: $light-blue;
       a {
-        color: $border-color;
+        color: $medium-blue;
       }
       &:hover {
-        background-color: darken($nav-background, 5%);
+        a {
+          color: $light-blue;
+        }
+        background-color: $medium-blue;
       }
       &.current {
-        color: white;
-        background-color: darken($nav-background, 10%);
+        color: $light-blue;
+        background-color: $medium-blue;
       }
       &.gap{
         background-color: inherit;

@@ -10,6 +10,8 @@ define(function(require) {
         },
 
         initialize: function (data) {
+            // allow setting of url via the data object... or could simply set it on a subclass
+            this.url = data.url;
             this.listenTo(dispatcher, 'filter:query', this.render);
         },
 
@@ -17,7 +19,7 @@ define(function(require) {
             var self = this;
             self.$el.html("<i class='fa fa-spin fa-spinner'></i>");
             $.ajax({
-                url: "teams/pagination?" + qs
+                url: self.url + "?" + qs
             })
             .done(function (html) {
                 self.$el.html(html);
