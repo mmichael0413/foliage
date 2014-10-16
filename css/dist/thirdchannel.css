@@ -1421,10 +1421,10 @@ input[type=text], input[type=password], input[type=number], textarea {
 #site-filter {
   color: #434748;
   background: #ffffff;
-  -webkit-box-shadow: inset 6px 0px 10px -8px #575d5f;
-  -moz-box-shadow: inset 6px 0px 10px -8px #575d5f;
-  -ms-box-shadow: inset 6px 0px 10px -8px #575d5f;
-  box-shadow: inset 6px 0px 10px -8px #575d5f; }
+  -webkit-box-shadow: inset 8px 0px 10px -6px #e3e8ec;
+  -moz-box-shadow: inset 8px 0px 10px -6px #e3e8ec;
+  -ms-box-shadow: inset 8px 0px 10px -6px #e3e8ec;
+  box-shadow: inset 8px 0px 10px -6px #e3e8ec; }
   #site-filter .global {
     display: none; }
   #site-filter .flexible {
@@ -1460,10 +1460,10 @@ input[type=text], input[type=password], input[type=number], textarea {
     #site-filter .filter-item.action {
       background-color: #f6f6f5;
       color: #5c6162;
-      -webkit-box-shadow: inset 6px 0px 10px -8px #575d5f;
-      -moz-box-shadow: inset 6px 0px 10px -8px #575d5f;
-      -ms-box-shadow: inset 6px 0px 10px -8px #575d5f;
-      box-shadow: inset 6px 0px 10px -8px #575d5f; }
+      -webkit-box-shadow: inset 8px 0px 10px -6px #e3e8ec;
+      -moz-box-shadow: inset 8px 0px 10px -6px #e3e8ec;
+      -ms-box-shadow: inset 8px 0px 10px -6px #e3e8ec;
+      box-shadow: inset 8px 0px 10px -6px #e3e8ec; }
       #site-filter .filter-item.action:hover {
         background-color: #dededa; }
   #site-filter .filter-list {
@@ -1471,10 +1471,10 @@ input[type=text], input[type=password], input[type=number], textarea {
     background-color: #f6f6f5;
     color: #434748;
     overflow-y: scroll;
-    -webkit-box-shadow: inset 6px 0px 10px -8px #575d5f;
-    -moz-box-shadow: inset 6px 0px 10px -8px #575d5f;
-    -ms-box-shadow: inset 6px 0px 10px -8px #575d5f;
-    box-shadow: inset 6px 0px 10px -8px #575d5f;
+    -webkit-box-shadow: inset 8px 0px 10px -6px #e3e8ec;
+    -moz-box-shadow: inset 8px 0px 10px -6px #e3e8ec;
+    -ms-box-shadow: inset 8px 0px 10px -6px #e3e8ec;
+    box-shadow: inset 8px 0px 10px -6px #e3e8ec;
     -webkit-transition: max-height, 0.8s;
     -moz-transition: max-height, 0.8s;
     -ms-transition: max-height, 0.8s;

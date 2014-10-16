@@ -1,7 +1,7 @@
 #site-filter {
     color: $text-color;
     background: #ffffff;
-    @include box-shadow-inset(6px, 0px, 10px, -8px, $slate);
+    @include box-shadow-inset(8px, 0px, 10px, -6px, $border-color);
     
     .global {
         display:none;
@@ -62,7 +62,7 @@
         &.action {
             background-color: $main-background;
             color: lighten($text-color, 10%);
-            @include box-shadow-inset(6px, 0px, 10px, -8px, $slate);
+            @include box-shadow-inset(8px, 0px, 10px, -6px, $border-color);
             &:hover {
                 background-color: darken($main-background, 10%);
             }
@@ -75,7 +75,7 @@
         background-color: $main-background;
         color: $text-color;
         overflow-y: scroll;
-        @include box-shadow-inset(6px, 0px, 10px, -8px, $slate);
+        @include box-shadow-inset(8px, 0px, 10px, -6px, $border-color);
         @include transition(max-height, 0.8s);
         
         .filter-list-item {
