@@ -106,5 +106,8 @@ define(function(require) {
             this.$el.find(this._buildFilterItemLink(data.value)).show();
         }
     };
+
+
+
     return Backbone.View.extend(component);
 });

@@ -1,6 +1,8 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        $ = require('jquery'),
         dispatcher = require('app/utils/eventListener'),
+        spinnerTemplate = require('handlebarsTemplates')['filters/spinner_component'],
         SingleAnswerComponentView = require('app/views/filter/singleAnswerComponent'),
         DateComponentView = require('app/views/filter/dateComponent'),
         ComponentView = require('app/views/filter/component');
@@ -39,35 +41,35 @@ define(function(require) {
         
         initialize: function (data) {
 
-            //this.components = {};
-            //
-            this.collection = data.collection;
             this.components = {};
 
             // look for any filter components within the filter, then wrap a view around them
             //var components = this.$el.find('.filter-component'),
             //
-            var self = this,
-                qsHash = this.parseQueryString(),
-                //max = components.length,
-                shouldTrigger = false,
-                view;
+            var qsHash = this.parseQueryString(),
+                shouldTrigger = false;
+            
+            shouldTrigger = this.renderFilterCollection(data.collection, qsHash);
 
-            //while(max--) {
-            this.collection.each(function (filterModel) {
-                view = self.selectComponentView(filterModel).render();
-                // //view.setElement(components[max]);
-                // //view.render();
-                // //this.selectComponentView(components[max]);
-                self.$el.append(view.$el);
-
-                self.components[view.filterParam] = view;
-                // apply the query string to any components in the filter.
-                // capture the response to know if we should toggle open the filter later
-                if (self._applyQS(view, qsHash) === true) {
-                    shouldTrigger = true;
-                }
-            });
+            if (data.url) {
+                
+                var self = this,
+                    $spinner = $(spinnerTemplate()),
+                    asyncFilters = new (Backbone.Collection.extend({
+                        url: data.url
+                    }))();
+                self.$el.append($spinner);
+                
+                asyncFilters.fetch()
+                .then(function () {
+                    $spinner.remove();
+                })
+                .done(function () {
+                    //console.log(arguments);
+                    self.renderFilterCollection(asyncFilters, qsHash);
+                });
+            }
+            
 
             this._applyQSGlobal(qsHash);
 
@@ -89,6 +91,23 @@ define(function(require) {
                 this.components[key].clear();
             }
             this.broadCastQueryString();
+        },
+
+        renderFilterCollection: function(filterCollection, qsHash) {
+            var self = this,
+                shouldTrigger = false,
+                view;
+            filterCollection.each(function (filterModel) {
+                view = self.selectComponentView(filterModel).render();
+                self.$el.append(view.$el);
+                self.components[view.filterParam] = view;
+                // apply the query string to any components in the filter.
+                // capture the response to know if we should toggle open the filter later
+                if (self._applyQS(view, qsHash) === true) {
+                    shouldTrigger = true;
+                }
+            });
+            return shouldTrigger;
         },
 
         /**

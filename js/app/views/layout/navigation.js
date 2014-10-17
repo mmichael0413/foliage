@@ -11,7 +11,6 @@ define(function(require) {
         el: '#site-wrapper',
         initialize: function() {
             this.listenTo(dispatcher, 'filter:toggle', this.toggleFilter);
-            console.log("listening!");
             this.$siteWrapper = this.$el;
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');

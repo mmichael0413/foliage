@@ -17,18 +17,19 @@ define(function(require) {
 		 * @param  {FilterCollection} collection A Backbone collection containing a url to retrieve filters
 		 * 
 		 */
-		init: function (collection) {
+		init: function (collection, url) {
 
 			// possible states:
 			// collection ->
 			// window.filterBootstrap -> can contain a list of filters, plus a url for additional filters to load async
 			// 
-			// 
-			//
+			
+			
 			if (!collection && window.filterBootstrap) {
-				collection = new Backbone.Collection(window.filterBootstrap);
+				collection = new Backbone.Collection(window.filterBootstrap.filters);
+				url = window.filterBootstrap.filters_url;
 			}
-			new FilterControl({collection: collection});
+			new FilterControl({collection: collection, url:url});
 
 		}
 	};

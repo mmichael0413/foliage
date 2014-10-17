@@ -1427,6 +1427,8 @@ input[type=text], input[type=password], input[type=number], textarea {
   box-shadow: inset 8px 0px 10px -6px #e3e8ec; }
   #site-filter .global {
     display: none; }
+  #site-filter .spinner {
+    text-align: center; }
   #site-filter .flexible {
     display: flex; }
     #site-filter .flexible .btn {
