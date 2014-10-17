@@ -4,8 +4,9 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates'),
         EventListener = require('app/utils/eventListener'),
         ReportModel = require('app/models/reports/report'),
-        ReportFilterModel = require('app/models/reports/filters'),
-        FiltersView = require('app/views/utils/filters'),
+        ReportFilterCollection = require('app/collections/reports/filters'),
+        //FiltersView = require('app/views/utils/filters'),
+        Filter = require('app/views/filter/main'),
         LoadingView = require('app/views/utils/loading'),
         ReportSectionView = require('app/views/reports/index/section');
 
@@ -13,7 +14,7 @@ define(function(require) {
         el: ".report",
         initialize: function (options) {
             this.model = new ReportModel(options);
-            this.filters = new ReportFilterModel(options);
+            this.filters = new ReportFilterCollection(options);
             this.listenTo(EventListener, 'filter:query', this.applyFilter);
             this.loadingView = new LoadingView();
         },
@@ -27,8 +28,8 @@ define(function(require) {
                 that.$el.find('.loading-section').remove();
                 EventListener.trigger('report post render');
             } else {
-                this.filters.fetch({success: function (model) {
-                    that.addFilters(model.toJSON());
+                this.filters.fetch({success: function (collection) {
+                    that.addFilters(collection);
                 }});
                 this.model.fetch({success: function (model) {
                     that.constructView(model);
@@ -40,7 +41,7 @@ define(function(require) {
             $elem.append(new ReportSectionView(value).render().$el);
         },
         addFilters: function (value) {
-            new FiltersView({filters: value}).render();
+            Filter.init(value);
         },
         constructView: function(model) {
             var that = this;

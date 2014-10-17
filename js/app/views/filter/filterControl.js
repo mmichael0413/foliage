@@ -48,6 +48,11 @@ define(function(require) {
             //
             var qsHash = this.parseQueryString(),
                 shouldTrigger = false;
+
+            if (!data || !data.collection) {
+                console.log("We need at least a data.collection to get started with the filter");
+                return false;
+            }
             
             shouldTrigger = this.renderFilterCollection(data.collection, qsHash);
 

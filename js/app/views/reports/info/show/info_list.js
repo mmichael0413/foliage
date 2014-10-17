@@ -2,7 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         EventListener = require('app/utils/eventListener'),
-        FiltersView = require('app/views/utils/filters'),
+        Filter = require('app/views/filter/main'),
         LoadingView = require('app/views/utils/loading'),
         PaginationView = require('app/views/utils/pagination'),
         InfoListModel = require('app/models/reports/info/info_list'),
@@ -26,7 +26,9 @@ define(function(require) {
             return this;
         },
         addFilters: function (value) {
-            new FiltersView({filters: value}).render();
+            console.log("received filters of ");
+            console.log(value);
+            Filter.init(value);
         },
         addPages: function (value) {
             this.$el.find('.pages').append(new PaginationView(value).render().$el);

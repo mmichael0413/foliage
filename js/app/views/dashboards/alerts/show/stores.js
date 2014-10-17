@@ -2,12 +2,13 @@ define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         EventListener = require('app/utils/eventListener'),
-        FiltersView = require('app/views/utils/filters'),
+        //FiltersView = require('app/views/utils/filters'),
+        Filter = require('app/views/filter/main'),
         LoadingView = require('app/views/utils/loading'),
         PaginationView = require('app/views/utils/pagination'),
         DashboardsAlertsStoreModel = require('app/models/dashboards/alerts/store'),
         DashboardsAlertsStoresModel = require('app/models/dashboards/alerts/stores'),
-        DashboardsAlertsFiltersModel = require('app/models/dashboards/alerts/filters'),
+        DashboardsAlertsFiltersCollection = require('app/collections/dashboards/alerts/filters'),
         DashboardsAlertsStoreView = require('app/views/dashboards/alerts/show/store');
 
     return Backbone.View.extend({
@@ -16,7 +17,7 @@ define(function(require) {
         initialize: function (options) {
             this.options = options;
             this.model = new DashboardsAlertsStoresModel({id: options.id});
-            this.filters = new DashboardsAlertsFiltersModel({id: options.id});
+            this.filters = new DashboardsAlertsFiltersCollection({id: options.id});
             this.loadingView = new LoadingView();
             this.listenTo(EventListener, 'filter:query', this.applyFilter);
         },
@@ -24,8 +25,8 @@ define(function(require) {
             var self = this;
             this.$el.html(this.loadingView.render().$el);
 
-            this.filters.fetch({success: function (model) {
-                self.addFilters(model.toJSON());
+            this.filters.fetch({success: function (collection) {
+                self.addFilters(collection);
             }});
 
             this.model.fetch({data: { page: this.options.page}, processData: true, success: function (model) {
@@ -46,7 +47,8 @@ define(function(require) {
             this.$el.prepend(new PaginationView(this.model.get('pagination')).render().$el);
         },
         addFilters: function (value) {
-            new FiltersView({filters: value}).render();
+            //new FiltersView({filters: value}).render();
+            Filter.init(value);
         },
         applyFilter: function (qs) {
             var that = this;
