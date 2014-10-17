@@ -1,6 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
         dispatcher = require('app/utils/eventListener'),
+        handlebarsTemplates = require('handlebarsTemplates'),
         ActiveFilterItemView = require('app/views/filter/activeFilterItem');
     /**
      * A Standard component filter view
@@ -9,6 +10,9 @@ define(function(require) {
      * 
      */
     var component = {
+
+        templateName: 'filters/list_component',
+
         openClassName: 'open',
         /**
          * The Events that component responds to.
@@ -23,11 +27,15 @@ define(function(require) {
             'blur input[type="date"]': 'handleDateBlur'
         },
 
+        
+
         render: function () {
             // set up listeners for things to do with the filter param type (e.g. state)
             // for the component
             this.activeFilters = [];
-            this.filterParam = this.$el.data('filter-param');
+            this.filterParam = this.model.get('name');
+            
+            this.$el.html( handlebarsTemplates[this.templateName]( this.model.toJSON() ) );
             this.listenTo(dispatcher, this.filterParam +':filter:clear', this.restoreFilter);
             return this;
         },
@@ -98,5 +106,8 @@ define(function(require) {
             this.$el.find(this._buildFilterItemLink(data.value)).show();
         }
     };
+
+
+
     return Backbone.View.extend(component);
 });

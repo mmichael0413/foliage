@@ -1,14 +1,31 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        $ = require('jquery'),
         dispatcher = require('app/utils/eventListener'),
+        spinnerTemplate = require('handlebarsTemplates')['filters/spinner_component'],
         SingleAnswerComponentView = require('app/views/filter/singleAnswerComponent'),
         DateComponentView = require('app/views/filter/dateComponent'),
         ComponentView = require('app/views/filter/component');
 
     /**
+     * The 3C Filter is simply an interactable wrapper built around a form. This form can be 
+     * serialized into a query string, which can then be used by the current Content View
+     * to issue a query to the server.
      *
-     * The ultimate goal of the Filter is turn all of the selected items into inputs which
-     * are fed via query string to the server
+     * It also supports 'deep linking', meaning that if parameters are in the current url, they will be
+     * understood
+     * 
+     * The filter will emit the event 'filter:query' and pass along the query string to be used
+     * by the current View.
+     *
+     * The individual filter components are rendered via Handlebars, and it is up to the server
+     * to pass along the correct options and configuration.
+     *
+     * The filter will look in window for a 'filterBootstrap' object, which should contain a collection
+     * of filter objects, or a url to fetch filters from
+     * 
+     *
+     * 
      *
      * @exports app/views/filter/filterControl
      */
@@ -22,30 +39,42 @@ define(function(require) {
         },
 
         
-        initialize: function () {
+        initialize: function (data) {
 
             this.components = {};
 
             // look for any filter components within the filter, then wrap a view around them
-            var components = this.$el.find('.filter-component'),
-                qsHash = this.parseQueryString(),
-                max = components.length,
-                shouldTrigger = false,
-                view;
+            //var components = this.$el.find('.filter-component'),
+            //
+            var qsHash = this.parseQueryString(),
+                shouldTrigger = false;
 
-            while(max--) {
-                view = new (this.selectComponentView(components[max]))();
-                view.setElement(components[max]);
-                view.render();
-                //this.selectComponentView(components[max]);
-
-                this.components[view.filterParam] = view;
-                // apply the query string to any components in the filter.
-                // capture the response to know if we should toggle open the filter later
-                if (this._applyQS(view, qsHash) === true) {
-                    shouldTrigger = true;
-                }
+            if (!data || !data.collection) {
+                console.log("We need at least a data.collection to get started with the filter");
+                return false;
             }
+            
+            shouldTrigger = this.renderFilterCollection(data.collection, qsHash);
+
+            if (data.url) {
+                
+                var self = this,
+                    $spinner = $(spinnerTemplate()),
+                    asyncFilters = new (Backbone.Collection.extend({
+                        url: data.url
+                    }))();
+                self.$el.append($spinner);
+                
+                asyncFilters.fetch()
+                .then(function () {
+                    $spinner.remove();
+                })
+                .done(function () {
+                    //console.log(arguments);
+                    self.renderFilterCollection(asyncFilters, qsHash);
+                });
+            }
+            
 
             this._applyQSGlobal(qsHash);
 
@@ -69,22 +98,39 @@ define(function(require) {
             this.broadCastQueryString();
         },
 
+        renderFilterCollection: function(filterCollection, qsHash) {
+            var self = this,
+                shouldTrigger = false,
+                view;
+            filterCollection.each(function (filterModel) {
+                view = self.selectComponentView(filterModel).render();
+                self.$el.append(view.$el);
+                self.components[view.filterParam] = view;
+                // apply the query string to any components in the filter.
+                // capture the response to know if we should toggle open the filter later
+                if (self._applyQS(view, qsHash) === true) {
+                    shouldTrigger = true;
+                }
+            });
+            return shouldTrigger;
+        },
+
         /**
          * Determines which ComponentView to use base on the existing markup. 
          * 
-         * @param  {DOM} $component A  DOM object that the Component View will contain
+         * @param  {Backbone.Model} filterModel A Backbone Model containing the filter information
          * @return {Backbone.View} view
          * 
          */
-        selectComponentView: function (component) {
+        selectComponentView: function (filterModel) {
             var view = ComponentView;
-            if (component.getAttribute('data-type') === 'date') {
+            if (filterModel.get('type') === 'date') {
                 view = DateComponentView;
             }
-            else if (component.getAttribute('data-filter-param').indexOf('[]') === -1) {
+            else if (filterModel.get('name').indexOf('[]') === -1) {
                 view = SingleAnswerComponentView;
             }
-            return view;
+            return new view({model: filterModel});
         },
         
         /**

@@ -69,7 +69,7 @@ define(function(require) {
                 this.$siteWrapper.removeClass('expanded-nav');
                 window.localStorage.setItem('main_navigation', 'collapsed-nav');
             }
-             EventListener.trigger('navigation:collapsed');
+             dispatcher.trigger('navigation:collapsed');
         }
     });
 });

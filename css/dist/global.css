@@ -732,6 +732,8 @@ ul.list {
   box-shadow: inset 8px 0px 10px -6px #e3e8ec; }
   #site-filter .global {
     display: none; }
+  #site-filter .spinner {
+    text-align: center; }
   #site-filter .flexible {
     display: flex; }
     #site-filter .flexible .btn {
@@ -800,6 +802,11 @@ ul.list {
       max-height: 20em; }
   #site-filter a.filter-item, #site-filter a.filter-item:hover {
     color: inherit; }
+
+.address-title .title {
+  margin-bottom: 0.5em; }
+.address-title .address {
+  margin: 0 0 0 0; }
 
 /*
   TODO: break this up into form base and form layout
