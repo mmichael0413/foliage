@@ -114,7 +114,7 @@
   transform: translateX($standard-nav-width);
 }
 
-@include bp-small {
+@include swb-small {
   #site-menu {
     left: -$standard-nav-width;
     overflow: auto;

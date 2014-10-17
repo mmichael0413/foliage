@@ -1,4 +1,5 @@
 .expand-indicator {
+    cursor: pointer;
 	@extend .ic_down;
 	&.open {
 		@extend .ic_up;

@@ -14,7 +14,7 @@ html {
   line-height: 1.5em;
   background-color: $main-background;
   color: $text-color;
-  @include bp-small {
+  @include swb-small {
   	font-size: .8rem;
   }
 }
@@ -47,7 +47,7 @@ table {
 */
 
 
-@include bp-small {
+@include swb-small {
   .content{
     padding-top: 3.5em;
     padding-left:.5em;

@@ -152,7 +152,7 @@ $img-height: 3em;
 }
 
 
-@include bp-large {
+@include swb-large {
     .activity-content {
         width: 65%;
     }
@@ -161,7 +161,7 @@ $img-height: 3em;
     }
 }
 
-@include bp-medium {
+@include swb-medium {
     .activity-content, .activity-photos {
         width: 100%;
         margin-bottom: 1em;
@@ -170,7 +170,7 @@ $img-height: 3em;
 
 
 
-@include bp-small {
+@include swb-small {
     .activity-content, .activity-photos {
         width: 100%;
         margin-bottom: 1em;
