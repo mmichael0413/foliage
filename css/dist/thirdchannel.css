@@ -2409,7 +2409,7 @@ Pagination Styles
     vertical-align: middle; }
 
 .checkin-report .section h3 {
-  padding: 0em 1em 1em 1em;
+  padding: 0 1em;
   margin: 0;
   text-transform: uppercase;
   text-align: top; }
@@ -2433,12 +2433,14 @@ Pagination Styles
   display: inline-block;
   vertical-align: middle;
   padding-right: 1em; }
-.checkin-report .body > div {
-  border-top: 1px solid #e3e8ec;
-  padding: 1em; }
-.checkin-report .body img {
-  width: 3em;
-  height: 3em; }
+.checkin-report .body {
+  margin-top: 1em; }
+  .checkin-report .body > div {
+    border-top: 1px solid #e3e8ec;
+    padding: 1em; }
+  .checkin-report .body img {
+    width: 3em;
+    height: 3em; }
 
 /*
 	Colors from Liz's UI-Color-Guide as of 10/15/2014

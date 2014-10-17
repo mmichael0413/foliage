@@ -18,20 +18,19 @@ define(function(require) {
             this.loadingView = new LoadingView();
         },
         render: function (options) {
-            var that = this;
-            this.$el.append(this.loadingView.render().$el);
+            var self = this;
             if (window.reportData !== undefined) {
                 $.each(window.reportData.sections, function (key, value) {
-                    that.addSection(that.$el, value);
+                    self.addSection(self.$el, value);
                 });
-                that.$el.find('.loading-section').remove();
-                EventListener.trigger('report post render');
+                self.triggerPostRender();
             } else {
+                this.$el.append(this.loadingView.render().$el);
                 this.filters.fetch({success: function (model) {
-                    that.addFilters(model.toJSON());
+                    self.addFilters(model.toJSON());
                 }});
                 this.model.fetch({success: function (model) {
-                    that.constructView(model);
+                    self.constructView(model);
                 }});
             }
             return this;
@@ -43,13 +42,12 @@ define(function(require) {
             new FiltersView({filters: value}).render();
         },
         constructView: function(model) {
-            var that = this;
+            var self = this;
             $.each(model.get('sections'), function (key, value) {
-                that.addSection(that.$el, value);
+                self.addSection(self.$el, value);
             });
-            EventListener.trigger('report post render');
+            self.triggerPostRender();
             this.loadingView.remove();
-            //that.$el.find('.loading-section').remove();
         },
         applyFilter: function (qs) {
             var that = this;
@@ -59,6 +57,9 @@ define(function(require) {
             this.model.fetch({success: function (model) {
                 that.constructView(model);
             }});
+        },
+        triggerPostRender: function() {
+            EventListener.trigger('report post render');
         }
     });
 });

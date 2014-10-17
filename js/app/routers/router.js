@@ -12,7 +12,8 @@ define(function(require){
         DashboardsAlertsSectionsView = require('app/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('app/views/dashboards/alerts/show/stores'),
         ReportView = require('app/views/reports/index/report'),
-        ReportInfoView = require('app/views/reports/info/show/info_list');
+        CheckinReportView = require('app/views/reports/checkins/show/report'),
+        ReportInfoView = require('app/views/reports/info/show/info_list'),
         NotificationSectionView = require('app/views/notifications/notification_section');
 
     var AppRouter = Backbone.Router.extend({
@@ -26,6 +27,7 @@ define(function(require){
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
+            'programs/:program_id/reports/checkin/:id': 'checkinReport',
             'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
             'programs/:program_id/notifications' : 'notificationList',
 
@@ -91,6 +93,10 @@ define(function(require){
 
         reports: function(programId){
             new ReportView({programId: programId}).render();
+        },
+
+        checkinReport: function(programId, id){
+            new CheckinReportView().render();
         },
 
         reportInfo: function(programId, reportId, infoId){
