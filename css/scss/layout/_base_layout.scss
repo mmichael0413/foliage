@@ -17,7 +17,7 @@
             padding-right: 1em;
             overflow: auto;
             height: 100%;
-            @include bp-small {
+            @include swb-small {
                 margin-top: 3em;
                 padding: 5px;
                 .header {
@@ -151,7 +151,7 @@
 }
 
 /* Media Queries */
-@include bp-small {
+@include swb-small {
     #site-menu {
         left: -$standard-nav-width;
         overflow: auto;

@@ -4,13 +4,13 @@
         color: $dark-link-color;
         font-weight: bold;
         background-color: lighten($link-color, 25%);
-        @include bp-small {
+        @include swb-small {
             text-align: center;
         }
 
         p {
             margin-bottom: 1em;
-            @include bp-small {
+            @include swb-small {
                 text-align: left;
             }
         }

@@ -1,6 +1,4 @@
-// Colors
-$gray: #edeceb;
-$red: #f15f51;
+@import "../../base/colors";
 
 // General Styles
 
@@ -15,7 +13,7 @@ $red: #f15f51;
 
   .section > h2 {
       text-transform: uppercase;
-      border-bottom: 1px solid $gray;
+      border-bottom: 1px solid $light-blue;
       padding: 0.25em 0.85em 0.5em 0.85em;
       margin-bottom: 0.5em;
   }
@@ -34,7 +32,7 @@ $red: #f15f51;
   }
 
   .border-top {
-    border-top: 1px solid $gray;
+    border-top: 1px solid $light-blue;
   }
 }
 
@@ -52,7 +50,7 @@ $red: #f15f51;
   & > div {
     text-align: center;
     padding: 1em;
-    border: 1px solid $gray;
+    border: 1px solid $light-blue;
     border-radius: 0.25em;
   }
 }
@@ -195,7 +193,7 @@ $red: #f15f51;
       padding: 0.5em 1em;
 
       &:not(:first-child) {
-        border-top: 1px solid $gray;
+        border-top: 1px solid $light-blue;
       }
 
     }

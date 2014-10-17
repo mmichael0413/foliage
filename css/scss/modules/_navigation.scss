@@ -32,7 +32,7 @@
             position: absolute;
             right: 1em;
         }
-        @include bp-small {
+        @include swb-small {
             &.minor-s {
                 display: none;
             }
@@ -159,7 +159,7 @@
     display: none;
 }
 
-@include bp-small {
+@include swb-small {
     #mobile-header {
         border-bottom: 1px solid $border-color;
         display: block;

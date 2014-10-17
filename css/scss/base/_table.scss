@@ -22,13 +22,13 @@ table {
       }
     }
 
-    @include bp-medium {
+    @include swb-medium {
         .minor-m {
             display:none;
         }
     }
 
-    @include bp-small {
+    @include swb-small {
         /* tag a td with .minor to remove it from view on smaller sizes */
         .minor-s {
             display: none;
