@@ -775,6 +775,11 @@ ul.list {
   #site-filter a.filter-item, #site-filter a.filter-item:hover {
     color: inherit; }
 
+.address-title .title {
+  margin-bottom: 0.5em; }
+.address-title .address {
+  margin: 0 0 0 0; }
+
 /*
   TODO: break this up into form base and form layout
 */

@@ -1,0 +1,12 @@
+<div class="filter-component">
+  <div class="filter-item">{{label}}<span class="expand-indicator"></span></div>
+  <div class="filter-list">
+    {{#items}}
+        <div class="filter-list-item flexible" data-value="{{value}}">
+          <div class="btn default">&nbsp;</div><span>{{name}}</span>
+        </div>
+    {{else}}
+    	<p>There are no items for this filter.</p>
+    {{/items}}
+  </div>
+</div>

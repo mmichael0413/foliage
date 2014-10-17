@@ -1,0 +1,38 @@
+define(function(require) {
+	var Backbone = require('backbone'),
+		FilterControl = require('app/views/filter/filterControl');
+	
+	/**
+	 *	The main entry point for working with the Filters.
+	 * 
+	 * @exports app/views/filter/main
+	 */
+	var FiltersModule = {
+		/**
+		 * Initializes the Filter
+		 *
+		 * If no filter collection is passed in, will attempt to look for 
+		 * 'window.filterBootstrap'
+		 * 
+		 * @param  {FilterCollection} collection A Backbone collection containing a url to retrieve filters
+		 * 
+		 */
+		init: function (collection) {
+
+			// possible states:
+			// collection ->
+			// window.filterBootstrap -> can contain a list of filters, plus a url for additional filters to load async
+			// 
+			// 
+			//
+			if (!collection && window.filterBootstrap) {
+				collection = new Backbone.Collection(window.filterBootstrap);
+			}
+			new FilterControl({collection: collection});
+
+		}
+	};
+
+	return FiltersModule;
+
+});

@@ -3,7 +3,6 @@ define(function(require){
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        //NavigationView = require('app/views/layout/navigation'),
         MainLayout = require('app/views/layout/main'),
         GlobalView = require('app/views/activities/global'),
         ActivitiesView = require('app/views/activities/activities'),
@@ -98,8 +97,8 @@ define(function(require){
         },
 
         notificationList: function(programId) {
-            var unreadView = new NotificationSectionView({el: '.new-notifications', url_action: 'unread', emptyParams: {unread: 'new'}, bootstrap: window.unread}).start();
-            var readView = new NotificationSectionView({el: '.past-notifications', url_action: 'read', bootstrap: window.read}).start();
+            new NotificationSectionView({el: '.new-notifications', url_action: 'unread', emptyParams: {unread: 'new'}, bootstrap: window.unread}).start();
+            new NotificationSectionView({el: '.past-notifications', url_action: 'read', bootstrap: window.read}).start();
         },
 
         notFound: function(){
@@ -111,10 +110,10 @@ define(function(require){
     });
 
     var initialize = function(){
-        var app_router = new AppRouter();
-        Backbone.history.start({pushState: true});
-        //new NavigationView();
         MainLayout.init();
+        new AppRouter();
+        Backbone.history.start({pushState: true});
+        
     };
     return {
         initialize: initialize

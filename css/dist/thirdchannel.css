@@ -1528,6 +1528,11 @@ input[type=text], input[type=password], input[type=number], textarea {
     .expanding-row-container.open .expanding-row {
       max-height: 15em; }
 
+.address-title .title {
+  margin-bottom: 0.5em; }
+.address-title .address {
+  margin: 0 0 0 0; }
+
 .section.alert {
   color: #ed3422;
   font-weight: bold;

@@ -2,7 +2,7 @@
 define(function(require) {
     
     var Backbone = require('backbone'),
-        Handlebars = require('handlebars'),
+        $ = require('jquery'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         dispatcher = require('app/utils/eventListener');
     
@@ -47,8 +47,8 @@ define(function(require) {
             // set the Query String on the collection, then force it to reset
             // backbone will automatically trigger the redrawing of the
             // members
-            console.log('apply filter');
-            $tbody = this.$('tbody');
+            
+            var $tbody = this.$('tbody');
             $tbody.html("<tr><td><i class='fa fa-spin fa-spinner'></i></td></tr>");
 
 
@@ -61,7 +61,7 @@ define(function(require) {
             e.preventDefault();
             var $link = $(e.currentTarget),
                 column = $link.attr('rel'),
-                direction = 'asc';
+                direction = 'asc',
                 remove = 'desc';
             if ($link.hasClass('asc')) {
                 direction = 'desc';

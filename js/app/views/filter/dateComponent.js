@@ -7,6 +7,8 @@ define(function (require) {
      * @exports app/views/filter/dateComponent
      */
     var DateComponent = require('app/views/filter/component').extend({
+
+            templateName: 'filters/date_component',
             
             addFilterHandler: function (e) {
                 //shut it down!
