@@ -17,7 +17,11 @@ define(function(require){
         ReportInfoView = require('app/views/reports/info/show/info_list'),
         NotificationSectionView = require('app/views/notifications/notification_section');
 
-    var AppRouter = Backbone.Router.extend({
+    // Small hack to add a before and after function to the Router
+
+
+    //var AppRouter = Backbone.Router.extend({
+    var AppRouter = require('app/routers/contextAwareBaseRouter').extend({
         routes: {
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
@@ -35,6 +39,21 @@ define(function(require){
 
             '*path': 'notFound'
         },
+
+        /**
+         * A before filter for this router. Currently only sets the program id, but attaches the requestArguments, in order
+         * of the filter.
+         *
+         * For more indepth usage we'd need to split the routers up so that each one has a more fine-grained before function (e.g., a 'stores'
+         * router that knows the second parameter is always storeID, and a reports router that knows the second param is always report_id)
+         * 
+         * @param  {string} program_id [description]
+         */
+        before: function (program_id) {
+            // in addition, the router stuffs all arguments as a list on context.requestParameters;
+            context.program_id = program_id;
+        },
+
         activitiesFeed: function(program_id){
 
             var queryString = window.location.search;
@@ -70,8 +89,7 @@ define(function(require){
         },
 
         store_profile: function (programId, storeId) {
-            context.programId = programId;
-            context.storeId = storeId;
+            window.context = context;
             StoreProfileMain.init();
         },
 

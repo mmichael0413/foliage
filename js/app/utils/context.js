@@ -11,9 +11,6 @@ define(["underscore", "backbone"], function (_, Backbone) {
      */
     var data = function () {
         var container = {
-            markers: {},
-            listeners: {},
-            infoWindows: {}
         };
         _.extend(container, Backbone.Events);
         return container;
