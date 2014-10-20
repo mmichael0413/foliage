@@ -95,7 +95,7 @@ define(function(require){
         },
 
         checkinReport: function(programId, id){
-            new CheckinReportView().render();
+            new CheckinReportView({programId: programId}).render();
         },
 
         reportInfo: function(programId, reportId, infoId){

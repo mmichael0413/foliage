@@ -4,6 +4,7 @@ define(function(require){
         Backbone = require('backbone');
     return Backbone.Model.extend({
         initialize: function (attributes, options) {
+            this.attributes = attributes;
             if (options.url) {
                 this.url = options.url;
             }

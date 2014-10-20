@@ -8,7 +8,6 @@ define(function(require) {
         },
         initialize: function (options) {
             this.setElement(options.el);
-            console.log('created');
         },
         render: function () {
             return this;
