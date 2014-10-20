@@ -2,7 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        EventListener = require('app/utils/eventListener');
+        context = require('context');
 
     return Backbone.View.extend({
         template: HandlebarsTemplates['reports/widgets/bar_chart'],
@@ -11,8 +11,8 @@ define(function(require) {
         },
         render: function () {
             this.setElement(this.template(this.model));
-            this.listenTo(EventListener, 'filter:queryString', this.updateViewBreakDownLink);
-            EventListener.trigger('filter:request:queryString');
+            this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
+            context.trigger('filter:request:queryString');
             return this;
         },
         updateViewBreakDownLink : function (qs) {

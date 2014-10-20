@@ -2,7 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        EventListener = require('app/utils/eventListener');
+        context = require('context');
 
     return Backbone.View.extend({
         tagName: 'tr',
@@ -14,7 +14,7 @@ define(function(require) {
             this.options = options;
             this.model = options.model;
             this.totalAlertCount = 0;
-            this.listenTo(EventListener, 'alert_group_' + this.options.groupId + ':count_update', this.updateTotalAlertCount, this);
+            this.listenTo(context, 'alert_group_' + this.options.groupId + ':count_update', this.updateTotalAlertCount, this);
         },
         render: function () {
             var self = this;
@@ -25,10 +25,10 @@ define(function(require) {
             var expanderIcon = this.$el.find(".expander i");
             if (expanderIcon.hasClass("fa-caret-up")) {
                 expanderIcon.removeClass("fa-caret-up").addClass("fa-caret-down");
-                EventListener.trigger('alert_group_' + this.options.groupId + ':hide');
+                context.trigger('alert_group_' + this.options.groupId + ':hide');
             } else if (expanderIcon.hasClass("fa-caret-down")) {
                 expanderIcon.removeClass("fa-caret-down").addClass("fa-caret-up");
-                EventListener.trigger('alert_group_' + this.options.groupId + ':show');
+                context.trigger('alert_group_' + this.options.groupId + ':show');
             }
         },
         updateTotalAlertCount: function (data) {

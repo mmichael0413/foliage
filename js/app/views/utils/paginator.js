@@ -1,6 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone'),
-        dispatcher = require('app/utils/eventListener');
+        context = require('context');
 
     return Backbone.View.extend({
         el: '.pagination-holder',
@@ -12,7 +12,7 @@ define(function(require) {
         initialize: function (data) {
             // allow setting of url via the data object... or could simply set it on a subclass
             this.url = data.url;
-            this.listenTo(dispatcher, 'filter:query', this.render);
+            this.listenTo(context, 'filter:query', this.render);
         },
 
         render: function (qs) {
@@ -29,7 +29,7 @@ define(function(require) {
         applyPageChange: function (e) {
             e.preventDefault();
             var page = $.trim($(e.currentTarget).text());
-            dispatcher.trigger('filter:set', [{name: 'page', value:page}]);
+            context.trigger('filter:set', [{name: 'page', value:page}]);
         }
     });
 });

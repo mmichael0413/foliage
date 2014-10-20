@@ -2,7 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        EventListener = require('app/utils/eventListener'),
+        context = require('context'),
         ReportModel = require('app/models/reports/report'),
         ReportFilterCollection = require('app/collections/reports/filters'),
         Filter = require('app/views/filter/main'),
@@ -14,7 +14,7 @@ define(function(require) {
         initialize: function (options) {
             this.model = new ReportModel(options);
             this.filters = new ReportFilterCollection(options);
-            this.listenTo(EventListener, 'filter:query', this.applyFilter);
+            this.listenTo(context, 'filter:query', this.applyFilter);
             this.loadingView = new LoadingView();
         },
         render: function (options) {
@@ -59,7 +59,7 @@ define(function(require) {
             }});
         },
         triggerPostRender: function() {
-            EventListener.trigger('report post render');
+            context.trigger('report post render');
         }
     });
 });

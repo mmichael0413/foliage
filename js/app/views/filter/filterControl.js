@@ -1,7 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
         $ = require('jquery'),
-        dispatcher = require('app/utils/eventListener'),
+        context = require('context'),
         spinnerTemplate = require('handlebarsTemplates')['filters/spinner_component'],
         SingleAnswerComponentView = require('app/views/filter/singleAnswerComponent'),
         DateComponentView = require('app/views/filter/dateComponent'),
@@ -79,15 +79,15 @@ define(function(require) {
             this._applyQSGlobal(qsHash);
 
 
-            this.listenTo(dispatcher, 'filter:request', this.handleFilterRequest);
-            this.listenTo(dispatcher, 'filter:request:queryString', this.handleFilterRequestQueryString);
-            this.listenTo(dispatcher, 'filter:set', this.setFromExternal);
+            this.listenTo(context, 'filter:request', this.handleFilterRequest);
+            this.listenTo(context, 'filter:request:queryString', this.handleFilterRequestQueryString);
+            this.listenTo(context, 'filter:set', this.setFromExternal);
             // finally, check if we should Trigger the filter. This is done down here to avoid
             // repeated triggerings if we checked this in the while loop.
             if (shouldTrigger) {
                 // open the filter if we have filter-component filters active, not simply a pagination
                 // let my master know, yes.
-                dispatcher.trigger('filter:toggle');
+                context.trigger('filter:toggle');
             }
         },
 
@@ -177,11 +177,11 @@ define(function(require) {
         },
 
         handleFilterRequestQueryString: function () {
-            dispatcher.trigger('filter:queryString', this.$el.serialize());
+            context.trigger('filter:queryString', this.$el.serialize());
         },
 
         broadCastQueryString: function () {
-            dispatcher.trigger('filter:query', this.$el.serialize());
+            context.trigger('filter:query', this.$el.serialize());
         },
 
         /**

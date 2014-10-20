@@ -3,6 +3,7 @@ define(function(require){
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
+        context = require('context'),
         MainLayout = require('app/views/layout/main'),
         GlobalView = require('app/views/activities/global'),
         ActivitiesView = require('app/views/activities/activities'),
@@ -68,7 +69,9 @@ define(function(require){
             StoresMain.init();
         },
 
-        store_profile: function () {
+        store_profile: function (programId, storeId) {
+            context.programId = programId;
+            context.storeId = storeId;
             StoreProfileMain.init();
         },
 

@@ -1,7 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        EventListener = require('app/utils/eventListener'),
+        context = require('context'),
         Filter = require('app/views/filter/main'),
         LoadingView = require('app/views/utils/loading'),
         PaginationView = require('app/views/utils/pagination'),
@@ -13,7 +13,7 @@ define(function(require) {
         template: HandlebarsTemplates['reports/info/show/info_list'],
         initialize: function (options) {
             this.model = new InfoListModel($.extend(options, {queryString: window.bootstrap}));
-            this.listenTo(EventListener, 'filter:query', this.applyFilter);
+            this.listenTo(context, 'filter:query', this.applyFilter);
             this.loadingView = new LoadingView();
         },
         render: function () {
@@ -26,8 +26,6 @@ define(function(require) {
             return this;
         },
         addFilters: function (value) {
-            console.log("received filters of ");
-            console.log(value);
             Filter.init(value);
         },
         addPages: function (value) {

@@ -3,14 +3,14 @@ define(function(require) {
         _ = require('underscore'),
         Backbone = require('backbone'),
         Ujs = require('jquery_ujs'),
-        dispatcher = require('app/utils/eventListener');
+        context = require('context');
 
 
         
     return Backbone.View.extend({
         el: '#site-wrapper',
         initialize: function() {
-            this.listenTo(dispatcher, 'filter:toggle', this.toggleFilter);
+            this.listenTo(context, 'filter:toggle', this.toggleFilter);
             this.$siteWrapper = this.$el;
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');
@@ -69,7 +69,7 @@ define(function(require) {
                 this.$siteWrapper.removeClass('expanded-nav');
                 window.localStorage.setItem('main_navigation', 'collapsed-nav');
             }
-             dispatcher.trigger('navigation:collapsed');
+             context.trigger('navigation:collapsed');
         }
     });
 });

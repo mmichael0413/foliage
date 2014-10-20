@@ -3,7 +3,7 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         Charts = require('chartjs'),
-        EventListener = require('app/utils/eventListener');
+        context = require('context');
 
     return Backbone.View.extend({
         tagName: 'span',
@@ -34,8 +34,8 @@ define(function(require) {
             if (_.size(this.model.results.percentages) > 0) {
                 this.$el.html(this.template(this.model));
                 this.setupHorizontalBarChart();
-                this.listenTo(EventListener, 'filter:queryString', this.updateViewBreakDownLink);
-                EventListener.trigger('filter:request:queryString');
+                this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
+                context.trigger('filter:request:queryString');
             }
             return this;
         },
@@ -66,7 +66,7 @@ define(function(require) {
                 ]
             };
 
-            this.listenTo(EventListener, 'report post render', function () {
+            this.listenTo(context, 'report post render', function () {
                 new Chart(canvas[0].getContext("2d")).Bar(self.data, self.chartOptions);
             });
         },

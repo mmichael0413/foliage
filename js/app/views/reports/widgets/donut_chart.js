@@ -2,7 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        EventListener = require('app/utils/eventListener'),
+        context = require('context'),
         displayDonutChart = require('libs/charts/donut_chart');
 
     return Backbone.View.extend({
@@ -15,8 +15,8 @@ define(function(require) {
             if (_.size(this.model.results.percentages) > 0) {
                 this.setElement(this.template(this.model));
                 displayDonutChart(this.$el.find("canvas")[0], this.model.results.percentages, this.model.config);
-                this.listenTo(EventListener, 'filter:queryString', this.updateViewBreakDownLink);
-                EventListener.trigger('filter:request:queryString');
+                this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
+                context.trigger('filter:request:queryString');
             }
             return this;
         },

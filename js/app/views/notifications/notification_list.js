@@ -4,7 +4,7 @@ define(function (require) {
         Backbone = require('backbone'),
         NotificationCollection = require('app/collections/notifications/notifications'),
         FilterableTableView = require('app/views/shared/filterableTable'),
-        dispatcher = require('app/utils/eventListener');
+        context = require('context');
 
     return FilterableTableView.extend({
         template: 'notifications/notification',

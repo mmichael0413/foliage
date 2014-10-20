@@ -1,6 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone'),
-        dispatcher = require('app/utils/eventListener'),
+        context = require('context'),
         handlebarsTemplates = require('handlebarsTemplates'),
         ActiveFilterItemView = require('app/views/filter/activeFilterItem');
     /**
@@ -36,7 +36,7 @@ define(function(require) {
             this.filterParam = this.model.get('name');
             
             this.$el.html( handlebarsTemplates[this.templateName]( this.model.toJSON() ) );
-            this.listenTo(dispatcher, this.filterParam +':filter:clear', this.restoreFilter);
+            this.listenTo(context, this.filterParam +':filter:clear', this.restoreFilter);
             return this;
         },
 
@@ -67,7 +67,7 @@ define(function(require) {
             e.preventDefault();
             e.stopPropagation();
             this._addFilterFromLink(this.$el.find(e.currentTarget));
-            dispatcher.trigger('filter:request');
+            context.trigger('filter:request');
         },
 
         addFilterByValue: function (value) {

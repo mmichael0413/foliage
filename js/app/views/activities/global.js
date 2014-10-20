@@ -2,7 +2,7 @@ define(function(require){
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        EventListener = require('app/utils/eventListener'),
+        context = require('context'),
         PhotoModal = require('app/modals/activities/photo-modal'),
         OwlCarousel = require('libs/owl.carousel');
 
@@ -10,7 +10,7 @@ define(function(require){
         el: '#site-wrapper',
         initialize: function (options) {
             var self = this;
-            this.listenTo(EventListener, 'activity:openModal', function (model) {
+            this.listenTo(context, 'activity:openModal', function (model) {
                 self.openModal(model);
             });
         },

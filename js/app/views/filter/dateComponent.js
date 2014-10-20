@@ -1,5 +1,5 @@
 define(function (require) {
-    var dispatcher = require('app/utils/eventListener');
+    var context = require('context');
 
     /**
      * A variation of the standard Filter Component for handling explicit dates
@@ -27,7 +27,7 @@ define(function (require) {
             handleDateBlur: function (e) {
                 this.handleDateChange(e);
                 this.toggleOpen();
-                dispatcher.trigger('filter:request');
+                context.trigger('filter:request');
             }
     });
 

@@ -4,7 +4,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         $ = require('jquery'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        dispatcher = require('app/utils/eventListener');
+        context = require('context');
     
     return Backbone.View.extend({
 
@@ -26,7 +26,7 @@ define(function(require) {
             this.listenTo(this.collection, 'add', this.render);
             // query execution event, the filter broadcasts the QueryString to use
             // for the active page
-            this.listenTo(dispatcher, 'filter:query', this.applyFilter);
+            this.listenTo(context, 'filter:query', this.applyFilter);
             return this;
         },
 
@@ -75,7 +75,7 @@ define(function(require) {
             $link.addClass('current');
             $link.addClass(direction);
             $link.removeClass(remove);
-            dispatcher.trigger('filter:set', [
+            context.trigger('filter:set', [
                 {name: "direction", value: direction},
                 {name: "sort", value: column}
             ]);

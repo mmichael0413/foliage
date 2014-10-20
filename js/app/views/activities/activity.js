@@ -5,7 +5,7 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         HandlebarsHelpers = require('handlebarsHelpers'),
-        EventListener = require('app/utils/eventListener'),
+        context = require('context'),
         Activity = require('app/models/activities/activity'),
         CommentsView = require('app/views/comments/comments'),
         NewCommentView = require('app/views/comments/new_comment'),
@@ -37,7 +37,7 @@ define(function(require) {
             this.objId = this.model.get('activity_id');
             this.carousel = null;
 
-            this.listenTo(EventListener, 'navigation:collapsed', this.initCarousel);
+            this.listenTo(context, 'navigation:collapsed', this.initCarousel);
         },
         render: function () {
             // render the base activity
@@ -120,11 +120,11 @@ define(function(require) {
             e.preventDefault();
             e.stopPropagation();
             if($(window).width() / parseFloat($("body").css("font-size")) > 30) {
-                EventListener.trigger('activity:openModal', this.model);
+                context.trigger('activity:openModal', this.model);
             }
         },
         closeModal: function (e) {
-            EventListener.trigger('activity:closeModal');
+            context.trigger('activity:closeModal');
         },
         onLoad: function (div) {
 

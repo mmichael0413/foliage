@@ -1,8 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
-        Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        EventListener = require('app/utils/eventListener');
+        context = require('context');
 
     return Backbone.View.extend({
         template: HandlebarsTemplates.pagination,
@@ -88,7 +87,7 @@ define(function(require) {
         applyPageChange: function (e) {
             e.preventDefault();
             var page = $.trim($(e.currentTarget).text());
-            EventListener.trigger('filter:set', [{name: 'page', value:page}]);
+            context.trigger('filter:set', [{name: 'page', value:page}]);
         }
     });
 });

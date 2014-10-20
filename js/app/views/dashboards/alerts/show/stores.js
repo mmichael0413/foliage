@@ -1,8 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        EventListener = require('app/utils/eventListener'),
-        //FiltersView = require('app/views/utils/filters'),
+        context = require('context'),
         Filter = require('app/views/filter/main'),
         LoadingView = require('app/views/utils/loading'),
         PaginationView = require('app/views/utils/pagination'),
@@ -19,7 +18,7 @@ define(function(require) {
             this.model = new DashboardsAlertsStoresModel({id: options.id});
             this.filters = new DashboardsAlertsFiltersCollection({id: options.id});
             this.loadingView = new LoadingView();
-            this.listenTo(EventListener, 'filter:query', this.applyFilter);
+            this.listenTo(context, 'filter:query', this.applyFilter);
         },
         render: function () {
             var self = this;

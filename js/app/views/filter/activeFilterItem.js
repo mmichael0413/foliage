@@ -1,7 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        dispatcher = require('app/utils/eventListener');
+        context = require('context');
 
     return Backbone.View.extend({
         className: 'active-filter flexible',
@@ -25,12 +25,12 @@ define(function(require) {
             e.stopPropagation();
             e.preventDefault();
             this.clear();
-            dispatcher.trigger('filter:request');
+            context.trigger('filter:request');
         },
 
         clear: function () {
 
-            dispatcher.trigger(this.options.param + ':filter:clear', this.options);
+            context.trigger(this.options.param + ':filter:clear', this.options);
             this.remove();
         },
         getQueryValue: function () {

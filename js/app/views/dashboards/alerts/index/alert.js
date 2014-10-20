@@ -2,7 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        EventListener = require('app/utils/eventListener');
+        context = require('context');
 
     return Backbone.View.extend({
         template: HandlebarsTemplates['dashboards/alerts/index/alert'],
@@ -15,7 +15,7 @@ define(function(require) {
             this.setElement(this.template(this.model.toJSON()));
             this.model.fetch({success: function (model) {
                 self.$el.find(".alert-count").empty().text(model.get('count'));
-                EventListener.trigger('alert_group_' + self.options.groupId + ':count_update', model.get('count'));
+                context.trigger('alert_group_' + self.options.groupId + ':count_update', model.get('count'));
             }});
             this.setGroupEvent();
 
@@ -29,8 +29,8 @@ define(function(require) {
         },
         setGroupEvent: function () {
             if (this.options.groupId !== undefined) {
-                this.listenTo(EventListener, 'alert_group_' + this.options.groupId + ':show', this.showView, this);
-                this.listenTo(EventListener, 'alert_group_' + this.options.groupId + ':hide', this.hideView, this);
+                this.listenTo(context, 'alert_group_' + this.options.groupId + ':show', this.showView, this);
+                this.listenTo(context, 'alert_group_' + this.options.groupId + ':hide', this.hideView, this);
             }
         }
     });
