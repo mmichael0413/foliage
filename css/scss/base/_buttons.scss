@@ -7,13 +7,9 @@
 }
 
 @mixin btn-details($color) {
-    display: inline-block;
-    border: 2px solid $color;
-    background: none;
-    border-radius: $border-radius_base;
-    padding: 2px 6px;
-    font-size: 1.2em;
-    vertical-align: middle;
+    border-color: $color;
+    color: $color;
+    
     @include swb-medium {
         text-align: center;
     }
@@ -60,6 +56,14 @@
 }
 
 .btn {
+    display: inline-block;
+    border: 2px solid #000000;
+    background: none;
+    border-radius: $border-radius_base;
+    padding: 2px 6px;
+    font-size: 1.2em;
+    vertical-align: middle;
+
     &.default {
         @include btn-details($text-color);
     }
@@ -68,6 +72,5 @@
     }
     &.light {
         @include btn-details($medium-blue);
-        color: $text-color;
     }
 }

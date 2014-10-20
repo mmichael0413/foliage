@@ -50,7 +50,7 @@ define(function(require) {
                 shouldTrigger = false;
 
             if (!data || !data.collection) {
-                console.log("We need at least a data.collection to get started with the filter");
+                //console.log("We need at least a data.collection to get started with the filter");
                 return false;
             }
             

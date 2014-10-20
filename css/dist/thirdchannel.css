@@ -937,136 +937,128 @@ input[type=text], input[type=password], input[type=number], textarea {
     font-size: 1em;
     cursor: pointer; }
 
-.btn.default {
+.btn {
   display: inline-block;
-  border: 2px solid #434748;
+  border: 2px solid #000000;
   background: none;
   border-radius: 5px;
   padding: 2px 6px;
   font-size: 1.2em;
   vertical-align: middle; }
-  @media only screen and (max-width: 48em) {
-    .btn.default {
-      text-align: center; } }
-  .btn.default:hover {
-    background-color: #434748;
-    color: white; }
-  .btn.default.solid {
-    font-size: inherit;
-    padding: 2px 1em;
-    background-color: #434748;
-    font-weight: bold;
-    color: white; }
-    .btn.default.solid:hover {
-      background: #2a2d2e;
-      border-color: #2a2d2e; }
+  .btn.default {
+    border-color: #434748;
+    color: #434748; }
     @media only screen and (max-width: 48em) {
-      .btn.default.solid {
-        min-width: 2.2em;
-        padding: 2px 6px; } }
-  .btn.default:focus {
-    outline: none; }
-  .btn.default.enabled {
-    background-color: #434748;
-    color: white; }
-  .btn.default.small {
-    margin: 0 0.75em;
-    margin-left: 0;
-    padding: 0 0.45em;
-    font-size: 0.75em; }
-  .btn.default span {
-    padding-left: .5em;
-    font-size: .9em; }
+      .btn.default {
+        text-align: center; } }
+    .btn.default:hover {
+      background-color: #434748;
+      color: white; }
+    .btn.default.solid {
+      font-size: inherit;
+      padding: 2px 1em;
+      background-color: #434748;
+      font-weight: bold;
+      color: white; }
+      .btn.default.solid:hover {
+        background: #2a2d2e;
+        border-color: #2a2d2e; }
+      @media only screen and (max-width: 48em) {
+        .btn.default.solid {
+          min-width: 2.2em;
+          padding: 2px 6px; } }
+    .btn.default:focus {
+      outline: none; }
+    .btn.default.enabled {
+      background-color: #434748;
+      color: white; }
+    .btn.default.small {
+      margin: 0 0.75em;
+      margin-left: 0;
+      padding: 0 0.45em;
+      font-size: 0.75em; }
+    .btn.default span {
+      padding-left: .5em;
+      font-size: .9em; }
+      @media only screen and (max-width: 48em) {
+        .btn.default span {
+          display: none; } }
+  .btn.primary {
+    border-color: #f15f51;
+    color: #f15f51; }
     @media only screen and (max-width: 48em) {
-      .btn.default span {
-        display: none; } }
-.btn.primary {
-  display: inline-block;
-  border: 2px solid #f15f51;
-  background: none;
-  border-radius: 5px;
-  padding: 2px 6px;
-  font-size: 1.2em;
-  vertical-align: middle; }
-  @media only screen and (max-width: 48em) {
-    .btn.primary {
-      text-align: center; } }
-  .btn.primary:hover {
-    background-color: #f15f51;
-    color: white; }
-  .btn.primary.solid {
-    font-size: inherit;
-    padding: 2px 1em;
-    background-color: #f15f51;
-    font-weight: bold;
-    color: white; }
-    .btn.primary.solid:hover {
-      background: #ed3422;
-      border-color: #ed3422; }
+      .btn.primary {
+        text-align: center; } }
+    .btn.primary:hover {
+      background-color: #f15f51;
+      color: white; }
+    .btn.primary.solid {
+      font-size: inherit;
+      padding: 2px 1em;
+      background-color: #f15f51;
+      font-weight: bold;
+      color: white; }
+      .btn.primary.solid:hover {
+        background: #ed3422;
+        border-color: #ed3422; }
+      @media only screen and (max-width: 48em) {
+        .btn.primary.solid {
+          min-width: 2.2em;
+          padding: 2px 6px; } }
+    .btn.primary:focus {
+      outline: none; }
+    .btn.primary.enabled {
+      background-color: #f15f51;
+      color: white; }
+    .btn.primary.small {
+      margin: 0 0.75em;
+      margin-left: 0;
+      padding: 0 0.45em;
+      font-size: 0.75em; }
+    .btn.primary span {
+      padding-left: .5em;
+      font-size: .9em; }
+      @media only screen and (max-width: 48em) {
+        .btn.primary span {
+          display: none; } }
+  .btn.light {
+    border-color: #9fb2c0;
+    color: #9fb2c0; }
     @media only screen and (max-width: 48em) {
-      .btn.primary.solid {
-        min-width: 2.2em;
-        padding: 2px 6px; } }
-  .btn.primary:focus {
-    outline: none; }
-  .btn.primary.enabled {
-    background-color: #f15f51;
-    color: white; }
-  .btn.primary.small {
-    margin: 0 0.75em;
-    margin-left: 0;
-    padding: 0 0.45em;
-    font-size: 0.75em; }
-  .btn.primary span {
-    padding-left: .5em;
-    font-size: .9em; }
-    @media only screen and (max-width: 48em) {
-      .btn.primary span {
-        display: none; } }
-.btn.light {
-  display: inline-block;
-  border: 2px solid #9fb2c0;
-  background: none;
-  border-radius: 5px;
-  padding: 2px 6px;
-  font-size: 1.2em;
-  vertical-align: middle;
-  color: #434748; }
-  @media only screen and (max-width: 48em) {
-    .btn.light {
-      text-align: center; } }
-  .btn.light:hover {
-    background-color: #9fb2c0;
-    color: white; }
-  .btn.light.solid {
-    font-size: inherit;
-    padding: 2px 1em;
-    background-color: #9fb2c0;
-    font-weight: bold;
-    color: white; }
-    .btn.light.solid:hover {
-      background: #8099ac;
-      border-color: #8099ac; }
-    @media only screen and (max-width: 48em) {
-      .btn.light.solid {
-        min-width: 2.2em;
-        padding: 2px 6px; } }
-  .btn.light:focus {
-    outline: none; }
-  .btn.light.enabled {
-    background-color: #9fb2c0;
-    color: white; }
-  .btn.light.small {
-    margin: 0 0.75em;
-    margin-left: 0;
-    padding: 0 0.45em;
-    font-size: 0.75em; }
-  .btn.light span {
-    padding-left: .5em;
-    font-size: .9em; }
-    @media only screen and (max-width: 48em) {
-      .btn.light span {
-        display: none; } }
+      .btn.light {
+        text-align: center; } }
+    .btn.light:hover {
+      background-color: #9fb2c0;
+      color: white; }
+    .btn.light.solid {
+      font-size: inherit;
+      padding: 2px 1em;
+      background-color: #9fb2c0;
+      font-weight: bold;
+      color: white; }
+      .btn.light.solid:hover {
+        background: #8099ac;
+        border-color: #8099ac; }
+      @media only screen and (max-width: 48em) {
+        .btn.light.solid {
+          min-width: 2.2em;
+          padding: 2px 6px; } }
+    .btn.light:focus {
+      outline: none; }
+    .btn.light.enabled {
+      background-color: #9fb2c0;
+      color: white; }
+    .btn.light.small {
+      margin: 0 0.75em;
+      margin-left: 0;
+      padding: 0 0.45em;
+      font-size: 0.75em; }
+    .btn.light span {
+      padding-left: .5em;
+      font-size: .9em; }
+      @media only screen and (max-width: 48em) {
+        .btn.light span {
+          display: none; } }
 
 *, *:before, *:after {
   -moz-box-sizing: border-box;
@@ -1615,6 +1607,14 @@ input[type=text], input[type=password], input[type=number], textarea {
     margin-left: 1em; }
     .section.alert a:first-of-type {
       margin-left: 0; }
+
+.store-profile-section .expand-indicator {
+  position: absolute;
+  right: 5%; }
+.store-profile-section .btn {
+  vertical-align: top;
+  position: absolute;
+  right: 5%; }
 
 /*
  * Swiper 2.7.0
