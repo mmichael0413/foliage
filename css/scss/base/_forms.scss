@@ -3,7 +3,7 @@
   TODO: break this up into form base and form layout
 */
 
-input[type=text], input[type=password], input[type=number], textarea {
+input[type=text], input[type=password], input[type=number], textarea, select {
   width: 100%;
   border: .1em solid $border-color;
   border-radius: $border-radius-base;
@@ -11,6 +11,35 @@ input[type=text], input[type=password], input[type=number], textarea {
   font-size: 1em;
   padding-left: .5em;
   margin-bottom: 2em;
+  &.error {
+    border-color: $link-color;
+    color: $link-color;
+  }
+}
+
+.compressed {
+  input[type=text], input[type=password], input[type=number], textarea, select {
+    margin-bottom: 1.5em;
+  }
+}
+
+input.error {
+  &::-webkit-input-placeholder {
+    color: $link-color;
+    font-weight: bold;
+  }
+  &:-moz-placeholder {
+    color: $link-color;
+    font-weight: bold;
+  }
+  &::-moz-placeholder {
+    color: $link-color;
+    font-weight: bold;
+  }
+  &:-ms-input-placeholder {
+    color: $link-color;
+    font-weight: bold;
+  }
 }
 
 input[type="file"]::-webkit-file-upload-button {

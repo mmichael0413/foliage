@@ -21,7 +21,8 @@ require.config({
         'slick_carousel': 'libs/bower_components/slick.js/slick/slick',
         'livestamp' : 'libs/livestamp.min',
         'moment' : 'libs/moment',
-        'chosen': "libs/bower_components/chosen/chosen.jquery"
+        'chosen': "libs/bower_components/chosen/chosen.jquery",
+        'jquery-validate' : 'libs/bower_components/jquery-validation/dist/jquery.validate'
     },
     shim: {
         "jquery": {
@@ -58,6 +59,10 @@ require.config({
         "livestamp": {
             deps: ["moment"],
             exports: 'Livestamp'
+        },
+        "jquery-validate": {
+            deps: ["jquery"],
+            exports: "jquery.validation"
         }
     }
 });

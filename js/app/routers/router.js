@@ -18,7 +18,8 @@ define(function(require){
         ReportInfoView = require('app/views/reports/info/show/info_list'),
         ContentView = require('app/views/global/content_view'),
 
-        NotificationSectionView = require('app/views/notifications/notification_section');
+        NotificationSectionView = require('app/views/notifications/notification_section'),
+        ShippingView = require('app/views/legal/shipping');
 
     // Small hack to add a before and after function to the Router
 
@@ -40,6 +41,7 @@ define(function(require){
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
             'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
             'programs/:program_id/notifications' : 'notificationList',
+            'programs/:program_id/legal/shipping' : 'shippingForm',
 
             '*path': 'notFound'
         },
@@ -137,6 +139,10 @@ define(function(require){
             new ContentView();
             var unreadView = new NotificationSectionView({el: '.new-notifications', url_action: 'unread', emptyParams: {unread: 'new'}, bootstrap: window.unread}).start();
             var readView = new NotificationSectionView({el: '.past-notifications', url_action: 'read', bootstrap: window.read}).start();
+        },
+
+        shippingForm: function(){
+            ShippingView.init();
         },
 
         notFound: function(){

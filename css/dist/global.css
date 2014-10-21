@@ -438,7 +438,6 @@ ul.list {
     background-color: #e3e8ec;
     width: 14em;
     height: 100%;
-    height: 100%;
     position: absolute;
     top: 0;
     -webkit-transition: .3s ease all;
@@ -576,7 +575,7 @@ ul.list {
   padding: 1em 1em 1em 1.5em;
   width: 100%;
   white-space: nowrap;
-  color: #e3e8ec;
+  color: #9fb2c0;
   position: relative; }
   .navigation .nav-item .fa {
     position: absolute;
@@ -598,6 +597,8 @@ ul.list {
   @media only screen and (max-width: 35.5em) {
     .navigation .nav-item.minor-s {
       display: none; } }
+.navigation .notify .ic {
+  color: #F4816B; }
 
 .nav {
   margin-bottom: 1em;
@@ -638,22 +639,22 @@ ul.list {
 
 #site-submenu {
   background-color: #f6f6f5;
-  color: #e3e8ec; }
+  color: #9fb2c0; }
   #site-submenu .close {
     position: absolute;
     top: 0;
     right: 0;
     padding: .5em .5em 0 0;
-    color: #e3e8ec; }
+    color: #9fb2c0; }
   #site-submenu ul li {
     padding: 1em; }
     #site-submenu ul li a {
-      color: #e3e8ec; }
+      color: #9fb2c0; }
     #site-submenu ul li > strong {
       text-transform: uppercase; }
-    #site-submenu ul li.return {
-      border-top: 1px solid #e3e8ec;
-      border-bottom: 1px solid #e3e8ec; }
+    #site-submenu ul li.separator {
+      border-top: 1px solid rgba(159, 178, 192, 0.5);
+      border-bottom: 1px solid rgba(159, 178, 192, 0.5); }
     #site-submenu ul li.menu-option:hover {
       background-color: #373a3b; }
     #site-submenu ul li.menu-option.active {
@@ -803,7 +804,7 @@ ul.list {
 /*
   TODO: break this up into form base and form layout
 */
-input[type=text], input[type=password], input[type=number], textarea {
+input[type=text], input[type=password], input[type=number], textarea, select {
   width: 100%;
   border: 0.1em solid #e3e8ec;
   border-radius: 5px;
@@ -811,6 +812,25 @@ input[type=text], input[type=password], input[type=number], textarea {
   font-size: 1em;
   padding-left: .5em;
   margin-bottom: 2em; }
+  input[type=text].error, input[type=password].error, input[type=number].error, textarea.error, select.error {
+    border-color: #f15f51;
+    color: #f15f51; }
+
+.compressed input[type=text], .compressed input[type=password], .compressed input[type=number], .compressed textarea, .compressed select {
+  margin-bottom: 1.5em; }
+
+input.error::-webkit-input-placeholder {
+  color: #f15f51;
+  font-weight: bold; }
+input.error:-moz-placeholder {
+  color: #f15f51;
+  font-weight: bold; }
+input.error::-moz-placeholder {
+  color: #f15f51;
+  font-weight: bold; }
+input.error:-ms-input-placeholder {
+  color: #f15f51;
+  font-weight: bold; }
 
 input[type="file"]::-webkit-file-upload-button {
   background: white;
@@ -903,7 +923,8 @@ table {
   table tr td {
     vertical-align: top;
     padding: 1em;
-    border-top: 1px solid #e3e8ec; }
+    border-top: 1px solid #e3e8ec;
+    line-height: 1.5em; }
   @media only screen and (max-width: 48em) {
     table .minor-m {
       display: none; } }
