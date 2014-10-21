@@ -10,6 +10,7 @@ define(function(require){
         TeamsMain = require('app/views/teams/main'),
         StoresMain = require('app/views/stores/main'),
         StoreProfileMain = require('app/views/store_profile/main'),
+        CheckinView = require('app/views/checkins/show/checkin'),
         DashboardsAlertsSectionsView = require('app/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('app/views/dashboards/alerts/show/stores'),
         ReportView = require('app/views/reports/index/report'),
@@ -29,6 +30,7 @@ define(function(require){
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
             'programs/:program_id/stores/:store_id(/)': 'store_profile',
+            'programs/:program_id/checkins/:id': 'checkin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
             'programs/:program_id/reports': 'reports',
@@ -139,6 +141,10 @@ define(function(require){
             if (window.reportData !== undefined) {
                 new ReportView({programId: ''}).render();
             }
+        },
+
+        checkin : function(programId, id) {
+            new CheckinView({programId: programId, checkinId: id}).render();
         }
     });
 

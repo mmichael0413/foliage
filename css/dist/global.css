@@ -812,12 +812,42 @@ input[type=text], input[type=password], input[type=number], textarea {
   padding-left: .5em;
   margin-bottom: 2em; }
 
+input[type="file"]::-webkit-file-upload-button {
+  background: white;
+  border-radius: 5px;
+  height: 2em;
+  padding: 0 0.5em;
+  border: 1px solid #e3e8ec; }
+
+.radio-group > div {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em; }
+  .radio-group > div:last-child {
+    margin-bottom: 0; }
+.radio-group label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding-left: 2em;
+  margin-right: 1em; }
 .radio-group input[type=radio] {
-  display: inline;
-  margin-left: 2em;
-  margin-right: .7em; }
-  .radio-group input[type=radio]:first-of-type {
-    margin-left: 0; }
+  display: none; }
+.radio-group label:before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  margin-top: 0.3em;
+  position: absolute;
+  left: 0;
+  border: 0.2em solid #e3e8ec;
+  border-radius: 50%; }
+.radio-group input[type=radio]:checked + label:before {
+  content: "\2022";
+  color: #434748;
+  font-size: 1em;
+  text-align: center;
+  line-height: 0.625em;
+  border-color: #9fb2c0; }
 
 .expanding-wrapper {
   width: 80%;

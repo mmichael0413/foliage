@@ -13,22 +13,59 @@ input[type=text], input[type=password], input[type=number], textarea {
   margin-bottom: 2em;
 }
 
+input[type="file"]::-webkit-file-upload-button {
+  background: white;
+  border-radius: $border-radius-base;
+  height: 2em;
+  padding: 0 0.5em;
+  border: 1px solid $border-color;
+}
+
 .radio-group {
-  input[type=radio] {
-    display: inline;
-    margin-left: 2em;
-    margin-right: .7em;
-    &:first-of-type {
-      margin-left: 0;
+
+  & > div {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    &:last-child {
+      margin-bottom: 0;
     }
+  }
+
+  label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 2em;
+    margin-right: 1em;
+  }
+
+  input[type=radio] {
+    display: none;
+  }
+
+  label:before {
+    content: "";
+    width: 1em;
+    height: 1em;
+    margin-top: 0.3em;
+    position: absolute;
+    left: 0;
+    border: .2em solid $border-color;
+    border-radius: 50%;
+  }
+
+  input[type=radio]:checked + label:before {
+    content: "\2022";
+    color: $text-color;
+    font-size: 1em;
+    text-align: center;
+    line-height: 0.625em;
+    border-color: $medium-blue;
   }
 }
 .expanding-wrapper {
   width: 80%;
   display: inline-block;
-}
-textarea {
- // min-height: 5em;
 }
 
 .input-group {

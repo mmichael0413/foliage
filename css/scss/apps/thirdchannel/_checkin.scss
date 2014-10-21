@@ -1,0 +1,47 @@
+@import "../../base/colors";
+@import "../../base/mixins";
+
+.checkin {
+  .header {
+    h1 {
+      margin-bottom: 0.5em;
+    }
+    p {
+      margin-bottom: 1em;
+    }
+  }
+
+  h3 {
+    padding: 0 1em;
+    margin: 0;
+    text-transform: uppercase;
+    text-align: top;
+  }
+
+  input[type=text], input[type=password], input[type=number], textarea {
+    margin-bottom: 0;
+  }
+
+  .body {
+    margin-top: 1em;
+    border-top: 1px solid $light-blue;
+    padding: 1em;
+  }
+
+  .question {
+    margin-bottom: 2em;
+
+    [name*='question-'], .chosen-container {
+      margin-top: 0.5em
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    p:empty {
+      margin-top: -2em;
+    }
+  }
+}
+

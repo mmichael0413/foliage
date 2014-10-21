@@ -18,7 +18,8 @@ require.config({
         'jquery_ujs' : 'libs/bower_components/jquery-ujs/src/rails',
         'chartjs' : 'libs/Chart',
         'owl_carousel': 'libs/owl.carousel',
-        'slick_carousel': 'libs/bower_components/slick.js/slick/slick'
+        'slick_carousel': 'libs/bower_components/slick.js/slick/slick',
+        'chosen': "libs/bower_components/chosen/chosen.jquery"
     },
     shim: {
         "jquery": {

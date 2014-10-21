@@ -1,0 +1,305 @@
+@import "../base/colors";
+@import "../base/mixins";
+
+/* @group Base */
+.chosen-container {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1em;
+  zoom: 1;
+  *display: inline;
+  * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .chosen-drop {
+    position: absolute;
+    top: 100%;
+    left: -9999px;
+    z-index: 1010;
+    width: 100%;
+    border: 1px solid $border-color;
+    background: white;
+  }
+  &.chosen-with-drop .chosen-drop {
+    left: 0;
+  }
+  a{
+    cursor: pointer;
+  }
+}
+/* @end */
+
+/* @group Single Chosen */
+.chosen-container-single{
+  .chosen-single {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 0 0 0 0.5em;
+    height: 2em;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    background-color: white;
+    background-clip: padding-box;
+    color: $dark-slate;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 2em;
+  }
+  .chosen-default {
+    color: $dark-slate;
+  }
+  .chosen-single span {
+    display: block;
+    overflow: hidden;
+    margin-right: 2em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  .chosen-single-with-deselect span {
+    margin-right: 3em;
+  }
+  .chosen-single abbr {
+    position: absolute;
+    top: 6px;
+    right: 26px;
+    display: block;
+    width: 12px;
+    height: 12px;
+    font-size: 1px;
+    &:hover {
+    }
+  }
+  &.chosen-disabled .chosen-single abbr:hover {
+  }
+  .chosen-single div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 2em;
+    height: 100%;
+    background-color: $border-color;
+    b {
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-family: "tc-icons";
+      text-align: center;
+      &:before {
+        content: "\f193";
+        font-size: 0.5em;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        position: absolute;
+        width: 2rem;
+      }
+    }
+  }
+  .chosen-drop {
+    border-radius: 4px;
+    background-clip: padding-box;
+  }
+  &.chosen-container-single-nosearch .chosen-search {
+    display: none;
+  }
+}
+/* @end */
+
+/* @group Results */
+.chosen-container .chosen-results {
+  color: $text-color;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0.25em;
+  padding: 0;
+  max-height: 240px;
+  -webkit-overflow-scrolling: touch;
+  li {
+    display: none;
+    margin: 0;
+    padding: 5px 6px;
+    list-style: none;
+    line-height: 15px;
+    word-wrap: break-word;
+    -webkit-touch-callout: none;
+    &.active-result {
+      display: list-item;
+      cursor: pointer;
+    }
+    &.disabled-result {
+      display: list-item;
+      color: #ccc;
+      cursor: default;
+    }
+    &.highlighted {
+      background-color: $border-color;
+      color: $dark-slate;
+    }
+    &.no-results {
+      color: #777;
+      display: list-item;
+      background: #f4f4f4;
+    }
+    &.group-result {
+      display: list-item;
+      font-weight: bold;
+      cursor: default;
+    }
+    &.group-option {
+      padding-left: 15px;
+    }
+    em {
+      font-style: normal;
+      text-decoration: underline;
+    }
+  }
+}
+/* @end */
+
+/* @group Multi Chosen */
+.chosen-container-multi{
+  .chosen-choices {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0 0.5em;
+    padding-right: 2em;
+    width: 100%;
+    height: auto !important;
+    height: 1%;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    background-color: white;
+    cursor: text;
+
+    &:before, &:after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 2rem;
+    }
+
+    &:before {
+      content: "";
+      background: $border-color;
+    }
+
+    &:after {
+      display: table;
+      content: "\f193";
+      font-size: 0.5em;
+      font-family: tc-icons;
+      margin: auto;
+      text-align: center;
+    }
+
+  }
+
+  .chosen-choices li {
+    float: left;
+    list-style: none;
+    &.search-field {
+      margin: 0;
+      padding: 0;
+      white-space: nowrap;
+      input[type="text"] {
+        margin: 1px 0;
+        padding: 0;
+        height: 1.75em;
+        outline: 0;
+        border: 0 !important;
+        background: transparent !important;
+        box-shadow: none;
+        color: #999;
+        font-size: 100%;
+        font-family: sans-serif;
+        line-height: normal;
+        border-radius: 0;
+      }
+    }
+    &.search-choice {
+      position: relative;
+      margin: 0.25em 0.5em 0.25em 0;
+      padding: 0.25em 1.5em 0.25em 0.25em;
+      border: 1px solid $border-color;
+      max-width: 100%;
+      border-radius: 4px;
+      background-color: $border-color;
+      background-clip: padding-box;
+      color: $text-color;
+      line-height: 1em;
+      cursor: default;
+
+      span {
+        word-wrap: break-word;
+      }
+      .search-choice-close {
+        position: absolute;
+        top: 4px;
+        right: 3px;
+        display: block;
+        width: 1em;
+        height: 1em;
+        font-size: 1em;
+        font-family: "tc-icons";
+
+        &:before {
+          content: "\f1a9";
+          font-size: 0.5em;
+          line-height: 1em;
+          vertical-align: middle;
+          margin-left: 0.5em;
+          color: $text-color;
+        }
+
+        &:hover {
+        }
+      }
+    }
+    &.search-choice-disabled {
+      padding-right: 5px;
+      border: 1px solid #ccc;
+      background-color: #e4e4e4;
+      color: #666;
+    }
+    &.search-choice-focus {
+      background: #d4d4d4;
+      .search-choice-close {
+        background-position: -42px -10px;
+      }
+    }
+  }
+  .chosen-results {
+    margin: 0;
+    padding: 0;
+  }
+  .chosen-drop .result-selected {
+    display: list-item;
+    color: #ccc;
+    cursor: default;
+  }
+}
+/* @end */
+
+/* @group Disabled Support */
+.chosen-disabled {
+  opacity: 0.5 !important;
+  cursor: default;
+  .chosen-single {
+    cursor: default;
+  }
+  .chosen-choices .search-choice .search-choice-close {
+    cursor: default;
+  }
+}
+/* @end */
+
