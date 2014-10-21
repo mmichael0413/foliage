@@ -48,6 +48,14 @@ input[type="file"]::-webkit-file-upload-button {
   height: 2em;
   padding: 0 0.5em;
   border: 1px solid $border-color;
+
+  &:active {
+    border-color: $medium-blue;
+  }
+
+  &:focus {
+    outline:0;
+  }
 }
 
 .radio-group {

@@ -28,5 +28,5 @@ define(function (require) {
                 }
             });
         }
-    }
+    };
 });

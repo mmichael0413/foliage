@@ -838,6 +838,10 @@ input[type="file"]::-webkit-file-upload-button {
   height: 2em;
   padding: 0 0.5em;
   border: 1px solid #e3e8ec; }
+  input[type="file"]::-webkit-file-upload-button:active {
+    border-color: #9fb2c0; }
+  input[type="file"]::-webkit-file-upload-button:focus {
+    outline: 0; }
 
 .radio-group > div {
   margin-top: 0.5em;

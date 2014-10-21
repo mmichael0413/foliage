@@ -22,7 +22,8 @@ require.config({
         'livestamp' : 'libs/livestamp.min',
         'moment' : 'libs/moment',
         'chosen': "libs/bower_components/chosen/chosen.jquery",
-        'jquery-validate' : 'libs/bower_components/jquery-validation/dist/jquery.validate'
+        'jquery-validate' : 'libs/bower_components/jquery-validation/dist/jquery.validate',
+        'serializeObject' : "libs/bower_components/jquery-serialize-object/jquery.serialize-object"
     },
     shim: {
         "jquery": {

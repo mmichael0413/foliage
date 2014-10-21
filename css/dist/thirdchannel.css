@@ -1196,6 +1196,10 @@ input[type="file"]::-webkit-file-upload-button {
   height: 2em;
   padding: 0 0.5em;
   border: 1px solid #e3e8ec; }
+  input[type="file"]::-webkit-file-upload-button:active {
+    border-color: #9fb2c0; }
+  input[type="file"]::-webkit-file-upload-button:focus {
+    outline: 0; }
 
 .radio-group > div {
   margin-top: 0.5em;
@@ -2083,21 +2087,25 @@ input[type="file"]::-webkit-file-upload-button {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-[dir="rtl"] .slick-prev {
-  left: auto;
-  right: -25px; }
-.slick-prev:before {
-  content: "\2190"; }
-  [dir="rtl"] .slick-prev:before {
-    content: "\2192"; }
-
-[dir="rtl"] .slick-next {
-  left: -25px;
-  right: auto; }
-.slick-next:before {
-  content: "\2192"; }
-  [dir="rtl"] .slick-next:before {
+.slick-prev {
+  left: -25px; }
+  [dir="rtl"] .slick-prev {
+    left: auto;
+    right: -25px; }
+  .slick-prev:before {
     content: "\2190"; }
+    [dir="rtl"] .slick-prev:before {
+      content: "\2192"; }
+
+.slick-next {
+  right: -25px; }
+  [dir="rtl"] .slick-next {
+    left: -25px;
+    right: auto; }
+  .slick-next:before {
+    content: "\2192"; }
+    [dir="rtl"] .slick-next:before {
+      content: "\2190"; }
 
 /* Dots */
 .slick-slider {
@@ -2747,21 +2755,6 @@ input[type="file"]::-webkit-file-upload-button {
   -webkit-transform-origin: 50% 50%;
   -webkit-backface-visibility: hidden; }
 
-.bbm-modal {
-  background: transparent;
-  box-shadow: none; }
-  .bbm-modal .close-modal {
-    position: absolute;
-    top: -25px;
-    right: -25px; }
-    .bbm-modal .close-modal .ic_x {
-      color: white; }
-  .bbm-modal .swiper-container .swiper-slide {
-    text-align: center; }
-    .bbm-modal .swiper-container .swiper-slide img {
-      width: auto;
-      max-width: 100%; }
-
 .activity-holder {
   margin-bottom: 1.5em;
   border-radius: 5px;
@@ -2905,12 +2898,20 @@ input[type="file"]::-webkit-file-upload-button {
   padding: 1em; }
 .checkin .question {
   margin-bottom: 2em; }
-  .checkin .question [name*='question-'], .checkin .question .chosen-container {
+  .checkin .question [name*='question-'], .checkin .question .chosen-container, .checkin .question .expanding-wrapper {
     margin-top: 0.5em; }
   .checkin .question:last-of-type {
     margin-bottom: 0; }
   .checkin .question p:empty {
     margin-top: -2em; }
+  .checkin .question.error {
+    color: #f15f51; }
+    .checkin .question.error input[type=text], .checkin .question.error input[type=password], .checkin .question.error input[type=number], .checkin .question.error textarea, .checkin .question.error .chosen-choices {
+      border-color: #f15f51; }
+.checkin .checkin-form-btn {
+  margin-bottom: 2em; }
+.checkin .expanding-wrapper {
+  width: 100%; }
 
 /*
 	Colors from Liz's UI-Color-Guide as of 10/15/2014

@@ -127,6 +127,10 @@ define(function(require){
             new ReportView({programId: programId}).render();
         },
 
+        checkin : function(programId, id) {
+            new CheckinView({programId: programId, checkinId: id}).render();
+        },
+
         checkinReport: function(programId, id){
             new CheckinReportView({programId: programId}).render();
         },
@@ -150,10 +154,6 @@ define(function(require){
             if (window.reportData !== undefined) {
                 new ReportView({programId: ''}).render();
             }
-        },
-
-        checkin : function(programId, id) {
-            new CheckinView({programId: programId, checkinId: id}).render();
         }
     });
 
