@@ -6,7 +6,6 @@ define(function(require){
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
-
     return Backbone.Modal.extend({
         initialize: function (options) {
             this.model = options.model;

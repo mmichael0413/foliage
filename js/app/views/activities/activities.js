@@ -9,7 +9,9 @@ define(function (require) {
         LoadingView = require('app/views/activities/loading'),
         ActivityCollection = require('app/collections/activities/activities'),
         IncompleteActivity = require('app/models/activities/incomplete_activity'),
-        Expanding = require('libs/expanding');
+        Expanding = require('libs/expanding'),
+        Livestamp = require('livestamp'),
+        SlickCarousel = require('slick_carousel');
 
 
     return Backbone.View.extend({
@@ -83,6 +85,7 @@ define(function (require) {
                         this.activity = new ActivityView({ model: model, programId: self.programId});
                         self.$el.append(this.activity.render().el);
                         this.activity.$el.find("textarea").expanding();
+                        this.activity.initializeCarousel();
                     }
                 });
                 // resize();
@@ -93,14 +96,14 @@ define(function (require) {
             // if collection has no models, tell user no activities yet
             this.isLoading.removeFromDOM();
             if (this.collection.currentPage === 0) {
-                this.$el.append("<div class='activity info'>No Activity was found, please try different search criteria.</div>");
+                this.$el.append("<div class='activity alert info'>No Activity was found, please try different search criteria.</div>");
             } else {
-                this.$el.append("<div class='activity info'>You have reached the end of the feed!</div>");
+                this.$el.append("<div class='activity alert info'>You have reached the end of the feed!</div>");
             }
         },
         stopOnError: function () {
             this.isLoading.removeFromDOM();
-            this.$el.append('<div class="activity info error">Additional activities cannot be loaded due to an error on the server. Please contact Tech Support</div>');
+            this.$el.append('<div class="activity alert error">Additional activities cannot be loaded due to an error on the server. Please contact Tech Support</div>');
             $(window).off('scroll.wall');
         }
     });

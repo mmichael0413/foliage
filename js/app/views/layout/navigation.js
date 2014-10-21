@@ -3,10 +3,11 @@ define(function(require) {
         _ = require('underscore'),
         Backbone = require('backbone'),
         Ujs = require('jquery_ujs'),
-        context = require('context');
+        context = require('context'),
+        NotificationBadge = require('app/views/notifications/notification_badge');
+       
 
 
-        
     return Backbone.View.extend({
         el: '#site-wrapper',
         initialize: function() {
@@ -15,11 +16,7 @@ define(function(require) {
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');
 
-            var navState = window.localStorage.getItem('main_navigation'); 
-
-            if (navState !== null) {
-           //     this.$siteWrapper.addClass(navState);
-            }
+            new NotificationBadge().render();
         },
         events: {
             'click .toggle-nav': 'toggleNav',

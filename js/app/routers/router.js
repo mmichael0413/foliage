@@ -16,6 +16,8 @@ define(function(require){
         ReportView = require('app/views/reports/index/report'),
         CheckinReportView = require('app/views/reports/checkins/show/report'),
         ReportInfoView = require('app/views/reports/info/show/info_list'),
+        ContentView = require('app/views/global/content_view'),
+
         NotificationSectionView = require('app/views/notifications/notification_section');
 
     // Small hack to add a before and after function to the Router
@@ -132,8 +134,9 @@ define(function(require){
         },
 
         notificationList: function(programId) {
-            new NotificationSectionView({el: '.new-notifications', url_action: 'unread', emptyParams: {unread: 'new'}, bootstrap: window.unread}).start();
-            new NotificationSectionView({el: '.past-notifications', url_action: 'read', bootstrap: window.read}).start();
+            new ContentView();
+            var unreadView = new NotificationSectionView({el: '.new-notifications', url_action: 'unread', emptyParams: {unread: 'new'}, bootstrap: window.unread}).start();
+            var readView = new NotificationSectionView({el: '.past-notifications', url_action: 'read', bootstrap: window.read}).start();
         },
 
         notFound: function(){

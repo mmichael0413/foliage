@@ -7,7 +7,7 @@
         padding: 1em 1em 1em 1.5em;
         width: 100%;
         white-space: nowrap;
-        color: $palette1;
+        color: $medium-blue;
         position: relative;
         .fa {
             position: absolute;
@@ -37,6 +37,9 @@
                 display: none;
             }
         }
+    }
+    .notify .ic {
+      color: #F4816B;
     }
 }
 
@@ -109,25 +112,26 @@
 
 #site-submenu {
     background-color: $main-background;
-    color: $palette1;
+    color: $medium-blue;
     .close {
         position: absolute;
         top: 0;
         right: 0;
         padding: .5em .5em 0 0;
-        color: $palette1;
+        color: $medium-blue;
     }
     ul li {
         padding: 1em;
         a {
-            color: $palette1;
+            color: $medium-blue;
         }
         > strong {
             text-transform: uppercase;
         }
-        &.return {
-            border-top: 1px solid $border-color;
-            border-bottom: 1px solid $border-color;
+
+        &.separator {
+          border-top: 1px solid $medium-blue-rgba;
+          border-bottom: 1px solid $medium-blue-rgba;
         }
         &.menu-option:hover {
             background-color: darken($subnav-background, 5%);

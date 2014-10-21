@@ -28,7 +28,6 @@ define(function (require) {
                 $tbody = this.$('tbody');
                 $tbody.html("<tr><td><i class='fa fa-spin fa-spinner'></i></td></tr>");
 
-                console.log('fuck this');
                 this.collection.queryString = qs;
                 this.collection.fetch({reset:true});
 

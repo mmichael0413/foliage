@@ -1,28 +1,67 @@
-.section {
-    &.alert {
-        $dark-link-color: darken($link-color, 10%);
-        color: $dark-link-color;
-        font-weight: bold;
-        background-color: lighten($link-color, 25%);
-        @include swb-small {
-            text-align: center;
-        }
-
-        p {
-            margin-bottom: 1em;
-            @include swb-small {
-                text-align: left;
-            }
-        }
-        a {
-            border-color: $dark-link-color;
-            color: $dark-link-color;
-            font-size: .9em;
-            padding: .4em;
-            margin-left: 1em;
-            &:first-of-type {
-                margin-left: 0;
-            }
-        }
+.alert {
+  padding: 1em;
+  margin-bottom: 1.5em;
+  .alert {
+    $dark-link-color: darken($link-color, 10%);
+    color: $dark-link-color;
+    font-weight: bold;
+    background-color: lighten($link-color, 25%);
+    @include swb-small {
+      text-align: center;
     }
+
+    p {
+      margin-bottom: 1em;
+      @include swb-small {
+        text-align: left;
+      }
+    }
+    a {
+      border-color: $dark-link-color;
+      color: $dark-link-color;
+      font-size: .9em;
+      padding: .4em;
+      margin-left: 1em;
+      &:first-of-type {
+        margin-left: 0;
+      }
+    }
+  }
+  &.info {
+    background-color: $palette1;
+  //  padding: 1em;
+    border-radius: $border-radius-base;
+    margin-bottom: 1em;
+  }
+  &.error {
+    background-color: lighten($link-color, 20%);
+  }
+
+}
+
+.status-bar {
+  position: absolute;
+  top: 3em;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 50%;
+  padding: 1em 2em 1em 1em;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
+  opacity: 1;
+  &.hide-status-bar {
+    opacity: 0;
+    -moz-transition: opacity 0.7s linear, visibility 0.7s linear;
+    -o-transition: opacity 0.7s linear, visibility 0.7s linear;
+    -webkit-transition: opacity 0.7s linear, visibility 0.7s linear;
+    transition: opacity 0.7s linear, visibility 0.7s linear;
+    visibility: hidden;
+  }
+
+  .close-status-bar {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+  }
 }

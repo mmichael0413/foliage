@@ -1,178 +1,167 @@
-@import '../../lib/idangerous.swiper';
+@import '../../../../js/libs/bower_components/slick.js/slick/slick';
 @import '../../lib/backbone.modal/modal';
+@import '../../modules/modal';
 
 $padding: 1.5em;
 
 .activity-holder {
-    margin-bottom: 1.5em;
-    border-radius: $border-radius-base;
-    border: 1px solid $border-color;
+  margin-bottom: 1.5em;
+  border-radius: $border-radius-base;
+  border: 1px solid $border-color;
 }
 
 .activity, .comment-holder {
-    //  padding:1.5em;
+  //  padding:1.5em;
 }
 
 .activity {
-    background: white;
-    //border-top-left-radius: $border-radius-base;
-    //border-top-right-radius: $border-radius-base;
+  background: white;
+  //border-top-left-radius: $border-radius-base;
+  //border-top-right-radius: $border-radius-base;
+  border-radius: $border-radius-base;
+  &.info {
+    background-color: $palette1;
+    padding: 1em;
     border-radius: $border-radius-base;
-    &.info {
-        background-color: $palette1;
-        padding: 1em;
-        border-radius: $border-radius-base;
-        margin-bottom: 1em;
+    margin-bottom: 1em;
+  }
+  &.error {
+    background-color: lighten($link-color, 20%);
+  }
+  &.incomplete {
+    .activity-holder {
+      padding: 1em;
+      h3 {
+        text-transform: uppercase;
+      }
+      .fa {
+        font-size: .8em;
+        margin-left: 1.5em;
+      }
     }
-    &.error {
-        background-color: lighten($link-color, 20%);
-    }
-    &.incomplete {
-        .activity-holder {
-            padding: 1em;
-            h3 {
-                text-transform: uppercase;
-            }
-            .fa {
-                font-size: .8em;
-                margin-left: 1.5em;
-            }
-        }
-    }
+  }
 }
 
 .comment-holder {
-    border-bottom-left-radius: $border-radius-base;
-    border-bottom-right-radius: $border-radius-base;
+  border-bottom-left-radius: $border-radius-base;
+  border-bottom-right-radius: $border-radius-base;
 }
 
 .activity-meta, .comment {
-    padding: $padding $padding 0 $padding;
-    .user-image, .bar-body {
-        display: inline-block;
+  padding: $padding $padding 0 $padding;
+  .user-image, .bar-body {
+    display: inline-block;
+  }
+  .bar-body {
+    vertical-align: top;
+    //    padding-left: 1em;
+    width: 80%;
+    textarea, button {
+      display: inline-block;
+      vertical-align: top;
     }
-    .bar-body {
-        vertical-align: top;
-        //    padding-left: 1em;
-        width: 80%;
-        textarea, button {
-            display:inline-block;
-            vertical-align: top;
-        }
-    }
+  }
 }
 
 .comment.new-comment {
-    padding-bottom: $padding;
+  padding-bottom: $padding;
 }
 
 .activity-content {
-    display: inline-block;
-    vertical-align: top;
-    width: 70%;
-    padding: $padding;
-    .issues-found {
-        margin-bottom: 1em;
-    }
-    .activity-actions {
-        margin-top: 1em;
-        vertical-align: bottom;
-    }
+  display: inline-block;
+  vertical-align: top;
+  width: 70%;
+  padding: $padding;
+  .issues-found {
+    margin-bottom: 1em;
+  }
+  .activity-actions {
+    margin-top: 1em;
+    vertical-align: bottom;
+  }
 }
 
 .action {
-    padding-right: 1em;
+  padding-right: 1em;
 }
 
 .activity-photos {
-    padding: $padding;
-    display: inline-block;
-    width: 29%;
-    .img-container {
-        background-color: $palette1;
-        display: table-cell;
-        vertical-align: middle;
-       > img { 
-            display:block;
-            max-width: 100%;
-            margin: auto;
-       }
-    }
+  padding: $padding;
+  display: inline-block;
+  width: 29%;
 }
 
 $img-height: 3em;
 
 .user-image {
-    width: $img-height;
-    height: $img-height;
-    margin-right: 1em;
+  width: $img-height;
+  height: $img-height;
+  margin-right: 1em;
 }
 
 .comment-holder {
-    background-color: $border-color;
-    //$palette1;
-    .status-bar {
-        padding: 0.5em $padding;
-        border-bottom: 1px solid $main-background;
+  background-color: $border-color;
+  //$palette1;
+  .activity-status {
+    padding: 0.5em $padding;
+    border-bottom: 1px solid $main-background;
+  }
+  .comments {
+    .activity-bar:last-of-type {
+      margin-bottom: 0;
     }
-    .comments {
-        .activity-bar:last-of-type {
-            margin-bottom: 0;
-        }
-    }
-}
-
-.bbm-modal {
-    .owl-carousel {
-        width:95%;
-        margin: 0;
-        margin: 0 auto;
-    }
-    .item{
-        text-align: center;
-        .img-container {
-            width: inherit;
-       
-        > img {
-            max-height: 500px;
-            width: auto;
-            display: block;
-            margin: 0 auto;
-        }
-         }
-    }
+  }
 }
 
 .swiper-slide {
-    img {
-        width: 100%;
-        display: inline-block;
-        vertical-align: middle;
-    }
+  img {
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
 }
 
+.swiper-container {
+
+  .arrow {
+    color: white;
+    position: absolute;
+    top: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    z-index: 10;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+    width: 2em;
+    &.arrow-left {
+      left: 5px;
+    }
+    &.arrow-right {
+      right: 5px;
+      text-align: right;
+    }
+
+  }
+}
 
 @include swb-large {
-    .activity-content {
-        width: 65%;
-    }
-    .activity-photos {
-        width: 34%;
-    }
+  .activity-content {
+    width: 65%;
+  }
+  .activity-photos {
+    width: 34%;
+  }
 }
 
 @include swb-medium {
-    .activity-content, .activity-photos {
-        width: 100%;
-        margin-bottom: 1em;
-    }
+  .activity-content, .activity-photos {
+    width: 100%;
+    margin-bottom: 1em;
+  }
 }
 
-
-
 @include swb-small {
-    .activity-content, .activity-photos {
-        width: 100%;
-        margin-bottom: 1em;
-    }
+  .activity-content, .activity-photos {
+    width: 100%;
+    margin-bottom: 1em;
+  }
 }

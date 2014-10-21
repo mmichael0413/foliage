@@ -1,9 +1,12 @@
-<h1>Test</h1>
-<div class="owl-carousel owl-theme">
-    {{#each images}}
-    <div class="item">
-        <div class="img-container">
-            <img src="{{url}}" class="img-responsive " onerror="this.src='{{../content_image_error_url}}'"/>
-        </div>
+<div class="bbm-button close-modal"><i class="ic ic_x"></i></div>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        {{#each images}}
+            <div class="swiper-slide">
+                <img src="{{url}}" class="img-responsive " onerror="this.src='{{../content_image_error_url}}'"/>
+            </div>
+        {{/each}}
     </div>
-    {{/each}}
+    <div class="arrow arrow-left"><i class="ic ic_left"></i></div>
+    <div class="arrow arrow-right"><i class="ic ic_right"></i></div>
+</div>

@@ -19,6 +19,8 @@ require.config({
         'chartjs' : 'libs/Chart',
         'owl_carousel': 'libs/owl.carousel',
         'slick_carousel': 'libs/bower_components/slick.js/slick/slick',
+        'livestamp' : 'libs/livestamp.min',
+        'moment' : 'libs/moment',
         'chosen': "libs/bower_components/chosen/chosen.jquery"
     },
     shim: {
@@ -52,6 +54,10 @@ require.config({
         },
         "owl_carousel" : {
             exports: 'OwlCarousel'
+        },
+        "livestamp": {
+            deps: ["moment"],
+            exports: 'Livestamp'
         }
     }
 });

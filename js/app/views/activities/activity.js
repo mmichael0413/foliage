@@ -9,9 +9,8 @@ define(function(require) {
         Activity = require('app/models/activities/activity'),
         CommentsView = require('app/views/comments/comments'),
         NewCommentView = require('app/views/comments/new_comment'),
-        Like = require('app/models/activities/like'),
-        OwlCarousel = require('libs/owl.carousel'),
-        Carousel = require('libs/idangerous.swiper');
+        Like = require('app/models/activities/like');
+
 
 
     return Backbone.View.extend({
@@ -22,7 +21,9 @@ define(function(require) {
             'click .start-comment': 'focusComment',
             'click .more-comments': 'showAdditionalComments',
             'click .less-comments': 'hideAdditionalComments',
-            'click .owl-carousel img': 'openModal'
+           // 'click .swiper-container img': 'openModal',
+            "click .arrow-left" : "prevSlide",
+            "click .arrow-right" : "nextSlide"
         },
         initialize: function (options) {
             var self = this;
@@ -46,20 +47,7 @@ define(function(require) {
             }
 
             this.$el.html(this.template(this.model.attributes));
-            
-            this.carousel = this.$('.swiper-container').swiper({
-                mode:'horizontal',
-                loop: false,
-                calculateHeight: true,
-                resizeReInit: true,
-                roundLengths: true,
-                onInit: function(){ 
-                   console.log('Init');
-                    var height = self.$('.swiper-wrapper').height();
-                    self.$('.swiper-slide').css('line-height', height + 'px');
-                }
-            });
-          
+
             // render the comments view
             var c = this.$('.comments');
             this.comments = new CommentsView({el: c, activity: this.model, programId: this.programId});
@@ -123,34 +111,35 @@ define(function(require) {
                 context.trigger('activity:openModal', this.model);
             }
         },
-        closeModal: function (e) {
-            context.trigger('activity:closeModal');
+        prevSlide: function(e){
+            e.preventDefault();
+            this.carousel.slickPrev();
         },
-        onLoad: function (div) {
-
-            $(div).load(function(){
-                console.log('got here');
-                var height = $(div.currentTarget).height();
-                console.log(height);
-                var it = $(div.currentTarget).parents('.item');
-                if (it && it.height() > height) {
-
-                    // find all .items and set their height
-                    _.each(this.$('.item'), function(item){
-                        $(item).height(height);
-                    });
+        nextSlide: function(e){
+            e.preventDefault();
+            this.carousel.slickNext();
+        },
+        initializeCarousel: function(){
+            this.carousel = this.$el.find('.swiper-wrapper').slick({
+                draggable: false,
+                arrows: false,
+                onInit: function() {
+                    var height = self.$('.swiper-container').height();
+                    self.$('.swiper-slide').css('line-height', height + 'px');
+                },
+                onReInit: function(){
+                    var height = self.$('.swiper-wrapper').width();
+                    console.log(height);
+                    self.$('.swiper-slide').css('width', width + 'px');
                 }
             });
-
         },
-        initCarousel: function() {
-            if (this.carousel !== null) {
-    
-                var width = this.$('.activity-photos').width();
-               console.log('Width: ' + width);
-                this.$('swiper-side').width(width);
-               // this.carousel.resizeFix();
-            }
+        resizeCarousel: function(e) {
+           // this.carousel.unslick();
+           // this.$('.swiper-slide').removeAttr('style');
+           // this.initializeCarousel();
+
+            this.carousel.slickSetOption('a', 'b', true);
         }
     });
 });

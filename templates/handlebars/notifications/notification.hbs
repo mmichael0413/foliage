@@ -3,27 +3,27 @@
     <td class="<%= note.read ? 'read' : 'unread' %>">
         <p>
             {{{author_url}}}
-                    <span>
-                        {{verb}}
-                        {{#if_eq 'Comment' note_type}}
+                <span>
+                    {{verb}}
+                    {{#if_eq 'Comment' note_type}}
 
-                            {{#if_eq parent_type 'message'}}
-                                on
-                                {{#if_eq parent_user.id current_user}}
-                                    your
-                                {{else}}
-                                   {{{parent_user.url}}}
-                                {{/if_eq}}
-
-                                {{parent_type}}
+                        {{#if_eq parent_type 'message'}}
+                            on
+                            {{#if_eq parent_user.id current_user}}
+                                your
+                            {{else}}
+                               {{{parent_user.url}}}
                             {{/if_eq}}
+
+                            {{parent_type}}
                         {{/if_eq}}
-                        on {{created_at}}:
-                      </span>
+                    {{/if_eq}}
+                    on {{created_at}}:
+                </span>
         </p>
         {{{content}}}
         <div class="table-actions">
-            {{{activity_url}}}
+            {{{activity_url}}} | {{{delete_url}}}
         </div>
     </td>
 </tr>
