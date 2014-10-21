@@ -1,5 +1,7 @@
 define(function (require) {
-    var context = require('context');
+    var context = require('context'),
+        _ = require('underscore'),
+        PersonnelView = require('app/views/store_profile/personnel');
 
     /**
      * The main entry point for loading the JS needed for the store profile page
@@ -9,6 +11,8 @@ define(function (require) {
      */
     var main = {
         init: function () {
+            _.extend(context, window.bootstrap);
+            new PersonnelView().render();
         }
     };
     return main;

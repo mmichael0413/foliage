@@ -1,0 +1,18 @@
+{{#rows}}
+	<tr>
+		<td>{{name}}</td>
+		<td>{{role}}</td>
+		<td>
+		{{#if last_visited}}
+			<a href="{{links.last_checkin}}">Last Visit: {{last_visited}}</a></td>
+		{{else}}
+			No Checkins on Record
+		{{/if}}
+		</td>
+		
+	</tr>
+{{else}}
+	<tr>
+	<td colspan="3">There are no Personnel assigned to this store</td>
+	</tr>
+{{/rows}}
