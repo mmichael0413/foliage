@@ -4,7 +4,7 @@ define(function(require) {
         templates = require('handlebarsTemplates'),
         PersonnelCollection = Backbone.Collection.extend({
             url: function () {
-                return context.personnel.urls.personnel_url;
+                return context.personnel.links.self;
             }
         }),
 
@@ -13,7 +13,7 @@ define(function(require) {
          * 
          * @exports app/views/store_profile_personnel
          */
-        StorePersonnelView = {
+        StorePersonnelSectionView = {
             el: "#personnel",
 
             initialize: function () {
@@ -34,6 +34,6 @@ define(function(require) {
             }
         };
 
-        return Backbone.View.extend(StorePersonnelView);
+        return Backbone.View.extend(StorePersonnelSectionView);
         
 });

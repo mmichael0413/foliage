@@ -1375,6 +1375,50 @@ function program6(depth0,data) {
   else { return ''; }
   });
 
+this["ThirdChannel"]["templates"]["store_profile/profile_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n	<tr>\n		<td width=\"50%\">";
+  if (helper = helpers.ask) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.ask); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</td>\n		<td>\n			";
+  options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
+  if (helper = helpers.answers) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.answers); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.answers) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n		</td>\n	</tr>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "";
+  buffer += "\n				"
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + "\n			";
+  return buffer;
+  }
+
+function program4(depth0,data) {
+  
+  
+  return "\n\n";
+  }
+
+  options={hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),data:data}
+  if (helper = helpers.rows) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.rows); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),data:data}); }
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  });
+
 this["ThirdChannel"]["templates"]["stores/table_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};

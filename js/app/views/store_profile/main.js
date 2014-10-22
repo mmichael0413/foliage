@@ -1,7 +1,8 @@
 define(function (require) {
     var context = require('context'),
         _ = require('underscore'),
-        PersonnelView = require('app/views/store_profile/personnel');
+        PersonnelSectionView = require('app/views/store_profile/personnel'),
+        ProfileSectionView = require('app/views/store_profile/profile');
 
     /**
      * The main entry point for loading the JS needed for the store profile page
@@ -12,7 +13,8 @@ define(function (require) {
     var main = {
         init: function () {
             _.extend(context, window.bootstrap);
-            new PersonnelView().render();
+            new PersonnelSectionView().render();
+            new ProfileSectionView().render();
         }
     };
     return main;
