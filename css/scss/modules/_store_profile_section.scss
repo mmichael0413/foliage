@@ -1,14 +1,24 @@
 
 .store-profile-section {
+
+	.header {
+			font-size: 1rem;	
+	}
 	
 	.expand-indicator {
 		position: absolute;
 		right: 5%;
 	}
+	.activity-meta {
+		padding: 0em;
+	}
+	.body {
+		margin-top: 1em;
 
-	.btn {
-		vertical-align: top;
-		position: absolute;
-		right: 5%;
+
+		.item {
+			border-top: 1px solid $border-color;
+			padding: 1em 0em;
+		}
 	}
 }
