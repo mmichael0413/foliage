@@ -159,7 +159,7 @@ define(function(require){
 
     var initialize = function(){
         MainLayout.init();
-        new AppRouter();
+        context.router = new AppRouter();
         Backbone.history.start({pushState: true});
         
     };

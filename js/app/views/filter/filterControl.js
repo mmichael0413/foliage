@@ -181,6 +181,8 @@ define(function(require) {
         },
 
         broadCastQueryString: function () {
+            // update the url so that we can access the deep link later on
+            context.router.navigate(window.location.pathname +"?"+ this.$el.serialize(), {trigger: false});
             context.trigger('filter:query', this.$el.serialize());
         },
 
