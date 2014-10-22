@@ -1,7 +1,8 @@
 define(function(require) {
     var Backbone = require('backbone'),
         FormView = require('app/views/checkins/show/form'),
-        jqueryValidate = require('jquery-validate');
+        jqueryValidate = require('jquery-validate'),
+        s3UploaderView = require('app/views/s3uploader/file');
 
     return Backbone.View.extend({
         el: ".checkin",
@@ -13,6 +14,11 @@ define(function(require) {
         },
         render: function (options) {
             var self = this;
+
+            this.$el.find('.s3_uploader').each(function(){
+                new s3UploaderView().render(this);
+            });
+
             this.formView = new FormView(this.options).render().$el;
             this.formView.validate({
                 ignore: [],
