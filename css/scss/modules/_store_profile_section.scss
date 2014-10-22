@@ -8,6 +8,7 @@
 	.expand-indicator {
 		position: absolute;
 		right: 5%;
+		padding-right: 0;
 	}
 	.activity-meta {
 		padding: 0em;
@@ -23,7 +24,8 @@
 			padding: 1em 0em;
 		}
 	}
-	&.active {
+	&.expand-container {
+		&.active {
 		.body {
 			/** Something beyond which it will ever reach **/
 	    	max-height: 50em;
@@ -31,14 +33,16 @@
 		.expand-indicator {
 			@extend .ic_up;
 		}
+	}				
 	}
+
+	
 }
 
 @include swb-medium {
-	.store-profile-section {
-
+	.store-profile-section.expand-container {
 		.expand-indicator {
-			@extend .ic_up;
+		/*	@extend .ic_up;*/
 		}
 	 	.body {
 	 		max-height: 50em;
@@ -48,7 +52,7 @@
         		max-height: 0em;
         	}
         	.expand-indicator {
-        		@extend .ic_down;
+        		/*@extend .ic_down;*/
         	}
         }	
     }
