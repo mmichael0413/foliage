@@ -1040,6 +1040,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 .ic_store:before,
 .ic_up:before,
 .expand-indicator.open:before,
+.store-profile-section.active .expand-indicator:before,
 .ic_upload:before,
 .ic_x:before {
   display: inline-block;
@@ -1139,7 +1140,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 .ic_store:before {
   content: "\f1a6"; }
 
-.ic_up:before, .expand-indicator.open:before {
+.ic_up:before, .expand-indicator.open:before, .store-profile-section.active .expand-indicator:before {
   content: "\f1a7"; }
 
 .ic_upload:before {
@@ -2026,10 +2027,11 @@ input[type="file"]::-webkit-file-upload-button {
   .expanding-row-container .expanding-row {
     overflow: hidden;
     max-height: 0;
-    /* Set our transitions up. */
-    -webkit-transition: max-height 0.8s;
-    -moz-transition: max-height 0.8s;
-    transition: max-height 0.8s; }
+    -webkit-transition: max-height, 0.8s;
+    -moz-transition: max-height, 0.8s;
+    -ms-transition: max-height, 0.8s;
+    -o-transition: max-height, 0.8s;
+    transition: max-height, 0.8s; }
   .expanding-row-container.open {
     padding: inherit; }
     .expanding-row-container.open .expanding-row {
@@ -2101,11 +2103,26 @@ input[type="file"]::-webkit-file-upload-button {
 .store-profile-section .activity-meta {
   padding: 0em; }
 .store-profile-section .body {
-  margin-top: 1em; }
+  margin-top: 1em;
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: max-height, 0.8s;
+  -moz-transition: max-height, 0.8s;
+  -ms-transition: max-height, 0.8s;
+  -o-transition: max-height, 0.8s;
+  transition: max-height, 0.8s; }
   .store-profile-section .body .item {
     border-top: 1px solid #e3e8ec;
     padding: 1em 0em; }
+.store-profile-section.active .body {
+  /** Something beyond which it will ever reach **/
+  max-height: 50em; }
 
+@media only screen and (max-width: 48em) {
+  .store-profile-section .body {
+    max-height: 50em; }
+  .store-profile-section.active .body {
+    max-height: 0em; } }
 /* Slider */
 .slick-slider {
   position: relative;

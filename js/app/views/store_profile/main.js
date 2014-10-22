@@ -1,7 +1,8 @@
 define(function (require) {
     var context = require('context'),
         _ = require('underscore'),
-        PersonnelSectionView = require('app/views/store_profile/personnel');
+        PersonnelSectionView = require('app/views/store_profile/personnel'),
+        ExpandWrapperView = require('app/views/utils/expandWrapperView');
 
     /**
      * The main entry point for loading the JS needed for the store profile page
@@ -13,6 +14,8 @@ define(function (require) {
         init: function () {
             _.extend(context, window.bootstrap);
             new PersonnelSectionView().render();
+            var wrapper = new ExpandWrapperView();
+            wrapper.setElement('#site-canvas').render();
         }
     };
     return main;
