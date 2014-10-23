@@ -33,6 +33,7 @@ define(function(require) {
             }});
             return this;
         },
+
         constructView: function(model) {
             var self = this;
             this.$el.html(self.template(model.toJSON()));

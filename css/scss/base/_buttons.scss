@@ -73,4 +73,8 @@
     &.light {
         @include btn-details($medium-blue);
     }
+    &.text-same-color {
+        @include btn-details($medium-blue);
+        color: $medium-blue;
+    }
 }

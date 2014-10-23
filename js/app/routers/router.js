@@ -7,6 +7,7 @@ define(function(require){
         MainLayout = require('app/views/layout/main'),
         GlobalView = require('app/views/activities/global'),
         ActivitiesView = require('app/views/activities/activities'),
+        CheckinsView = require('app/views/checkins/checkin'),
         TeamsMain = require('app/views/teams/main'),
         StoresMain = require('app/views/stores/main'),
         StoreProfileMain = require('app/views/store_profile/main'),
@@ -17,22 +18,17 @@ define(function(require){
         CheckinReportView = require('app/views/reports/checkins/show/report'),
         ReportInfoView = require('app/views/reports/info/show/info_list'),
         ContentView = require('app/views/global/content_view'),
-
         NotificationSectionView = require('app/views/notifications/notification_section'),
         ShippingView = require('app/views/legal/shipping');
 
-    // Small hack to add a before and after function to the Router
-
-
-    //var AppRouter = Backbone.Router.extend({
     var AppRouter = require('app/routers/contextAwareBaseRouter').extend({
         routes: {
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
-            'programs/:program_id/teams(/)': 'teams',
-            'programs/:program_id/stores(/)': 'stores',
-            'programs/:program_id/stores/:store_id(/)': 'store_profile',
+            'programs/:program_id/checkins' : 'checkin_list',
+            'programs/:program_id/teams': 'teams',
+            'programs/:program_id/stores': 'stores',
             'programs/:program_id/checkins/:id': 'checkin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
@@ -45,7 +41,7 @@ define(function(require){
 
             '*path': 'notFound'
         },
-
+        // Small hack to add a before and after function to the Router
         /**
          * A before filter for this router. Currently only sets the program id, but attaches the requestArguments, in order
          * of the filter.
@@ -84,6 +80,10 @@ define(function(require){
                 programId: program_id
             });
             activitiesView.fetch();
+        },
+
+        checkin_list: function (program_id, user_id){
+            CheckinsView.init();
         },
 
         teams: function () {

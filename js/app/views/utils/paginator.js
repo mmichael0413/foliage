@@ -22,6 +22,7 @@ define(function(require) {
                 url: self.url + "?" + qs
             })
             .done(function (html) {
+                    console.log("Here I am");
                 self.$el.html(html);
             });
         },
