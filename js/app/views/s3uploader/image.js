@@ -18,7 +18,7 @@ define(function(require) {
             return this;
         },
         updated: function (e) {
-            this.model.set({label: ((this.captionPrefix !== undefined) ? this.captionPrefix + ": " + e.target.value : e.target.value)});
+            this.model.set({label: ((this.model.get('captionPrefix') !== undefined) ? this.model.get('captionPrefix') + ": " + e.target.value : e.target.value)});
             context.trigger('file:updated', this.model);
         },
         deleted: function (e) {

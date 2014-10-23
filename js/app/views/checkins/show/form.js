@@ -1,5 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        context = require('context'),
         FormModel = require('app/models/checkins/show/form'),
         SerializeObject = require('serializeObject'),
         Chosen = require('chosen'),
@@ -21,6 +22,9 @@ define(function(require) {
             this.model = new FormModel(options);
             this.inventoryTotal = this.$el.find('input.inventory-total');
             this.inventories = this.$el.find('input.inventory');
+            this.listenTo(context, 'file:added', this.imageAdded);
+            this.listenTo(context, 'file:updated', this.imageUpdated);
+            this.listenTo(context, 'file:deleted', this.imageDeleted);
         },
         render :function () {
             this.$el.find('select').chosen({disable_search: true, width: "100%"});
@@ -58,6 +62,33 @@ define(function(require) {
         hideElement: function (e, data) {
             var $elem = this.$el.find(e.currentTarget);
             this.$el.find($elem.data('hide-element')).hide('fast', "linear").val('').trigger('change');
+        },
+        imageAdded: function (model) {
+            var input = this.$el.find('#'+model.get('inputId'));
+            var images = input.val() ? JSON.parse(input.val()) : [];
+            images.push({tempLocation: model.get('s3location'), label: model.get('label')});
+            input.val(JSON.stringify(images));
+            context.trigger('hidden:update');
+        },
+        imageUpdated: function (model) {
+            var input = this.$el.find('#'+model.get('inputId'));
+            var images = JSON.parse(input.val());
+            images = images.map(function (el) {
+                if (el.tempLocation === model.get('s3location')) {
+                    el.label = model.get('label');
+                }
+                return el;
+            });
+            input.val(JSON.stringify(images));
+            context.trigger('hidden:update');
+        },
+        imageDeleted: function (model) {
+            var input = this.$el.find('#'+model.get('inputId'));
+            var images = JSON.parse(input.val());
+            var index = images.indexOf({tempLocation: model.get('s3location'), label: model.get('label')});
+            images.splice(index, 1);
+            input.val(JSON.stringify(images));
+            context.trigger('hidden:update');
         }
     });
 });

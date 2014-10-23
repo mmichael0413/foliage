@@ -31,7 +31,7 @@ define(function(require) {
                     self.viewer.append(new UploadView({model: model, source: event.target.result}).render().$el);
                     model.save({file: file})
                          .success(function () {
-                            model.set({source: event.target.result, inputId: self.$el.data('input'), captionPrefix: self.$el.data('caption-prefix')});
+                            model.set({source: event.target.result, inputId: self.$el.data('input'), captionPrefix: self.$el.data('caption-prefix'), label: self.$el.data('caption-prefix')});
                             self.fileUploaded(model);
                          });
                     self.clearFileInput();

@@ -5,7 +5,7 @@ define(function(require) {
     return Backbone.View.extend({
         template: HandlebarsTemplates['s3uploader/upload'],
         events: {
-            "click .cancel" : "cleanup"
+            "click .cancel" : "cancel"
         },
         initialize: function (options) {
             this.source = options.source;
@@ -23,8 +23,11 @@ define(function(require) {
             this.progressBar.width(data+'%');
             this.percentage.text(data+'%');
         },
-        cleanup: function(e) {
+        cancel: function(e) {
             this.model.abort();
+            this.cleanup(e);
+        },
+        cleanup: function(e) {
             this.remove();
         }
     });

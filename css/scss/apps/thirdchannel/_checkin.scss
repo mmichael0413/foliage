@@ -42,13 +42,14 @@
     p:empty {
       margin-top: -2em;
     }
+  }
 
-    &.error {
+  .error {
+    color: $red;
+
+    input[type=text], input[type=password], input[type=number], textarea, .chosen-choices, input[type="file"]::-webkit-file-upload-button {
+      border-color: $red;
       color: $red;
-
-      input[type=text], input[type=password], input[type=number], textarea, .chosen-choices {
-        border-color: $red;
-      }
     }
   }
 
