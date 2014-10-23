@@ -3073,6 +3073,43 @@ input[type="file"]::-webkit-file-upload-button {
     color: #f15f51; }
     .checkin .question.error input[type=text], .checkin .question.error input[type=password], .checkin .question.error input[type=number], .checkin .question.error textarea, .checkin .question.error .chosen-choices {
       border-color: #f15f51; }
+.checkin .viewer {
+  position: relative; }
+  .checkin .viewer .holder {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    overflow: auto;
+    width: 100%; }
+  .checkin .viewer .image {
+    max-width: 5em;
+    max-height: 5em; }
+    .checkin .viewer .image img {
+      display: block;
+      max-width: 100%;
+      height: auto; }
+  .checkin .viewer .description {
+    margin-left: 6rem;
+    margin-right: 10rem; }
+  .checkin .viewer .delete {
+    float: right;
+    margin-top: 1.5rem; }
+  @media only screen and (max-width: 48em) {
+    .checkin .viewer .description {
+      margin-right: 3rem; }
+    .checkin .viewer .delete span {
+      display: none; } }
+  .checkin .viewer .progress, .checkin .viewer .percentage {
+    margin-left: 6rem;
+    margin-right: 11rem; }
+  .checkin .viewer .progress {
+    height: 2rem;
+    border: 1px solid #e3e8ec;
+    border-radius: 0.25rem;
+    overflow: hidden; }
+    .checkin .viewer .progress .bar {
+      width: 0%;
+      height: 100%;
+      background-color: #9fb2c0; }
 .checkin .checkin-form-btn {
   margin-bottom: 2em; }
 .checkin .expanding-wrapper {

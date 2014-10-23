@@ -34,17 +34,23 @@ define(function(require){
                         var xhr = $.ajaxSettings.xhr();
                         xhr.upload.onprogress = function(event) {
                             if (event.lengthComputable) {
-                                model.trigger('progress', (event.loaded / event.total) * 100);
+                                model.trigger('progress', ((event.loaded / event.total) * 100).toFixed(2));
                             }
                         };
                         xhr.upload.onload = function(){
-                            model.trigger('progress', 100);
+                            model.trigger('complete', 100);
                         };
                         return xhr;
                     }
                 });
             }
-            return Backbone.sync.call(this, method, model, options);
+            this._xhr = Backbone.sync.call(this, method, model, options);
+
+            return this._xhr;
+        },
+        abort: function () {
+            this._xhr.abort();
         }
+
     });
 });
