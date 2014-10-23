@@ -27,8 +27,10 @@ define(function(require){
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
             'programs/:program_id/checkins' : 'checkin_list',
-            'programs/:program_id/teams': 'teams',
-            'programs/:program_id/stores': 'stores',
+            'programs/:program_id/teams(/)': 'teams',
+            'programs/:program_id/stores(/)': 'stores',
+            'programs/:program_id/stores/:store_id(/)': 'storeProfile',
+            'programs/:program_id/stores/:store_id/activity': 'storeProfileActivity',
             'programs/:program_id/checkins/:id': 'checkin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
@@ -51,9 +53,9 @@ define(function(require){
          * 
          * @param  {string} program_id [description]
          */
-        before: function (program_id) {
+        before: function (parameters) {
             // in addition, the router stuffs all arguments as a list on context.requestParameters;
-            context.program_id = program_id;
+            context.programId = parameters[0];
         },
 
         activitiesFeed: function(program_id){
@@ -94,9 +96,12 @@ define(function(require){
             StoresMain.init();
         },
 
-        store_profile: function (programId, storeId) {
-            window.context = context;
+        storeProfile: function () {
             StoreProfileMain.init();
+        },
+
+        storeProfileActivity: function () {
+            StoreProfileMain.activity();
         },
 
         programProfile: function(program_id, user_id) {
@@ -159,8 +164,9 @@ define(function(require){
 
     var initialize = function(){
         MainLayout.init();
-        new AppRouter();
+        context.router = new AppRouter();
         Backbone.history.start({pushState: true});
+        
         
     };
     return {

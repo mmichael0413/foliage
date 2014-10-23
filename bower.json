@@ -1,9 +1,11 @@
 {
     "name": "foliage",
     "version": "0.0.1",
-    "homepage": "https://www.none",
+    "homepage": "https://www.thirdchannel.com",
     "authors": [
-        "Matthew Little <matt@thethirdchannel.com>"
+        "Matthew Little <matt@thethirdchannel.com>",
+        "Steve Pember <steve@thirdchannel.com>",
+        "Andrew Croswell <andrew@thirdchannel.com>"
     ],
     "description": "ThirdChannel core JS/CSS",
     "license": "MIT",

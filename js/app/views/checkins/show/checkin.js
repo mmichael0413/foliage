@@ -1,7 +1,9 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        context = require('context'),
         FormView = require('app/views/checkins/show/form'),
-        jqueryValidate = require('jquery-validate');
+        jqueryValidate = require('jquery-validate'),
+        s3UploaderView = require('app/views/s3uploader/file');
 
     return Backbone.View.extend({
         el: ".checkin",
@@ -10,9 +12,15 @@ define(function(require) {
         },
         initialize: function (options) {
             this.options = options;
+            this.listenTo(context, 'file:added', this.addImage);
         },
         render: function (options) {
             var self = this;
+
+            this.$el.find('.body.images').each(function(){
+                new s3UploaderView().render(this);
+            });
+
             this.formView = new FormView(this.options).render().$el;
             this.formView.validate({
                 ignore: [],
@@ -30,6 +38,9 @@ define(function(require) {
             if (this.formView.valid()) {
                 this.formView.submit();
             }
+        },
+        addImage: function(data) {
+            //alert('test');
         }
     });
 });
