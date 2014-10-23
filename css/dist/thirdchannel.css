@@ -2117,13 +2117,13 @@ input[type="file"]::-webkit-file-upload-button {
     padding: 1em 0em; }
 .store-profile-section.expand-container.active .body {
   /** Something beyond which it will ever reach **/
-  max-height: 50em; }
+  max-height: 5000px; }
 
 @media only screen and (max-width: 48em) {
   .store-profile-section.expand-container .expand-indicator {
     /*	@extend .ic_up;*/ }
   .store-profile-section.expand-container .body {
-    max-height: 50em; }
+    max-height: 5000px; }
   .store-profile-section.expand-container.active .body {
     max-height: 0em; }
   .store-profile-section.expand-container.active .expand-indicator {

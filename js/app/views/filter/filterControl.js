@@ -82,9 +82,7 @@ define(function(require) {
             this.listenTo(context, 'filter:request', this.handleFilterRequest);
             this.listenTo(context, 'filter:request:queryString', this.handleFilterRequestQueryString);
             this.listenTo(context, 'filter:set', this.setFromExternal);
-            this.listenTo(context, 'popstate', function (e) {
-                console.log(e);
-            });
+            
             // finally, check if we should Trigger the filter. This is done down here to avoid
             // repeated triggerings if we checked this in the while loop.
             if (shouldTrigger) {
