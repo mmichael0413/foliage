@@ -1,6 +1,7 @@
 .alert {
   padding: 1em;
   margin-bottom: 1.5em;
+  border-radius: $border-radius-base;
   .alert {
     $dark-link-color: darken($link-color, 10%);
     color: $dark-link-color;
@@ -63,5 +64,11 @@
     position: absolute;
     right: 1em;
     top: 1em;
+  }
+}
+
+.alert-string {
+  &.error {
+    color: $link-color;
   }
 }

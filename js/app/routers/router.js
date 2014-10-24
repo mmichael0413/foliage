@@ -19,7 +19,8 @@ define(function(require){
         ReportInfoView = require('app/views/reports/info/show/info_list'),
         ContentView = require('app/views/global/content_view'),
         NotificationSectionView = require('app/views/notifications/notification_section'),
-        ShippingView = require('app/views/legal/shipping');
+        ShippingView = require('app/views/legal/shipping'),
+        PostView = require('app/views/posts/main');
 
     var AppRouter = require('app/routers/contextAwareBaseRouter').extend({
         routes: {
@@ -40,6 +41,7 @@ define(function(require){
             'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
             'programs/:program_id/notifications' : 'notificationList',
             'programs/:program_id/legal/shipping' : 'shippingForm',
+            'programs/:program_id/messages/new' : 'newPost',
 
             '*path': 'notFound'
         },
@@ -152,6 +154,11 @@ define(function(require){
 
         shippingForm: function(){
             ShippingView.init();
+        },
+
+        newPost: function(){
+            new PostView();
+
         },
 
         notFound: function(){

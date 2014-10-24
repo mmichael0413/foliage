@@ -235,7 +235,7 @@ ul.list {
   background: none;
   border-radius: 5px;
   padding: 2px 6px;
-  font-size: 1.2em;
+  font-size: 1.0em;
   vertical-align: middle; }
   .btn.default {
     border-color: #434748;
@@ -636,7 +636,7 @@ ul.list {
   @media only screen and (max-width: 35.5em) {
     .navigation .nav-item.minor-s {
       display: none; } }
-.navigation .notify .ic {
+.navigation .notify .ic, .navigation .notify .link {
   color: #F4816B; }
 
 .nav {

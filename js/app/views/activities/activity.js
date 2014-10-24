@@ -21,7 +21,7 @@ define(function(require) {
             'click .start-comment': 'focusComment',
             'click .more-comments': 'showAdditionalComments',
             'click .less-comments': 'hideAdditionalComments',
-           // 'click .swiper-container img': 'openModal',
+            'click .swiper-container img': 'openModal',
             "click .arrow-left" : "prevSlide",
             "click .arrow-right" : "nextSlide"
         },

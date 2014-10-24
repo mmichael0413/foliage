@@ -23,7 +23,8 @@ require.config({
         'moment' : 'libs/moment',
         'chosen': "libs/bower_components/chosen/chosen.jquery",
         'jquery-validate' : 'libs/bower_components/jquery-validation/dist/jquery.validate',
-        'serializeObject' : "libs/bower_components/jquery-serialize-object/jquery.serialize-object"
+        'serializeObject' : "libs/bower_components/jquery-serialize-object/jquery.serialize-object",
+        'quill' : 'libs/bower_components/quill/dist/quill.min'
     },
     shim: {
         "jquery": {
@@ -46,7 +47,7 @@ require.config({
             deps: ["handlebars", "handlebarsHelpers"],
             exports: "HandlebarTemplates"
         },
-        
+
         "backbone.paginator" : {
             deps: ["backbone"]
         },

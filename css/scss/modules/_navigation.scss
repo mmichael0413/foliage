@@ -38,8 +38,10 @@
             }
         }
     }
-    .notify .ic {
-      color: #F4816B;
+    .notify {
+      .ic, .link {
+        color: #F4816B;
+      }
     }
 }
 

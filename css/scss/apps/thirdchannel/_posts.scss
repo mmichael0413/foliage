@@ -1,0 +1,35 @@
+
+.send-to{
+  .form-group {
+    margin-bottom: 2em;
+  }
+  > div {
+    width: 32.9%;
+    display: inline-block;
+    padding: 0 1em;
+    vertical-align: top;
+    &:first-of-type {
+      padding: 0;
+    }
+  }
+}
+
+.editor-container {
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
+  margin-bottom: 2em;
+  &.error {
+    border-color: $link-color;
+  }
+  //  height: 20em;
+  iframe {
+    height: 22em;
+  }
+}
+.ql-toolbar-container {
+  border-bottom: 1px solid $border-color;
+}
+
+.chosen-choices.error {
+  border-color: $link-color;
+}
