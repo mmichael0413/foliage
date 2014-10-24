@@ -15,9 +15,16 @@ define(function(require) {
         initialize: function (options) {
         },
         render: function (element) {
+            var self = this;
             this.setElement(element);
             this.form = this.$el.find('form.s3_uploader');
             this.viewer = this.$el.find('.viewer');
+            this.fileInput = this.$el.find("input:file");
+
+            this.$el.find('.holder').each(function(){
+                new ImageView({model: new Backbone.Model().set({input: self.$el.data('input')})}).render(this);
+            });
+
             return this;
         },
         fileChanged: function (e) {
@@ -27,11 +34,11 @@ define(function(require) {
             if (file !== undefined) {
                 var reader = new FileReader();
                 reader.onload = (function (event) {
-                    var model = new FileModel({url: self.form.attr('action'), policy: self.form.serializeObject()});
-                    self.viewer.append(new UploadView({model: model, source: event.target.result}).render().$el);
+                    var model = new FileModel({url: self.form.attr('action'), policy: self.form.serializeObject(), source: event.target.result, input: self.$el.data('input')});
+                    self.viewer.append(new UploadView({model: model}).render().$el);
                     model.save({file: file})
                          .success(function () {
-                            model.set({source: event.target.result, inputId: self.$el.data('input'), captionPrefix: self.$el.data('caption-prefix'), label: self.$el.data('caption-prefix')});
+                            model.set({source: event.target.result});
                             self.fileUploaded(model);
                          });
                     self.clearFileInput();
@@ -44,8 +51,7 @@ define(function(require) {
             this.viewer.append(new ImageView({model: model}).render().$el);
         },
         clearFileInput: function () {
-            var input = this.$el.find("input:file");
-            input.replaceWith(input.val('').clone(true));
+            this.fileInput.replaceWith(this.fileInput.val('').clone(true));
         }
     });
 });

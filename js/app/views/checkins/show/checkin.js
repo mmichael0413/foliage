@@ -3,7 +3,7 @@ define(function(require) {
         context = require('context'),
         FormView = require('app/views/checkins/show/form'),
         jqueryValidate = require('jquery-validate'),
-        s3UploaderView = require('app/views/s3uploader/file');
+        UploaderView = require('app/views/s3uploader/file');
 
     return Backbone.View.extend({
         el: ".checkin",
@@ -16,19 +16,10 @@ define(function(require) {
         },
         render: function (options) {
             var self = this;
-
-            this.$el.find('.body.images').each(function(){
-                new s3UploaderView().render(this);
-            });
-
-
-
-
             this.formView = new FormView(this.options).render().$el;
             this.validator = this.formView.validate({
                 ignore: [],
-                errorPlacement: function (error, element) {
-                },
+                errorPlacement: function (error, element) {},
                 highlight: function (element, errorClass, validClass) {
                     var validator = this;
                     var input = self.formView.find(element),
@@ -55,6 +46,10 @@ define(function(require) {
 
                     input.removeClass(errorClass).addClass(validClass);
                 }
+            });
+
+            this.$el.find('.body.images').each(function(){
+                new UploaderView().render(this);
             });
 
             return this;

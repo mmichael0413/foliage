@@ -5,7 +5,10 @@ define(function (require) {
         $ = require('jquery'),
         ActivitiesView = require('app/views/activities/activities'),
         PersonnelSectionView = require('app/views/store_profile/personnel'),
-        ExpandWrapperView = require('app/views/utils/expandWrapperView');
+        AlertsSectionView = require('app/views/store_profile/alerts'),
+        ExpandWrapperView = require('app/views/utils/expandWrapperView'),
+        OpenAlertsView = require('app/views/store_profile/openAlerts'),
+        ResolvedAlertsView = require('app/views/store_profile/resolvedAlerts');
 
     /**
      * The main entry point for loading the JS needed for the store profile page
@@ -15,13 +18,13 @@ define(function (require) {
      */
     var main = {
         init: function () {
-            console.log("Hi!");
             _.extend(context, window.bootstrap);
             new PersonnelSectionView().render();
+            new AlertsSectionView().render();
             var wrapper = new ExpandWrapperView();
             wrapper.setElement('#site-canvas').render();
             
-            $('#images .body').slick({
+            $('#images .image-container').slick({
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 centerMode: true,
@@ -36,6 +39,11 @@ define(function (require) {
                     programId: context.programId                        
                 });
             activitiesView.fetch();
+        },
+        history: function () {
+            _.extend(context, window.bootstrap);
+            new OpenAlertsView({count:window.bootstrap.open.count}).collection.reset(window.bootstrap.open.items);
+            new ResolvedAlertsView({count:window.bootstrap.resolved.count}).collection.reset(window.bootstrap.resolved.items);
         }
     };
     return main;
