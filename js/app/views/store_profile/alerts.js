@@ -3,12 +3,16 @@ define(function (require) {
 		context = require('context'),
 		Backbone = require('backbone'),
 
-		AlertsTrackingView = {
+		AlertsTrackingView = SectionLoaderView.extend({
 			el: '#alerts',
 			
 			collectionClass: Backbone.Collection.extend({
 				url: function () {
 					return context.alerts.links.open;
+				},
+				parse: function (response) {
+					this.count = response.count;
+					return response.items;
 				}
 			}),
 			
@@ -16,9 +20,12 @@ define(function (require) {
 			
 			additionalData: function () {
 				return context.alerts;
-			}
-		};
+			},
+			afterRender: function () {
+                this.$el.find('.counter').text(this.collection.count + " ");
+            }
+		});
 	
-	return SectionLoaderView.extend(AlertsTrackingView);
+	return AlertsTrackingView;
 
 });

@@ -6,7 +6,9 @@ define(function (require) {
         ActivitiesView = require('app/views/activities/activities'),
         PersonnelSectionView = require('app/views/store_profile/personnel'),
         AlertsSectionView = require('app/views/store_profile/alerts'),
-        ExpandWrapperView = require('app/views/utils/expandWrapperView');
+        ExpandWrapperView = require('app/views/utils/expandWrapperView'),
+        OpenAlertsView = require('app/views/store_profile/openAlerts'),
+        ResolvedAlertsView = require('app/views/store_profile/resolvedAlerts');
 
     /**
      * The main entry point for loading the JS needed for the store profile page
@@ -37,6 +39,11 @@ define(function (require) {
                     programId: context.programId                        
                 });
             activitiesView.fetch();
+        },
+        history: function () {
+            _.extend(context, window.bootstrap);
+            new OpenAlertsView({count:window.bootstrap.open.count}).collection.reset(window.bootstrap.open.items);
+            new ResolvedAlertsView({count:window.bootstrap.resolved.count}).collection.reset(window.bootstrap.resolved.items);
         }
     };
     return main;

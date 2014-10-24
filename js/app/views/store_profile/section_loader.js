@@ -29,14 +29,18 @@ define(function(require) {
 				});
 		},
 
-		success: function (rows) {
-			var data = {rows: rows};
+		success: function () {
+			var data = {rows: this.collection.toJSON()};
 			_.extend(data, this.additionalData());
 			this.$el.find('.body').html(templates[this.rowsTemplate](data));
+			this.afterRender();
 		},
+
+		afterRender: function () {},
 
 		failure: function () {
 			this.$el.find('.body').html(this.failHTML);
+			this.afterRender();
 		},
 		/**
 		 * Used by the subclassed Views to affix additional data into the object injected into the Handlebars Template.

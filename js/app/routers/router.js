@@ -31,6 +31,7 @@ define(function(require){
             'programs/:program_id/stores(/)': 'stores',
             'programs/:program_id/stores/:store_id(/)': 'storeProfile',
             'programs/:program_id/stores/:store_id/activity': 'storeProfileActivity',
+            'programs/:program_id/stores/:store_id/history': 'storeProfileHistory',
             'programs/:program_id/checkins/:id': 'checkin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
@@ -102,6 +103,10 @@ define(function(require){
 
         storeProfileActivity: function () {
             StoreProfileMain.activity();
+        },
+
+        storeProfileHistory: function () {
+            StoreProfileMain.history();
         },
 
         programProfile: function(program_id, user_id) {

@@ -12,6 +12,8 @@ define(function(require) {
 
         collectionClass: undefined,
         template: '',
+        loadingHTML: "<tr><td><i class='fa fa-spin fa-spinner'></i></td></tr>",
+        bodySelector: 'tbody',
 
         events: {
           'click .sortable-column-header': '_applySortableColumn'
@@ -32,12 +34,12 @@ define(function(require) {
 
         render: function () {
 
-            var $tbody = this.$el.find('tbody'),
+            var $tbody = this.$el.find(this.bodySelector),
                 data = {
                     rows: this.collection.toJSON()
                 };
-
-            $tbody.html("<tr><td><i class='fa fa-spin fa-spinner'></i></td></tr>");
+            
+            $tbody.html(this.loadingHTML);
 
             $tbody.html(HandlebarsTemplates[this.template](data));
             return this;
@@ -48,8 +50,8 @@ define(function(require) {
             // backbone will automatically trigger the redrawing of the
             // members
             
-            var $tbody = this.$('tbody');
-            $tbody.html("<tr><td><i class='fa fa-spin fa-spinner'></i></td></tr>");
+            var $tbody = this.$(this.bodySelector);
+            $tbody.html(this.loadingHTML);
 
 
             this.collection.queryString = qs;
