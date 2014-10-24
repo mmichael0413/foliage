@@ -1512,6 +1512,45 @@ input[type="file"]::-webkit-file-upload-button {
       @media only screen and (max-width: 48em) {
         .btn.light span {
           display: none; } }
+  .btn.text-same-color {
+    border-color: #9fb2c0;
+    color: #9fb2c0;
+    color: #9fb2c0; }
+    @media only screen and (max-width: 48em) {
+      .btn.text-same-color {
+        text-align: center; } }
+    .btn.text-same-color:hover {
+      background-color: #9fb2c0;
+      color: white; }
+    .btn.text-same-color.solid {
+      font-size: inherit;
+      padding: 2px 1em;
+      background-color: #9fb2c0;
+      font-weight: bold;
+      color: white; }
+      .btn.text-same-color.solid:hover {
+        background: #8099ac;
+        border-color: #8099ac; }
+      @media only screen and (max-width: 48em) {
+        .btn.text-same-color.solid {
+          min-width: 2.2em;
+          padding: 2px 6px; } }
+    .btn.text-same-color:focus {
+      outline: none; }
+    .btn.text-same-color.enabled {
+      background-color: #9fb2c0;
+      color: white; }
+    .btn.text-same-color.small {
+      margin: 0 0.75em;
+      margin-left: 0;
+      padding: 0 0.45em;
+      font-size: 0.75em; }
+    .btn.text-same-color span {
+      padding-left: .5em;
+      font-size: .9em; }
+      @media only screen and (max-width: 48em) {
+        .btn.text-same-color span {
+          display: none; } }
 
 *, *:before, *:after {
   -moz-box-sizing: border-box;

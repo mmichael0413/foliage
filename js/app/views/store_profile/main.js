@@ -5,6 +5,7 @@ define(function (require) {
         $ = require('jquery'),
         ActivitiesView = require('app/views/activities/activities'),
         PersonnelSectionView = require('app/views/store_profile/personnel'),
+        AlertsSectionView = require('app/views/store_profile/alerts'),
         ExpandWrapperView = require('app/views/utils/expandWrapperView');
 
     /**
@@ -15,13 +16,13 @@ define(function (require) {
      */
     var main = {
         init: function () {
-            console.log("Hi!");
             _.extend(context, window.bootstrap);
             new PersonnelSectionView().render();
+            new AlertsSectionView().render();
             var wrapper = new ExpandWrapperView();
             wrapper.setElement('#site-canvas').render();
             
-            $('#images .body').slick({
+            $('#images .image-container').slick({
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 centerMode: true,

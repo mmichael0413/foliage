@@ -1438,6 +1438,47 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["store_profile/alerts_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n	<div class=\"item pure-g\">\n		<p class=\"col-6-12 col-md-1-2\">";
+  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n		<p class=\"col-4-12 col-md-1-2\">";
+  if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n		<div class=\"col-1-12\">\n			<a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.resolve)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" class=\"btn primary\"><i class=\"ic fa ic_check\"></i></a>\n		</div>\n		<div class=\"col-1-12\">\n			<a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.checkin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" class=\"btn primary\"><i class=\"ic fa ic_report-16\"></i></a>\n		</div>\n	</div>\n";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  
+  return "\n	<p>There are no Open Alerts for this Store</p>\n";
+  }
+
+  options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
+  if (helper = helpers.rows) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.rows); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n<div class=\"item\"><a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.history)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">View Alert History</a></div>";
+  return buffer;
+  });
+
 this["ThirdChannel"]["templates"]["store_profile/personnel_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -1454,7 +1495,7 @@ function program1(depth0,data) {
   if (helper = helpers.role) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.role); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n		<p class=\"col-1-3 col-md-1\">\n			";
+    + "</p>\n		<p class=\"col-1-3 col-md-1\">\n		";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.last_visited), {hash:{},inverse:self.program(4, program4, data),fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "			\n		</p>\n	</div>\n";
