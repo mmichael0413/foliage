@@ -1454,11 +1454,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\" holder\">\n    <div>\n        <div class=\"image pull-left\">\n            <img src=\"";
+  buffer += "<div class=\" holder\">\n    <div>\n        <div class=\"image\">\n            <img src=\"";
   if (helper = helpers.source) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.source); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" data-id=\"63840\" alt=\"Image\" >\n        </div>\n        <div class=\"delete\">\n            <button class=\"btn primary btn-delete\"><i class=\"ic fa ic_x\"></i><span>Delete Image</span></button>\n        </div>\n\n        <div class=\"description\">\n            <label>Description: </label>\n            <input type=\"text\" name=\"description\">\n        </div>\n    </div>\n</div>\n";
+    + "\" alt=\"Image\" >\n        </div>\n        <div class=\"delete\">\n            <button class=\"btn primary\"><i class=\"ic ic_x\"></i><span>Delete Image</span></button>\n        </div>\n\n        <div class=\"description\">\n            <label>Description: </label>\n            <input type=\"text\" name=\"description\">\n        </div>\n    </div>\n</div>\n";
   return buffer;
   });
 

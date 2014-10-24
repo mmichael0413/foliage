@@ -20,11 +20,12 @@ define(function(require) {
         },
         initialize: function (options) {
             this.model = new FormModel(options);
+            this.images = {};
             this.inventoryTotal = this.$el.find('input.inventory-total');
             this.inventories = this.$el.find('input.inventory');
-            this.listenTo(context, 'file:added', this.imageAdded);
-            this.listenTo(context, 'file:updated', this.imageUpdated);
-            this.listenTo(context, 'file:deleted', this.imageDeleted);
+            this.listenTo(context, 'image:added', this.imageAdded);
+            this.listenTo(context, 'image:updated', this.imageUpdated);
+            this.listenTo(context, 'image:deleted', this.imageDeleted);
         },
         render :function () {
             this.$el.find('select').chosen({disable_search: true, width: "100%"});
@@ -39,6 +40,7 @@ define(function(require) {
                     attributes[$elem.attr('name')] = $elem.val();
                 }
                 this.model.save(attributes, {patch: true});
+                context.trigger('hidden:update');
             }
         },
         updateTotal: function () {
@@ -63,32 +65,36 @@ define(function(require) {
             var $elem = this.$el.find(e.currentTarget);
             this.$el.find($elem.data('hide-element')).hide('fast', "linear").val('').trigger('change');
         },
+        addImage: function(model) {
+            var inputSel = model.get('input');
+            this.images[inputSel] = this.images[inputSel] || {};
+            this.images[inputSel][model.get('uuid')] = this.getImageParams(model);
+            return this;
+        },
+        removeImage: function(model) {
+            var inputSel = model.get('input');
+            var uuid = model.get('uuid');
+            this.images.removed = this.images.removed || {};
+            this.images.removed[uuid] = this.images[inputSel][uuid];
+            delete this.images[inputSel][uuid];
+            return this;
+        },
+        setImageInputValue: function(model) {
+            var inputSel = model.get('input');
+            this.$el.find(inputSel).val(JSON.stringify(this.images[inputSel]));
+            this.$el.find('#remove_images').val(JSON.stringify(this.images.removed));
+        },
+        getImageParams: function(model) {
+            return {id: model.get('id'), label: model.get('label'), temp_location: model.get('s3location')}
+        },
         imageAdded: function (model) {
-            var input = this.$el.find('#'+model.get('inputId'));
-            var images = input.val() ? JSON.parse(input.val()) : [];
-            images.push({tempLocation: model.get('s3location'), label: model.get('label')});
-            input.val(JSON.stringify(images));
-            context.trigger('hidden:update');
+            this.addImage(model).setImageInputValue(model);
         },
         imageUpdated: function (model) {
-            var input = this.$el.find('#'+model.get('inputId'));
-            var images = JSON.parse(input.val());
-            images = images.map(function (el) {
-                if (el.tempLocation === model.get('s3location')) {
-                    el.label = model.get('label');
-                }
-                return el;
-            });
-            input.val(JSON.stringify(images));
-            context.trigger('hidden:update');
+            this.removeImage(model).addImage(model).setImageInputValue(model);
         },
         imageDeleted: function (model) {
-            var input = this.$el.find('#'+model.get('inputId'));
-            var images = JSON.parse(input.val());
-            var index = images.indexOf({tempLocation: model.get('s3location'), label: model.get('label')});
-            images.splice(index, 1);
-            input.val(JSON.stringify(images));
-            context.trigger('hidden:update');
+            this.removeImage(model).setImageInputValue(model);
         }
     });
 });

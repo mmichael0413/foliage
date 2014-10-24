@@ -8,13 +8,11 @@ define(function(require) {
             "click .cancel" : "cancel"
         },
         initialize: function (options) {
-            this.source = options.source;
             this.model = options.model;
-            this.model.on('progress', this.updateProgress, this);
-            this.model.on('complete', this.cleanup, this);
+            this.model.on('progress', this.updateProgress, this).on('complete', this.cleanup, this);
         },
         render: function () {
-            this.$el.html(this.template({source: this.source}));
+            this.$el.html(this.template(this.model.toJSON()));
             this.progressBar = this.$el.find('.progress .bar');
             this.percentage = this.$el.find('.percentage');
             return this;

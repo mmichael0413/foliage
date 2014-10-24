@@ -9,7 +9,7 @@ define(function(require){
             this.set({key : this.get('key').replace('{timestamp}', new Date().getTime()).replace('{unique_id}', Math.random().toString(36).substr(2, 16))});
         },
         parse: function(data, options)  {
-            return {s3location: data.children[0].textContent};
+            return {s3location: data.getElementsByTagName("Location")[0].textContent};
         },
         sync: function(method, model, options){
             if(method == 'create'){
@@ -20,7 +20,7 @@ define(function(require){
                         formData.append('content-type', value.type);
                     }
 
-                    if (key !== 'url') {
+                    if (key !== 'url' && key !== 'source'&& key !== 'input') {
                         formData.append(key, value);
                     }
                 });
