@@ -1,18 +1,15 @@
 {{#rows}}
-	<tr>
-		<td>{{name}}</td>
-		<td>{{role}}</td>
-		<td>
-		{{#if last_visited}}
+	<div class="item pure-g">
+		<p class="col-1-3 col-md-1-2">{{name}}</p>
+		<p class="col-1-3 col-md-1-2">{{role}}</p>
+		<p class="col-1-3 col-md-1">
+			{{#if last_visited}}
 			<a href="{{links.last_checkin}}">Last Visit: {{last_visited}}</a></td>
 		{{else}}
 			No Checkins on Record
-		{{/if}}
-		</td>
-		
-	</tr>
+		{{/if}}			
+		</p>
+	</div>
 {{else}}
-	<tr>
-	<td colspan="3">There are no Personnel assigned to this store</td>
-	</tr>
+	<p>There are no Personnel assigned to this store</p>
 {{/rows}}

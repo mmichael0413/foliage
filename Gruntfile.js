@@ -38,7 +38,7 @@ module.exports = function(grunt) {
                 dest: 'css/scss/lib/pure.responsive-grid.scss',
 
                 options: {
-                    units: [2, 3, 4, 5], // 5-column grid and 12-column grid
+                    units: [2, 3, 4, 5, 12], // 5-column grid and 12-column grid
 
                     mediaQueries: {
                         sm: 'screen and (max-width: 35.5em)', // 568px

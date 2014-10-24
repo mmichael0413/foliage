@@ -24,10 +24,7 @@
 	.expanding-row {
 		overflow: hidden;
 		max-height: 0;
-		 /* Set our transitions up. */
-	    -webkit-transition: max-height 0.8s;
-	    -moz-transition: max-height 0.8s;
-	    transition: max-height 0.8s;
+	    @include transition(max-height, 0.8s);
 	}
 
 

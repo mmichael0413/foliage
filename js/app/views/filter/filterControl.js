@@ -82,6 +82,7 @@ define(function(require) {
             this.listenTo(context, 'filter:request', this.handleFilterRequest);
             this.listenTo(context, 'filter:request:queryString', this.handleFilterRequestQueryString);
             this.listenTo(context, 'filter:set', this.setFromExternal);
+            
             // finally, check if we should Trigger the filter. This is done down here to avoid
             // repeated triggerings if we checked this in the while loop.
             if (shouldTrigger) {
@@ -89,6 +90,10 @@ define(function(require) {
                 // let my master know, yes.
                 context.trigger('filter:toggle');
             }
+        },
+
+        render: function () {
+
         },
 
         clearFilters: function () {
@@ -181,6 +186,8 @@ define(function(require) {
         },
 
         broadCastQueryString: function () {
+            // update the url so that we can access the deep link later on
+            context.router.navigate(window.location.pathname +"?"+ this.$el.serialize(), {trigger: false});
             context.trigger('filter:query', this.$el.serialize());
         },
 

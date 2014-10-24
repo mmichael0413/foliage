@@ -26,10 +26,10 @@ define(function(require) {
                     .done(function (rows) {
                         //self.$el.find('tbody').html("<tr><td>Test</td></tr>");
                         var data = {rows: rows};
-                        self.$el.find('tbody').html(templates['store_profile/personnel_rows'](data));
+                        self.$el.find('.body').html(templates['store_profile/personnel_rows'](data));
                     })
                     .fail(function () {
-                        self.$el.find('tobdy').html("<tr><td>There was an error fetching the Store Personnel. Please contact TechSupport</td></tr>");
+                        self.$el.find('.body').html("<p>There was an error fetching the Store Personnel. Please contact TechSupport</p>");
                     });
             }
         };

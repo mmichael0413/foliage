@@ -1,14 +1,59 @@
 
 .store-profile-section {
+
+	.header {
+			font-size: 1rem;	
+	}
 	
 	.expand-indicator {
 		position: absolute;
 		right: 5%;
+		padding-right: 0;
+	}
+	.activity-meta {
+		padding: 0em;
+	}
+	.body {
+		margin-top: 1em;
+		overflow: hidden;
+		max-height: 0;
+	    @include transition(max-height, 0.8s);
+
+		.item {
+			border-top: 1px solid $border-color;
+			padding: 1em 0em;
+		}
+	}
+	&.expand-container {
+		&.active {
+		.body {
+			/** Something beyond which it will ever reach **/
+	    	max-height: 5000px;
+		}
+		.expand-indicator {
+			@extend .ic_up;
+		}
+	}				
 	}
 
-	.btn {
-		vertical-align: top;
-		position: absolute;
-		right: 5%;
-	}
+	
+}
+
+@include swb-medium {
+	.store-profile-section.expand-container {
+		.expand-indicator {
+		/*	@extend .ic_up;*/
+		}
+	 	.body {
+	 		max-height: 5000px;
+	 	}
+        &.active {
+        	.body {
+        		max-height: 0em;
+        	}
+        	.expand-indicator {
+        		/*@extend .ic_down;*/
+        	}
+        }	
+    }
 }

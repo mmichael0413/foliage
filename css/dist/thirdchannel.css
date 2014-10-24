@@ -404,7 +404,21 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 .col-2-5,
 .col-3-5,
 .col-4-5,
-.col-5-5 {
+.col-5-5,
+.col-1-6,
+.col-5-6,
+.col-1-12,
+.col-2-12,
+.col-3-12,
+.col-4-12,
+.col-5-12,
+.col-6-12,
+.col-7-12,
+.col-8-12,
+.col-9-12,
+.col-10-12,
+.col-11-12,
+.col-12-12 {
   display: inline-block;
   *display: inline;
   zoom: 1;
@@ -413,15 +427,26 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   vertical-align: top;
   text-rendering: auto; }
 
+.col-1-12 {
+  width: 8.3333%;
+  *width: 8.3023%; }
+
+.col-1-6,
+.col-2-12 {
+  width: 16.6667%;
+  *width: 16.6357%; }
+
 .col-1-5 {
   width: 20%;
   *width: 19.9690%; }
 
-.col-1-4 {
+.col-1-4,
+.col-3-12 {
   width: 25%;
   *width: 24.9690%; }
 
-.col-1-3 {
+.col-1-3,
+.col-4-12 {
   width: 33.3333%;
   *width: 33.3023%; }
 
@@ -429,20 +454,31 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   width: 40%;
   *width: 39.9690%; }
 
+.col-5-12 {
+  width: 41.6667%;
+  *width: 41.6357%; }
+
 .col-1-2,
-.col-2-4 {
+.col-2-4,
+.col-6-12 {
   width: 50%;
   *width: 49.9690%; }
+
+.col-7-12 {
+  width: 58.3333%;
+  *width: 58.3023%; }
 
 .col-3-5 {
   width: 60%;
   *width: 59.9690%; }
 
-.col-2-3 {
+.col-2-3,
+.col-8-12 {
   width: 66.6667%;
   *width: 66.6357%; }
 
-.col-3-4 {
+.col-3-4,
+.col-9-12 {
   width: 75%;
   *width: 74.9690%; }
 
@@ -450,12 +486,22 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   width: 80%;
   *width: 79.9690%; }
 
+.col-5-6,
+.col-10-12 {
+  width: 83.3333%;
+  *width: 83.3023%; }
+
+.col-11-12 {
+  width: 91.6667%;
+  *width: 91.6357%; }
+
 .col-1,
 .col-1-1,
 .col-2-2,
 .col-3-3,
 .col-4-4,
-.col-5-5 {
+.col-5-5,
+.col-12-12 {
   width: 100%; }
 
 @media screen and (max-width: 35.5em) {
@@ -474,7 +520,21 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   .col-sm-2-5,
   .col-sm-3-5,
   .col-sm-4-5,
-  .col-sm-5-5 {
+  .col-sm-5-5,
+  .col-sm-1-6,
+  .col-sm-5-6,
+  .col-sm-1-12,
+  .col-sm-2-12,
+  .col-sm-3-12,
+  .col-sm-4-12,
+  .col-sm-5-12,
+  .col-sm-6-12,
+  .col-sm-7-12,
+  .col-sm-8-12,
+  .col-sm-9-12,
+  .col-sm-10-12,
+  .col-sm-11-12,
+  .col-sm-12-12 {
     display: inline-block;
     *display: inline;
     zoom: 1;
@@ -483,15 +543,26 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     vertical-align: top;
     text-rendering: auto; }
 
+  .col-sm-1-12 {
+    width: 8.3333%;
+    *width: 8.3023%; }
+
+  .col-sm-1-6,
+  .col-sm-2-12 {
+    width: 16.6667%;
+    *width: 16.6357%; }
+
   .col-sm-1-5 {
     width: 20%;
     *width: 19.9690%; }
 
-  .col-sm-1-4 {
+  .col-sm-1-4,
+  .col-sm-3-12 {
     width: 25%;
     *width: 24.9690%; }
 
-  .col-sm-1-3 {
+  .col-sm-1-3,
+  .col-sm-4-12 {
     width: 33.3333%;
     *width: 33.3023%; }
 
@@ -499,20 +570,31 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     width: 40%;
     *width: 39.9690%; }
 
+  .col-sm-5-12 {
+    width: 41.6667%;
+    *width: 41.6357%; }
+
   .col-sm-1-2,
-  .col-sm-2-4 {
+  .col-sm-2-4,
+  .col-sm-6-12 {
     width: 50%;
     *width: 49.9690%; }
+
+  .col-sm-7-12 {
+    width: 58.3333%;
+    *width: 58.3023%; }
 
   .col-sm-3-5 {
     width: 60%;
     *width: 59.9690%; }
 
-  .col-sm-2-3 {
+  .col-sm-2-3,
+  .col-sm-8-12 {
     width: 66.6667%;
     *width: 66.6357%; }
 
-  .col-sm-3-4 {
+  .col-sm-3-4,
+  .col-sm-9-12 {
     width: 75%;
     *width: 74.9690%; }
 
@@ -520,12 +602,22 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     width: 80%;
     *width: 79.9690%; }
 
+  .col-sm-5-6,
+  .col-sm-10-12 {
+    width: 83.3333%;
+    *width: 83.3023%; }
+
+  .col-sm-11-12 {
+    width: 91.6667%;
+    *width: 91.6357%; }
+
   .col-sm-1,
   .col-sm-1-1,
   .col-sm-2-2,
   .col-sm-3-3,
   .col-sm-4-4,
-  .col-sm-5-5 {
+  .col-sm-5-5,
+  .col-sm-12-12 {
     width: 100%; } }
 @media screen and (max-width: 48em) {
   .col-md-1,
@@ -543,7 +635,21 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   .col-md-2-5,
   .col-md-3-5,
   .col-md-4-5,
-  .col-md-5-5 {
+  .col-md-5-5,
+  .col-md-1-6,
+  .col-md-5-6,
+  .col-md-1-12,
+  .col-md-2-12,
+  .col-md-3-12,
+  .col-md-4-12,
+  .col-md-5-12,
+  .col-md-6-12,
+  .col-md-7-12,
+  .col-md-8-12,
+  .col-md-9-12,
+  .col-md-10-12,
+  .col-md-11-12,
+  .col-md-12-12 {
     display: inline-block;
     *display: inline;
     zoom: 1;
@@ -552,15 +658,26 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     vertical-align: top;
     text-rendering: auto; }
 
+  .col-md-1-12 {
+    width: 8.3333%;
+    *width: 8.3023%; }
+
+  .col-md-1-6,
+  .col-md-2-12 {
+    width: 16.6667%;
+    *width: 16.6357%; }
+
   .col-md-1-5 {
     width: 20%;
     *width: 19.9690%; }
 
-  .col-md-1-4 {
+  .col-md-1-4,
+  .col-md-3-12 {
     width: 25%;
     *width: 24.9690%; }
 
-  .col-md-1-3 {
+  .col-md-1-3,
+  .col-md-4-12 {
     width: 33.3333%;
     *width: 33.3023%; }
 
@@ -568,20 +685,31 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     width: 40%;
     *width: 39.9690%; }
 
+  .col-md-5-12 {
+    width: 41.6667%;
+    *width: 41.6357%; }
+
   .col-md-1-2,
-  .col-md-2-4 {
+  .col-md-2-4,
+  .col-md-6-12 {
     width: 50%;
     *width: 49.9690%; }
+
+  .col-md-7-12 {
+    width: 58.3333%;
+    *width: 58.3023%; }
 
   .col-md-3-5 {
     width: 60%;
     *width: 59.9690%; }
 
-  .col-md-2-3 {
+  .col-md-2-3,
+  .col-md-8-12 {
     width: 66.6667%;
     *width: 66.6357%; }
 
-  .col-md-3-4 {
+  .col-md-3-4,
+  .col-md-9-12 {
     width: 75%;
     *width: 74.9690%; }
 
@@ -589,12 +717,22 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     width: 80%;
     *width: 79.9690%; }
 
+  .col-md-5-6,
+  .col-md-10-12 {
+    width: 83.3333%;
+    *width: 83.3023%; }
+
+  .col-md-11-12 {
+    width: 91.6667%;
+    *width: 91.6357%; }
+
   .col-md-1,
   .col-md-1-1,
   .col-md-2-2,
   .col-md-3-3,
   .col-md-4-4,
-  .col-md-5-5 {
+  .col-md-5-5,
+  .col-md-12-12 {
     width: 100%; } }
 /*
 	Colors from Liz's UI-Color-Guide as of 10/15/2014
@@ -902,6 +1040,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 .ic_store:before,
 .ic_up:before,
 .expand-indicator.open:before,
+.store-profile-section.expand-container.active .expand-indicator:before,
 .ic_upload:before,
 .ic_x:before {
   display: inline-block;
@@ -1001,7 +1140,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 .ic_store:before {
   content: "\f1a6"; }
 
-.ic_up:before, .expand-indicator.open:before {
+.ic_up:before, .expand-indicator.open:before, .store-profile-section.expand-container.active .expand-indicator:before {
   content: "\f1a7"; }
 
 .ic_upload:before {
@@ -1888,10 +2027,11 @@ input[type="file"]::-webkit-file-upload-button {
   .expanding-row-container .expanding-row {
     overflow: hidden;
     max-height: 0;
-    /* Set our transitions up. */
-    -webkit-transition: max-height 0.8s;
-    -moz-transition: max-height 0.8s;
-    transition: max-height 0.8s; }
+    -webkit-transition: max-height, 0.8s;
+    -moz-transition: max-height, 0.8s;
+    -ms-transition: max-height, 0.8s;
+    -o-transition: max-height, 0.8s;
+    transition: max-height, 0.8s; }
   .expanding-row-container.open {
     padding: inherit; }
     .expanding-row-container.open .expanding-row {
@@ -1955,14 +2095,39 @@ input[type="file"]::-webkit-file-upload-button {
     right: 1em;
     top: 1em; }
 
+.store-profile-section .header {
+  font-size: 1rem; }
 .store-profile-section .expand-indicator {
   position: absolute;
-  right: 5%; }
-.store-profile-section .btn {
-  vertical-align: top;
-  position: absolute;
-  right: 5%; }
+  right: 5%;
+  padding-right: 0; }
+.store-profile-section .activity-meta {
+  padding: 0em; }
+.store-profile-section .body {
+  margin-top: 1em;
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: max-height, 0.8s;
+  -moz-transition: max-height, 0.8s;
+  -ms-transition: max-height, 0.8s;
+  -o-transition: max-height, 0.8s;
+  transition: max-height, 0.8s; }
+  .store-profile-section .body .item {
+    border-top: 1px solid #e3e8ec;
+    padding: 1em 0em; }
+.store-profile-section.expand-container.active .body {
+  /** Something beyond which it will ever reach **/
+  max-height: 5000px; }
 
+@media only screen and (max-width: 48em) {
+  .store-profile-section.expand-container .expand-indicator {
+    /*	@extend .ic_up;*/ }
+  .store-profile-section.expand-container .body {
+    max-height: 5000px; }
+  .store-profile-section.expand-container.active .body {
+    max-height: 0em; }
+  .store-profile-section.expand-container.active .expand-indicator {
+    /*@extend .ic_down;*/ } }
 /* Slider */
 .slick-slider {
   position: relative;
@@ -2904,10 +3069,48 @@ input[type="file"]::-webkit-file-upload-button {
     margin-bottom: 0; }
   .checkin .question p:empty {
     margin-top: -2em; }
-  .checkin .question.error {
+.checkin .error {
+  color: #f15f51; }
+  .checkin .error input[type=text], .checkin .error input[type=password], .checkin .error input[type=number], .checkin .error textarea, .checkin .error .chosen-choices, .checkin .error input[type="file"]::-webkit-file-upload-button {
+    border-color: #f15f51;
     color: #f15f51; }
-    .checkin .question.error input[type=text], .checkin .question.error input[type=password], .checkin .question.error input[type=number], .checkin .question.error textarea, .checkin .question.error .chosen-choices {
-      border-color: #f15f51; }
+.checkin .viewer {
+  position: relative; }
+  .checkin .viewer .holder {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    overflow: auto;
+    width: 100%; }
+  .checkin .viewer .image {
+    max-width: 5em;
+    max-height: 5em; }
+    .checkin .viewer .image img {
+      display: block;
+      max-width: 100%;
+      height: auto; }
+  .checkin .viewer .description {
+    margin-left: 6rem;
+    margin-right: 10rem; }
+  .checkin .viewer .delete {
+    float: right;
+    margin-top: 1.5rem; }
+  @media only screen and (max-width: 48em) {
+    .checkin .viewer .description {
+      margin-right: 3rem; }
+    .checkin .viewer .delete span {
+      display: none; } }
+  .checkin .viewer .progress, .checkin .viewer .percentage {
+    margin-left: 6rem;
+    margin-right: 11rem; }
+  .checkin .viewer .progress {
+    height: 2rem;
+    border: 1px solid #e3e8ec;
+    border-radius: 0.25rem;
+    overflow: hidden; }
+    .checkin .viewer .progress .bar {
+      width: 0%;
+      height: 100%;
+      background-color: #9fb2c0; }
 .checkin .checkin-form-btn {
   margin-bottom: 2em; }
 .checkin .expanding-wrapper {

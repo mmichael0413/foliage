@@ -42,15 +42,80 @@
     p:empty {
       margin-top: -2em;
     }
+  }
 
-    &.error {
+  .error {
+    color: $red;
+
+    input[type=text], input[type=password], input[type=number], textarea, .chosen-choices, input[type="file"]::-webkit-file-upload-button {
+      border-color: $red;
       color: $red;
+    }
+  }
 
-      input[type=text], input[type=password], input[type=number], textarea, .chosen-choices {
-        border-color: $red;
+  .viewer {
+    position: relative;
+
+    .holder {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      overflow: auto;
+      width: 100%;
+    }
+
+    .image {
+      max-width: 5em;
+      max-height: 5em;
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    .description {
+      margin-left: 6rem;
+      margin-right: 10rem;
+    }
+
+    .delete {
+      float: right;
+      margin-top: 1.5rem;
+    }
+
+    @include swb-medium{
+      .description {
+        margin-right: 3rem;
+      }
+
+      .delete {
+        span {
+          display: none;
+        }
+      }
+    }
+
+    .progress, .percentage {
+      margin-left: 6rem;
+      margin-right: 11rem;
+    }
+
+    .progress {
+      height: 2rem;
+      border: 1px solid $border-color;
+      border-radius: 0.25rem;
+      overflow: hidden;
+
+      .bar {
+        width: 0%;
+        height: 100%;
+        background-color: $medium-blue;
       }
     }
   }
+
+
 
   .checkin-form-btn {
     margin-bottom: 2em;
