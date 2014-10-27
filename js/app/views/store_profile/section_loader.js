@@ -16,6 +16,7 @@ define(function(require) {
 
 		initialize: function () {
 			this.collection = new this.collectionClass();
+			this.listenTo(this.collection, "reset", this.resetCollection);
 		},
 
 		render: function () {
@@ -41,6 +42,11 @@ define(function(require) {
 		failure: function () {
 			this.$el.find('.body').html(this.failHTML);
 			this.afterRender();
+		},
+
+		resetCollection: function () {
+			this.$el.find('.body').html('<div class="item"><i class="fa fa-spinner fa-spin"></i></div>');
+			this.success();
 		},
 		/**
 		 * Used by the subclassed Views to affix additional data into the object injected into the Handlebars Template.
