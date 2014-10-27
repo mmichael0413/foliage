@@ -1,7 +1,7 @@
 @import "../../base/colors";
 @import "../../base/mixins";
 
-.checkin {
+.survey {
   .header {
     h1 {
       margin-bottom: 0.5em;
@@ -47,10 +47,11 @@
   .error {
     color: $red;
 
-    input[type=text], input[type=password], input[type=number], textarea, .chosen-choices, input[type="file"]::-webkit-file-upload-button {
+    input[type=text], input[type=password], input[type=number], textarea, .chosen-choices, .chosen-single, .search-filed input, input[type="file"]::-webkit-file-upload-button {
       border-color: $red;
       color: $red;
     }
+    @include placeholder($red);
   }
 
   .viewer {

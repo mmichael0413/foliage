@@ -11,6 +11,7 @@ define(function(require){
         TeamsMain = require('app/views/teams/main'),
         StoresMain = require('app/views/stores/main'),
         StoreProfileMain = require('app/views/store_profile/main'),
+        StoresIntelEdit = require('app/views/stores/intel/edit'),
         CheckinView = require('app/views/checkins/show/checkin'),
         DashboardsAlertsSectionsView = require('app/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('app/views/dashboards/alerts/show/stores'),
@@ -33,6 +34,7 @@ define(function(require){
             'programs/:program_id/stores/:store_id(/)': 'storeProfile',
             'programs/:program_id/stores/:store_id/activity': 'storeProfileActivity',
             'programs/:program_id/stores/:store_id/history': 'storeProfileHistory',
+            'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
             'programs/:program_id/checkins/:id': 'checkin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
@@ -109,6 +111,10 @@ define(function(require){
 
         storeProfileHistory: function () {
             StoreProfileMain.history();
+        },
+
+        editStoreIntel: function () {
+            new StoresIntelEdit().render();
         },
 
         programProfile: function(program_id, user_id) {
