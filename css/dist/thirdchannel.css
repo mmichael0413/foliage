@@ -2295,21 +2295,25 @@ input[type="file"]::-webkit-file-upload-button {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-[dir="rtl"] .slick-prev {
-  left: auto;
-  right: -25px; }
-.slick-prev:before {
-  content: "\2190"; }
-  [dir="rtl"] .slick-prev:before {
-    content: "\2192"; }
-
-[dir="rtl"] .slick-next {
-  left: -25px;
-  right: auto; }
-.slick-next:before {
-  content: "\2192"; }
-  [dir="rtl"] .slick-next:before {
+.slick-prev {
+  left: -25px; }
+  [dir="rtl"] .slick-prev {
+    left: auto;
+    right: -25px; }
+  .slick-prev:before {
     content: "\2190"; }
+    [dir="rtl"] .slick-prev:before {
+      content: "\2192"; }
+
+.slick-next {
+  right: -25px; }
+  [dir="rtl"] .slick-next {
+    left: -25px;
+    right: auto; }
+  .slick-next:before {
+    content: "\2192"; }
+    [dir="rtl"] .slick-next:before {
+      content: "\2190"; }
 
 /* Dots */
 .slick-slider {
@@ -3085,95 +3089,6 @@ input[type="file"]::-webkit-file-upload-button {
     display: inline-block;
     vertical-align: middle; }
 
-.checkin .header h1 {
-  margin-bottom: 0.5em; }
-.checkin .header p {
-  margin-bottom: 1em; }
-.checkin h3 {
-  padding: 0 1em;
-  margin: 0;
-  text-transform: uppercase;
-  text-align: top; }
-.checkin input[type=text], .checkin input[type=password], .checkin input[type=number], .checkin textarea {
-  margin-bottom: 0; }
-.checkin .body {
-  margin-top: 1em;
-  border-top: 1px solid #e3e8ec;
-  padding: 1em; }
-.checkin .question {
-  margin-bottom: 2em; }
-  .checkin .question [name*='question-'], .checkin .question .chosen-container, .checkin .question .expanding-wrapper {
-    margin-top: 0.5em; }
-  .checkin .question:last-of-type {
-    margin-bottom: 0; }
-  .checkin .question p:empty {
-    margin-top: -2em; }
-.checkin .error {
-  color: #f15f51; }
-  .checkin .error input[type=text], .checkin .error input[type=password], .checkin .error input[type=number], .checkin .error textarea, .checkin .error .chosen-choices, .checkin .error input[type="file"]::-webkit-file-upload-button {
-    border-color: #f15f51;
-    color: #f15f51; }
-.checkin .viewer {
-  position: relative; }
-  .checkin .viewer .holder {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    overflow: auto;
-    width: 100%; }
-  .checkin .viewer .image {
-    max-width: 5em;
-    float: left; }
-    .checkin .viewer .image img {
-      display: block;
-      max-width: 100%;
-      height: auto; }
-  .checkin .viewer .description {
-    margin-left: 6rem;
-    margin-right: 10rem; }
-  .checkin .viewer .delete {
-    float: right;
-    margin-top: 1.5rem; }
-  @media only screen and (max-width: 48em) {
-    .checkin .viewer .description {
-      margin-right: 3rem; }
-    .checkin .viewer .delete span {
-      display: none; } }
-  .checkin .viewer .progress, .checkin .viewer .percentage {
-    margin-left: 6rem;
-    margin-right: 11rem; }
-  .checkin .viewer .progress {
-    height: 2rem;
-    border: 1px solid #e3e8ec;
-    border-radius: 0.25rem;
-    overflow: hidden; }
-    .checkin .viewer .progress .bar {
-      width: 0%;
-      height: 100%;
-      background-color: #9fb2c0; }
-.checkin .checkin-form-btn {
-  margin-bottom: 2em; }
-.checkin .expanding-wrapper {
-  width: 100%; }
-
-/*
-	Colors from Liz's UI-Color-Guide as of 10/15/2014
- */
-.red {
-  color: #f15f51; }
-
-.medium-blue {
-  color: #9fb2c0; }
-
-/* From http://sass-lang.com/guide */
-.loading {
-  color: #434748;
-  text-align: center; }
-  .loading .fa-spinner {
-    font-size: 2.0em; }
-  .loading span {
-    display: inline-block;
-    vertical-align: middle; }
-
 .checkin-report .section h3 {
   padding: 0 1em;
   margin: 0;
@@ -3207,6 +3122,42 @@ input[type="file"]::-webkit-file-upload-button {
   .checkin-report .body img {
     width: 3em;
     height: 3em; }
+
+.unread {
+  font-weight: bold; }
+
+.send-to .form-group {
+  margin-bottom: 2em; }
+.send-to > div {
+  width: 32.9%;
+  display: inline-block;
+  padding: 0 1em;
+  vertical-align: top; }
+  .send-to > div:first-of-type {
+    padding: 0; }
+
+.editor-container {
+  border: 1px solid #e3e8ec;
+  border-radius: 5px;
+  margin-bottom: 2em;
+  padding: 1em; }
+  .editor-container.error {
+    border-color: #f15f51; }
+  .editor-container iframe {
+    height: 22em !important;
+    border: none !important; }
+
+.ql-toolbar-container {
+  border-bottom: 1px solid #e3e8ec; }
+
+.chosen-choices.error {
+  border-color: #f15f51; }
+
+.modal-backdrop {
+  position: relative; }
+
+.btn-primary {
+  color: #434748; }
 
 /*
 	Colors from Liz's UI-Color-Guide as of 10/15/2014
@@ -3323,38 +3274,105 @@ input[type="file"]::-webkit-file-upload-button {
   .report-info-list .checkins .checkin:not(:first-child) {
     border-top: 1px solid #e3e8ec; }
 
-.unread {
-  font-weight: bold; }
+/*
+	Colors from Liz's UI-Color-Guide as of 10/15/2014
+ */
+.red {
+  color: #f15f51; }
 
-.send-to .form-group {
-  margin-bottom: 2em; }
-.send-to > div {
-  width: 32.9%;
-  display: inline-block;
+.medium-blue {
+  color: #9fb2c0; }
+
+/* From http://sass-lang.com/guide */
+.loading {
+  color: #434748;
+  text-align: center; }
+  .loading .fa-spinner {
+    font-size: 2.0em; }
+  .loading span {
+    display: inline-block;
+    vertical-align: middle; }
+
+.survey .header h1 {
+  margin-bottom: 0.5em; }
+.survey .header p {
+  margin-bottom: 1em; }
+.survey h3 {
   padding: 0 1em;
-  vertical-align: top; }
-  .send-to > div:first-of-type {
-    padding: 0; }
-
-.editor-container {
-  border: 1px solid #e3e8ec;
-  border-radius: 5px;
-  margin-bottom: 2em;
+  margin: 0;
+  text-transform: uppercase;
+  text-align: top; }
+.survey input[type=text], .survey input[type=password], .survey input[type=number], .survey textarea {
+  margin-bottom: 0; }
+.survey .body {
+  margin-top: 1em;
+  border-top: 1px solid #e3e8ec;
   padding: 1em; }
-  .editor-container.error {
-    border-color: #f15f51; }
-  .editor-container iframe {
-    height: 22em !important;
-    border: none !important; }
-
-.ql-toolbar-container {
-  border-bottom: 1px solid #e3e8ec; }
-
-.chosen-choices.error {
-  border-color: #f15f51; }
-
-.modal-backdrop {
+.survey .question {
+  margin-bottom: 2em; }
+  .survey .question [name*='question-'], .survey .question .chosen-container, .survey .question .expanding-wrapper {
+    margin-top: 0.5em; }
+  .survey .question:last-of-type {
+    margin-bottom: 0; }
+  .survey .question p:empty {
+    margin-top: -2em; }
+.survey .error {
+  color: #f15f51; }
+  .survey .error input[type=text], .survey .error input[type=password], .survey .error input[type=number], .survey .error textarea, .survey .error .chosen-choices, .survey .error .chosen-single, .survey .error .search-filed input, .survey .error input[type="file"]::-webkit-file-upload-button {
+    border-color: #f15f51;
+    color: #f15f51; }
+  .survey .error ::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #f15f51; }
+  .survey .error :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #f15f51;
+    opacity: 1; }
+  .survey .error ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #f15f51;
+    opacity: 1; }
+  .survey .error :-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #f15f51; }
+.survey .viewer {
   position: relative; }
-
-.btn-primary {
-  color: #434748; }
+  .survey .viewer .holder {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    overflow: auto;
+    width: 100%; }
+  .survey .viewer .image {
+    max-width: 5em;
+    float: left; }
+    .survey .viewer .image img {
+      display: block;
+      max-width: 100%;
+      height: auto; }
+  .survey .viewer .description {
+    margin-left: 6rem;
+    margin-right: 10rem; }
+  .survey .viewer .delete {
+    float: right;
+    margin-top: 1.5rem; }
+  @media only screen and (max-width: 48em) {
+    .survey .viewer .description {
+      margin-right: 3rem; }
+    .survey .viewer .delete span {
+      display: none; } }
+  .survey .viewer .progress, .survey .viewer .percentage {
+    margin-left: 6rem;
+    margin-right: 11rem; }
+  .survey .viewer .progress {
+    height: 2rem;
+    border: 1px solid #e3e8ec;
+    border-radius: 0.25rem;
+    overflow: hidden; }
+    .survey .viewer .progress .bar {
+      width: 0%;
+      height: 100%;
+      background-color: #9fb2c0; }
+.survey .checkin-form-btn {
+  margin-bottom: 2em; }
+.survey .expanding-wrapper {
+  width: 100%; }

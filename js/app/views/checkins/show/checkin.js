@@ -1,8 +1,9 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
         FormView = require('app/views/checkins/show/form'),
-        jqueryValidate = require('jquery-validate'),
+        FormValidate = require('app/views/utils/validation'),
         UploaderView = require('app/views/s3uploader/file');
 
     return Backbone.View.extend({
@@ -17,37 +18,7 @@ define(function(require) {
         render: function (options) {
             var self = this;
             this.formView = new FormView(this.options).render().$el;
-            this.validator = this.formView.validate({
-                ignore: [],
-                errorPlacement: function (error, element) {},
-                highlight: function (element, errorClass, validClass) {
-                    var validator = this;
-                    var input = self.formView.find(element),
-                        id = input.data('error-for');
-
-                    if (id !== undefined) {
-                        input = self.$el.find(id);
-                        self.listenToOnce(context, 'hidden:update', function() { validator.element(element); });
-                    } else {
-                        input = input.closest('.question');
-                    }
-
-                    input.addClass(errorClass).removeClass(validClass);
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    var input = self.formView.find(element),
-                        id = input.data('error-for');
-
-                    if (id !== undefined) {
-                        input = self.$el.find(id);
-                    } else {
-                        input = input.closest('.question');
-                    }
-
-                    input.removeClass(errorClass).addClass(validClass);
-                }
-            });
-
+            this.formValidation = new FormValidate({errorPlacementClass: '.question'}).render(this.formView);
             this.$el.find('.body.images').each(function(){
                 new UploaderView().render(this);
             });
@@ -55,7 +26,7 @@ define(function(require) {
             return this;
         },
         validateForm: function() {
-            if (this.formView.valid()) {
+            if (this.formValidation.valid()) {
                 this.formView.submit();
             }
         }
