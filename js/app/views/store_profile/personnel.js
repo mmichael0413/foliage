@@ -1,5 +1,5 @@
 define(function(require) {
-    var SectionLoaderView = require('app/views/store_profile/section_loader'),
+    var FilterableView = require('app/views/shared/filterableTable'),
         context = require('context'),
         Backbone = require('backbone'),
         StorePersonnelSectionView = {
@@ -9,9 +9,10 @@ define(function(require) {
                     return context.personnel.links.self;
                 }
             }),
-            rowsTemplate: 'store_profile/personnel_rows'
+            template: 'store_profile/personnel_rows',
+            bodySelector: '.body'
         };
     
-    return SectionLoaderView.extend(StorePersonnelSectionView);
+    return FilterableView.extend(StorePersonnelSectionView);
         
 });

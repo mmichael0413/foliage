@@ -9,7 +9,7 @@ define(function(require) {
             collectionClass: Backbone.Collection.extend({
                 queryString: "",
                 url: function () {
-                    return context.links.open; //+ "?" + this.queryString;
+                    return context.alerts.links.open;
                 },
                 parse: function (response) {
                     this.count = response.count;
@@ -23,15 +23,13 @@ define(function(require) {
                 'click .resolve': 'resolveAlert'
             },
 
-            initialize: function (data) {
-                OpenAlertsView.__super__.initialize.apply(this, arguments);
-                this.count = data.count;
-                return this;
-            },
-            render: function () {
-                
+            afterRender: function () {    
                 this.$el.find('.counter').text((this.collection.count !== undefined ? this.collection.count : this.count) + " ");
-                return OpenAlertsView.__super__.render.apply(this, arguments);
+            },
+
+            renderCollection: function (model) {
+                this.count = model.count;
+                OpenAlertsView.__super__.renderCollection.call(this, model.items);
             },
 
             resolveAlert: function (e) {

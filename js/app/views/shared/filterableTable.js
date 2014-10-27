@@ -13,6 +13,7 @@ define(function(require) {
         collectionClass: undefined,
         template: '',
         loadingHTML: "<tr><td><i class='fa fa-spin fa-spinner'></i></td></tr>",
+        failHTML: "Unable to load data. Please contact Tech Support",
         bodySelector: 'tbody',
 
         events: {
@@ -32,17 +33,59 @@ define(function(require) {
             return this;
         },
 
+        /**
+         * The render function assumes that the collection has already been fetched
+         * 
+         * @return {[type]} [description]
+         */
         render: function () {
-
-            var $tbody = this.$el.find(this.bodySelector),
+            console.log("Rendering!");
+            var $body = this.$el.find(this.bodySelector),
                 data = {
                     rows: this.collection.toJSON()
                 };
             
-            $tbody.html(this.loadingHTML);
+            $body.html(this.loadingHTML);
 
-            $tbody.html(HandlebarsTemplates[this.template](data));
+            $body.html(HandlebarsTemplates[this.template](data));
+            this.afterRender();
             return this;
+        },
+
+        /**
+         * Renders the view using the provided data as the collection models
+         * 
+         * @param  {Array} data [description]
+         */
+        renderCollection: function (data) {
+            this.collection.reset(data);
+        },
+
+        /**
+         * If the collection is not already loaded, use this function instead.
+         * Fetches the collection, then calls 'render', unless there's a failure, in which case 'fetchFail' will be called
+         * 
+         */
+        fetch: function () {
+            var self = this;
+            self.collection.fetch()
+                .done(function () {
+                    self.render.apply(self);
+                })
+                .fail(function () {
+                    self.fetchFail.apply(self, arguments);
+                });
+        },
+
+        additionalData: function () {
+            return {};
+        },
+
+        afterRender: function () {},
+
+        fetchFail: function () {
+            this.$el.find(this.bodySelector).html(this.failHTML);
+            this.afterRender();
         },
 
         applyFilter: function (qs) {
@@ -50,10 +93,7 @@ define(function(require) {
             // backbone will automatically trigger the redrawing of the
             // members
             
-            var $tbody = this.$(this.bodySelector);
-            $tbody.html(this.loadingHTML);
-
-            
+            this.$(this.bodySelector).html(this.loadingHTML);
             this.collection.queryString = qs;
             this.collection.fetch({reset:true});
         },

@@ -6,7 +6,7 @@ define(function(require) {
             collectionClass: Backbone.Collection.extend({
                 queryString: "",
                 url: function () {
-                    return context.links.resolved; // + "?" + this.queryString;
+                    return context.alerts.links.resolved;
                 },
                 parse: function (response) {
                     this.count = response.count;
