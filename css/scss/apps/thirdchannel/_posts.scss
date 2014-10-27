@@ -1,4 +1,4 @@
-
+//@import '../../lib/wysihtml5';
 .send-to{
   .form-group {
     margin-bottom: 2em;
@@ -18,12 +18,14 @@
   border: 1px solid $border-color;
   border-radius: $border-radius-base;
   margin-bottom: 2em;
+  padding: 1em;
   &.error {
     border-color: $link-color;
   }
   //  height: 20em;
   iframe {
-    height: 22em;
+    height: 22em !important;
+    border: none !important;
   }
 }
 .ql-toolbar-container {
@@ -32,4 +34,12 @@
 
 .chosen-choices.error {
   border-color: $link-color;
+}
+
+.modal-backdrop {
+  position: relative;
+}
+
+.btn-primary {
+  color: $text-color;
 }

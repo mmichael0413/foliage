@@ -24,7 +24,11 @@ require.config({
         'chosen': "libs/bower_components/chosen/chosen.jquery",
         'jquery-validate' : 'libs/bower_components/jquery-validation/dist/jquery.validate',
         'serializeObject' : "libs/bower_components/jquery-serialize-object/jquery.serialize-object",
-        'quill' : 'libs/bower_components/quill/dist/quill.min'
+        'bootstrap': 'libs/bower_components/bootstrap/dist/js/bootstrap.min',
+        'bootstrap.wysihtml5': 'libs/bootstrap3-wysiwyg-master/dist/amd/bootstrap3-wysihtml5.all',
+        'bootstrap.wysihtml5.en-US': 'libs/bootstrap3-wysiwyg-master/dist/locales/bootstrap-wysihtml5.en-US',
+        'rangy' : 'libs/bower_components/rangy-1.3/rangy-core',
+        'rangy-selectionsaverestore' : 'libs/bower_components/rangy-1.3/rangy-selectionsaverestore'
     },
     shim: {
         "jquery": {
@@ -65,6 +69,16 @@ require.config({
         "jquery-validate": {
             deps: ["jquery"],
             exports: "jquery.validation"
+        },
+        'bootstrap': {
+            deps: ['jquery']
+        },
+        "wysihtml5-parse-rules" : {
+            exports: "wysihtml5ParserRules"
+        },
+        "rangy-selectionsaverestore": {
+            deps: ['rangy'],
+            exports: "SaveRestore"
         }
     }
 });

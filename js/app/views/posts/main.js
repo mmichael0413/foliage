@@ -4,10 +4,11 @@ define(function (require) {
         Backbone = require('backbone'),
         context = require('context'),
         Post = require('app/models/posts/post'),
-        Quill = require('quill'),
-        jqueryVaidate = require('jquery-validate'),
         Serialize = require('serializeObject'),
-        Chosen = require('chosen');
+        Chosen = require('chosen'),
+        bootstrap = require('bootstrap'),
+        SaveRestore = require('rangy-selectionsaverestore'),
+        bootstrapWysihtml5 = require("bootstrap.wysihtml5.en-US");
 
 
     return Backbone.View.extend({
@@ -27,12 +28,23 @@ define(function (require) {
                 }
             });
 
-            this.editor = new Quill('#editor', {
-                theme: 'snow'
+
+            $('#wysihtml5-textarea').wysihtml5({
+                style:                true,
+                toolbar: {
+                    "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+                    "emphasis": true, //Italics, bold, etc. Default true
+                    "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+                    "html": true, //Button which allows you to edit the generated HTML. Default false
+                    "link": true, //Button to insert a link. Default true
+                    "image": true, //Button to insert an image. Default true,
+                    "color": true, //Button to change color of font
+                    "blockquote": true, //Blockquote
+                    "fa": true
+                },
+                autoLink: false
             });
-            this.editor.addModule('toolbar', { container: '#full-toolbar' });
-            this.editor.addModule('link-tooltip');
-            this.editor.addModule('image-tooltip');
+
 
             this.$el.find('.send-to select').chosen({disable_search: false, width: "100%"});
 
@@ -46,8 +58,6 @@ define(function (require) {
         events: {
             'click #post-submit-btn': 'submitForm',
             'change .message-subject': 'correctValidationErrors',
-            'blur iframe': 'correctValidationErrors',
-            'focus iframe': 'correctValidationErrors',
             'change select': 'correctSelectionErrors'
         },
         submitForm: function (e) {
@@ -55,13 +65,12 @@ define(function (require) {
             e.stopPropagation();
 
             this.model.set(this.$('.new-message form').serializeObject());
-            this.getDataFromEditor();
+
 
             if (this.model.isValid()) {
-                this.$('.error-container').html('<div class="alert info">All good, submit the form</div>');
-                this.model.save(this.$('.new-message form').serializeObject()).done(function(){
-                   window.location = '/programs/' + context.programId + '/activities';
-                }).fail(function(){
+                this.model.save(this.$('.new-message form').serializeObject()).done(function () {
+                    window.location = '/programs/' + context.programId + '/activities';
+                }).fail(function () {
                     console.log('fail');
                 });
             } else {
@@ -70,33 +79,22 @@ define(function (require) {
                 this.$('.error-container').html('<div class="alert error">There was an error submitting your post. Please ensure all fields are complete</div>');
 
                 _.each(this.model.validationError, function (errorClass) {
-                    if(errorClass == 'message-filters') {
+                    if (errorClass == 'message-filters') {
                         _this.$('.send-to .chosen-choices').addClass('error');
                         _this.$('.send-to h3').append('<div class="alert-string error">At least one selection must be made</div>');
                     } else {
-                        _this.$('.' + errorClass).addClass('error')
+                        _this.$('.' + errorClass).addClass('error');
                     }
                 });
             }
 
         },
-        getDataFromEditor: function () {
-            if (this.editor.getLength() > 1) {
-                this.model.set('message[content]', this.editor.getHTML());
-                this.$('#content').val(this.model.get('message[content]'));
-            } else {
-                this.model.set('message[content]', '');
-                this.$('#content').val(this.model.get('message[content]'));
-            }
-        },
+
         correctValidationErrors: function (e) {
 
             if (this.model.validationError !== null) {
 
                 var changedAttr = $(e.currentTarget).attr('name');
-
-                var changedVal = $(e.currentTarget).val();
-
 
                 this.model.set(this.$('.new-message form').serializeObject(), {validate: true});
 
@@ -104,9 +102,8 @@ define(function (require) {
 
 
                 if ($.inArray(changedAttr, this.model.validationError) == -1) {
-                    this.$('.' + errorClass).removeClass('error')
+                    this.$('.' + errorClass).removeClass('error');
                 }
-
 
             }
             this.removeValidationError();
@@ -114,18 +111,13 @@ define(function (require) {
         correctEditorValidationError: function () {
             if (this.model.validationError !== null) {
                 var changedAttr = 'message[content]';
-                var changedVal = this.getDataFromEditor();
-
-                this.model.set(changedAttr, changedVal);
+                this.model.set(this.$('.new-message form').serializeObject(), {validate: true});
 
                 var errorClass = changedAttr.replace(/\[/g, '-').replace(/\]/g, '');
 
-
-                if ($.inArray(changedAttr, this.model.validationError) == -1) {
-                    this.$('.' + errorClass).removeClass('error')
+                if ($.inArray(errorClass, this.model.validationError) == -1) {
+                    this.$('.' + errorClass).removeClass('error');
                 }
-
-
             }
 
             this.removeValidationError();
@@ -133,16 +125,15 @@ define(function (require) {
         removeValidationError: function () {
             if (this.model.isValid()) {
                 this.$('.error-container .alert').remove();
-
             }
         },
-        correctSelectionErrors: function(e){
+        correctSelectionErrors: function (e) {
             if (this.model.validationError !== null) {
                 var _this = this;
 
                 this.model.set(this.$('.new-message form').serializeObject(), {validate: true});
 
-                if ($.inArray('message-filters', this.model.validationError) == -1){
+                if ($.inArray('message-filters', this.model.validationError) == -1) {
                     _this.$('.send-to .chosen-choices').removeClass('error');
                     _this.$('.send-to .alert-string').remove();
                 }
@@ -152,5 +143,5 @@ define(function (require) {
 
         }
 
-    })
+    });
 });
