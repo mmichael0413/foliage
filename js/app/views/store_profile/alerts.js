@@ -29,7 +29,6 @@ define(function (require) {
                 this.$el.find('.counter').text(this.collection.count + " ");
             },
 
-            // todo: click handler for dealing with resolution
             resolveAlert: function (e) {
                 e.stopPropagation();
                 e.preventDefault();

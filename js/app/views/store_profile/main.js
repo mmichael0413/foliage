@@ -42,8 +42,8 @@ define(function (require) {
         },
         history: function () {
             _.extend(context, window.bootstrap);
-            new OpenAlertsView({count:window.bootstrap.open.count}).collection.reset(window.bootstrap.open.items);
-            new ResolvedAlertsView({count:window.bootstrap.resolved.count}).collection.reset(window.bootstrap.resolved.items);
+            new OpenAlertsView({count:window.bootstrap.open.count}).collection.reset(context.open.items);
+            new ResolvedAlertsView({count:window.bootstrap.resolved.count}).collection.reset(context.resolved.items);
         }
     };
     return main;

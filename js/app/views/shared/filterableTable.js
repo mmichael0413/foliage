@@ -53,7 +53,7 @@ define(function(require) {
             var $tbody = this.$(this.bodySelector);
             $tbody.html(this.loadingHTML);
 
-
+            
             this.collection.queryString = qs;
             this.collection.fetch({reset:true});
         },
