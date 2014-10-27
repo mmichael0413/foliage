@@ -5,6 +5,7 @@ define(function(require) {
         Filter = require('app/views/filter/main'),
         LoadingView = require('app/views/utils/loading'),
         PaginationView = require('app/views/utils/pagination'),
+        FilterCollection = require('app/collections/reports/info/filters'),
         InfoListModel = require('app/models/reports/info/info_list'),
         ReportInfoListItemView = require('app/views/reports/info/show/list_item');
 
@@ -13,15 +14,20 @@ define(function(require) {
         template: HandlebarsTemplates['reports/info/show/info_list'],
         initialize: function (options) {
             this.model = new InfoListModel($.extend(options, {queryString: window.bootstrap}));
+            this.filters = new FilterCollection(options);
             this.listenTo(context, 'filter:query', this.applyFilter);
             this.loadingView = new LoadingView();
         },
         render: function () {
-            var that = this;
+            var self = this;
             this.$el.append(this.loadingView.render().$el);
+
+            this.filters.fetch({success: function (collection) {
+                self.addFilters(collection);
+            }});
+
             this.model.fetch({success: function (model) {
-                that.addFilters(model.get('filters'));
-                that.constructView(model);
+                self.constructView(model);
             }});
             return this;
         },
@@ -48,13 +54,13 @@ define(function(require) {
             this.loadingView.remove();
         },
         applyFilter: function (qs) {
-            var that = this;
+            var self = this;
             this.$el.empty();
             this.$el.append(this.loadingView.render().$el);
             this.model.queryString = qs;
             this.model.fetch({success: function (model) {
-                that.$el.find('.report-info-list').remove();
-                that.constructView(model);
+                self.$el.find('.report-info-list').remove();
+                self.constructView(model);
             }});
         }
     });
