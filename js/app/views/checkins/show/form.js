@@ -85,7 +85,7 @@ define(function(require) {
             this.$el.find('#remove_images').val(JSON.stringify(this.images.removed));
         },
         getImageParams: function(model) {
-            return {id: model.get('id'), label: model.get('label'), temp_location: model.get('s3location')};
+            return {id: model.get('id'), label: model.get('label'), temp_location: model.get('temp_location')};
         },
         imageAdded: function (model) {
             this.addImage(model).setImageInputValue(model);

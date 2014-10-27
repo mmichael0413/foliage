@@ -19,7 +19,6 @@ define(function(require) {
             this.setElement(element);
             this.form = this.$el.find('form.s3_uploader');
             this.viewer = this.$el.find('.viewer');
-            this.fileInput = this.$el.find("input:file");
 
             this.$el.find('.holder').each(function(){
                 new ImageView({model: new Backbone.Model().set({input: self.$el.data('input')})}).render(this);
@@ -51,7 +50,8 @@ define(function(require) {
             this.viewer.append(new ImageView({model: model}).render().$el);
         },
         clearFileInput: function () {
-            this.fileInput.replaceWith(this.fileInput.val('').clone(true));
+            var input = this.$el.find("input:file");
+            input.replaceWith(input.val('').clone(true));
         }
     });
 });
