@@ -55,6 +55,7 @@ define(function (require) {
             e.stopPropagation();
 
             this.model.set(this.$('.new-message form').serializeObject());
+            this.getDataFromEditor();
 
 
             if (this.model.isValid()) {
@@ -71,7 +72,9 @@ define(function (require) {
                 _.each(this.model.validationError, function (errorClass) {
                     if (errorClass == 'message-filters') {
                         _this.$('.send-to .chosen-choices').addClass('error');
-                        _this.$('.send-to h3').append('<div class="alert-string error">At least one selection must be made</div>');
+                        if (_this.$('.send-to .alert-string').length == 0) {
+                            _this.$('.send-to h3').append('<div class="alert-string error">At least one selection must be made</div>');
+                        }
                     } else {
                         _this.$('.' + errorClass).addClass('error');
                     }
@@ -79,7 +82,15 @@ define(function (require) {
             }
 
         },
-
+        getDataFromEditor: function () {
+            if (this.editor.getLength() > 1) {
+                this.model.set('message-content', this.editor.getHTML());
+                this.$('#content').val(this.model.get('message-content'));
+            } else {
+                this.model.set('message-content', '');
+                this.$('#content').val(this.model.get('message-content'));
+            }
+        },
         correctValidationErrors: function (e) {
 
             if (this.model.validationError !== null) {
@@ -92,7 +103,7 @@ define(function (require) {
 
 
                 if ($.inArray(changedAttr, this.model.validationError) == -1) {
-                    this.$('.' + errorClass).removeClass('error');
+                    this.$('.' + errorClass).removeClass('error')
                 }
 
             }
@@ -101,12 +112,15 @@ define(function (require) {
         correctEditorValidationError: function () {
             if (this.model.validationError !== null) {
                 var changedAttr = 'message[content]';
-                this.model.set(this.$('.new-message form').serializeObject(), {validate: true});
+                var changedVal = this.getDataFromEditor();
+
+                this.model.set(changedAttr, changedVal);
 
                 var errorClass = changedAttr.replace(/\[/g, '-').replace(/\]/g, '');
 
-                if ($.inArray(errorClass, this.model.validationError) == -1) {
-                    this.$('.' + errorClass).removeClass('error');
+
+                if ($.inArray(changedAttr, this.model.validationError) == -1) {
+                    this.$('.' + errorClass).removeClass('error')
                 }
             }
 
@@ -117,13 +131,13 @@ define(function (require) {
                 this.$('.error-container .alert').remove();
             }
         },
-        correctSelectionErrors: function (e) {
+        correctSelectionErrors: function(e){
             if (this.model.validationError !== null) {
                 var _this = this;
 
                 this.model.set(this.$('.new-message form').serializeObject(), {validate: true});
 
-                if ($.inArray('message-filters', this.model.validationError) == -1) {
+                if ($.inArray('message-filters', this.model.validationError) == -1){
                     _this.$('.send-to .chosen-choices').removeClass('error');
                     _this.$('.send-to .alert-string').remove();
                 }

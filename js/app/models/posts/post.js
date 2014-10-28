@@ -19,7 +19,7 @@ define(function (require) {
                 errors.push('message-subject');
             }
 
-            if (attrs.message.content === '') {
+            if (attrs['message-content'] === '') {
                 errors.push('message-content');
             }
 
