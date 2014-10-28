@@ -32,14 +32,14 @@
 	}
 	&.expand-container {
 		&.active {
-		.body {
-			/** Something beyond which it will ever reach **/
-	    	max-height: 5000px;
-		}
-		.expand-indicator {
-			@extend .ic_up;
-		}
-	}				
+			.body {
+				/** Something beyond which it will ever reach **/
+		    	max-height: 5000px;
+			}
+			.expand-indicator {
+				@extend .ic_up;
+			}
+		}				
 	}
 
 	

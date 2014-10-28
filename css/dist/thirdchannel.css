@@ -2845,6 +2845,20 @@ input[type="file"]::-webkit-file-upload-button {
     max-height: 0em; }
   .store-profile-section.expand-container.active .expand-indicator {
     /*@extend .ic_down;*/ } }
+/**
+ * Contains classes for open/resolved alerts + their expanding hidden informational row
+ */
+.alert-row .alert-details {
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: max-height, 0.8s;
+  -moz-transition: max-height, 0.8s;
+  -ms-transition: max-height, 0.8s;
+  -o-transition: max-height, 0.8s;
+  transition: max-height, 0.8s; }
+.alert-row.active .alert-details {
+  max-height: 50em; }
+
 /* Slider */
 .slick-slider {
   position: relative;

@@ -1,5 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        $ = require('jquery'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context');
 
@@ -36,11 +37,13 @@ define(function(require) {
         closePages: function () {
             if (this.config.totalPages > 1) {
                 this.model.pages = [];
+                // this.model.pages represents the ordered page number that is eventually displayed to the user
                 this.model.pages.push(this.config.currentPage);
                 this.model.showPages = true;
                 var arrayLength = 0;
-
+                
                 while (this.model.pages.length != this.config.maxShown) {
+                    
                     if (this.config.totalPages - 1 > this.model.pages[arrayLength]) {
                         this.model.pages.push(this.model.pages[arrayLength] + 1);
                     }
@@ -88,6 +91,7 @@ define(function(require) {
             e.preventDefault();
             var page = $.trim($(e.currentTarget).text());
             context.trigger('filter:set', [{name: 'page', value:page}]);
+            this.trigger('new_page', page);
         }
     });
 });

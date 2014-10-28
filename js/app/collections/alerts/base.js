@@ -4,15 +4,17 @@ define(function(require) {
         /**
          * The Base Collection for fetching Alerts for a particular customer_store
          * 
-         * @param  {[type]} )      {                                                                                 var qs = "";                                       if (this.queryString) {                                   qs = this.queryString;                } else {                    qs = "?";                }                qs += "&customer_store=" + this.customerStoreId;                qs += "&resolved=" + this.resolved;            } [description]
-         * @param  {[type]} parse: function      (response) {                this.count = response.count;                         return response.items;            }                              } [description]
          * @exports app/collections/alerts/base
          */
 		AlertCollection = Backbone.Collection.extend({
             queryString: "",
-            urlBase: "",
+            
             resolved: undefined,
-            customerStoreId: 0,
+            per: undefined,
+            page: 1,
+            getCustomerStoreId: function () {return 0;},
+
+            getUrlBase: function (){ return "";},
 
             getQueryString: function () {
                 //return context.alerts.links.open;
@@ -22,22 +24,24 @@ define(function(require) {
                 } else {
                     qs = "?";
                 }
-                qs += "&customer_store=" + this.customerStoreId;
+                qs += "&customer_store=" + this.getCustomerStoreId();
                 qs += "&resolved=" + this.resolved;
+                qs += "&page=" + this.page;
+                if (this.per) {
+                    qs += "&per=" + this.per;
+                }
+
+
                 return qs;
             },
             parse: function (response) {
-                this.count = response.count;
+                this.count = response.pages.totalCount;
+                this.pages = response.pages;
                 return response.items;
             },
 
             url: function () {
-                return this.urlBase + this.getQueryString();
-            },
-
-            // todo: replace this with full ajax Pagination
-            pagedUrl: function () {
-                return this.urlBase +"/page";
+                return this.getUrlBase() + this.getQueryString();
             }
         });
 

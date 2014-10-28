@@ -1,0 +1,17 @@
+/**
+ * Contains classes for open/resolved alerts + their expanding hidden informational row
+ */
+.alert-row {
+	.alert-details {
+		overflow: hidden;
+		max-height: 0;
+	    @include transition(max-height, 0.8s);
+	}
+	&.active {
+		
+		.alert-details {
+			max-height: 50em;
+		}
+	}
+	
+}
