@@ -2809,6 +2809,9 @@ input[type="file"]::-webkit-file-upload-button {
 .alert-string.error {
   color: #f15f51; }
 
+.store-profile-wrapper .pagination-holder {
+  min-height: 2em; }
+
 .store-profile-section .header {
   font-size: 1rem; }
 .store-profile-section .expand-indicator {

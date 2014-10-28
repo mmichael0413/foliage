@@ -41,6 +41,7 @@ define(function(require) {
             this.$el.find('.list-items').append(new ReportInfoListItemView(value).render().$el);
         },
         constructView: function (model) {
+            
             this.$el.append(this.template(model.toJSON()));
             this.addPages(model.get('pages'));
             if (model.get('list_items').length > 0) {

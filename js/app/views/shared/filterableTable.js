@@ -3,6 +3,7 @@ define(function(require) {
     
     var Backbone = require('backbone'),
         $ = require('jquery'),
+        _ = require('underscore'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context');
     
@@ -39,12 +40,11 @@ define(function(require) {
          * @return {[type]} [description]
          */
         render: function () {
-            console.log("Rendering!");
             var $body = this.$el.find(this.bodySelector),
                 data = {
                     rows: this.collection.toJSON()
                 };
-            
+            _.extend(data, this.additionalData());
             $body.html(this.loadingHTML);
 
             $body.html(HandlebarsTemplates[this.template](data));

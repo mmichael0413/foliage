@@ -1,6 +1,12 @@
 
-.store-profile-section {
+.store-profile-wrapper {
+	.pagination-holder {
+		min-height: 2em;
+	}
+}
 
+.store-profile-section {
+	
 	.header {
 			font-size: 1rem;	
 	}

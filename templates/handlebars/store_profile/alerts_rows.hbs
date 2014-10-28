@@ -1,2 +1,4 @@
 {{>'open_alert_rows'}}
-<div class="item"><a href="{{links.history}}">View Alert History</a></div>
+{{#if links.history}}
+	<div class="item"><a href="{{links.history}}">View Alert History</a></div>
+{{/if}}

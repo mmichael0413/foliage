@@ -1,6 +1,7 @@
 define(function(require) {
     var FilterableTableView = require('app/views/shared/filterableTable'),
         context = require('context'),
+        PaginationView = require('app/views/utils/pagination'),
         Backbone = require('backbone'),
 
         OpenAlertsView = FilterableTableView.extend({
@@ -12,23 +13,38 @@ define(function(require) {
                     return context.alerts.links.open;
                 },
                 parse: function (response) {
-                    this.count = response.count;
+                    this.count = response.pages.totalCount;
+                    this.pages = response.pages;
                     return response.items;
                 }
             }),
-            template: 'store_profile/open_alerts_rows',
+            template: 'store_profile/alerts_rows',
             bodySelector: '.body',
 
             events : {
                 'click .resolve': 'resolveAlert'
             },
 
-            afterRender: function () {    
+            additionalData: function () {
+                return context.alerts;
+            },
+
+            afterRender: function () {   
+                //clean up old pager, if exists
+                if (this.pager) {
+                    this.pager.remove();
+                    delete this.pager;    
+                }
+                
+                this.pager = new PaginationView(this.collection.pages !== undefined ? this.collection.pages : this.pages).render();
+                this.$el.find('.pagination-holder').replaceWith(this.pager.$el);
+                
                 this.$el.find('.counter').text((this.collection.count !== undefined ? this.collection.count : this.count) + " ");
             },
 
             renderCollection: function (model) {
-                this.count = model.count;
+                this.count = model.pages.totalCount;
+                this.pages = model.pages;
                 OpenAlertsView.__super__.renderCollection.call(this, model.items);
             },
 

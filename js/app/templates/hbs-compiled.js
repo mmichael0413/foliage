@@ -1505,14 +1505,22 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["ThirdChannel"]["templates"]["store_profile/alerts_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, self=this, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n	<div class=\"item\"><a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.history)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">View Alert History</a></div>\n";
+  return buffer;
+  }
 
   stack1 = self.invokePartial(partials.open_alert_rows, 'open_alert_rows', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n<div class=\"item\"><a href=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.history)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">View Alert History</a></div>";
+  buffer += "\n";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.history), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer;
   });
 
@@ -1594,7 +1602,7 @@ function program1(depth0,data) {
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n		<p class=\"col-4-12 col-md-4-12\">";
+    + "</p>\n		<p class=\"col-3-12 col-md-3-12\">";
   if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1603,6 +1611,8 @@ function program1(depth0,data) {
   else { helper = (depth0 && depth0.resolved_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</p>\n		<div class=\"col-1-12\">\n			<a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.checkin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" class=\"btn primary\">...</a>\n		</div>\n		<div class=\"col-1-12\">\n			<a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.checkin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" class=\"btn primary\"><i class=\"ic fa ic_report-16\"></i></a>\n		</div>\n	</div>\n";
   return buffer;
