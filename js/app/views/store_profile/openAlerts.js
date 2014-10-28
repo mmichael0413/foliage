@@ -73,6 +73,7 @@ define(function(require) {
             },
 
             _toggleSubView: function ($button) {
+                // this could be cleaned up quite a bit by creating an individual View for each Row
                 var $itemRow = $button.parents('.item'),
                     // slice the alert id off of the href
                     tokens = $button[0].href.split("/"),

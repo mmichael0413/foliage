@@ -1,31 +1,16 @@
 define(function(require) {
-	var Backbone = require('backbone'),
+	var AsyncDetailsView = require('app/views/shared/async_details_view'),
 		template = require('handlebarsTemplates')['store_profile/open_alert_details'],
 
 			/**
 			 * 
 			 * @exports app/views/store_profile/openAlertsDetails
 			 */
-			OpenAlertsDetailsView = Backbone.View.extend({
+			OpenAlertsDetailsView = AsyncDetailsView.extend({
+				template: template,
 				events: {
 					'click .submit': 'resolve',
 					'click .cancel': 'cancel'
-				},
-
-				initialize: function (data) {
-					this.model = new (Backbone.Model.extend({
-						url: function () {
-							return data.url;
-						}
-					}))();
-				},
-
-				fetch: function () {
-					var self = this;
-					self.model.fetch()
-						.done(function () {
-							self.$el.html(template(self.model.toJSON()));
-						});
 				},
 				cancel: function () {
 					this.trigger('details:close');
