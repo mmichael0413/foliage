@@ -1,7 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone');
 
-    return Backbone.Model.extend({
+    return Backbone.Collection.extend({
         initialize: function (options) {
             this.queryString = options.queryString;
             this.programId = options.programId;
@@ -9,7 +9,7 @@ define(function(require) {
             this.infoId = options.infoId;
         },
         url: function () {
-            return '/programs/' + this.programId + "/reports/" + this.reportId + "/info/" + this.infoId + ".json?" + this.queryString;
+            return '/programs/' + this.programId + "/reports/" + this.reportId + "/info/" + this.infoId + "/filters.json";
         }
     });
 });

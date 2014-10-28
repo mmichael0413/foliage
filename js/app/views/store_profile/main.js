@@ -5,7 +5,6 @@ define(function (require) {
         $ = require('jquery'),
         ActivitiesView = require('app/views/activities/activities'),
         PersonnelSectionView = require('app/views/store_profile/personnel'),
-        AlertsSectionView = require('app/views/store_profile/alerts'),
         ExpandWrapperView = require('app/views/utils/expandWrapperView'),
         OpenAlertsView = require('app/views/store_profile/openAlerts'),
         ResolvedAlertsView = require('app/views/store_profile/resolvedAlerts');
@@ -19,8 +18,8 @@ define(function (require) {
     var main = {
         init: function () {
             _.extend(context, window.bootstrap);
-            new PersonnelSectionView().render();
-            new AlertsSectionView().render();
+            new PersonnelSectionView().fetch();//render();
+            new OpenAlertsView().fetch();//render();
             var wrapper = new ExpandWrapperView();
             wrapper.setElement('#site-canvas').render();
             
@@ -42,8 +41,8 @@ define(function (require) {
         },
         history: function () {
             _.extend(context, window.bootstrap);
-            new OpenAlertsView({count:window.bootstrap.open.count}).collection.reset(window.bootstrap.open.items);
-            new ResolvedAlertsView({count:window.bootstrap.resolved.count}).collection.reset(window.bootstrap.resolved.items);
+            new OpenAlertsView().renderCollection(context.alerts.open);
+            new ResolvedAlertsView().renderCollection(context.alerts.resolved);
         }
     };
     return main;

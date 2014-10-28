@@ -2295,21 +2295,25 @@ input[type="file"]::-webkit-file-upload-button {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-[dir="rtl"] .slick-prev {
-  left: auto;
-  right: -25px; }
-.slick-prev:before {
-  content: "\2190"; }
-  [dir="rtl"] .slick-prev:before {
-    content: "\2192"; }
-
-[dir="rtl"] .slick-next {
-  left: -25px;
-  right: auto; }
-.slick-next:before {
-  content: "\2192"; }
-  [dir="rtl"] .slick-next:before {
+.slick-prev {
+  left: -25px; }
+  [dir="rtl"] .slick-prev {
+    left: auto;
+    right: -25px; }
+  .slick-prev:before {
     content: "\2190"; }
+    [dir="rtl"] .slick-prev:before {
+      content: "\2192"; }
+
+.slick-next {
+  right: -25px; }
+  [dir="rtl"] .slick-next {
+    left: -25px;
+    right: auto; }
+  .slick-next:before {
+    content: "\2192"; }
+    [dir="rtl"] .slick-next:before {
+      content: "\2190"; }
 
 /* Dots */
 .slick-slider {
@@ -3019,43 +3023,6 @@ input[type="file"]::-webkit-file-upload-button {
   display: inline-block;
   width: 29%; }
 
-.activity-photos .carousel, .bbm-modal .carousel {
-  background-color: #f6f6f5; }
-  .activity-photos .carousel .arrow, .bbm-modal .carousel .arrow {
-    color: white;
-    position: absolute;
-    top: 50%;
-    font-size: 1.2em;
-    cursor: pointer;
-    z-index: 10;
-    text-shadow: 1px 1px 5px black;
-    width: 2em; }
-    .activity-photos .carousel .arrow.arrow-left, .bbm-modal .carousel .arrow.arrow-left {
-      left: 5px; }
-    .activity-photos .carousel .arrow.arrow-right, .bbm-modal .carousel .arrow.arrow-right {
-      right: 5px;
-      text-align: right; }
-  .activity-photos .carousel .img-label, .bbm-modal .carousel .img-label {
-    position: absolute;
-    bottom: .5em;
-    width: 100%;
-    color: white;
-    text-shadow: 1px 1px 5px black; }
-.activity-photos .slick-initialized .slick-slide, .bbm-modal .slick-initialized .slick-slide {
-  text-align: center; }
-  .activity-photos .slick-initialized .slick-slide img, .bbm-modal .slick-initialized .slick-slide img {
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%); }
-
-.helper {
-  display: inline-block;
-  height: 100%; }
-
 .user-image {
   width: 3em;
   height: 3em;
@@ -3069,11 +3036,25 @@ input[type="file"]::-webkit-file-upload-button {
   .comment-holder .comments .activity-bar:last-of-type {
     margin-bottom: 0; }
 
-.bbm-button.close-modal i {
+.swiper-slide img {
+  width: 100%;
+  display: inline-block;
+  vertical-align: middle; }
+
+.swiper-container .arrow {
+  color: white;
   position: absolute;
-  right: -2em;
-  top: -2em;
-  color: white; }
+  top: 50%;
+  font-size: 1.2em;
+  cursor: pointer;
+  z-index: 10;
+  text-shadow: 1px 1px 5px black;
+  width: 2em; }
+  .swiper-container .arrow.arrow-left {
+    left: 5px; }
+  .swiper-container .arrow.arrow-right {
+    right: 5px;
+    text-align: right; }
 
 @media only screen and (max-width: 64em) {
   .activity-content {
@@ -3084,17 +3065,11 @@ input[type="file"]::-webkit-file-upload-button {
 @media only screen and (max-width: 48em) {
   .activity-content, .activity-photos {
     width: 100%;
-    margin-bottom: 1em; }
-
-  .activity-content img {
-    max-width: 100%; } }
+    margin-bottom: 1em; } }
 @media only screen and (max-width: 35.5em) {
   .activity-content, .activity-photos {
     width: 100%;
-    margin-bottom: 1em; }
-
-  .activity-content img {
-    max-width: 100%; } }
+    margin-bottom: 1em; } }
 /*
 	Colors from Liz's UI-Color-Guide as of 10/15/2014
  */
@@ -3147,6 +3122,42 @@ input[type="file"]::-webkit-file-upload-button {
   .checkin-report .body img {
     width: 3em;
     height: 3em; }
+
+.unread {
+  font-weight: bold; }
+
+.send-to .form-group {
+  margin-bottom: 2em; }
+.send-to > div {
+  width: 32.9%;
+  display: inline-block;
+  padding: 0 1em;
+  vertical-align: top; }
+  .send-to > div:first-of-type {
+    padding: 0; }
+
+.editor-container {
+  border: 1px solid #e3e8ec;
+  border-radius: 5px;
+  margin-bottom: 2em;
+  padding: 1em; }
+  .editor-container.error {
+    border-color: #f15f51; }
+  .editor-container iframe {
+    height: 22em !important;
+    border: none !important; }
+
+.ql-toolbar-container {
+  border-bottom: 1px solid #e3e8ec; }
+
+.chosen-choices.error {
+  border-color: #f15f51; }
+
+.modal-backdrop {
+  position: relative; }
+
+.btn-primary {
+  color: #434748; }
 
 /*
 	Colors from Liz's UI-Color-Guide as of 10/15/2014
@@ -3263,38 +3274,105 @@ input[type="file"]::-webkit-file-upload-button {
   .report-info-list .checkins .checkin:not(:first-child) {
     border-top: 1px solid #e3e8ec; }
 
-.unread {
-  font-weight: bold; }
+/*
+	Colors from Liz's UI-Color-Guide as of 10/15/2014
+ */
+.red {
+  color: #f15f51; }
 
-.send-to .form-group {
-  margin-bottom: 2em; }
-.send-to > div {
-  width: 32.9%;
-  display: inline-block;
+.medium-blue {
+  color: #9fb2c0; }
+
+/* From http://sass-lang.com/guide */
+.loading {
+  color: #434748;
+  text-align: center; }
+  .loading .fa-spinner {
+    font-size: 2.0em; }
+  .loading span {
+    display: inline-block;
+    vertical-align: middle; }
+
+.survey .header h1 {
+  margin-bottom: 0.5em; }
+.survey .header p {
+  margin-bottom: 1em; }
+.survey h3 {
   padding: 0 1em;
-  vertical-align: top; }
-  .send-to > div:first-of-type {
-    padding: 0; }
-
-.editor-container {
-  border: 1px solid #e3e8ec;
-  border-radius: 5px;
-  margin-bottom: 2em;
+  margin: 0;
+  text-transform: uppercase;
+  text-align: top; }
+.survey input[type=text], .survey input[type=password], .survey input[type=number], .survey textarea {
+  margin-bottom: 0; }
+.survey .body {
+  margin-top: 1em;
+  border-top: 1px solid #e3e8ec;
   padding: 1em; }
-  .editor-container.error {
-    border-color: #f15f51; }
-  .editor-container iframe {
-    height: 22em !important;
-    border: none !important; }
-
-.ql-toolbar-container {
-  border-bottom: 1px solid #e3e8ec; }
-
-.chosen-choices.error {
-  border-color: #f15f51; }
-
-.modal-backdrop {
+.survey .question {
+  margin-bottom: 2em; }
+  .survey .question [name*='question-'], .survey .question .chosen-container, .survey .question .expanding-wrapper {
+    margin-top: 0.5em; }
+  .survey .question:last-of-type {
+    margin-bottom: 0; }
+  .survey .question p:empty {
+    margin-top: -2em; }
+.survey .error {
+  color: #f15f51; }
+  .survey .error input[type=text], .survey .error input[type=password], .survey .error input[type=number], .survey .error textarea, .survey .error .chosen-choices, .survey .error .chosen-single, .survey .error .search-filed input, .survey .error input[type="file"]::-webkit-file-upload-button {
+    border-color: #f15f51;
+    color: #f15f51; }
+  .survey .error ::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #f15f51; }
+  .survey .error :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #f15f51;
+    opacity: 1; }
+  .survey .error ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #f15f51;
+    opacity: 1; }
+  .survey .error :-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #f15f51; }
+.survey .viewer {
   position: relative; }
-
-.btn-primary {
-  color: #434748; }
+  .survey .viewer .holder {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    overflow: auto;
+    width: 100%; }
+  .survey .viewer .image {
+    max-width: 5em;
+    float: left; }
+    .survey .viewer .image img {
+      display: block;
+      max-width: 100%;
+      height: auto; }
+  .survey .viewer .description {
+    margin-left: 6rem;
+    margin-right: 10rem; }
+  .survey .viewer .delete {
+    float: right;
+    margin-top: 1.5rem; }
+  @media only screen and (max-width: 48em) {
+    .survey .viewer .description {
+      margin-right: 3rem; }
+    .survey .viewer .delete span {
+      display: none; } }
+  .survey .viewer .progress, .survey .viewer .percentage {
+    margin-left: 6rem;
+    margin-right: 11rem; }
+  .survey .viewer .progress {
+    height: 2rem;
+    border: 1px solid #e3e8ec;
+    border-radius: 0.25rem;
+    overflow: hidden; }
+    .survey .viewer .progress .bar {
+      width: 0%;
+      height: 100%;
+      background-color: #9fb2c0; }
+.survey .checkin-form-btn {
+  margin-bottom: 2em; }
+.survey .expanding-wrapper {
+  width: 100%; }

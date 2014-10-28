@@ -81,7 +81,7 @@ define(function(require) {
         },
         setImageInputValue: function(model) {
             var inputSel = model.get('input');
-            this.$el.find(inputSel).val(JSON.stringify(this.images[inputSel]));
+            this.$el.find(inputSel).val(JSON.stringify(this.images[inputSel])).trigger('change:nosave');
             this.$el.find('#remove_images').val(JSON.stringify(this.images.removed));
         },
         getImageParams: function(model) {

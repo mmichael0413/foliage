@@ -21,7 +21,7 @@ function program1(depth0,data) {
   buffer += escapeExpression(stack1)
     + "</p>\n		<div class=\"col-1-12\">\n			<a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.resolve)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" class=\"btn primary\"><i class=\"ic fa ic_check\"></i></a>\n		</div>\n		<div class=\"col-1-12\">\n			<a href=\""
+    + "\" class=\"btn primary resolve\"><i class=\"ic fa ic_check\"></i></a>\n		</div>\n		<div class=\"col-1-12\">\n			<a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.checkin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" class=\"btn primary\"><i class=\"ic fa ic_report-16\"></i></a>\n		</div>\n	</div>\n";
   return buffer;
