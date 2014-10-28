@@ -17,18 +17,14 @@ require.config({
         'backbone.modal' : 'libs/backbone.modal',
         'jquery_ujs' : 'libs/bower_components/jquery-ujs/src/rails',
         'chartjs' : 'libs/Chart',
-        'owl_carousel': 'libs/owl.carousel',
         'slick_carousel': 'libs/bower_components/slick.js/slick/slick',
         'livestamp' : 'libs/livestamp.min',
         'moment' : 'libs/moment',
         'chosen': "libs/bower_components/chosen/chosen.jquery",
         'jquery-validate' : 'libs/bower_components/jquery-validation/dist/jquery.validate',
         'serializeObject' : "libs/bower_components/jquery-serialize-object/jquery.serialize-object",
-        'bootstrap': 'libs/bower_components/bootstrap/dist/js/bootstrap.min',
-        'bootstrap.wysihtml5': 'libs/bootstrap3-wysiwyg-master/dist/amd/bootstrap3-wysihtml5.all',
-        'bootstrap.wysihtml5.en-US': 'libs/bootstrap3-wysiwyg-master/dist/locales/bootstrap-wysihtml5.en-US',
-        'rangy' : 'libs/bower_components/rangy-1.3/rangy-core',
-        'rangy-selectionsaverestore' : 'libs/bower_components/rangy-1.3/rangy-selectionsaverestore'
+        'quill' : 'libs/quill/custom',
+        'quill-video' : 'libs/quill/modules/iframe'
     },
     shim: {
         "jquery": {
@@ -51,16 +47,12 @@ require.config({
             deps: ["handlebars", "handlebarsHelpers"],
             exports: "HandlebarTemplates"
         },
-
         "backbone.paginator" : {
             deps: ["backbone"]
         },
         "backbone.modal" : {
             deps: ["backbone"],
             exports: "BackboneModal"
-        },
-        "owl_carousel" : {
-            exports: 'OwlCarousel'
         },
         "livestamp": {
             deps: ["moment"],
@@ -70,15 +62,8 @@ require.config({
             deps: ["jquery"],
             exports: "jquery.validation"
         },
-        'bootstrap': {
-            deps: ['jquery']
-        },
-        "wysihtml5-parse-rules" : {
-            exports: "wysihtml5ParserRules"
-        },
-        "rangy-selectionsaverestore": {
-            deps: ['rangy'],
-            exports: "SaveRestore"
+        "quill-video": {
+            deps: ['quill']
         }
     }
 });

@@ -6,9 +6,8 @@ define(function (require) {
         Post = require('app/models/posts/post'),
         Serialize = require('serializeObject'),
         Chosen = require('chosen'),
-        bootstrap = require('bootstrap'),
-        SaveRestore = require('rangy-selectionsaverestore'),
-        bootstrapWysihtml5 = require("bootstrap.wysihtml5.en-US");
+        Quill = require('quill'),
+        QuillVideo = require('quill-video');
 
 
     return Backbone.View.extend({
@@ -28,22 +27,13 @@ define(function (require) {
                 }
             });
 
-
-            $('#wysihtml5-textarea').wysihtml5({
-                style:                true,
-                toolbar: {
-                    "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
-                    "emphasis": true, //Italics, bold, etc. Default true
-                    "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-                    "html": true, //Button which allows you to edit the generated HTML. Default false
-                    "link": true, //Button to insert a link. Default true
-                    "image": true, //Button to insert an image. Default true,
-                    "color": true, //Button to change color of font
-                    "blockquote": true, //Blockquote
-                    "fa": true
-                },
-                autoLink: false
+            this.editor = new Quill('#editor', {
+                theme: 'snow'
             });
+            this.editor.addModule('toolbar', { container: '#full-toolbar' });
+            this.editor.addModule('link-tooltip');
+            this.editor.addModule('image-tooltip');
+            this.editor.addModule('video-tooltip');
 
 
             this.$el.find('.send-to select').chosen({disable_search: false, width: "100%"});
