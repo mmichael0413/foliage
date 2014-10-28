@@ -63,7 +63,6 @@ module.exports = function(grunt) {
             compile: {
                 // see full list of options here: https://github.com/jrburke/r.js/blob/master/build/example.build.js
                 options: {
-                    
                     mainConfigFile : "js/app/init.js",
                     baseUrl : "js",
                     name: "app/init",
@@ -79,9 +78,10 @@ module.exports = function(grunt) {
         copy: {
             main: {
                 files: [
+                    // ThirdChannel dist files.
                     {expand: true, flatten: true, src: ['js/libs/bower_components/requirejs/require.js'], dest: 'dist/thirdchannel/js', filter: 'isFile'},
-                    {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/fonts/', filter: 'isFile'},
-                    {expand: true, flatten: true, src: ['images/*'], dest: 'dist/images/', filter: 'isFile'}
+                    {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/thirdchannel/fonts/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['images/*'], dest: 'dist/thirdchannel/images/', filter: 'isFile'}
                 ]
             }
         },
@@ -111,10 +111,38 @@ module.exports = function(grunt) {
                 }
             }
         },
+        aws_s3: {
+            options: {
+                accessKeyId: process.env.AWS_ACCESS_KEY_ID, // Use the variables
+                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY // You can also use env variables
+            },
+            staging: {
+                options: {
+                    bucket: 'thirdchannel-assets-staging'
+                },
+                files: [
+                    {dest: 'dist/thirdchannel/', cwd: 'backup/thirdchannel/staging/', action: 'download'},
+                    {expand: true, cwd: 'backup/thirdchannel/staging', src: ['**'], dest: 'backup/thirdchannel/'+ new Date().getTime()},
+                    {dest: 'dist/thirdchannel/', action: 'delete'},
+                    {expand: true, cwd: 'dist/thirdchannel/', src: ['**'], dest: 'dist/thirdchannel/'}
+                ]
+            },
+            production: {
+                options: {
+                    bucket: 'thirdchannel-assets'
+                },
+                files: [
+                    {dest: 'dist/thirdchannel/', cwd: 'backup/thirdchannel/production/', action: 'download'},
+                    {expand: true, cwd: 'backup/thirdchannel/production', src: ['**'], dest: 'backup/thirdchannel/'+ new Date().getTime()},
+                    {dest: 'dist/thirdchannel/', action: 'delete'},
+                    {expand: true, cwd: 'dist/thirdchannel/', src: ['**'], dest: 'dist/thirdchannel/'}
+                ]
+            }
+        },
         watch: {
             sass: {
                 files: ['css/**/*.scss'],
-                tasks: ['sass'],
+                tasks: ['sass', 'copy'],
                 options: {
                     port: 3001,
                     livereload: true
@@ -122,7 +150,7 @@ module.exports = function(grunt) {
             },
             hbs: {
                 files: ['templates/handlebars/**/*.hbs'],
-                tasks: ['handlebars'],
+                tasks: ['handlebars', 'copy'],
                 options: {
                     spawn: false
                 }
@@ -137,14 +165,9 @@ module.exports = function(grunt) {
             },
             rjs: {
                 files: ['js/app/**/*.js', '!js/app/handlebars/templates.js'],
-                tasks: ['requirejs']
-            },
-            cp: {
-                files: ['js/app/**/*.js', '!js/app/handlebars/templates.js'],
-                tasks: ['copy']
+                tasks: ['requirejs', 'copy']
             }
         }
-
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -156,7 +179,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-handlebars');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-aws-s3');
 
     grunt.registerTask('default', ['concurrent:dev']);
+    grunt.registerTask('build-dev', ['sass','handlebars','requirejs','copy']);
+    grunt.registerTask('build-beta', ['sass','handlebars','requirejs','copy', 'aws_s3:staging']);
+    grunt.registerTask('build-prod', ['sass','handlebars','requirejs','copy']);
 
 };
