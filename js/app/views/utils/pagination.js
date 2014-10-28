@@ -1,6 +1,8 @@
 define(function(require) {
     var Backbone = require('backbone'),
         $ = require('jquery'),
+        _ = require('underscore'),
+
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context');
 
@@ -20,9 +22,11 @@ define(function(require) {
             return this;
         },
         setupPages: function () {
+            this.model.showPages = (this.config.totalPages > 1);
+            this.model.currentPage = this.config.currentPage;
+            this.model.totalPages = this.config.totalPages;
+            this.pageRange();
             this.firstPage();
-            this.closePages();
-            this.currentPage();
             this.lastPage();
         },
         setupText: function () {
@@ -30,49 +34,23 @@ define(function(require) {
             this.totalCount();
         },
         firstPage: function () {
-            if (this.config.totalPages > 1 && this.config.currentPage > 1) {
-                this.model.firstPage = 1;
+            if (this.model.showPages) {
+                this.model.firstPage = (_.first(this.model.pages) != 1);
+                this.model.lessPages = (_.first(this.model.pages) > 2);
             }
         },
-        closePages: function () {
-            if (this.config.totalPages > 1) {
-                this.model.pages = [];
-                // this.model.pages represents the ordered page number that is eventually displayed to the user
-                this.model.pages.push(this.config.currentPage);
-                this.model.showPages = true;
-                var arrayLength = 0;
-                
-                while (this.model.pages.length != this.config.maxShown) {
-                    
-                    if (this.config.totalPages - 1 > this.model.pages[arrayLength]) {
-                        this.model.pages.push(this.model.pages[arrayLength] + 1);
-                    }
+        pageRange: function () {
+            if (this.model.showPages) {
+                var rangeStart = Math.max((this.config.currentPage - Math.floor(this.config.maxShown / 2)) - Math.max((this.config.currentPage + Math.floor(this.config.maxShown / 2)) - this.config.totalPages, 0), 1),
+                    rangeEnd   = Math.min((this.config.currentPage + Math.floor(this.config.maxShown / 2)) - Math.min((this.config.currentPage - Math.floor(this.config.maxShown / 2)) - 1, 0), this.config.totalPages) + 1;
 
-                    if (this.model.pages[0] > 2) {
-                        this.model.pages.unshift(this.model.pages[0] - 1);
-                    }
-
-                    arrayLength = this.model.pages.length - 1;
-                    if ((this.config.totalPages - 1 == this.model.pages[arrayLength]) && this.model.pages[0] == 1) {
-                        break;
-                    }
-                }
-
-                if (this.model.pages[0] > 2) {
-                    this.model.lessPages = true;
-                }
-
-                if ((this.config.totalPages - 1 > this.model.pages[arrayLength])) {
-                    this.model.morePages = true;
-                }
+                this.model.pages = _.range(rangeStart, rangeEnd);
             }
-        },
-        currentPage: function () {
-            this.model.currentPage = this.config.currentPage;
         },
         lastPage: function () {
-            if (this.config.totalPages > 1 && this.config.currentPage < this.config.totalPages) {
-                this.model.lastPage = this.config.totalPages;
+            if (this.model.showPages) {
+                this.model.lastPage = (_.last(this.model.pages) != this.config.totalPages);
+                this.model.morePages = (_.last(this.model.pages) < (this.config.totalPages - 1));
             }
         },
         infoText: function () {

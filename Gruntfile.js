@@ -54,8 +54,8 @@ module.exports = function(grunt) {
         sass: {
             dist: {
                 files: {
-                    'css/dist/global.css': 'css/scss/apps/global/main.scss',
-                    'css/dist/thirdchannel.css': 'css/scss/apps/thirdchannel/main.scss'
+                    'dist/global/css/global.css': 'css/scss/apps/global/main.scss',
+                    'dist/thirdchannel/css/main.css': 'css/scss/apps/thirdchannel/main.scss'
                 }
             }
         },
@@ -67,13 +67,22 @@ module.exports = function(grunt) {
                     mainConfigFile : "js/app/init.js",
                     baseUrl : "js",
                     name: "app/init",
-                    out: "dist/app.js",
+                    out: "dist/thirdchannel/js/app.js",
                     removeCombined: true,
                     findNestedDependencies: true,
                     generateSourceMaps: true,
                     optimize: "uglify2",
                     preserveLicenseComments: false
                 }
+            }
+        },
+        copy: {
+            main: {
+                files: [
+                    {expand: true, flatten: true, src: ['js/libs/bower_components/requirejs/require.js'], dest: 'dist/thirdchannel/js', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/fonts/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['images/*'], dest: 'dist/images/', filter: 'isFile'}
+                ]
             }
         },
         jshint: {
@@ -129,6 +138,10 @@ module.exports = function(grunt) {
             rjs: {
                 files: ['js/app/**/*.js', '!js/app/handlebars/templates.js'],
                 tasks: ['requirejs']
+            },
+            cp: {
+                files: ['js/app/**/*.js', '!js/app/handlebars/templates.js'],
+                tasks: ['copy']
             }
         }
 
@@ -142,6 +155,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-pure-grids');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-handlebars');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('default', ['concurrent:dev']);
 
