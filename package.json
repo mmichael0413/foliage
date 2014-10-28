@@ -17,6 +17,7 @@
     "grunt-nodemon": "*",
     "grunt-concurrent": "*",
     "grunt-pure-grids": "^1.0.2",
+     "grunt-contrib-copy": "0.7.0",
     "mime": "*"
   }
 }
