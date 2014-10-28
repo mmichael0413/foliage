@@ -2,32 +2,32 @@ define(function (require) {
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        PageableCollection = require('backbone.paginator'),
+        context = require('context'),
         Activity = require('app/models/activities/activity');
 
 
-    return Backbone.PageableCollection.extend({
+    return Backbone.Collection.extend({
         initialize: function (options) {
-            this.url = options.url;
-            this.currentPage = 0;
+            this.option_url = options.url;
+
+            this.listenTo(context, 'filter:query', this.updateQueryString);
+            this.listenTo(context, 'filter:queryString', this.updateQueryString);
+        },
+        currentPage: 1,
+        queryString: "",
+        url: function(){
+            return this.option_url + '?' + this.queryString;
         },
         model: Activity,
-        state: {
-            pageSize: 5,
-            sortKey: "updated",
-            order: 1
-        },
 
-        queryParams: {
-            totalPages: null,
-            totalRecords: null,
-            pageSize: 'rows',
-            sortKey: "sort",
-            order: "order",
-            directions: {
-                "-1": "asc",
-                "1": "desc"
-            }
+        getNextPage: function() {
+            this.currentPage = this.currentPage++;
+            context.trigger('filter:set:quiet', [{name: 'page', value:this.currentPage}]);
+            context.trigger('filter:request:queryString');
+            return this.fetch();
+        },
+        updateQueryString: function(qs){
+            this.queryString = qs;
         }
     });
 

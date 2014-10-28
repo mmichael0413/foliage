@@ -38,6 +38,7 @@ define(function(require) {
             'click .clear-filters': 'clearFilters'
         },
 
+        enableDeepLinks: true,
         
         initialize: function (data) {
 
@@ -82,7 +83,9 @@ define(function(require) {
             this.listenTo(context, 'filter:request', this.handleFilterRequest);
             this.listenTo(context, 'filter:request:queryString', this.handleFilterRequestQueryString);
             this.listenTo(context, 'filter:set', this.setFromExternal);
-            
+            this.listenTo(context, 'filter:set:quiet', this.setFromExternalQuiet);
+            this.listenTo(context, 'configure:deepLinks', this.configureDeepLinks);
+
             // finally, check if we should Trigger the filter. This is done down here to avoid
             // repeated triggerings if we checked this in the while loop.
             if (shouldTrigger) {
@@ -187,7 +190,9 @@ define(function(require) {
 
         broadCastQueryString: function () {
             // update the url so that we can access the deep link later on
-            context.router.navigate(window.location.pathname +"?"+ this.$el.serialize(), {trigger: false});
+            if(this.enableDeepLinks) {
+                context.router.navigate(window.location.pathname + "?" + this.$el.serialize(), {trigger: false});
+            }
             context.trigger('filter:query', this.$el.serialize());
         },
 
@@ -196,6 +201,17 @@ define(function(require) {
          * @param data
          */
         setFromExternal: function (fields) {
+            var threshold = this.setData(fields);
+            if (threshold > 0) {
+                this.broadCastQueryString();
+            }
+        },
+
+        setFromExternalQuiet: function(fields){
+            this.setData(fields);
+        },
+
+        setData: function(fields){
             var $input,
                 threshold = 0,
                 i = 0;
@@ -207,9 +223,8 @@ define(function(require) {
                     threshold++;
                 }
             }
-            if (threshold > 0) {
-                this.broadCastQueryString();
-            }
+
+            return threshold;
         },
 
         /**
@@ -232,6 +247,10 @@ define(function(require) {
             }
 
             return data;
+        },
+
+        configureDeepLinks: function(isEnabled) {
+            this.enableDeepLinks = isEnabled;
         }
     };
 

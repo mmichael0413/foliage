@@ -31,7 +31,11 @@ define(function(require) {
                 this.model = new Activity();
             } else {
                 this.model = options.model;
-                this.model.set('imageCount', options.model.get('images').length);
+                if(options.model.get('images')) {
+                    this.model.set('imageCount', options.model.get('images').length);
+                } else {
+                    this.model.set('imageCount', 0);
+                }
             }
 
             this.objId = this.model.get('activity_id');

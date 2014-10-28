@@ -72,7 +72,7 @@ define(function (require) {
                 _.each(this.model.validationError, function (errorClass) {
                     if (errorClass == 'message-filters') {
                         _this.$('.send-to .chosen-choices').addClass('error');
-                        if (_this.$('.send-to .alert-string').length == 0) {
+                        if (_this.$('.send-to .alert-string').length === 0) {
                             _this.$('.send-to h3').append('<div class="alert-string error">At least one selection must be made</div>');
                         }
                     } else {
@@ -103,7 +103,7 @@ define(function (require) {
 
 
                 if ($.inArray(changedAttr, this.model.validationError) == -1) {
-                    this.$('.' + errorClass).removeClass('error')
+                    this.$('.' + errorClass).removeClass('error');
                 }
 
             }
@@ -120,7 +120,7 @@ define(function (require) {
 
 
                 if ($.inArray(changedAttr, this.model.validationError) == -1) {
-                    this.$('.' + errorClass).removeClass('error')
+                    this.$('.' + errorClass).removeClass('error');
                 }
             }
 

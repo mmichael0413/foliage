@@ -64,10 +64,8 @@ define(function(require){
         },
 
         activitiesFeed: function(program_id){
-
-            var queryString = window.location.search;
-            var url = '/programs/' + program_id + '/activities/posts' + queryString;
-            var incomplete_url =  '/programs/' + program_id + '/activities/incomplete_posts' + queryString;
+            var url = '/programs/' + program_id + '/activities/posts';
+            var incomplete_url =  '/programs/' + program_id + '/activities/incomplete_posts';
 
             new GlobalView();
             var activitiesView = new ActivitiesView({
@@ -84,7 +82,8 @@ define(function(require){
             new GlobalView();
             var activitiesView = new ActivitiesView({
                 url: url,
-                programId: program_id
+                programId: program_id,
+                enableScroll: false
             });
             activitiesView.fetch();
         },
@@ -118,10 +117,8 @@ define(function(require){
         },
 
         programProfile: function(program_id, user_id) {
-
-            var queryString = window.location.search;
-            var url = '/programs/' + program_id + '/activities/' + user_id + '/for' + queryString;
-            var incomplete_url =  '/programs/' + program_id + '/activities/incomplete_posts' + queryString;
+            var url = '/programs/' + program_id + '/activities/' + user_id + '/for';
+            var incomplete_url =  '/programs/' + program_id + '/activities/incomplete_posts';
 
             new GlobalView();
             var activitiesView = new ActivitiesView({
@@ -184,8 +181,6 @@ define(function(require){
         MainLayout.init();
         context.router = new AppRouter();
         Backbone.history.start({pushState: true});
-        
-        
     };
     return {
         initialize: initialize
