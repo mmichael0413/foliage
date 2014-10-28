@@ -50,18 +50,14 @@
 
         <div class="activity-photos">
             {{#if images}}
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <!--First Slide-->
-                    {{#each images}}
-                    <div class="swiper-slide">
-                        <img src="{{url}}" class="img-responsive " onerror="this.src='{{../content_image_error_url}}'"/>
+            <div class="carousel">
+                {{#each images}}
+                <div>
+                    <div class="helper">
+                        <img src="{{url}}" class="img-responsive" onerror="this.src='{{../content_image_error_url}}'"/>
                     </div>
-                    {{/each}}
-                    <a href="#" class="arrow arrow-left"><span class="ic ic_left"></span> </a>
-                    <a href="#" class="arrow arrow-right"><span class="ic ic_right"></span> </a>
-
                 </div>
+                {{/each}}
             </div>
             {{/if}}
         </div>

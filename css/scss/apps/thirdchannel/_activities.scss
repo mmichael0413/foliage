@@ -91,6 +91,29 @@ $padding: 1.5em;
   width: 29%;
 }
 
+.activity-photos, .bbm-modal {
+  .carousel {
+    background-color: $light-gray;
+  }
+  .slick-initialized .slick-slide {
+    text-align: center;
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.helper {
+  display: inline-block;
+  height: 100%;
+}
+
 $img-height: 3em;
 
 .user-image {
@@ -113,33 +136,12 @@ $img-height: 3em;
   }
 }
 
-.swiper-slide {
-  img {
-    width: 100%;
-    display: inline-block;
-    vertical-align: middle;
-  }
-}
-
-.swiper-container {
-
-  .arrow {
-    color: white;
+.bbm-button.close-modal {
+  i {
     position: absolute;
-    top: 50%;
-    font-size: 1.2em;
-    cursor: pointer;
-    z-index: 10;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
-    width: 2em;
-    &.arrow-left {
-      left: 5px;
-    }
-    &.arrow-right {
-      right: 5px;
-      text-align: right;
-    }
-
+    right: -2em;
+    top: -2em;
+    color: white;
   }
 }
 
@@ -157,11 +159,17 @@ $img-height: 3em;
     width: 100%;
     margin-bottom: 1em;
   }
+  .activity-content img {
+    max-width: 100%;
+  }
 }
 
 @include swb-small {
   .activity-content, .activity-photos {
     width: 100%;
     margin-bottom: 1em;
+  }
+  .activity-content img {
+    max-width: 100%;
   }
 }

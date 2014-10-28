@@ -10,8 +10,8 @@ define(function (require) {
         ActivityCollection = require('app/collections/activities/activities'),
         IncompleteActivity = require('app/models/activities/incomplete_activity'),
         Expanding = require('libs/expanding'),
-        Livestamp = require('livestamp'),
-        SlickCarousel = require('slick_carousel');
+        Livestamp = require('livestamp');
+
 
 
     return Backbone.View.extend({
@@ -25,6 +25,11 @@ define(function (require) {
             this.allModelsLoaded = false;
             this.incompleteActivityUrl = options.incompleteActivityUrl;
             var self = this;
+
+            $( window ).resize(function() {
+               self.resizeCarousel();
+            });
+
             $(window).on('scroll.wall', function () {
                 if (self.allModelsLoaded) {
                     $(window).off('scroll.wall');
@@ -105,6 +110,13 @@ define(function (require) {
             this.isLoading.removeFromDOM();
             this.$el.append('<div class="activity alert error">Additional activities cannot be loaded due to an error on the server. Please contact Tech Support</div>');
             $(window).off('scroll.wall');
+        },
+        resizeCarousel: function() {
+            var $carousel = self.$('.carousel');
+            var width = $carousel.width();
+
+            self.$('.slick-slide').height(width);
+            $carousel.find('img').css({'max-width': width, 'max-height': width});
         }
     });
 });

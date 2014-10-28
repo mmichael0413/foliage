@@ -9,9 +9,8 @@ define(function(require) {
         Activity = require('app/models/activities/activity'),
         CommentsView = require('app/views/comments/comments'),
         NewCommentView = require('app/views/comments/new_comment'),
-        Like = require('app/models/activities/like');
-
-
+        Like = require('app/models/activities/like'),
+        SlickCarousel = require('slick_carousel');
 
     return Backbone.View.extend({
         className: 'activity',
@@ -21,7 +20,7 @@ define(function(require) {
             'click .start-comment': 'focusComment',
             'click .more-comments': 'showAdditionalComments',
             'click .less-comments': 'hideAdditionalComments',
-            'click .swiper-container img': 'openModal',
+            'click .carousel img': 'openModal',
             "click .arrow-left" : "prevSlide",
             "click .arrow-right" : "nextSlide"
         },
@@ -38,7 +37,7 @@ define(function(require) {
             this.objId = this.model.get('activity_id');
             this.carousel = null;
 
-            this.listenTo(context, 'navigation:collapsed', this.initCarousel);
+            this.listenTo(context, 'navigation:collapsed', this.fixCollapsedCarousel);
         },
         render: function () {
             // render the base activity
@@ -120,26 +119,25 @@ define(function(require) {
             this.carousel.slickNext();
         },
         initializeCarousel: function(){
-            this.carousel = this.$el.find('.swiper-wrapper').slick({
-                draggable: false,
+            var self = this;
+            this.carousel = this.$el.find('.carousel').slick({
+                draggable: true,
                 arrows: false,
                 onInit: function() {
-                    var height = self.$('.swiper-container').height();
-                    self.$('.swiper-slide').css('line-height', height + 'px');
-                },
-                onReInit: function(){
-                    var height = self.$('.swiper-wrapper').width();
-                    console.log(height);
-                    self.$('.swiper-slide').css('width', width + 'px');
+                    var $carousel = self.$('.carousel');
+                    var width = $carousel.width();
+
+                    self.$('.slick-slide').height(width);
+                    $carousel.find('img').css({'max-width': width, 'max-height': width});
                 }
             });
         },
-        resizeCarousel: function(e) {
-           // this.carousel.unslick();
-           // this.$('.swiper-slide').removeAttr('style');
-           // this.initializeCarousel();
-
-            this.carousel.slickSetOption('a', 'b', true);
-        }
+        fixCollapsedCarousel: function() {
+        var self = this;
+        setTimeout(function(){
+            self.carousel.unslick();
+            self.initializeCarousel();
+        }, 400);
+    }
     });
 });

@@ -1,12 +1,13 @@
 <div class="bbm-button close-modal"><i class="ic ic_x"></i></div>
-<div class="swiper-container">
-    <div class="swiper-wrapper">
+
+    {{#if images}}
+    <div class="carousel">
         {{#each images}}
-            <div class="swiper-slide">
-                <img src="{{url}}" class="img-responsive " onerror="this.src='{{../content_image_error_url}}'"/>
+        <div>
+            <div class="helper">
+                <img src="{{url}}" class="img-responsive" onerror="this.src='{{../content_image_error_url}}'"/>
             </div>
+        </div>
         {{/each}}
     </div>
-    <div class="arrow arrow-left"><i class="ic ic_left"></i></div>
-    <div class="arrow arrow-right"><i class="ic ic_right"></i></div>
-</div>
+    {{/if}}

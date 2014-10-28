@@ -5,7 +5,7 @@ define(function(require){
         context = require('context'),
         PhotoModal = require('app/modals/activities/photo-modal'),
         SlickCarousel = require('slick_carousel');
-//todo: Replace Carousel
+
     return Backbone.View.extend({
         el: '#site-wrapper',
         initialize: function (options) {
@@ -23,15 +23,18 @@ define(function(require){
             this.modal = new PhotoModal({model: model});
             this.$el.append(this.modal.render().el);
             this.$('.bbm-modal img').css('max-height',$( window ).height()*0.8);
-            this.carousel = this.$('.bbm-modal .swiper-wrapper').slick({
-                draggable: false,
-                arrows: false,
 
-                onInit: function(){     
-                    var height = self.$('.bbm-modal').height();
-                    self.$('.bbm-modal .swiper-slide').css('line-height', height + 'px');
+            this.carousel = this.$el.find('.bbm-modal .carousel').slick({
+                draggable: true,
+                arrows: false,
+                onInit: function() {
+                    var $carousel = self.$('.bbm-modal');
+                    var width = $carousel.width();
+
+                    self.$('.bbm-modal .slick-slide').height(width);
+                    $carousel.find('img').css({'max-width': width, 'max-height': width});
                 }
-             });   
+            });
 
             return this;
         },

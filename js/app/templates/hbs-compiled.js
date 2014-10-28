@@ -114,22 +114,22 @@ function program10(depth0,data) {
 function program12(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n            <div class=\"swiper-container\">\n                <div class=\"swiper-wrapper\">\n                    <!--First Slide-->\n                    ";
+  buffer += "\n            <div class=\"carousel\">\n                ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.images), {hash:{},inverse:self.noop,fn:self.programWithDepth(13, program13, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                    <a href=\"#\" class=\"arrow arrow-left\"><span class=\"ic ic_left\"></span> </a>\n                    <a href=\"#\" class=\"arrow arrow-right\"><span class=\"ic ic_right\"></span> </a>\n\n                </div>\n            </div>\n            ";
+  buffer += "\n            </div>\n            ";
   return buffer;
   }
 function program13(depth0,data,depth1) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n                    <div class=\"swiper-slide\">\n                        <img src=\"";
+  buffer += "\n                <div>\n                    <div class=\"helper\">\n                        <img src=\"";
   if (helper = helpers.url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" class=\"img-responsive \" onerror=\"this.src='"
+    + "\" class=\"img-responsive\" onerror=\"this.src='"
     + escapeExpression(((stack1 = (depth1 && depth1.content_image_error_url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "'\"/>\n                    </div>\n                    ";
+    + "'\"/>\n                    </div>\n                </div>\n                ";
   return buffer;
   }
 
@@ -872,23 +872,32 @@ this["ThirdChannel"]["templates"]["photo-modal"] = Handlebars.template(function 
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
-function program1(depth0,data,depth1) {
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    <div class=\"carousel\">\n        ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.images), {hash:{},inverse:self.noop,fn:self.programWithDepth(2, program2, data, depth0),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </div>\n    ";
+  return buffer;
+  }
+function program2(depth0,data,depth1) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n            <div class=\"swiper-slide\">\n                <img src=\"";
+  buffer += "\n        <div>\n            <div class=\"helper\">\n                <img src=\"";
   if (helper = helpers.url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" class=\"img-responsive \" onerror=\"this.src='"
+    + "\" class=\"img-responsive\" onerror=\"this.src='"
     + escapeExpression(((stack1 = (depth1 && depth1.content_image_error_url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "'\"/>\n            </div>\n        ";
+    + "'\"/>\n            </div>\n        </div>\n        ";
   return buffer;
   }
 
-  buffer += "<div class=\"bbm-button close-modal\"><i class=\"ic ic_x\"></i></div>\n<div class=\"swiper-container\">\n    <div class=\"swiper-wrapper\">\n        ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.images), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
+  buffer += "<div class=\"bbm-button close-modal\"><i class=\"ic ic_x\"></i></div>\n\n    ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.images), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n    <div class=\"arrow arrow-left\"><i class=\"ic ic_left\"></i></div>\n    <div class=\"arrow arrow-right\"><i class=\"ic ic_right\"></i></div>\n</div>";
+  buffer += "\n";
   return buffer;
   });
 

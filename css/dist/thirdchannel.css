@@ -3019,6 +3019,23 @@ input[type="file"]::-webkit-file-upload-button {
   display: inline-block;
   width: 29%; }
 
+.activity-photos .carousel, .bbm-modal .carousel {
+  background-color: #f6f6f5; }
+.activity-photos .slick-initialized .slick-slide, .bbm-modal .slick-initialized .slick-slide {
+  text-align: center; }
+  .activity-photos .slick-initialized .slick-slide img, .bbm-modal .slick-initialized .slick-slide img {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%); }
+
+.helper {
+  display: inline-block;
+  height: 100%; }
+
 .user-image {
   width: 3em;
   height: 3em;
@@ -3032,25 +3049,11 @@ input[type="file"]::-webkit-file-upload-button {
   .comment-holder .comments .activity-bar:last-of-type {
     margin-bottom: 0; }
 
-.swiper-slide img {
-  width: 100%;
-  display: inline-block;
-  vertical-align: middle; }
-
-.swiper-container .arrow {
-  color: white;
+.bbm-button.close-modal i {
   position: absolute;
-  top: 50%;
-  font-size: 1.2em;
-  cursor: pointer;
-  z-index: 10;
-  text-shadow: 1px 1px 5px black;
-  width: 2em; }
-  .swiper-container .arrow.arrow-left {
-    left: 5px; }
-  .swiper-container .arrow.arrow-right {
-    right: 5px;
-    text-align: right; }
+  right: -2em;
+  top: -2em;
+  color: white; }
 
 @media only screen and (max-width: 64em) {
   .activity-content {
@@ -3061,100 +3064,17 @@ input[type="file"]::-webkit-file-upload-button {
 @media only screen and (max-width: 48em) {
   .activity-content, .activity-photos {
     width: 100%;
-    margin-bottom: 1em; } }
+    margin-bottom: 1em; }
+
+  .activity-content img {
+    max-width: 100%; } }
 @media only screen and (max-width: 35.5em) {
   .activity-content, .activity-photos {
     width: 100%;
-    margin-bottom: 1em; } }
-/*
-	Colors from Liz's UI-Color-Guide as of 10/15/2014
- */
-.red {
-  color: #f15f51; }
+    margin-bottom: 1em; }
 
-.medium-blue {
-  color: #9fb2c0; }
-
-/* From http://sass-lang.com/guide */
-.loading {
-  color: #434748;
-  text-align: center; }
-  .loading .fa-spinner {
-    font-size: 2.0em; }
-  .loading span {
-    display: inline-block;
-    vertical-align: middle; }
-
-.checkin .header h1 {
-  margin-bottom: 0.5em; }
-.checkin .header p {
-  margin-bottom: 1em; }
-.checkin h3 {
-  padding: 0 1em;
-  margin: 0;
-  text-transform: uppercase;
-  text-align: top; }
-.checkin input[type=text], .checkin input[type=password], .checkin input[type=number], .checkin textarea {
-  margin-bottom: 0; }
-.checkin .body {
-  margin-top: 1em;
-  border-top: 1px solid #e3e8ec;
-  padding: 1em; }
-.checkin .question {
-  margin-bottom: 2em; }
-  .checkin .question [name*='question-'], .checkin .question .chosen-container, .checkin .question .expanding-wrapper {
-    margin-top: 0.5em; }
-  .checkin .question:last-of-type {
-    margin-bottom: 0; }
-  .checkin .question p:empty {
-    margin-top: -2em; }
-.checkin .error {
-  color: #f15f51; }
-  .checkin .error input[type=text], .checkin .error input[type=password], .checkin .error input[type=number], .checkin .error textarea, .checkin .error .chosen-choices, .checkin .error input[type="file"]::-webkit-file-upload-button {
-    border-color: #f15f51;
-    color: #f15f51; }
-.checkin .viewer {
-  position: relative; }
-  .checkin .viewer .holder {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    overflow: auto;
-    width: 100%; }
-  .checkin .viewer .image {
-    max-width: 5em;
-    float: left; }
-    .checkin .viewer .image img {
-      display: block;
-      max-width: 100%;
-      height: auto; }
-  .checkin .viewer .description {
-    margin-left: 6rem;
-    margin-right: 10rem; }
-  .checkin .viewer .delete {
-    float: right;
-    margin-top: 1.5rem; }
-  @media only screen and (max-width: 48em) {
-    .checkin .viewer .description {
-      margin-right: 3rem; }
-    .checkin .viewer .delete span {
-      display: none; } }
-  .checkin .viewer .progress, .checkin .viewer .percentage {
-    margin-left: 6rem;
-    margin-right: 11rem; }
-  .checkin .viewer .progress {
-    height: 2rem;
-    border: 1px solid #e3e8ec;
-    border-radius: 0.25rem;
-    overflow: hidden; }
-    .checkin .viewer .progress .bar {
-      width: 0%;
-      height: 100%;
-      background-color: #9fb2c0; }
-.checkin .checkin-form-btn {
-  margin-bottom: 2em; }
-.checkin .expanding-wrapper {
-  width: 100%; }
-
+  .activity-content img {
+    max-width: 100%; } }
 /*
 	Colors from Liz's UI-Color-Guide as of 10/15/2014
  */
