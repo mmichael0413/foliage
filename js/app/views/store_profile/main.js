@@ -5,9 +5,9 @@ define(function (require) {
         $ = require('jquery'),
         ActivitiesView = require('app/views/activities/activities'),
         PersonnelSectionView = require('app/views/store_profile/personnel'),
-        ExpandWrapperView = require('app/views/utils/expandWrapperView'),
-        OpenAlertsView = require('app/views/store_profile/openAlerts'),
-        ResolvedAlertsView = require('app/views/store_profile/resolvedAlerts');
+        ExpandWrapperView = require('app/views/utils/expand_wrapper_view'),
+        OpenAlertsView = require('app/views/store_profile/open_alerts'),
+        ResolvedAlertsView = require('app/views/store_profile/resolved_alerts');
 
     /**
      * The main entry point for loading the JS needed for the store profile page

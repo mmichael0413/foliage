@@ -1,12 +1,17 @@
 define(function(require) {
-    var FilterableTableView = require('app/views/shared/filterableTable'),
-        OpenAlertsDetails = require('app/views/store_profile/openAlertsDetails'),
+    var FilterableTableView = require('app/views/shared/filterable_table'),
+        OpenAlertsDetails = require('app/views/store_profile/open_alerts_details'),
         BaseAlertsCollection = require('app/collections/alerts/base'),
         Handlebars = require('handlebars'),
         context = require('context'),
         _ = require('underscore'),
         PaginationView = require('app/views/utils/pagination'),
 
+        /**
+         * 
+         * 
+         * @exports app/views/store_profile/open_alerts
+         */
         OpenAlertsView = FilterableTableView.extend({
             el: '#openAlerts',
             loadingHTML: "<div class='item'><i class='fa fa-spin fa-spinner'></i></div>",

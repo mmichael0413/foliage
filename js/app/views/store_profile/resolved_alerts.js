@@ -2,7 +2,7 @@ define(function(require) {
     var context = require('context'),
         BaseAlertsCollection = require('app/collections/alerts/base'),
 
-        ResolvedAlertsView = require('app/views/store_profile/openAlerts').extend({
+        ResolvedAlertsView = require('app/views/store_profile/open_alerts').extend({
             el: '#resolvedAlerts',
             collectionClass: BaseAlertsCollection.extend({
                 getUrlBase: function () {

@@ -4,7 +4,7 @@ define(function(require) {
 
 			/**
 			 * 
-			 * @exports app/views/store_profile/openAlertsDetails
+			 * @exports app/views/store_profile/open_alerts_details
 			 */
 			OpenAlertsDetailsView = AsyncDetailsView.extend({
 				template: template,
