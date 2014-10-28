@@ -3021,6 +3021,26 @@ input[type="file"]::-webkit-file-upload-button {
 
 .activity-photos .carousel, .bbm-modal .carousel {
   background-color: #f6f6f5; }
+  .activity-photos .carousel .arrow, .bbm-modal .carousel .arrow {
+    color: white;
+    position: absolute;
+    top: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    z-index: 10;
+    text-shadow: 1px 1px 5px black;
+    width: 2em; }
+    .activity-photos .carousel .arrow.arrow-left, .bbm-modal .carousel .arrow.arrow-left {
+      left: 5px; }
+    .activity-photos .carousel .arrow.arrow-right, .bbm-modal .carousel .arrow.arrow-right {
+      right: 5px;
+      text-align: right; }
+  .activity-photos .carousel .img-label, .bbm-modal .carousel .img-label {
+    position: absolute;
+    bottom: .5em;
+    width: 100%;
+    color: white;
+    text-shadow: 1px 1px 5px black; }
 .activity-photos .slick-initialized .slick-slide, .bbm-modal .slick-initialized .slick-slide {
   text-align: center; }
   .activity-photos .slick-initialized .slick-slide img, .bbm-modal .slick-initialized .slick-slide img {

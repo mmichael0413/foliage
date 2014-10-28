@@ -94,6 +94,33 @@ $padding: 1.5em;
 .activity-photos, .bbm-modal {
   .carousel {
     background-color: $light-gray;
+    .arrow {
+      color: white;
+      position: absolute;
+      top: 50%;
+      font-size: 1.2em;
+      cursor: pointer;
+      z-index: 10;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+      width: 2em;
+      &.arrow-left {
+        left: 5px;
+      }
+      &.arrow-right {
+        right: 5px;
+        text-align: right;
+      }
+
+    }
+    .img-label{
+      position: absolute;
+      bottom: .5em;
+      width: 100%;
+      color: white;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+
+
+    }
   }
   .slick-initialized .slick-slide {
     text-align: center;

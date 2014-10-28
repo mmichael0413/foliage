@@ -117,7 +117,7 @@ function program12(depth0,data) {
   buffer += "\n            <div class=\"carousel\">\n                ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.images), {hash:{},inverse:self.noop,fn:self.programWithDepth(13, program13, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            </div>\n            ";
+  buffer += "\n                <a href=\"#\" class=\"arrow arrow-left\"><span class=\"ic ic_left\"></span> </a>\n                <a href=\"#\" class=\"arrow arrow-right\"><span class=\"ic ic_right\"></span> </a>\n            </div>\n            ";
   return buffer;
   }
 function program13(depth0,data,depth1) {
@@ -129,7 +129,11 @@ function program13(depth0,data,depth1) {
   buffer += escapeExpression(stack1)
     + "\" class=\"img-responsive\" onerror=\"this.src='"
     + escapeExpression(((stack1 = (depth1 && depth1.content_image_error_url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "'\"/>\n                    </div>\n                </div>\n                ";
+    + "'\"/>\n                    </div>\n                    <div class=\"img-label\">";
+  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n                </div>\n\n                ";
   return buffer;
   }
 
@@ -878,7 +882,7 @@ function program1(depth0,data) {
   buffer += "\n    <div class=\"carousel\">\n        ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.images), {hash:{},inverse:self.noop,fn:self.programWithDepth(2, program2, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n    ";
+  buffer += "\n        <a href=\"#\" class=\"arrow arrow-left\"><span class=\"ic ic_left\"></span> </a>\n        <a href=\"#\" class=\"arrow arrow-right\"><span class=\"ic ic_right\"></span> </a>\n    </div>\n    ";
   return buffer;
   }
 function program2(depth0,data,depth1) {
@@ -890,7 +894,11 @@ function program2(depth0,data,depth1) {
   buffer += escapeExpression(stack1)
     + "\" class=\"img-responsive\" onerror=\"this.src='"
     + escapeExpression(((stack1 = (depth1 && depth1.content_image_error_url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "'\"/>\n            </div>\n        </div>\n        ";
+    + "'\"/>\n            </div>\n            <div class=\"img-label\">";
+  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n        </div>\n        ";
   return buffer;
   }
 
