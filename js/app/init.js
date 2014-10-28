@@ -14,7 +14,7 @@ require.config({
         'context': 'app/utils/context',
         'backbone.paginator': "libs/bower_components/backbone.paginator/lib/backbone.paginator",
         'imagesloaded' : "libs/bower_components/imagesloaded/imagesloaded.pkgd",
-        'backbone.modal' : 'libs/backbone.modal',
+        'backbone.modal' : 'libs/bower_components/backbone-modal/backbone.modal',
         'jquery_ujs' : 'libs/bower_components/jquery-ujs/src/rails',
         'chartjs' : 'libs/Chart',
         'slick_carousel': 'libs/bower_components/slick.js/slick/slick',
@@ -51,8 +51,7 @@ require.config({
             deps: ["backbone"]
         },
         "backbone.modal" : {
-            deps: ["backbone"],
-            exports: "BackboneModal"
+            deps: ["backbone"]
         },
         "livestamp": {
             deps: ["moment"],
