@@ -1,5 +1,6 @@
 define(function(require) {
 	var Backbone = require('backbone'),
+        context = require('context'),
 
         /**
          * The Base Collection for fetching Alerts for a particular customer_store
@@ -12,9 +13,12 @@ define(function(require) {
             resolved: undefined,
             per: undefined,
             page: 1,
-            getCustomerStoreId: function () {return 0;},
-
-            getUrlBase: function (){ return "";},
+            getUrlBase: function () {
+                return context.alerts.links.self;
+            },
+            getCustomerStoreId: function () {
+                return context.requestParameters[1];
+            },
 
             getQueryString: function () {
                 //return context.alerts.links.open;

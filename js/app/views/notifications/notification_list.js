@@ -3,7 +3,7 @@ define(function (require) {
         _ = require('underscore'),
         Backbone = require('backbone'),
         NotificationCollection = require('app/collections/notifications/notifications'),
-        FilterableTableView = require('app/views/shared/filterableTable'),
+        FilterableTableView = require('app/views/shared/filterable_table'),
         context = require('context');
 
     return FilterableTableView.extend({

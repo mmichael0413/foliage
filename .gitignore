@@ -1,11 +1,9 @@
-.sass-cache/*
-node_modules/*
 .idea/*
+.sass-cache/*
+backup/
+dist/
+docs/
 js/libs/bower_components
-
+node_modules/*
 .DS_Store
 
-docs/
-
-dist/
-backup/
