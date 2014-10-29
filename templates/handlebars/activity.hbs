@@ -2,14 +2,17 @@
     <div class="activity">
         <div class="activity-meta">
             <img src="{{user_image}}" alt="Images That Describes Me" class="user-image img-circle" onerror="this.src='{{user_image_error_url}}'"/>
+
             <div class="bar-body">
                 {{#if_eq type "Checkin"}}
                 <p>
-                    <a href="#">{{location.store}}</a>, {{location.city}}, {{location.state}}
+                    <a href="{{location.profile_url}}">{{location.store}}</a>
+                    , {{location.city}}, {{location.state}}
                 </p>
                 {{/if_eq}}
                 <p>
-                    <span data-livestamp="{{created_at}}"></span> by
+                    <span data-livestamp="{{created_at}}"></span>
+                    by
                     <a href="/programs/{{current_program}}/profiles/{{user_id}}">{{user_name}}</a>
                 </p>
             </div>
@@ -27,7 +30,8 @@
             {{/if_eq}}
 
             <h3>{{subject}}</h3>
-            {{{content}}} <a href="/programs/{{current_program}}/activities/{{activity_id}}">View Full Activity</a>
+            {{{content}}}
+            <a href="/programs/{{current_program}}/activities/{{activity_id}}">View Full Activity</a>
 
             <div class="activity-actions">
                 <span class="action bold">
@@ -60,8 +64,12 @@
                 </div>
 
                 {{/each}}
-                <a href="#" class="arrow arrow-left"><span class="ic ic_left"></span> </a>
-                <a href="#" class="arrow arrow-right"><span class="ic ic_right"></span> </a>
+                <a href="#" class="arrow arrow-left">
+                    <span class="ic ic_left"></span>
+                </a>
+                <a href="#" class="arrow arrow-right">
+                    <span class="ic ic_right"></span>
+                </a>
             </div>
             {{/if}}
         </div>
@@ -76,7 +84,9 @@
 
             {{#if_gt comments_count 3}}
             <span class="action">
-                <a href="#" class="more-comments">View {{additional_comments}} More {{pluralize additional_comments 'Comment' 'Comments'}}</a>
+                <a href="#" class="more-comments">View {{additional_comments}} More {{pluralize additional_comments
+                    'Comment' 'Comments'}}
+                </a>
             </span>
             {{/if_gt}}
         </div>
@@ -91,20 +101,16 @@
         </div>
         {{/if}}
 
-    </div>
-    <div class="moderation-actions">
+        {{#if show-moderation}}
+        <div class="moderation-actions">
+            {{#if editable}}
+            <span class="action"><a href="{{editable}}">Edit Checkin</a></span>
+            {{/if}}
 
-        {{#if editable}}
-        <span class="action"><a href="{{editable}}">Edit</a></span>
+            {{#if hideable}}
+            <span class="action"><a href="#" class="hide-post">Hide Message</a></span>
+            {{/if}}
+        </div>
         {{/if}}
-
-        {{#if hideable}}
-        <span class="action"><a href="#" class="start-comment">Delete</a></span>
-        {{/if}}
-
-        {{#if was_hidden}}
-        <span class="action">Hidden</span>
-        {{/if}}
-
     </div>
 </div>

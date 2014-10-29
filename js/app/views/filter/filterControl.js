@@ -5,7 +5,8 @@ define(function(require) {
         spinnerTemplate = require('handlebarsTemplates')['filters/spinner_component'],
         SingleAnswerComponentView = require('app/views/filter/singleAnswerComponent'),
         DateComponentView = require('app/views/filter/dateComponent'),
-        ComponentView = require('app/views/filter/component');
+        ComponentView = require('app/views/filter/component'),
+        SerializeObject = require('serializeObject');
 
     /**
      * The 3C Filter is simply an interactable wrapper built around a form. This form can be 
@@ -39,6 +40,8 @@ define(function(require) {
         },
 
         enableDeepLinks: true,
+
+        excludeFields: [],
         
         initialize: function (data) {
 
@@ -85,6 +88,7 @@ define(function(require) {
             this.listenTo(context, 'filter:set', this.setFromExternal);
             this.listenTo(context, 'filter:set:quiet', this.setFromExternalQuiet);
             this.listenTo(context, 'configure:deepLinks', this.configureDeepLinks);
+            this.listenTo(context, 'configure:excludeFields', this.configureExcludeFields);
 
             // finally, check if we should Trigger the filter. This is done down here to avoid
             // repeated triggerings if we checked this in the while loop.
@@ -191,9 +195,11 @@ define(function(require) {
         broadCastQueryString: function () {
             // update the url so that we can access the deep link later on
             if(this.enableDeepLinks) {
-                context.router.navigate(window.location.pathname + "?" + this.$el.serialize(), {trigger: false});
+                context.router.navigate(window.location.pathname + "?" + this.serializeForm(), {trigger: false});
             }
             context.trigger('filter:query', this.$el.serialize());
+
+            this.serializeForm();
         },
 
         /**
@@ -251,6 +257,27 @@ define(function(require) {
 
         configureDeepLinks: function(isEnabled) {
             this.enableDeepLinks = isEnabled;
+        },
+
+        configureExcludeFields: function(excludeFields) {
+            this.excludeFields = excludeFields;
+        },
+
+        serializeForm: function(){
+            var self = this;
+
+            if (this.excludeFields.length > 0) {
+                var filteredParams = {};
+                _.each(this.$el.serializeObject(), function(value, key) {
+                    if(!($.inArray(key, self.excludeFields) !== -1)){
+                        filteredParams[key] = value;
+                    }
+                });
+
+                return $.param(filteredParams);
+            } else {
+                return this.$el.serialize();
+            }
         }
     };
 

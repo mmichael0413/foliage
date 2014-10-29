@@ -93,7 +93,7 @@ $padding: 1.5em;
 
 .activity-photos, .bbm-modal {
   .carousel {
-    background-color: $light-gray;
+
     .arrow {
       color: white;
       position: absolute;
@@ -124,6 +124,7 @@ $padding: 1.5em;
   }
   .slick-initialized .slick-slide {
     text-align: center;
+    background-color: $light-gray;
     img {
       display: inline-block;
       vertical-align: middle;
@@ -162,6 +163,14 @@ $img-height: 3em;
     }
   }
 }
+
+.moderation-actions {
+  padding: .5em 1em;
+  background-color: darken($palette1, 5%);
+  border-bottom-right-radius: $border-radius-base;
+  border-bottom-left-radius: $border-radius-base;
+}
+
 
 .bbm-button.close-modal {
   i {

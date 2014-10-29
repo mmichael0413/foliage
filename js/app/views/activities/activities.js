@@ -32,7 +32,7 @@ define(function (require) {
             }
 
             this.listenTo(context, 'filter:query', this.applyFilter);
-            context.trigger('configure:deepLinks', false);
+            context.trigger('configure:excludeFields', ['page', 'per', 'sort', 'direction']);
             context.trigger('filter:set', [{name: 'per', value: 5}]);
             if (!window.filterBootstrap) {
                 this.applyFilter();
@@ -45,9 +45,10 @@ define(function (require) {
             });
 
             if (this.enableScroll) {
-                $(window).on('scroll.wall', function () {
+                $('.content-holder').on('scroll', function() {
+
                     if (self.allModelsLoaded) {
-                        $(window).off('scroll.wall');
+                        $('.content-holder').off('scroll.wall');
                         return false;
                     }
 

@@ -25,7 +25,7 @@ define(function(require){
             this.$('.bbm-modal img').css('max-height',$( window ).height()*0.8);
 
             this.carousel = this.$el.find('.bbm-modal .carousel').slick({
-                draggable: true,
+                draggable: false,
                 arrows: false,
                 onInit: function() {
                     var $carousel = self.$('.bbm-modal');

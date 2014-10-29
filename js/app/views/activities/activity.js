@@ -22,7 +22,8 @@ define(function(require) {
             'click .less-comments': 'hideAdditionalComments',
             'click .carousel img': 'openModal',
             "click .arrow-left" : "prevSlide",
-            "click .arrow-right" : "nextSlide"
+            "click .arrow-right" : "nextSlide",
+            "click .hide-post" : "hidePost"
         },
         initialize: function (options) {
             var self = this;
@@ -47,6 +48,10 @@ define(function(require) {
             // render the base activity
             if (this.model.get('comments_count') > 3) {
                 this.model.set('additional_comments', this.model.get('comments_count') - 3);
+            }
+
+            if (this.model.get('editable') || this.model.get('hideable')) {
+                this.model.set('show-moderation', true);
             }
 
             this.$el.html(this.template(this.model.attributes));
@@ -106,6 +111,18 @@ define(function(require) {
             var label = 'View ' + this.model.get('additional_comments') + ' More Comments';
             $(e.target).text(label).removeClass('less-comments').addClass('more-comments');
 
+        },
+        hidePost: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            $.ajax({
+                url: this.model.get('hideable_url'),
+                type: 'post'
+            }).done(function(){
+                $(e.currentTarget).parent().append('<span class="action">Message has been Hidden</span>');
+                $(e.currentTarget).hide();
+            });
         },
         openModal: function (e) {
             e.preventDefault();
