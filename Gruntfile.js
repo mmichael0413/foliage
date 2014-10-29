@@ -184,6 +184,6 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['concurrent:dev']);
     grunt.registerTask('build-dev', ['sass','handlebars','requirejs','copy']);
     grunt.registerTask('build-beta', ['sass','handlebars','requirejs','copy', 'aws_s3:staging']);
-    grunt.registerTask('build-prod', ['sass','handlebars','requirejs','copy']);
+    grunt.registerTask('build-prod', ['sass','handlebars','requirejs','copy', 'aws_s3:production']);
 
 };
