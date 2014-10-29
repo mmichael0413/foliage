@@ -12,7 +12,6 @@ require.config({
         'handlebarsTemplates': 'app/templates/hbs-compiled',
         'handlebarsHelpers' : 'app/utils/handlebarsHelpers',
         'context': 'app/utils/context',
-        'backbone.paginator': "libs/bower_components/backbone.paginator/lib/backbone.paginator",
         'imagesloaded' : "libs/bower_components/imagesloaded/imagesloaded.pkgd",
         'backbone.modal' : 'libs/bower_components/backbone-modal/backbone.modal',
         'jquery_ujs' : 'libs/bower_components/jquery-ujs/src/rails',
@@ -46,9 +45,6 @@ require.config({
         "handlebarTemplates": {
             deps: ["handlebars", "handlebarsHelpers"],
             exports: "HandlebarTemplates"
-        },
-        "backbone.paginator" : {
-            deps: ["backbone"]
         },
         "backbone.modal" : {
             deps: ["backbone"]

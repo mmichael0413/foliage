@@ -168,6 +168,29 @@ function program17(depth0,data) {
   return "\n        <div class=\"comment new-comment\">\n\n\n        </div>\n        ";
   }
 
+function program19(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n        <span class=\"action\"><a href=\"";
+  if (helper = helpers.editable) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.editable); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">Edit</a></span>\n        ";
+  return buffer;
+  }
+
+function program21(depth0,data) {
+  
+  
+  return "\n        <span class=\"action\"><a href=\"#\" class=\"start-comment\">Delete</a></span>\n        ";
+  }
+
+function program23(depth0,data) {
+  
+  
+  return "\n        <span class=\"action\">Hidden</span>\n        ";
+  }
+
   buffer += "<div class=\"activity-holder\">\n    <div class=\"activity\">\n        <div class=\"activity-meta\">\n            <img src=\"";
   if (helper = helpers.user_image) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.user_image); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -239,7 +262,16 @@ function program17(depth0,data) {
   buffer += "\n        </div>\n        <div class=\"comments\">\n\n        </div>\n\n        ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.current_user), {hash:{},inverse:self.noop,fn:self.program(17, program17, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n</div>\n";
+  buffer += "\n\n    </div>\n    <div class=\"moderation-actions\">\n\n        ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.editable), {hash:{},inverse:self.noop,fn:self.program(19, program19, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n        ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.hideable), {hash:{},inverse:self.noop,fn:self.program(21, program21, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n        ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.was_hidden), {hash:{},inverse:self.noop,fn:self.program(23, program23, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n    </div>\n</div>\n";
   return buffer;
   });
 
