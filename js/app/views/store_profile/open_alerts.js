@@ -2,9 +2,8 @@ define(function(require) {
     var FilterableTableView = require('app/views/shared/filterable_table'),
         OpenAlertsDetails = require('app/views/store_profile/open_alerts_details'),
         BaseAlertsCollection = require('app/collections/alerts/base'),
-        Handlebars = require('handlebars'),
+        AlertRowView = require('app/views/store_profile/alert_row_view'),
         context = require('context'),
-        _ = require('underscore'),
         PaginationView = require('app/views/utils/pagination'),
 
         /**
@@ -16,12 +15,6 @@ define(function(require) {
             el: '#openAlerts',
             loadingHTML: "<div class='item'><i class='fa fa-spin fa-spinner'></i></div>",
             collectionClass: BaseAlertsCollection.extend({
-                getUrlBase: function () {
-                    return context.alerts.links.self;
-                },
-                getCustomerStoreId: function () {
-                    return context.requestParameters[1];
-                },
                 resolved: false,
                 per: 3,
 
@@ -30,12 +23,11 @@ define(function(require) {
             template: 'store_profile/alerts_rows',
             bodySelector: '.body',
 
-        
             initialize: function () {
-                _.extend(this.events, {
-                    'click .resolve': 'toggleSubViewHandler'
+                var self = this;
+                this.listenTo(context, "filter:query:alerts", function () {
+                    self.collection.fetch({reset:true});
                 });
-                this.delegateEvents();
                 OpenAlertsView.__super__.initialize.call(this, arguments);
             },
 
@@ -45,18 +37,30 @@ define(function(require) {
 
             afterRender: function () {   
                 //clean up old pager, if exists
-                
                 if (this.pager) {
                     this.stopListening(this.pager);
                     this.pager.remove();
-                    delete this.pager;    
+                    delete this.pager;
+                    // need to re-add the target for the pager. 
+                    this.$el.prepend("<div class='pagination-holder'></div>");    
                 }
                 
                 this.pager = new PaginationView(this.collection.pages !== undefined ? this.collection.pages : this.pages).render();
-                
+                // replace the existing pagination holder with the pager. If we simply prepended the pager into the view, there would be a 
+                // jumping effect as the element is removed, reflowed, then added again.
+                // it's a bit tedius, certainly, but the effect is nice.
                 this.$el.find('.pagination-holder').replaceWith(this.pager.$el);
-                this.$el.find('.counter').text((this.collection.count !== undefined ? this.collection.count : this.count) + " ");
                 this.listenTo(this.pager, 'new_page', this.pageChange);
+                // update the counter value
+                this.$el.find('.counter').text((this.collection.count !== undefined ? this.collection.count : this.count) + " ");
+                // create row View on top of each row
+                this.rowViews = [];
+                var self = this;
+                this.$el.find('.alert-row').each(function (i, row) {
+                    var view = new AlertRowView({subViewClass: self.subViewClass, collection: self.collection});
+                    view.setElement(row);
+                    self.rowViews.push(view);    
+                });
                 
             },
 
@@ -67,50 +71,13 @@ define(function(require) {
             },
 
             pageChange: function (page) {
+                // clear subviews
+                var i = this.rowViews.length;
+                while(i--) {
+                    this.rowViews[i].remove();
+                }
                 this.collection.page = page;
                 this.collection.fetch({reset:true});
-            },
-
-            toggleSubViewHandler: function (e) {
-                e.stopPropagation();
-                e.preventDefault();
-                this._toggleSubView(this.$el.find(e.currentTarget));
-            },
-
-            _toggleSubView: function ($button) {
-                // this could be cleaned up quite a bit by creating an individual View for each Row
-                var $itemRow = $button.parents('.item'),
-                    // slice the alert id off of the href
-                    tokens = $button[0].href.split("/"),
-                    id = tokens[tokens.length-1];
-                // toggle both the button class to make it solid, plus add the class which will 'reveal' the row
-                $button.toggleClass('solid');
-                $itemRow.toggleClass('active');
-                // remove if present any existing SubViews
-                // 
-                if (this.subView) {
-                    this._clearSubView($itemRow);
-                } else {
-                    this._createSubView($button, id);
-                }
-            },
-
-            _clearSubView: function ($itemRow) {
-                this.stopListening(this.subView);
-                this.subView.remove();
-                delete this.subView;
-                // be sure to replace the target row we just destroyed
-                $itemRow.append(Handlebars.partials.alert_details_empty_row());
-
-            },
-            _createSubView: function ($button, alert_id) {
-                var self = this;
-                this.subView = new this.subViewClass({url: context.alerts.links.self + "/" + alert_id});
-                this.subView.setElement(this.$el.find('.alert-details'));
-                this.subView.fetch();
-                this.listenTo(this.subView, "details:close", function () {
-                    self._toggleSubView($button);
-                });
             }
             
         });

@@ -2,6 +2,18 @@
  * Contains classes for open/resolved alerts + their expanding hidden informational row
  */
 .alert-row {
+
+	.btn {
+		cursor: pointer;
+	}
+
+	.notes-input {
+		height: 10em;
+	}
+	h3 {
+		margin-top: 1em;
+	}
+
 	.alert-details {
 		overflow: hidden;
 		max-height: 0;

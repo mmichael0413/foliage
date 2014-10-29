@@ -68,7 +68,7 @@ define(function(require) {
          */
         fetch: function () {
             var self = this;
-            self.collection.fetch()
+            self.collection.fetch({reset:true})
                 .done(function () {
                     self.render.apply(self);
                 })

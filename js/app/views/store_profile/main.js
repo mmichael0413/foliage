@@ -18,8 +18,8 @@ define(function (require) {
     var main = {
         init: function () {
             _.extend(context, window.bootstrap);
-            new PersonnelSectionView().fetch();//render();
-            new OpenAlertsView().fetch();//render();
+            new PersonnelSectionView().fetch();
+            new OpenAlertsView().fetch();
             var wrapper = new ExpandWrapperView();
             wrapper.setElement('#site-canvas').render();
             

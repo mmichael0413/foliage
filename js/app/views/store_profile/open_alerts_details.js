@@ -1,6 +1,7 @@
 define(function(require) {
 	var AsyncDetailsView = require('app/views/shared/async_details_view'),
 		template = require('handlebarsTemplates')['store_profile/open_alert_details'],
+		context = require('context'),
 
 			/**
 			 * 
@@ -16,34 +17,24 @@ define(function(require) {
 					this.trigger('details:close');
 				},
 
-				resolve: function () {
+				resolve: function (e) {
 					// todo, submit notes
+					// 
+					e.stopPropagation();
+					e.preventDefault();
+					var self = this;
+					this.model.set({notes: this.$el.find('.notes-input').val(), resolved: true});
+					this.$el.html('<i class="fa fa-spin fa-spinner"></i>');
+					
+					this.model.save()
+						.done(function () {
+							// alert everything to requery... this has the benefit of 
+							context.trigger('filter:query:alerts');
+						})
+						.fail(function () {
+							self.$el.html("There is a problem. Please contact Tech Support");                            
+						});
 				}
-				/*
-            resolveAlert: function (e) {
-                e.stopPropagation();
-                e.preventDefault();
-
-                var tokens = e.currentTarget.href.split("/"),
-                    $link = this.$el.find(e.currentTarget),
-                    id = tokens[tokens.length-1],
-                    self = this,
-                    tracker = this.collection.get(id);
-                // put the change, then reset the collection with the results
-                tracker.url = e.currentTarget.href;
-                tracker.set({resolved: true});
-                
-                $link.parent().html("<i class='fa fa-spin fa-spinner'></i>");
-                tracker.save()
-                    .done(function () {
-                        context.trigger('filter:query', "");
-                    })
-                    .fail(function () {
-                        self.html("There is a problem. Please contact Tech Support");                            
-                    });
-            }
-            */
-
 			});
 		return OpenAlertsDetailsView;
 });
