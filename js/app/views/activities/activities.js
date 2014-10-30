@@ -19,6 +19,8 @@ define(function (require) {
         el: '.activities-holder',
         enableScroll: true,
         initialize: function (options) {
+            var self = this;
+
             Filter.init();
             this.activityUrl = options.url;
             this.programId = options.programId;
@@ -38,21 +40,24 @@ define(function (require) {
                 this.applyFilter();
             }
 
-            var self = this;
-
+            this.listenToOnce(context, 'page:height', this.checkPageHeight);
             $(window).resize(function () {
                 self.resizeCarousel();
             });
 
             if (this.enableScroll) {
-                $('.content-holder').on('scroll', function() {
+
+
+                $contentHolder = $(".content-holder");
+                var topOfOthDiv = $contentHolder.offset().top;
+                $contentHolder.on('scroll', function() {
 
                     if (self.allModelsLoaded) {
                         $('.content-holder').off('scroll.wall');
                         return false;
                     }
-
-                    if (!self.isLoading.active && $(window).scrollTop() > (self.$el.position().top + self.$el.height()) - 1500) {
+                    console.log($contentHolder.scrollTop());
+                    if (!self.isLoading.active && $contentHolder.scrollTop() > (self.$el.position().top + self.$el.height()) - 1500) {
                         self.$el.append(self.isLoading.render().el);
 
                         self.collection.getNextPage().done(function (data) {
@@ -101,8 +106,9 @@ define(function (require) {
                         this.activity.initializeCarousel();
                     }
                 });
-                // resize();
+
                 self.isLoading.removeFromDOM();
+                context.trigger('page:height');
             }
         },
         applyFilter: function () {
@@ -136,6 +142,13 @@ define(function (require) {
 
             self.$('.slick-slide').height(width);
             $carousel.find('img').css({'max-width': width, 'max-height': width});
+        },
+        checkPageHeight: function () {
+            // handles case where only one item is shown and the screen doesn't scroll so triggering
+            // next page won't occur. This forces at least one scroll.
+            var windowHeight = $(window).height();
+            this.$el.css('min-height', windowHeight + 'px' );
+
         }
     });
 });
