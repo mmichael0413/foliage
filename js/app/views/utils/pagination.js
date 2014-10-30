@@ -41,8 +41,9 @@ define(function(require) {
         },
         pageRange: function () {
             if (this.model.showPages) {
-                var rangeStart = Math.max((this.config.currentPage - Math.floor(this.config.maxShown / 2)) - Math.max((this.config.currentPage + Math.floor(this.config.maxShown / 2)) - this.config.totalPages, 0), 1),
-                    rangeEnd   = Math.min((this.config.currentPage + Math.floor(this.config.maxShown / 2)) - Math.min((this.config.currentPage - Math.floor(this.config.maxShown / 2)) - 1, 0), this.config.totalPages) + 1;
+                var maxShown = this.config.maxShown - 1,
+                    rangeStart = Math.max((this.config.currentPage - Math.ceil(maxShown / 2)) - Math.max((this.config.currentPage + Math.floor(maxShown / 2)) - this.config.totalPages, 0), 1),
+                    rangeEnd   = Math.min((this.config.currentPage + Math.floor(maxShown / 2)) - Math.min((this.config.currentPage - Math.ceil(maxShown / 2)) - 1, 0), this.config.totalPages) + 1;
 
                 this.model.pages = _.range(rangeStart, rangeEnd);
             }

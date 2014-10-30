@@ -16,37 +16,8 @@ html {
   color: $text-color;
 }
 
-/*
-table {
-	width: 100%;
-	border-spacing: 0;
-	border-collapse: collapse;
-	padding: 1em;
-
-	th {
-	  text-transform: uppercase;
-	  text-align: left;
-	  padding: 0 1em 1em 1em;
-	  vertical-align: top;
-	  a {
-	    color: $text-color;
-	  }
-	}
-
-	tr {
-	  td {
-	    vertical-align: top;
-	    padding: 1em;
-	    border-top: 1px solid $border-color;
-	  }
-	}
-}
-*/
-
-
 @include swb-small {
   .content{
-    padding-top: 3.5em;
     padding-left:.5em;
     padding-right: .5em;
   }

@@ -1,6 +1,10 @@
 h1 {
   font-size: 1.4em;
   margin: .9em 0 1.5em 0;
+
+  @include swb-small {
+    margin-bottom: 1em;
+  }
 }
 
 h2 {

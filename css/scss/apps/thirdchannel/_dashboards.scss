@@ -11,4 +11,37 @@
   .loading {
     text-align: left;
   }
+
+  .action {
+    display: inline-block;
+
+    a {
+      span {
+        display: none;
+      }
+    }
+  }
+
+  @include swb-small {
+    .store-profile-link {
+      display: block;
+    }
+
+    .date-added {
+      display:none;
+    }
+
+    .action {
+      display: block;
+      padding-top: 0.75rem;
+
+      a {
+        min-width: 10rem;
+        span {
+          display: inline;
+        }
+      }
+    }
+  }
+
 }
