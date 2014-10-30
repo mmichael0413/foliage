@@ -25,7 +25,7 @@
             border-color: darken($color, 10%);
         }
         font-size: inherit;
-        padding: 2px 1em;
+        
         background-color: $color;
         color: white;
         @include swb-medium {
