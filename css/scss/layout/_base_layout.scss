@@ -1,6 +1,7 @@
 #site-wrapper {
     position: relative;
     overflow: hidden;
+    -webkit-overflow-scrolling: touch;
     width: 100%;
     #site-canvas {
         width: 100%;
@@ -26,6 +27,7 @@
 
             }
             .content {
+              overflow-y: hidden;
               padding-right: 1em;
               padding-left: 1em;
               @include swb-small {
@@ -125,7 +127,6 @@
         transition: .3s ease all;
         z-index: 3;
         overflow: auto;
-        -webkit-overflow-scrolling: touch;
         li:last-of-type {
             margin-bottom: 3em;
         }

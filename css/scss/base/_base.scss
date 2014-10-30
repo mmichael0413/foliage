@@ -14,9 +14,6 @@ html {
   line-height: 1.5em;
   background-color: $main-background;
   color: $text-color;
-  @include swb-small {
-  	font-size: .8rem;
-  }
 }
 
 /*
