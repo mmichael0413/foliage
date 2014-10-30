@@ -81,7 +81,7 @@ define(function(require) {
          * @param {JQuery} $link
          */
         _addFilterFromLink: function ($link) {
-            if ($link) {
+            if ($link.length > 0) {
                 this._addFilter($link.text(), $link.data('value'));
                 $link.hide();
             }
