@@ -6,7 +6,8 @@ define(function(require) {
         SingleAnswerComponentView = require('app/views/filter/singleAnswerComponent'),
         DateComponentView = require('app/views/filter/dateComponent'),
         ComponentView = require('app/views/filter/component'),
-        SerializeObject = require('serializeObject');
+        SerializeObject = require('serializeObject'),
+        helpers = require('helpers');
 
     /**
      * The 3C Filter is simply an interactable wrapper built around a form. This form can be 
@@ -92,7 +93,7 @@ define(function(require) {
 
             // finally, check if we should Trigger the filter. This is done down here to avoid
             // repeated triggerings if we checked this in the while loop.
-            if (shouldTrigger) {
+            if (shouldTrigger && !helpers.isMobile.any()) {
                 // open the filter if we have filter-component filters active, not simply a pagination
                 // let my master know, yes.
                 context.trigger('filter:toggle');

@@ -26,7 +26,7 @@
   float:right;
 }
 
-.visible-xs {
+.visible-xs, .visible-xs-inline {
   display:none;
 }
 
@@ -74,6 +74,10 @@
 @include swb-small() {
   .visible-xs {
     display: block;
+  }
+
+  .visible-xs-inline{
+    display: inline-block;
   }
   .hidden-xs {
     display:none !important;

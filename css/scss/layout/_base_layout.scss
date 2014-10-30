@@ -28,6 +28,10 @@
             .content {
               padding-right: 1em;
               padding-left: 1em;
+              @include swb-small {
+                padding-left: 0;
+                padding-right: 0;
+              }
             }
         }
     }

@@ -23,7 +23,8 @@ require.config({
         'jquery-validate' : 'libs/bower_components/jquery-validation/dist/jquery.validate',
         'serializeObject' : "libs/bower_components/jquery-serialize-object/jquery.serialize-object",
         'quill' : 'libs/quill/custom',
-        'quill-video' : 'libs/quill/modules/iframe'
+        'quill-video' : 'libs/quill/modules/iframe',
+        'helpers' : 'app/utils/helpers'
     },
     shim: {
         "jquery": {

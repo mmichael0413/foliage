@@ -24,7 +24,9 @@ define(function(require) {
             'click .toggle-subnav': 'toggleSubnav',
             'click .collapse-nav': 'collapseNav'
         },
-        toggleNav: function() {
+        toggleNav: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             if (this.$siteWrapper.hasClass('show-nav')) {
                 // Do things on Nav Close
                 this.$siteWrapper.removeClass('show-nav');
@@ -34,7 +36,11 @@ define(function(require) {
                 this.$siteWrapper.addClass('show-nav');
             }
         },
-        toggleFilter: function() {
+        toggleFilter: function(e) {
+            if(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
             if (this.$siteWrapper.hasClass('show-filter')) {
                 // Do things on Nav Close
                 this.$siteWrapper.removeClass('show-filter');
@@ -45,7 +51,9 @@ define(function(require) {
                 this.$toggleFilter.addClass('enabled');
             }
         },
-        toggleSubnav: function() {
+        toggleSubnav: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             if (this.$siteSubmenu.hasClass('show-subnav')) {
                 // Do things on Nav Close
                 this.$siteSubmenu.removeClass('show-subnav');
@@ -54,7 +62,9 @@ define(function(require) {
                 this.$siteSubmenu.addClass('show-subnav');
             }
         },
-        collapseNav: function() {
+        collapseNav: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             if (this.$siteWrapper.hasClass('collapsed-nav')) {
                 this.$siteWrapper.find('.collapse-nav .ic_right').removeClass('ic_right').addClass('ic_left');
                 this.$siteWrapper.removeClass('collapsed-nav');

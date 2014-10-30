@@ -3,6 +3,9 @@
 //@import '../../modules/modal';
 
 $padding: 1.5em;
+@include swb-small {
+  $padding: 1em;
+}
 
 .activity-holder {
   margin-bottom: 1.5em;
@@ -67,7 +70,7 @@ $padding: 1.5em;
   padding-bottom: $padding;
 }
 
-.activity-content {
+.activity-content, .activity-actions {
   display: inline-block;
   vertical-align: top;
   width: 70%;
@@ -122,17 +125,22 @@ $padding: 1.5em;
 
     }
   }
-  .slick-initialized .slick-slide {
-    text-align: center;
-    background-color: $light-gray;
-    img {
-      display: inline-block;
-      vertical-align: middle;
-      position: relative;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
+  .slick-initialized {
+    &.slick-slider {
+      margin-bottom: 0;
+    }
+    .slick-slide {
+      text-align: center;
+      background-color: $light-gray;
+      img {
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
     }
   }
 }
@@ -182,7 +190,7 @@ $img-height: 3em;
 }
 
 @include swb-large {
-  .activity-content {
+  .activity-content, .activity-actions {
     width: 65%;
   }
   .activity-photos {
@@ -201,11 +209,17 @@ $img-height: 3em;
 }
 
 @include swb-small {
-  .activity-content, .activity-photos {
+  .activity-content, .activity-photos, .activity-actions {
     width: 100%;
-    margin-bottom: 1em;
+    margin-bottom: 0;
   }
   .activity-content img {
     max-width: 100%;
+  }
+
+  .activity-status {
+    padding: $padding;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
   }
 }
