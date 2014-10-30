@@ -34,6 +34,7 @@ define(function(require){
             'programs/:program_id/stores/:store_id(/)': 'storeProfile',
             'programs/:program_id/stores/:store_id/activity': 'storeProfileActivity',
             'programs/:program_id/stores/:store_id/history': 'storeProfileHistory',
+            'programs/:program_id/stores/:store_id/gallery': 'storeProfileGallery',
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
             'programs/:program_id/checkins/:id': 'checkin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
@@ -61,6 +62,8 @@ define(function(require){
         before: function (parameters) {
             // in addition, the router stuffs all arguments as a list on context.requestParameters;
             context.programId = parameters[0];
+            // stuff the bootstrap into the context
+            _.extend(context, window.bootstrap);
         },
 
         activitiesFeed: function(program_id){
@@ -112,6 +115,10 @@ define(function(require){
             StoreProfileMain.history();
         },
 
+        storeProfileGallery: function () {
+            StoreProfileMain.gallery();
+        },
+
         editStoreIntel: function () {
             new StoresIntelEdit().render();
         },
@@ -147,7 +154,6 @@ define(function(require){
         },
 
         checkinReport: function(programId, id){
-            _.extend(context, window.bootstrap);
             new CheckinReportView({programId: programId}).render();
         },
 

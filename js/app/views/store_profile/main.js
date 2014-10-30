@@ -7,6 +7,7 @@ define(function (require) {
         PersonnelSectionView = require('app/views/store_profile/personnel'),
         ExpandWrapperView = require('app/views/utils/expand_wrapper_view'),
         OpenAlertsView = require('app/views/store_profile/open_alerts'),
+        GalleryView = require('app/views/store_profile/gallery'),
         ResolvedAlertsView = require('app/views/store_profile/resolved_alerts');
 
     /**
@@ -26,7 +27,7 @@ define(function (require) {
             $('#images .image-container').slick({
                 slidesToShow: 3,
                 slidesToScroll: 1,
-                centerMode: true,
+                //centerMode: true,
                 focusOnSelect: true,
                 variableWidth: true
             });
@@ -40,9 +41,11 @@ define(function (require) {
             activitiesView.fetch();
         },
         history: function () {
-            _.extend(context, window.bootstrap);
             new OpenAlertsView().renderCollection(context.alerts.open);
             new ResolvedAlertsView().renderCollection(context.alerts.resolved);
+        },
+        gallery: function () {
+            new GalleryView().render();
         }
     };
     return main;

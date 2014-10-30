@@ -24,11 +24,11 @@ function program1(depth0,data) {
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n		<p class=\"col-5-12 col-md-1-2\">";
+    + "</p>\n		<p class=\"col-4-12 col-md-1-2\">";
   if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n		<div class=\"col-1-12\">\n			<a href=\""
+    + "</p>\n		<div class=\"col-2-12\">\n			<a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.resolve)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" class=\"btn primary expand\"><i class=\"ic fa ic_check\"></i></a>\n			<a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.checkin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
@@ -1592,6 +1592,22 @@ function program1(depth0,data) {
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["store_profile/hoverable_image"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<img src=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.self)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" onerror=\"this.src='/assets/missing.jpg'\"/>\n<div class=\"overlay\">\n	<p class=\"caption\">";
+  if (helper = helpers.caption) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.caption); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</p>\n</div>";
+  return buffer;
+  });
+
 this["ThirdChannel"]["templates"]["store_profile/open_alert_details"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -1734,19 +1750,19 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n	<div class=\"item pure-g alert-row\">\n		<p class=\"col-4-12 col-md-4-12\">";
+  buffer += "\n	<div class=\"item pure-g alert-row\">\n		<p class=\"col-6-12 col-md-4-12\">";
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n		<p class=\"col-4-12 col-md-4-12\">";
+    + "</p>\n		<p class=\"col-2-12 col-md-4-12\">";
   if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n		<p class=\"col-3-12 col-md-3-12\">";
+    + "</p>\n		<p class=\"col-2-12 col-md-3-12\">";
   if (helper = helpers.resolved_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resolved_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n		<div class=\"col-1-12\">\n			<a href=\""
+    + "</p>\n		<div class=\"col-2-12\">\n			<a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.resolve)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" class=\"btn primary expand\">...</a>\n			<a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.checkin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
