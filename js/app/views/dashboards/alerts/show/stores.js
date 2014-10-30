@@ -1,8 +1,9 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        $ = require('jquery'),
+        _ = require('underscore'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
-        AlertRowView = require('app/views/store_profile/alert_row_view'),
         Filter = require('app/views/filter/main'),
         LoadingView = require('app/views/utils/loading'),
         PaginationView = require('app/views/utils/pagination'),
@@ -37,13 +38,16 @@ define(function(require) {
         },
 
         constructView: function(model) {
-            var self = this;
-            this.$el.html(self.template(model.toJSON()));
+            
+            this.$el.html(this.template(model.toJSON()));
             this.addPages();
-            var tbody = this.$el.find('.body');
+            var tbody = this.$el.find('.body'),
+                shadowBody = $("<div></div>");
+
             _.each(model.get('stores'), function (subModel) {
-                tbody.append(new DashboardsAlertsStoreView({model: new DashboardsAlertsStoreModel(subModel)}).render().$el);
+                shadowBody.append(new DashboardsAlertsStoreView({model: new DashboardsAlertsStoreModel(subModel)}).render().$el);
             });
+            tbody.html(shadowBody.html());
         },
         addPages: function () {
             this.$el.prepend(new PaginationView(this.model.get('pagination')).render().$el);

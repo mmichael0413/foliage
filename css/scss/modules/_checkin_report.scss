@@ -3,6 +3,12 @@
   .choice {
     margin: 1.25em 0;
     display: flex;
+    color: $light-blue;
+    .btn.light {
+      color: $light-blue;
+      border-color: $light-blue;
+    }
+
 
     div {
       align-self: center;
@@ -12,6 +18,14 @@
       color: $text-color
     }
 
+    &.selected {
+      color: $text-color;
+      .btn.light {
+        border-color: $medium-blue;
+        color: $medium-blue;
+      }
+    }
+
     @include swa-medium {
       &:first-child {
         margin-top: 0;
@@ -19,6 +33,7 @@
 
       &.single {
         margin-bottom: 0;
+        color: $text-color;
       }
     }
 
