@@ -147,6 +147,7 @@ define(function(require){
         },
 
         checkinReport: function(programId, id){
+            _.extend(context, window.bootstrap);
             new CheckinReportView({programId: programId}).render();
         },
 

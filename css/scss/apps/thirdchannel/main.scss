@@ -18,14 +18,15 @@
 @import "../../modules/pagination";
 @import "../../modules/site_filter";
 
+@import "../../modules/data_section";
 @import "../../modules/expanding_table_row";
 @import "../../modules/address_title";
 @import "../../modules/atoms/alerts";
 @import "../../modules/store_profile_section";
 @import "../../modules/alert_row";
+@import "../../modules/checkin_report";
 
 @import "./activities";
-@import "./checkin_reports";
 @import "./notifications";
 @import "./posts";
 @import "./reports";

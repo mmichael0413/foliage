@@ -1,0 +1,23 @@
+.data-section {
+	.header {
+		font-size: 1rem;
+		text-transform: uppercase;
+	}
+
+	.body {
+		margin-top: 1em;
+	}
+	
+	.expand-indicator {
+		position: absolute;
+		right: 8%;
+		padding-right: 0;
+	}
+
+	.item {
+		border-top: 1px solid $border-color;
+		padding: 1em 0em;
+	}
+
+
+}
