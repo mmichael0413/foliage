@@ -679,7 +679,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.current_program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.current_program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "/activities/current_checkins\">View Locations  <i class=\"fa fa-chevron-right\"></i></a>\n</div>";
+    + "/activities/current_checkins\">View Locations</a>\n</div>";
   return buffer;
   });
 
