@@ -15,9 +15,9 @@ define(function(require){
         CheckinView = require('app/views/checkins/show/checkin'),
         DashboardsAlertsSectionsView = require('app/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('app/views/dashboards/alerts/show/stores'),
-        ReportView = require('app/views/reports/index/report'),
+        ReportMain = require('app/views/reports/index/main'),
         CheckinReportView = require('app/views/reports/checkins/show/report'),
-        ReportInfoView = require('app/views/reports/info/show/info_list'),
+        ReportInfoMain = require('app/views/reports/info/show/main'),
         ContentView = require('app/views/global/content_view'),
         NotificationSectionView = require('app/views/notifications/notification_section'),
         ShippingView = require('app/views/legal/shipping'),
@@ -139,7 +139,7 @@ define(function(require){
         },
 
         reports: function(programId){
-            new ReportView({programId: programId}).render();
+            ReportMain.init({programId: programId});
         },
 
         checkin : function(programId, id) {
@@ -152,7 +152,7 @@ define(function(require){
         },
 
         reportInfo: function(programId, reportId, infoId){
-            new ReportInfoView({programId: programId,reportId: reportId, infoId: infoId}).render();
+            ReportInfoMain.init({programId: programId,reportId: reportId, infoId: infoId});
         },
 
         notificationList: function(programId) {
