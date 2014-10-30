@@ -1604,11 +1604,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " by ";
+    + " by <a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.created_by)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">";
   if (helper = helpers.created_by) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_by); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n\n<h3>ADDITIONAL NOTES</h3>\n<textarea name=\"resolution_notes\" class=\"notes-input\"></textarea>\n\n<a class=\"btn primary submit\"><i class=\"ic ic_check\"></i>Resolve Alert</a>\n<a class=\"btn default cancel\">Cancel</a>";
+    + "</a></p>\n\n<h3>ADDITIONAL NOTES</h3>\n<textarea name=\"resolution_notes\" class=\"notes-input\"></textarea>\n\n<a class=\"btn primary submit\"><i class=\"ic ic_check\"></i>Resolve Alert</a>\n<a class=\"btn default cancel\">Cancel</a>";
   return buffer;
   });
 
@@ -1631,11 +1633,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n	<div class=\"item pure-g\">\n		<p class=\"col-1-3 col-md-1-2\">";
+  buffer += "\n	<div class=\"item pure-g\">\n		<p class=\"col-1-3 col-md-1-2\"><a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.self)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n		<p class=\"col-1-3 col-md-1-2\">";
+    + "</a></p>\n		<p class=\"col-1-3 col-md-1-2\">";
   if (helper = helpers.role) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.role); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1701,19 +1705,23 @@ function program3(depth0,data) {
   if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " by ";
+    + " by <a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.created_by)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">";
   if (helper = helpers.created_by) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_by); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n\n<h3>ISSUE RESOLVED</h3>\n<p>";
+    + "</a></p>\n\n<h3>ISSUE RESOLVED</h3>\n<p>";
   if (helper = helpers.resolved_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resolved_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " by ";
+    + " by <a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.resolved_by)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">";
   if (helper = helpers.resolved_by) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.resolved_by); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n\n<h3>ADDITIONAL NOTES</h3>\n<p class=\"notes\">";
+    + "</a></p>\n\n<h3>ADDITIONAL NOTES</h3>\n<p class=\"notes\">";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.notes), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "</p>\n";
