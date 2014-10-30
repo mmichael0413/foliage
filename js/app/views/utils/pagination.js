@@ -54,7 +54,7 @@ define(function(require) {
             }
         },
         infoText: function () {
-            this.model.infoText = this.config.totalPages == 1 ? 'All' : this.pageStartCount() + ' - ' + this.pageEndCount();
+            this.model.infoText = this.pageStartCount() + ' - ' + this.pageEndCount();
         },
         pageStartCount: function () {
             return (this.config.pageCount * (this.config.currentPage - 1)) + 1;
