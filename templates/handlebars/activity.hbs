@@ -34,7 +34,7 @@
             <a href="/programs/{{current_program}}/activities/{{activity_id}}">View Full Activity</a>
 
             <div class="activity-actions">
-                <span class="action bold">
+                <span class="action">
                     {{#if show_like_button}}
                     <a class="activity_like_button gray" data-id="{{activity_id}}" href="#">
                         Like
@@ -43,9 +43,9 @@
                      Liked
                     {{/if}}
                 </span>
-                <span class="action bold"><a href="#" class="start-comment">Comment</a></span>
+                <span class="action"><a href="#" class="start-comment">Comment</a></span>
                 {{#if_eq type "Checkin"}}
-                <span class="action bold">
+                <span class="action">
                     <a href="{{report_url}}" target="_new">Full Report</a>
                 </span>
                 {{/if_eq}}

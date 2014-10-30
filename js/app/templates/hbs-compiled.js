@@ -117,7 +117,7 @@ function program8(depth0,data) {
 function program10(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n                <span class=\"action bold\">\n                    <a href=\"";
+  buffer += "\n                <span class=\"action\">\n                    <a href=\"";
   if (helper = helpers.report_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.report_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -245,10 +245,10 @@ function program22(depth0,data) {
   if (helper = helpers.activity_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.activity_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">View Full Activity</a>\n\n            <div class=\"activity-actions\">\n                <span class=\"action bold\">\n                    ";
+    + "\">View Full Activity</a>\n\n            <div class=\"activity-actions\">\n                <span class=\"action\">\n                    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_like_button), {hash:{},inverse:self.program(8, program8, data),fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                </span>\n                <span class=\"action bold\"><a href=\"#\" class=\"start-comment\">Comment</a></span>\n                ";
+  buffer += "\n                </span>\n                <span class=\"action\"><a href=\"#\" class=\"start-comment\">Comment</a></span>\n                ";
   stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.type), "Checkin", options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.type), "Checkin", options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </div>\n        </div>\n\n        <div class=\"activity-photos\">\n            ";
