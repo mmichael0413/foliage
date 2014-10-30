@@ -8,7 +8,7 @@ define(function(require) {
         tagName: 'tr',
         template: HandlebarsTemplates['dashboards/alerts/index/group'],
         events: {
-            "click .expander": "toggleAlertViews"
+            "click .expand-indicator": "toggleAlertViews"
         },
         initialize: function (options) {
             this.options = options;
@@ -22,14 +22,13 @@ define(function(require) {
             return this;
         },
         toggleAlertViews: function () {
-            var expanderIcon = this.$el.find(".expander i");
-            if (expanderIcon.hasClass("fa-caret-up")) {
-                expanderIcon.removeClass("fa-caret-up").addClass("fa-caret-down");
+            var expanderIcon = this.$el.find(".expand-indicator");
+            if (expanderIcon.hasClass("open")) {
                 context.trigger('alert_group_' + this.options.groupId + ':hide');
-            } else if (expanderIcon.hasClass("fa-caret-down")) {
-                expanderIcon.removeClass("fa-caret-down").addClass("fa-caret-up");
+            } else {
                 context.trigger('alert_group_' + this.options.groupId + ':show');
             }
+            expanderIcon.toggleClass('open');
         },
         updateTotalAlertCount: function (data) {
             this.totalAlertCount += data;

@@ -9,6 +9,7 @@
 @mixin btn-details($color) {
     border-color: $color;
     color: $color;
+    font-weight: bold;
     
     @include swb-medium {
         text-align: center;
@@ -24,9 +25,8 @@
             border-color: darken($color, 10%);
         }
         font-size: inherit;
-        padding: 2px 1em;
+        
         background-color: $color;
-        font-weight: bold;
         color: white;
         @include swb-medium {
             min-width: 2.2em;

@@ -75,6 +75,7 @@ module.exports = function(grunt) {
                 }
             }
         },
+        clean: ["dist"],
         copy: {
             main: {
                 files: [
@@ -118,7 +119,15 @@ module.exports = function(grunt) {
             },
             staging: {
                 options: {
-                    bucket: 'thirdchannel-assets-staging'
+                    bucket: 'thirdchannel-assets-staging',
+                    params: {
+                        CacheControl: 'public, max-age=30'
+                    },
+                    mime: {
+                        'dist/thirdchannel/fonts/nexa_bold-webfont.woff': 'application/font-woff',
+                        'dist/thirdchannel/fonts/nexa_light-webfont.woff': 'application/font-woff',
+                        'dist/thirdchannel/fonts/tc-icons_6e130a4e526e6c444098f7055986eb13.woff': 'application/font-woff'
+                    }
                 },
                 files: [
                     {dest: 'dist/thirdchannel/', cwd: 'backup/thirdchannel/staging/', action: 'download'},
@@ -179,11 +188,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-handlebars');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-aws-s3');
 
     grunt.registerTask('default', ['concurrent:dev']);
-    grunt.registerTask('build-dev', ['sass','handlebars','requirejs','copy']);
-    grunt.registerTask('build-beta', ['sass','handlebars','requirejs','copy', 'aws_s3:staging']);
-    grunt.registerTask('build-prod', ['sass','handlebars','requirejs','copy', 'aws_s3:production']);
+    grunt.registerTask('build-dev', ['clean', 'sass','handlebars','requirejs','copy']);
+    grunt.registerTask('build-beta', ['clean', 'sass','handlebars','requirejs','copy', 'aws_s3:staging']);
+    grunt.registerTask('build-prod', ['clean', 'sass','handlebars','requirejs','copy', 'aws_s3:production']);
 
 };

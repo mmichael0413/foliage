@@ -15,6 +15,9 @@ define(function (require) {
                 e.preventDefault();
                 e.stopPropagation();
             },
+            addFilterByValue: function (value) {
+                this._addFilter(value, value);
+            },
             handleDateChange: function (e) {
                 
                 var value = e.currentTarget.value;

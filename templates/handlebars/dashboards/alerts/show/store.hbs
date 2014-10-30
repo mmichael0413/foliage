@@ -1,11 +1,9 @@
-<td><a href="{{profile.link}}">{{name}}</a>, {{location}}</td>
-<td>{{dateAdded}}</td>
-<td>
-    <button class="btn primary" onclick="location.href='{{report.link}}'">
-        <i class="ic fa ic_report-16"></i>
-    </button>
-    <button class="btn primary" onclick="location.href='{{report.link}}'">
-        <i class="ic fa ic_check"></i>
-    </button>
+<p class="col-7-12 col-md-1-2"><a href="{{profile.link}}">{{name}}</a>, {{location}}</p>
+<p class="col-4-12 col-md-1-2">{{dateAdded}}</p>
+<div class="col-1-12">
+	<a href="{{alert.links.self}}" class="btn primary expand"><i class="ic fa ic_check"></i></a>
+	<a href="{{report.link}}" class="btn primary"><i class="ic fa ic_report-16"></i></a>
+</div>
 
-</td>
+{{> 'alert_details_empty_row'}}
+

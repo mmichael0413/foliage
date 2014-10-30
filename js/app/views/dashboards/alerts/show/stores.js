@@ -2,6 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
+        AlertRowView = require('app/views/store_profile/alert_row_view'),
         Filter = require('app/views/filter/main'),
         LoadingView = require('app/views/utils/loading'),
         PaginationView = require('app/views/utils/pagination'),
@@ -19,6 +20,7 @@ define(function(require) {
             this.filters = new DashboardsAlertsFiltersCollection({id: options.id});
             this.loadingView = new LoadingView();
             this.listenTo(context, 'filter:query', this.applyFilter);
+            this.listenTo(context, 'filter:query:alerts', this.applyFilter);
         },
         render: function () {
             var self = this;
@@ -38,7 +40,7 @@ define(function(require) {
             var self = this;
             this.$el.html(self.template(model.toJSON()));
             this.addPages();
-            var tbody = this.$el.find('tbody');
+            var tbody = this.$el.find('.body');
             _.each(model.get('stores'), function (subModel) {
                 tbody.append(new DashboardsAlertsStoreView({model: new DashboardsAlertsStoreModel(subModel)}).render().$el);
             });
@@ -47,7 +49,6 @@ define(function(require) {
             this.$el.prepend(new PaginationView(this.model.get('pagination')).render().$el);
         },
         addFilters: function (value) {
-            //new FiltersView({filters: value}).render();
             Filter.init(value);
         },
         applyFilter: function (qs) {

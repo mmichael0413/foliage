@@ -1,16 +1,5 @@
-@import "../../base/colors";
-@import "../../base/mixins";
-
 .checkin-report {
-  .section {
-    h3 {
-      padding: 0 1em;
-      margin: 0;
-      text-transform: uppercase;
-      text-align: top;
-    }
-  }
-
+  
   .choice {
     margin: 1.25em 0;
     display: flex;
@@ -19,8 +8,8 @@
       align-self: center;
     }
 
-    &.selected, &.single {
-      font-weight: bold;
+    .ic_check::before {
+      color: $text-color
     }
 
     @include swa-medium {
@@ -29,7 +18,6 @@
       }
 
       &.single {
-        padding-left: 2.25em;
         margin-bottom: 0;
       }
     }
@@ -40,26 +28,17 @@
       }
     }
   }
+}
 
+.author-bar {
   span {
     display: inline-block;
     vertical-align: middle;
     padding-right: 1em;
   }
-
-  .body {
-    margin-top: 1em;
-
-    & > div {
-
-      border-top: 1px solid $light-blue;
-      padding: 1em;
-    }
-
-    img {
+  img {
       width: 3em;
       height: 3em;
     }
-  }
 }
 

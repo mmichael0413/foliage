@@ -270,7 +270,7 @@ define(function(require) {
             if (this.excludeFields.length > 0) {
                 var filteredParams = {};
                 _.each(this.$el.serializeObject(), function(value, key) {
-                    if(!($.inArray(key, self.excludeFields) !== -1)){
+                    if(($.inArray(key, self.excludeFields) === -1)){
                         filteredParams[key] = value;
                     }
                 });
