@@ -119,13 +119,19 @@
         position: absolute;
         top: 0;
         right: 0;
-        padding: .5em .5em 0 0;
+        padding: 1rem;
         color: $medium-blue;
     }
     ul li {
-        padding: 1em;
+        &:not(.menu-option) {
+          padding: 1em;
+        }
+
         a {
             color: $medium-blue;
+          div {
+            padding: 1em;
+          }
         }
         > strong {
             text-transform: uppercase;
