@@ -3,8 +3,11 @@
   TODO: break this up into form base and form layout
 */
 
-input[type=text], input[type=password], input[type=number], textarea, select {
+input[type=text], input[type=password], input[type=number], textarea, select, input[type="file"] {
   width: 100%;
+}
+
+input[type=text], input[type=password], input[type=number], textarea, select {
   border: .1em solid $border-color;
   border-radius: $border-radius-base;
   height: 2em;
