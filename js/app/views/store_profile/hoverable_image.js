@@ -23,7 +23,7 @@ define(function(require) {
 			convertModel: function(raw) {
 				raw.caption = raw.image_type.toUpperCase() + "<br/>" + raw.photo_updated_at;
 				if (raw.label) {
-					raw.caption = raw.caption + ", " + raw.caption;
+					raw.caption = raw.label + "<br/>" + raw.caption;
 				}
 				return raw;
 			},

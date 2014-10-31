@@ -8,6 +8,7 @@ define(function (require) {
         ExpandWrapperView = require('app/views/utils/expand_wrapper_view'),
         OpenAlertsView = require('app/views/store_profile/open_alerts'),
         GalleryView = require('app/views/store_profile/gallery'),
+        HoverableImageView = require('app/views/store_profile/hoverable_image'),
         ResolvedAlertsView = require('app/views/store_profile/resolved_alerts');
 
     /**
@@ -22,7 +23,12 @@ define(function (require) {
             new PersonnelSectionView().fetch();
             new OpenAlertsView().fetch();
             var wrapper = new ExpandWrapperView();
+            var galleryBody = $("#images .image-container");
             wrapper.setElement('#site-canvas').render();
+
+            _.each(context.images, function (image){
+                    galleryBody.prepend(new HoverableImageView({model: image}).render().$el);
+                });
             
             $('#images .image-container').slick({
                 slidesToShow: 3,
@@ -31,6 +37,9 @@ define(function (require) {
                 focusOnSelect: true,
                 variableWidth: true
             });
+
+
+
         },
         activity: function () {
             var url = '/programs/' + context.programId + '/activities/posts?customer_store=' +context.requestParameters[1] ,
