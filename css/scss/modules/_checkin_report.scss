@@ -26,14 +26,15 @@
       }
     }
 
+    &.single {
+      margin-bottom: 0;
+      color: $text-color;
+    }
+
+
     @include swa-medium {
       &:first-child {
         margin-top: 0;
-      }
-
-      &.single {
-        margin-bottom: 0;
-        color: $text-color;
       }
     }
 

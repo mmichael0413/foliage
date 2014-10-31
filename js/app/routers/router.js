@@ -179,7 +179,7 @@ define(function(require){
         notFound: function(){
             // This maybe because we're generating a pdf
             if (window.reportData !== undefined) {
-                new ReportView({programId: ''}).render();
+                ReportMain.init({programId: ""});
             }
         }
     });
