@@ -135,14 +135,18 @@
           border-top: 1px solid $medium-blue-rgba;
           border-bottom: 1px solid $medium-blue-rgba;
         }
-        &.menu-option:hover {
+        &.menu-option {
+          cursor: pointer;
+
+          &:hover {
             background-color: darken($subnav-background, 5%);
-        }
-        &.menu-option.active {
+          }
+          &.active {
             font-weight: bold;
             background-color: lighten($subnav-background, 5%);
             cursor: default;
             pointer-events: none;
+          }
         }
     }
 }
