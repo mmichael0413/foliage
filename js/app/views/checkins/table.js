@@ -3,6 +3,8 @@ define(function(require) {
         Members = require('app/collections/checkins/checkin_stores');
 
     return FilterableTableView.extend({
+        el: ".section",
+        bodySelector: '.table',
         collectionClass: Members,
         template: 'checkins/store'
     });

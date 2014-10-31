@@ -1,20 +1,20 @@
-<table>
-    <tr><th>YOUR STORES</th><th>LAST CHECKIN</th><th></th></tr>
-</table>
+<div class="pure-g">
+    <h3 class="col-1-2 col-md-1">YOUR STORES</h3>
+    <h3 class="col-1-2 minor-m">LAST CHECKIN</h3>
+</div>
 
-<div class="pagination"></div>
 
 {{#rows}}
-<tr>
-    <td>
+<div class="pure-g">
+    <div class="col-1-2 col-md-1">
         <a href="{{name}}">{{name}}, #{{id}}</a>, {{city}}, {{state}}
         {{#if special_project}}
             <strong>This store is part of a Special Project</strong>
         {{/if}}
 
-    </td>
-    <td>{{last_checkin}}</td>
-    <td>
+    </div>
+    <div class="col-1-4 minor-m">{{last_checkin}}</div>
+    <div class="col-1-4 col-md-1">
         {{#if special_project}}
             <a href="/programs/{{program}}/checkins/{{id}}/choose" class="btn btn-primary btn-sm"><strong>Checkin Here</strong></a>
         {{else}}
@@ -22,9 +22,9 @@
             <form accept-charset="UTF-8" action="/programs/{{program}}/checkins" method="post">
                 <input id="id" name="customer_store_id" type="hidden" value="{{id}}">
                 <input name="authenticity_token" value="{{authenticity_token}}" type="hidden">
-                <strong><button class="btn text-same-color" name="commit"><span class="ic ic_location"></span>  Checkin Here</button></strong>
+                <strong><button class="btn primary" name="commit"><i class="ic ic_location"></i>  Checkin Here</button></strong>
             </form>
         {{/if}}
-    </td>
-</tr>
+    </div>
+</div>
 {{/rows}}

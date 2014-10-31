@@ -309,7 +309,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n<tr>\n    <td>\n        <a href=\"";
+  buffer += "\n<div class=\"pure-g\">\n    <div class=\"col-1-2 col-md-1\">\n        <a href=\"";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -332,14 +332,14 @@ function program1(depth0,data) {
     + "\n        ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.special_project), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n    </td>\n    <td>";
+  buffer += "\n\n    </div>\n    <div class=\"col-1-4 minor-m\">";
   if (helper = helpers.last_checkin) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.last_checkin); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n    <td>\n        ";
+    + "</div>\n    <div class=\"col-1-4 col-md-1\">\n        ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.special_project), {hash:{},inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </td>\n</tr>\n";
+  buffer += "\n    </div>\n</div>\n";
   return buffer;
   }
 function program2(depth0,data) {
@@ -378,11 +378,11 @@ function program6(depth0,data) {
   if (helper = helpers.authenticity_token) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.authenticity_token); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" type=\"hidden\">\n                <strong><button class=\"btn text-same-color\" name=\"commit\"><span class=\"ic ic_location\"></span>  Checkin Here</button></strong>\n            </form>\n        ";
+    + "\" type=\"hidden\">\n                <strong><button class=\"btn primary\" name=\"commit\"><i class=\"ic ic_location\"></i>  Checkin Here</button></strong>\n            </form>\n        ";
   return buffer;
   }
 
-  buffer += "<table>\n    <tr><th>YOUR STORES</th><th>LAST CHECKIN</th><th></th></tr>\n</table>\n\n<div class=\"pagination\"></div>\n\n";
+  buffer += "<div class=\"pure-g\">\n    <h3 class=\"col-1-2 col-md-1\">YOUR STORES</h3>\n    <h3 class=\"col-1-2 minor-m\">LAST CHECKIN</h3>\n</div>\n\n\n";
   options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}
   if (helper = helpers.rows) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.rows); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
