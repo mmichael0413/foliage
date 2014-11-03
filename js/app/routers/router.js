@@ -45,7 +45,7 @@ define(function(require){
             'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
             'programs/:program_id/notifications' : 'notificationList',
             'programs/:program_id/legal/shipping' : 'shippingForm',
-            'programs/:program_id/messages/new' : 'newPost',
+            'programs/:program_id/posts/new' : 'newPost',
 
             '*path': 'notFound'
         },

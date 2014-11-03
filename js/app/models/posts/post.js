@@ -9,7 +9,7 @@ define(function (require) {
         filters: [],
 
         url: function () {
-            return '/programs/' + context.programId + '/messages';
+            return '/programs/' + context.programId + '/posts';
         },
         validate: function (attrs, options) {
             var errors = [];
