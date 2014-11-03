@@ -128,6 +128,10 @@
         transition: .3s ease all;
         z-index: 3;
         overflow: auto;
+      @include swb-small {
+        left: -$standard-nav-width * 2;
+        z-index: 6;
+      }
         li:last-of-type {
             margin-bottom: 3em;
         }
@@ -196,9 +200,5 @@
             -webkit-transform: translateX($standard-nav-width);
             transform: translateX($standard-nav-width);
         }
-    }
-    #site-submenu {
-        left: -$standard-nav-width * 2;
-        z-index: 6;
     }
 }
