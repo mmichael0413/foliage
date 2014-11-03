@@ -58,10 +58,10 @@ define(function(require) {
             this.model.infoText = this.pageStartCount() + ' - ' + this.pageEndCount();
         },
         pageStartCount: function () {
-            return (this.config.pageCount * (this.config.currentPage - 1)) + 1;
+            return Math.min((this.config.pageCount * (this.config.currentPage - 1)) + 1, this.config.totalCount);
         },
         pageEndCount: function () {
-            return (this.config.totalPages == (this.config.currentPage)) ? this.config.totalCount : this.config.pageCount * this.config.currentPage;
+            return Math.min((this.config.totalPages == (this.config.currentPage)) ? this.config.totalCount : this.config.pageCount * this.config.currentPage, this.config.totalCount);
         },
         totalCount: function () {
             this.model.totalCount = this.config.totalCount;
