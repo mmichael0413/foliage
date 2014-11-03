@@ -1,22 +1,58 @@
-define(function(require) {
+define(function (require) {
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
         Ujs = require('jquery_ujs'),
         context = require('context'),
         NotificationBadge = require('app/views/notifications/notification_badge');
-       
 
 
     return Backbone.View.extend({
         el: '#site-wrapper',
-        initialize: function() {
+        initialize: function () {
+            var _this = this;
             this.listenTo(context, 'filter:toggle', this.toggleFilter);
             this.$siteWrapper = this.$el;
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');
 
             new NotificationBadge().render();
+
+            // width in ems
+            var width = $(window).width() / parseFloat($("body").css("font-size"));
+            if (width < 35.5) {
+                this.state = 'mobile';
+
+            } else {
+                this.state = 'desktop';
+            }
+
+            $(window).on('resize', function () {
+                var width = $(window).width() / parseFloat($("body").css("font-size"));
+                // if we pass the threshold and are coming from desktop
+                if (width <= 35.5 && _this.state === 'desktop') {
+                    // set state to mobile
+                    _this.state = 'mobile';
+
+                    // get the initial nav state
+                    _this.initialNavState = window.localStorage.getItem('main_navigation') || 'expanded-nav';
+
+                    // if the initial state was collapsed, toggle the nav
+                    if (_this.initialNavState == 'collapsed-nav') {
+                        _this.collapseNav(null, true);
+                    }
+
+                    // set the current nav state to 'expanded-nav'
+                    _this.currentNavState = 'expanded-nav';
+
+                // if tranistion from mobile has different initial and current state, toggle the nav
+                } else if (width > 35.5  && _this.state == 'mobile' && _this.currentNavState != _this.initialNavState) {
+                    _this.state = 'desktop';
+                    _this.collapseNav(null, true);
+                } else if (width > 35.5 && _this.state == 'mobile') {
+                    _this.state = 'desktop';
+                }
+            });
         },
         events: {
             'click .toggle-nav': 'toggleNav',
@@ -24,7 +60,7 @@ define(function(require) {
             'click .toggle-subnav': 'toggleSubnav',
             'click .collapse-nav': 'collapseNav'
         },
-        toggleNav: function(e) {
+        toggleNav: function (e) {
             e.preventDefault();
             e.stopPropagation();
             if (this.$siteWrapper.hasClass('show-nav')) {
@@ -36,8 +72,8 @@ define(function(require) {
                 this.$siteWrapper.addClass('show-nav');
             }
         },
-        toggleFilter: function(e) {
-            if(e) {
+        toggleFilter: function (e) {
+            if (e) {
                 e.preventDefault();
                 e.stopPropagation();
             }
@@ -51,7 +87,7 @@ define(function(require) {
                 this.$toggleFilter.addClass('enabled');
             }
         },
-        toggleSubnav: function(e) {
+        toggleSubnav: function (e) {
             e.preventDefault();
             e.stopPropagation();
             if (this.$siteSubmenu.hasClass('show-subnav')) {
@@ -62,21 +98,28 @@ define(function(require) {
                 this.$siteSubmenu.addClass('show-subnav');
             }
         },
-        collapseNav: function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+        collapseNav: function (e, trigger) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
             if (this.$siteWrapper.hasClass('collapsed-nav')) {
                 this.$siteWrapper.find('.collapse-nav .ic_right').removeClass('ic_right').addClass('ic_left');
                 this.$siteWrapper.removeClass('collapsed-nav');
                 this.$siteWrapper.addClass('expanded-nav');
-                window.localStorage.setItem('main_navigation', 'expanded-nav');
+                if (!trigger) {
+                    window.localStorage.setItem('main_navigation', 'expanded-nav');
+                }
             } else {
-                this.$siteWrapper.find('.collapse-nav .ic_left').removeClass('ic_left').addClass('ic_right');   
+                this.$siteWrapper.find('.collapse-nav .ic_left').removeClass('ic_left').addClass('ic_right');
                 this.$siteWrapper.addClass('collapsed-nav');
                 this.$siteWrapper.removeClass('expanded-nav');
-                window.localStorage.setItem('main_navigation', 'collapsed-nav');
+                if (!trigger) {
+                    window.localStorage.setItem('main_navigation', 'collapsed-nav');
+                }
             }
-             context.trigger('navigation:collapsed');
+
+            context.trigger('navigation:collapsed');
         }
     });
 });
