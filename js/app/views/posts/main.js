@@ -16,6 +16,7 @@ define(function (require) {
         initialize: function () {
             _this = this;
             this.images = {};
+            this.imagesUploading = 0;
             this.model = new Post();
 
             // set model attributes to check for the 'toable_filter'
@@ -52,6 +53,9 @@ define(function (require) {
             this.listenTo(context, 'image:added', this.imageAdded);
             this.listenTo(context, 'image:updated', this.imageUpdated);
             this.listenTo(context, 'image:deleted', this.imageDeleted);
+            this.listenTo(context, 'upload:start', this.preventSubmit);
+            this.listenTo(context, 'upload:complete', this.allowSubmit);
+
         },
         events: {
             'click #post-submit-btn': 'submitForm',
@@ -62,33 +66,35 @@ define(function (require) {
             e.preventDefault();
             e.stopPropagation();
 
-            this.model.set(this.$('.new-message form').serializeObject());
-            this.getDataFromEditor();
+            if (this.imagesUploading <= 0) {
+                this.model.set(this.$('.new-message form').serializeObject());
+                this.getDataFromEditor();
 
+                if (this.model.isValid()) {
+                    this.model.save(this.$('.new-message form').serializeObject()).done(function () {
+                        window.location = '/programs/' + context.programId + '/activities';
+                    }).fail(function () {
+                        console.log('fail');
+                    });
+                } else {
+                    var _this = this;
 
-            if (this.model.isValid()) {
-                this.model.save(this.$('.new-message form').serializeObject()).done(function () {
-                    window.location = '/programs/' + context.programId + '/activities';
-                }).fail(function () {
-                    console.log('fail');
-                });
-            } else {
-                var _this = this;
+                    this.$('.error-container').html('<div class="alert error">There was an error submitting your post. Please ensure all fields are complete</div>');
 
-                this.$('.error-container').html('<div class="alert error">There was an error submitting your post. Please ensure all fields are complete</div>');
-
-                _.each(this.model.validationError, function (errorClass) {
-                    if (errorClass == 'message-filters') {
-                        _this.$('.send-to .chosen-choices').addClass('error');
-                        if (_this.$('.send-to .alert-string').length === 0) {
-                            _this.$('.send-to h3').append('<div class="alert-string error">At least one selection must be made</div>');
+                    _.each(this.model.validationError, function (errorClass) {
+                        if (errorClass == 'message-filters') {
+                            _this.$('.send-to .chosen-choices').addClass('error');
+                            if (_this.$('.send-to .alert-string').length === 0) {
+                                _this.$('.send-to h3').append('<div class="alert-string error">At least one selection must be made</div>');
+                            }
+                        } else {
+                            _this.$('.' + errorClass).addClass('error');
                         }
-                    } else {
-                        _this.$('.' + errorClass).addClass('error');
-                    }
-                });
+                    });
+                }
+            } else {
+                this.$el.find('.error-container').html('<div class="alert error image-upload">Image Upload is not complete, please wait for all images to upload before submitting.</div>');
             }
-
         },
         getDataFromEditor: function () {
             if (this.editor.getLength() > 1) {
@@ -184,6 +190,17 @@ define(function (require) {
         },
         imageDeleted: function (model) {
             this.removeImage(model).setImageInputValue(model);
+        },
+        preventSubmit: function() {
+            this.imagesUploading++;
+        },
+        allowSubmit: function() {
+            this.imagesUploading--;
+
+            if (this.imagesUploading <= 0) {
+                this.imagesUploading = 0;
+                this.$el.find('.error.image-upload').remove();
+            }
         }
 
     });

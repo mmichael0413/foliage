@@ -1,6 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
-        HandlebarsTemplates = require('handlebarsTemplates');
+        HandlebarsTemplates = require('handlebarsTemplates'),
+        context = require('context');
 
     return Backbone.View.extend({
         template: HandlebarsTemplates['s3uploader/upload'],
@@ -15,6 +16,7 @@ define(function(require) {
             this.$el.html(this.template(this.model.toJSON()));
             this.progressBar = this.$el.find('.progress .bar');
             this.percentage = this.$el.find('.percentage');
+            context.trigger("upload:start");
             return this;
         },
         updateProgress: function (data) {
@@ -26,6 +28,7 @@ define(function(require) {
             this.cleanup(e);
         },
         cleanup: function(e) {
+            context.trigger("upload:complete");
             this.remove();
         }
     });
