@@ -7,7 +7,7 @@ define(function (require) {
         Serialize = require('serializeObject'),
         Chosen = require('chosen'),
         Quill = require('quill'),
-        QuillVideo = require('quill-video'),
+        QuillYouTube = require('quill-youtube'),
         UploaderView = require('app/views/s3uploader/file');
 
 
@@ -36,7 +36,7 @@ define(function (require) {
             this.editor.addModule('toolbar', { container: '#full-toolbar' });
             this.editor.addModule('link-tooltip');
             this.editor.addModule('image-tooltip');
-            this.editor.addModule('video-tooltip');
+            this.editor.addModule('youtube-tooltip');
 
 
             this.$el.find('.send-to select').chosen({disable_search: false, width: "100%"});

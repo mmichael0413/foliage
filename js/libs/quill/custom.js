@@ -4839,6 +4839,15 @@ Format = (function() {
       tag: 'IMG',
       attribute: 'src'
     },
+    youtube: {
+        tag: 'IFRAME',
+        attribute: 'src',
+        defaultAttrs: {
+          width: "560",
+          height: "315",
+          frameborder: 0
+        }
+    },
     align: {
       type: Format.types.LINE,
       style: 'textAlign',
@@ -4911,6 +4920,12 @@ Format = (function() {
       }
       if (_.isString(this.config.attribute)) {
         node.setAttribute(this.config.attribute, value);
+      }
+      if (this.config.defaultAttrs !== undefined) {
+        var attrs = this.config.defaultAttrs
+        for (k in attrs) {
+          node.setAttribute(k, attrs[k]);
+        }
       }
       if (_.isString(this.config["class"])) {
         dom(node).addClass(this.config["class"] + value);
@@ -7926,6 +7941,7 @@ Toolbar = (function() {
       'bold': 'bold',
       'bullet': 'bullet',
       'image': 'image',
+      'youtube': 'youtube',
       'italic': 'italic',
       'link': 'link',
       'list': 'list',
@@ -7933,6 +7949,7 @@ Toolbar = (function() {
       'underline': 'underline'
     },
     TOOLTIP: {
+      'youtube': 'youtube',
       'image': 'image',
       'link': 'link'
     }
@@ -8485,7 +8502,7 @@ Quill = (function(_super) {
   Quill.themes = [];
 
   Quill.DEFAULTS = {
-    formats: ['align', 'bold', 'italic', 'strike', 'underline', 'color', 'background', 'font', 'size', 'link', 'image', 'bullet', 'list'],
+    formats: ['align', 'bold', 'italic', 'strike', 'underline', 'color', 'background', 'font', 'size', 'link', 'image', 'bullet', 'list', 'youtube'],
     modules: {
       'keyboard': true,
       'paste-manager': true,

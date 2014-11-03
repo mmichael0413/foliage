@@ -2,7 +2,7 @@ define(function(require) {
     var $ = require('jquery'),
         Charts = require('chartjs');
 
-    var Delta, VideoTooltip, Quill, Tooltip, dom, _,
+    var Delta, YouTubeTooltip, Quill, Tooltip, dom, _,
         __hasProp = {}.hasOwnProperty,
         __extends = function (child, parent) {
             for (var key in parent) {
@@ -28,26 +28,26 @@ define(function(require) {
 
     Delta = Quill.require('delta');
 
-    VideoTooltip = (function (_super) {
-        __extends(VideoTooltip, _super);
+    YouTubeTooltip = (function (_super) {
+        __extends(YouTubeTooltip, _super);
 
-        VideoTooltip.DEFAULTS = {
+        YouTubeTooltip.DEFAULTS = {
             styles: {
-                '.video-tooltip-container': {
+                '.youtube-tooltip-container': {
                     'padding': '10px',
                     'width': '80%',
                     'max-width': '30rem'
                 },
-                '.video-tooltip-container:after': {
+                '.youtube-tooltip-container:after': {
                     'clear': 'both',
                     'content': '""',
                     'display': 'table'
                 },
-                '.video-tooltip-container .input': {
+                '.youtube-tooltip-container .input': {
                     'box-sizing': 'border-box',
                     'width': '100%'
                 },
-                '.video-tooltip-container a': {
+                '.youtube-tooltip-container a': {
                     'border': '1px solid black',
                     'box-sizing': 'border-box',
                     'display': 'inline-block',
@@ -60,45 +60,46 @@ define(function(require) {
             template: '<div><b>YouTube Embedded Link String:</b></div><input class="input" type="textbox" placeholder="<iframe></iframe>"> <a href="javascript:;" class="cancel">Cancel</a> <a href="javascript:;" class="insert">Insert</a>'
         };
 
-        function VideoTooltip(quill, options) {
+        function YouTubeTooltip(quill, options) {
             this.quill = quill;
             this.options = options;
             this.options.styles = _.defaults(this.options.styles, Tooltip.DEFAULTS.styles);
             this.options = _.defaults(this.options, Tooltip.DEFAULTS);
-            VideoTooltip.__super__.constructor.call(this, this.quill, this.options);
+            YouTubeTooltip.__super__.constructor.call(this, this.quill, this.options);
             this.textbox = this.container.querySelector('.input');
-            dom(this.container).addClass('video-tooltip-container');
+            dom(this.container).addClass('youtube-tooltip-container');
             this.initListeners();
         }
 
-        VideoTooltip.prototype.initListeners = function () {
-            dom(this.container.querySelector('.insert')).on('click', _.bind(this.insertVideo, this));
+        YouTubeTooltip.prototype.initListeners = function () {
+            dom(this.container.querySelector('.insert')).on('click', _.bind(this.insertYouTube, this));
             dom(this.container.querySelector('.cancel')).on('click', _.bind(this.hide, this));
-            this.initTextbox(this.textbox, this.insertVideo, this.hide);
+            this.initTextbox(this.textbox, this.insertYouTube, this.hide);
             return this.quill.onModuleLoad('toolbar', (function (_this) {
                 return function (toolbar) {
-                    return toolbar.initFormat('video', _.bind(_this._onToolbar, _this));
+                    return toolbar.initFormat('youtube', _.bind(_this._onToolbar, _this));
                 };
             })(this));
         };
 
-        VideoTooltip.prototype.insertVideo = function () {
-            var index, html;
+        YouTubeTooltip.prototype.insertYouTube = function () {
+            var index, html, src;
             html = this.textbox.value;
+            src = $(html).attr('src');
             if (this.range == null) {
                 this.range = new Range(0, 0);
             }
-            if (this.range) {
+            if (this.range && src !== undefined) {
                 this.textbox.value = '';
                 index = this.range.end;
 
-                this.quill.setHTML(html);
+                this.quill.insertEmbed(index, 'youtube', src, 'user');
                 this.quill.setSelection(index + 1, index + 1);
             }
             return this.hide();
         };
 
-        VideoTooltip.prototype._onToolbar = function (range, value) {
+        YouTubeTooltip.prototype._onToolbar = function (range, value) {
             if (value) {
                 if (!this.textbox.value) {
                     this.textbox.value = '';
@@ -115,9 +116,9 @@ define(function(require) {
             }
         };
 
-        return VideoTooltip;
+        return YouTubeTooltip;
 
     })(Tooltip);
 
-    Quill.registerModule('video-tooltip', VideoTooltip);
+    Quill.registerModule('youtube-tooltip', YouTubeTooltip);
 });
