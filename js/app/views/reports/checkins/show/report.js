@@ -8,6 +8,7 @@ define(function(require) {
         OpenAlertsView = require('app/views/store_profile/open_alerts'),
         BaseAlertsCollection = require('app/collections/alerts/base'),
         Expanding = require('libs/expanding'),
+        HoverableImageView = require('app/views/store_profile/hoverable_image'),
         AllOpenAlertsView = OpenAlertsView.extend({
             collectionClass: BaseAlertsCollection.extend({
                 resolved: false,
@@ -21,8 +22,32 @@ define(function(require) {
     return Backbone.View.extend({
         el: ".checkin-report",
         initialize: function (options) {
+            _.extend(context, window.bootstrap);
             this.programId = options.programId;
             this.activityModel = new ActivityModel(window.checkinReportData.activity, {});
+
+            var galleryBody = $("#images .image-container");
+
+            _.each(context.images, function (image){
+                galleryBody.prepend(new HoverableImageView({model: image}).render().$el);
+            });
+
+            $('#images .image-container').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                //centerMode: true,
+                focusOnSelect: true,
+                variableWidth: true,
+                responsive: [
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
         },
         render: function (options) {
             new AllOpenAlertsView().fetch();
