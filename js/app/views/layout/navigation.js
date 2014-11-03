@@ -15,13 +15,18 @@ define(function (require) {
             this.$siteWrapper = this.$el;
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');
-
             new NotificationBadge().render();
 
             // width in ems
             var width = $(window).width() / parseFloat($("body").css("font-size"));
             if (width < 35.5) {
                 this.state = 'mobile';
+                _this.initialNavState = window.localStorage.getItem('main_navigation') || 'expanded-nav';
+
+                // if the initial state was collapsed, toggle the nav
+                if (_this.initialNavState == 'collapsed-nav') {
+                    _this.collapseNav(null, true);
+                }
 
             } else {
                 this.state = 'desktop';
@@ -42,15 +47,21 @@ define(function (require) {
                         _this.collapseNav(null, true);
                     }
 
+                    _this.closeSubNav();
+
                     // set the current nav state to 'expanded-nav'
                     _this.currentNavState = 'expanded-nav';
 
                 // if tranistion from mobile has different initial and current state, toggle the nav
                 } else if (width > 35.5  && _this.state == 'mobile' && _this.currentNavState != _this.initialNavState) {
                     _this.state = 'desktop';
+                    _this.closeSubNav();
+                    _this.closeNav();
                     _this.collapseNav(null, true);
                 } else if (width > 35.5 && _this.state == 'mobile') {
                     _this.state = 'desktop';
+                    _this.closeSubNav();
+                    _this.closeNav();
                 }
             });
         },
@@ -61,8 +72,10 @@ define(function (require) {
             'click .collapse-nav': 'collapseNav'
         },
         toggleNav: function (e) {
-            e.preventDefault();
-            e.stopPropagation();
+            if(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
             if (this.$siteWrapper.hasClass('show-nav')) {
                 // Do things on Nav Close
                 this.$siteWrapper.removeClass('show-nav');
@@ -70,6 +83,13 @@ define(function (require) {
             } else {
                 // Do things on Nav Open
                 this.$siteWrapper.addClass('show-nav');
+            }
+        },
+        closeNav: function() {
+            if (this.$siteWrapper.hasClass('show-nav')) {
+                // Do things on Nav Close
+                this.$siteWrapper.removeClass('show-nav');
+                this.$siteSubmenu.removeClass('show-subnav');
             }
         },
         toggleFilter: function (e) {
@@ -88,14 +108,25 @@ define(function (require) {
             }
         },
         toggleSubnav: function (e) {
-            e.preventDefault();
-            e.stopPropagation();
+            if(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
             if (this.$siteSubmenu.hasClass('show-subnav')) {
                 // Do things on Nav Close
                 this.$siteSubmenu.removeClass('show-subnav');
+               // this.subNavState = 'collapsed'
             } else {
                 // Do things on Nav Open
                 this.$siteSubmenu.addClass('show-subnav');
+               // this.subNavState = 'expanded'
+            }
+        },
+        closeSubNav: function() {
+            if (this.$siteSubmenu.hasClass('show-subnav')) {
+                // Do things on Nav Close
+                this.$siteSubmenu.removeClass('show-subnav');
+
             }
         },
         collapseNav: function (e, trigger) {
