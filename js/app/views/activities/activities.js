@@ -51,12 +51,16 @@ define(function (require) {
                 $contentHolder = $(".content-holder");
                 var topOfOthDiv = $contentHolder.offset().top;
                 $contentHolder.on('scroll', function() {
-
+                    if ($contentHolder.scrollTop() > topOfOthDiv + 300) {
+                        $(".scroll-top").show();
+                    } else {
+                        $(".scroll-top").hide();
+                    }
                     if (self.allModelsLoaded) {
                         $('.content-holder').off('scroll.wall');
                         return false;
                     }
-                    console.log($contentHolder.scrollTop());
+
                     if (!self.isLoading.active && $contentHolder.scrollTop() > (self.$el.position().top + self.$el.height()) - 1500) {
                         self.$el.append(self.isLoading.render().el);
 

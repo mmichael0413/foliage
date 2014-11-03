@@ -38,6 +38,7 @@ define(function(require) {
                 //centerMode: true,
                 focusOnSelect: true,
                 variableWidth: true,
+                infinite: false,
                 responsive: [
                     {
                         breakpoint: 480,
