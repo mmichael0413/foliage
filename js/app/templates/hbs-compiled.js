@@ -511,7 +511,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</th>\n        <th>Total Issues</th>\n        <th></th>\n    </tr>\n    </thead>\n</table>\n\n\n";
+    + "</th>\n        <th>Stores Affected</th>\n        <th></th>\n    </tr>\n    </thead>\n</table>\n\n\n";
   return buffer;
   });
 
