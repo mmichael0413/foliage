@@ -120,7 +120,7 @@ define(function(require) {
                 url: this.model.get('hideable_url'),
                 type: 'post'
             }).done(function(){
-                $(e.currentTarget).parent().append('<span class="action">Message has been Hidden</span>');
+                $(e.currentTarget).parent().append('<span class="action">Post has been Hidden</span>');
                 $(e.currentTarget).hide();
             });
         },

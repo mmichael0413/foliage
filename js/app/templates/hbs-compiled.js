@@ -196,7 +196,7 @@ function program20(depth0,data) {
 function program22(depth0,data) {
   
   
-  return "\n            <span class=\"action\"><a href=\"#\" class=\"hide-post\">Hide Message</a></span>\n            ";
+  return "\n            <span class=\"action\"><a href=\"#\" class=\"hide-post\">Hide Post</a></span>\n            ";
   }
 
   buffer += "<div class=\"activity-holder\">\n    <div class=\"activity\">\n        <div class=\"activity-meta\">\n            <img src=\"";

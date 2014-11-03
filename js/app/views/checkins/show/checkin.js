@@ -13,7 +13,6 @@ define(function(require) {
         },
         initialize: function (options) {
             this.options = options;
-            this.listenTo(context, 'file:added', this.addImage);
         },
         render: function (options) {
             var self = this;

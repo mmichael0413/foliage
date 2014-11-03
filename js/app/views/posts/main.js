@@ -7,13 +7,15 @@ define(function (require) {
         Serialize = require('serializeObject'),
         Chosen = require('chosen'),
         Quill = require('quill'),
-        QuillVideo = require('quill-video');
+        QuillVideo = require('quill-video'),
+        UploaderView = require('app/views/s3uploader/file');
 
 
     return Backbone.View.extend({
         el: '.content',
         initialize: function () {
             _this = this;
+            this.images = {};
             this.model = new Post();
 
             // set model attributes to check for the 'toable_filter'
@@ -44,6 +46,12 @@ define(function (require) {
                 });
             });
 
+            this.$el.find('.body.images').each(function(){
+                new UploaderView().render(this);
+            });
+            this.listenTo(context, 'image:added', this.imageAdded);
+            this.listenTo(context, 'image:updated', this.imageUpdated);
+            this.listenTo(context, 'image:deleted', this.imageDeleted);
         },
         events: {
             'click #post-submit-btn': 'submitForm',
@@ -145,6 +153,37 @@ define(function (require) {
 
             this.removeValidationError();
 
+        },
+        addImage: function(model) {
+            var inputSel = model.get('input');
+            this.images[inputSel] = this.images[inputSel] || {};
+            this.images[inputSel][model.get('uuid')] = this.getImageParams(model);
+            return this;
+        },
+        removeImage: function(model) {
+            var inputSel = model.get('input');
+            var uuid = model.get('uuid');
+            this.images.removed = this.images.removed || {};
+            this.images.removed[uuid] = this.images[inputSel][uuid];
+            delete this.images[inputSel][uuid];
+            return this;
+        },
+        setImageInputValue: function(model) {
+            var inputSel = model.get('input');
+            this.$el.find(inputSel).val(JSON.stringify(this.images[inputSel])).trigger('change:nosave');
+            this.$el.find('#remove_images').val(JSON.stringify(this.images.removed));
+        },
+        getImageParams: function(model) {
+            return {id: model.get('id'), label: model.get('label'), temp_location: model.get('temp_location')};
+        },
+        imageAdded: function (model) {
+            this.addImage(model).setImageInputValue(model);
+        },
+        imageUpdated: function (model) {
+            this.removeImage(model).addImage(model).setImageInputValue(model);
+        },
+        imageDeleted: function (model) {
+            this.removeImage(model).setImageInputValue(model);
         }
 
     });

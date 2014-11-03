@@ -3,11 +3,9 @@
     margin-bottom: 2em;
   }
   > div {
-    width: 32.9%;
-    display: inline-block;
     padding: 0 1em;
-    vertical-align: top;
-    &:first-of-type {
+
+    @include swb-small {
       padding: 0;
     }
   }
@@ -21,9 +19,9 @@
   &.error {
     border-color: $link-color;
   }
-  //  height: 20em;
+
   iframe {
-    height: 22em !important;
+    height: 22rem !important;
     border: none !important;
   }
 }
