@@ -110,7 +110,7 @@ define(function (require) {
                 this.$toggleFilter.addClass('enabled');
             }
 
-            if(window.localStorage.getItem('main_navigation') === 'expanded-nav') {
+            if(window.localStorage.getItem('main_navigation') === 'expanded-nav' && this.state == 'desktop') {
                 this.collapseNav(null, true);
             }
         },
