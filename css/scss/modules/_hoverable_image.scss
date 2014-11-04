@@ -3,17 +3,18 @@
 	height: 15em;
 	margin: 0 2em 2em 0;
 	background-color: #ffffff;
+	position: relative;
 
 	img {
 		width: 100%;
 	}
 	.overlay {
+		position: absolute;
 		z-index: -1;
 		width: 100%;
 		height: 16em;
 		background-color: rgba($link-color, .75);
-		position: relative;
-		top: -16em;
+		top: -1em;
 
 		
 		.caption {

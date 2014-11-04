@@ -35,7 +35,8 @@ define(function (require) {
                 slidesToScroll: 1,
                 //centerMode: true,
                 focusOnSelect: true,
-                variableWidth: true
+                variableWidth: true,
+                infinite: false
             });
 
 
