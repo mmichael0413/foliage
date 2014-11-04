@@ -1,4 +1,5 @@
 define(function(require) {
+    var context = require('context');
 
     /**
         A variation on the regular Component, which allows for 
@@ -26,6 +27,11 @@ define(function(require) {
         _addFilterFromLink: function ($link) {
             // count the number of active filters
             var $activeFilters = this.$el.find('.active-filter');
+            if ($activeFilters.length !== 0) {
+                $activeFilters.trigger('clear');
+            }
+
+            $activeFilters = this.$el.find('.active-filter');
             if ($activeFilters.length === 0) {
                 //proceed!
                 SingleAnswerComponent.__super__._addFilterFromLink.call(this, $link);

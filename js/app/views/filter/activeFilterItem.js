@@ -12,7 +12,8 @@ define(function(require) {
 
         events: {
             //'remove' is built-in
-            'click .btn': 'clearHandler'
+            'click .btn': 'clearHandler',
+            'clear': 'clear'
         },
 
         render: function () {
