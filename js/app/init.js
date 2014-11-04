@@ -31,6 +31,9 @@ require.config({
             deps: [],
             exports: "$"
         },
+        "jquery_ujs": {
+            deps: ["jquery"]
+        },
         "underscore": {
             deps: ["jquery"],
             exports: "_"
@@ -47,8 +50,20 @@ require.config({
             deps: ["handlebars", "handlebarsHelpers"],
             exports: "HandlebarTemplates"
         },
+        'handlebarsHelpers': {
+            deps: ["handlebars"]
+        },
+        'context': {
+            deps: ["underscore"]
+        },
+        'imagesloaded': {
+            deps: ["jquery"]
+        },
         "backbone.modal" : {
             deps: ["backbone"]
+        },
+        'slick_carousel': {
+            deps: ["jquery"]
         },
         "livestamp": {
             deps: ["moment"],
@@ -58,8 +73,17 @@ require.config({
             deps: ["jquery"],
             exports: "jquery.validation"
         },
+        'serializeObject': {
+            deps: ["jquery"]
+        },
+        'quill': {
+            deps: ["jquery"]
+        },
         "quill-youtube": {
             deps: ['quill']
+        },
+        'chosen': {
+            deps: ["jquery"]
         }
     }
 });
