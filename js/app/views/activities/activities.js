@@ -22,20 +22,16 @@ define(function (require) {
 
 
         initialize: function (options) {
-            
             var self = this;
 
-            Filter.init();
             this.activityUrl = options.url;
-            
-            
             this.incompleteActivityUrl = options.incompleteActivityUrl;
 
             this.listenToOnce(context, 'page:height', this.checkPageHeight);
             $(window).resize(function () {
                 self.resizeCarousel();
             });
-            ActivitiesView.__super__.initialize.call(this, arguments);
+            ActivitiesView.__super__.initialize.apply(this, arguments);
         },
         
 
@@ -61,14 +57,14 @@ define(function (require) {
             if (model.get('type') !== undefined) {
                     var activity = new ActivityView({ model: model, programId: context.programId});
                     this.getContentElement().append(activity.render().el);
-                    activity.$el.find("textarea").expanding();
+                    activity.$("textarea").expanding();
                     activity.initializeCarousel();
                 }
         },
 
         endOfFeed: function () {
             // if collection has no models, tell user no activities yet
-            this.isLoading.removeFromDOM();
+            this.loadIndicator.removeFromDOM();
             if (this.collection.currentPage === 1 && this.collection.models.length === 0) {
                 this.getContentElement().append("<div class='activity alert info'>No Activity was found, please try different search criteria.</div>");
             } else {
@@ -84,7 +80,7 @@ define(function (require) {
             $carousel.find('img').css({'max-width': width, 'max-height': width});
         },
         getContentElement: function () {
-            return this.$el.find('.complete');
+            return this.$('.complete');
         }
     });
 

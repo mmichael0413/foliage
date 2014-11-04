@@ -3,7 +3,7 @@ define(function (require) {
     var context = require('context'),
         _ = require('underscore'),
         $ = require('jquery'),
-        ActivitiesView = require('app/views/activities/activities'),
+        ActivitiesMain = require('app/views/activities/main'),
         PersonnelSectionView = require('app/views/store_profile/personnel'),
         ExpandWrapperView = require('app/views/utils/expand_wrapper_view'),
         OpenAlertsView = require('app/views/store_profile/open_alerts'),
@@ -43,12 +43,8 @@ define(function (require) {
 
         },
         activity: function () {
-            var url = '/programs/' + context.programId + '/activities/posts?customer_store=' +context.requestParameters[1] ,
-                activitiesView = new ActivitiesView({
-                    url: url,
-                    programId: context.programId                        
-                });
-            activitiesView.fetch();
+            var url = '/programs/' + context.programId + '/activities/posts?customer_store=' +context.requestParameters[1];
+            ActivitiesMain.init(url, null, true);
         },
         history: function () {
             new OpenAlertsView().renderCollection(context.alerts.open);
