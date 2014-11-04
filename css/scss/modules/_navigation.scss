@@ -120,11 +120,15 @@
         top: 0;
         right: 0;
         padding: 1rem;
-        color: $medium-blue;
+        color: white;
     }
     ul li {
         &:not(.menu-option) {
           padding: 1em;
+        }
+
+        &.header {
+          color: white;
         }
 
         a {
@@ -137,10 +141,6 @@
             text-transform: uppercase;
         }
 
-        &.separator {
-          border-top: 1px solid $medium-blue-rgba;
-          border-bottom: 1px solid $medium-blue-rgba;
-        }
         &.menu-option {
           cursor: pointer;
 
@@ -148,7 +148,6 @@
             background-color: darken($subnav-background, 5%);
           }
           &.active {
-            font-weight: bold;
             background-color: lighten($subnav-background, 5%);
             cursor: default;
             pointer-events: none;
