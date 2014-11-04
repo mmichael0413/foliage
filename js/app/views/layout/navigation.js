@@ -21,7 +21,7 @@ define(function (require) {
             var width = $(window).width() / parseFloat($("body").css("font-size"));
             if (width < 35.5) {
                 this.state = 'mobile';
-                _this.initialNavState = window.localStorage.getItem('main_navigation') || 'expanded-nav';
+                _this.initialNavState = 'expanded-nav';
 
                 // if the initial state was collapsed, toggle the nav
                 if (_this.initialNavState == 'collapsed-nav') {
@@ -40,11 +40,13 @@ define(function (require) {
                     _this.state = 'mobile';
 
                     // get the initial nav state
-                    _this.initialNavState = window.localStorage.getItem('main_navigation') || 'expanded-nav';
+                    if (window !== undefined && window.localStorage !== undefined) {
+                        _this.initialNavState = window.localStorage.getItem('main_navigation') || 'expanded-nav';
 
-                    // if the initial state was collapsed, toggle the nav
-                    if (_this.initialNavState == 'collapsed-nav') {
-                        _this.collapseNav(null, true);
+                        // if the initial state was collapsed, toggle the nav
+                        if (_this.initialNavState == 'collapsed-nav') {
+                            _this.collapseNav(null, true);
+                        }
                     }
 
                     _this.closeSubNav();
