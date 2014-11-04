@@ -103,9 +103,15 @@
     }
     &.collapsed-nav {
       #site-canvas {
+
+        #site-menu {
+          transition: all .0s;
+          -webkit-transform: translateX($standard-nav-width);
+          transform: translateX($standard-nav-width);
+        }
         .content-holder {
-          padding-left: $standard-nav-width;
-          transition: padding .3s;
+          padding-left: $standard-nav-width + $collapsed-nav-width;
+          transition: padding .3s linear .3s;
         }
       }
     }

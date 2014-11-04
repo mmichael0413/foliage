@@ -95,6 +95,7 @@ define(function (require) {
             }
         },
         toggleFilter: function (e) {
+            console.log( window.localStorage.getItem('main_navigation'));
             if (e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -107,6 +108,10 @@ define(function (require) {
                 // Do things on Nav Open
                 this.$siteWrapper.addClass('show-filter');
                 this.$toggleFilter.addClass('enabled');
+            }
+
+            if(window.localStorage.getItem('main_navigation') === 'expanded-nav') {
+                this.collapseNav(null, true);
             }
         },
         toggleSubnav: function (e) {
