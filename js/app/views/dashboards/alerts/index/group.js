@@ -32,7 +32,7 @@ define(function(require) {
         },
         updateTotalAlertCount: function (data) {
             this.totalAlertCount += data;
-            this.$el.find('.alert-count').text(this.totalAlertCount);
+            this.$el.find('.alert-count').text(this.totalAlertCount.toLocaleString());
         }
     });
 });

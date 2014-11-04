@@ -278,7 +278,7 @@ function program22(depth0,data) {
   if (helper = helpers.activity_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.activity_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" class=\"hidden-xs\">View Activity</a>\n                </span>\n        </div>\n    </div>\n    <div class=\"comment-holder hidden-xs\">\n        <div class=\"activity-status\">\n            <span class=\"action\">\n                <span class=\"like-count\" data-likecount=\"";
+    + "\" class=\"hidden-xs\">Copy Activity URL</a>\n                </span>\n        </div>\n    </div>\n    <div class=\"comment-holder hidden-xs\">\n        <div class=\"activity-status\">\n            <span class=\"action\">\n                <span class=\"like-count\" data-likecount=\"";
   if (helper = helpers.like_count) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.like_count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
