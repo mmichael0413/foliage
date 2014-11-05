@@ -12,15 +12,6 @@
     text-align: left;
   }
 
-  .action {
-    
-
-    a {
-      span {
-        display: none;
-      }
-    }
-  }
 
   @include swb-small {
     .store-profile-link {

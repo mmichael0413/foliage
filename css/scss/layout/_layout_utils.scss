@@ -26,9 +26,10 @@
   float:right;
 }
 
-.visible-xs, .visible-xs-inline {
+.visible-xs, .visible-xs-inline, .visible-md {
   display:none;
 }
+
 
 .expander {
   cursor: pointer; 
@@ -75,7 +76,17 @@
   vertical-align: top;
 }
 
-@include swb-small() {
+@include swb-medium {
+  .visible-md {
+    display: block;
+  }
+
+  .hidden-md {
+    display:none !important;
+  }
+}
+
+@include swb-small {
   .visible-xs {
     display: block;
   }

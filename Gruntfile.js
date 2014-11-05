@@ -41,10 +41,10 @@ module.exports = function(grunt) {
                     units: [2, 3, 4, 5, 12], // 5-column grid and 12-column grid
 
                     mediaQueries: {
-                        sm: 'screen and (max-width: 35.5em)', // 568px
-                        md: 'screen and (max-width: 48em)'   // 768px
-                        //lg: 'screen and (max-width: 64em)',   // 1024px
                         //xl: 'screen and (max-width: 80em)'    // 1280px
+                        //lg: 'screen and (max-width: 64em)',   // 1024px
+                        md: 'screen and (max-width: 48em)',   // 768px
+                        sm: 'screen and (max-width: 35.5em)' // 568px
                     },
                     selectorPrefix: '.col-'
                 }
