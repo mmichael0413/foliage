@@ -9,6 +9,7 @@ define(function(require) {
         GalleryView = InfiniteScrollView.extend({
             el: "#gallery",
             infiniteCollectionClass: InfiniteCollection,
+            per: 10,
 
             initialize: function () {
                 this.infiniteURL = context.links.feed;

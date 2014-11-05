@@ -16,6 +16,7 @@ define(function(require) {
 
             infiniteCollectionClass: undefined,
             infiniteModel: undefined,
+            per: 5,
             endOfFeedHTML: "<div class='alert info'>You have reached the end of the feed!</div>",
             errorHTML: '<div class="alert error">Additional items cannot be loaded due to an error on the server. Please contact Tech Support</div>',
 
@@ -29,22 +30,23 @@ define(function(require) {
                 }
                 this.collection = new this.infiniteCollectionClass({url: this.infiniteURL});
                 this.listenTo(this.collection, 'reset', this.render);
-                
                 this.listenTo(this.collection, 'error', this.stopOnError);
 
                 this.loadIndicator = new LoadingView();
+                this.getContentElement().append(this.loadIndicator.render().el);
                 this.allModelsLoaded = false;
 
                 if (options && options.enableScroll !== undefined) {
                     this.enableScroll = options.enableScroll;
                 }
 
-                this.listenTo(context, 'filter:query', this.applyFilter);
+                
+                //this.listenTo(context, 'filter:query', this.applyFilter);
                 // configure the filter to ignore some specific fields which the infinite scroll will control
                 context.trigger('configure:excludeFields', ['page', 'per', 'sort', 'direction']);
                 // asumes the presence of the filter, of course
                 // todo: the value should come from the collection
-                context.trigger('filter:set', [{name: 'per', value: 5}]);
+                context.trigger('filter:set', [{name: 'per', value: this.per}]);
                 
                 if (!window.filterBootstrap) {
                     this.applyFilter();
@@ -107,21 +109,21 @@ define(function(require) {
             renderModel: function () {
                 console.warn("Override me!");
             },
-            applyFilter: function (qs) {
-                var self = this;
+            // applyFilter: function (qs) {
+            //     var self = this;
 
                 
-                this.collection.updateQueryString(qs);
-                this.getContentElement().html(this.loadIndicator.render().el);
+            //     this.collection.updateQueryString(qs);
+            //     this.getContentElement().html(this.loadIndicator.render().el);
 
-                this.collection.fetch({reset: true}).done(function () {
+            //     this.collection.fetch({reset: true}).done(function () {
                     
-                    self.render();
-                }).fail(function () {
-                    self.stopOnError();
-                    return false;
-                });
-            },
+            //         self.render();
+            //     }).fail(function () {
+            //         self.stopOnError();
+            //         return false;
+            //     });
+            // },
             endOfFeed: function () {
                 this.loadIndicator.removeFromDOM();
                 this.getContentElement().append(this.endOfFeedHTML);
