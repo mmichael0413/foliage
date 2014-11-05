@@ -115,23 +115,16 @@ $padding: 1.5em;
       }
 
     }
-    .img-label{
-      position: absolute;
-      bottom: .5em;
-      width: 100%;
-      color: white;
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
-
-
-    }
   }
+
+
   .slick-initialized {
     &.slick-slider {
       margin-bottom: 0;
     }
     .slick-slide {
       text-align: center;
-      background-color: $light-gray;
+      background-color: $light-blue;
       img {
         display: inline-block;
         vertical-align: middle;
@@ -141,6 +134,30 @@ $padding: 1.5em;
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
       }
+    }
+  }
+}
+
+.activity-photos {
+  .carousel {
+    .img-label {
+      font-size: .9rem;
+      position: absolute;
+      bottom: .25em;
+      width: 100%;
+      color: white;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+    }
+  }
+}
+
+.bbm-modal {
+  .carousel {
+    .img-label {
+
+      width: 100%;
+      color: black;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
     }
   }
 }

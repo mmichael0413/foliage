@@ -4,13 +4,15 @@
     -webkit-overflow-scrolling: touch;
     width: 100%;
     #site-canvas {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+
         width: 100%;
         height: 100%;
         position: fixed;
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
-        -webkit-transition: .3s ease all;
-        transition: .3s ease all;
+        @include transform(0);
+
+        @include transition(.3s ease all);
         .content-holder {
             position: relative;
             width: 100%;
@@ -43,20 +45,20 @@
         #site-canvas {
             #site-menu {
                 width: $collapsed-nav-width;
-                transition: width .3s;
+                @include transition(width .3s);
                 .third {
                     display: none;
                 }
                 .link {
                     opacity: 0;
-                    transition: opacity 1s, width 0 1s;
+                    @include transition(opacity 1s, width 0 1s);
                     width: 0;
                     display: none;
                 }
                 .toggle-subnav .ic_right {
                     visibility: hidden;
                     opacity: 0;
-                    transition:visibility 0s linear 0.3s,opacity 0.3s linear;
+                    @include transition(visibility 0s linear 0.3s,opacity 0.3s linear);
                 }
             }
             #site-submenu {
@@ -64,18 +66,17 @@
             }
             .content-holder {
                 padding-left: $collapsed-nav-width;
-                transition: padding .3s;
+                @include transition(padding .3s);
             }
         }
     }
     &.expanded-nav {
         #site-canvas {
             #site-menu {
-                //@include transform(-10em);
-                transition: width .3s;
+                @include transition( width .3s);
                 .link {
                     opacity: 1;
-                    transition: opacity 1s, width 100% 1s;
+                    @include transition(opacity 1s, width 100% 1s);
                     width: 100%;
                 }
                 .toggle-subnav .ic_right {
@@ -88,32 +89,30 @@
                 /* transition: display .3s; */
             }
             .content-holder {
-                transition: padding .3s;
+                @include transition(padding .3s);
             }
 
         }
     }
     &.show-nav #site-canvas {
-        -webkit-transform: translateX($standard-nav-width);
-        transform: translateX($standard-nav-width);
+      @include transform($standard-nav-width);
     }
   &.show-filter {
     #site-canvas {
-      -webkit-transform: translateX(-$standard-nav-width);
-      transform: translateX(-$standard-nav-width);
+
+      @include transform(-$standard-nav-width);
     }
     &.collapsed-nav {
       #site-canvas {
         @include swa-small() {
         #site-menu {
-          transition: transform .3s linear .3s, width .3s;
-          -webkit-transform: translateX($standard-nav-width);
-          transform: translateX($standard-nav-width);
+          @include transition(transform .3s linear .3s, width .3s);
+          @include transform($standard-nav-width);
         }
 
           .content-holder {
             padding-left: $standard-nav-width + $collapsed-nav-width;
-            transition: padding .3s linear .3s;
+            @include transition(padding .3s linear .3s);
           }
         }
       }
@@ -130,12 +129,10 @@
     }
     #site-submenu.show-subnav {
         background-color: $subnav-background;
-        -webkit-transform: translateX($standard-nav-width);
-        transform: translateX($standard-nav-width);
+        @include transform($standard-nav-width);
     }
     &.collapsed-nav #site-canvas #site-submenu.show-subnav {
-        -webkit-transform: translateX($collapsed-nav-width);
-        transform: translateX($collapsed-nav-width);
+      @include transform($collapsed-nav-width);
     }
     #site-submenu {
         background-color: $border-color;
@@ -143,8 +140,8 @@
         height: 100%;
         position: absolute;
         top: 0;
-        -webkit-transition: .3s ease all;
-        transition: .3s ease all;
+
+        @include transition(.3s ease all);
         z-index: 3;
         overflow: auto;
       @include swb-small {
@@ -217,8 +214,7 @@
         left: -$standard-nav-width;
         overflow: auto;
         &.show-subnav {
-            -webkit-transform: translateX($standard-nav-width);
-            transform: translateX($standard-nav-width);
+          @include transform($standard-nav-width);
         }
     }
 }

@@ -6,8 +6,9 @@
         <div>
             <div class="helper">
                 <img src="{{url}}" class="img-responsive" onerror="this.src='{{../content_image_error_url}}'"/>
+
             </div>
-            <div class="img-label">{{label}}</div>
+            <div class="img-label">{{image_type}}{{#if label}}: {{label}}{{/if}}</div>
         </div>
         {{/each}}
         <a href="#" class="arrow arrow-left"><span class="ic ic_left"></span> </a>

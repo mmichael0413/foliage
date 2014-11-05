@@ -163,7 +163,7 @@ define(function(require){
         MainLayout.init();
         context.router = new AppRouter();
         context.instances = {};
-        Backbone.history.start({pushState: true});
+        Backbone.history.start({pushState: true, hashChange: false});
     };
     return {
         initialize: initialize
