@@ -12,6 +12,9 @@
     text-align: left;
   }
 
+  .action {
+    display: inline-block;
+  }
 
   @include swb-small {
     .store-profile-link {
