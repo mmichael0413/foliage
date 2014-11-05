@@ -26,7 +26,7 @@ define(function (require) {
             var self = this;
 
             Filter.init();
-            this.activityUrl = options.url;
+            //this.infiniteURL = options.url;
             
             
             this.incompleteActivityUrl = options.incompleteActivityUrl;
@@ -35,7 +35,7 @@ define(function (require) {
             $(window).resize(function () {
                 self.resizeCarousel();
             });
-            ActivitiesView.__super__.initialize.call(this, arguments);
+            ActivitiesView.__super__.initialize.apply(this, arguments);
         },
         
 

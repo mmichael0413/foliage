@@ -24,15 +24,20 @@ define(function(require) {
                     // this is probably taboo, but we grab the location of the 
                     // parent dom element which contains all of our content
                     $contentHolder = $('.content-holder');
-                this.infiniteURL = options.url;
+                if (options) {
+                    this.infiniteURL = options.url;
+                }
+                this.collection = new this.infiniteCollectionClass({url: this.infiniteURL});
+                this.listenTo(this.collection, 'reset', this.render);
                 
-                this.collection = new this.infiniteCollectionClass({url: this.activityUrl});
+                this.listenTo(this.collection, 'error', this.stopOnError);
+
                 this.loadIndicator = new LoadingView();
                 this.allModelsLoaded = false;
 
                 //this.incompleteActivityUrl = options.incompleteActivityUrl;
 
-                if (options.enableScroll !== undefined) {
+                if (options && options.enableScroll !== undefined) {
                     this.enableScroll = options.enableScroll;
                 }
 
@@ -46,8 +51,6 @@ define(function(require) {
                 if (!window.filterBootstrap) {
                     this.applyFilter();
                 }
-
-              
 
                 if (this.enableScroll) {
 
@@ -63,16 +66,18 @@ define(function(require) {
                             $contentHolder.off('scroll.wall');
                             return false;
                         }
-
+                        
                         if (!self.loadIndicator.active && $contentHolder.scrollTop() > (self.$el.position().top + self.$el.height()) - 1500) {
+
                             self.$el.append(self.loadIndicator.render().el);
 
-                            self.collection.getNextPage().done(function () {
-                                self.render();
-                            }).fail(function () {
-                                self.stopOnError();
-                                return false;
-                            });
+                            // self.collection.getNextPage().done(function () {
+                            //     self.render();
+                            // }).fail(function () {
+                            //     self.stopOnError();
+                            //     return false;
+                            // });
+                            self.collection.getNextPage();
                         }
 
                         return true;
@@ -84,20 +89,20 @@ define(function(require) {
                 // todo: should return jqxhr
                 return this;
             },
+            
             render: function () {
                 var self = this;
+                
                 if (this.collection.models.length === 0) {
                     self.allModelsLoaded = true;
                     self.endOfFeed();
                 } else {
-                    this.collection.currentPage += 1;
-
+                    //this.collection.currentPage += 1;
+                    
                     _.each(this.collection.models, function () {
                         self.renderModel.apply(self, arguments);
                      });
                     
-                    
-
                     self.loadIndicator.removeFromDOM();
                     context.trigger('page:height');
                 }
@@ -106,12 +111,15 @@ define(function(require) {
             renderModel: function () {
                 console.warn("Override me!");
             },
-            applyFilter: function () {
+            applyFilter: function (qs) {
                 var self = this;
 
-                //this.$('.complete').html(this.loadIndicator.render().el);
+                
+                this.collection.updateQueryString(qs);
                 this.getContentElement().html(this.loadIndicator.render().el);
+
                 this.collection.fetch({reset: true}).done(function () {
+                    
                     self.render();
                 }).fail(function () {
                     self.stopOnError();

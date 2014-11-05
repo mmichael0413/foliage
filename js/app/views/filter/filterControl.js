@@ -83,7 +83,6 @@ define(function(require) {
 
             this._applyQSGlobal(qsHash);
 
-
             this.listenTo(context, 'filter:request', this.handleFilterRequest);
             this.listenTo(context, 'filter:request:queryString', this.handleFilterRequestQueryString);
             this.listenTo(context, 'filter:set', this.setFromExternal);

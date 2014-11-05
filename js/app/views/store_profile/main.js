@@ -3,6 +3,8 @@ define(function (require) {
     var context = require('context'),
         _ = require('underscore'),
         $ = require('jquery'),
+        Backbone = require('backbone'),
+        Filter = require('app/views/filter/main'),
         ActivitiesView = require('app/views/activities/activities'),
         PersonnelSectionView = require('app/views/store_profile/personnel'),
         ExpandWrapperView = require('app/views/utils/expand_wrapper_view'),
@@ -27,13 +29,12 @@ define(function (require) {
             wrapper.setElement('#site-canvas').render();
 
             _.each(context.images, function (image){
-                    galleryBody.prepend(new HoverableImageView({model: image}).render().$el);
+                    galleryBody.prepend(new HoverableImageView({model: new Backbone.Model(image)}).render().$el);
                 });
             
             $('#images .image-container').slick({
                 slidesToShow: 3,
                 slidesToScroll: 1,
-                //centerMode: true,
                 focusOnSelect: true,
                 variableWidth: true,
                 infinite: false
@@ -55,7 +56,8 @@ define(function (require) {
             new ResolvedAlertsView().renderCollection(context.alerts.resolved);
         },
         gallery: function () {
-            new GalleryView().render();
+            Filter.init(new Backbone.Collection());
+            new GalleryView();
         }
     };
     return main;

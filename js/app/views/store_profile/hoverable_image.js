@@ -16,8 +16,8 @@ define(function(require) {
 			},
 
 			render: function () {
-				this.$el.addClass(this.model.image_type);
-				this.$el.html(template(this.convertModel(this.model)));
+				this.$el.addClass(this.model.get('image_type'));
+				this.$el.html(template(this.convertModel(this.model.toJSON())));
 				return this;
 			},
 			convertModel: function(raw) {
