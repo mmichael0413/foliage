@@ -1,17 +1,21 @@
 define(function(require) {
 	var Backbone = require('backbone'),
+		context = require('context'),
 		template = require('handlebarsTemplates')['store_profile/hoverable_image'],
 
+		//GalleryImageModal = require('app/modals/store_profile/gallery_image_modal'),
+
 		/**
-		 * Provides 
+		 * Provides an image view that has a hover overlay effect
 		 * 
-		 * @type {[type]}
+		 * @exports app/views/store_profile/hoverable_image
 		 */
 		HoverableImageView = Backbone.View.extend({
 			className: 'hoverable-image',
 			events: {
 				'mouseover': 'mouseOver',
-				'mouseout': 'mouseOut'
+				'mouseout': 'mouseOut',
+				'click': 'openModal'
 				
 			},
 
@@ -36,6 +40,11 @@ define(function(require) {
 			mouseOut: function (e) {
 				e.stopPropagation();
 				this.$el.removeClass('active');
+			},
+
+			openModal: function (e) {
+				e.stopPropagation();
+				context.trigger('gallery:image:open', this.convertModel(this.model.toJSON()));
 			}
 
 

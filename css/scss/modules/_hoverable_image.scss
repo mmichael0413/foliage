@@ -4,6 +4,7 @@
 	margin: 0 2em 2em 0;
 	background-color: #ffffff;
 	position: relative;
+	cursor: pointer;
 
 	img {
 		width: 100%;
@@ -30,6 +31,20 @@
 	&.active {
 		.overlay {
 			z-index: 10;
+		}
+	}
+}
+
+.hoverable-image-modal {
+	.image-container {
+		padding: 1em;
+		img {
+			display: block;
+			margin: 0 auto;
+		}
+		.caption {
+			text-align: center;
+			margin-top: 1em;
 		}
 	}
 }
