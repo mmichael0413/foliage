@@ -5,8 +5,7 @@ define(function(require){
         Backbone = require('backbone'),
         context = require('context'),
         MainLayout = require('app/views/layout/main'),
-        GlobalView = require('app/views/activities/global'),
-        ActivitiesView = require('app/views/activities/activities'),
+        ActivitiesMain = require('app/views/activities/main'),
         CheckinsView = require('app/views/checkins/checkin'),
         TeamsMain = require('app/views/teams/main'),
         StoresMain = require('app/views/stores/main'),
@@ -67,28 +66,13 @@ define(function(require){
         },
 
         activitiesFeed: function(program_id){
-            var url = '/programs/' + program_id + '/activities/posts';
-            var incomplete_url =  '/programs/' + program_id + '/activities/incomplete_posts';
-
-            new GlobalView();
-            var activitiesView = new ActivitiesView({
-                url: url,
-                incompleteActivityUrl: incomplete_url,
-                programId: program_id
-            });
-            activitiesView.fetch();
+            var url = '/programs/' + context.programId + '/activities/posts';
+            var incomplete_url =  '/programs/' + context.programId + '/activities/incomplete_posts';
+            ActivitiesMain.init(url, incomplete_url, true);
         },
         activityFeed: function(program_id, activity_id) {
-            var queryString = window.location.search;
             var url = '/programs/' + program_id + '/activities/' + activity_id;
-
-            new GlobalView();
-            var activitiesView = new ActivitiesView({
-                url: url,
-                programId: program_id,
-                enableScroll: false
-            });
-            activitiesView.fetch();
+            ActivitiesMain.init(url, null, false);
         },
 
         checkin_list: function (program_id, user_id){
@@ -125,16 +109,7 @@ define(function(require){
 
         programProfile: function(program_id, user_id) {
             var url = '/programs/' + program_id + '/activities/' + user_id + '/for';
-            var incomplete_url =  '/programs/' + program_id + '/activities/incomplete_posts';
-
-            new GlobalView();
-            var activitiesView = new ActivitiesView({
-                url: url,
-                incompleteActivityUrl: incomplete_url,
-                programId: program_id
-            });
-            activitiesView.fetch();
-
+            ActivitiesMain.init(url, null, true);
         },
 
         dashboardAlerts: function(programId){
@@ -187,6 +162,7 @@ define(function(require){
     var initialize = function(){
         MainLayout.init();
         context.router = new AppRouter();
+        context.instances = {};
         Backbone.history.start({pushState: true});
     };
     return {

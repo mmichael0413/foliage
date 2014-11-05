@@ -35,8 +35,6 @@ define(function(require) {
                 this.loadIndicator = new LoadingView();
                 this.allModelsLoaded = false;
 
-                //this.incompleteActivityUrl = options.incompleteActivityUrl;
-
                 if (options && options.enableScroll !== undefined) {
                     this.enableScroll = options.enableScroll;
                 }
@@ -53,8 +51,6 @@ define(function(require) {
                 }
 
                 if (this.enableScroll) {
-
-                    
                     var topOfOthDiv = $contentHolder.offset().top;
                     $contentHolder.on('scroll', function() {
                         if ($contentHolder.scrollTop() > topOfOthDiv + 300) {
