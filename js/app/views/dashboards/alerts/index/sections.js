@@ -1,13 +1,15 @@
 define(function(require) {
     var Backbone = require('backbone'),
         DashboardsAlertsSectionsCollection = require('app/collections/dashboards/alerts/sections'),
-        DashboardsAlertsSectionView = require('app/views/dashboards/alerts/index/section');
+        DashboardsAlertsSectionView = require('app/views/dashboards/alerts/index/section'),
+        Filter = require('app/views/filter/main');
 
     return Backbone.View.extend({
         className: "alerts-sections",
         initialize: function (options) {
             this.options = options;
             this.collection = new DashboardsAlertsSectionsCollection({programId: this.options.programId});
+            Filter.init();
         },
         render: function () {
             var self = this;

@@ -11,10 +11,13 @@ define(function(require) {
             "click .expand-indicator": "toggleAlertViews"
         },
         initialize: function (options) {
+            this.filteredCount = 0;
             this.options = options;
             this.model = options.model;
             this.totalAlertCount = 0;
             this.listenTo(context, 'alert_group_' + this.options.groupId + ':count_update', this.updateTotalAlertCount, this);
+            this.listenTo(context, 'alert_group_' + this.options.groupId + ':count_reset', this.resetTotalAlertCount, this);
+            this.listenTo(context, 'filter:query', this.resetCounter);
         },
         render: function () {
             var self = this;
@@ -29,6 +32,13 @@ define(function(require) {
                 context.trigger('alert_group_' + this.options.groupId + ':show');
             }
             expanderIcon.toggleClass('open');
+        },
+        resetCounter: function(){
+            this.filteredCount = 0;
+        },
+        resetTotalAlertCount: function (data) {
+            this.filteredCount += data;
+            this.$el.find('.alert-count').text(this.filteredCount);
         },
         updateTotalAlertCount: function (data) {
             this.totalAlertCount += data;

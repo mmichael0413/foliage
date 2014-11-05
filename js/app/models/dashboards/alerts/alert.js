@@ -4,8 +4,12 @@ define(function(require) {
         Backbone = require('backbone');
 
     return Backbone.Model.extend({
+        initialize: function (options) {
+            this.queryString = "";
+            this.alertId = options.id;
+        },
         url: function () {
-            return "alerts/" + this.id + '/count';
+            return "alerts/" + this.alertId + '/count?' + this.queryString;
         }
     });
 });
