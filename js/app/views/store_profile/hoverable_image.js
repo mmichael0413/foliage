@@ -21,15 +21,12 @@ define(function(require) {
 
 			render: function () {
 				this.$el.addClass(this.model.get('image_type'));
-				this.$el.html(template(this.convertModel(this.model.toJSON())));
-				return this;
-			},
-			convertModel: function(raw) {
-				raw.caption = raw.image_type.toUpperCase() + "<br/>" + raw.photo_updated_at;
-				if (raw.label) {
-					raw.caption = raw.label + "<br/>" + raw.caption;
+				// tweak the label, show the image type of label is null
+				if (!this.model.get('label')) {
+					this.model.set('label', this.model.get('image_type').toUpperCase());
 				}
-				return raw;
+				this.$el.html(template(this.model.toJSON()));
+				return this;
 			},
 
 			mouseOver: function (e) {
@@ -44,7 +41,7 @@ define(function(require) {
 
 			openModal: function (e) {
 				e.stopPropagation();
-				context.trigger('gallery:image:open', this.convertModel(this.model.toJSON()));
+				context.trigger('gallery:image:open', this.model);
 			}
 
 

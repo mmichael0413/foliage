@@ -1,6 +1,5 @@
 define(function(require) {
-    var Backbone = require('backbone'),
-        $ = require('jquery'),
+    var $ = require('jquery'),
         context = require('context'),
         HoverableImageView = require('app/views/store_profile/hoverable_image'),
         InfiniteScrollView = require('app/views/shared/infinite_scroll'),
@@ -20,12 +19,11 @@ define(function(require) {
                 this.infiniteURL = context.links.feed;
                 GalleryView.__super__.initialize.apply(this, {url: context.links.feed});
                 var self = this;
-                this.listenTo(context, 'gallery:image:open', function(data) {
-                    self.modal = new GalleryImageModal({model: new Backbone.Model(data)});
+                this.listenTo(context, 'gallery:image:open', function(model) {
+                    self.modal = new GalleryImageModal({model: model});
                     $("body").append(this.modal.render().el);
                 });
             },
-
 
             renderModel: function (model) {
                 var view = new HoverableImageView({model: model}).render();
