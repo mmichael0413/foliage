@@ -41,13 +41,11 @@ define(function(require) {
             
             this.$el.html(this.template(model.toJSON()));
             this.addPages();
-            var tbody = this.$el.find('.body'),
-                shadowBody = $("<div></div>");
+            var tbody = this.$el.find('.body');
 
             _.each(model.get('stores'), function (subModel) {
-                shadowBody.append(new DashboardsAlertsStoreView({model: new DashboardsAlertsStoreModel(subModel)}).render().$el);
+                tbody.append(new DashboardsAlertsStoreView({model: new DashboardsAlertsStoreModel(subModel)}).render().$el);
             });
-            tbody.html(shadowBody.html());
         },
         addPages: function () {
             this.$el.prepend(new PaginationView(this.model.get('pagination')).render().$el);

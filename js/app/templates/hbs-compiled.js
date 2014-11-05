@@ -535,7 +535,9 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.dateAdded) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.dateAdded); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<div class=\"col-1-12 col-md-3-12\">\n	\n        <a href=\"#\" class=\"btn primary expand\"><i class=\"ic fa ic_check\"></i><span class=\"visible-xs\">View Report</span></a>\n    \n        <a href=\""
+    + "</p>\n<div class=\"col-1-12 col-md-3-12\">\n	\n        <a href=\""
+    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.alert)),stack1 == null || stack1 === false ? stack1 : stack1.links)),stack1 == null || stack1 === false ? stack1 : stack1.self)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" class=\"btn primary expand\"><i class=\"ic fa ic_check\"></i><span class=\"visible-xs\">View Report</span></a>\n    \n        <a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.report)),stack1 == null || stack1 === false ? stack1 : stack1.link)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" class=\"btn primary\"><i class=\"ic fa ic_report-16\"></i><span class=\"visible-xs\">Resolve Alert</span></a>\n    \n</div>\n\n";
   stack1 = self.invokePartial(partials.alert_details_empty_row, 'alert_details_empty_row', depth0, helpers, partials, data);
