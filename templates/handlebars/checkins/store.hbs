@@ -3,7 +3,6 @@
     <h3 class="col-1-2 minor-m">LAST CHECKIN</h3>
 </div>
 
-
 {{#rows}}
 <div class="pure-g">
     <div class="col-1-2 col-md-1">
@@ -14,14 +13,24 @@
 
     </div>
     <div class="col-1-4 minor-m">{{last_checkin}}</div>
+    <div>
+
+    </div>
     <div class="col-1-4 col-md-1">
         {{#if special_project}}
             <a href="/programs/{{program}}/checkins/{{id}}/choose" class="btn btn-primary btn-sm"><strong>Checkin Here</strong></a>
         {{else}}
-
             <form accept-charset="UTF-8" action="/programs/{{program}}/checkins" method="post">
                 <input id="id" name="customer_store_id" type="hidden" value="{{id}}">
                 <input name="authenticity_token" value="{{authenticity_token}}" type="hidden">
+
+                {{#if last_checkin}}
+                    <a class="btn primary" href="/programs/{{program}}/reports/checkin/{{id}}">
+                        <i class="ic fa ic_report-16"></i>
+                    </a>
+                {{else}}
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                {{/if}}
                 <strong><button class="btn primary" name="commit"><i class="ic ic_location"></i>  Checkin Here</button></strong>
             </form>
         {{/if}}
