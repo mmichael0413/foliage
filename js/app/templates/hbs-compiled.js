@@ -1898,7 +1898,7 @@ function program3(depth0,data) {
   else { return ''; }
   });
 
-this["ThirdChannel"]["templates"]["teams_table_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["teams/rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -1906,7 +1906,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n<tr>\n    <td><a href=\""
+  buffer += "\n<div class=\"item pure-g\">\n    <p class=\"col-3-12 col-md-6-12\"><a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.profile)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">";
   if (helper = helpers.first_name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -1916,28 +1916,28 @@ function program1(depth0,data) {
   if (helper = helpers.last_name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.last_name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</a></td>\n    <td class=\"minor-m\">"
+    + "</a>\n    <p class=\"col-1-12\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.address)),stack1 == null || stack1 === false ? stack1 : stack1.state)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</td>\n    <td>";
+    + "</p>\n    <p class=\"col-2-12 col-md-5-12\">";
   if (helper = helpers.email) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.email); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n    <td class=\"minor-m\">";
+    + "</p>\n    <p class=\"col-3-12 minor-m\">";
   if (helper = helpers.phone) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.phone); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n    <td class=\"minor-m\">";
+    + "</p>\n    <p class=\"col-3-12 minor-m\">";
   if (helper = helpers.university) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.university); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n</tr>\n";
+    + "</p>\n</div>\n";
   return buffer;
   }
 
 function program3(depth0,data) {
   
   
-  return "\n<tr>\n	<td colspan=\"5\">No Field Force found for this query.</td>\n</tr>\n";
+  return "\n<p class=\"item\">No Field Force found for this query.</p>\n";
   }
 
   options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}

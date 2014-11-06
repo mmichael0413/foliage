@@ -1,0 +1,11 @@
+{{#rows}}
+<div class="item pure-g">
+    <p class="col-3-12 col-md-6-12"><a href="{{links.profile}}">{{first_name}} {{last_name}}</a>
+    <p class="col-1-12">{{address.state}}</p>
+    <p class="col-2-12 col-md-5-12">{{email}}</p>
+    <p class="col-3-12 minor-m">{{phone}}</p>
+    <p class="col-3-12 minor-m">{{university}}</p>
+</div>
+{{else}}
+<p class="item">No Field Force found for this query.</p>
+{{/rows}}

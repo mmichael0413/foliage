@@ -24,9 +24,6 @@ table, .table {
   }
 
   @include swb-medium {
-    .minor-m {
-        display:none;
-    }
 
     [class*='col-'] {
       button {
@@ -41,4 +38,9 @@ table, .table {
       display: none;
     }
   }
+}
+@include swb-medium {
+    .minor-m {
+        display:none;
+    }
 }
