@@ -1,6 +1,5 @@
 define(function(require) {
     var Backbone = require('backbone'),
-        Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context');
 

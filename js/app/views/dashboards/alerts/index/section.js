@@ -1,8 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
-        Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        DashboardsAlertsAlertsView = require('app/views/dashboards/alerts/index/alerts');
+        AlertsView = require('app/views/dashboards/alerts/index/alerts');
 
     return Backbone.View.extend({
         className: 'section',
@@ -13,7 +12,7 @@ define(function(require) {
         },
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
-            this.$el.find('table').append(new DashboardsAlertsAlertsView({programId: this.options.programId, id: this.model.get('id')}).render().$el);
+            this.$el.find('table').append(new AlertsView({programId: this.options.programId, id: this.model.get('id')}).render().$el);
             return this;
         }
     });

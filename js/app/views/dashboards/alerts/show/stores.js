@@ -15,7 +15,7 @@ define(function(require) {
         template: HandlebarsTemplates['dashboards/alerts/show/stores'],
         initialize: function (options) {
             this.options = options;
-            this.model = new StoresModel({programId: options.programId, id: options.id});
+            this.model = new StoresModel({programId: options.programId, id: options.id, queryString: window.bootstrap});
             this.filters = new FiltersCollection({programId: options.programId, id: options.id});
             this.loadingView = new LoadingView();
             this.listenTo(context, 'filter:query', this.applyFilter);

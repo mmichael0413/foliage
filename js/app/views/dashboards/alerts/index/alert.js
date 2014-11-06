@@ -9,11 +9,12 @@ define(function(require) {
         initialize: function (options) {
             this.options = options;
             this.model = options.model;
+            this.model.queryString = window.bootstrap;
             this.listenTo(context, 'filter:query', this.applyFilter);
         },
         render: function () {
             var self = this;
-            this.setElement(this.template(this.model.toJSON()));
+            this.setElement(this.template(this.model.toJSON())).updateLink(window.bootstrap);
             this.model.fetch({ success: function (model) {
                 self.$el.find(".alert-count").empty().text(model.get('count'));
                 context.trigger('alert_group_' + self.options.groupId + ':count_update', model.get('count'));
@@ -33,9 +34,13 @@ define(function(require) {
                 this.listenTo(context, 'alert_group_' + this.options.groupId + ':hide', this.hideView, this);
             }
         },
+        updateLink: function(qs) {
+            this.$el.find('a').attr("href", '/programs/' + this.options.programId + '/dashboards/alerts/' + this.model.get('id') + '?' + qs);
+        },
         applyFilter: function (qs) {
             var self = this;
             this.model.queryString = qs;
+            this.updateLink(qs);
             this.model.fetch({ success: function (model) {
                 self.$el.find(".alert-count").empty().text(model.get('count'));
                 context.trigger('alert_group_' + self.options.groupId + ':count_reset', model.get('count'));

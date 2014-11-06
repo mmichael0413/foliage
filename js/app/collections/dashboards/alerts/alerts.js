@@ -2,7 +2,7 @@ define(function(require){
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        Alert = require('app/models/dashboards/alerts/alert');
+        Count = require('app/models/dashboards/alerts/count');
 
     return Backbone.Collection.extend({
         initialize: function (options) {
@@ -12,6 +12,6 @@ define(function(require){
         url: function () {
             return "/programs/" + this.programId + "/dashboards/alerts/sections/"+ this.id +"/alerts.json";
         },
-        model: Alert
+        model: Count
     });
 });

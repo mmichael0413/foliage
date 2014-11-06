@@ -5,7 +5,7 @@ define(function(require) {
 
     return Backbone.Model.extend({
         initialize: function (options) {
-            this.queryString = "";
+            this.queryString = options.queryString;
             this.alertId = options.id;
         },
         url: function () {
