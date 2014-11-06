@@ -117,7 +117,7 @@ define(function(require){
         },
 
         dashboardAlert: function(programId, id){
-            new DashboardsAlertsStoresView({id: id, page: ""}).render();
+            new DashboardsAlertsStoresView({programId: programId, id: id}).render();
         },
 
         reports: function(programId){

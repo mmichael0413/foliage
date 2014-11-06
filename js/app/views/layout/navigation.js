@@ -18,7 +18,7 @@ define(function (require) {
             new NotificationBadge().render();
 
             if (!window.localStorage.getItem('main_navigation')){
-                window.localStorage.setItem('main_navigation', 'expanded-nav')
+                window.localStorage.setItem('main_navigation', 'expanded-nav');
             }
 
             // width in ems
