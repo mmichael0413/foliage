@@ -1,18 +1,18 @@
 define(function(require) {
-	var Backbone = require('backbone'),
-        context = require('context'),
+	var context = require('context'),
+        AsyncPagedCollection = require('app/collections/shared/async_paged'),
 
         /**
          * The Base Collection for fetching Alerts for a particular customer_store
-         * 
+         *
+         * @extends {module:app/collections/shared/async_paged}
          * @exports app/collections/alerts/base
          */
-		AlertCollection = Backbone.Collection.extend({
+		AlertCollection = AsyncPagedCollection.extend({
             queryString: "",
             
             resolved: undefined,
             per: undefined,
-            page: 1,
             getUrlBase: function () {
                 return context.alerts.links.self;
             },
@@ -38,12 +38,7 @@ define(function(require) {
 
                 return qs;
             },
-            parse: function (response) {
-                this.count = response.pages.totalCount;
-                this.pages = response.pages;
-                return response.items;
-            },
-
+           
             url: function () {
                 return this.getUrlBase() + this.getQueryString();
             }

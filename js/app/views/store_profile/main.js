@@ -30,9 +30,14 @@ define(function (require) {
             var galleryBody = $("#images .image-container");
             wrapper.setElement('#site-canvas').render();
 
-            _.each(context.images, function (image){
-                    galleryBody.prepend(new HoverableImageView({model: new Backbone.Model(image)}).render().$el);
-                });
+            if (context.images && context.images.length > 0) {
+                _.each(context.images, function (image){
+                    galleryBody.append(new HoverableImageView({model: new Backbone.Model(image)}).render().$el);
+                });    
+            } else {
+                galleryBody.append("<p>There are no images for this store.</p>");
+            }
+            
             
             $('#images .image-container').slick({
                 slidesToShow: 3,
@@ -54,8 +59,10 @@ define(function (require) {
             new ResolvedAlertsView().renderCollection(context.alerts.resolved);
         },
         gallery: function () {
-            Filter.init(new Backbone.Collection());
-            new GalleryView();
+            if(!context.instances.galleryView) {
+                Filter.init(new Backbone.Collection());
+                context.instances.galleryView = new GalleryView();
+            }
         }
     };
     return main;
