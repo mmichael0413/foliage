@@ -32,7 +32,8 @@ define(function(require){
                     var $carousel = self.$('.bbm-modal');
                     var width = $carousel.width();
 
-                    self.$('.bbm-modal .slick-slide').height(width);
+                 //   self.$('.bbm-modal .slick-slide').height(width);
+             //       $carousel.find('.helper').width(width);
                     $carousel.find('img').css({'max-width': width, 'max-height': width});
                 }
             });

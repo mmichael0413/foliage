@@ -77,6 +77,10 @@ $padding: 1.5em;
   padding: $padding;
   .issues-found {
     margin-bottom: 1em;
+    .indicator {
+      font-size:.8em;
+      font-weight: bold;
+    }
   }
   .activity-actions {
     margin-top: 1em;
@@ -94,30 +98,7 @@ $padding: 1.5em;
   width: 29%;
 }
 
-.activity-photos, .bbm-modal {
-  .carousel {
-
-    .arrow {
-      color: white;
-      position: absolute;
-      top: 50%;
-      font-size: 1.2em;
-      cursor: pointer;
-      z-index: 10;
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
-      width: 2em;
-      &.arrow-left {
-        left: 5px;
-      }
-      &.arrow-right {
-        right: 5px;
-        text-align: right;
-      }
-
-    }
-  }
-
-
+.activity-photos {
   .slick-initialized {
     &.slick-slider {
       margin-bottom: 0;
@@ -138,6 +119,30 @@ $padding: 1.5em;
   }
 }
 
+.activity-photos, .bbm-modal {
+  .carousel {
+    .arrow {
+      color: white;
+      position: absolute;
+      top: 50%;
+      font-size: 1.2em;
+      cursor: pointer;
+      z-index: 10;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+      width: 2em;
+      &.arrow-left {
+        left: 5px;
+      }
+      &.arrow-right {
+        right: 5px;
+        text-align: right;
+      }
+
+    }
+  }
+
+}
+
 .activity-photos {
   .carousel {
     .img-label {
@@ -153,11 +158,36 @@ $padding: 1.5em;
 
 .bbm-modal {
   .carousel {
-    .img-label {
+    .arrow {
+      &.arrow-left {
+        left: -2em;
+        top: 25%;
 
+      }
+      &.arrow-right {
+        right: -2em;
+        top: 25%;
+      }
+      .ic:before {
+        font-weight: bold;
+      }
+    }
+    .img-label {
+      padding: 1em;
       width: 100%;
-      color: black;
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+      color: $text-color;
+
+    }
+  }
+  .slick-initialized {
+    .slick-slide {
+      .helper {
+        text-align: center;
+        width: 100%;
+        img {
+          margin: 0 auto;
+        }
+      }
     }
   }
 }

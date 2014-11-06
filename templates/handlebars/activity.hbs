@@ -26,14 +26,14 @@
                     <li>- {{label}}</li>
                     {{/each}}
                 </ul>
+                {{#if_gt issue_length 3}}
+                <a href="{{report_url}}"><span class="indicator">showing 3 of {{issue_length}}</span></a>
+                {{/if_gt}}
             </div>
             {{/if_eq}}
 
             <h3>{{subject}}</h3>
             {{{content}}}
-
-
-
         </div>
         {{#if images}}
         <div class="activity-photos">
@@ -90,7 +90,7 @@
             </span>
             {{#if_eq type "Checkin"}}
                 <span class="action bold">
-                    <a href="{{report_url}}" target="_new">Full Report</a>
+                    <a href="{{report_url}}">Full Report</a>
                 </span>
             {{/if_eq}}
             <span class="action bold">
