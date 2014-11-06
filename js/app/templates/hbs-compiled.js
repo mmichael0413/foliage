@@ -133,7 +133,7 @@ function program9(depth0,data,depth1) {
   buffer += escapeExpression(stack1)
     + "\" class=\"img-responsive\" onerror=\"this.src='"
     + escapeExpression(((stack1 = (depth1 && depth1.content_image_error_url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "'\"/>\n\n                    </div>\n                    <div class=\"img-label\">";
+    + "'\"/>\n                    </div>\n                    <div class=\"img-label\">";
   if (helper = helpers.image_type) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.image_type); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1675,11 +1675,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<img src=\""
+  buffer += "<div class=\"img-background\">\n	<img src=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.self)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" onerror=\"this.src='"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.error)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "'\"/>\n<div class=\"overlay\">\n<div class=\"caption\">\n	<p class=\"label\">";
+    + "'\" class=\"img-responsive\"/>\n</div>\n<div class=\"overlay\">\n<div class=\"caption\">\n	<p class=\"label\">";
   if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   if(stack1 || stack1 === 0) { buffer += stack1; }

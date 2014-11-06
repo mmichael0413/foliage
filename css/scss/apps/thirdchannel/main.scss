@@ -3,6 +3,7 @@
 @import "../../lib/pure.responsive-grid";
 @import "../../lib/chosen";
 @import "../../lib/quill.snow";
+@import '../../../../js/libs/bower_components/slick.js/slick/slick';
 
 @import "../../base/fonts_all";
 @import "../../base/base";
@@ -23,9 +24,10 @@
 @import "../../modules/expanding_table_row";
 @import "../../modules/address_title";
 @import "../../modules/atoms/alerts";
-@import "../../modules/store_profile_section";
+
 @import "../../modules/alert_row";
 @import "../../modules/checkin_report";
+@import "../../modules/store_profile_section";
 @import "../../modules/hoverable_image";
 
 @import "./activities";

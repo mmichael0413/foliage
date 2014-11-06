@@ -7,7 +7,20 @@
 	cursor: pointer;
 
 	img {
-		width: 100%;
+		max-width: 15em;
+		max-height: 15em;
+		display: inline-block;
+		vertical-align: middle;
+		position: relative;
+		top: 50%;
+		-webkit-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		transform: translateY(-50%);
+	
+	}
+	.img-background {
+		height: 100%;
+		background-color: $light-blue;
 	}
 	.overlay {
 		position: absolute;
@@ -39,10 +52,10 @@
 
 .hoverable-image-modal {
 	.image-container {
-		padding: 1em;
 		img {
 			display: block;
 			margin: 0 auto;
+			max-width: 550px;
 		}
 		.caption {
 			text-align: center;
