@@ -1,5 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        _ = require('underscore'),
+        $ = require('jquery'),
         context = require('context'),
         ActivityModel = require('app/models/activities/activity'),
         SectionView = require('app/views/reports/checkins/show/section'),
@@ -29,7 +31,7 @@ define(function(require) {
             var galleryBody = $("#images .image-container");
 
             _.each(context.images, function (image){
-                galleryBody.prepend(new HoverableImageView({model: image}).render().$el);
+                galleryBody.append(new HoverableImageView({model: new Backbone.Model(image)}).render().$el);
             });
 
             $('#images .image-container').slick({
