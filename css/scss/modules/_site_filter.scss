@@ -98,6 +98,11 @@
             }
         }
 
+      .no-results {
+        padding: 1em;
+        padding-left: 2em;
+      }
+
         &.open {
             max-height:20em;
         }

@@ -661,7 +661,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n    	<p>There are no items for this filter.</p>\n    ";
+  return "\n        <div class=\"no-results\">No results</div>\n    ";
   }
 
   buffer += "<div class=\"filter-component\">\n  <div class=\"filter-item\">";
