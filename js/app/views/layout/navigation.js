@@ -17,6 +17,10 @@ define(function (require) {
             this.$toggleFilter = $('.toggle-filter');
             new NotificationBadge().render();
 
+            if (!window.localStorage.getItem('main_navigation')){
+                window.localStorage.setItem('main_navigation', 'expanded-nav')
+            }
+
             // width in ems
             var width = $(window).width() / parseFloat($("body").css("font-size"));
             if (width < 35.5) {
