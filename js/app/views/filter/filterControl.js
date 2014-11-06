@@ -115,13 +115,15 @@ define(function(require) {
                 shouldTrigger = false,
                 view;
             filterCollection.each(function (filterModel) {
-                view = self.selectComponentView(filterModel).render();
-                self.$el.append(view.$el);
-                self.components[view.filterParam] = view;
-                // apply the query string to any components in the filter.
-                // capture the response to know if we should toggle open the filter later
-                if (self._applyQS(view, qsHash) === true) {
-                    shouldTrigger = true;
+                if (filterModel.get('name') !== undefined) {
+                    view = self.selectComponentView(filterModel).render();
+                    self.$el.append(view.$el);
+                    self.components[view.filterParam] = view;
+                    // apply the query string to any components in the filter.
+                    // capture the response to know if we should toggle open the filter later
+                    if (self._applyQS(view, qsHash) === true) {
+                        shouldTrigger = true;
+                    }
                 }
             });
             return shouldTrigger;

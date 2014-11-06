@@ -549,10 +549,15 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 this["ThirdChannel"]["templates"]["dashboards/alerts/show/stores"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  return "<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"col-1-2 col-sm-1 col-md-2-3\">STORES WITH DISPLAY ITEMS ARE DAMAGED</h3>\n        <h3 class=\"col-1-4 hidden-md\">Date Added</h3>\n        <h3 class=\"col-1-4 col-md-1-3 hidden-xs\">Actions</h3>\n    </div>\n    <div class=\"body\">\n        \n    </div>\n</section>\n\n";
+  buffer += "<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"col-1-2 col-sm-1 col-md-2-3\">";
+  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</h3>\n        <h3 class=\"col-1-4 hidden-md\">Date Added</h3>\n        <h3 class=\"col-1-4 col-md-1-3 hidden-xs\">Actions</h3>\n    </div>\n    <div class=\"body\">\n        \n    </div>\n</section>\n\n";
+  return buffer;
   });
 
 this["ThirdChannel"]["templates"]["filter_active_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
