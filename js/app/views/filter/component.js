@@ -1,5 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        _ = require('underscore'),
         context = require('context'),
         handlebarsTemplates = require('handlebarsTemplates'),
         ActiveFilterItemView = require('app/views/filter/activeFilterItem');
@@ -44,7 +45,11 @@ define(function(require) {
          * Removes all active filter items from the Component
          */
         clear: function () {
-            this.$el.find('.active-filter').remove();
+            _.each(this.activeFilters, function(filter) {
+                filter.clear();
+                filter.remove();
+            });
+            this.activeFilters = [];
         },
 
         toggleOpen: function (e) {
