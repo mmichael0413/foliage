@@ -5,9 +5,13 @@ define(function(require) {
         $ = require('jquery'),
         _ = require('underscore'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        context = require('context');
-    
-    return Backbone.View.extend({
+        context = require('context'),
+    /**
+     * 
+     * 
+     * @exports app/views/shared/filterable_table
+     */
+    FilterableTableView = Backbone.View.extend({
 
         el: 'table.table',
 
@@ -37,7 +41,7 @@ define(function(require) {
         /**
          * The render function assumes that the collection has already been fetched
          * 
-         * @return {[type]} [description]
+         * @return {this}
          */
         render: function () {
             var $body = this.$el.find(this.bodySelector),
@@ -123,4 +127,5 @@ define(function(require) {
             ]);
         }
     }); 
+    return FilterableTableView;
 });
