@@ -5,6 +5,7 @@ define(function(require) {
         spinnerTemplate = require('handlebarsTemplates')['filters/spinner_component'],
         SingleAnswerComponentView = require('app/views/filter/singleAnswerComponent'),
         DateComponentView = require('app/views/filter/dateComponent'),
+        HiddenComponentView = require('app/views/filter/hiddenComponent'),
         ComponentView = require('app/views/filter/component'),
         SerializeObject = require('serializeObject'),
         helpers = require('helpers');
@@ -140,6 +141,9 @@ define(function(require) {
             var view = ComponentView;
             if (filterModel.get('type') === 'date') {
                 view = DateComponentView;
+            }
+            else if (filterModel.get('type') === 'hidden') {
+                view = HiddenComponentView;
             }
             else if (filterModel.get('name').indexOf('[]') === -1) {
                 view = SingleAnswerComponentView;
