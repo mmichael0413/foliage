@@ -176,12 +176,29 @@ define(function (require) {
             // if the requesting user is on a windows machine, add a browser class to site-wrapper
             if(navigator.platform.match(re)) {
                 if(isIE) {
-                    this.$el.addClass('ie');
+                    var ver = this.getInternetExplorerVersion();
+
+                    if ( ver <= 9.0 && ver != -1 ) {
+                        this.$el.addClass('ie');
+                    } else {
+                        this.$el.addClass('win');
+                    }
                 } else {
-                    this.$el.addClass('win')
+                    this.$el.addClass('win');
                 }
             }
 
+        },
+        getInternetExplorerVersion: function() {
+        var rv = -1; // Return value assumes failure.
+        if (navigator.appName == 'Microsoft Internet Explorer')
+        {
+            var ua = navigator.userAgent;
+            var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+            if (re.exec(ua) != null)
+                rv = parseFloat( RegExp.$1 );
         }
+        return rv;
+    }
     });
 });
