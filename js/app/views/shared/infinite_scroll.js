@@ -6,7 +6,7 @@ define(function(require) {
         LoadingView = require('app/views/activities/loading'),
 
         /**
-         * A base class for dealing with inifinit scrolling of some items
+         * A base class for dealing with infinite scrolling of some items
          * 
          * @exports app/views/shared/infinite_scroll
          */
@@ -15,7 +15,6 @@ define(function(require) {
             enableScroll: true,
 
             infiniteCollectionClass: undefined,
-            infiniteModel: undefined,
             per: 5,
             endOfFeedHTML: "<div class='alert info'>You have reached the end of the feed!</div>",
             errorHTML: '<div class="alert error">Additional items cannot be loaded due to an error on the server. Please contact Tech Support</div>',
@@ -29,7 +28,8 @@ define(function(require) {
                     this.infiniteURL = options.url;
                 }
                 this.collection = new this.infiniteCollectionClass({url: this.infiniteURL});
-                this.listenTo(this.collection, 'reset', this.render);
+                this.listenTo(this.collection, 'reset', this.clearAndRender);
+                this.listenTo(this.collection, 'nextPage', this.render);
                 this.listenTo(this.collection, 'error', this.stopOnError);
 
                 this.loadIndicator = new LoadingView();
@@ -65,7 +65,7 @@ define(function(require) {
                             return false;
                         }
                         
-                        if (!self.loadIndicator.active && $contentHolder.scrollTop() > (self.$el.position().top + self.$el.height()) - 1500) {
+                        if (!self.loadIndicator.active && $contentHolder.scrollTop() > ( self.getContentElement().height()) - 1500) {
 
                             self.$el.append(self.loadIndicator.render().el);
 
@@ -106,24 +106,16 @@ define(function(require) {
                 }
             },
 
+            clearAndRender: function() {
+                this.getContentElement().html('');
+                this.allModelsLoaded = false;
+                this.render();
+            },
+
             renderModel: function () {
                 console.warn("Override me!");
             },
-            // applyFilter: function (qs) {
-            //     var self = this;
 
-                
-            //     this.collection.updateQueryString(qs);
-            //     this.getContentElement().html(this.loadIndicator.render().el);
-
-            //     this.collection.fetch({reset: true}).done(function () {
-                    
-            //         self.render();
-            //     }).fail(function () {
-            //         self.stopOnError();
-            //         return false;
-            //     });
-            // },
             endOfFeed: function () {
                 this.loadIndicator.removeFromDOM();
                 this.getContentElement().append(this.endOfFeedHTML);

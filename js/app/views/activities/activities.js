@@ -12,9 +12,7 @@ define(function (require) {
 
     var ActivitiesView = InfiniteScrollView.extend({
         el: '.activities-holder',
-        enableScroll: true,
         infiniteCollectionClass: ActivityCollection,
-        infiniteModel: undefined,
 
         endOfFeedHTML: "<div class='activity alert info'>You have reached the end of the feed!</div>",
         errorHTML: '<div class="activity alert error">Additional activities cannot be loaded due to an error on the server. Please contact Tech Support</div>',
@@ -53,11 +51,11 @@ define(function (require) {
 
         renderModel: function (model) {
             if (model.get('type') !== undefined) {
-                    var activity = new ActivityView({ model: model, programId: context.programId});
-                    this.getContentElement().append(activity.render().el);
-                    activity.$("textarea").expanding();
-                    activity.initializeCarousel();
-                }
+                var activity = new ActivityView({ model: model, programId: context.programId});
+                this.getContentElement().append(activity.render().el);
+                activity.$("textarea").expanding();
+                activity.initializeCarousel();
+            }
         },
 
         endOfFeed: function () {
