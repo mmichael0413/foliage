@@ -4,7 +4,11 @@ $menu-item-height: 3.5em;
 
 $mobile-nav-width: 14em;
 $standard-nav-width: 14em;
+
 $collapsed-nav-width: 4em;
+$collapsed-nav-width-win: 5em;
+$collapsed-nav-width-ie: 6em;
+
 $standard-collapse-difference: $standard-nav-width - $collapsed-nav-width;
 
 

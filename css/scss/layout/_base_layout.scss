@@ -1,102 +1,102 @@
 #site-wrapper {
-    position: relative;
-    overflow: hidden;
-    -webkit-overflow-scrolling: touch;
+  position: relative;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  #site-canvas {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
     width: 100%;
+    height: 100%;
+    position: fixed;
+    @include transform(0);
+
+    @include transition(.3s ease all);
+    .content-holder {
+      position: relative;
+      width: 100%;
+      padding-left: $standard-nav-width;
+
+      overflow: auto;
+      height: 100%;
+      @include swb-small {
+        margin-top: 3em;
+        padding: 5px;
+        .header {
+          padding-left: 1em;
+        }
+
+      }
+      .content {
+        overflow-y: hidden;
+        padding-right: 1em;
+        padding-left: 1em;
+        word-wrap: break-word;
+        @include swb-small {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+  // collapse nav
+  &.collapsed-nav {
     #site-canvas {
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        @include transform(0);
-
-        @include transition(.3s ease all);
-        .content-holder {
-            position: relative;
-            width: 100%;
-            padding-left: $standard-nav-width ;
-
-            overflow: auto;
-            height: 100%;
-            @include swb-small {
-                margin-top: 3em;
-                padding: 5px;
-                .header {
-                    padding-left:1em;
-                }
-
-            }
-            .content {
-              overflow-y: hidden;
-              padding-right: 1em;
-              padding-left: 1em;
-              word-wrap:break-word;
-              @include swb-small {
-                padding-left: 0;
-                padding-right: 0;
-              }
-            }
+      #site-menu {
+        width: $collapsed-nav-width;
+        @include transition(width .3s);
+        .third {
+          display: none;
         }
-    }
-    // collapse nav
-    &.collapsed-nav {
-        #site-canvas {
-            #site-menu {
-                width: $collapsed-nav-width;
-                @include transition(width .3s);
-                .third {
-                    display: none;
-                }
-                .link {
-                    opacity: 0;
-                    @include transition(opacity 1s, width 0 1s);
-                    width: 0;
-                    display: none;
-                }
-                .toggle-subnav .ic_right {
-                    visibility: hidden;
-                    opacity: 0;
-                    @include transition(visibility 0s linear 0.3s,opacity 0.3s linear);
-                }
-            }
-            #site-submenu {
-                @include transform(-$standard-collapse-difference);
-            }
-            .content-holder {
-                padding-left: $collapsed-nav-width;
-                @include transition(padding .3s);
-            }
+        .link {
+          opacity: 0;
+          @include transition(opacity 1s, width 0 1s);
+          width: 0;
+          display: none;
         }
+        .toggle-subnav .ic_right {
+          visibility: hidden;
+          opacity: 0;
+          @include transition(visibility 0s linear 0.3s, opacity 0.3s linear);
+        }
+      }
+      #site-submenu {
+        @include transform(-$standard-collapse-difference);
+      }
+      .content-holder {
+        padding-left: $collapsed-nav-width;
+        @include transition(padding .3s);
+      }
     }
-    &.expanded-nav {
-        #site-canvas {
-            #site-menu {
-                @include transition( width .3s);
-                .link {
-                    opacity: 1;
-                    @include transition(opacity 1s, width 100% 1s);
-                    width: 100%;
-                }
-                .toggle-subnav .ic_right {
-                    visibility: visible;
-                    transition-delay: .3s;
-                }
-            }
-            #site-submenu {
-                /*   @include transform(10em); 
-                /* transition: display .3s; */
-            }
-            .content-holder {
-                @include transition(padding .3s);
-            }
+  }
+  &.expanded-nav {
+    #site-canvas {
+      #site-menu {
+        @include transition(width .3s);
+        .link {
+          opacity: 1;
+          @include transition(opacity 1s, width 100% 1s);
+          width: 100%;
+        }
+        .toggle-subnav .ic_right {
+          visibility: visible;
+          transition-delay: .3s;
+        }
+      }
+      #site-submenu {
+        /*   @include transform(10em);
+        /* transition: display .3s; */
+      }
+      .content-holder {
+        @include transition(padding .3s);
+      }
 
-        }
     }
-    &.show-nav #site-canvas {
-      @include transform($standard-nav-width);
-    }
+  }
+  &.show-nav #site-canvas {
+    @include transform($standard-nav-width);
+  }
   &.show-filter {
     #site-canvas {
 
@@ -105,10 +105,10 @@
     &.collapsed-nav {
       #site-canvas {
         @include swa-small() {
-        #site-menu {
-          @include transition(transform .3s linear .3s, width .3s);
-          @include transform($standard-nav-width);
-        }
+          #site-menu {
+            @include transition(transform .3s linear .3s, width .3s);
+            @include transform($standard-nav-width);
+          }
 
           .content-holder {
             padding-left: $standard-nav-width + $collapsed-nav-width;
@@ -118,66 +118,134 @@
       }
     }
   }
-    #site-menu {
-        width: $standard-nav-width;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        background: $nav-background;
-        overflow: auto;
-        z-index: 5;
-    }
-    #site-submenu.show-subnav {
-        background-color: $subnav-background;
-        @include transform($standard-nav-width);
-    }
-    &.collapsed-nav #site-canvas #site-submenu.show-subnav {
-      @include transform($collapsed-nav-width);
-    }
-    #site-submenu {
-        background-color: $border-color;
-        width: $standard-nav-width;
-        height: 100%;
-        position: absolute;
-        top: 0;
+  #site-menu {
+    width: $standard-nav-width;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: $nav-background;
+    overflow: auto;
+    z-index: 5;
+  }
+  #site-submenu.show-subnav {
+    background-color: $subnav-background;
+    @include transform($standard-nav-width);
+  }
+  &.collapsed-nav #site-canvas #site-submenu.show-subnav {
+    @include transform($collapsed-nav-width);
+  }
+  #site-submenu {
+    background-color: $border-color;
+    width: $standard-nav-width;
+    height: 100%;
+    position: absolute;
+    top: 0;
 
-        @include transition(.3s ease all);
-        z-index: 3;
-        overflow: auto;
-      @include swb-small {
-        left: -$standard-nav-width * 2;
-        z-index: 6;
-      }
-        li:last-of-type {
-            margin-bottom: 3em;
-        }
+    @include transition(.3s ease all);
+    z-index: 3;
+    overflow: auto;
+    @include swb-small {
+      left: -$standard-nav-width * 2;
+      z-index: 6;
     }
-    #site-filter {
-        width: $standard-nav-width;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        right: -$standard-nav-width;
+    li:last-of-type {
+      margin-bottom: 3em;
     }
+  }
+  #site-filter {
+    width: $standard-nav-width;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: -$standard-nav-width;
+  }
 }
 
+#site-wrapper {
+  &.ie, &.win {
+    #site-canvas {
+      #site-menu {
+        direction: rtl;
+        overflow-y: scroll;
+        .navigation {
+          direction: ltr;
+        }
+      }
+    }
+  }
+}
+
+// CSS for Windows browsers that are not IE
+#site-wrapper.win {
+  &.collapsed-nav {
+    #site-canvas {
+      #site-menu {
+        width: $collapsed-nav-width-win;
+      }
+      .content-holder {
+        padding-left: $collapsed-nav-width-win;
+      }
+    }
+  }
+  &.show-filter {
+    #site-canvas {
+      @include swa-small() {
+        .content-holder {
+          padding-left: $standard-nav-width + $collapsed-nav-width-win;
+        }
+      }
+    }
+  }
+  &.collapsed-nav #site-canvas #site-submenu.show-subnav {
+    @include transform($collapsed-nav-width-win);
+  }
+}
+
+// Css for IE
+#site-wrapper.ie {
+  &.collapsed-nav {
+    #site-canvas {
+      #site-menu {
+        width: $collapsed-nav-width-ie;
+      }
+      .content-holder {
+        padding-left: $collapsed-nav-width-win;
+      }
+    }
+  }
+  &.show-filter {
+    #site-canvas {
+      @include swa-small() {
+        .content-holder {
+          padding-left: $standard-nav-width + $collapsed-nav-width-win;
+        }
+      }
+    }
+  }
+  &.collapsed-nav #site-canvas #site-submenu.show-subnav {
+    @include transform($collapsed-nav-width-ie);
+  }
+}
+
+
+
 .page-heading {
-    margin: 1em 0;
-    > div {
-        display: inline-block;
-    }
-    h1 {
-        margin: 0;
-      max-width: 100%;
-    }
+  margin: 1em 0;
+  > div {
+    display: inline-block;
+  }
+  h1 {
+    margin: 0;
+    max-width: 100%;
+  }
 }
 
 .section {
-    background-color: white;
-    padding: 1em;
-    border: 1px solid $border-color;
-    border-radius: $border-radius-base;
-    margin-bottom: 2em;
+  background-color: white;
+  padding: 1em;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
+  margin-bottom: 2em;
 }
 
 .footer {
@@ -210,11 +278,11 @@
 
 /* Media Queries */
 @include swb-small {
-    #site-menu {
-        left: -$standard-nav-width;
-        overflow: auto;
-        &.show-subnav {
-          @include transform($standard-nav-width);
-        }
+  #site-menu {
+    left: -$standard-nav-width;
+    overflow: auto;
+    &.show-subnav {
+      @include transform($standard-nav-width);
     }
+  }
 }

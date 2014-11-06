@@ -11,6 +11,9 @@ define(function (require) {
         el: '#site-wrapper',
         initialize: function () {
             var _this = this;
+
+            this.browserCompatibility();
+
             this.listenTo(context, 'filter:toggle', this.toggleFilter);
             this.$siteWrapper = this.$el;
             this.$siteSubmenu = this.$('#site-submenu');
@@ -99,7 +102,6 @@ define(function (require) {
             }
         },
         toggleFilter: function (e) {
-            console.log( window.localStorage.getItem('main_navigation'));
             if (e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -162,6 +164,24 @@ define(function (require) {
             }
 
             context.trigger('navigation:collapsed');
+        },
+        browserCompatibility: function() {
+            var isFirefox = typeof InstallTrigger !== 'undefined';   // Firefox 1.0+
+            var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+            var isChrome = !!window.chrome;              // Chrome 1+
+            var isIE = /*@cc_on!@*/false || !!document.documentMode; // At least IE6
+
+            re = /(W|w)in.*/;
+
+            // if the requesting user is on a windows machine, add a browser class to site-wrapper
+            if(navigator.platform.match(re)) {
+                if(isIE) {
+                    this.$el.addClass('ie');
+                } else {
+                    this.$el.addClass('win')
+                }
+            }
+
         }
     });
 });
