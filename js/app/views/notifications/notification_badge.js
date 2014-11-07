@@ -1,6 +1,7 @@
 define(function (require) {
     var $ = require('jquery'),
         _ = require('underscore'),
+        context = require('context'),
         Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates');
@@ -11,7 +12,7 @@ define(function (require) {
         render: function () {
             var _this = this;
             $.ajax({
-                url: '/programs/Merchandising/notifications.json'
+                url: '/programs/' + context.programId + '/notifications.json'
             })
                 .done(function (data) {
                     if (data.count > 0) {

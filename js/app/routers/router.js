@@ -20,7 +20,8 @@ define(function(require){
         ContentView = require('app/views/global/content_view'),
         NotificationSectionView = require('app/views/notifications/notification_section'),
         ShippingView = require('app/views/legal/shipping'),
-        PostView = require('app/views/posts/main');
+        PostView = require('app/views/posts/main'),
+        NotificationBadge = require('app/views/notifications/notification_badge');
 
     var AppRouter = require('app/routers/contextAwareBaseRouter').extend({
         routes: {
@@ -63,6 +64,10 @@ define(function(require){
             context.programId = parameters[0];
             // stuff the bootstrap into the context
             _.extend(context, window.bootstrap);
+        },
+
+        after: function() {
+            new NotificationBadge().render();
         },
 
         activitiesFeed: function(program_id){
