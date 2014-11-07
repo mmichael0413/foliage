@@ -9,7 +9,7 @@
 @mixin btn-details($color) {
     border-color: $color;
     color: $color;
-    font-weight: bold;
+    font-weight: 600;
     
     @include swb-medium {
         text-align: center;
