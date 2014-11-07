@@ -56,7 +56,11 @@
         @include swb-medium {
             display: none;
         }
+        &.keep {
+            display: initial;
+        }
     }
+    
 }
 
 .btn {
