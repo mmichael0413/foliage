@@ -1,6 +1,6 @@
 {{#rows}}
 <tr>
-    <td class="<%= note.read ? 'read' : 'unread' %>">
+    <td colspan="2" class="<%= note.read ? 'read' : 'unread' %>">
         <p>
             {{{author_url}}}
                 <span>
@@ -23,12 +23,12 @@
         </p>
         {{{content}}}
         <div class="table-actions">
-            {{{activity_url}}} | {{{delete_url}}}
+            {{{activity_url}}} | {{{delete_url}}} {{#if mark_read_url}}| {{{mark_read_url}}}{{/if}}
         </div>
     </td>
 </tr>
 {{else}}
 <tr>
-    <td>You have no notifications</td>
+    <td colspan="2">You have no notifications</td>
 </tr>
 {{/rows}}

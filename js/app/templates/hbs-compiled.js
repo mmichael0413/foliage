@@ -826,7 +826,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n<tr>\n    <td class=\"<%= note.read ? 'read' : 'unread' %>\">\n        <p>\n            ";
+  buffer += "\n<tr>\n    <td colspan=\"2\" class=\"<%= note.read ? 'read' : 'unread' %>\">\n        <p>\n            ";
   if (helper = helpers.author_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.author_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -852,6 +852,9 @@ function program1(depth0,data) {
   buffer += " | ";
   if (helper = helpers.delete_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.delete_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.mark_read_url), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </div>\n    </td>\n</tr>\n";
   return buffer;
@@ -896,14 +899,24 @@ function program6(depth0,data) {
 
 function program8(depth0,data) {
   
-  
-  return "\n<tr>\n    <td>You have no notifications</td>\n</tr>\n";
+  var buffer = "", stack1, helper;
+  buffer += "| ";
+  if (helper = helpers.mark_read_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.mark_read_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  return buffer;
   }
 
-  options={hash:{},inverse:self.program(8, program8, data),fn:self.program(1, program1, data),data:data}
+function program10(depth0,data) {
+  
+  
+  return "\n<tr>\n    <td colspan=\"2\">You have no notifications</td>\n</tr>\n";
+  }
+
+  options={hash:{},inverse:self.program(10, program10, data),fn:self.program(1, program1, data),data:data}
   if (helper = helpers.rows) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.rows); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(8, program8, data),fn:self.program(1, program1, data),data:data}); }
+  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(10, program10, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { return stack1; }
   else { return ''; }
   });

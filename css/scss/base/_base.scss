@@ -9,7 +9,7 @@ body {
 
 html {
   margin: 0;
-  font-size: 1rem;
+  font-size: $base-font-size;
   font-family: 'Open Sans', 'sans-serif';
   line-height: 1.5em;
   background-color: $main-background;

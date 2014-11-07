@@ -23,6 +23,10 @@ table, .table {
     line-height: 1.5em;
   }
 
+  th.right-align {
+    text-align: right;
+  }
+
   @include swb-medium {
 
     [class*='col-'] {
