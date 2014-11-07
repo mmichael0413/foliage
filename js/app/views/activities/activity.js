@@ -108,7 +108,12 @@ define(function(require) {
 
             this.comments.showOriginalComments();
 
-            var label = 'View ' + this.model.get('additional_comments') + ' More Comments';
+            var commentLabel = ' More Comments';
+            if (this.model.get('additional_comments') === 1){
+                commentLabel = ' More Comment';
+            }
+
+            var label = 'View ' + this.model.get('additional_comments') + commentLabel;
             $(e.target).text(label).removeClass('less-comments').addClass('more-comments');
 
         },
