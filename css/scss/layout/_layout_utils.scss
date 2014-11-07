@@ -72,6 +72,12 @@
   }
 }
 
+.show-filter {
+  .scroll-top {
+    @include transform(-7.5em)
+  }
+}
+
 .top-aligned {
   vertical-align: top;
 }

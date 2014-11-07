@@ -16,8 +16,7 @@ define(function(require){
         },
         events: {
             "click .bbm-modal .arrow-left" : "prevSlide",
-            "click .bbm-modal .arrow-right" : "nextSlide",
-            "click .scroll-top" : "scrollTop"
+            "click .bbm-modal .arrow-right" : "nextSlide"
         },
         openModal: function (model) {
             var self = this;
@@ -47,14 +46,6 @@ define(function(require){
         nextSlide: function(e){
             e.preventDefault();
             this.carousel.slickNext();
-        },
-        scrollTop: function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            this.$('.content-holder').animate({
-                scrollTop: 0
-            }, 500);
         }
     });
 

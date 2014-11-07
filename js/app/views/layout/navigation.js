@@ -72,12 +72,23 @@ define(function (require) {
                     _this.closeNav();
                 }
             });
+
+            var $contentHolder = $('.content-holder');
+            var topOfOthDiv = $contentHolder.offset().top;
+            $contentHolder.on('scroll', function() {
+                if ($contentHolder.scrollTop() > topOfOthDiv + 300) {
+                    $(".scroll-top").show();
+                } else {
+                    $(".scroll-top").hide();
+                }
+            });
         },
         events: {
             'click .toggle-nav': 'toggleNav',
             'click .toggle-filter': 'toggleFilter',
             'click .toggle-subnav': 'toggleSubnav',
-            'click .collapse-nav': 'collapseNav'
+            'click .collapse-nav': 'collapseNav',
+            "click .scroll-top" : "scrollTop"
         },
         toggleNav: function (e) {
             if(e) {
@@ -188,16 +199,23 @@ define(function (require) {
             }
 
         },
-        getInternetExplorerVersion: function() {
-        var rv = -1; // Return value assumes failure.
-        if (navigator.appName == 'Microsoft Internet Explorer')
-        {
-            var ua = navigator.userAgent;
-            var re  = new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})");
-            if (re.exec(ua) != null)
-                rv = parseFloat( RegExp.$1 );
+        getInternetExplorerVersion: function () {
+            var rv = -1; // Return value assumes failure.
+            if (navigator.appName == 'Microsoft Internet Explorer') {
+                var ua = navigator.userAgent;
+                var re = new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})");
+                if (re.exec(ua) != null)
+                    rv = parseFloat(RegExp.$1);
+            }
+            return rv;
+        },
+        scrollTop: function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            this.$('.content-holder').animate({
+                scrollTop: 0
+            }, 500);
         }
-        return rv;
-    }
     });
 });

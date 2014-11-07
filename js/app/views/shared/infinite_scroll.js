@@ -55,11 +55,7 @@ define(function(require) {
                 if (this.enableScroll) {
                     var topOfOthDiv = $contentHolder.offset().top;
                     $contentHolder.on('scroll', function() {
-                        if ($contentHolder.scrollTop() > topOfOthDiv + 300) {
-                            $(".scroll-top").show();
-                        } else {
-                            $(".scroll-top").hide();
-                        }
+
                         if (self.allModelsLoaded) {
                             $contentHolder.off('scroll.wall');
                             return false;
