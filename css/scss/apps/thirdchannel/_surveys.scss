@@ -45,9 +45,12 @@
   }
 
   .error {
-    color: $red;
 
-    input[type=text], input[type=password], input[type=number], textarea, .chosen-choices, .chosen-single, .search-filed input, input[type="file"]::-webkit-file-upload-button {
+    > label {
+      font-size: 0.75em;
+    }
+
+    label, input[type=file], input[type=text], input[type=password], input[type=number], textarea, .chosen-choices, .chosen-single, .search-filed input, input[type="file"]::-webkit-file-upload-button {
       border-color: $red;
       color: $red;
     }

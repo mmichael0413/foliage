@@ -21,7 +21,8 @@ define(function(require) {
             var self = this;
             this.validator = this.$el.validate({
                 ignore: [],
-                errorPlacement: function (error, element) {},
+                errorPlacement: function (error, element) {self.errorPlacement(error, element);},
+                success: function(error) {self.validateSuccess(error);},
                 highlight: function (element, errorClass, validClass) {self.highlight(element, errorClass, validClass); },
                 unhighlight: function (element, errorClass, validClass) {self.unhighlight(element, errorClass, validClass); }
             });
@@ -35,6 +36,20 @@ define(function(require) {
         valid: function() {
             this.validCalled = true;
             return this.$el.valid();
+        },
+        errorPlacement: function (error, element) {
+            var input = this.$el.find(element),
+                id = input.data('error-for');
+
+            if (id !== undefined) {
+                input = $(id);
+            } else {
+                input = input.closest(this.errorPlacementClass);
+            }
+
+            if (input.find("label.error").length === 0) {
+                input.append(error);
+            }
         },
         highlight: function (element, errorClass, validClass) {
             var input = this.$el.find(element),
@@ -59,6 +74,9 @@ define(function(require) {
             }
 
             input.removeClass(errorClass).addClass(validClass);
+        },
+        validateSuccess: function(error) {
+            $("#" + error.attr("id")).remove();
         }
     });
 });
