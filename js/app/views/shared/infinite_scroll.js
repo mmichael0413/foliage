@@ -49,7 +49,7 @@ define(function(require) {
                 context.trigger('filter:set', [{name: 'per', value: this.per}]);
                 
                 if (!window.filterBootstrap) {
-                    this.applyFilter();
+                    this.collection.fetch({reset:true});
                 }
 
                 if (this.enableScroll) {
