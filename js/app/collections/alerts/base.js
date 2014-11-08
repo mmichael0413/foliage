@@ -19,7 +19,9 @@ define(function(require) {
             getCustomerStoreId: function () {
                 return context.requestParameters[1];
             },
-
+            getCreatedCheckinId: function () {
+                return undefined;
+            },
             getQueryString: function () {
                 //return context.alerts.links.open;
                 var qs = "";
@@ -33,6 +35,9 @@ define(function(require) {
                 qs += "&page=" + this.page;
                 if (this.per) {
                     qs += "&per=" + this.per;
+                }
+                if (this.getCreatedCheckinId !== undefined) {
+                    qs += "&created_checkin=" + this.getCreatedCheckinId();
                 }
 
 

@@ -14,10 +14,13 @@ define(function(require) {
         AllOpenAlertsView = OpenAlertsView.extend({
             collectionClass: BaseAlertsCollection.extend({
                 resolved: false,
-                    getCustomerStoreId: function () {
-                        return context.alerts.store_id;
-                    }
-                })
+                getCustomerStoreId: function () {
+                    return context.alerts.store_id;
+                },
+                getCreatedCheckinId: function () {
+                    return context.alerts.created_checkin_id;
+                }
+            })
         });
 
 
@@ -26,6 +29,7 @@ define(function(require) {
         initialize: function (options) {
             _.extend(context, window.bootstrap);
             this.programId = options.programId;
+            context.alerts.created_checkin_id = options.id;
             this.activityModel = new ActivityModel(window.checkinReportData.activity, {});
 
             var galleryBody = $("#images .image-container");
