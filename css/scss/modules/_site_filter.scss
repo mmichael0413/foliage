@@ -78,7 +78,7 @@
         max-height:0px;
         background-color: $main-background;
         color: $text-color;
-        overflow-y: scroll;
+        overflow-y: auto;
         @include box-shadow-inset(8px, 0px, 10px, -6px, $border-color);
         @include transition(max-height, 0.8s);
         
@@ -95,6 +95,9 @@
                 .btn.default {
                     border-color: $medium-blue;
                 }
+            }
+            input {
+              width: 100%;
             }
         }
 

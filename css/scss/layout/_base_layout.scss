@@ -164,7 +164,7 @@
     #site-canvas {
       #site-menu {
         direction: rtl;
-        overflow-y: scroll;
+        overflow-y: auto;
         .navigation {
           direction: ltr;
         }
