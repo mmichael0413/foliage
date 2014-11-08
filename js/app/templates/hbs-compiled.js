@@ -1720,7 +1720,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.created_by) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_by); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</a></p>\n\n<h3>ADDITIONAL NOTES</h3>\n<textarea name=\"resolution_notes\" class=\"notes-input\"></textarea>\n\n<a class=\"btn primary submit\"><i class=\"ic ic_check\"></i><span class=\"keep\">Resolve Alert</span></a>\n<a class=\"btn default cancel\"><i class=\"ic ic_remove\"></i><span class=\"keep\">Cancel</span></a>";
+    + "</a></p>\n\n<h3>ADDITIONAL NOTES</h3>\n<textarea name=\"resolution_notes\" class=\"notes-input\"></textarea>\n\n<a class=\"btn primary submit\"><i class=\"ic ic_check\"></i><span class=\"keep\">Resolve Alert</span></a>\n<a class=\"btn default cancel\"><i class=\"ic ic_x\"></i><span class=\"keep\">Cancel</span></a>";
   return buffer;
   });
 
