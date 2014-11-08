@@ -20,19 +20,19 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n	<div class=\"item pure-g alert-row\">\n		<p class=\"col-6-12 col-md-9-12\">";
+  buffer += "\n	<div class=\"item pure-g alert-row\">\n		<p class=\"col-1-2 col-md-1\">";
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n		<p class=\"col-4-12 minor-m\">";
+    + "</p>\n		<p class=\"col-1-4 minor-m\">";
   if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n		<div class=\"col-2-12 col-md-3-12 alert-actions\">\n			<a href=\""
+    + "</p>\n		<div class=\"col-1-4 col-md-1 alert-actions\">\n			<a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.resolve)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" class=\"btn primary expand resolve-link\"><i class=\"ic fa ic_check\"></i></a>\n			<a href=\""
+    + "\" class=\"btn primary expand resolve-link\"><i class=\"ic fa ic_check\"></i><span class=\"visible-md\">Resolve Alert</span></a>\n			<a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.checkin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" class=\"btn primary report-link\"><i class=\"ic fa ic_report-16\"></i></a>\n		</div>\n		\n		";
+    + "\" class=\"btn primary report-link\"><i class=\"ic fa ic_report-16\"></i><span class=\"visible-md\">View Report</span></a>\n		</div>\n		\n		";
   stack1 = self.invokePartial(partials.alert_details_empty_row, 'alert_details_empty_row', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n	</div>\n";
@@ -354,7 +354,7 @@ function program1(depth0,data) {
   if (helper = helpers.last_checkin) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.last_checkin); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</div>\n    <div>\n\n    </div>\n    <div class=\"col-1-4 col-md-1\">\n        ";
+    + "</div>\n    <div>\n\n    </div>\n    <div class=\"col-1-4 col-md-1 general-actions\">\n        ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.special_project), {hash:{},inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    </div>\n</div>\n";
@@ -399,13 +399,13 @@ function program6(depth0,data) {
     + "\" type=\"hidden\">\n\n                ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.last_checkin), {hash:{},inverse:self.program(9, program9, data),fn:self.program(7, program7, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                <strong><button class=\"btn primary\" name=\"commit\"><i class=\"ic ic_location\"></i>  Checkin Here</button></strong>\n            </form>\n        ";
+  buffer += "\n                <a href=\"#\" class=\"btn primary expand resolve-link\" onclick=\"form.submit();\"><i class=\"ic fa ic_location\"></i><span>Checkin Here</span></a>\n            </form>\n        ";
   return buffer;
   }
 function program7(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n                    <a class=\"btn primary\" href=\"/programs/";
+  buffer += "\n                    <a href=\"/programs/";
   if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -413,14 +413,14 @@ function program7(depth0,data) {
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n                        <i class=\"ic fa ic_report-16\"></i>\n                    </a>\n                ";
+    + "\" class=\"btn primary report-link\"><i class=\"ic fa ic_report-16\"></i><span class=\"visible-md\">View Report</span></a>\n                ";
   return buffer;
   }
 
 function program9(depth0,data) {
   
   
-  return "\n                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>\n                ";
+  return "\n                    <span style=\"width: 1em;\"></span>\n                ";
   }
 
   buffer += "<div class=\"pure-g\">\n    <h3 class=\"col-1-2 col-md-1\">YOUR STORES</h3>\n    <h3 class=\"col-1-2 minor-m\">LAST CHECKIN</h3>\n</div>\n\n";

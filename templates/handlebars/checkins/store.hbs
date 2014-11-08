@@ -16,7 +16,7 @@
     <div>
 
     </div>
-    <div class="col-1-4 col-md-1">
+    <div class="col-1-4 col-md-1 general-actions">
         {{#if special_project}}
             <a href="/programs/{{program}}/checkins/{{id}}/choose" class="btn btn-primary btn-sm"><strong>Checkin Here</strong></a>
         {{else}}
@@ -25,13 +25,11 @@
                 <input name="authenticity_token" value="{{authenticity_token}}" type="hidden">
 
                 {{#if last_checkin}}
-                    <a class="btn primary" href="/programs/{{program}}/reports/checkin/{{id}}">
-                        <i class="ic fa ic_report-16"></i>
-                    </a>
+                    <a href="/programs/{{program}}/reports/checkin/{{id}}" class="btn primary report-link"><i class="ic fa ic_report-16"></i><span class="visible-md">View Report</span></a>
                 {{else}}
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span style="width: 1em;"></span>
                 {{/if}}
-                <strong><button class="btn primary" name="commit"><i class="ic ic_location"></i>  Checkin Here</button></strong>
+                <a href="#" class="btn primary expand resolve-link" onclick="form.submit();"><i class="ic fa ic_location"></i><span>Checkin Here</span></a>
             </form>
         {{/if}}
     </div>
