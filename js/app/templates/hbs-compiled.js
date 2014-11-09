@@ -399,7 +399,7 @@ function program6(depth0,data) {
     + "\" type=\"hidden\">\n\n                ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.last_checkin), {hash:{},inverse:self.program(9, program9, data),fn:self.program(7, program7, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                <a href=\"#\" class=\"btn primary expand resolve-link\" onclick=\"form.submit();\"><i class=\"ic fa ic_location\"></i><span>Checkin Here</span></a>\n            </form>\n        ";
+  buffer += "\n                <button class=\"btn primary expand resolve-link\" name=\"commit\"><i class=\"ic fa ic_location\"></i><span>Checkin Here</span></button>\n            </form>\n        ";
   return buffer;
   }
 function program7(depth0,data) {

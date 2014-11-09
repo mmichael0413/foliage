@@ -1,6 +1,6 @@
 .alert-actions, .general-actions {
   @include swb-medium {
-    a {
+    a, button {
       float: left;
       clear: left;
       margin-top: 0.75rem;
