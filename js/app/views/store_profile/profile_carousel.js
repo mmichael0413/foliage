@@ -42,7 +42,16 @@ define(function(require) {
                     slidesToScroll: 1,
                     focusOnSelect: true,
                     variableWidth: true,
-                    infinite: false
+                    infinite: false,
+                    responsive: [
+                        {
+                            breakpoint: 568,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
                 });
             },
             prevSlide: function(e){
