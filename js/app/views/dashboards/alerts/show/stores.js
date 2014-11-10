@@ -25,6 +25,13 @@ define(function(require) {
             var self = this;
             this.$el.html(this.loadingView.render().$el);
 
+            if(!context.instances.dashboardStoresFilters) {
+                context.instances.dashboardStoresFilters = this.filters;
+                this.filters.fetch({success: function (collection) {
+                    self.addFilters(collection);
+                }});
+            }
+
             this.filters.fetch({success: function (collection) {
                 self.addFilters(collection);
             }});

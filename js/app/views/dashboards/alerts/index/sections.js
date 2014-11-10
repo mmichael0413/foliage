@@ -1,5 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        context = require('context'),
         SectionsCollection = require('app/collections/dashboards/alerts/sections'),
         SectionView = require('app/views/dashboards/alerts/index/section'),
         FiltersCollection = require('app/collections/dashboards/alerts/index/filters'),
@@ -19,9 +20,12 @@ define(function(require) {
 
             this.$el.html(this.loadingView.render().$el);
 
-            this.filters.fetch({success: function (collection) {
-                self.addFilters(collection);
-            }});
+            if(!context.instances.dashboardCountFilters) {
+                context.instances.dashboardCountFilters = this.filters;
+                this.filters.fetch({success: function (collection) {
+                    self.addFilters(collection);
+                }});
+            }
 
             this.collection.fetch({success: function (collection) {
                 self.loadingView.remove();
