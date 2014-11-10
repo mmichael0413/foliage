@@ -1,5 +1,6 @@
 define(function(require) {
-    var Backbone = require('backbone'),
+    var $ = require('jquery'),
+        Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
         FormView = require('app/views/checkins/show/form'),
@@ -27,6 +28,10 @@ define(function(require) {
         validateForm: function() {
             if (this.formValidation.valid()) {
                 this.formView.submit();
+            } else {
+                $('.content-holder').animate({
+                    scrollTop: this.$('div.error:first')[0].offsetTop
+                }, 500);
             }
         }
     });
