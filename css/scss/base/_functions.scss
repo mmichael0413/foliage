@@ -1,0 +1,17 @@
+@function background_alpha_calculation ($color, $alpha, $bg_color: white) {
+  $r3: red($color);
+  $g3: green($color);
+  $b3: blue($color);
+
+  $r2: red($bg_color);
+  $g2: green($bg_color);
+  $b2: blue($bg_color);
+
+  // r1 = (r3 - r2 + r2 * a1) / a1
+  $r1: ( $r3 - $r2 + ($r2 * $alpha) ) / $alpha;
+  $g1: ( $g3 - $g2 + ($g2 * $alpha) ) / $alpha;
+  $b1: ( $b3 - $b2 + ($b2 * $alpha) ) / $alpha;
+
+  @return rgba($r1, $g1, $b1, $alpha);
+
+}

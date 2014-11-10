@@ -27,7 +27,7 @@
 		z-index: -1;
 		width: 100%;
 		height: 16em;
-		background-color: rgba($link-color, .75);
+		background-color: background_alpha_calculation($medium-blue, 0.5);
 		top: -1em;
 
 		
