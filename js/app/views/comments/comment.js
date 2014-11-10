@@ -1,10 +1,6 @@
 define(function(require){
-    var $ = require('jquery'),
-        _ = require('underscore'),
-        Backbone = require('backbone'),
-        Handlebars = require('handlebars'),
-        HandlebarsTemplates = require('handlebarsTemplates'),
-        HandlebarsHelpers = require('app/utils/handlebarsHelpers');
+    var Backbone = require('backbone'),
+        HandlebarsTemplates = require('handlebarsTemplates');
         
     return Backbone.View.extend({
         className: 'comment',
