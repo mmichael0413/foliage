@@ -95,6 +95,18 @@
             <a href="/programs/{{current_program}}/activities/{{activity_id}}" class="hidden-xs">View Activity</a>
                 </span>
         </div>
+
+        {{#if show-moderation}}
+            <div class="moderation-actions  visible-xs">
+                {{#if editable}}
+                    <span class="action"><a href="{{editable}}">Edit Checkin</a></span>
+                {{/if}}
+
+                {{#if hideable}}
+                    <span class="action"><a href="#" class="hide-post">Hide Post</a></span>
+                {{/if}}
+            </div>
+        {{/if}}
     </div>
     <div class="comment-holder {{#if_eq singleActivity false}}hidden-xs{{/if_eq}}">
         <div class="activity-status">
