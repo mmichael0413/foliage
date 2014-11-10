@@ -4,7 +4,7 @@ define(function(require){
         Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        HandlebarsHelpers = require('app/utils/HandlebarsHelpers');
+        HandlebarsHelpers = require('app/utils/handlebarsHelpers');
         
     return Backbone.View.extend({
         className: 'comment',
