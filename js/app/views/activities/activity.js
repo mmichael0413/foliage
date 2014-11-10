@@ -6,6 +6,7 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates'),
         HandlebarsHelpers = require('handlebarsHelpers'),
         context = require('context'),
+        helpers = require('helpers'),
         Activity = require('app/models/activities/activity'),
         CommentsView = require('app/views/comments/comments'),
         NewCommentView = require('app/views/comments/new_comment'),
@@ -38,14 +39,14 @@ define(function(require) {
                     this.model.set('imageCount', 0);
                 }
             }
-
+            this.model.set('singleActivity', options.singleActivity);
+            this.model.set('isMobile', helpers.isMobile.any());
             this.objId = this.model.get('activity_id');
             this.carousel = null;
 
             this.listenTo(context, 'navigation:collapsed', this.fixCollapsedCarousel);
         },
         render: function () {
-            // render the base activity
             if (this.model.get('comments_count') > 3) {
                 this.model.set('additional_comments', this.model.get('comments_count') - 3);
             }
@@ -57,12 +58,16 @@ define(function(require) {
             this.$el.html(this.template(this.model.attributes));
 
             // render the comments view
-            var c = this.$('.comments');
             this.comments = new CommentsView({el: c, activity: this.model, programId: this.programId});
-            this.comments.render();
-
             this.newComment = new NewCommentView({el: this.$('.new-comment'), activity: this.model, collection: this.comments.collection});
-            this.newComment.render();
+
+            if(!this.model.get('isMobile') || (this.model.get('isMobile') && this.model.get('singleActivity'))) {
+                var c = this.$('.comments');
+                this.comments.render();
+
+                this.newComment.render();
+            }
+
             return this;
         },
         likeActivity: function (e) {

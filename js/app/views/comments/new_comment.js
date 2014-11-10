@@ -2,6 +2,7 @@ define(function(require){
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
+        context = require('context'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         Comment = require('app/models/comments/comment');
@@ -38,8 +39,13 @@ define(function(require){
            }
        },
        commentFocus: function () {
-           this.$(".new-comment-field").focus();
-           $('body').scrollTo(this.$(".new-comment-field"),{duration:10000, offsetTop : '50'});
+           if(!this.activity.get('isMobile') || (this.activity.get('isMobile') && this.activity.get('singleActivity'))) {
+               this.$(".new-comment-field").focus();
+              // $('.content-holder').scrollTo(this.$(".new-comment-field"),{duration:10000, offsetTop : '50'});
+           } else {
+               window.location.assign ( "/programs/" + context.programId + "/activities/" + this.activity.get('activity_id'));
+           }
+
        }
 
    });

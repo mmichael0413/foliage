@@ -5,7 +5,7 @@ define(function(require) {
         Filter = require('app/views/filter/main');
 
     return {
-        init: function (url, incomplete_url, enableScroll) {
+        init: function (url, incomplete_url, singleActivity) {
             // requires that a bootstrap set of json data be placed on the window
             if(!context.instances.activitiesView) {
 
@@ -15,7 +15,7 @@ define(function(require) {
                     url: url,
                     incompleteActivityUrl: incomplete_url,
                     programId: context.programId,
-                    enableScroll: enableScroll
+                    singleActivity: singleActivity
                 });
                 context.instances.activitiesView.fetch();
 

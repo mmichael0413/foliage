@@ -33,7 +33,7 @@ define(function (require) {
         },
         activity: function () {
             var url = '/programs/' + context.programId + '/activities/posts?customer_store=' +context.requestParameters[1];
-            ActivitiesMain.init(url, null, true);
+            ActivitiesMain.init(url, null, false);
         },
         history: function () {
             new OpenAlertsView().renderCollection(context.alerts.open);

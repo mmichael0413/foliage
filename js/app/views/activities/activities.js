@@ -51,7 +51,7 @@ define(function (require) {
 
         renderModel: function (model) {
             if (model.get('type') !== undefined) {
-                var activity = new ActivityView({ model: model, programId: context.programId});
+                var activity = new ActivityView({ model: model, programId: context.programId, singleActivity: this.singleActivity});
                 this.getContentElement().append(activity.render().el);
                 activity.$("textarea").expanding();
                 activity.initializeCarousel();

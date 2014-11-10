@@ -12,7 +12,7 @@ define(function(require) {
          */
         InfiniteScrollView = Backbone.View.extend({
             el: '.infinite-container',
-            enableScroll: true,
+            singleActivity: false,
 
             infiniteCollectionClass: undefined,
             per: 5,
@@ -36,15 +36,14 @@ define(function(require) {
                 this.getContentElement().append(this.loadIndicator.render().el);
                 this.allModelsLoaded = false;
 
-                if (options && options.enableScroll !== undefined) {
-                    this.enableScroll = options.enableScroll;
+                if (options && options.singleActivity !== undefined) {
+                    this.singleActivity = options.singleActivity;
                 }
 
                 
-                //this.listenTo(context, 'filter:query', this.applyFilter);
                 // configure the filter to ignore some specific fields which the infinite scroll will control
                 context.trigger('configure:excludeFields', ['page', 'per', 'sort', 'direction']);
-                // asumes the presence of the filter, of course
+                // assumes the presence of the filter, of course
                 // todo: the value should come from the collection
                 context.trigger('filter:set', [{name: 'per', value: this.per}]);
                 
@@ -52,8 +51,7 @@ define(function(require) {
                     this.collection.fetch({reset:true});
                 }
 
-                if (this.enableScroll) {
-                    var topOfOthDiv = $contentHolder.offset().top;
+                if (!this.singleActivity) {
                     $contentHolder.on('scroll', function() {
 
                         if (self.allModelsLoaded) {
@@ -62,15 +60,7 @@ define(function(require) {
                         }
                         
                         if (!self.loadIndicator.active && $contentHolder.scrollTop() > ( self.getContentElement().height()) - 1500) {
-
                             self.$el.append(self.loadIndicator.render().el);
-
-                            // self.collection.getNextPage().done(function () {
-                            //     self.render();
-                            // }).fail(function () {
-                            //     self.stopOnError();
-                            //     return false;
-                            // });
                             self.collection.getNextPage();
                         }
 

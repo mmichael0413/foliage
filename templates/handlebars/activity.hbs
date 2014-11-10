@@ -84,8 +84,7 @@
                     {{/if}}
                 </span>
             <span class="action bold">
-                <a href="#" class="start-comment hidden-xs">Comment</a>
-                <a href="/programs/{{current_program}}/activities/{{activity_id}}" class="visible-xs-inline">Comment</a>
+                <a href="#" class="start-comment">Comment</a>
             </span>
             {{#if_eq type "Checkin"}}
                 <span class="action bold">
@@ -97,7 +96,7 @@
                 </span>
         </div>
     </div>
-    <div class="comment-holder hidden-xs">
+    <div class="comment-holder {{#if_eq singleActivity false}}hidden-xs{{/if_eq}}">
         <div class="activity-status">
             <span class="action">
                 <span class="like-count" data-likecount="{{like_count}}">{{like_count}}</span> <span class="like-label">{{pluralize like_count 'Like' 'Likes'}}</span>

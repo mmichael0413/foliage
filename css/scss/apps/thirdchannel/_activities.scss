@@ -62,6 +62,9 @@ $padding: 1.5em;
       display: inline-block;
       vertical-align: top;
     }
+    @include swb-small {
+      width: 100%;
+    }
   }
 }
 

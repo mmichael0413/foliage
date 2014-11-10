@@ -112,6 +112,9 @@ input[type="file"]::-webkit-file-upload-button {
 .expanding-wrapper {
   width: 80%;
   display: inline-block;
+  @include swb-small {
+    width: 100%;
+  }
 }
 
 .input-group {

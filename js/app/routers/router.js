@@ -70,14 +70,14 @@ define(function(require){
             new NotificationBadge().render();
         },
 
-        activitiesFeed: function(program_id){
+        activitiesFeed: function(){
             var url = '/programs/' + context.programId + '/activities/posts';
             var incomplete_url =  '/programs/' + context.programId + '/activities/incomplete_posts';
-            ActivitiesMain.init(url, incomplete_url, true);
+            ActivitiesMain.init(url, incomplete_url, false);
         },
         activityFeed: function(program_id, activity_id) {
             var url = '/programs/' + program_id + '/activities/' + activity_id;
-            ActivitiesMain.init(url, null, false);
+            ActivitiesMain.init(url, null, true);
         },
 
         checkin_list: function (program_id, user_id){
@@ -114,7 +114,7 @@ define(function(require){
 
         programProfile: function(program_id, user_id) {
             var url = '/programs/' + program_id + '/activities/' + user_id + '/for';
-            ActivitiesMain.init(url, null, true);
+            ActivitiesMain.init(url, null, false);
         },
 
         dashboardAlerts: function(programId){
