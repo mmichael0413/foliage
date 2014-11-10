@@ -55,20 +55,21 @@
 
 @include swb-medium {
 	.store-profile-section.expand-container {
-		.expand-indicator {
-		/*	@extend .ic_up;*/
+		.expand-indicator:before {
+            content: $font-tc-icons-ic_up;
 		}
 	 	.body {
 	 		max-height: 5000px;
 	 	}
         &.active {
         	.body {
-        		max-height: 0em;
+        		max-height: 0;
+                margin-top: 0;
         	}
-        	.expand-indicator {
-        		/*@extend .ic_down;*/
+        	.expand-indicator:before {
+                content: $font-tc-icons-ic_down;
         	}
-        }	
+        }
     }
 }
 
