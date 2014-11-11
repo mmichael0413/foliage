@@ -31,7 +31,8 @@ define(function (require) {
             });
 
             this.editor = new Quill('#editor', {
-                theme: 'snow'
+                theme: 'snow',
+                pollInterval: 0
             });
             this.editor.addModule('toolbar', { container: '#full-toolbar' });
             this.editor.addModule('link-tooltip');
