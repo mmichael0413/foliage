@@ -14,20 +14,29 @@
     @include swb-medium {
         text-align: center;
     }
-    &:hover {
+    &:hover:not(:disabled) {
         background-color: $color;
         color: white;
     }
+    &:disabled {
+      border-color: lighten($color, 20%);
+      color: lighten($color, 20%);
+    }
 
     &.solid {
-        &:hover {
+        font-size: inherit;
+        background-color: $color;
+        color: white;
+
+        &:disabled {
+          background-color: lighten($color, 20%);
+        }
+
+        &:hover:not(:disabled) {
             background: darken($color, 10%);
             border-color: darken($color, 10%);
         }
-        font-size: inherit;
-        
-        background-color: $color;
-        color: white;
+
         @include swb-medium {
             min-width: 2.2em;
             padding: 2px 6px;

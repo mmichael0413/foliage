@@ -27,6 +27,8 @@ define(function(require) {
         },
         validateForm: function() {
             if (this.formValidation.valid()) {
+                this.$el.find(".checkin-form-btn").prop('disabled', true);
+                this.$el.find(".checkin-form-btn i").removeClass('ic ic_check').addClass("fa fa-spin fa-spinner");
                 this.formView.submit();
             } else {
                 $('.content-holder').animate({

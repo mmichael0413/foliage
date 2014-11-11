@@ -36,7 +36,7 @@ define(function(require) {
                 if (this.per) {
                     qs += "&per=" + this.per;
                 }
-                if (this.getCreatedCheckinId !== undefined) {
+                if (this.getCreatedCheckinId() !== undefined) {
                     qs += "&created_checkin=" + this.getCreatedCheckinId();
                 }
 
