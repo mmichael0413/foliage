@@ -26,7 +26,7 @@
                 <input name="authenticity_token" value="{{authenticity_token}}" type="hidden">
 
                 {{#if last_checkin}}
-                    <a href="/programs/{{program}}/reports/checkin/{{id}}" class="btn primary report-link"><i class="ic fa ic_report-16"></i><span class="visible-md">View Report</span></a>
+                    <a href="/programs/{{program}}/reports/checkin/{{last_checkin_id}}" class="btn primary report-link"><i class="ic fa ic_report-16"></i><span class="visible-md">View Report</span></a>
                 {{else}}
                     <div class="action-spacer"></div>
                 {{/if}}
