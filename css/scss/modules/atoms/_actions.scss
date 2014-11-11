@@ -1,4 +1,10 @@
 .alert-actions, .general-actions {
+
+  .action-spacer {
+    display: inline-block;
+    width: 2em;
+  }
+
   @include swb-medium {
     a, button {
       float: left;

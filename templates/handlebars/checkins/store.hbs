@@ -6,9 +6,9 @@
 {{#rows}}
 <div class="pure-g">
     <div class="col-1-2 col-md-1">
-        <a href="{{name}}">{{name}}, #{{id}}</a>, {{city}}, {{state}}
+        <a href="{{name}}">{{name}}</a>, {{address}} {{city}}, {{state}}
         {{#if special_project}}
-            <strong>This store is part of a Special Project</strong>
+            <div><strong>This store is part of a Special Project</strong></div>
         {{/if}}
 
     </div>
@@ -18,7 +18,8 @@
     </div>
     <div class="col-1-4 col-md-1 general-actions">
         {{#if special_project}}
-            <a href="/programs/{{program}}/checkins/{{id}}/choose" class="btn btn-primary btn-sm"><strong>Checkin Here</strong></a>
+            <div class="action-spacer"></div>
+            <a href="/programs/{{program}}/checkins/{{id}}/choose" class="btn primary"><i class="ic fa ic_report-16"></i><span>Checkin Here</span></a>
         {{else}}
             <form accept-charset="UTF-8" action="/programs/{{program}}/checkins" method="post">
                 <input id="id" name="customer_store_id" type="hidden" value="{{id}}">
@@ -27,7 +28,7 @@
                 {{#if last_checkin}}
                     <a href="/programs/{{program}}/reports/checkin/{{id}}" class="btn primary report-link"><i class="ic fa ic_report-16"></i><span class="visible-md">View Report</span></a>
                 {{else}}
-                    <span style="width: 1em;"></span>
+                    <div class="action-spacer"></div>
                 {{/if}}
                 <button class="btn primary expand resolve-link" name="commit"><i class="ic fa ic_location"></i><span>Checkin Here</span></button>
             </form>

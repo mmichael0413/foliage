@@ -366,11 +366,11 @@ function program1(depth0,data) {
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ", #";
-  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
     + "</a>, ";
+  if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " ";
   if (helper = helpers.city) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.city); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -394,13 +394,13 @@ function program1(depth0,data) {
 function program2(depth0,data) {
   
   
-  return "\n            <strong>This store is part of a Special Project</strong>\n        ";
+  return "\n            <div><strong>This store is part of a Special Project</strong></div>\n        ";
   }
 
 function program4(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n            <a href=\"/programs/";
+  buffer += "\n            <div class=\"action-spacer\"></div>\n            <a href=\"/programs/";
   if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -408,7 +408,7 @@ function program4(depth0,data) {
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "/choose\" class=\"btn btn-primary btn-sm\"><strong>Checkin Here</strong></a>\n        ";
+    + "/choose\" class=\"btn primary\"><i class=\"ic fa ic_report-16\"></i><span>Checkin Here</span></a>\n        ";
   return buffer;
   }
 
@@ -451,7 +451,7 @@ function program7(depth0,data) {
 function program9(depth0,data) {
   
   
-  return "\n                    <span style=\"width: 1em;\"></span>\n                ";
+  return "\n                    <div class=\"action-spacer\"></div>\n                ";
   }
 
   buffer += "<div class=\"pure-g\">\n    <h3 class=\"col-1-2 col-md-1\">YOUR STORES</h3>\n    <h3 class=\"col-1-2 minor-m\">LAST CHECKIN</h3>\n</div>\n\n";
