@@ -30,7 +30,7 @@ define(function (require) {
                 _this.initialNavState = 'expanded-nav';
 
                 // if the initial state was collapsed, toggle the nav
-                if (_this.initialNavState == 'collapsed-nav') {
+                if (window.localStorage.getItem('main_navigation') == 'collapsed-nav') {
                     _this.collapseNav(null, true);
                 }
 
