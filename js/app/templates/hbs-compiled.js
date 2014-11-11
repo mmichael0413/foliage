@@ -1988,7 +1988,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n<div class=\"item pure-g\">\n    <p class=\"col-3-12 col-md-5-12\"><a href=\""
+  buffer += "\n<div class=\"item pure-g\">\n    <p class=\"col-3-12 col-md-1-2\"><a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.profile)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">";
   if (helper = helpers.first_name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -1998,9 +1998,9 @@ function program1(depth0,data) {
   if (helper = helpers.last_name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.last_name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</a>\n    <p class=\"col-1-12 col-md-2-12\">"
+    + "</a>\n    <p class=\"col-1-12 minor-m\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.address)),stack1 == null || stack1 === false ? stack1 : stack1.state)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n    <p class=\"col-3-12 col-md-5-12\">";
+    + "</p>\n    <p class=\"col-3-12 col-md-1-2\">";
   if (helper = helpers.email) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.email); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
