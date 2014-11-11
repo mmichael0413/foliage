@@ -12,7 +12,6 @@ define(function (require) {
         ExpandWrapperView = require('app/views/utils/expand_wrapper_view'),
         OpenAlertsView = require('app/views/store_profile/open_alerts'),
         GalleryView = require('app/views/store_profile/gallery'),
-        //HoverableImageView = require('app/views/store_profile/hoverable_image'),
         ResolvedAlertsView = require('app/views/store_profile/resolved_alerts');
 
     /**
