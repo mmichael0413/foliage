@@ -88,7 +88,9 @@ define(function (require) {
             'click .toggle-filter': 'toggleFilter',
             'click .toggle-subnav': 'toggleSubnav',
             'click .collapse-nav': 'collapseNav',
-            "click .scroll-top" : "scrollTop"
+            "click .scroll-top" : "scrollTop",
+            "click .content-holder" : "closeNav",
+            "click #mobile-header" : "closeNav"
         },
         toggleNav: function (e) {
             if(e) {
@@ -104,8 +106,12 @@ define(function (require) {
                 this.$siteWrapper.addClass('show-nav');
             }
         },
-        closeNav: function() {
+        closeNav: function(e) {
             if (this.$siteWrapper.hasClass('show-nav')) {
+                if(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
                 // Do things on Nav Close
                 this.$siteWrapper.removeClass('show-nav');
                 this.$siteSubmenu.removeClass('show-subnav');
