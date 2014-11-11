@@ -113,7 +113,11 @@
           }
         }
       }
+      #site-canvas #site-submenu.show-subnav {
+        @include transform(18em);
+      }
     }
+
   }
   #site-menu {
     width: $standard-nav-width;
