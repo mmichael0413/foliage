@@ -71,7 +71,9 @@
     text-decoration: none;
   }
 }
-
+.right-aligned {
+  text-align: right;
+}
 .show-filter {
   .scroll-top {
     @include transform(-7.5em)
