@@ -7,7 +7,8 @@ define(function(require) {
         el: '.store-intel',
         events: {
             "click [data-show-element]" : 'showElement',
-            "click [data-hide-element]" : 'hideElement'
+            "click [data-hide-element]" : 'hideElement',
+            "click .checkin-form-btn" : "submit"
         },
         initialize: function (options) {
         },
@@ -23,6 +24,11 @@ define(function(require) {
         hideElement: function (e, data) {
             var $elem = this.$el.find(e.currentTarget);
             this.$el.find($elem.data('hide-element')).hide('fast', "linear").val('').trigger('change');
+        },
+        submit: function(e, data) {
+            this.$el.find(".checkin-form-btn").prop('disabled', true);
+            this.$el.find(".checkin-form-btn i").removeClass('ic ic_check').addClass("fa fa-spin fa-spinner");
+            this.$el.find('form').submit();
         }
     });
 });
