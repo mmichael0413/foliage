@@ -58,11 +58,12 @@ define(function(require) {
             this.$el.html(this.template(this.model.attributes));
 
             // render the comments view
+            var c = this.$('.comments');
             this.comments = new CommentsView({el: c, activity: this.model, programId: this.programId});
             this.newComment = new NewCommentView({el: this.$('.new-comment'), activity: this.model, collection: this.comments.collection});
 
             if(!this.model.get('isMobile') || (this.model.get('isMobile') && this.model.get('singleActivity'))) {
-                var c = this.$('.comments');
+
                 this.comments.render();
 
                 this.newComment.render();
