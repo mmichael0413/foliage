@@ -3,7 +3,9 @@ define(function(require) {
 
 	return  {
 		init: function () {
-			new NavigationView();
+            if (window.pdf !== true) {
+                new NavigationView();
+            }
 		}
 	};
 });
