@@ -182,9 +182,6 @@ define(function (require) {
             context.trigger('navigation:collapsed');
         },
         browserCompatibility: function() {
-            var isFirefox = typeof InstallTrigger !== 'undefined';   // Firefox 1.0+
-            var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
-            var isChrome = !!window.chrome;              // Chrome 1+
             var isIE = /*@cc_on!@*/false || !!document.documentMode; // At least IE6
 
             re = /(W|w)in.*/;
