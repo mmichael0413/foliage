@@ -1,8 +1,49 @@
 /*global module, require */
 /*jslint regexp: true */
 
+/**
+ *
+ *
+ */
+function buildRequireJSConfig(grunt) {
+    var config = {},
+        appPaths = grunt.file.expand('js/apps/*'),
+        tokens,
+        name,
+        i = appPaths.length;
+    while(i--) {
+        tokens = appPaths[i].split('/');
+        name = tokens[tokens.length-1];
+        console.log(name);
+        config[name] = {
+            options: {
+                mainConfigFile: appPaths[i] +"/init.js",
+                baseUrl: 'js/apps',
+                name: name + '/init',
+                out: 'dist/' + name + '/js/app.js',
+                removeCombined: true,
+                findNestedDependencies: true,
+                generateSourceMaps: true,
+                optimize: "uglify2",
+                preserveLicenseComments: false
+            }
+        };
+    }
+    return config;
+}
+
+
+/**
+ * 
+ * The main Grunt config file
+ * 
+ */
 module.exports = function(grunt) {
     'use strict';
+
+    var requireConfig = buildRequireJSConfig(grunt);
+
+
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -60,36 +101,37 @@ module.exports = function(grunt) {
                 }
             }
         },
-        requirejs: {
-            compile: {
-                // see full list of options here: https://github.com/jrburke/r.js/blob/master/build/example.build.js
-                options: {
-                    mainConfigFile : "js/app/init.js",
-                    baseUrl : "js",
-                    name: "app/init",
-                    out: "dist/thirdchannel/js/app.js",
-                    removeCombined: true,
-                    findNestedDependencies: true,
-                    generateSourceMaps: true,
-                    optimize: "uglify2",
-                    preserveLicenseComments: false
-                }
-            },
+        // requirejs: {
+        //     compile: {
+        //         // see full list of options here: https://github.com/jrburke/r.js/blob/master/build/example.build.js
+        //         options: {
+        //             mainConfigFile : "js/app/init.js",
+        //             baseUrl : "js",
+        //             name: "app/init",
+        //             out: "dist/thirdchannel/js/app.js",
+        //             removeCombined: true,
+        //             findNestedDependencies: true,
+        //             generateSourceMaps: true,
+        //             optimize: "uglify2",
+        //             preserveLicenseComments: false
+        //         }
+        //     },
 
-            territory : {
-                options: {
-                    mainConfigFile: "js/apps/territory/init.js",
-                    baseUrl: "js/apps",
-                    name: "territory/init",
-                    out: "dist/territory/js/app.js",
-                    removeCombined: true,
-                    findNestedDependencies: true,
-                    generateSourceMaps: true,
-                    optimize: "uglify2",
-                    preserveLicenseComments: false
-                }
-            }
-        },
+        //     territory : {
+        //         options: {
+        //             mainConfigFile: "js/apps/territory/init.js",
+        //             baseUrl: "js/apps",
+        //             name: "territory/init",
+        //             out: "dist/territory/js/app.js",
+        //             removeCombined: true,
+        //             findNestedDependencies: true,
+        //             generateSourceMaps: true,
+        //             optimize: "uglify2",
+        //             preserveLicenseComments: false
+        //         }
+        //     }
+        // },
+        requirejs: requireConfig,
         clean: ["dist"],
         copy: {
             main: {
