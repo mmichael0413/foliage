@@ -9,7 +9,6 @@ define(function (require) {
         Livestamp = require('livestamp'),
         InfiniteScrollView = require('thirdchannel/views/shared/infinite_scroll');
 
-
     var ActivitiesView = InfiniteScrollView.extend({
         el: '.activities-holder',
         infiniteCollectionClass: ActivityCollection,

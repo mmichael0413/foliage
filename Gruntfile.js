@@ -157,6 +157,42 @@ module.exports = function(grunt) {
                 ]
             }
         },
+
+        karma: {
+            thirdchannel: {
+                // Ideally we want to run in background mode... but I'm running into a open file limit due to the grunt
+                // watch task. Need to research how to raise the upper limit on the max file descriptors before proceeding
+                //background: true,
+                singleRun: true,
+
+
+                browsers: ['PhantomJS'],
+                basePath: "",
+                reporters: ['progress', 'osx'],
+
+                options: {
+                    frameworks: ['jasmine', 'requirejs'],
+
+                    files: [
+                         "js/libs/bower_components/underscore/underscore.js",
+                         "js/libs/bower_components/handlebars/handlebars.min.js",
+                        // the included: false is mandatory in order to be loaded with requirejs; ignoring this causes the scripts to be loaded in
+                        // phantom, which causes requirejs to fail as the scripts have all ready been processed.
+                        {pattern: "js/apps/thirdchannel/**/*.js", included: false},
+                        {pattern: "js/tests/thirdchannel/**/*.js", included: false},
+                        {pattern: "js/libs/bower_components/jquery/jquery.min.js", included: false},
+                        {pattern: "js/libs/bower_components/backbone/backbone.js", included: false},
+
+                        // test runner
+                        "js/tests/thirdchannel-init.js"
+                    ],
+                    exclude: [
+                        "js/apps/**/init.js",
+                    ]
+                }
+            }
+        },
+
         handlebars: {
             compile: {
                 options: {
@@ -232,24 +268,31 @@ module.exports = function(grunt) {
                     spawn: false
                 }
             },
-            rjs: {
-                files: ['js/apps/**/*.js', '!js/apps/thirdchannel/handlebars/templates.js'],
-                tasks: ['requirejs', 'copy']
-            }
+            // Temporarily disable on file change rebuild of requirejs, preserve it for when we actually push.
+            // 
+            // rjs: {
+            //     files: ['js/apps/**/*.js', '!js/apps/thirdchannel/handlebars/templates.js'],
+            //     tasks: ['requirejs', 'copy']
+            // },
+            // karma: {
+            //     files: ['js/apps/**/*.js', 'js/tests/**/*.js'],
+            //     tasks: ['karma:thirdchannel:run'] //NOTE the :run flag
+            // }
         }
     });
-
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks("grunt-nodemon");
-    grunt.loadNpmTasks("grunt-concurrent");
-    grunt.loadNpmTasks('grunt-pure-grids');
-    grunt.loadNpmTasks('grunt-contrib-requirejs');
-    grunt.loadNpmTasks('grunt-contrib-handlebars');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-aws-s3');
+    
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+    // grunt.loadNpmTasks('grunt-contrib-jshint');
+    // grunt.loadNpmTasks('grunt-contrib-sass');
+    // grunt.loadNpmTasks('grunt-contrib-watch');
+    // grunt.loadNpmTasks("grunt-nodemon");
+    // grunt.loadNpmTasks("grunt-concurrent");
+    // grunt.loadNpmTasks('grunt-pure-grids');
+    // grunt.loadNpmTasks('grunt-contrib-requirejs');
+    // grunt.loadNpmTasks('grunt-contrib-handlebars');
+    // grunt.loadNpmTasks('grunt-contrib-copy');
+    // grunt.loadNpmTasks('grunt-contrib-clean');
+    // grunt.loadNpmTasks('grunt-aws-s3');
 
     grunt.registerTask('default', ['concurrent:dev']);
     grunt.registerTask('build-dev', ['clean', 'sass','handlebars','requirejs','copy']);
