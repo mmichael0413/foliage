@@ -18,6 +18,9 @@ define(function (require) {
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');
 
+            if(!this.isLocalStorageSupported()) {
+                return
+            }
 
             if (!window.localStorage.getItem('main_navigation')){
                 window.localStorage.setItem('main_navigation', 'expanded-nav');
@@ -219,6 +222,17 @@ define(function (require) {
             this.$('.content-holder').animate({
                 scrollTop: 0
             }, 500);
+        },
+        isLocalStorageSupported: function () {
+            var testKey = 'test', storage = window.sessionStorage;
+            try {
+                storage.setItem(testKey, '1');
+                storage.removeItem(testKey);
+                return true;
+            }
+            catch (error) {
+                return false;
+            }
         }
     });
 });
