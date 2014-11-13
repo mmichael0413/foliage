@@ -55,7 +55,8 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     'dist/global/css/global.css': 'css/scss/apps/global/main.scss',
-                    'dist/thirdchannel/css/main.css': 'css/scss/apps/thirdchannel/main.scss'
+                    'dist/thirdchannel/css/main.css': 'css/scss/apps/thirdchannel/main.scss',
+                    'dist/territory/css/main.css': 'css/scss/apps/territory/main.scss'
                 }
             }
         },
@@ -73,6 +74,20 @@ module.exports = function(grunt) {
                     optimize: "uglify2",
                     preserveLicenseComments: false
                 }
+            },
+
+            territory : {
+                options: {
+                    mainConfigFile: "js/apps/territory/init.js",
+                    baseUrl: "js/apps",
+                    name: "territory/init",
+                    out: "dist/territory/js/app.js",
+                    removeCombined: true,
+                    findNestedDependencies: true,
+                    generateSourceMaps: true,
+                    optimize: "uglify2",
+                    preserveLicenseComments: false
+                }
             }
         },
         clean: ["dist"],
@@ -82,6 +97,7 @@ module.exports = function(grunt) {
                     // ThirdChannel dist files.
                     {expand: true, flatten: true, src: ['js/libs/bower_components/requirejs/require.js'], dest: 'dist/thirdchannel/js', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/thirdchannel/fonts/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/territory/fonts/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['images/*'], dest: 'dist/thirdchannel/images/', filter: 'isFile'}
                 ]
             }
