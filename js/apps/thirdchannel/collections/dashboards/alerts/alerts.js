@@ -2,7 +2,7 @@ define(function(require){
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        Count = require('app/models/dashboards/alerts/count');
+        Count = require('thirdchannel/models/dashboards/alerts/count');
 
     return Backbone.Collection.extend({
         initialize: function (options) {

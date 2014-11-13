@@ -2,9 +2,9 @@ define(function(require){
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        NotificationList = require('app/views/notifications/notification_list'),
-        PaginatorView = require('app/views/notifications/notification_paginator'),
-        FilterControl = require('app/views/filter/filterControl');
+        NotificationList = require('thirdchannel/views/notifications/notification_list'),
+        PaginatorView = require('thirdchannel/views/notifications/notification_paginator'),
+        FilterControl = require('thirdchannel/views/filter/filterControl');
 
     return Backbone.View.extend({
         initialize: function (options) {

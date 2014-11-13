@@ -3,11 +3,11 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
-        ReportModel = require('app/models/reports/report'),
-        ReportFilterCollection = require('app/collections/reports/filters'),
-        Filter = require('app/views/filter/main'),
-        LoadingView = require('app/views/utils/loading'),
-        ReportSectionView = require('app/views/reports/index/section');
+        ReportModel = require('thirdchannel/models/reports/report'),
+        ReportFilterCollection = require('thirdchannel/collections/reports/filters'),
+        Filter = require('thirdchannel/views/filter/main'),
+        LoadingView = require('thirdchannel/views/utils/loading'),
+        ReportSectionView = require('thirdchannel/views/reports/index/section');
 
     return Backbone.View.extend({
         el: ".report",

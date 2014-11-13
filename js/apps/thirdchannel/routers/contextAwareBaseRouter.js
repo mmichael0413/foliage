@@ -6,7 +6,7 @@ define(function(require) {
      * A base router that can be extended to provide before or after filtering effects.
      * In addition, sets the request parameters as a list on the global context
      * 
-     * @exports app/routers/contextAwareBaseRouter
+     * @exports thirdchannel/routers/contextAwareBaseRouter
      */
     var ContextAwareBaseRouter = {
         /**

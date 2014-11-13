@@ -4,9 +4,9 @@ define(function(require){
         Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        CommentView = require('app/views/comments/comment'),
-        Comment = require('app/models/comments/comment'),
-        CommentsCollection = require('app/collections/comments/comments');
+        CommentView = require('thirdchannel/views/comments/comment'),
+        Comment = require('thirdchannel/models/comments/comment'),
+        CommentsCollection = require('thirdchannel/collections/comments/comments');
 
    return Backbone.View.extend({
        el: '.comments',

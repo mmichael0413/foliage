@@ -3,12 +3,12 @@ define(function (require) {
         _ = require('underscore'),
         Backbone = require('backbone'),
         context = require('context'),
-        Post = require('app/models/posts/post'),
+        Post = require('thirdchannel/models/posts/post'),
         Serialize = require('serializeObject'),
         Chosen = require('chosen'),
         Quill = require('quill'),
         QuillYouTube = require('quill-youtube'),
-        UploaderView = require('app/views/s3uploader/file');
+        UploaderView = require('thirdchannel/views/s3uploader/file');
 
 
     return Backbone.View.extend({

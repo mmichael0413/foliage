@@ -3,11 +3,11 @@ define(function(require) {
         _ = require('underscore'),
         context = require('context'),
         handlebarsTemplates = require('handlebarsTemplates'),
-        ActiveFilterItemView = require('app/views/filter/activeFilterItem');
+        ActiveFilterItemView = require('thirdchannel/views/filter/activeFilterItem');
     /**
      * A Standard component filter view
      * 
-     * @exports app/views/filter/component
+     * @exports thirdchannel/views/filter/component
      * 
      */
     var component = {

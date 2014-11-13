@@ -3,7 +3,7 @@ define(function(require){
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        Router = require('app/routers/router');
+        Router = require('thirdchannel/routers/router');
 
         var initialize = function(){
             Router.initialize();

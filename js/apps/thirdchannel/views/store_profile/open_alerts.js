@@ -1,19 +1,19 @@
 define(function(require) {
     var _ = require('underscore'),
-        FilterableTableView = require('app/views/shared/filterable_table'),
-        OpenAlertsDetails = require('app/views/store_profile/open_alerts_details'),
-        BaseAlertsCollection = require('app/collections/alerts/base'),
-        AlertRowView = require('app/views/store_profile/alert_row_view'),
+        FilterableTableView = require('thirdchannel/views/shared/filterable_table'),
+        OpenAlertsDetails = require('thirdchannel/views/store_profile/open_alerts_details'),
+        BaseAlertsCollection = require('thirdchannel/collections/alerts/base'),
+        AlertRowView = require('thirdchannel/views/store_profile/alert_row_view'),
         context = require('context'),
-        Pageable = require('app/views/utils/pageable_component'),
+        Pageable = require('thirdchannel/views/utils/pageable_component'),
 
         /**
          * Filterable View for displaying Open Alerts
          *
          * 
-         * @mixes module:app/views/utils/pageable_component
-         * @extends {module:app/views/shared/filterable_table}
-         * @exports app/views/store_profile/open_alerts
+         * @mixes module:thirdchannel/views/utils/pageable_component
+         * @extends {module:thirdchannel/views/shared/filterable_table}
+         * @exports thirdchannel/views/store_profile/open_alerts
          */
         OpenAlertsView = {};
     _.extend(OpenAlertsView, Pageable);

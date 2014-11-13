@@ -7,10 +7,10 @@ define(function(require) {
         HandlebarsHelpers = require('handlebarsHelpers'),
         context = require('context'),
         helpers = require('helpers'),
-        Activity = require('app/models/activities/activity'),
-        CommentsView = require('app/views/comments/comments'),
-        NewCommentView = require('app/views/comments/new_comment'),
-        Like = require('app/models/activities/like'),
+        Activity = require('thirdchannel/models/activities/activity'),
+        CommentsView = require('thirdchannel/views/comments/comments'),
+        NewCommentView = require('thirdchannel/views/comments/new_comment'),
+        Like = require('thirdchannel/models/activities/like'),
         SlickCarousel = require('slick_carousel');
 
     return Backbone.View.extend({

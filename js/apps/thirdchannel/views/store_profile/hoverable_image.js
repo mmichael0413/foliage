@@ -3,12 +3,12 @@ define(function(require) {
 		context = require('context'),
 		template = require('handlebarsTemplates')['store_profile/hoverable_image'],
 
-		//GalleryImageModal = require('app/modals/store_profile/gallery_image_modal'),
+		//GalleryImageModal = require('thirdchannel/modals/store_profile/gallery_image_modal'),
 
 		/**
 		 * Provides an image view that has a hover overlay effect
 		 * 
-		 * @exports app/views/store_profile/hoverable_image
+		 * @exports thirdchannel/views/store_profile/hoverable_image
 		 */
 		HoverableImageView = Backbone.View.extend({
 			className: 'hoverable-image',

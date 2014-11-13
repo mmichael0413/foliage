@@ -1,5 +1,5 @@
 define(function(require) {
-    var FilterableView = require('app/views/shared/filterable_table'),
+    var FilterableView = require('thirdchannel/views/shared/filterable_table'),
         context = require('context'),
         Backbone = require('backbone'),
         StorePersonnelSectionView = {

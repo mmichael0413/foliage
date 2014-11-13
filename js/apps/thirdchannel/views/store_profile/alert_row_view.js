@@ -9,7 +9,7 @@ define(function(require) {
          * 
          * Should be usable in either open or resolved; the initialization accepts a view class to initialize during row expansion
          * 
-         * @exports app/views/store_profile/alert_row_view
+         * @exports thirdchannel/views/store_profile/alert_row_view
          */
         AlertRowView = Backbone.View.extend({
                 events: {

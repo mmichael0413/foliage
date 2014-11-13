@@ -1,12 +1,12 @@
 define(function(require) {
-	var PaginationView = require('app/views/utils/pagination'),
+	var PaginationView = require('thirdchannel/views/utils/pagination'),
 	
 	/**
 	 * Acts as an implementation wrapper for the Pagination View
 	 *
 	 * 
 	 * @mixin
-	 * @exports app/views/utils/pageable_component
+	 * @exports thirdchannel/views/utils/pageable_component
 	 */
 	PageableComponent = {
 		renderPagination: function () {

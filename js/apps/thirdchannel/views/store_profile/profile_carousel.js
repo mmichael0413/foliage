@@ -3,13 +3,13 @@ define(function(require) {
         _ = require('underscore'),
         $ = require('jquery'),
         context = require('context'),
-        GalleryImageModal = require('app/modals/store_profile/gallery_image_modal'),
-        HoverableImageView = require('app/views/store_profile/hoverable_image'),
+        GalleryImageModal = require('thirdchannel/modals/store_profile/gallery_image_modal'),
+        HoverableImageView = require('thirdchannel/views/store_profile/hoverable_image'),
         
         /**
          *
          * 
-         * @exports app/views/store_profile/profile_carousel
+         * @exports thirdchannel/views/store_profile/profile_carousel
          */
         ProfileCarousel = Backbone.View.extend({
             el: '#images',

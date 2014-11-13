@@ -3,9 +3,9 @@ define(function(require) {
         Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
-        FormView = require('app/views/checkins/show/form'),
-        FormValidate = require('app/views/utils/validation'),
-        UploaderView = require('app/views/s3uploader/file');
+        FormView = require('thirdchannel/views/checkins/show/form'),
+        FormValidate = require('thirdchannel/views/utils/validation'),
+        UploaderView = require('thirdchannel/views/s3uploader/file');
 
     return Backbone.View.extend({
         el: ".checkin",

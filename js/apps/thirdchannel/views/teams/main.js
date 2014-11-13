@@ -1,7 +1,7 @@
 define(function(require) {
 	var 
-		TeamsListView = require('app/views/teams/list'),
-        Filter = require('app/views/filter/main');
+		TeamsListView = require('thirdchannel/views/teams/list'),
+        Filter = require('thirdchannel/views/filter/main');
 
 	return {
 		init: function () {

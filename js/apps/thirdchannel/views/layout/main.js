@@ -1,5 +1,5 @@
 define(function(require) {
-	var NavigationView = require('app/views/layout/navigation');
+	var NavigationView = require('thirdchannel/views/layout/navigation');
 
 	return  {
 		init: function () {

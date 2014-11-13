@@ -3,9 +3,9 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
         SerializeObject = require("serializeObject"),
-        FileModel = require('app/models/s3uploader/file'),
-        ImageView = require('app/views/s3uploader/image'),
-        UploadView = require('app/views/s3uploader/upload');
+        FileModel = require('thirdchannel/models/s3uploader/file'),
+        ImageView = require('thirdchannel/views/s3uploader/image'),
+        UploadView = require('thirdchannel/views/s3uploader/upload');
 
     return Backbone.View.extend({
         template: HandlebarsTemplates['s3uploader/image'],

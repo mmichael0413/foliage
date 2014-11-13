@@ -1,10 +1,10 @@
 define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        CountModel = require('app/models/dashboards/alerts/count'),
-        AlertsCollection = require('app/collections/dashboards/alerts/alerts'),
-        GroupView = require('app/views/dashboards/alerts/index/group'),
-        AlertView = require('app/views/dashboards/alerts/index/alert');
+        CountModel = require('thirdchannel/models/dashboards/alerts/count'),
+        AlertsCollection = require('thirdchannel/collections/dashboards/alerts/alerts'),
+        GroupView = require('thirdchannel/views/dashboards/alerts/index/group'),
+        AlertView = require('thirdchannel/views/dashboards/alerts/index/alert');
 
     return Backbone.View.extend({
         tagName: 'tbody',

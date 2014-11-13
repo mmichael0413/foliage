@@ -1,7 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        AlertsView = require('app/views/dashboards/alerts/index/alerts');
+        AlertsView = require('thirdchannel/views/dashboards/alerts/index/alerts');
 
     return Backbone.View.extend({
         className: 'section',

@@ -2,7 +2,7 @@ define(function(require){
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        Section = require('app/models/dashboards/alerts/section');
+        Section = require('thirdchannel/models/dashboards/alerts/section');
 
     return Backbone.Collection.extend({
         initialize: function (options) {

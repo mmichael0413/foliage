@@ -1,6 +1,6 @@
 define(function(require) {
-	var StoreListView = require('app/views/stores/list'),
-		Filter = require('app/views/filter/main');
+	var StoreListView = require('thirdchannel/views/stores/list'),
+		Filter = require('thirdchannel/views/filter/main');
 
 	return {
 		init: function () {

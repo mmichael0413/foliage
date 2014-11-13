@@ -4,9 +4,9 @@ define(function (require) {
     /**
      * A variation of the standard Filter Component for handling explicit dates
      * 
-     * @exports app/views/filter/dateComponent
+     * @exports thirdchannel/views/filter/dateComponent
      */
-    var DateComponent = require('app/views/filter/component').extend({
+    var DateComponent = require('thirdchannel/views/filter/component').extend({
 
             templateName: 'filters/date_component',
             

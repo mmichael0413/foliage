@@ -2,8 +2,8 @@ define(function (require) {
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        NotificationCollection = require('app/collections/notifications/notifications'),
-        FilterableTableView = require('app/views/shared/filterable_table'),
+        NotificationCollection = require('thirdchannel/collections/notifications/notifications'),
+        FilterableTableView = require('thirdchannel/views/shared/filterable_table'),
         context = require('context');
 
     return FilterableTableView.extend({

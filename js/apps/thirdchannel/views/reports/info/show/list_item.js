@@ -2,7 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        ReportInfoListCheckinView = require('app/views/reports/info/show/checkin');
+        ReportInfoListCheckinView = require('thirdchannel/views/reports/info/show/checkin');
 
     return Backbone.View.extend({
         template: HandlebarsTemplates['reports/info/show/list_item'],

@@ -4,7 +4,7 @@ define(function (require) {
 
 	/**
 	 * 
-	 * @exports app/views/utils/expand_wrapper_view
+	 * @exports thirdchannel/views/utils/expand_wrapper_view
 	 */
 	var ExpandWrapperView = {
 		events: {

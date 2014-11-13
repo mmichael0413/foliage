@@ -3,22 +3,22 @@ define(function (require) {
     var context = require('context'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        Filter = require('app/views/filter/main'),
+        Filter = require('thirdchannel/views/filter/main'),
 
-        ActivitiesMain = require('app/views/activities/main'),
+        ActivitiesMain = require('thirdchannel/views/activities/main'),
 
-        PersonnelSectionView = require('app/views/store_profile/personnel'),
-        ProfileCarouselView = require('app/views/store_profile/profile_carousel'),
-        ExpandWrapperView = require('app/views/utils/expand_wrapper_view'),
-        OpenAlertsView = require('app/views/store_profile/open_alerts'),
-        GalleryView = require('app/views/store_profile/gallery'),
-        ResolvedAlertsView = require('app/views/store_profile/resolved_alerts');
+        PersonnelSectionView = require('thirdchannel/views/store_profile/personnel'),
+        ProfileCarouselView = require('thirdchannel/views/store_profile/profile_carousel'),
+        ExpandWrapperView = require('thirdchannel/views/utils/expand_wrapper_view'),
+        OpenAlertsView = require('thirdchannel/views/store_profile/open_alerts'),
+        GalleryView = require('thirdchannel/views/store_profile/gallery'),
+        ResolvedAlertsView = require('thirdchannel/views/store_profile/resolved_alerts');
 
     /**
      * The main entry point for loading the JS needed for the store profile page
      *
      * 
-     * @exports app/views/store_profile/main
+     * @exports thirdchannel/views/store_profile/main
      */
     var main = {
         init: function () {

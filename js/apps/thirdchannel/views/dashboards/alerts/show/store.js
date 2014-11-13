@@ -1,6 +1,6 @@
 define(function(require) {
-    var AlertRowView = require('app/views/store_profile/alert_row_view'),
-        OpenAlertsDetails = require('app/views/store_profile/open_alerts_details'),
+    var AlertRowView = require('thirdchannel/views/store_profile/alert_row_view'),
+        OpenAlertsDetails = require('thirdchannel/views/store_profile/open_alerts_details'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return AlertRowView.extend({

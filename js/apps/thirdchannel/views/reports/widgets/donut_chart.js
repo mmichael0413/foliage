@@ -3,7 +3,7 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
-        displayDonutChart = require('libs/charts/donut_chart');
+        displayDonutChart = require('donut_chart');
 
     return Backbone.View.extend({
         tagName: 'span',

@@ -3,12 +3,12 @@ define(function(require) {
         context = require('context'),
         $ = require('jquery'),
         _ = require('underscore'),
-        LoadingView = require('app/views/activities/loading'),
+        LoadingView = require('thirdchannel/views/activities/loading'),
 
         /**
          * A base class for dealing with infinite scrolling of some items
          * 
-         * @exports app/views/shared/infinite_scroll
+         * @exports thirdchannel/views/shared/infinite_scroll
          */
         InfiniteScrollView = Backbone.View.extend({
             el: '.infinite-container',

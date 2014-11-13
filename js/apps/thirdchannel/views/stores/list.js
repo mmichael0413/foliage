@@ -1,11 +1,11 @@
 define(function(require) {
-    var PageableListView = require('app/views/shared/pageable_list'),
+    var PageableListView = require('thirdchannel/views/shared/pageable_list'),
         /**
          *
          * The Stores list
          * 
-         * @extends {module:app/views/shared/pageable_list}
-         * @exports app/views/stores/list
+         * @extends {module:thirdchannel/views/shared/pageable_list}
+         * @exports thirdchannel/views/stores/list
          */
         StoreListView = PageableListView.extend({
             el: '#stores',

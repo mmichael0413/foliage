@@ -15,7 +15,7 @@ define(function(require) {
          * }
          *
          * 
-         * @exports app/collections/shared/async_paged
+         * @exports thirdchannel/collections/shared/async_paged
          */
         AsyncPagedCollection = Backbone.Collection.extend({
             page: 1,

@@ -2,12 +2,12 @@ define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
-        Filter = require('app/views/filter/main'),
-        LoadingView = require('app/views/utils/loading'),
-        PaginationView = require('app/views/utils/pagination'),
-        FilterCollection = require('app/collections/reports/info/filters'),
-        InfoListModel = require('app/models/reports/info/info_list'),
-        ReportInfoListItemView = require('app/views/reports/info/show/list_item');
+        Filter = require('thirdchannel/views/filter/main'),
+        LoadingView = require('thirdchannel/views/utils/loading'),
+        PaginationView = require('thirdchannel/views/utils/pagination'),
+        FilterCollection = require('thirdchannel/collections/reports/info/filters'),
+        InfoListModel = require('thirdchannel/models/reports/info/info_list'),
+        ReportInfoListItemView = require('thirdchannel/views/reports/info/show/list_item');
 
     return Backbone.View.extend({
         el: ".report-info",

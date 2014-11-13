@@ -1,10 +1,10 @@
 define(function(require) {
     var Backbone = require('backbone'),
         context = require('context'),
-        FormModel = require('app/models/checkins/show/form'),
+        FormModel = require('thirdchannel/models/checkins/show/form'),
         SerializeObject = require('serializeObject'),
         Chosen = require('chosen'),
-        Expanding = require('libs/expanding');
+        Expanding = require('expanding');
 
     return Backbone.View.extend({
         el: '.checkin-form',

@@ -9,7 +9,7 @@ define(function(require) {
     /**
      * 
      * 
-     * @exports app/views/shared/filterable_table
+     * @exports thirdchannel/views/shared/filterable_table
      */
     FilterableTableView = Backbone.View.extend({
 

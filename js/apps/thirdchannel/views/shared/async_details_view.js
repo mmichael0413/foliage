@@ -7,7 +7,7 @@ define(function(require) {
 		 * If no 'modelClass' is set by a subclass, whill expect a url in a data config during initialization, e.g.
 		 *  new AsyncDetailsView({url: "http://www.myapi.com"})
 		 * 
-		 * @exports app/views/shared_async_details_view
+		 * @exports thirdchannel/views/shared_async_details_view
 		 */
 		AsyncDetailsView = Backbone.View.extend({
 			template: undefined,

@@ -8,7 +8,7 @@ define(function (require) {
          * for handling the paging, fetching next page, etc.
          *
          * 
-         * @exports app/collections/shared/infinite
+         * @exports thirdchannel/collections/shared/infinite
          */
         InfiniteCollection = Backbone.Collection.extend({
             initialize: function (options) {

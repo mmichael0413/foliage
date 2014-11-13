@@ -1,12 +1,12 @@
 define(function(require) {
 	var context = require('context'),
-        AsyncPagedCollection = require('app/collections/shared/async_paged'),
+        AsyncPagedCollection = require('thirdchannel/collections/shared/async_paged'),
 
         /**
          * The Base Collection for fetching Alerts for a particular customer_store
          *
-         * @extends {module:app/collections/shared/async_paged}
-         * @exports app/collections/alerts/base
+         * @extends {module:thirdchannel/collections/shared/async_paged}
+         * @exports thirdchannel/collections/alerts/base
          */
 		AlertCollection = AsyncPagedCollection.extend({
             queryString: "",

@@ -1,7 +1,7 @@
 define(function(require) {
     var $ = require('jquery'),
-        ExportView = require('app/views/utils/export_button'),
-        ReportView = require('app/views/reports/index/report');
+        ExportView = require('thirdchannel/views/utils/export_button'),
+        ReportView = require('thirdchannel/views/reports/index/report');
 
     return {
         init: function (options) {

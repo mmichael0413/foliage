@@ -5,7 +5,7 @@ define(function(require){
         context = require('context'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        Comment = require('app/models/comments/comment');
+        Comment = require('thirdchannel/models/comments/comment');
 
    return Backbone.View.extend({
        initialize: function (options) {

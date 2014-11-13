@@ -2,7 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
-        FilterControlView = require('app/views/filter/filterControl');
+        FilterControlView = require('thirdchannel/views/filter/filterControl');
 
     return Backbone.View.extend({
         el: '#site-filter',

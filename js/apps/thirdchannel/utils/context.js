@@ -7,7 +7,7 @@ define(["underscore", "backbone"], function (_, Backbone) {
      * </ul>
      *
      * 
-     * @exports app/utils/context
+     * @exports thirdchannel/utils/context
      */
     var data = function () {
         var container = {

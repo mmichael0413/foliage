@@ -1,11 +1,11 @@
 define(function(require) {
-    var PageableListView = require('app/views/shared/pageable_list'),
+    var PageableListView = require('thirdchannel/views/shared/pageable_list'),
         /**
          *
          * The Teams list
          * 
-         * @extends {module:app/views/shared/pageable_list}
-         * @exports app/views/teams/list
+         * @extends {module:thirdchannel/views/shared/pageable_list}
+         * @exports thirdchannel/views/teams/list
          */
         TeamListView = PageableListView.extend({
             el: '#team',

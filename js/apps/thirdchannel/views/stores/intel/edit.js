@@ -1,7 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
         Chosen = require('chosen'),
-        Expanding = require('libs/expanding');
+        Expanding = require('expanding');
 
     return Backbone.View.extend({
         el: '.store-intel',

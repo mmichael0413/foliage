@@ -1,11 +1,11 @@
 define(function(require) {
     var Backbone = require('backbone'),
         context = require('context'),
-        SectionsCollection = require('app/collections/dashboards/alerts/sections'),
-        SectionView = require('app/views/dashboards/alerts/index/section'),
-        FiltersCollection = require('app/collections/dashboards/alerts/index/filters'),
-        Filter = require('app/views/filter/main'),
-        LoadingView = require('app/views/utils/loading');
+        SectionsCollection = require('thirdchannel/collections/dashboards/alerts/sections'),
+        SectionView = require('thirdchannel/views/dashboards/alerts/index/section'),
+        FiltersCollection = require('thirdchannel/collections/dashboards/alerts/index/filters'),
+        Filter = require('thirdchannel/views/filter/main'),
+        LoadingView = require('thirdchannel/views/utils/loading');
 
     return Backbone.View.extend({
         className: "alerts-sections",

@@ -1,12 +1,12 @@
 define(function(require) {
     var Backbone = require('backbone'),
         context = require('context'),
-        FilterControl = require('app/views/filter/filterControl');
+        FilterControl = require('thirdchannel/views/filter/filterControl');
     
     /**
      *  The main entry point for working with the Filters.
      * 
-     * @exports app/views/filter/main
+     * @exports thirdchannel/views/filter/main
      */
     var FiltersModule = {
         /**

@@ -13,10 +13,10 @@ define(function(require) {
         parameter that ends with '[]', like 'state[]' indicates that multiple answers 
         are supported. A regular Component would be used there
         
-        @exports app/views/filter/singleAnswerComponent
+        @exports thirdchannel/views/filter/singleAnswerComponent
 
     **/
-    var SingleAnswerComponent = require('app/views/filter/component').extend({
+    var SingleAnswerComponent = require('thirdchannel/views/filter/component').extend({
         
         /**
          * Overrides the parent _addFilter. Only passes through if there's not
@@ -40,6 +40,6 @@ define(function(require) {
         }
     });
 
-    //return require('app/views/filter/component').extend(singleAnswerComponent);
+    //return require('thirdchannel/views/filter/component').extend(singleAnswerComponent);
     return SingleAnswerComponent;
 });

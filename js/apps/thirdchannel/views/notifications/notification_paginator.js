@@ -1,6 +1,6 @@
 define(function(require) {
     var $ = require('jquery'),
-        PaginatorView = require('app/views/utils/paginator');
+        PaginatorView = require('thirdchannel/views/utils/paginator');
 
     return PaginatorView.extend({
         applyPageChange: function(e){

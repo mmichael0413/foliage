@@ -1,13 +1,13 @@
 define(function (require) {
     var $ = require('jquery'),
         context = require('context'),
-        ActivityView = require('app/views/activities/activity'),
-        IncompleteActivityView = require('app/views/activities/incomplete_activity'),
-        ActivityCollection = require('app/collections/activities/activities'),
-        IncompleteActivity = require('app/models/activities/incomplete_activity'),
-        Expanding = require('libs/expanding'),
+        ActivityView = require('thirdchannel/views/activities/activity'),
+        IncompleteActivityView = require('thirdchannel/views/activities/incomplete_activity'),
+        ActivityCollection = require('thirdchannel/collections/activities/activities'),
+        IncompleteActivity = require('thirdchannel/models/activities/incomplete_activity'),
+        Expanding = require('expanding'),
         Livestamp = require('livestamp'),
-        InfiniteScrollView = require('app/views/shared/infinite_scroll');
+        InfiniteScrollView = require('thirdchannel/views/shared/infinite_scroll');
 
 
     var ActivitiesView = InfiniteScrollView.extend({

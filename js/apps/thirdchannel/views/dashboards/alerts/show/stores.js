@@ -2,13 +2,13 @@ define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
-        Filter = require('app/views/filter/main'),
-        LoadingView = require('app/views/utils/loading'),
-        PaginationView = require('app/views/utils/pagination'),
-        StoreModel = require('app/models/dashboards/alerts/store'),
-        StoresModel = require('app/models/dashboards/alerts/stores'),
-        FiltersCollection = require('app/collections/dashboards/alerts/show/filters'),
-        StoreView = require('app/views/dashboards/alerts/show/store');
+        Filter = require('thirdchannel/views/filter/main'),
+        LoadingView = require('thirdchannel/views/utils/loading'),
+        PaginationView = require('thirdchannel/views/utils/pagination'),
+        StoreModel = require('thirdchannel/models/dashboards/alerts/store'),
+        StoresModel = require('thirdchannel/models/dashboards/alerts/stores'),
+        FiltersCollection = require('thirdchannel/collections/dashboards/alerts/show/filters'),
+        StoreView = require('thirdchannel/views/dashboards/alerts/show/store');
 
     return Backbone.View.extend({
         el: '.dashboard',

@@ -1,14 +1,14 @@
 define(function(require) {
     var $ = require('jquery'),
         context = require('context'),
-        HoverableImageView = require('app/views/store_profile/hoverable_image'),
-        InfiniteScrollView = require('app/views/shared/infinite_scroll'),
-        InfiniteCollection = require('app/collections/shared/infinite'),
-        GalleryImageModal = require('app/modals/store_profile/gallery_image_modal'),
+        HoverableImageView = require('thirdchannel/views/store_profile/hoverable_image'),
+        InfiniteScrollView = require('thirdchannel/views/shared/infinite_scroll'),
+        InfiniteCollection = require('thirdchannel/collections/shared/infinite'),
+        GalleryImageModal = require('thirdchannel/modals/store_profile/gallery_image_modal'),
 
         /**
          *
-         * @exports app/views/store_profile/gallery
+         * @exports thirdchannel/views/store_profile/gallery
          */
         GalleryView = InfiniteScrollView.extend({
             el: "#gallery",

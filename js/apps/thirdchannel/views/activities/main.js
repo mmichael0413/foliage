@@ -1,8 +1,8 @@
 define(function(require) {
     var context = require('context'),
-        ActivitiesView = require('app/views/activities/activities'),
-        GlobalView = require('app/views/activities/global'),
-        Filter = require('app/views/filter/main');
+        ActivitiesView = require('thirdchannel/views/activities/activities'),
+        GlobalView = require('thirdchannel/views/activities/global'),
+        Filter = require('thirdchannel/views/filter/main');
 
     return {
         init: function (url, incomplete_url, singleActivity) {

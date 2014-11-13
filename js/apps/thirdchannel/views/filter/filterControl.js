@@ -3,10 +3,10 @@ define(function(require) {
         $ = require('jquery'),
         context = require('context'),
         spinnerTemplate = require('handlebarsTemplates')['filters/spinner_component'],
-        SingleAnswerComponentView = require('app/views/filter/singleAnswerComponent'),
-        DateComponentView = require('app/views/filter/dateComponent'),
-        HiddenComponentView = require('app/views/filter/hiddenComponent'),
-        ComponentView = require('app/views/filter/component'),
+        SingleAnswerComponentView = require('thirdchannel/views/filter/singleAnswerComponent'),
+        DateComponentView = require('thirdchannel/views/filter/dateComponent'),
+        HiddenComponentView = require('thirdchannel/views/filter/hiddenComponent'),
+        ComponentView = require('thirdchannel/views/filter/component'),
         SerializeObject = require('serializeObject'),
         helpers = require('helpers');
 
@@ -30,7 +30,7 @@ define(function(require) {
      *
      * 
      *
-     * @exports app/views/filter/filterControl
+     * @exports thirdchannel/views/filter/filterControl
      */
     var control = {
         el: '#site-filter',

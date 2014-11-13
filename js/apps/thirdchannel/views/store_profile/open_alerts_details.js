@@ -1,11 +1,11 @@
 define(function(require) {
-	var AsyncDetailsView = require('app/views/shared/async_details_view'),
+	var AsyncDetailsView = require('thirdchannel/views/shared/async_details_view'),
 		template = require('handlebarsTemplates')['store_profile/open_alert_details'],
 		context = require('context'),
 
 			/**
 			 * 
-			 * @exports app/views/store_profile/open_alerts_details
+			 * @exports thirdchannel/views/store_profile/open_alerts_details
 			 */
 			OpenAlertsDetailsView = AsyncDetailsView.extend({
 				template: template,

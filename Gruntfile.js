@@ -1,23 +1,40 @@
 /*global module, require */
 /*jslint regexp: true */
 
+
+/**
+ *
+ * Wrapper to perform an operation on each matching path item. Could be a file or a directory.
+ * Each item will be passed to a callback - fn - which will receive the following arguments: 
+ * - the name of the item (e.g. the last position in the file path)
+ * - the full path
+ * - the tokenized breakup of the path
+ * 
+ */
+function operateOnPaths(grunt, path, fn) {
+    var appPaths = grunt.file.expand(path),
+        tokens,
+        name,
+        i = appPaths.length;
+
+    while(i--) {
+        tokens = appPaths[i].split('/');
+        // callback that fn utilizes
+        // name, path, tokens
+        fn(tokens[tokens.length-1], appPaths[i], tokens);
+    }
+}
+
 /**
  *
  *
  */
 function buildRequireJSConfig(grunt) {
-    var config = {},
-        appPaths = grunt.file.expand('js/apps/*'),
-        tokens,
-        name,
-        i = appPaths.length;
-    while(i--) {
-        tokens = appPaths[i].split('/');
-        name = tokens[tokens.length-1];
-        console.log(name);
+    var config = {};
+    operateOnPaths(grunt, 'js/apps/*', function (name, path, tokens) {
         config[name] = {
             options: {
-                mainConfigFile: appPaths[i] +"/init.js",
+                mainConfigFile: path +"/init.js",
                 baseUrl: 'js/apps',
                 name: name + '/init',
                 out: 'dist/' + name + '/js/app.js',
@@ -28,8 +45,24 @@ function buildRequireJSConfig(grunt) {
                 preserveLicenseComments: false
             }
         };
-    }
+    });
+        
     return config;
+}
+
+function buildSassConfig(grunt) {
+    /*
+    files: {
+                    'dist/global/css/global.css': 'css/scss/apps/global/main.scss',
+                    'dist/thirdchannel/css/main.css': 'css/scss/apps/thirdchannel/main.scss',
+                    'dist/territory/css/main.css': 'css/scss/apps/territory/main.scss'
+                }
+     */
+    var files = {};
+    operateOnPaths(grunt, 'css/scss/apps/*', function (name, path, tokens) {
+        files['dist/' + name + '/css/main.css'] = path + '/main.scss';
+    });
+    return files;
 }
 
 
@@ -41,7 +74,8 @@ function buildRequireJSConfig(grunt) {
 module.exports = function(grunt) {
     'use strict';
 
-    var requireConfig = buildRequireJSConfig(grunt);
+    var requireConfig = buildRequireJSConfig(grunt),
+        sassConfig = buildSassConfig(grunt);
 
 
 
@@ -94,44 +128,12 @@ module.exports = function(grunt) {
 
         sass: {
             dist: {
-                files: {
-                    'dist/global/css/global.css': 'css/scss/apps/global/main.scss',
-                    'dist/thirdchannel/css/main.css': 'css/scss/apps/thirdchannel/main.scss',
-                    'dist/territory/css/main.css': 'css/scss/apps/territory/main.scss'
-                }
+                files: sassConfig
             }
         },
-        // requirejs: {
-        //     compile: {
-        //         // see full list of options here: https://github.com/jrburke/r.js/blob/master/build/example.build.js
-        //         options: {
-        //             mainConfigFile : "js/app/init.js",
-        //             baseUrl : "js",
-        //             name: "app/init",
-        //             out: "dist/thirdchannel/js/app.js",
-        //             removeCombined: true,
-        //             findNestedDependencies: true,
-        //             generateSourceMaps: true,
-        //             optimize: "uglify2",
-        //             preserveLicenseComments: false
-        //         }
-        //     },
-
-        //     territory : {
-        //         options: {
-        //             mainConfigFile: "js/apps/territory/init.js",
-        //             baseUrl: "js/apps",
-        //             name: "territory/init",
-        //             out: "dist/territory/js/app.js",
-        //             removeCombined: true,
-        //             findNestedDependencies: true,
-        //             generateSourceMaps: true,
-        //             optimize: "uglify2",
-        //             preserveLicenseComments: false
-        //         }
-        //     }
-        // },
+       
         requirejs: requireConfig,
+
         clean: ["dist"],
         copy: {
             main: {
@@ -146,10 +148,10 @@ module.exports = function(grunt) {
         },
         jshint: {
             // the all task covers all files, excluding the hbs-compiled (auto-generated) and any libs we use (we didn't write them)
-            all: ['Gruntfile.js', 'js/app/**/*.js'],
+            all: ['Gruntfile.js', 'js/apps/**/*.js'],
             options: {
                 ignores: [
-                    'js/app/templates/hbs-compiled.js',
+                    '**/hbs-compiled.js',
                     'js/compiled-app.js',
                     'js/libs/**/*.js'
                 ]
@@ -166,7 +168,7 @@ module.exports = function(grunt) {
                     }
                 },
                 files: {
-                    "js/app/templates/hbs-compiled.js": "templates/handlebars/**/*.hbs"
+                    "js/apps/thirdchannel/templates/hbs-compiled.js": "templates/handlebars/**/*.hbs"
                 }
             }
         },
@@ -231,7 +233,7 @@ module.exports = function(grunt) {
                 }
             },
             rjs: {
-                files: ['js/app/**/*.js', '!js/app/handlebars/templates.js'],
+                files: ['js/apps/**/*.js', '!js/apps/thirdchannel/handlebars/templates.js'],
                 tasks: ['requirejs', 'copy']
             }
         }
