@@ -3,11 +3,13 @@ define(function (require) {
         _ = require('underscore'),
         Backbone = require('backbone'),
         Ujs = require('jquery_ujs'),
-        context = require('context');
+        context = require('context'),
+        HandlebarsTemplates = require('handlebarsTemplates');
 
 
     return Backbone.View.extend({
         el: '#site-wrapper',
+        template: HandlebarsTemplates['layout/main_navigation'],
         initialize: function () {
             var _this = this;
 
@@ -17,6 +19,10 @@ define(function (require) {
             this.$siteWrapper = this.$el;
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');
+
+            if (window.bootstrap.navigation){
+                this.render();
+            }
 
             if(!this.isLocalStorageSupported()) {
                 return
@@ -94,6 +100,9 @@ define(function (require) {
             "click .scroll-top" : "scrollTop",
             "click .content-holder" : "closeNav",
             "click #mobile-header" : "closeNav"
+        },
+        render: function(){
+             this.$('#site-menu').append(this.template({navItems: window.bootstrap.navigation}));
         },
         toggleNav: function (e) {
             if(e) {
