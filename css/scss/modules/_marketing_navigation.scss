@@ -11,30 +11,35 @@
 
   .logo {
     float: left;
+    height: 100%;
   }
 
   .menu {
     display: inline;
     float: left;
-    height: 75px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 
     ul {
       list-style-type: none;
       margin: 0;
       padding: 0;
+      height: 100%;
 
       li {
         float: left;
         padding: 1em;
         white-space: nowrap;
 
+        &:hover {
+
+        }
+
         a {
           display: block;
           width: 60px;
-
-          &:hover {
-
-          }
+          height: 100%;
         }
       }
     }
