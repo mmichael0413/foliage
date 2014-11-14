@@ -7,6 +7,5 @@ define(function (require) {
 		it('should also pass', function () {
 			expect(6).toBeGreaterThan(5);
 		});
-		
 	});
 });

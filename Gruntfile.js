@@ -93,7 +93,9 @@ function buildKarmaOptions(serviceName, additionalPaths, additionalExcludes) {
                 "js/libs/bower_components/underscore/underscore.js",
                 "js/libs/bower_components/handlebars/handlebars.min.js",
                 {pattern: "js/libs/bower_components/jquery/jquery.min.js", included: false},
-                {pattern: "js/libs/bower_components/backbone/backbone.js", included: false}
+                {pattern: "js/libs/bower_components/backbone/backbone.js", included: false},
+                {pattern: "js/apps/shared/**/*.js", included: false},
+                {pattern: "js/tests/shared/**/*.js", included: false}
             ],
         excludes = ['js/app/**/init.js'];
     if (additionalPaths) {
@@ -252,7 +254,7 @@ module.exports = function(grunt) {
                 singleRun: true,
                 browsers: ['PhantomJS'],
                 basePath: "",
-                reporters: ['dots', 'osx'],
+                reporters: ['dots'],
                 
             },
 
