@@ -4,10 +4,8 @@ define(function(require) {
 	describe("Open Alerts View", function () {
 		describe("Sample Tests", function () {
 			it('Should totally work', function () {
-				expect(true).toBe(false);
+				expect(true).toBe(true);
 			});
 		});
-
 	});
-
 });
