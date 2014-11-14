@@ -21,7 +21,7 @@ html, body {
   background-color: #FFF;
 }
 
-#container {
+.site-canvas {
   margin-top: 75px;
 }
 
@@ -50,6 +50,7 @@ html, body {
       color: #FFF;
       position: relative;
       top: 50%;
+      vertical-align: middle;
       -ms-transform: translateY(-50%);
       -webkit-transform: translateY(-50%);
       transform: translateY(-50%);
