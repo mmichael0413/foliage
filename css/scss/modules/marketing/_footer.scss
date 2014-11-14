@@ -4,15 +4,27 @@
   padding: 20px;
 
   .about {
+    height: 100%;
+
+    p {
+      color: #fff;
+    }
+
     .about-header {
       font-weight: bold;
       color: $palette2;
     }
 
-    p {
-      color: #fff;
+    .demo, .social {
+      color: $palette2;
+      height: 100%;
+      text-align: center;
+      vertical-align: middle;
+      position: relative;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
     }
   }
-
-
 }
