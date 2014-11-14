@@ -17,14 +17,13 @@
 
     .demo, .social {
       color: $palette2;
-      height: 100%;
       text-align: center;
       vertical-align: middle;
       position: relative;
-      top: 50%;
-      -ms-transform: translateY(-50%);
-      -webkit-transform: translateY(-50%);
-      transform: translateY(-50%);
+      top: 40%;
+      -ms-transform: translateY(40%);
+      -webkit-transform: translateY(40%);
+      transform: translateY(40%);
     }
 
     .demo {
