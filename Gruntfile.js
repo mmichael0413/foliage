@@ -27,29 +27,41 @@ function operateOnPaths(grunt, path, fn) {
 
 /**
  *
- *
+ * Builds the requirejs task blocks. Generally one for each app / service
+ * 
  */
 function buildRequireJSConfig(grunt) {
     var config = {};
     operateOnPaths(grunt, 'js/apps/*', function (name, path, tokens) {
-        config[name] = {
-            options: {
-                mainConfigFile: path +"/init.js",
-                baseUrl: 'js/apps',
-                name: name + '/init',
-                out: 'dist/' + name + '/js/app.js',
-                removeCombined: true,
-                findNestedDependencies: true,
-                generateSourceMaps: true,
-                optimize: "uglify2",
-                preserveLicenseComments: false
-            }
-        };
+        // checking if the path exists, so that we can have additional 'apps' containing shared modules
+        // which we don't necessarily want to build
+        if (grunt.file.exists(path + '/init.js')) {
+            config[name] = {
+                options: {
+                    mainConfigFile: path +"/init.js",
+                    baseUrl: 'js/apps',
+                    name: name + '/init',
+                    out: 'dist/' + name + '/js/app.js',
+                    removeCombined: true,
+                    findNestedDependencies: true,
+                    generateSourceMaps: true,
+                    optimize: "uglify2",
+                    preserveLicenseComments: false
+                }
+            };    
+        }
+        
     });
         
     return config;
 }
 
+/**
+ * Builds the Sass configuration for each app
+ * 
+ * @param  {grunt} grunt The grunt object
+ * @return {object} The Sass file configuration
+ */
 function buildSassConfig(grunt) {
     /*
     files: {
@@ -60,7 +72,12 @@ function buildSassConfig(grunt) {
      */
     var files = {};
     operateOnPaths(grunt, 'css/scss/apps/*', function (name, path, tokens) {
-        files['dist/' + name + '/css/main.css'] = path + '/main.scss';
+        if (grunt.file.exists(path + '/main.scss')) {
+            files['dist/' + name + '/css/main.css'] = path + '/main.scss';    
+        } else {
+            console.warn("Ignoring '" + path + "'' because it contains no 'main.scss'");
+        }
+        
     });
     return files;
 }
@@ -107,7 +124,11 @@ module.exports = function(grunt) {
                 }
             }
         },
-
+        /**
+         * 
+         * Task to custom configure our grids
+         * 
+         */
         pure_grids: {
             responsive: {
                 dest: 'css/scss/lib/pure.responsive-grid.scss',
@@ -125,16 +146,33 @@ module.exports = function(grunt) {
                 }
             }
         },
-
+        /**
+         * 
+         * SASS!
+         * 
+         */
         sass: {
             dist: {
                 files: sassConfig
             }
         },
-       
+        /**
+         *
+         * Configuration for RequireJS; built by custom functionality declared above
+         * 
+         */
         requirejs: requireConfig,
 
+        /**
+         * 
+         * Which folders to clean up
+         */
         clean: ["dist"],
+
+        /**
+         * 
+         * 
+         */
         copy: {
             main: {
                 files: [
@@ -146,6 +184,12 @@ module.exports = function(grunt) {
                 ]
             }
         },
+        /**
+         * 
+         *
+         *
+         * 
+         */
         jshint: {
             // the all task covers all files, excluding the hbs-compiled (auto-generated) and any libs we use (we didn't write them)
             all: ['Gruntfile.js', 'js/apps/**/*.js'],
@@ -157,7 +201,12 @@ module.exports = function(grunt) {
                 ]
             }
         },
-
+        /**
+         * 
+         * Karma testing configuration
+         *
+         * 
+         */
         karma: {
             thirdchannel: {
                 // Ideally we want to run in background mode... but I'm running into a open file limit due to the grunt
@@ -193,6 +242,12 @@ module.exports = function(grunt) {
             }
         },
 
+        /**
+         * 
+         *
+         *
+         * 
+         */
         handlebars: {
             compile: {
                 options: {
@@ -208,6 +263,11 @@ module.exports = function(grunt) {
                 }
             }
         },
+        /**
+         * 
+         * 
+         * 
+         */
         aws_s3: {
             options: {
                 accessKeyId: process.env.AWS_ACCESS_KEY_ID, // Use the variables
@@ -244,6 +304,12 @@ module.exports = function(grunt) {
                 ]
             }
         },
+        /**
+         * 
+         * 
+         *
+         * 
+         */
         watch: {
             sass: {
                 files: ['css/**/*.scss'],
@@ -280,19 +346,8 @@ module.exports = function(grunt) {
             // }
         }
     });
-    
+    // rather than list every dependency line by line, just load 'em all
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-    // grunt.loadNpmTasks('grunt-contrib-jshint');
-    // grunt.loadNpmTasks('grunt-contrib-sass');
-    // grunt.loadNpmTasks('grunt-contrib-watch');
-    // grunt.loadNpmTasks("grunt-nodemon");
-    // grunt.loadNpmTasks("grunt-concurrent");
-    // grunt.loadNpmTasks('grunt-pure-grids');
-    // grunt.loadNpmTasks('grunt-contrib-requirejs');
-    // grunt.loadNpmTasks('grunt-contrib-handlebars');
-    // grunt.loadNpmTasks('grunt-contrib-copy');
-    // grunt.loadNpmTasks('grunt-contrib-clean');
-    // grunt.loadNpmTasks('grunt-aws-s3');
 
     grunt.registerTask('default', ['concurrent:dev']);
     grunt.registerTask('build-dev', ['clean', 'sass','handlebars','requirejs','copy']);
