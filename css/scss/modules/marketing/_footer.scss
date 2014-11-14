@@ -1,11 +1,18 @@
 .footer {
   background-color: $slate;
-  height: 200px;
+  min-height: 200px;
+  padding: 20px;
 
-  /*
-  .about-header {
-    font-weight: bold;
-    color: $palette2;
+  .about {
+    .about-header {
+      font-weight: bold;
+      color: $palette2;
+    }
+
+    p {
+      color: #fff;
+    }
   }
-  */
+
+
 }
