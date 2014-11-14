@@ -3,11 +3,13 @@ define(function (require) {
         _ = require('underscore'),
         Backbone = require('backbone'),
         Ujs = require('jquery_ujs'),
-        context = require('context');
+        context = require('context'),
+        HandlebarsTemplates = require('handlebarsTemplates');
 
 
     return Backbone.View.extend({
         el: '#site-wrapper',
+        template: HandlebarsTemplates['layout/main_navigation'],
         initialize: function () {
             var _this = this;
 
@@ -18,6 +20,13 @@ define(function (require) {
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');
 
+            if (window.bootstrap.navigation){
+                this.render();
+            }
+
+            if(!this.isLocalStorageSupported()) {
+                return;
+            }
 
             if (!window.localStorage.getItem('main_navigation')){
                 window.localStorage.setItem('main_navigation', 'expanded-nav');
@@ -91,6 +100,9 @@ define(function (require) {
             "click .scroll-top" : "scrollTop",
             "click .content-holder" : "closeNav",
             "click #mobile-header" : "closeNav"
+        },
+        render: function(){
+             this.$('#site-menu').append(this.template({navItems: window.bootstrap.navigation}));
         },
         toggleNav: function (e) {
             if(e) {
@@ -182,9 +194,6 @@ define(function (require) {
             context.trigger('navigation:collapsed');
         },
         browserCompatibility: function() {
-            var isFirefox = typeof InstallTrigger !== 'undefined';   // Firefox 1.0+
-            var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
-            var isChrome = !!window.chrome;              // Chrome 1+
             var isIE = /*@cc_on!@*/false || !!document.documentMode; // At least IE6
 
             re = /(W|w)in.*/;
@@ -222,6 +231,17 @@ define(function (require) {
             this.$('.content-holder').animate({
                 scrollTop: 0
             }, 500);
+        },
+        isLocalStorageSupported: function () {
+            var testKey = 'test', storage = window.sessionStorage;
+            try {
+                storage.setItem(testKey, '1');
+                storage.removeItem(testKey);
+                return true;
+            }
+            catch (error) {
+                return false;
+            }
         }
     });
 });

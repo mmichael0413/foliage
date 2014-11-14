@@ -1,0 +1,13 @@
+{{#each buttons}}
+    {{#if_eq type 'link'}}
+        <a href="{{link}}" class="btn {{className}}">
+            {{> 'content'}}
+        </a>
+    {{/if_eq}}
+
+    {{#if_eq type 'button'}}
+        <button class="btn {{className}}">
+            {{> 'content'}}
+        </button>
+    {{/if_eq}}
+{{/each}}

@@ -4,7 +4,8 @@ define(function(require){
         _ = require('underscore'),
         Backbone = require('backbone'),
         context = require('context'),
-        MainLayout = require('thirdchannel/views/layout/main'),
+        namespacer = require('shared/utils/namespacer'),
+        MainLayout = require('shared/views/layout/main'),
         ActivitiesMain = require('thirdchannel/views/activities/main'),
         CheckinsView = require('thirdchannel/views/checkins/checkin'),
         TeamsMain = require('thirdchannel/views/teams/main'),
@@ -23,7 +24,7 @@ define(function(require){
         PostView = require('thirdchannel/views/posts/main'),
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge');
 
-    var AppRouter = require('thirdchannel/routers/contextAwareBaseRouter').extend({
+    var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
@@ -165,6 +166,7 @@ define(function(require){
     });
 
     var initialize = function(){
+        namespacer('bootstrap');
         MainLayout.init();
         context.router = new AppRouter();
         context.instances = {};
