@@ -10,20 +10,8 @@
 @import "../../layout/layout_utils";
 @import "../../layout/base_layout";
 
-@import "../../modules/logo";
+@import "../../modules/marketing_navigation";
 @import "../../modules/pure_grid";
-
-html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
-  box-sizing: inherit;
-}
 
 html, body {
   font-family: "Open Sans", Sans-Serif;
@@ -35,32 +23,6 @@ html, body {
 
 #container {
   margin-top: 75px;
-}
-
-.header {
-  padding: 10px;
-  width: 100%;
-  top: 0;
-  position: fixed;
-  height: 75px;
-  background-color: #FFF;
-
-  nav {
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-
-      li {
-        float: left;
-
-        a {
-          display: block;
-          width: 60px;
-        }
-      }
-    }
-  }
 }
 
 .footer {
