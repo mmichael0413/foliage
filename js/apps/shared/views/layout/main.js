@@ -1,6 +1,6 @@
 define(function(require) {
-	var NavigationView = require('thirdchannel/views/layout/navigation'),
-		ActionButtonView = require('thirdchannel/views/layout/action_buttons');
+	var NavigationView = require('shared/views/layout/navigation'),
+		ActionButtonView = require('shared/views/layout/action_buttons');
 
 	return  {
 		init: function () {

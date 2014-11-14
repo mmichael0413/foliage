@@ -5,7 +5,7 @@ define(function(require){
         Backbone = require('backbone'),
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
-        MainLayout = require('thirdchannel/views/layout/main'),
+        MainLayout = require('shared/views/layout/main'),
         ActivitiesMain = require('thirdchannel/views/activities/main'),
         CheckinsView = require('thirdchannel/views/checkins/checkin'),
         TeamsMain = require('thirdchannel/views/teams/main'),
