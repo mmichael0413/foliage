@@ -4,6 +4,7 @@ define(function(require){
         _ = require('underscore'),
         Backbone = require('backbone'),
         context = require('context'),
+        namespacer = require('shared/utils/namespacer'),
         MainLayout = require('thirdchannel/views/layout/main'),
         ActivitiesMain = require('thirdchannel/views/activities/main'),
         CheckinsView = require('thirdchannel/views/checkins/checkin'),
@@ -165,6 +166,7 @@ define(function(require){
     });
 
     var initialize = function(){
+        namespacer('bootstrap');
         MainLayout.init();
         context.router = new AppRouter();
         context.instances = {};

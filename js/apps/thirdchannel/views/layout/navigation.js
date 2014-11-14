@@ -25,7 +25,7 @@ define(function (require) {
             }
 
             if(!this.isLocalStorageSupported()) {
-                return
+                return;
             }
 
             if (!window.localStorage.getItem('main_navigation')){
