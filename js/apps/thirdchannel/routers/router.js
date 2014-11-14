@@ -24,7 +24,7 @@ define(function(require){
         PostView = require('thirdchannel/views/posts/main'),
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge');
 
-    var AppRouter = require('thirdchannel/routers/contextAwareBaseRouter').extend({
+    var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
