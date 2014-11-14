@@ -27,4 +27,30 @@
       transform: translateY(-50%);
     }
   }
+
+  .footer-links {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #fff;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    a, span {
+      margin-left: 50px;
+      margin-right: 50px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
+    /*
+    .first {
+      margin-left: 0;
+    }
+    */
+  }
 }
