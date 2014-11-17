@@ -24,7 +24,8 @@ require.config({
         'serializeObject' : "libs/bower_components/jquery-serialize-object/jquery.serialize-object",
         'quill' : 'libs/quill/custom',
         'quill-youtube' : 'libs/quill/modules/youtube',
-        'helpers' : 'app/utils/helpers'
+        'helpers' : 'app/utils/helpers',
+        'pikaday' : 'libs/bower_components/pikaday/pikaday'
     },
     shim: {
         "jquery": {
