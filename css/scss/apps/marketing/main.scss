@@ -29,3 +29,35 @@ html, body {
 .site-canvas {
   margin-top: 70px;
 }
+
+#home-page1 {
+  text-align: center;
+  background-color: $palette4;
+
+  #home-page1-content {
+    margin: 0 auto;
+    width: 75%;
+    text-align: inherit;
+    position: relative;
+    top: 50%;
+    vertical-align: middle;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    h1 {
+      max-width: 100%;
+      font-size: 48px;
+      font-weight: bold;
+      line-height: 60px;
+      color: #F15F51;
+    }
+
+    h2 {
+      font-size: 24px;
+      line-height: 36px;
+      font-weight: normal;
+      color: #F6F6F6;
+    }
+  }
+}
