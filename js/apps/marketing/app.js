@@ -10,7 +10,7 @@ define(function(require){
                 var $parent = $el.parent().parent();
                 var $next = $parent.next('.full-section');
 
-                $('body').animate({
+                $('body,html').animate({
                     scrollTop: $next.offset().top - 60
                 }, 1000);
             });
