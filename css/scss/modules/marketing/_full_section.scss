@@ -1,6 +1,14 @@
 .full-section {
+  position: relative;
   padding: 0;
   margin: 0;
   width: 100%;
-  height: 100vh;
+  height: 92vh;
+
+  .full-section-controls {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+  }
 }
