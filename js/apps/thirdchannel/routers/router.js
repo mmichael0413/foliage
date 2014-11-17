@@ -154,7 +154,6 @@ define(function(require){
 
         newPost: function(){
             new PostView();
-
         },
 
         notFound: function(){
