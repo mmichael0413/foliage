@@ -19,12 +19,16 @@
   .login {
     margin-right: 50px;
 
+    position: relative;
+    top: 50%;
+    vertical-align: middle;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+
     .btn {
       color: #fff;
       padding: 8px 30px 8px 30px;
-      position: relative;
-      top: 50%;
-      vertical-align: middle;
     }
   }
 
