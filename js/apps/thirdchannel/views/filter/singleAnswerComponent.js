@@ -35,7 +35,6 @@ define(function(require) {
             if ($activeFilters.length === 0) {
                 //proceed!
                 SingleAnswerComponent.__super__._addFilterFromLink.call(this, $link);
-                this.toggleOpen();
             }
         }
     });
