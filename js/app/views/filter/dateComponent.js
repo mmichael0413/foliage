@@ -21,10 +21,9 @@ define(function (require) {
 
             this.$el.html( handlebarsTemplates[this.templateName]( this.model.toJSON() ) );
 
-            new Pikaday({field: this.$el.find("input")[0],
+            this.datepicker = new Pikaday({field: this.$el.find("input")[0],
                          bound: false,
                          onSelect : function(){
-                             self.toggleOpen();
                              context.trigger('filter:request');
                          }});
 
@@ -38,13 +37,17 @@ define(function (require) {
         },
         addFilterByValue: function (value) {
             this._addFilter(value, value);
+            if (this.datepicker.getDate() === null)
+            {
+                this.datepicker.setDate(value, true);
+            }
         },
         handleDateChange: function (e) {
 
             var value = e.currentTarget.value;
             if (value) {
                 this.clear();
-                this._addFilter(value, value);
+                this.addFilterByValue(value, value);
             }
 
         },
