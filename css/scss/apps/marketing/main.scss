@@ -31,13 +31,13 @@ html, body {
 }
 
 #home-page1 {
+  width: 100%;
   text-align: center;
   background-color: $palette4;
 
   #home-page1-content {
     margin: 0 auto;
     width: 75%;
-    text-align: inherit;
     position: relative;
     top: 50%;
     vertical-align: middle;
@@ -58,6 +58,32 @@ html, body {
       line-height: 36px;
       font-weight: normal;
       color: #F6F6F6;
+    }
+  }
+}
+
+#home-page2 {
+  width: 100%;
+  padding-top: 5px;
+
+  #home-page2-content {
+    text-align: center;
+
+    h1 {
+      font-size: 36px;
+      line-height: 48px;
+      max-width: 100%;
+      color: $red;
+    }
+
+    .possibilities {
+      .possibility {
+        p {
+          margin: 0 auto;
+          width: 250px;
+          text-align: left;
+        }
+      }
     }
   }
 }
