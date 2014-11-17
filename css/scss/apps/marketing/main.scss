@@ -156,6 +156,22 @@ html, body {
 
   #home-page4-content {
     margin: 0 auto;
+    padding-top: 24px;
     width: 75%;
+    text-align: center;
+
+    .circle {
+      margin: 0 auto;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      background: url("http://placekitten.com/g/150/150") no-repeat;
+    }
+
+    .home-page4-content {
+      text-align: left;
+    }
   }
 }
