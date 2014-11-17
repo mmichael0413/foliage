@@ -27,7 +27,7 @@ require.config({
         'quill' : '../libs/quill/custom',
         'quill-youtube' : '../libs/quill/modules/youtube',
         'helpers' : 'thirdchannel/utils/helpers',
-        'pikaday' : 'libs/bower_components/pikaday/pikaday'
+        'pikaday' : '../libs/bower_components/pikaday/pikaday'
     },
     shim: {
         "jquery": {
