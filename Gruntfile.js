@@ -180,6 +180,7 @@ module.exports = function(grunt) {
                     {expand: true, flatten: true, src: ['js/libs/bower_components/requirejs/require.js'], dest: 'dist/thirdchannel/js', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['js/libs/bower_components/requirejs/require.js'], dest: 'dist/bigTastysBackDoor/js', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/thirdchannel/fonts/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/marketing/fonts/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/territory/fonts/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/bigTastysBackDoor/fonts/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['images/*'], dest: 'dist/thirdchannel/images/', filter: 'isFile'}
