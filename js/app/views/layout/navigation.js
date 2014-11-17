@@ -19,7 +19,7 @@ define(function (require) {
             this.$toggleFilter = $('.toggle-filter');
 
             if(!this.isLocalStorageSupported()) {
-                return
+                return;
             }
 
             if (!window.localStorage.getItem('main_navigation')){
