@@ -83,6 +83,41 @@ function buildSassConfig(grunt) {
 }
 
 
+function buildKarmaOptions(serviceName, additionalPaths, additionalExcludes) {
+    var options = {frameworks: ['jasmine', 'requirejs']},
+        // the included: false is mandatory in order to be loaded with requirejs; ignoring this causes the scripts to be loaded in
+        // phantom, which causes requirejs to fail as the scripts have all ready been processed.
+        // some libraries, Like jquery and backbone, are already AMD and should be included via false
+
+        files = [
+                "js/libs/bower_components/underscore/underscore.js",
+                "js/libs/bower_components/handlebars/handlebars.min.js",
+                {pattern: "js/libs/bower_components/jquery/jquery.min.js", included: false},
+                {pattern: "js/libs/bower_components/backbone/backbone.js", included: false},
+                {pattern: "js/apps/shared/**/*.js", included: false},
+                {pattern: "js/tests/shared/**/*.js", included: false}
+            ],
+        excludes = ['js/app/**/init.js'];
+    if (additionalPaths) {
+        files = files.concat(additionalPaths);
+    }
+    if (additionalExcludes) {
+        excludes =  excludes.concat(additionalExcludes);
+    }
+    
+
+    files = files.concat([
+        {pattern: "js/apps/" + serviceName + "/**/*.js", included: false},
+        {pattern: "js/tests/" + serviceName +"/**/*.js", included: false},
+        "js/tests/" + serviceName +"-init.js"
+    ]);
+    options.files = files;
+    options.exclude = excludes;
+
+    return options;
+}
+
+
 /**
  * 
  * The main Grunt config file
@@ -204,6 +239,7 @@ module.exports = function(grunt) {
                 ]
             }
         },
+
         /**
          * 
          * Karma testing configuration
@@ -211,38 +247,37 @@ module.exports = function(grunt) {
          * 
          */
         karma: {
-            thirdchannel: {
+            
+            options: {
                 // Ideally we want to run in background mode... but I'm running into a open file limit due to the grunt
                 // watch task. Need to research how to raise the upper limit on the max file descriptors before proceeding
                 //background: true,
                 singleRun: true,
-
-
                 browsers: ['PhantomJS'],
                 basePath: "",
-                reporters: ['progress', 'osx'],
+                reporters: ['dots'],
+                
+            },
 
-                options: {
-                    frameworks: ['jasmine', 'requirejs'],
+            thirdchannel: {
+                options: buildKarmaOptions('thirdchannel')
+            },
+            // thirdchannel_single: {
+                
+            //     reporters: ['dots'],
+            //     options: buildKarmaOptions('thirdchannel')  
+            // },
 
-                    files: [
-                         "js/libs/bower_components/underscore/underscore.js",
-                         "js/libs/bower_components/handlebars/handlebars.min.js",
-                        // the included: false is mandatory in order to be loaded with requirejs; ignoring this causes the scripts to be loaded in
-                        // phantom, which causes requirejs to fail as the scripts have all ready been processed.
-                        {pattern: "js/apps/thirdchannel/**/*.js", included: false},
-                        {pattern: "js/tests/thirdchannel/**/*.js", included: false},
-                        {pattern: "js/libs/bower_components/jquery/jquery.min.js", included: false},
-                        {pattern: "js/libs/bower_components/backbone/backbone.js", included: false},
+            territory: {
+                options: buildKarmaOptions('territory')
+            },
 
-                        // test runner
-                        "js/tests/thirdchannel-init.js"
-                    ],
-                    exclude: [
-                        "js/apps/**/init.js",
-                    ]
-                }
-            }
+            // territory_single: {
+            //     background: false,
+            //     singleRun: true,
+            //     reporters: ['dots'],
+            //     options: buildKarmaOptions('territory')    
+            // }
         },
 
         /**
@@ -343,18 +378,24 @@ module.exports = function(grunt) {
             //     files: ['js/apps/**/*.js', '!js/apps/thirdchannel/handlebars/templates.js'],
             //     tasks: ['requirejs', 'copy']
             // },
-            // karma: {
-            //     files: ['js/apps/**/*.js', 'js/tests/**/*.js'],
-            //     tasks: ['karma:thirdchannel:run'] //NOTE the :run flag
-            // }
+            thirdchannel_test: {
+                files: ['js/apps/thirdchannel/**/*.js', 'js/tests/thirdchannel/**/*.js'],
+                tasks: ['karma:thirdchannel']
+            },
+            territory_test: {
+                files: ['js/apps/territory/**/*.js', 'js/tests/territory/**/*.js'],
+                tasks: ['karma:territory']
+            }
         }
     });
     // rather than list every dependency line by line, just load 'em all
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.registerTask('default', ['concurrent:dev']);
-    grunt.registerTask('build-dev', ['clean', 'sass','handlebars','requirejs','copy']);
-    grunt.registerTask('build-beta', ['clean', 'sass','handlebars','requirejs','copy', 'aws_s3:staging']);
-    grunt.registerTask('build-prod', ['clean', 'sass','handlebars','requirejs','copy', 'aws_s3:production']);
+    grunt.registerTask('test', ['karma:thirdchannel', 'karma:territory']);
+
+    grunt.registerTask('build-dev', ['clean', 'sass','handlebars','test', 'requirejs','copy']);
+    grunt.registerTask('build-beta', ['clean', 'sass','handlebars', 'test', 'requirejs','copy', 'aws_s3:staging']);
+    grunt.registerTask('build-prod', ['clean', 'sass','handlebars','test', 'requirejs','copy', 'aws_s3:production']);
 
 };

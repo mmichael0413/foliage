@@ -12,7 +12,7 @@ define(function(require) {
     return Backbone.View.extend({
         el: ".report",
         initialize: function (options) {
-            this.model = new ReportModel(options);
+            this.model = new ReportModel($.extend(options, {queryString: window.bootstrap}));
             this.filters = new ReportFilterCollection(options);
             this.listenTo(context, 'filter:query', this.applyFilter);
             this.loadingView = new LoadingView();
