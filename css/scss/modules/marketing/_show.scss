@@ -1,25 +1,6 @@
 .show-content {
   margin-bottom: 50px;
 
-  .show-header {
-    text-align: center;
-    width: 100%;
-    height: 200px;
-    background-color: $red;
-
-    h2 {
-      font-size: 36px;
-      text-transform: uppercase;
-      color: #FFF;
-      position: relative;
-      top: 50%;
-      vertical-align: middle;
-      -ms-transform: translateY(-50%);
-      -webkit-transform: translateY(-50%);
-      transform: translateY(-50%);
-    }
-  }
-
   .show-body {
     width: 850px;
     margin: 0 auto;
