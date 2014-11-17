@@ -1,0 +1,20 @@
+.profiles {
+  margin: 0 auto;
+  margin-bottom: 40px;
+  width: 1024px; /* this doesn't feel right... */
+
+  .profile {
+    width: 300px;
+    margin: 15px;
+
+    .profile-info {
+      border-bottom: 1px solid #E3E8EC;
+
+      .profile-name {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+
