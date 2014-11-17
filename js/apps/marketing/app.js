@@ -11,7 +11,7 @@ define(function(require){
                 var $next = $parent.next('.full-section');
 
                 $('body').animate({
-                    scrollTop: $next.offset().top - 70
+                    scrollTop: $next.offset().top - 68
                 }, 1000);
             });
         }
