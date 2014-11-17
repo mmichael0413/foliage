@@ -39,7 +39,8 @@ define(function (require) {
             this._addFilter(value, value);
             if (this.datepicker.getDate() === null)
             {
-                this.datepicker.setDate(value, true);
+                var date = new Date(value);
+                this.datepicker.setDate(new Date(date.getTime() + date.getTimezoneOffset()*(60000)), true);
             }
         },
         handleDateChange: function (e) {
