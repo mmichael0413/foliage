@@ -121,3 +121,41 @@ html, body {
     }
   }
 }
+
+#home-page4 {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  #home-page4-header {
+    background-color: $red;
+    text-align: center;
+    color: #fff;
+    padding-top: 18px;
+    padding-bottom: 36px;
+
+    div {
+      margin: 0 auto;
+      width: 75%;
+
+      h1 {
+        max-width: 100%;
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 24px;
+      }
+
+      h2 {
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 24px;
+      }
+    }
+
+  }
+
+  #home-page4-content {
+    margin: 0 auto;
+    width: 75%;
+  }
+}
