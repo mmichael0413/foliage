@@ -9,6 +9,8 @@
 @import "../../base/buttons";
 @import "../../layout/layout_utils";
 
+@import "../../modules/atoms/_vertically_centered";
+
 @import "../../modules/pure_grid";
 @import "../../modules/marketing/_navigation";
 @import "../../modules/marketing/_footer";
@@ -37,12 +39,6 @@ html, body {
   #home-page1-content {
     margin: 0 auto;
     width: 75%;
-    position: relative;
-    top: 50%;
-    vertical-align: middle;
-    -ms-transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
 
     h1 {
       max-width: 100%;
