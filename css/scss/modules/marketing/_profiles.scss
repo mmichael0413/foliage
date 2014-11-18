@@ -1,14 +1,14 @@
 .profiles {
   margin: 0 auto;
   margin-bottom: 40px;
-  width: 75%;
+  width: 1024px;
 
   .profile {
     padding: 15px;
 
     .profile-info {
-      padding-bottom: 5px;
       width: 300px;
+      padding-bottom: 5px;
       border-bottom: 1px solid #E3E8EC;
 
       @include swb-medium {
