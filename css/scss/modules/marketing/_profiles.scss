@@ -11,9 +11,21 @@
       width: 300px;
       border-bottom: 1px solid #E3E8EC;
 
+      @include swb-medium {
+        margin: 0 auto;
+      }
+
       .profile-name {
         font-weight: bold;
       }
     }
+
+    @include swb-medium {
+      padding: 15px 0 15px 0;
+    }
+  }
+
+  @include swb-medium {
+    width: 100%;
   }
 }
