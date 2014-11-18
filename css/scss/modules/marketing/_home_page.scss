@@ -5,19 +5,11 @@
     margin: 0 auto;
     width: 75%;
 
-    h1 {
-      max-width: 100%;
-      font-size: 48px;
-      font-weight: bold;
-      line-height: 60px;
-      color: #F15F51;
-    }
-
     h2 {
-      font-size: 24px;
-      line-height: 36px;
+      font-size: 1.5em;
+      line-height: 1.2em;
       font-weight: normal;
-      color: #F6F6F6;
+      color: $light-gray;
     }
   }
 }
@@ -26,13 +18,6 @@
   padding-top: 5px;
 
   #home-page2-content {
-    h1 {
-      font-size: 36px;
-      line-height: 48px;
-      max-width: 100%;
-      color: $red;
-    }
-
     .possibilities {
       .possibility {
         p {
@@ -47,22 +32,15 @@
 
 #home-page3 {
   padding-top: 5px;
-  background-color: #F6F6F6;
+  background-color: $light-gray;
 
   #home-page3-content {
     margin: 0 auto;
     width: 75%;
 
-    h1 {
-      font-size: 36px;
-      line-height: 48px;
-      max-width: 100%;
-      color: $red;
-    }
-
     h2 {
-      font-size: 24px;
-      line-height: 36px;
+      font-size: 1.5em;
+      line-height: 1.6em;
       font-weight: normal;
     }
 
@@ -80,25 +58,16 @@
 #home-page4 {
   #home-page4-header {
     background-color: $red;
-    color: #fff;
+    color: $light-gray;
     padding-top: 18px;
-    padding-bottom: 36px;
+    padding-bottom: 18px;
 
     div {
       margin: 0 auto;
       width: 75%;
 
       h1 {
-        max-width: 100%;
-        font-size: 36px;
-        font-weight: bold;
-        line-height: 24px;
-      }
-
-      h2 {
-        font-size: 18px;
-        font-weight: normal;
-        line-height: 24px;
+        color: $light-gray;
       }
     }
 

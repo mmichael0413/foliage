@@ -5,10 +5,7 @@
 
   .about {
     height: 100%;
-
-    p {
-      color: #fff;
-    }
+    color: $light-gray;
 
     .about-header {
       font-weight: bold;
@@ -36,10 +33,10 @@
   .footer-links {
     margin-top: 50px;
     margin-bottom: 10px;
-    color: #fff;
+    color: $light-gray;
 
     a {
-      color: #fff;
+      color: $light-gray;
       text-decoration: none;
     }
 

@@ -18,12 +18,8 @@
     bottom: 0;
 
     a {
-      color: #F6F6F6;
-      line-height: 36px;
-
-      .dark {
-        color: #5D5D5D;
-      }
+      color: $light-gray;
+      line-height: 2.3em;
 
       .read-more-circle {
         margin: 0 auto;
