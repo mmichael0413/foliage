@@ -1,0 +1,135 @@
+#home-page1 {
+  background-color: $palette4;
+
+  #home-page1-content {
+    margin: 0 auto;
+    width: 75%;
+
+    h1 {
+      max-width: 100%;
+      font-size: 48px;
+      font-weight: bold;
+      line-height: 60px;
+      color: #F15F51;
+    }
+
+    h2 {
+      font-size: 24px;
+      line-height: 36px;
+      font-weight: normal;
+      color: #F6F6F6;
+    }
+  }
+}
+
+#home-page2 {
+  padding-top: 5px;
+
+  #home-page2-content {
+    h1 {
+      font-size: 36px;
+      line-height: 48px;
+      max-width: 100%;
+      color: $red;
+    }
+
+    .possibilities {
+      .possibility {
+        p {
+          margin: 0 auto;
+          width: 250px;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+#home-page3 {
+  padding-top: 5px;
+  background-color: #F6F6F6;
+
+  #home-page3-content {
+    margin: 0 auto;
+    width: 75%;
+
+    h1 {
+      font-size: 36px;
+      line-height: 48px;
+      max-width: 100%;
+      color: $red;
+    }
+
+    h2 {
+      font-size: 24px;
+      line-height: 36px;
+      font-weight: normal;
+    }
+
+    >img {
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+
+    >p {
+      text-align: left;
+    }
+  }
+}
+
+#home-page4 {
+  #home-page4-header {
+    background-color: $red;
+    color: #fff;
+    padding-top: 18px;
+    padding-bottom: 36px;
+
+    div {
+      margin: 0 auto;
+      width: 75%;
+
+      h1 {
+        max-width: 100%;
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 24px;
+      }
+
+      h2 {
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 24px;
+      }
+    }
+
+  }
+
+  #home-page4-content {
+    margin: 0 auto;
+    padding-top: 24px;
+    width: 75%;
+
+    h2 {
+      margin-top: 24px;
+      color: $red;
+    }
+
+    .circle {
+      margin: 0 auto;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      background: url("http://placekitten.com/g/150/150") no-repeat;
+    }
+
+    .home-page4-content {
+      text-align: left;
+
+      a {
+        font-weight: bold;
+      }
+    }
+  }
+}
