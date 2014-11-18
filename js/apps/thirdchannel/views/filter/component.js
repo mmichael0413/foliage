@@ -24,8 +24,8 @@ define(function(require) {
             'click .filter-list-item': 'addFilterHandler',
             'click .active-filter': 'resetItem',
             // used by subclasses
-            'change input[type="date"]': 'handleDateChange',
-            'blur input[type="date"]': 'handleDateBlur'
+            'change input[type="datetime"]': 'handleDateChange',
+            'blur input[type="datetime"]': 'handleDateBlur'
         },
 
         

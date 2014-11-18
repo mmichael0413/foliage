@@ -332,7 +332,15 @@ module.exports = function(grunt) {
             },
             production: {
                 options: {
-                    bucket: 'thirdchannel-assets'
+                    bucket: 'thirdchannel-assets',
+                    params: {
+                        CacheControl: 'public, max-age=30'
+                    },
+                    mime: {
+                        'dist/thirdchannel/fonts/nexa_bold-webfont.woff': 'application/font-woff',
+                        'dist/thirdchannel/fonts/nexa_light-webfont.woff': 'application/font-woff',
+                        'dist/thirdchannel/fonts/tc-icons_6e130a4e526e6c444098f7055986eb13.woff': 'application/font-woff'
+                    }
                 },
                 files: [
                     {dest: 'dist/thirdchannel/', cwd: 'backup/thirdchannel/production/', action: 'download'},
