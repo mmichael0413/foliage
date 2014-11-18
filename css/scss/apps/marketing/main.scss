@@ -38,11 +38,21 @@ h1 {
   color: $red;
   max-width: 100%;
   text-transform: uppercase;
+
+  @include swb-medium {
+    margin-bottom: 5px;
+    font-size: 1.5em;
+    line-height: 1em;
+  }
 }
 
 h2 {
   font-size: 1.2em;
   font-weight: normal;
+
+  @include swb-medium {
+    font-size: 0.6em;
+  }
 }
 
 .content {

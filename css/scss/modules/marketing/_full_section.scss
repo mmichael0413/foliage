@@ -21,6 +21,10 @@
       color: $light-gray;
       line-height: 2.3em;
 
+      @include swb-medium {
+        font-size: 0.6em;
+      }
+
       .read-more-circle {
         margin: 0 auto;
         width: 75px;
@@ -38,7 +42,16 @@
 
         -moz-border-radius-bottomright: 0;
         -webkit-border-bottom-right-radius: 0;
+
+        @include swb-medium {
+          padding-top: 0.3em;
+          font-size: 1.5em;
+        }
       }
     }
+  }
+
+  @include swb-medium {
+    height: 88vh;
   }
 }
