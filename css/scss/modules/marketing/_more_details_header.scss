@@ -14,9 +14,13 @@
     width: 80%;
 
     .tag-line {
-      font-size: 24px;
-      line-height: 36px;
+      font-size: 1.5em;
+      line-height: 1.2em;
       color: #F6F6F6;
+    }
+
+    @include swb-medium {
+      width: 100%;
     }
   }
 }
