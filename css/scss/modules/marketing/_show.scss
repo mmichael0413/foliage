@@ -10,8 +10,13 @@
       line-height: 36px;
     }
 
-    p {
-      margin: 36px 0 0 0;
+    h4 {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+
+    p, address {
+      margin: 1em 0 0 0;
     }
 
     @include swb-medium {
