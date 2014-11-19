@@ -1,10 +1,15 @@
 #home-page1 {
-  margin-top: -48px;
+  margin-top: -3em;
   background-color: $palette4;
+
+  @include swb-medium {
+    margin-top: -3.8em;
+  }
 
   #home-page1-content {
     margin: 0 auto;
     width: 75%;
+    opacity: 1;
 
     @include swb-medium {
       padding: 0.5em;

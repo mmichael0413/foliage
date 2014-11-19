@@ -6,8 +6,8 @@
   width: 100vw;
   text-align: center;
 
-  &.first-section {
-    margin-top: -48px;
+  @include swb-medium {
+    height: 100vh;
   }
 
   &.last-section {
