@@ -7,6 +7,7 @@ define(function(require) {
             this.checkinId = options.checkinId;
             this.data = "";
         },
+        isNew : function () { return false; },
         url: function() {
             return '/programs/' + this.programId + '/checkins/' + this.checkinId + '/save?' + this.data;
         }
