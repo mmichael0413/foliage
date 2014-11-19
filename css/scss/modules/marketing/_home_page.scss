@@ -17,6 +17,10 @@
       width: 100%;
     }
 
+    h1 {
+      margin-bottom: 0.6em;
+    }
+
     h2 {
       font-size: 1.5em;
       line-height: 1.2em;
@@ -107,6 +111,21 @@
 
       h1 {
         color: $light-gray;
+
+        @include swb-medium {
+          font-size: 2em;
+        }
+      }
+
+      h2 {
+        font-size: 1.5em;
+        line-height: 1.6em;
+        margin-top: 0.5em;
+        font-weight: normal;
+
+        @include swb-medium {
+          font-size: 1em;
+        }
       }
     }
 
