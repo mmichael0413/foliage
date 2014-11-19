@@ -8,6 +8,10 @@
 
   @include swb-medium {
     height: 100%;
+
+    .full-section-content {
+      margin-bottom: 6em;
+    }
   }
 
   &.last-section {
