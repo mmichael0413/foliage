@@ -3,6 +3,11 @@
   height: 66vh;
   background-color: $palette4;
   text-align: center;
+  margin-top: -3em;
+
+  @include swb-medium {
+    margin-top: -3.8em;
+  }
 
   .more-details-header-content {
     margin: 0 auto;
