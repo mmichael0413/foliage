@@ -2,7 +2,6 @@
 @import "../../lib/pure.grids-core";
 @import "../../lib/pure.responsive-grid";
 
-@import "../../base/fonts_all";
 @import "../../base/base";
 @import "../../base/text";
 @import "../../base/forms";
@@ -27,9 +26,15 @@ html, body {
   background-color: #FFF;
 }
 
-.site-canvas {
+body {
+  padding-top: 62px;
+}
+
+/*
+.content {
   margin-top: 63px;
 }
+*/
 
 h1 {
   margin-bottom: 25px;
