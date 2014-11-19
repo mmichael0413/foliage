@@ -57,6 +57,10 @@
 
     h1 {
       margin-bottom: 0.6em;
+
+      @include swb-medium {
+        font-size: 2em;
+      }
     }
 
     h2 {
@@ -64,6 +68,10 @@
       line-height: 1.6em;
       margin-top: 0.5em;
       font-weight: normal;
+
+      @include swb-medium {
+        font-size: 1em;
+      }
     }
 
     >img {
@@ -78,6 +86,10 @@
 
     >p {
       text-align: left;
+
+      @include swb-medium {
+        font-size: 0.8em;
+      }
     }
   }
 }
