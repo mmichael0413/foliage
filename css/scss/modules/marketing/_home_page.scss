@@ -67,8 +67,13 @@
     }
 
     >img {
-      margin-top: 24px;
-      margin-bottom: 24px;
+      margin-top: 1.5em;
+      margin-bottom: 1.5em;
+
+      @include swb-medium {
+        width: 100%;
+        height: auto;
+      }
     }
 
     >p {
