@@ -28,11 +28,11 @@ html, body {
 }
 
 body {
-  padding-top: 62px;
+  padding-top: 3.875em;
 }
 
 h1 {
-  margin-bottom: 25px;
+  margin-bottom: 1.6em;
   font-size: 3em;
   line-height: 1.2em;
   color: $red;
@@ -40,7 +40,7 @@ h1 {
   text-transform: uppercase;
 
   @include swb-medium {
-    margin-bottom: 5px;
+    margin-bottom: 0.3em;
     font-size: 1.5em;
     line-height: 1em;
   }
