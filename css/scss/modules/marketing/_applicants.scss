@@ -58,6 +58,12 @@
 
     .spaced {
       margin-left: 2em;
+
+      @include swb-medium {
+        margin-top: 0.5em;
+        margin-left: 0;
+        display: block;
+      }
     }
 
     @include swb-medium {
