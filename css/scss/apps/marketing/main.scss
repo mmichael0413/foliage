@@ -10,6 +10,7 @@
 @import "../../layout/layout_utils";
 
 @import "../../modules/atoms/_vertically_centered";
+@import "../../modules/atoms/video_wrapper";
 
 @import "../../modules/pure_grid";
 @import "../../modules/marketing/_navigation";
@@ -22,6 +23,7 @@
 @import "../../modules/marketing/_profiles";
 @import "../../modules/marketing/_more_details_header";
 @import "../../modules/marketing/_contact_us";
+@import "../../modules/marketing/_applicants";
 
 html, body {
   color: $slate;

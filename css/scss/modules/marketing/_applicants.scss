@@ -1,0 +1,18 @@
+#applicants-1 {
+  margin-top: -2.5em;
+
+  .applicants-1-header {
+    width: 100%;
+    height: 200px;
+    background-color: $slate;
+
+    h1 {
+      color: $light-gray;
+      font-size: 2.5em;
+    }
+  }
+
+  .applicants-1-item {
+    padding: 50px;
+  }
+}
