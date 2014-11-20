@@ -24,9 +24,9 @@
 
   .applicants-1-item {
     padding: 2.4em;
+    text-align: left;
 
     p {
-      text-align: left;
       margin-bottom: 1.5em;
     }
 
@@ -50,6 +50,14 @@
       &:-ms-input-placeholder {
         color: $medium-blue;
       }
+    }
+
+    .btn {
+      padding: 8px 30px 8px 30px;
+    }
+
+    .spaced {
+      margin-left: 2em;
     }
 
     @include swb-medium {
