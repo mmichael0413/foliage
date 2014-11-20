@@ -148,6 +148,53 @@ module.exports = function(grunt) {
                 ]
             }
         },
+
+        invalidate_cloudfront: {
+            options: {
+                key: process.env.AWS_ACCESS_KEY_ID, // Use the variables
+                secret: process.env.AWS_SECRET_ACCESS_KEY, // You can also use env variables
+                region: "us-east-1"
+            },
+            staging: {
+                options: {
+                    distribution: 'EQW05WM7P779I'
+                },
+                files: [
+                    {
+                        dest: 'dist/thirdchannel/css/main.css'
+                    },
+                    {
+                        dest: 'dist/thirdchannel/js/app.js'
+                    },
+                    {
+                        dest: 'dist/thirdchannel/js/app.js.map'
+                    },
+                    {
+                        dest: 'dist/thirdchannel/js/require.js'
+                    }
+                ]
+            },
+            production: {
+                options: {
+                    distribution: 'E317G7EK3NBS4R'
+                },
+                files: [
+                    {
+                        dest: 'dist/thirdchannel/css/main.css'
+                    },
+                    {
+                        dest: 'dist/thirdchannel/js/app.js'
+                    },
+                    {
+                        dest: 'dist/thirdchannel/js/app.js.map'
+                    },
+                    {
+                        dest: 'dist/thirdchannel/js/require.js'
+                    }
+                ]
+            }
+        },
+
         watch: {
             sass: {
                 files: ['css/**/*.scss'],
@@ -190,10 +237,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-aws-s3');
+    grunt.loadNpmTasks('grunt-invalidate-cloudfront');
 
     grunt.registerTask('default', ['concurrent:dev']);
     grunt.registerTask('build-dev', ['clean', 'sass','handlebars','requirejs','copy']);
-    grunt.registerTask('build-beta', ['clean', 'sass','handlebars','requirejs','copy', 'aws_s3:staging']);
-    grunt.registerTask('build-prod', ['clean', 'sass','handlebars','requirejs','copy', 'aws_s3:production']);
+    grunt.registerTask('build-beta', ['clean', 'sass','handlebars','requirejs','copy', 'aws_s3:staging', 'invalidate_cloudfront:staging']);
+    grunt.registerTask('build-prod', ['clean', 'sass','handlebars','requirejs','copy', 'aws_s3:production', 'invalidate_cloudfront:production']);
 
 };
