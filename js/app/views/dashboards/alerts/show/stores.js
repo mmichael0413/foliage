@@ -32,10 +32,6 @@ define(function(require) {
                 }});
             }
 
-            this.filters.fetch({success: function (collection) {
-                self.addFilters(collection);
-            }});
-
             this.model.fetch({data: { page: this.options.page}, processData: true, success: function (model) {
                 self.constructView(model);
             }});
