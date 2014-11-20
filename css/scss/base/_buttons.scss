@@ -96,4 +96,16 @@
         @include btn-details($medium-blue);
         color: $medium-blue;
     }
+    &.inverse {
+      @include btn-details($light-gray);
+      color: $red;
+
+      &.solid {
+        color: $red;
+
+        &:hover:not(:disabled) {
+          color: $red;
+        }
+      }
+    }
 }
