@@ -23,7 +23,34 @@
   }
 
   .applicants-1-item {
-    padding: 2.8em;
+    padding: 2.4em;
+
+    p {
+      text-align: left;
+      margin-bottom: 1.5em;
+    }
+
+    input {
+      margin-bottom: 1em;
+      height: 3.2em;
+      background-color: $light-blue;
+
+      &::-webkit-input-placeholder {
+        color: $medium-blue;
+      }
+
+      &:-moz-placeholder { /* Firefox 18- */
+        color: $medium-blue;
+      }
+
+      &::-moz-placeholder {  /* Firefox 19+ */
+        color: $medium-blue;
+      }
+
+      &:-ms-input-placeholder {
+        color: $medium-blue;
+      }
+    }
 
     @include swb-medium {
       padding: 1.5em;
@@ -66,4 +93,8 @@
       }
     }
   }
+}
+
+#applicants-3 {
+  min-height: 500px;
 }
