@@ -78,13 +78,15 @@
       }
     }
 
-    >img {
-      margin-top: 1.5em;
-      margin-bottom: 1.5em;
+    .pure-g {
+      img {
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
 
-      @include swb-medium {
-        width: 100%;
-        height: auto;
+        @include swb-medium {
+          width: 100%;
+          height: auto;
+        }
       }
     }
 
