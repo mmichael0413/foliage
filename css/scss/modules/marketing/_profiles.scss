@@ -4,11 +4,8 @@
   width: 75%;
 
   .profile {
-    padding: 15px;
-
     .profile-info {
       text-align: center;
-      width: 300px;
       padding-bottom: 5px;
 
       @include swb-medium {
