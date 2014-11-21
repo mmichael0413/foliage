@@ -11,10 +11,24 @@
   background-color: #fff;
   box-shadow: 0 2px 5px 0px #5D5D5D;
 
+
+  .navigation-collapsed {
+    a {
+      @include swb-medium {
+        padding-left: 0.2em;
+        padding-right: 0;
+      }
+    }
+  }
+
   .logo {
     float: left;
     height: 65px;
     display: inline;
+
+    @include swb-medium {
+      padding-left: 0.8em;
+    }
   }
 
   nav {
