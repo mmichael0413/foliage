@@ -1,7 +1,7 @@
 .footer {
   background-color: $slate;
   min-height: 200px;
-  padding: 50px 30px 20px 30px;
+  padding: 2em 1.1em 2em 1.1em;
 
   .about {
     height: 100%;
@@ -27,9 +27,8 @@
       transform: translateY(40%);
 
       @include swb-medium {
+        height: 100%;
         margin-top: 1.2em;
-        vertical-align: middle;
-        position: relative;
         top: 0;
         -ms-transform: none;
         -webkit-transform: none;
@@ -45,7 +44,7 @@
   }
 
   .footer-links {
-    margin-top: 50px;
+    margin-top: 2em;
     margin-bottom: 10px;
     color: $light-gray;
 
@@ -55,11 +54,16 @@
     }
 
     a, span {
-      margin-left: 50px;
-      margin-right: 50px;
+      margin-left: 2em;
+      margin-right: 2em;
 
       &:first-child {
         margin-left: 0;
+      }
+
+      @include swb-medium {
+        margin-left: 0;
+        margin-right: 0;
       }
     }
   }
