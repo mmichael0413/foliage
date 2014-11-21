@@ -1,3 +1,22 @@
+.applicant-item {
+  padding: 2.4em;
+  text-align: left;
+
+  .spaced {
+    margin-left: 2em;
+
+    @include swb-medium {
+      margin-top: 0.5em;
+      margin-left: 0;
+      display: block;
+    }
+  }
+
+  @include swb-medium {
+    padding: 1.5em;
+  }
+}
+
 #applicants-1 {
   margin-top: -2.5em;
   padding-bottom: 0;
@@ -19,25 +38,6 @@
       @include swb-medium {
         font-size: 1.8em;
       }
-    }
-  }
-
-  .applicants-1-item {
-    padding: 2.4em;
-    text-align: left;
-
-    .spaced {
-      margin-left: 2em;
-
-      @include swb-medium {
-        margin-top: 0.5em;
-        margin-left: 0;
-        display: block;
-      }
-    }
-
-    @include swb-medium {
-      padding: 1.5em;
     }
   }
 }
@@ -93,5 +93,12 @@
 
   .agent-name {
     font-weight: bold;
+  }
+
+  @include swb-medium {
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
 }
