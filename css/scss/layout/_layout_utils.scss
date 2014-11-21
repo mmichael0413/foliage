@@ -14,6 +14,7 @@
   clear: both;
 }
 
+
 .module {
   padding:1em;
   background-color: white;
@@ -28,6 +29,7 @@
 .visible-xs, .visible-xs-inline, .visible-md {
   display:none;
 }
+
 
 .expander {
   cursor: pointer; 
@@ -54,7 +56,6 @@
 .right-aligned {
   text-align: right;
 }
-
 .show-filter {
   .scroll-top {
     @include transform(-7.5em)
@@ -83,7 +84,6 @@
   .visible-xs-inline{
     display: inline-block;
   }
-
   .hidden-xs {
     display:none !important;
   }
