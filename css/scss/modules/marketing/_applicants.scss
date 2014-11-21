@@ -26,36 +26,6 @@
     padding: 2.4em;
     text-align: left;
 
-    p {
-      margin-bottom: 1.5em;
-    }
-
-    input {
-      margin-bottom: 0.8em;
-      height: 3em;
-      background-color: $light-blue;
-
-      &::-webkit-input-placeholder {
-        color: $medium-blue;
-      }
-
-      &:-moz-placeholder { /* Firefox 18- */
-        color: $medium-blue;
-      }
-
-      &::-moz-placeholder {  /* Firefox 19+ */
-        color: $medium-blue;
-      }
-
-      &:-ms-input-placeholder {
-        color: $medium-blue;
-      }
-    }
-
-    .btn {
-      padding: 8px 30px 8px 30px;
-    }
-
     .spaced {
       margin-left: 2em;
 
@@ -112,4 +82,26 @@
 
 #applicants-3 {
   min-height: 500px;
+
+  .circle {
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    background: url("http://placekitten.com/g/150/150") no-repeat;
+  }
+
+  .agents {
+    margin-top: 2em;
+  }
+
+  .agent {
+    padding: 2em;
+  }
+
+  .agent-name {
+    font-weight: bold;
+  }
 }
