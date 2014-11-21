@@ -10,6 +10,10 @@
     .about-header {
       font-weight: bold;
       color: $palette2;
+
+      @include swb-medium {
+        font-size: 1.2em;
+      }
     }
 
     .demo, .social {
@@ -21,6 +25,16 @@
       -ms-transform: translateY(40%);
       -webkit-transform: translateY(40%);
       transform: translateY(40%);
+
+      @include swb-medium {
+        margin-top: 1.2em;
+        vertical-align: middle;
+        position: relative;
+        top: 0;
+        -ms-transform: none;
+        -webkit-transform: none;
+        transform: none;
+      }
     }
 
     .demo {
