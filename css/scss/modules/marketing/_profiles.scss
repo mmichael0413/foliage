@@ -1,15 +1,15 @@
 .profiles {
   margin: 0 auto;
   margin-bottom: 40px;
-  width: 1024px; /* TODO This doesn't seem right */
+  width: 75%;
 
   .profile {
     padding: 15px;
 
     .profile-info {
+      text-align: center;
       width: 300px;
       padding-bottom: 5px;
-      border-bottom: 1px solid #E3E8EC;
 
       @include swb-medium {
         margin: 0 auto;
