@@ -9,22 +9,22 @@
 @import "../../base/fonts_all";
 @import "../../layout/layout_utils";
 
-@import "../../modules/atoms/_vertically_centered";
-@import "../../modules/atoms/video_wrapper";
+@import "../../modules/atoms/vertically_centered";
+@import "../../modules/atoms/media_wrapper";
 
 @import "../../modules/pure_grid";
-@import "../../modules/marketing/_navigation";
-@import "../../modules/marketing/_footer";
-@import "../../modules/marketing/_full_section";
-@import "../../modules/marketing/_form";
-@import "../../modules/marketing/_home_page";
-@import "../../modules/marketing/_page_header";
-@import "../../modules/marketing/_section_header";
-@import "../../modules/marketing/_show";
-@import "../../modules/marketing/_profiles";
-@import "../../modules/marketing/_more_details_header";
-@import "../../modules/marketing/_contact_us";
-@import "../../modules/marketing/_applicants";
+@import "../../modules/marketing/navigation";
+@import "../../modules/marketing/footer";
+@import "../../modules/marketing/full_section";
+@import "../../modules/marketing/form";
+@import "../../modules/marketing/home_page";
+@import "../../modules/marketing/page_header";
+@import "../../modules/marketing/section_header";
+@import "../../modules/marketing/show";
+@import "../../modules/marketing/profiles";
+@import "../../modules/marketing/more_details_header";
+@import "../../modules/marketing/contact_us";
+@import "../../modules/marketing/applicants";
 
 html, body {
   color: $slate;
