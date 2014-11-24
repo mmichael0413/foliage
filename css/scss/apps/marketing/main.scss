@@ -10,7 +10,8 @@
 @import "../../layout/layout_utils";
 
 @import "../../modules/atoms/vertically_centered";
-@import "../../modules/atoms/media_wrapper";
+@import "../../modules/atoms/marketing/headline";
+@import "../../modules/atoms/marketing/media_wrapper";
 
 @import "../../modules/pure_grid";
 @import "../../modules/marketing/navigation";
@@ -32,7 +33,7 @@ html, body {
 }
 
 body {
-  padding-top: 65px;
+  padding-top: 70px;
 }
 
 h1 {

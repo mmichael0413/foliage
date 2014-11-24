@@ -1,5 +1,6 @@
 #home-page1 {
   margin-top: -3em;
+  height: 92vh;
   background-color: $palette4;
 
   @include swb-medium {
@@ -135,31 +136,33 @@
 
   #home-page4-content {
     margin: 0 auto;
+    text-align: left;
     padding-top: 24px;
-    width: 75%;
+    width: 100%;
 
     h2 {
       margin-top: 24px;
+      font-weight: bold;
       color: $red;
     }
 
-    /* TODO: Replace with real graphics */
-    .circle {
-      margin: 0 auto;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      -webkit-border-radius: 50%;
-      -moz-border-radius: 50%;
-      background: url("http://placekitten.com/g/150/150") no-repeat;
+    a {
+      font-weight: bold;
+    }
+
+    #home-page4-part2 {
+      background-color: $light-gray;
     }
 
     .home-page4-content {
-      text-align: left;
-
-      a {
-        font-weight: bold;
+      div {
+        padding: 2.8em;
       }
+    }
+
+    .home-page4-graphic {
+      width: 500px;
+      margin: 0 auto;
     }
   }
 }
