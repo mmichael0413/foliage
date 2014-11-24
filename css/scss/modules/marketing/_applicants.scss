@@ -1,5 +1,6 @@
 .applicant-item {
-  padding: 2.4em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
   text-align: left;
 
   .spaced {
@@ -10,10 +11,6 @@
       margin-left: 0;
       display: block;
     }
-  }
-
-  @include swb-medium {
-    padding: 1.5em;
   }
 }
 
