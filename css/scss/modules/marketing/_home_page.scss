@@ -1,3 +1,17 @@
+.graphic-content {
+  img {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+
+    @include swb-medium {
+      width: 100%;
+      height: auto;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+  }
+}
+
 #home-page1 {
   height: 92vh;
   background-color: $palette4;
@@ -20,7 +34,7 @@
 }
 
 #home-page2 {
-  padding-top: 5px;
+  padding-top: 1em;
 
   #home-page2-content {
     @include swb-medium {
@@ -30,6 +44,7 @@
 }
 
 #home-page3 {
+  padding-top: 1em;
   background-color: $light-gray;
 
   #home-page3-content {
@@ -39,20 +54,6 @@
 
     @include swb-medium {
       margin-bottom: 4em;
-    }
-
-    .pure-g {
-      img {
-        margin-top: 1.5em;
-        margin-bottom: 1.5em;
-
-        @include swb-medium {
-          width: 100%;
-          height: auto;
-          margin-top: 0.5em;
-          margin-bottom: 0.5em;
-        }
-      }
     }
 
     >p {
@@ -69,7 +70,6 @@
   #home-page4-header {
     width: 100%;
     background-color: $red;
-    color: $light-gray;
     padding-top: 18px;
     padding-bottom: 18px;
     height: 200px;
@@ -80,17 +80,37 @@
     text-align: left;
     width: 100%;
 
-    a {
-      font-weight: bold;
+
+
+    div {
+      padding: 1em;
+    }
+
+    .home-page4-content {
+      padding: 2em;
+
+      @include swb-medium {
+        padding: 0.5em;
+      }
+
+      >p {
+        margin-top: 2em;
+        margin-bottom: 2em;
+
+        @include swb-medium {
+          margin-top: 1em;
+          margin-bottom: 1em;
+        }
+      }
+
+      a {
+        font-weight: bold;
+        bottom: 0;
+      }
     }
 
     #home-page4-part2 {
       background-color: $light-gray;
-    }
-
-    .home-page4-graphic {
-      width: 500px;
-      margin: 0 auto;
     }
   }
 }

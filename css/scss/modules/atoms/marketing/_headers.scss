@@ -20,6 +20,7 @@
 }
 
 .secondary-header {
+  max-width: 100%;
   font-size: 1.2em;
   font-weight: normal;
   color: $light-gray;
@@ -33,3 +34,15 @@
   }
 }
 
+.content-header {
+  max-width: 100%;
+  font-size: 2.5em;
+  line-height: 1.2em;
+  font-weight: normal;
+  color: $red;
+  margin: 0;
+
+  @include swb-medium {
+    font-size: 1.5em;
+  }
+}
