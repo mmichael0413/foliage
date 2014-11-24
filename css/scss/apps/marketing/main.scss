@@ -21,12 +21,15 @@
 @import "../../modules/marketing/form";
 @import "../../modules/marketing/home_page";
 @import "../../modules/marketing/page_header";
-@import "../../modules/marketing/section_header";
-@import "../../modules/marketing/show";
-@import "../../modules/marketing/profiles";
-@import "../../modules/marketing/more_details_header";
 @import "../../modules/marketing/contact_us";
 @import "../../modules/marketing/applicants";
+@import "../../modules/marketing/show_content";
+
+/* TODO: possibly remove these */
+@import "../../modules/marketing/section_header";
+@import "../../modules/marketing/profiles";
+@import "../../modules/marketing/more_details_header";
+
 
 html, body {
   color: $slate;
