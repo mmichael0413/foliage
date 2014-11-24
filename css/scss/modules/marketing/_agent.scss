@@ -1,7 +1,16 @@
 .agent {
-  padding: 2em;
+  .agent-info {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 
-  .agent-name {
-    font-weight: bold;
+    .agent-name {
+      font-weight: bold;
+    }
+  }
+
+  .agent-quote {
+    text-align: center;
+    margin: 0 auto;
+    width: 75%
   }
 }

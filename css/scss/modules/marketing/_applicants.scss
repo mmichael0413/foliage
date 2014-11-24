@@ -38,12 +38,5 @@
 }
 
 #applicants-3 {
-  height: 100%;
-
-  @include swb-medium {
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
+  padding-top: 2em;
 }
