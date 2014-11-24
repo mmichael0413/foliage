@@ -12,6 +12,14 @@
   }
 }
 
+.home-page-header {
+  width: 100%;
+  background-color: $red;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  height: 200px;
+}
+
 #home-page1 {
   height: 92vh;
   background-color: $palette4;
@@ -34,9 +42,9 @@
 }
 
 #home-page2 {
-  padding-top: 1em;
-
   #home-page2-content {
+    padding-top: 2em;
+
     @include swb-medium {
       margin-bottom: 4em;
     }
@@ -67,14 +75,6 @@
 }
 
 #home-page4 {
-  #home-page4-header {
-    width: 100%;
-    background-color: $red;
-    padding-top: 18px;
-    padding-bottom: 18px;
-    height: 200px;
-  }
-
   #home-page4-content {
     margin: 0 auto;
     text-align: left;
