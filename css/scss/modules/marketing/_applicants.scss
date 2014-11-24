@@ -16,15 +16,18 @@
 
 #applicants-1 {
   height: 92vh;
+
+  @include swb-medium {
+    height: 100%;
+  }
 }
 
 #applicants-2 {
-  margin-top: -2.8em;
   background-color: $palette4;
 
   @include swb-medium {
     margin-top: 0;
-    height: 85vh;
+    height: 88vh;
   }
 
   #applicants-2-content {
@@ -34,30 +37,37 @@
     transform: translateY(50%);
 
     @include swb-medium {
-      padding: 0.5em;
+      padding: 0.8em;
       width: 100%;
+      transform: none;
     }
 
-    h1 {
+    h2 {
+      font-size: 3em;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: $red;
       margin-bottom: 0.6em;
+
+      @include swb-medium {
+        margin: 0.8em 0 0.6em;
+      }
     }
 
     p {
       font-size: 1.5em;
-      line-height: 1.2em;
+      line-height: 1.6em;
       font-weight: normal;
       color: $light-gray;
 
       @include swb-medium {
-        font-size: 1em;
-        line-height: 1em;
+        font-size: 0.8em;
       }
     }
   }
 }
 
 #applicants-3 {
-  margin-top: -2.3em;
   height: 100%;
 
   .agents {
