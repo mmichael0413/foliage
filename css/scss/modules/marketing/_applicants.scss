@@ -34,38 +34,6 @@
   #applicants-2-content {
     margin: 0 auto;
     width: 75%;
-    opacity: 1;
-    transform: translateY(50%);
-
-    @include swb-medium {
-      padding: 0.8em;
-      width: 100%;
-      transform: none;
-    }
-
-    h2 {
-      font-size: 3em;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: $red;
-      margin-bottom: 0.6em;
-
-      @include swb-medium {
-        font-size: 1.5em;
-        margin: 0.8em 0 0.6em;
-      }
-    }
-
-    p {
-      font-size: 1.5em;
-      line-height: 1.6em;
-      font-weight: normal;
-      color: $light-gray;
-
-      @include swb-medium {
-        font-size: 0.8em;
-      }
-    }
   }
 }
 
