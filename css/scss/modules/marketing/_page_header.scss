@@ -1,7 +1,11 @@
 .page-header {
   text-align: center;
   width: 100%;
-  height: 200px;
+  height: 12em;
   background-color: $palette4;
   margin-bottom: 30px;
+
+  @include swb-medium {
+    margin-bottom: 0;
+  }
 }

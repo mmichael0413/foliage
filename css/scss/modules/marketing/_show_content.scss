@@ -8,7 +8,12 @@
   }
 
   .leader {
+    text-align: center;
     font-size: 1.4em;
+
+    @include swb-medium {
+      font-size: 1.2em;
+    }
   }
 
   @include swb-medium {
