@@ -7,17 +7,18 @@
 
   @include swb-medium {
     height: 100%;
-
-    .full-section-content {
-      margin-bottom: 6em;
-    }
   }
 
   &.last-section {
     height: 100%;
   }
 
+  .full-section-content {
+    height: 100%;
+  }
+
   .full-section-controls {
+    z-index: 1;
     width: 100%;
     text-align: center;
     position: absolute;
@@ -39,15 +40,6 @@
         border-radius: 50% / 100%;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-
-        -moz-border-radius: 50% / 100%;
-        -webkit-border-radius: 50% / 100%;
-
-        -moz-border-radius-bottomleft: 0;
-        -webkit-border-bottom-left-radius: 0;
-
-        -moz-border-radius-bottomright: 0;
-        -webkit-border-bottom-right-radius: 0;
 
         @include swb-medium {
           padding-top: 0.3em;

@@ -1,13 +1,14 @@
 .main-header {
   max-width: 100%;
   font-size: 3em;
+  font-weight: bold;
   line-height: 1.2em;
   color: $red;
   text-transform: uppercase;
   margin: 0 0 0.6em;
   text-align: center;
 
-  .main-header-light {
+  &.main-header-light {
     color: $light-gray;
   }
 
@@ -23,7 +24,7 @@
   font-weight: normal;
   color: $light-gray;
 
-  .secondary-header-dark {
+  &.secondary-header-dark {
     color: $dark-slate;
   }
 

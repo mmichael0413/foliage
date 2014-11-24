@@ -23,43 +23,22 @@
   padding-top: 5px;
 
   #home-page2-content {
-    .possibilities {
-      .possibility {
-        p {
-          margin: 0 auto;
-          width: 250px;
-          text-align: left;
-        }
-      }
+    @include swb-medium {
+      margin-bottom: 4em;
     }
   }
 }
 
 #home-page3 {
-  padding-top: 5px;
   background-color: $light-gray;
 
   #home-page3-content {
     margin: 0 auto;
     width: 75%;
+    height: 100%;
 
-    h1 {
-      margin-bottom: 0.6em;
-
-      @include swb-medium {
-        font-size: 2em;
-      }
-    }
-
-    h2 {
-      font-size: 1.5em;
-      line-height: 1.6em;
-      margin-top: 0.5em;
-      font-weight: normal;
-
-      @include swb-medium {
-        font-size: 1em;
-      }
+    @include swb-medium {
+      margin-bottom: 4em;
     }
 
     .pure-g {
@@ -70,6 +49,8 @@
         @include swb-medium {
           width: 100%;
           height: auto;
+          margin-top: 0.5em;
+          margin-bottom: 0.5em;
         }
       }
     }
@@ -86,48 +67,18 @@
 
 #home-page4 {
   #home-page4-header {
+    width: 100%;
     background-color: $red;
     color: $light-gray;
     padding-top: 18px;
     padding-bottom: 18px;
-
-    div {
-      margin: 0 auto;
-      width: 75%;
-
-      h1 {
-        color: $light-gray;
-
-        @include swb-medium {
-          font-size: 2em;
-        }
-      }
-
-      h2 {
-        font-size: 1.5em;
-        line-height: 1.6em;
-        margin-top: 0.5em;
-        font-weight: normal;
-
-        @include swb-medium {
-          font-size: 1em;
-        }
-      }
-    }
-
+    height: 200px;
   }
 
   #home-page4-content {
     margin: 0 auto;
     text-align: left;
-    padding-top: 24px;
     width: 100%;
-
-    h2 {
-      margin-top: 24px;
-      font-weight: bold;
-      color: $red;
-    }
 
     a {
       font-weight: bold;
@@ -135,12 +86,6 @@
 
     #home-page4-part2 {
       background-color: $light-gray;
-    }
-
-    .home-page4-content {
-      div {
-        padding: 2.8em;
-      }
     }
 
     .home-page4-graphic {
