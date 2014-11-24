@@ -1,0 +1,15 @@
+.more-details {
+  margin: 2em;
+
+  .more-detail {
+    padding: 0.8em;
+
+    @include swb-medium {
+      padding: 0.2em;
+    }
+  }
+
+  @include swb-medium {
+    margin: 1em;
+  }
+}
