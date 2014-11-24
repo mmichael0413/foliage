@@ -72,18 +72,6 @@
 #applicants-3 {
   height: 100%;
 
-  .agents {
-    margin-top: 2em;
-
-    .agent {
-      padding: 2em;
-    }
-
-    .agent-name {
-      font-weight: bold;
-    }
-  }
-
   @include swb-medium {
     img {
       width: 100%;
