@@ -3,6 +3,11 @@
   padding-right: 0.5em;
   text-align: left;
 
+  @include swb-medium {
+    margin-top: 1em;
+    margin-left: 0;
+  }
+
   .spaced {
     margin-left: 2em;
 
@@ -19,6 +24,10 @@
 
   @include swb-medium {
     height: 100%;
+
+    #applicants-1-content {
+      margin-bottom: 3.5em;
+    }
   }
 }
 
@@ -26,14 +35,15 @@
   height: 93vh;
   background-color: $palette4;
 
-  @include swb-medium {
-    margin-top: 0;
-    height: 88vh;
-  }
-
   #applicants-2-content {
     margin: 0 auto;
     width: 75%;
+
+    @include swb-medium {
+      width: 100%;
+      padding-top: 1.5em;
+      padding-bottom: 2.5em;
+    }
   }
 }
 
