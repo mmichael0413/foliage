@@ -2,10 +2,12 @@
   margin: 2em;
 
   .more-detail {
-    padding: 0.8em;
+    padding: 2.8em;
+    line-height: 2em;
 
     @include swb-medium {
-      padding: 0.2em;
+      padding: 1.5em;
+      line-height: 1.2em;
     }
   }
 
