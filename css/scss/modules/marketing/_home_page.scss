@@ -47,6 +47,10 @@
       }
     }
 
+    ul {
+      padding-left: 1.4em;
+    }
+
     a {
       font-weight: bold;
       bottom: 0;
@@ -161,4 +165,9 @@
 #home-page7 {
   height: 93vh;
   background-color: $light-gray;
+
+  @include swb-medium {
+    margin-top: -3.8em;
+    height: 100vh;
+  }
 }
