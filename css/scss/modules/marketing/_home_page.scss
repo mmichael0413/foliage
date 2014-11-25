@@ -75,8 +75,10 @@
 }
 
 #home-page4 {
+  height: 100%;
+
   #home-page4-content {
-    margin: 0 auto;
+    margin: 0 auto 3em;
     text-align: left;
     width: 100%;
 
@@ -109,6 +111,27 @@
 
     #home-page4-part2 {
       background-color: $light-gray;
+    }
+  }
+}
+
+#home-page5 {
+  height: 92vh;
+  background-color: $palette4;
+
+  @include swb-medium {
+    margin-top: -3.8em;
+    height: 100vh;
+  }
+
+  #home-page5-content {
+    margin: 0 auto;
+    width: 75%;
+    opacity: 1;
+
+    @include swb-medium {
+      padding: 0.5em;
+      width: 100%;
     }
   }
 }
