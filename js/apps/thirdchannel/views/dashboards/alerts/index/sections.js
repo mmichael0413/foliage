@@ -5,6 +5,7 @@ define(function(require) {
         SectionView = require('thirdchannel/views/dashboards/alerts/index/section'),
         FiltersCollection = require('thirdchannel/collections/dashboards/alerts/index/filters'),
         Filter = require('thirdchannel/views/filter/main'),
+        ExportView = require('thirdchannel/views/utils/export_button'),
         LoadingView = require('thirdchannel/views/utils/loading');
 
     return Backbone.View.extend({
@@ -19,6 +20,11 @@ define(function(require) {
             var self = this;
 
             this.$el.html(this.loadingView.render().$el);
+
+
+            $(".actions .export").each(function(){
+                new ExportView({queryString: window.bootstrap}).render(this);
+            });
 
             if(!context.instances.dashboardCountFilters) {
                 context.instances.dashboardCountFilters = this.filters;
