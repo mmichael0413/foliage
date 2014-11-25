@@ -41,6 +41,11 @@
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
 
+        &.read-more-circle-light {
+          background-color: $light-gray;
+          color: $red;
+        }
+
         @include swb-medium {
           padding-top: 0.3em;
           font-size: 1.5em;
