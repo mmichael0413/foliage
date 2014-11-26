@@ -2,6 +2,12 @@
   width: 75%;
   margin: 0 auto 2em;
 
+  @include swb-medium {
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
   .request-demo-control {
     padding: 0.2em 0.5em 0.2em 0.5em;
   }
@@ -16,9 +22,19 @@
     margin-top: 10em;
     margin-bottom: 10em;
 
+    @include swb-medium {
+      margin-top: 5em;
+      margin-bottom: 5em;
+    }
+
     h2 {
       font-size: 2.5em;
       font-weight: bold;
+
+      @include swb-medium {
+        font-size: 1.8em;
+        line-height: 1.2em;
+      }
     }
   }
 
@@ -26,6 +42,10 @@
     margin-bottom: 1.2em;
     padding: 1.2em;
     height: 3em;
+
+    @include swb-medium {
+      padding: 0.6em;
+    }
   }
 
   textarea {
