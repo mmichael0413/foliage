@@ -1,9 +1,13 @@
 .request-demo-form {
   width: 75%;
-  margin: 0 auto;
+  margin: 0 auto 2em;
 
   .request-demo-control {
     padding: 0.2em 0.5em 0.2em 0.5em;
+  }
+
+  .request-demo-centered {
+    text-align: center;
   }
 
   input, textarea {
@@ -14,5 +18,9 @@
 
   textarea {
     height: 8em;
+  }
+
+  button {
+    padding: 0.5em 4em;
   }
 }
