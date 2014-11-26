@@ -7,9 +7,14 @@
 
   &.page-header-red {
     background-color: $red;
+
+    @include swb-medium {
+      background-color: $red !important;
+    }
   }
 
   @include swb-medium {
     margin-bottom: 0;
+    background-color: $palette3 !important;
   }
 }
