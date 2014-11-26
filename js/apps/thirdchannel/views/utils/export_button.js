@@ -4,10 +4,12 @@ define(function(require) {
 
     return Backbone.View.extend({
         initialize: function (options) {
+            this.options = options
         },
         render: function ($element) {
             this.setElement($element);
             this.linkUrl = this.$el.attr('href');
+            this.updateUrl(this.options.queryString);
             this.listenTo(context, 'filter:query', this.updateUrl);
             return this;
         },

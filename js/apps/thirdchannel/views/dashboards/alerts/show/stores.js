@@ -8,6 +8,7 @@ define(function(require) {
         StoreModel = require('thirdchannel/models/dashboards/alerts/store'),
         StoresModel = require('thirdchannel/models/dashboards/alerts/stores'),
         FiltersCollection = require('thirdchannel/collections/dashboards/alerts/show/filters'),
+        ExportView = require('thirdchannel/views/utils/export_button'),
         StoreView = require('thirdchannel/views/dashboards/alerts/show/store');
 
     return Backbone.View.extend({
@@ -24,6 +25,10 @@ define(function(require) {
         render: function () {
             var self = this;
             this.$el.html(this.loadingView.render().$el);
+
+            $(".actions .export").each(function(){
+                new ExportView({queryString: window.bootstrap}).render(this);
+            });
 
             if(!context.instances.dashboardStoresFilters) {
                 context.instances.dashboardStoresFilters = this.filters;
