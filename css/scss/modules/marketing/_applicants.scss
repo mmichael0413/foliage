@@ -35,6 +35,10 @@
   height: 93vh;
   background-color: $palette4;
 
+  @include swb-medium {
+    background-color: $palette4 !important;
+  }
+
   #applicants-2-content {
     margin: 0 auto;
     width: 75%;

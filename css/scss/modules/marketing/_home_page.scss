@@ -65,6 +65,7 @@
   @include swb-medium {
     margin-top: -3.8em;
     height: 100vh;
+    background-color: $palette4 !important;
   }
 
   #home-page1-content {
@@ -116,6 +117,10 @@
   height: 93vh;
   background-color: $palette4;
 
+  @include swb-medium {
+    background-color: $palette4 !important;
+  }
+
   #home-page4-content {
     margin: 0 auto;
     width: 75%;
@@ -139,6 +144,10 @@
 #home-page6 {
   height: 93vh;
   background-color: $palette4;
+
+  @include swb-medium {
+    background-color: $palette4 !important;
+  }
 
   #home-page6-content {
     margin: 0 auto;
