@@ -10,23 +10,6 @@
     margin-bottom: 1.2em;
     padding: 1.2em;
     height: 3em;
-    background-color: $light-blue;
-
-    &::-webkit-input-placeholder {
-      color: $medium-blue;
-    }
-
-    &:-moz-placeholder { /* Firefox 18- */
-      color: $medium-blue;
-    }
-
-    &::-moz-placeholder {  /* Firefox 19+ */
-      color: $medium-blue;
-    }
-
-    &:-ms-input-placeholder {
-      color: $medium-blue;
-    }
   }
 
   textarea {

@@ -67,6 +67,26 @@ h2 {
   }
 }
 
+input, textarea {
+  background-color: $light-blue;
+
+  &::-webkit-input-placeholder {
+    color: $medium-blue;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $medium-blue;
+  }
+
+  &::-moz-placeholder {  /* Firefox 19+ */
+    color: $medium-blue;
+  }
+
+  &:-ms-input-placeholder {
+    color: $medium-blue;
+  }
+}
+
 .content {
   @include swb-medium {
     padding: 0;
