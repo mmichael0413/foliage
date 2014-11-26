@@ -1,6 +1,7 @@
 define(function(require){
 
-    var $ = require('jquery')
+    var $ = require('jquery'),
+        InquiryView = require('marketing/views/inquiries/main');
 
     return {
         initialize: function () {
@@ -14,6 +15,10 @@ define(function(require){
                     scrollTop: $next.offset().top - 60
                 }, 1000);
             });
+
+            if($('#request-demo')) {
+                new InquiryView();
+            }
         }
     };
 });
