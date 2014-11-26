@@ -32,6 +32,17 @@
   }
 
   nav {
+    ul ul {
+      position: absolute;
+      background-color: #fff;
+      display: none;
+      top: 100%;
+
+      li {
+        float: none;
+      }
+    }
+
     ul {
       float: left;
       margin: 0;
