@@ -324,10 +324,10 @@ module.exports = function(grunt) {
                     }
                 },
                 files: [
-                    {dest: 'dist/thirdchannel/', cwd: 'backup/thirdchannel/staging/', action: 'download'},
-                    {expand: true, cwd: 'backup/thirdchannel/staging', src: ['**'], dest: 'backup/thirdchannel/'+ new Date().getTime()},
-                    {dest: 'dist/thirdchannel/', action: 'delete'},
-                    {expand: true, cwd: 'dist/thirdchannel/', src: ['**'], dest: 'dist/thirdchannel/'}
+                    {dest: 'dist/', cwd: 'backup/staging/', action: 'download'},
+                    {expand: true, cwd: 'backup/staging', src: ['**'], dest: 'backup/'+ new Date().getTime()},
+                    {dest: 'dist/', action: 'delete'},
+                    {expand: true, cwd: 'dist/', src: ['**'], dest: 'dist/'}
                 ]
             },
             production: {
@@ -343,10 +343,10 @@ module.exports = function(grunt) {
                     }
                 },
                 files: [
-                    {dest: 'dist/thirdchannel/', cwd: 'backup/thirdchannel/production/', action: 'download'},
-                    {expand: true, cwd: 'backup/thirdchannel/production', src: ['**'], dest: 'backup/thirdchannel/'+ new Date().getTime()},
-                    {dest: 'dist/thirdchannel/', action: 'delete'},
-                    {expand: true, cwd: 'dist/thirdchannel/', src: ['**'], dest: 'dist/thirdchannel/'}
+                    {dest: 'dist/', cwd: 'backup/production/', action: 'download'},
+                    {expand: true, cwd: 'backup/production', src: ['**'], dest: 'backup/'+ new Date().getTime()},
+                    {dest: 'dist/', action: 'delete'},
+                    {expand: true, cwd: 'dist/', src: ['**'], dest: 'dist/'}
                 ]
             }
         },
