@@ -20,11 +20,14 @@ define(function(require) {
         },
         render: function () {
             var self = this;
-            this.$el.append(this.loadingView.render().$el);
+            this.$el.html(this.loadingView.render().$el);
 
-            this.filters.fetch({success: function (collection) {
-                self.addFilters(collection);
-            }});
+            if(!context.instances.reportInfoFilters) {
+                context.instances.reportInfoFilters = this.filters;
+                this.filters.fetch({success: function (collection) {
+                    self.addFilters(collection);
+                }});
+            }
 
             this.model.fetch({success: function (model) {
                 self.constructView(model);
@@ -35,14 +38,13 @@ define(function(require) {
             Filter.init(value);
         },
         addPages: function (value) {
-            this.$el.find('.pages').append(new PaginationView(value).render().$el);
+            this.$el.find('.pages').empty().append(new PaginationView(value).render().$el);
         },
         addListItem: function (value) {
             this.$el.find('.list-items').append(new ReportInfoListItemView(value).render().$el);
         },
         constructView: function (model) {
-            
-            this.$el.append(this.template(model.toJSON()));
+            this.$el.html(this.template(model.toJSON()));
             this.addPages(model.get('pages'));
             if (model.get('list_items').length > 0) {
                 var that = this;

@@ -19,6 +19,7 @@
     "grunt-pure-grids": "^1.0.2",
     "grunt-contrib-copy": "*",
     "grunt-aws-s3": "*",
+    "grunt-invalidate-cloudfront": "*",
     "grunt-contrib-clean": "*",
     "matchdep": "^0.3.0",
     "mime": "*",
