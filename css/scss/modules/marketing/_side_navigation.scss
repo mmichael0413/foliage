@@ -19,6 +19,7 @@
 
       &:hover {
         background-color: $nav-background-hover;
+        transition: .3s background-color;
       }
     }
   }
