@@ -68,6 +68,10 @@
             background-color: #f6f6f5;
           }
         }
+
+        &:hover > ul {
+          display: block;
+        }
       }
     }
   }
