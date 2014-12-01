@@ -1,0 +1,17 @@
+.side-navigation {
+  width: $standard-nav-width;
+  background-color: $slate;
+  padding-top: 65px;
+
+  -webkit-transition: width 0.3s;
+  -moz-transition: width 0.3s;
+  -ms-transition: width 0.3s;
+  -o-transition: width 0.3s;
+  transition: width 0.3s;
+
+  nav {
+    .nav-item {
+      display: block;
+    }
+  }
+}

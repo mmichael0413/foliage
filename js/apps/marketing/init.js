@@ -6,7 +6,8 @@ require.config({
         'underscore': '../libs/bower_components/underscore/underscore',
         'backbone': '../libs/bower_components/backbone/backbone',
         'jquery-validate' : '../libs/bower_components/jquery-validation/dist/jquery.validate',
-        'serializeObject' : "../libs/bower_components/jquery-serialize-object/jquery.serialize-object"
+        'serializeObject' : "../libs/bower_components/jquery-serialize-object/jquery.serialize-object",
+        'slidebars': "../libs/bower_components/slidebars/development/slidebars"
     },
     shim: {
         "jquery": {
@@ -30,6 +31,9 @@ require.config({
         },
         'serializeObject': {
             deps: ["jquery"]
+        },
+        'slidebars': {
+            deps: ['jquery']
         }
     }
 });

@@ -1,6 +1,7 @@
 define(function(require){
 
     var $ = require('jquery'),
+        sb = require('slidebars'),
         InquiryView = require('marketing/views/inquiries/main');
 
     return {
@@ -19,6 +20,8 @@ define(function(require){
             if($('#request-demo')) {
                 new InquiryView();
             }
+
+            $.slidebars();
         }
     };
 });
