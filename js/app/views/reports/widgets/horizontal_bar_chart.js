@@ -27,7 +27,8 @@ define(function(require) {
                 barValueSpacing: 10,
                 maintainAspectRatio: false,
                 showTooltips: true,
-                tooltipTemplate: "<%= value+'%' %>"
+                tooltipTemplate: "<%= value+'%' %>",
+                defaultLegendColors: ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D"]
             }, this.model.config);
         },
         render: function () {
@@ -45,12 +46,20 @@ define(function(require) {
                 labels = [],
                 fillColor = [],
                 strokeColor = [],
-                values = [];
+                values = [],
+                total_entries = this.chartOptions.legendOrder.length - 1,
+                length_length = this.chartOptions.defaultLegendColors.length;
 
             $.each(this.chartOptions.legendOrder.reverse(), function (index, value) {
                 labels.push(value);
-                fillColor.push(self.chartOptions.legendColors[value]);
-                strokeColor.push(self.chartOptions.legendColors[value]);
+                if (self.chartOptions.legendColors !== undefined) {
+                    fillColor.push(self.chartOptions.legendColors[value]);
+                    strokeColor.push(self.chartOptions.legendColors[value]);
+                } else {
+                    fillColor.push(self.chartOptions.defaultLegendColors[(total_entries - index) % length_length]);
+                    strokeColor.push(self.chartOptions.defaultLegendColors[(total_entries - index) % length_length]);
+                }
+
                 values.push(self.model.results.percentages[value]);
             });
 
