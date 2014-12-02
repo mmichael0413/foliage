@@ -1,9 +1,12 @@
 .request-demo-form {
   width: 75%;
-  margin: 0 auto 2em;
+  height: 58vh;
+  margin: 0 auto;
+  margin-top: 5em;
 
   @include swb-medium {
     width: 100%;
+    height: 100%;
     margin-top: 1em;
     margin-bottom: 1em;
   }
@@ -39,12 +42,13 @@
   }
 
   input, textarea {
-    margin-bottom: 1.2em;
-    padding: 1.2em;
+    margin-bottom: 1.5em;
+    padding: 1.5em;
     height: 3em;
 
     @include swb-medium {
       padding: 0.6em;
+      margin-bottom: 0.6em;
     }
   }
 
