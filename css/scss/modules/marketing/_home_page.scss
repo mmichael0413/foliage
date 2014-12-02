@@ -4,6 +4,8 @@
   img {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
+    max-width: 100%;
+    height: auto;
 
     @include swb-medium {
       width: 100%;
