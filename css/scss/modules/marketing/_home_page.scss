@@ -142,6 +142,9 @@
 #home-page4 {
   height: 93vh;
   background-color: $palette4;
+  background-image: url("../images/howdo.jpg");
+  background-position: center top;
+  background-size: cover;
 
   @include swb-medium {
     background-color: $palette4 !important;
