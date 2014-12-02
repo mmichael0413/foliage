@@ -1,6 +1,9 @@
 .send-to{
   .form-group {
     margin-bottom: 2em;
+    &:last-of-type {
+      margin-bottom: 1em;
+    }
   }
   > div {
     padding: 0 1em;
@@ -9,6 +12,10 @@
       padding: 0;
     }
   }
+}
+
+.new-message p {
+  margin-bottom: 1em;
 }
 
 .editor-container {
