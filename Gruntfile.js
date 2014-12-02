@@ -218,7 +218,8 @@ module.exports = function(grunt) {
                     {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/marketing/fonts/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/territory/fonts/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/bigTastysBackDoor/fonts/', filter: 'isFile'},
-                    {expand: true, flatten: true, src: ['images/*'], dest: 'dist/thirdchannel/images/', filter: 'isFile'}
+                    {expand: true, flatten: true, src: ['images/*'], dest: 'dist/thirdchannel/images/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['images/marketing/*'], dest: 'dist/marketing/images/', filter: 'isFile'}
                 ]
             }
         },
