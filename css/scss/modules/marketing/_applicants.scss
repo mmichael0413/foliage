@@ -34,9 +34,13 @@
 #applicants-2 {
   height: 93vh;
   background-color: $palette4;
+  background-image: url("../images/whatsthejob.png");
+  background-position: center top;
+  background-size: cover;
 
   @include swb-medium {
     background-color: $palette4 !important;
+    background-image: none !important;
   }
 
   #applicants-2-content {
