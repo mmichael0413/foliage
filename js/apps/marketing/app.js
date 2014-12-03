@@ -2,7 +2,8 @@ define(function(require){
 
     var $ = require('jquery'),
         sb = require('slidebars'),
-        InquiryView = require('marketing/views/inquiries/main');
+        InquiryView = require('marketing/views/inquiries/main'),
+        RegistrationView = require('marketing/views/registration/main');
 
     return {
         initialize: function () {
@@ -19,6 +20,12 @@ define(function(require){
 
             if($('#request-demo')) {
                 new InquiryView();
+            }
+
+            if($('#for-applicants-page')) {
+                $('.marketing-form').each(function() {
+                    new RegistrationView({el: this});
+                });
             }
 
             $.slidebars();
