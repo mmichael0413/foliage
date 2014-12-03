@@ -43,6 +43,7 @@ define(function(require) {
                     focusOnSelect: true,
                     variableWidth: true,
                     infinite: false,
+                    arrows: false,
                     responsive: [
                         {
                             breakpoint: 568,
