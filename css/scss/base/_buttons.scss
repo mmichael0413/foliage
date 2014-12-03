@@ -35,8 +35,8 @@
         }
 
         &:hover:not(:disabled) {
-            background: darken($color, 10%);
-            border-color: darken($color, 10%);
+            background: darken($color, 4%);
+            border-color: darken($color, 4%);
         }
 
         @include swb-medium {
