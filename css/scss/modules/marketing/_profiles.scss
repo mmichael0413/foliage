@@ -1,7 +1,10 @@
 .profiles {
   margin: 0 auto;
-  margin-bottom: 40px;
   width: 75%;
+
+  >div {
+    margin-bottom: 4em;
+  }
 
   .profile {
     .profile-info {
