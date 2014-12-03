@@ -27,6 +27,7 @@
     a {
       color: $light-gray;
       line-height: 2.3em;
+      font-weight: bold;
 
       @include swb-medium {
         font-size: 0.6em;
