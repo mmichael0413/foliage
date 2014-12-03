@@ -32,19 +32,20 @@ define(function(require) {
             context.alerts.created_checkin_id = options.id;
             this.activityModel = new ActivityModel(window.checkinReportData.activity, {});
 
-            var galleryBody = $("#images .image-container");
+            var galleryBody = $(".image-container");
 
             _.each(context.images, function (image){
                 galleryBody.append(new HoverableImageView({model: new Backbone.Model(image)}).render().$el);
             });
 
-            $('#images .image-container').slick({
+            this.carousel = galleryBody.slick({
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 //centerMode: true,
                 focusOnSelect: true,
                 variableWidth: true,
                 infinite: false,
+                arrows: false,
                 responsive: [
                     {
                         breakpoint: 480,
@@ -56,6 +57,10 @@ define(function(require) {
                 ]
             });
         },
+        events: {
+            'click .arrow-left' : 'prevSlide',
+            'click .arrow-right' : 'nextSlide'
+        },
         render: function (options) {
             new AllOpenAlertsView().fetch();
             this.$el.find('.section').each(function(){
@@ -66,6 +71,14 @@ define(function(require) {
             this.newComment = new NewCommentView({el: this.$el.find('.new-comment'), activity: this.activityModel, collection: this.comments.collection}).render();
 
             return this;
+        },
+        prevSlide: function(e){
+            e.preventDefault();
+            this.carousel.slickPrev();
+        },
+        nextSlide: function(e){
+            e.preventDefault();
+            this.carousel.slickNext();
         }
     });
 });
