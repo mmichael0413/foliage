@@ -4,6 +4,10 @@
 
   >div {
     margin-bottom: 4em;
+
+    @include swb-medium {
+      margin-bottom: 1.5em;
+    }
   }
 
   .profile {
