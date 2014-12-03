@@ -12,7 +12,7 @@ define(function (require) {
 
         initialize: function () {
             this.model = new Registration();
-            this.model.url = this.$('form').attr('action');
+            this.model.url = this.$('form').attr('action') + '.json';
             this.listenTo(this.model, 'invalid', this.displayErrors);
         },
 
@@ -24,13 +24,11 @@ define(function (require) {
             this.$('input').removeClass('error');
             this.$('.error-message').empty().hide();
 
-            console.log(this.$('form').serializeObject());
-
             this.model.set(this.$('form').serializeObject());
 
             if(this.model.isValid()) {
                 this.model.save().then(function() {
-                    // Redirect to www2 /agents/opportunities
+                    window.location.href = self.$el.data('base-url') + "/agents/opportunities";
                 }).fail(function() {
                     console.log('Errors From Server');
                     // display errors

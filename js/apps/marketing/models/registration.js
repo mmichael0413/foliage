@@ -39,6 +39,15 @@ define(function (require) {
             if (errors.length > 0) {
                 return errors;
             }
+        },
+
+        toJSON: function(options) {
+            var data = {},
+                attrs = _.clone(this.attributes);
+
+            data['user'] = attrs;
+
+            return data;
         }
     });
 });
