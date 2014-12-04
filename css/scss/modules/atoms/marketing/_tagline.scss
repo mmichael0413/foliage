@@ -1,4 +1,6 @@
 .tagline {
+  width: 75%;
+  margin: 0 auto;
   max-width: 100%;
   font-size: 1.25em;
   font-weight: normal;
@@ -7,5 +9,6 @@
   @include swb-medium {
     font-size: 0.8em;
     line-height: 1.2em;
+    width: 100%;
   }
 }
