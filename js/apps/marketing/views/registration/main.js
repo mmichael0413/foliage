@@ -27,10 +27,13 @@ define(function (require) {
             this.model.set(this.$('form').serializeObject());
 
             if(this.model.isValid()) {
+                this.$('input, button').prop('disabled', true);
                 this.model.save().then(function() {
                     window.location.href = self.$el.data('base-url') + "/agents/opportunities";
                 }).fail(function() {
                     console.log('Errors From Server');
+
+                    self.$('input, button').prop('disabled', false);
                     // display errors
                 });
             }
