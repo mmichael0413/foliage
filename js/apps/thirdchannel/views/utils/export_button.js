@@ -4,7 +4,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         initialize: function (options) {
-            this.options = options
+            this.options = options;
         },
         render: function ($element) {
             this.setElement($element);

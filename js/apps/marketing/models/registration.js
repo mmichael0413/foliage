@@ -45,7 +45,7 @@ define(function (require) {
             var data = {},
                 attrs = _.clone(this.attributes);
 
-            data['user'] = attrs;
+            data.user = attrs;
 
             return data;
         }

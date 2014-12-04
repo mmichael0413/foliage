@@ -1061,7 +1061,7 @@ function program2(depth0,data) {
   
   var buffer = "", stack1, helper, options;
   buffer += "\n\n                        ";
-  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.parent_type), "message", options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.parent_type), "message", options));
+  stack1 = (helper = helpers.if_activity || (depth0 && depth0.if_activity),options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.parent_type), options) : helperMissing.call(depth0, "if_activity", (depth0 && depth0.parent_type), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                    ";
   return buffer;

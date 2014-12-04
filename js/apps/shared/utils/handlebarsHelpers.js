@@ -1,10 +1,18 @@
 define(function(require){
 
     var $ = require('jquery'),
+        _ = require('underscore'),
         Handlebars = require('handlebars');
 
     Handlebars.registerHelper('if_eq', function(a, b, opts) {
         if(a == b) // Or === depending on your needs
+            return opts.fn(this);
+        else
+            return opts.inverse(this);
+    });
+
+    Handlebars.registerHelper('if_activity', function(a,  opts) {
+        if(_.contains(['message', 'checkin'], a))
             return opts.fn(this);
         else
             return opts.inverse(this);

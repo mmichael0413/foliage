@@ -7,7 +7,7 @@
                     {{verb}}
                     {{#if_eq 'Comment' note_type}}
 
-                        {{#if_eq parent_type 'message'}}
+                        {{#if_activity parent_type }}
                             on
                             {{#if_eq parent_user.id current_user}}
                                 your
@@ -16,7 +16,7 @@
                             {{/if_eq}}
 
                             {{parent_type}}
-                        {{/if_eq}}
+                        {{/if_activity}}
                     {{/if_eq}}
                     on {{created_at}}:
                 </span>
