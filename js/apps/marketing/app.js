@@ -18,6 +18,26 @@ define(function(require){
                 }, 1000);
             });
 
+            $('.profile-img').hover(function() {
+                var $el = $(this);
+                var hoverSrc = $el.data('hover-src');
+
+                if(hoverSrc) {
+                    var currSrc = $el.attr('src');
+                    $el.attr('src', hoverSrc);
+                    $el.data('hover-src', currSrc);
+                }
+            }, function() {
+                var $el = $(this);
+                var hoverSrc = $el.data('hover-src');
+
+                if(hoverSrc) {
+                    var currSrc = $el.attr('src');
+                    $el.attr('src', hoverSrc);
+                    $el.data('hover-src', currSrc);
+                }
+            });
+
             var proxiedSync = Backbone.sync;
 
             Backbone.sync = function(method, model, options) {
