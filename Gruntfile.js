@@ -393,6 +393,33 @@ module.exports = function(grunt) {
                     },
                     {
                         dest: 'dist/marketing/js/require.js'
+                    },
+                    {
+                        dest: 'dist/marketing/images/agents.jpg'
+                    },
+                    {
+                        dest: 'dist/marketing/images/agents.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/capture.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/contact.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/facebook.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/howdo.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/linkedin.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/maximize.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/whatsthejob.png'
                     }
                 ]
             },
@@ -424,6 +451,33 @@ module.exports = function(grunt) {
                     },
                     {
                         dest: 'dist/marketing/js/require.js'
+                    },
+                    {
+                        dest: 'dist/marketing/images/agents.jpg'
+                    },
+                    {
+                        dest: 'dist/marketing/images/agents.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/capture.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/contact.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/facebook.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/howdo.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/linkedin.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/maximize.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/whatsthejob.png'
                     }
                 ]
             }
