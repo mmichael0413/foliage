@@ -1,0 +1,98 @@
+@import "../../lib/normalize";
+@import "../../lib/pure.grids-core";
+@import "../../lib/pure.responsive-grid";
+@import "../../lib/slidebars";
+
+@import "../../base/base";
+@import "../../base/text";
+@import "../../base/forms";
+@import "../../base/buttons";
+@import "../../base/fonts_all";
+@import "../../layout/layout_utils";
+
+@import "../../modules/atoms/vertically_centered";
+@import "../../modules/atoms/marketing/headers";
+@import "../../modules/atoms/marketing/headline";
+@import "../../modules/atoms/marketing/tagline";
+@import "../../modules/atoms/marketing/possibility";
+@import "../../modules/atoms/marketing/media_wrapper";
+@import "../../modules/atoms/marketing/social_link";
+@import "../../modules/atoms/marketing/read_more_link";
+
+@import "../../modules/pure_grid";
+@import "../../modules/marketing/navigation";
+@import "../../modules/marketing/side_navigation";
+@import "../../modules/marketing/footer";
+@import "../../modules/marketing/full_section";
+@import "../../modules/marketing/form";
+@import "../../modules/marketing/home_page";
+@import "../../modules/marketing/page_header";
+@import "../../modules/marketing/contact_us";
+@import "../../modules/marketing/applicants";
+@import "../../modules/marketing/show_content";
+@import "../../modules/marketing/profiles";
+@import "../../modules/marketing/section_header";
+@import "../../modules/marketing/more_details";
+@import "../../modules/marketing/agents";
+@import "../../modules/marketing/agent";
+@import "../../modules/marketing/current_opportunities";
+@import "../../modules/marketing/demo";
+
+html, body {
+  color: $slate;
+  background-color: #FFF;
+}
+
+body {
+  padding-top: 65px;
+}
+
+h1 {
+  margin-bottom: 1.6em;
+  font-size: 3em;
+  line-height: 1.2em;
+  color: $red;
+  max-width: 100%;
+  text-transform: uppercase;
+
+  @include swb-medium {
+    margin-bottom: 0.3em;
+    font-size: 2em;
+    line-height: 1em;
+  }
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: normal;
+
+  @include swb-medium {
+    font-size: 0.6em;
+  }
+}
+
+input, textarea {
+  background-color: $light-blue;
+
+  &::-webkit-input-placeholder {
+    color: $medium-blue;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $medium-blue;
+  }
+
+  &::-moz-placeholder {  /* Firefox 19+ */
+    color: $medium-blue;
+  }
+
+  &:-ms-input-placeholder {
+    color: $medium-blue;
+  }
+}
+
+.content {
+  @include swb-medium {
+    padding: 0;
+  }
+}

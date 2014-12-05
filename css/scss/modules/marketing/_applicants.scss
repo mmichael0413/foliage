@@ -1,0 +1,64 @@
+.applicant-item {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  text-align: left;
+
+  @include swb-medium {
+    margin-top: 1em;
+    margin-left: 0;
+  }
+
+  &.applicant-item-centered {
+    margin: 0 auto;
+  }
+
+  .spaced {
+    margin-left: 2em;
+
+    @include swb-medium {
+      margin-top: 0.5em;
+      margin-left: 0;
+      display: block;
+    }
+  }
+}
+
+#applicants-1 {
+  height: 92vh;
+
+  @include swb-medium {
+    height: 100%;
+
+    #applicants-1-content {
+      margin-bottom: 3.5em;
+    }
+  }
+}
+
+#applicants-2 {
+  height: 93vh;
+  background-color: $palette4;
+  background-image: url("../images/whatsthejob.png");
+  background-position: center top;
+  background-size: cover;
+
+  @include swb-medium {
+    background-color: $palette4 !important;
+    background-image: none !important;
+  }
+
+  #applicants-2-content {
+    margin: 0 auto;
+    width: 75%;
+
+    @include swb-medium {
+      width: 100%;
+      padding-top: 1.5em;
+      padding-bottom: 2.5em;
+    }
+  }
+}
+
+#applicants-3 {
+  padding-top: 2em;
+}

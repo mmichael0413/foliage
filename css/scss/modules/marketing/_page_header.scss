@@ -1,0 +1,27 @@
+.page-header {
+  text-align: center;
+  width: 100%;
+  height: 12em;
+  background-color: $palette3;
+  margin-bottom: 1.5em;
+
+  &.page-header-red {
+    background-color: $red;
+    background-image: none;
+
+    @include swb-medium {
+      background-color: $red !important;
+      background-image: none !important;
+    }
+  }
+
+  &.page-header-large {
+    height: 28em;
+  }
+
+  @include swb-medium {
+    margin-bottom: 0;
+    background-color: $palette3 !important;
+    background-image: none !important;
+  }
+}

@@ -35,8 +35,8 @@
         }
 
         &:hover:not(:disabled) {
-            background: darken($color, 10%);
-            border-color: darken($color, 10%);
+            background: darken($color, 4%);
+            border-color: darken($color, 4%);
         }
 
         @include swb-medium {
@@ -95,5 +95,17 @@
     &.text-same-color {
         @include btn-details($medium-blue);
         color: $medium-blue;
+    }
+    &.inverse {
+      @include btn-details($light-gray);
+      color: $red;
+
+      &.solid {
+        color: $red;
+
+        &:hover:not(:disabled) {
+          color: $red;
+        }
+      }
     }
 }

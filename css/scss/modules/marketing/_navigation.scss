@@ -1,0 +1,94 @@
+@import '../logo';
+
+.navigation {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 65px;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 5px 0px #5D5D5D;
+
+  .navigation-collapsed {
+    a {
+      @include swb-medium {
+        padding-left: 0.2em;
+        padding-right: 0;
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .logo {
+    float: left;
+    height: 65px;
+    display: inline;
+
+    @include swb-medium {
+      padding-left: 0.8em;
+    }
+  }
+
+  nav {
+    ul ul {
+      position: absolute;
+      background-color: #fff;
+      display: none;
+      top: 100%;
+
+      li {
+        float: none;
+      }
+    }
+
+    ul {
+      float: left;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        float: left;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 2em;
+
+        a {
+          display: block;
+          padding: 15px;
+          text-decoration: none;
+          height: 65px;
+          vertical-align: middle;
+          color: #5d5d5d;
+
+          &:hover {
+            background-color: #f6f6f5;
+            transition: .3s background-color;
+          }
+        }
+
+        &:hover > ul {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .login {
+    padding-top: 0.6em;
+    margin-right: 3em;
+
+    .btn {
+      color: #fff;
+      padding: 8px 30px 8px 30px;
+    }
+
+    .my3c {
+      font-weight: bold;
+      padding-left: 2em;
+    }
+  }
+}

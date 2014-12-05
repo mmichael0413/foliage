@@ -1,0 +1,80 @@
+.footer {
+  background-color: $slate;
+  min-height: 200px;
+  padding: 2em 1.1em 2em 1.1em;
+  font-size: 0.9em;
+
+  .about {
+    height: 100%;
+    color: $light-gray;
+
+    .about-header {
+      font-weight: bold;
+      color: $palette2;
+
+      @include swb-medium {
+        font-size: 1.2em;
+      }
+    }
+
+    .demo, .social {
+      color: $palette2;
+      text-align: center;
+      vertical-align: middle;
+      position: relative;
+      top: 40%;
+      -ms-transform: translateY(40%);
+      -webkit-transform: translateY(40%);
+      transform: translateY(40%);
+
+      @include swb-medium {
+        height: 100%;
+        margin-top: 1.2em;
+        top: 0;
+        -ms-transform: none;
+        -webkit-transform: none;
+        transform: none;
+      }
+
+      .social-centered {
+        width: 250px;
+        margin: 0 auto;
+      }
+    }
+
+    .social {
+      text-align: center;
+    }
+
+    .demo {
+      a.btn {
+        padding: 10px;
+      }
+    }
+  }
+
+  .footer-links {
+    margin-top: 2em;
+    margin-bottom: 10px;
+    color: $light-gray;
+
+    a {
+      color: $light-gray;
+      text-decoration: none;
+    }
+
+    a, span {
+      margin-left: 2em;
+      margin-right: 2em;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      @include swb-medium {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<div class="navigation">
+    <div class="logo">
+        <a href="{{homeLink}}">
+
+        <span class="ic ic_logo"></span>
+        <span class="third hidden-xs">
+            THIRD<span class="gray-regulartext channel">CHANNEL</span>
+        </span>
+        </a>
+    </div>
+
+    {{#each navItems}}
+        {{> 'nav_item'}}
+    {{/each}}
+
+    <a href="javascript:void(0)" class="collapse-nav nav-item minor-s">
+        <i class="ic ic_left"></i>
+        <span class="link">Collapse</span>
+    </a>
+</div>

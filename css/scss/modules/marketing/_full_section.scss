@@ -1,0 +1,57 @@
+.full-section {
+  position: relative;
+  padding: 0;
+  width: 100%;
+  height: 93vh;
+  text-align: center;
+
+  @include swb-medium {
+    height: 100%;
+  }
+
+  &.last-section {
+    height: 100%;
+  }
+
+  .full-section-content {
+    height: 100%;
+  }
+
+  .full-section-controls {
+    z-index: 1;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+
+    a {
+      color: $light-gray;
+      line-height: 2.3em;
+      font-weight: bold;
+
+      @include swb-medium {
+        font-size: 0.6em;
+      }
+
+      .read-more-circle {
+        margin: 0 auto;
+        width: 75px;
+        height: 36px;
+        background-color: $red;
+        border-radius: 50% / 100%;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+        &.read-more-circle-light {
+          background-color: #fff;
+          color: $red;
+        }
+
+        @include swb-medium {
+          padding-top: 0.3em;
+          font-size: 1.5em;
+        }
+      }
+    }
+  }
+}

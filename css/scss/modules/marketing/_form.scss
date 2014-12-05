@@ -1,0 +1,44 @@
+.marketing-form {
+  text-align: left;
+
+  p {
+    margin-bottom: 0.5em;
+  }
+
+  input {
+    margin-top: 0.8em;
+    margin-bottom: 0;
+    height: 2.2em;
+    background-color: $light-blue;
+
+    &::-webkit-input-placeholder {
+      color: $medium-blue;
+    }
+
+    &:-moz-placeholder { /* Firefox 18- */
+      color: $medium-blue;
+    }
+
+    &::-moz-placeholder {  /* Firefox 19+ */
+      color: $medium-blue;
+    }
+
+    &:-ms-input-placeholder {
+      color: $medium-blue;
+    }
+  }
+
+  button {
+    margin-top: 0.8em;
+    text-transform: uppercase;
+  }
+
+  .error-message {
+    color: $red;
+    font-size: 0.8em;
+  }
+
+  .btn {
+    padding: 8px 30px 8px 30px;
+  }
+}

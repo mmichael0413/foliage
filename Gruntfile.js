@@ -1,8 +1,135 @@
 /*global module, require */
 /*jslint regexp: true */
 
+
+/**
+ *
+ * Wrapper to perform an operation on each matching path item. Could be a file or a directory.
+ * Each item will be passed to a callback - fn - which will receive the following arguments: 
+ * - the name of the item (e.g. the last position in the file path)
+ * - the full path
+ * - the tokenized breakup of the path
+ * 
+ */
+function operateOnPaths(grunt, path, fn) {
+    var appPaths = grunt.file.expand(path),
+        tokens,
+        name,
+        i = appPaths.length;
+
+    while(i--) {
+        tokens = appPaths[i].split('/');
+        // callback that fn utilizes
+        // name, path, tokens
+        fn(tokens[tokens.length-1], appPaths[i], tokens);
+    }
+}
+
+/**
+ *
+ * Builds the requirejs task blocks. Generally one for each app / service
+ * 
+ */
+function buildRequireJSConfig(grunt) {
+    var config = {};
+    operateOnPaths(grunt, 'js/apps/*', function (name, path, tokens) {
+        // checking if the path exists, so that we can have additional 'apps' containing shared modules
+        // which we don't necessarily want to build
+        if (grunt.file.exists(path + '/init.js')) {
+            config[name] = {
+                options: {
+                    mainConfigFile: path +"/init.js",
+                    baseUrl: 'js/apps',
+                    name: name + '/init',
+                    out: 'dist/' + name + '/js/app.js',
+                    removeCombined: true,
+                    findNestedDependencies: true,
+                    generateSourceMaps: true,
+                    optimize: "uglify2",
+                    preserveLicenseComments: false
+                }
+            };    
+        }
+        
+    });
+        
+    return config;
+}
+
+/**
+ * Builds the Sass configuration for each app
+ * 
+ * @param  {grunt} grunt The grunt object
+ * @return {object} The Sass file configuration
+ */
+function buildSassConfig(grunt) {
+    /*
+    files: {
+                    'dist/global/css/global.css': 'css/scss/apps/global/main.scss',
+                    'dist/thirdchannel/css/main.css': 'css/scss/apps/thirdchannel/main.scss',
+                    'dist/territory/css/main.css': 'css/scss/apps/territory/main.scss'
+                }
+     */
+    var files = {};
+    operateOnPaths(grunt, 'css/scss/apps/*', function (name, path, tokens) {
+        if (grunt.file.exists(path + '/main.scss')) {
+            files['dist/' + name + '/css/main.css'] = path + '/main.scss';    
+        } else {
+            console.warn("Ignoring '" + path + "'' because it contains no 'main.scss'");
+        }
+        
+    });
+    return files;
+}
+
+
+function buildKarmaOptions(serviceName, additionalPaths, additionalExcludes) {
+    var options = {frameworks: ['jasmine', 'requirejs']},
+        // the included: false is mandatory in order to be loaded with requirejs; ignoring this causes the scripts to be loaded in
+        // phantom, which causes requirejs to fail as the scripts have all ready been processed.
+        // some libraries, Like jquery and backbone, are already AMD and should be included via false
+
+        files = [
+                "js/libs/bower_components/underscore/underscore.js",
+                "js/libs/bower_components/handlebars/handlebars.min.js",
+                {pattern: "js/libs/bower_components/jquery/jquery.min.js", included: false},
+                {pattern: "js/libs/bower_components/backbone/backbone.js", included: false},
+                {pattern: "js/apps/shared/**/*.js", included: false},
+                {pattern: "js/tests/shared/**/*.js", included: false}
+            ],
+        excludes = ['js/app/**/init.js'];
+    if (additionalPaths) {
+        files = files.concat(additionalPaths);
+    }
+    if (additionalExcludes) {
+        excludes =  excludes.concat(additionalExcludes);
+    }
+    
+
+    files = files.concat([
+        {pattern: "js/apps/" + serviceName + "/**/*.js", included: false},
+        {pattern: "js/tests/" + serviceName +"/**/*.js", included: false},
+        "js/tests/" + serviceName +"-init.js"
+    ]);
+    options.files = files;
+    options.exclude = excludes;
+
+    return options;
+}
+
+
+/**
+ * 
+ * The main Grunt config file
+ * 
+ */
 module.exports = function(grunt) {
     'use strict';
+
+    var requireConfig = buildRequireJSConfig(grunt),
+        sassConfig = buildSassConfig(grunt);
+
+
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -32,7 +159,11 @@ module.exports = function(grunt) {
                 }
             }
         },
-
+        /**
+         * 
+         * Task to custom configure our grids
+         * 
+         */
         pure_grids: {
             responsive: {
                 dest: 'css/scss/lib/pure.responsive-grid.scss',
@@ -50,53 +181,112 @@ module.exports = function(grunt) {
                 }
             }
         },
-
+        /**
+         * 
+         * SASS!
+         * 
+         */
         sass: {
             dist: {
-                files: {
-                    'dist/global/css/global.css': 'css/scss/apps/global/main.scss',
-                    'dist/thirdchannel/css/main.css': 'css/scss/apps/thirdchannel/main.scss'
-                }
+                files: sassConfig
             }
         },
-        requirejs: {
-            compile: {
-                // see full list of options here: https://github.com/jrburke/r.js/blob/master/build/example.build.js
-                options: {
-                    mainConfigFile : "js/app/init.js",
-                    baseUrl : "js",
-                    name: "app/init",
-                    out: "dist/thirdchannel/js/app.js",
-                    removeCombined: true,
-                    findNestedDependencies: true,
-                    generateSourceMaps: true,
-                    optimize: "uglify2",
-                    preserveLicenseComments: false
-                }
-            }
-        },
+        /**
+         *
+         * Configuration for RequireJS; built by custom functionality declared above
+         * 
+         */
+        requirejs: requireConfig,
+
+        /**
+         * 
+         * Which folders to clean up
+         */
         clean: ["dist"],
+
+        /**
+         * 
+         * 
+         */
         copy: {
             main: {
                 files: [
                     // ThirdChannel dist files.
                     {expand: true, flatten: true, src: ['js/libs/bower_components/requirejs/require.js'], dest: 'dist/thirdchannel/js', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['js/libs/bower_components/requirejs/require.js'], dest: 'dist/bigTastysBackDoor/js', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/thirdchannel/fonts/', filter: 'isFile'},
-                    {expand: true, flatten: true, src: ['images/*'], dest: 'dist/thirdchannel/images/', filter: 'isFile'}
+                    {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/marketing/fonts/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/territory/fonts/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/bigTastysBackDoor/fonts/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['images/*'], dest: 'dist/thirdchannel/images/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['images/marketing/*'], dest: 'dist/marketing/images/', filter: 'isFile'}
                 ]
             }
         },
+        /**
+         * 
+         *
+         *
+         * 
+         */
         jshint: {
             // the all task covers all files, excluding the hbs-compiled (auto-generated) and any libs we use (we didn't write them)
-            all: ['Gruntfile.js', 'js/app/**/*.js'],
+            all: ['Gruntfile.js', 'js/apps/**/*.js'],
             options: {
                 ignores: [
-                    'js/app/templates/hbs-compiled.js',
+                    '**/hbs-compiled.js',
                     'js/compiled-app.js',
                     'js/libs/**/*.js'
                 ]
             }
         },
+
+        /**
+         * 
+         * Karma testing configuration
+         *
+         * 
+         */
+        karma: {
+            
+            options: {
+                // Ideally we want to run in background mode... but I'm running into a open file limit due to the grunt
+                // watch task. Need to research how to raise the upper limit on the max file descriptors before proceeding
+                //background: true,
+                singleRun: true,
+                browsers: ['PhantomJS'],
+                basePath: "",
+                reporters: ['dots'],
+                
+            },
+
+            thirdchannel: {
+                options: buildKarmaOptions('thirdchannel')
+            },
+            // thirdchannel_single: {
+                
+            //     reporters: ['dots'],
+            //     options: buildKarmaOptions('thirdchannel')  
+            // },
+
+            territory: {
+                options: buildKarmaOptions('territory')
+            },
+
+            // territory_single: {
+            //     background: false,
+            //     singleRun: true,
+            //     reporters: ['dots'],
+            //     options: buildKarmaOptions('territory')    
+            // }
+        },
+
+        /**
+         * 
+         *
+         *
+         * 
+         */
         handlebars: {
             compile: {
                 options: {
@@ -108,10 +298,15 @@ module.exports = function(grunt) {
                     }
                 },
                 files: {
-                    "js/app/templates/hbs-compiled.js": "templates/handlebars/**/*.hbs"
+                    "js/apps/thirdchannel/templates/hbs-compiled.js": "templates/handlebars/**/*.hbs"
                 }
             }
         },
+        /**
+         * 
+         * 
+         * 
+         */
         aws_s3: {
             options: {
                 accessKeyId: process.env.AWS_ACCESS_KEY_ID, // Use the variables
@@ -130,24 +325,38 @@ module.exports = function(grunt) {
                     }
                 },
                 files: [
-                    {dest: 'dist/thirdchannel/', cwd: 'backup/thirdchannel/staging/', action: 'download'},
-                    {expand: true, cwd: 'backup/thirdchannel/staging', src: ['**'], dest: 'backup/thirdchannel/'+ new Date().getTime()},
-                    {dest: 'dist/thirdchannel/', action: 'delete'},
-                    {expand: true, cwd: 'dist/thirdchannel/', src: ['**'], dest: 'dist/thirdchannel/'}
+                    {dest: 'dist/', cwd: 'backup/staging/', action: 'download'},
+                    {expand: true, cwd: 'backup/staging', src: ['**'], dest: 'backup/'+ new Date().getTime()},
+                    {dest: 'dist/', action: 'delete'},
+                    {expand: true, cwd: 'dist/', src: ['**'], dest: 'dist/'}
                 ]
             },
             production: {
                 options: {
-                    bucket: 'thirdchannel-assets'
+                    bucket: 'thirdchannel-assets',
+                    params: {
+                        CacheControl: 'public, max-age=30'
+                    },
+                    mime: {
+                        'dist/thirdchannel/fonts/nexa_bold-webfont.woff': 'application/font-woff',
+                        'dist/thirdchannel/fonts/nexa_light-webfont.woff': 'application/font-woff',
+                        'dist/thirdchannel/fonts/tc-icons_6e130a4e526e6c444098f7055986eb13.woff': 'application/font-woff'
+                    }
                 },
                 files: [
-                    {dest: 'dist/thirdchannel/', cwd: 'backup/thirdchannel/production/', action: 'download'},
-                    {expand: true, cwd: 'backup/thirdchannel/production', src: ['**'], dest: 'backup/thirdchannel/'+ new Date().getTime()},
-                    {dest: 'dist/thirdchannel/', action: 'delete'},
-                    {expand: true, cwd: 'dist/thirdchannel/', src: ['**'], dest: 'dist/thirdchannel/'}
+                    {dest: 'dist/', cwd: 'backup/production/', action: 'download'},
+                    {expand: true, cwd: 'backup/production', src: ['**'], dest: 'backup/'+ new Date().getTime()},
+                    {dest: 'dist/', action: 'delete'},
+                    {expand: true, cwd: 'dist/', src: ['**'], dest: 'dist/'}
                 ]
             }
         },
+        /**
+         * 
+         * 
+         *
+         * 
+         */
 
         invalidate_cloudfront: {
             options: {
@@ -219,29 +428,30 @@ module.exports = function(grunt) {
                     spawn: false
                 }
             },
-            rjs: {
-                files: ['js/app/**/*.js', '!js/app/handlebars/templates.js'],
-                tasks: ['requirejs', 'copy']
+            // Temporarily disable on file change rebuild of requirejs, preserve it for when we actually push.
+            // 
+            // rjs: {
+            //     files: ['js/apps/**/*.js', '!js/apps/thirdchannel/handlebars/templates.js'],
+            //     tasks: ['requirejs', 'copy']
+            // },
+            thirdchannel_test: {
+                files: ['js/apps/thirdchannel/**/*.js', 'js/tests/thirdchannel/**/*.js'],
+                tasks: ['karma:thirdchannel']
+            },
+            territory_test: {
+                files: ['js/apps/territory/**/*.js', 'js/tests/territory/**/*.js'],
+                tasks: ['karma:territory']
             }
         }
     });
-
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks("grunt-nodemon");
-    grunt.loadNpmTasks("grunt-concurrent");
-    grunt.loadNpmTasks('grunt-pure-grids');
-    grunt.loadNpmTasks('grunt-contrib-requirejs');
-    grunt.loadNpmTasks('grunt-contrib-handlebars');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-aws-s3');
-    grunt.loadNpmTasks('grunt-invalidate-cloudfront');
+    // rather than list every dependency line by line, just load 'em all
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.registerTask('default', ['concurrent:dev']);
-    grunt.registerTask('build-dev', ['clean', 'sass','handlebars','requirejs','copy']);
-    grunt.registerTask('build-beta', ['clean', 'sass','handlebars','requirejs','copy', 'aws_s3:staging', 'invalidate_cloudfront:staging']);
-    grunt.registerTask('build-prod', ['clean', 'sass','handlebars','requirejs','copy', 'aws_s3:production', 'invalidate_cloudfront:production']);
+    grunt.registerTask('test', ['karma:thirdchannel', 'karma:territory']);
+
+    grunt.registerTask('build-dev', ['clean', 'sass','handlebars','test', 'requirejs','copy']);
+    grunt.registerTask('build-beta', ['clean', 'sass','handlebars', 'test', 'requirejs','copy', 'aws_s3:staging', 'invalidate_cloudfront:staging']);
+    grunt.registerTask('build-prod', ['clean', 'sass','handlebars','test', 'requirejs','copy', 'aws_s3:production', 'invalidate_cloudfront:production']);
 
 };

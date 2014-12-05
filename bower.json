@@ -1,38 +1,39 @@
 {
-    "name": "foliage",
-    "version": "0.0.1",
-    "homepage": "https://www.thirdchannel.com",
-    "authors": [
-        "Matthew Little <matt@thethirdchannel.com>",
-        "Steve Pember <steve@thirdchannel.com>",
-        "Andrew Croswell <andrew@thirdchannel.com>"
-    ],
-    "description": "ThirdChannel core JS/CSS",
-    "license": "MIT",
-    "private": true,
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "dependencies": {
-        "underscore": "~1.6.0",
-        "backbone": "1.1.2",
-        "jquery": "~2.0.3",
-        "requirejs": "~2.1.10",
-        "handlebars": "~1.3.0",
-        "imagesloaded": "3.1.8",
-        "backbone-modal": "1.1.1",
-        "jquery-ujs" : "1.0.1",
-        "chosen": "https://github.com/harvesthq/chosen/releases/download/v1.2.0/chosen_v1.2.0.zip",
-        "jquery-validation": "1.13.1",
-        "jquery-serialize-object": "2.4.3",
-        "slick.js": "1.3.11",
-        "pikaday": "1.2.0"
-    },
-    "resolutions": {
-        "jquery": "~2.0.3"
-    }
+  "name": "foliage",
+  "version": "0.0.1",
+  "homepage": "https://www.thirdchannel.com",
+  "authors": [
+    "Matthew Little <matt@thethirdchannel.com>",
+    "Steve Pember <steve@thirdchannel.com>",
+    "Andrew Croswell <andrew@thirdchannel.com>"
+  ],
+  "description": "ThirdChannel core JS/CSS",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.6.0",
+    "backbone": "1.1.2",
+    "jquery": "~2.0.3",
+    "requirejs": "~2.1.10",
+    "handlebars": "~1.3.0",
+    "imagesloaded": "3.1.8",
+    "backbone-modal": "1.1.1",
+    "jquery-ujs": "1.0.1",
+    "chosen": "https://github.com/harvesthq/chosen/releases/download/v1.2.0/chosen_v1.2.0.zip",
+    "jquery-validation": "1.13.1",
+    "jquery-serialize-object": "2.4.3",
+    "slick.js": "1.3.11",
+    "pikaday": "1.2.0",
+    "slidebars": "~0.10.2"
+  },
+  "resolutions": {
+    "jquery": "~2.0.3"
+  }
 }

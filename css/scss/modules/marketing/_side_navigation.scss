@@ -1,0 +1,26 @@
+.side-navigation {
+  width: $standard-nav-width;
+  background-color: $nav-background;
+  padding-top: 65px;
+
+  -webkit-transition: width 0.3s;
+  -moz-transition: width 0.3s;
+  -ms-transition: width 0.3s;
+  -o-transition: width 0.3s;
+  transition: width 0.3s;
+
+  nav {
+    .nav-item {
+      color: $medium-blue;
+      display: block;
+      height: 3.5em;
+      padding: 1em 1em 1em 1.5em;
+      white-space: nowrap;
+
+      &:hover {
+        background-color: $nav-background-hover;
+        transition: .3s background-color;
+      }
+    }
+  }
+}

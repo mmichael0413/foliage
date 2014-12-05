@@ -1,0 +1,27 @@
+.show-content {
+  width: 850px;
+  margin: 0 auto 2em;
+
+  p, address {
+    margin: 1em 0 1em 0;
+  }
+
+  .leader {
+    font-size: 1.4em;
+
+    @include swb-medium {
+      font-size: 1.2em;
+    }
+  }
+
+  @include swb-medium {
+    width: 100%;
+    margin: 0;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+
+    p, address {
+      margin: 0.5em 0 0.5em 0;
+    }
+  }
+}

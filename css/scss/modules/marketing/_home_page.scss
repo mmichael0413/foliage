@@ -1,0 +1,211 @@
+.graphic-content {
+  text-align: center;
+
+  img {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    max-width: 100%;
+    height: auto;
+
+    @include swb-medium {
+      width: 100%;
+      height: auto;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+  }
+}
+
+.home-page-header {
+  width: 100%;
+  background-color: $red;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  height: 200px;
+}
+
+.home-content-wrapper {
+  position: relative;
+}
+
+.home-content-container {
+  position: absolute;
+}
+
+.home-page-content-sections {
+  margin: 0 auto 3em;
+  text-align: left;
+  width: 100%;
+
+  div {
+    padding: 1em;
+  }
+
+  .home-page-content {
+    text-align: left;
+    padding: 2em;
+
+    @include swb-medium {
+      padding: 0.5em;
+    }
+
+    >p {
+      margin-top: 2em;
+      margin-bottom: 2em;
+
+      @include swb-medium {
+        margin-top: 1em;
+        margin-bottom: 1em;
+      }
+    }
+
+    ul {
+      padding-left: 1.4em;
+    }
+
+    a {
+      font-weight: bold;
+      bottom: 0;
+    }
+  }
+}
+
+#home-page1 {
+  height: 92vh;
+  background-color: $palette4;
+  background-image: url("../images/maximize.png");
+  background-position: center top;
+  background-size: cover;
+
+  @include swb-medium {
+    margin-top: -3.8em;
+    height: 100vh;
+    background-color: $palette4 !important;
+    background-image: none !important;
+  }
+
+  #home-page1-content {
+    margin: 0 auto;
+    width: 75%;
+    opacity: 1;
+
+    @include swb-medium {
+      padding: 0.5em;
+      width: 100%;
+    }
+  }
+}
+
+#home-page2 {
+  #home-page2-content {
+    padding-top: 3.8em;
+
+    @include swb-medium {
+      margin-bottom: 4em;
+    }
+  }
+}
+
+#home-page3 {
+  padding-top: 1em;
+  background-color: $light-gray;
+
+  #home-page3-content {
+    margin: 0 auto;
+    width: 75%;
+    height: 100%;
+
+    @include swb-medium {
+      margin-bottom: 4em;
+    }
+
+    >div {
+      padding-top: 2em;
+      padding-bottom: 2em;
+
+      @include swb-medium {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+      }
+    }
+
+    >p {
+      text-align: left;
+
+      @include swb-medium {
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+
+#home-page4 {
+  height: 93vh;
+  background-color: $palette4;
+  background-image: url("../images/howdo.jpg");
+  background-position: center top;
+  background-size: cover;
+
+  @include swb-medium {
+    background-color: $palette4 !important;
+    background-image: none !important;
+  }
+
+  #home-page4-content {
+    margin: 0 auto;
+    width: 75%;
+    opacity: 1;
+
+    @include swb-medium {
+      padding: 0.5em;
+      width: 100%;
+    }
+  }
+}
+
+#home-page5 {
+  height: 100%;
+
+  #home-page4-part2 {
+    background-color: $light-gray;
+  }
+}
+
+#home-page6 {
+  height: 93vh;
+  background-color: $palette4;
+  background-image: url("../images/agents.jpg");
+  background-position: center top;
+  background-size: cover;
+
+  @include swb-medium {
+    background-color: $palette4 !important;
+    background-image: none !important;
+  }
+
+  #home-page6-content {
+    margin: 0 auto;
+    width: 75%;
+    opacity: 1;
+
+    @include swb-medium {
+      padding: 0.5em;
+      width: 100%;
+    }
+  }
+}
+
+#home-page7 {
+  height: 93vh;
+  background-color: $light-gray;
+}
+
+#home-page8 {
+  height: 100%;
+  background-color: $red;
+  color: $light-gray;
+
+  h2 {
+    color: $light-gray;
+  }
+}

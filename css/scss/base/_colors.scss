@@ -28,11 +28,14 @@ $border-color: $light-blue;
 $link-color: $palette5;
 $active-state: $palette1;
 
-
 .red {
-	color: $red;
+  color: $red;
 }
 
 .medium-blue {
   color: $medium-blue;
+}
+
+.dark {
+  color: $palette3;
 }
