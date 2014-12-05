@@ -91,7 +91,7 @@ define(function(require) {
             this.addImage(model).setImageInputValue(model);
         },
         imageUpdated: function (model) {
-            this.removeImage(model).addImage(model).setImageInputValue(model);
+            this.addImage(model).setImageInputValue(model);
         },
         imageDeleted: function (model) {
             this.removeImage(model).setImageInputValue(model);
