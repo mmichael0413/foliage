@@ -213,12 +213,13 @@ module.exports = function(grunt) {
                 files: [
                     // ThirdChannel dist files.
                     {expand: true, flatten: true, src: ['js/libs/bower_components/requirejs/require.js'], dest: 'dist/thirdchannel/js', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['js/libs/bower_components/requirejs/require.js'], dest: 'dist/marketing/js', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['js/libs/bower_components/requirejs/require.js'], dest: 'dist/bigTastysBackDoor/js', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/thirdchannel/fonts/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/marketing/fonts/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/territory/fonts/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['fonts/*'], dest: 'dist/bigTastysBackDoor/fonts/', filter: 'isFile'},
-                    {expand: true, flatten: true, src: ['images/*'], dest: 'dist/thirdchannel/images/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['images/thirdchannel/*'], dest: 'dist/thirdchannel/images/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['images/marketing/*'], dest: 'dist/marketing/images/', filter: 'isFile'}
                 ]
             }
@@ -380,6 +381,18 @@ module.exports = function(grunt) {
                     },
                     {
                         dest: 'dist/thirdchannel/js/require.js'
+                    },
+                    {
+                        dest: 'dist/marketing/css/main.css'
+                    },
+                    {
+                        dest: 'dist/marketing/js/app.js'
+                    },
+                    {
+                        dest: 'dist/marketing/js/app.js.map'
+                    },
+                    {
+                        dest: 'dist/marketing/js/require.js'
                     }
                 ]
             },
@@ -399,6 +412,18 @@ module.exports = function(grunt) {
                     },
                     {
                         dest: 'dist/thirdchannel/js/require.js'
+                    },
+                    {
+                        dest: 'dist/marketing/css/main.css'
+                    },
+                    {
+                        dest: 'dist/marketing/js/app.js'
+                    },
+                    {
+                        dest: 'dist/marketing/js/app.js.map'
+                    },
+                    {
+                        dest: 'dist/marketing/js/require.js'
                     }
                 ]
             }
