@@ -20,7 +20,7 @@
         <div class="activity-content">
             {{#if_eq type "Checkin"}}
             <div class="issues-found">
-                <h3>{{issue_length}} {{pluralize issue_count 'Issue Found' 'Issues Found'}}</h3>
+                <h3>{{issue_length}} {{pluralize issue_length 'Issue Found' 'Issues Found'}}</h3>
                 <ul class="unstyled">
                     {{#each issues}}
                     <li>- {{label}}</li>
