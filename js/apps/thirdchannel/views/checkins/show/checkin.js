@@ -5,7 +5,8 @@ define(function(require) {
         context = require('context'),
         FormView = require('thirdchannel/views/checkins/show/form'),
         FormValidate = require('thirdchannel/views/utils/validation'),
-        UploaderView = require('thirdchannel/views/s3uploader/file');
+        FileView = require('thirdchannel/views/s3uploader/file'),
+        ImageView = require('thirdchannel/views/s3uploader/image');
 
     return Backbone.View.extend({
         el: ".checkin",
@@ -20,15 +21,29 @@ define(function(require) {
             this.formView = new FormView(this.options).render().$el;
             this.formValidation = new FormValidate({errorPlacementClass: '.question'}).render(this.formView);
             this.$el.find('.body.images').each(function(){
-                new UploaderView().render(this);
+                new FileView().render(this);
             });
+            this.setupImages();
 
             return this;
+        },
+        setupImages: function() {
+            var images = JSON.parse(window.localStorage.getItem('checkinImages')) || {};
+            for (var key in images) {
+                var imageSet = images[key];
+                var $elem = this.$el.find('[data-input='+ key +'] .viewer');
+                if ($elem.length) {
+                    for (var image in imageSet) {
+                        $elem.append(new ImageView({model: new Backbone.Model($.extend(imageSet[image], {input: key}))}).render().$el);
+                    }
+                }
+            }
         },
         validateForm: function() {
             if (this.formValidation.valid()) {
                 this.$el.find(".checkin-form-btn").prop('disabled', true);
                 this.$el.find(".checkin-form-btn i").removeClass('ic ic_check').addClass("fa fa-spin fa-spinner");
+                window.localStorage.removeItem('checkinImages');
                 this.formView.submit();
             } else {
                 $('.content-holder').animate({
