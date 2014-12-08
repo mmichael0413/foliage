@@ -55,6 +55,12 @@ define(function(require) {
                 this.model.set('show-moderation', true);
             }
 
+            if(this.model.get('issue_length') == 1) {
+                this.model.set('issue_length_label', 'Issue Found');
+            } else {
+                this.model.set('issue_length_label', 'Issues Found');
+            }
+
             this.$el.html(this.template(this.model.attributes));
 
             // render the comments view
