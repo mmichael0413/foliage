@@ -86,6 +86,118 @@ function program3(depth0,data) {
   return buffer;
   }));
 
+Handlebars.registerPartial("comment", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "and ";
+  if (helper = helpers.comment_count) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.comment_count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " other ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.program(4, program4, data),fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.comment_count), 1, options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.comment_count), 1, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " have ";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  
+  return "person";
+  }
+
+function program4(depth0,data) {
+  
+  
+  return "people";
+  }
+
+function program6(depth0,data) {
+  
+  
+  return "\n 	your\n";
+  }
+
+function program8(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    ";
+  stack1 = ((stack1 = ((stack1 = (depth0 && depth0.parent_user)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;
+  }
+
+function program10(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "<strong>";
+  if (helper = helpers.subject) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.subject); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</strong>:";
+  return buffer;
+  }
+
+  buffer += "<p>";
+  if (helper = helpers.author_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.author_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " ";
+  stack1 = (helper = helpers.if_gt || (depth0 && depth0.if_gt),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.comment_count), 0, options) : helperMissing.call(depth0, "if_gt", (depth0 && depth0.comment_count), 0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " ";
+  if (helper = helpers.verb) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.verb); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " on\n";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.program(8, program8, data),fn:self.program(6, program6, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.parent_user)),stack1 == null || stack1 === false ? stack1 : stack1.id), (depth0 && depth0.current_user), options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.parent_user)),stack1 == null || stack1 === false ? stack1 : stack1.id), (depth0 && depth0.current_user), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " \n";
+  if (helper = helpers.parent_type) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.parent_type); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ": ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.subject), {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</p>\n<p class=\"notification-content\">";
+  if (helper = helpers.comment) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.comment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n\n";
+  return buffer;
+  }));
+
+Handlebars.registerPartial("newActivity", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += " <p>";
+  if (helper = helpers.author_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.author_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " ";
+  if (helper = helpers.verb) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.verb); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " <strong>";
+  if (helper = helpers.subject) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.subject); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</strong>:</p>\n <p  class=\"content\">";
+  if (helper = helpers.content) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.content); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n";
+  return buffer;
+  }));
+
 Handlebars.registerPartial("alert_details_empty_row", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -1020,32 +1132,26 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 this["ThirdChannel"]["templates"]["notifications/notification"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var stack1, helper, options, functionType="function", self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, blockHelperMissing=helpers.blockHelperMissing;
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var stack1, helper, options, self=this, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n<tr>\n    <td colspan=\"2\" class=\"<%= note.read ? 'read' : 'unread' %>\">\n        <p>\n            ";
-  if (helper = helpers.author_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.author_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                <span>\n                    ";
-  if (helper = helpers.verb) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.verb); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\n                    ";
-  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, "Comment", (depth0 && depth0.note_type), options) : helperMissing.call(depth0, "if_eq", "Comment", (depth0 && depth0.note_type), options));
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                    on ";
+  buffer += "\n<tr>\n    <td colspan=\"2\" class=\"<%= note.read ? 'read' : 'unread' %>\">\n       <div class=\"tiny\"><i>";
   if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":\n                </span>\n        </p>\n        ";
-  if (helper = helpers.content) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.content); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+    + "</i></div>\n        ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, "Comment", (depth0 && depth0.note_type), options) : helperMissing.call(depth0, "if_eq", "Comment", (depth0 && depth0.note_type), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        <div class=\"table-actions\">\n            ";
+  buffer += "\n\n        ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, "Message", (depth0 && depth0.note_type), options) : helperMissing.call(depth0, "if_eq", "Message", (depth0 && depth0.note_type), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n        ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, "Checkin", (depth0 && depth0.note_type), options) : helperMissing.call(depth0, "if_eq", "Checkin", (depth0 && depth0.note_type), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n        <div class=\"table-actions\">\n            ";
   if (helper = helpers.activity_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.activity_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -1054,50 +1160,32 @@ function program1(depth0,data) {
   else { helper = (depth0 && depth0.delete_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += " ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.mark_read_url), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.mark_read_url), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </div>\n    </td>\n</tr>\n";
   return buffer;
   }
 function program2(depth0,data) {
   
-  var buffer = "", stack1, helper, options;
-  buffer += "\n\n                        ";
-  stack1 = (helper = helpers.if_activity || (depth0 && depth0.if_activity),options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.parent_type), options) : helperMissing.call(depth0, "if_activity", (depth0 && depth0.parent_type), options));
+  var buffer = "", stack1;
+  buffer += "\n            ";
+  stack1 = self.invokePartial(partials.comment, 'comment', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                    ";
+  buffer += "\n        ";
   return buffer;
   }
-function program3(depth0,data) {
-  
-  var buffer = "", stack1, helper, options;
-  buffer += "\n                            on\n                            ";
-  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.parent_user)),stack1 == null || stack1 === false ? stack1 : stack1.id), (depth0 && depth0.current_user), options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.parent_user)),stack1 == null || stack1 === false ? stack1 : stack1.id), (depth0 && depth0.current_user), options));
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n                            ";
-  if (helper = helpers.parent_type) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.parent_type); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\n                        ";
-  return buffer;
-  }
+
 function program4(depth0,data) {
   
-  
-  return "\n                                your\n                            ";
+  var buffer = "", stack1;
+  buffer += "\n            ";
+  stack1 = self.invokePartial(partials.newActivity, 'newActivity', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        ";
+  return buffer;
   }
 
 function program6(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n                               ";
-  stack1 = ((stack1 = ((stack1 = (depth0 && depth0.parent_user)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                            ";
-  return buffer;
-  }
-
-function program8(depth0,data) {
   
   var buffer = "", stack1, helper;
   buffer += "| ";
@@ -1107,16 +1195,16 @@ function program8(depth0,data) {
   return buffer;
   }
 
-function program10(depth0,data) {
+function program8(depth0,data) {
   
   
   return "\n<tr>\n    <td colspan=\"2\">You have no notifications</td>\n</tr>\n";
   }
 
-  options={hash:{},inverse:self.program(10, program10, data),fn:self.program(1, program1, data),data:data}
+  options={hash:{},inverse:self.program(8, program8, data),fn:self.program(1, program1, data),data:data}
   if (helper = helpers.rows) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.rows); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(10, program10, data),fn:self.program(1, program1, data),data:data}); }
+  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(8, program8, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { return stack1; }
   else { return ''; }
   });
