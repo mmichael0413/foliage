@@ -20,6 +20,8 @@ define(function(require) {
             var self = this;
             this.formView = new FormView(this.options).render().$el;
             this.formValidation = new FormValidate({errorPlacementClass: '.question'}).render(this.formView);
+            this.savedImages = JSON.parse(window.localStorage.getItem('checkinImages')) || {};
+
             this.$el.find('.body.images').each(function(){
                 new FileView().render(this);
             });
@@ -28,13 +30,14 @@ define(function(require) {
             return this;
         },
         setupImages: function() {
-            var images = JSON.parse(window.localStorage.getItem('checkinImages')) || {};
-            for (var key in images) {
-                var imageSet = images[key];
+            for (var key in this.savedImages) {
+                var imageSet = this.savedImages[key];
                 var $elem = this.$el.find('[data-input='+ key +'] .viewer');
                 if ($elem.length) {
                     for (var image in imageSet) {
-                        $elem.append(new ImageView({model: new Backbone.Model($.extend(imageSet[image], {input: key}))}).render().$el);
+                        if (!_.has(imageSet[image], 'id')) {
+                            $elem.append(new ImageView({model: new Backbone.Model($.extend(imageSet[image], {input: key}))}).render().$el);
+                        }
                     }
                 }
             }
