@@ -24,6 +24,7 @@ define(function (require) {
                         }
                         _this.$('.link').prepend(_this.template(data));
 
+                        context.trigger('notification.badge.update', data);
                     }
                 });
         }
