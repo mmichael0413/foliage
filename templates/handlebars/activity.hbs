@@ -27,7 +27,7 @@
                     {{/each}}
                 </ul>
                 {{#if_gt issue_length 3}}
-                <a href="{{report_url}}"><span class="indicator">showing 3 of {{issue_length}}</span></a>
+                <a href="{{report_url}}" target="_blank"><span class="indicator">showing 3 of {{issue_length}}</span></a>
                 {{/if_gt}}
             </div>
             {{/if_eq}}
@@ -88,7 +88,7 @@
             </span>
             {{#if_eq type "Checkin"}}
                 <span class="action bold">
-                    <a href="{{report_url}}">Full Report</a>
+                    <a href="{{report_url}}" target="_blank">Full Report</a>
                 </span>
             {{/if_eq}}
             <span class="action bold">

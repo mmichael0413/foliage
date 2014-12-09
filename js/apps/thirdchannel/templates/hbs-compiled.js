@@ -190,7 +190,7 @@ function program6(depth0,data) {
   if (helper = helpers.report_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.report_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\"><span class=\"indicator\">showing 3 of ";
+    + "\" target=\"_blank\"><span class=\"indicator\">showing 3 of ";
   if (helper = helpers.issue_length) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.issue_length); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -248,7 +248,7 @@ function program15(depth0,data) {
   if (helper = helpers.report_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.report_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">Full Report</a>\n                </span>\n            ";
+    + "\" target=\"_blank\">Full Report</a>\n                </span>\n            ";
   return buffer;
   }
 
