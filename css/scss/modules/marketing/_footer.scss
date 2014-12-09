@@ -39,6 +39,10 @@
       .social-centered {
         width: 250px;
         margin: 0 auto;
+
+        @include swb-medium {
+          width: 100px;
+        }
       }
     }
 
