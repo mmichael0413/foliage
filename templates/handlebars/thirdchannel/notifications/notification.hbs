@@ -1,27 +1,19 @@
 {{#rows}}
 <tr>
     <td colspan="2" class="<%= note.read ? 'read' : 'unread' %>">
-        <p>
-            {{{author_url}}}
-                <span>
-                    {{verb}}
-                    {{#if_eq 'Comment' note_type}}
+       <div class="tiny"><i>{{created_at}}</i></div>
+        {{#if_eq 'Comment' note_type}}
+            {{> 'comment'}}
+        {{/if_eq}}
 
-                        {{#if_activity parent_type }}
-                            on
-                            {{#if_eq parent_user.id current_user}}
-                                your
-                            {{else}}
-                               {{{parent_user.url}}}
-                            {{/if_eq}}
+        {{#if_eq 'Message' note_type}}
+            {{> 'newActivity'}}
+        {{/if_eq}}
 
-                            {{parent_type}}
-                        {{/if_activity}}
-                    {{/if_eq}}
-                    on {{created_at}}:
-                </span>
-        </p>
-        {{{content}}}
+        {{#if_eq 'Checkin' note_type}}
+            {{> 'newActivity'}}
+        {{/if_eq}}
+
         <div class="table-actions">
             {{{activity_url}}} | {{{delete_url}}} {{#if mark_read_url}}| {{{mark_read_url}}}{{/if}}
         </div>

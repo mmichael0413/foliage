@@ -1,0 +1,20 @@
+.new-notifications, .past-notifications {
+  p {
+    margin-bottom: .5em;
+
+  }
+
+  .tiny {
+    font-size: .8em;
+  }
+  
+  .notification-content {
+    padding: 1em;
+    background-color: $main-background;
+    border-radius: $border-radius-base;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
