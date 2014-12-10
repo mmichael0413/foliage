@@ -7,7 +7,7 @@ define(function (require) {
         context = require('context');
 
     return FilterableTableView.extend({
-        template: 'notifications/notification',
+        template: 'thirdchannel/notifications/notification',
 
         initialize: function (options) {
             this.url = options.url;

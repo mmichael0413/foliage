@@ -13,7 +13,7 @@ define(function(require) {
             collectionClass: BaseAlertsCollection.extend({
                 resolved: true,
             }),
-            template: 'store_profile/resolved_alerts_rows'
+            template: 'thirdchannel/store_profile/resolved_alerts_rows'
         });
 
     return ResolvedAlertsView;  

@@ -9,7 +9,7 @@ define(function(require) {
          */
         TeamListView = PageableListView.extend({
             el: '#team',
-            template: 'teams/rows',
+            template: 'thirdchannel/teams/rows',
         });
     return TeamListView;
 });
