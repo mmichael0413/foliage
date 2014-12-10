@@ -4,7 +4,7 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['reports/widgets/percent_icon'],
+        template: HandlebarsTemplates['thirdchannel/reports/widgets/percent_icon'],
         initialize: function (options) {
             this.model = options;
         },

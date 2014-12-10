@@ -4,7 +4,7 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['reports/widgets/multi_question_totals'],
+        template: HandlebarsTemplates['thirdchannel/reports/widgets/multi_question_totals'],
         initialize: function (options) {
             this.model = options;
         },

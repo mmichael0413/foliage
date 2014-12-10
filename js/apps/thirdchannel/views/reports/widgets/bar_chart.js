@@ -5,7 +5,7 @@ define(function(require) {
         context = require('context');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['reports/widgets/bar_chart'],
+        template: HandlebarsTemplates['thirdchannel/reports/widgets/bar_chart'],
         initialize: function (options) {
             this.model = options;
         },

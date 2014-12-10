@@ -5,7 +5,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         el: '.dashboard',
-        template: HandlebarsTemplates['dashboards/alerts/index/alert'],
+        template: HandlebarsTemplates['thirdchannel/dashboards/alerts/index/alert'],
         initialize: function (options) {
             this.options = options;
             this.model = options.model;

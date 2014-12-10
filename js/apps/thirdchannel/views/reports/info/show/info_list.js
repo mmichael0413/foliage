@@ -11,7 +11,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         el: ".report-info",
-        template: HandlebarsTemplates['reports/info/show/info_list'],
+        template: HandlebarsTemplates['thirdchannel/reports/info/show/info_list'],
         initialize: function (options) {
             this.model = new InfoListModel($.extend(options, {queryString: window.bootstrap}));
             this.filters = new FilterCollection(options);
@@ -52,7 +52,7 @@ define(function(require) {
                     that.addListItem(value);
                 });
             } else {
-                this.$el.find('.list-items').append(HandlebarsTemplates.no_results);
+                this.$el.find('.list-items').append(HandlebarsTemplates['thirdchannel/no_results']);
             }
             this.loadingView.remove();
         },

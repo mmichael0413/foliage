@@ -12,7 +12,7 @@ define(function(require) {
      */
     var component = {
 
-        templateName: 'filters/list_component',
+        templateName: 'thirdchannel/filters/list_component',
 
         openClassName: 'open',
         /**

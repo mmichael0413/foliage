@@ -4,7 +4,7 @@ define(function(require){
         
     return Backbone.View.extend({
         className: 'comment',
-        template: HandlebarsTemplates.comment,
+        template: HandlebarsTemplates['thirdchannel/comment'],
         initialize: function (options) {
             this.model = options.model;
             this.model.collection.bind('reset', this.removeFromDom, this);

@@ -1,6 +1,6 @@
 define(function(require) {
 	var AsyncDetailsView = require('thirdchannel/views/shared/async_details_view'),
-		template = require('handlebarsTemplates')['store_profile/open_alert_details'],
+		template = require('handlebarsTemplates')['thirdchannel/store_profile/open_alert_details'],
 		context = require('context'),
 
 			/**

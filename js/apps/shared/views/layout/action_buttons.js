@@ -2,11 +2,12 @@ define(function (require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplate = require('handlebarsTemplates'),
+        HandlebarsHelpers = require('handlebarsHelpers'),
         context = require('context');
 
     return Backbone.View.extend({
         el: '#site-wrapper',
-        template: HandlebarsTemplate['layout/action_buttons'],
+        template: HandlebarsTemplate['shared/layout/action_buttons'],
         initialize: function () {
             this.listenTo(context, 'notification.badge.update', this.updateNotificationBadge);
             if (window.bootstrap.buttons) {

@@ -8,7 +8,7 @@ define(function(require) {
         UploadView = require('thirdchannel/views/s3uploader/upload');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['s3uploader/image'],
+        template: HandlebarsTemplates['thirdchannel/s3uploader/image'],
         events: {
             "change input[type=file]" : "fileChanged"
         },

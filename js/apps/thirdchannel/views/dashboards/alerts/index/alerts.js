@@ -9,8 +9,8 @@ define(function(require) {
     return Backbone.View.extend({
         tagName: 'tbody',
         className: "alerts",
-        template: HandlebarsTemplates['dashboards/alerts/index/alerts'],
-        loadingTemplate: HandlebarsTemplates.loading,
+        template: HandlebarsTemplates['thirdchannel/dashboards/alerts/index/alerts'],
+        loadingTemplate: HandlebarsTemplates['thirdchannel/loading'],
         initialize: function (options) {
             this.options = options;
             this.collection = new AlertsCollection({programId: this.options.programId, id: this.options.id});

@@ -4,7 +4,7 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates.loading,
+        template: HandlebarsTemplates['thirdchannel/loading'],
         initialize: function () {
         },
         render: function () {

@@ -4,7 +4,7 @@ define(function(require) {
         context = require('context');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['s3uploader/upload'],
+        template: HandlebarsTemplates['thirdchannel/s3uploader/upload'],
         events: {
             "click .cancel" : "cancel"
         },

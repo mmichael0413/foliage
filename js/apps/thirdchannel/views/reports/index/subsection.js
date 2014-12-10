@@ -5,7 +5,7 @@ define(function(require) {
         ReportWidgetView = require('thirdchannel/views/reports/index/widget');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['reports/index/subsection'],
+        template: HandlebarsTemplates['thirdchannel/reports/index/subsection'],
         initialize: function (options) {
             this.model = options;
         },

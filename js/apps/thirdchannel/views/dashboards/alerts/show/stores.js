@@ -13,7 +13,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         el: '.dashboard',
-        template: HandlebarsTemplates['dashboards/alerts/show/stores'],
+        template: HandlebarsTemplates['thirdchannel/dashboards/alerts/show/stores'],
         initialize: function (options) {
             this.options = options;
             this.model = new StoresModel({programId: options.programId, id: options.id, queryString: window.bootstrap});

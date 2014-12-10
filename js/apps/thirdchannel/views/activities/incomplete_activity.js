@@ -7,7 +7,7 @@ define(function(require){
 
     return Backbone.View.extend({
         className: 'activity incomplete',
-        template: HandlebarsTemplates.incomplete_activities,
+        template: HandlebarsTemplates['thirdchannel/incomplete_activities'],
         initialize: function (options) {
             this.model = options.model;
             return this;

@@ -7,7 +7,7 @@ define(function(require){
         
     return Backbone.View.extend({
         className: 'isLoading',
-        template: HandlebarsTemplates.loading(),
+        template: HandlebarsTemplates['thirdchannel/loading'],
         initialize: function () {
             this.active = false;
         },

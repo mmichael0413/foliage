@@ -4,7 +4,7 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['s3uploader/image'],
+        template: HandlebarsTemplates['thirdchannel/s3uploader/image'],
         events: {
             "blur input": 'updated',
             "click button": 'deleted'

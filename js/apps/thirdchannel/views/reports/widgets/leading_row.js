@@ -4,7 +4,7 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['reports/widgets/leading_row'],
+        template: HandlebarsTemplates['thirdchannel/reports/widgets/leading_row'],
         initialize: function (options) {
             this.model = options;
         },

@@ -18,7 +18,7 @@ define(function(require) {
 
         render: function () {
 
-            this.$el.html(HandlebarsTemplates.filter_active_item(this.options));
+            this.$el.html(HandlebarsTemplates['thirdchannel/filter_active_item'](this.options));
             return this;
         },
 
