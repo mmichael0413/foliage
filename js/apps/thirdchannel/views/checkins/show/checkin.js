@@ -20,7 +20,7 @@ define(function(require) {
             var self = this;
             this.formView = new FormView(this.options).render().$el;
             this.formValidation = new FormValidate({errorPlacementClass: '.question'}).render(this.formView);
-            this.savedImages = JSON.parse(window.localStorage.getItem('checkinImages')) || {};
+            this.savedImages = JSON.parse(window.localStorage.getItem('checkinImages_' + this.options.checkinId)) || {};
 
             this.$el.find('.body.images').each(function(){
                 new FileView().render(this);
@@ -46,7 +46,7 @@ define(function(require) {
             if (this.formValidation.valid()) {
                 this.$el.find(".checkin-form-btn").prop('disabled', true);
                 this.$el.find(".checkin-form-btn i").removeClass('ic ic_check').addClass("fa fa-spin fa-spinner");
-                window.localStorage.removeItem('checkinImages');
+                window.localStorage.removeItem('checkinImages_' + this.options.checkinId);
                 this.formView.submit();
             } else {
                 $('.content-holder').animate({
