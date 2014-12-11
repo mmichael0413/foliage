@@ -10,7 +10,8 @@ define(function(require) {
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/s3uploader/image'],
         events: {
-            "change input[type=file]" : "fileChanged"
+            "change input[type=file]" : "fileChanged",
+            "click .error-close" : "errorRemove"
         },
         initialize: function (options) {
         },
@@ -39,12 +40,26 @@ define(function(require) {
                          .success(function () {
                             model.set({source: event.target.result});
                             self.fileUploaded(model);
-                         });
+                         })
+                        .error(function () {
+                            self.fileUploadError();
+                        });
                     self.clearFileInput();
                 });
 
                 reader.readAsDataURL(file);
             }
+        },
+        fileUploadError: function() {
+            var $error = this.$el.find('.error');
+            if ($error.length > 0) {
+                $error.html(HandlebarsTemplates['thirdchannel/s3uploader/error']());
+            } else {
+                this.$el.find('.viewer').prepend(HandlebarsTemplates['thirdchannel/s3uploader/error']());
+            }
+        },
+        errorRemove: function(e) {
+            this.$el.find('.error').remove();
         },
         fileUploaded: function (model) {
             this.viewer.append(new ImageView({model: model}).render().$el);
