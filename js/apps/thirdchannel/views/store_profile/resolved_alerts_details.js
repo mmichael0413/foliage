@@ -1,6 +1,6 @@
 define(function(require) {
 	var AsyncDetailsView = require('thirdchannel/views/shared/async_details_view'),
-		template = require('handlebarsTemplates')['store_profile/resolved_alert_details'],
+		template = require('handlebarsTemplates')['thirdchannel/store_profile/resolved_alert_details'],
 
 			/**
 			 * Used to display a resolved alert's details

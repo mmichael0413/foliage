@@ -5,7 +5,7 @@ define(function(require) {
         context = require('context');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['reports/widgets/overview_icon'],
+        template: HandlebarsTemplates['thirdchannel/reports/widgets/overview_icon'],
         initialize: function (options) {
             this.model = options;
         },

@@ -11,7 +11,7 @@ define(function (require) {
      */
     var DateComponent = require('thirdchannel/views/filter/component').extend({
 
-        templateName: 'filters/date_component',
+        templateName: 'thirdchannel/filters/date_component',
 
 
         render: function () {

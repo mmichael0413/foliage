@@ -5,7 +5,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         tagName: 'tr',
-        template: HandlebarsTemplates['dashboards/alerts/index/group'],
+        template: HandlebarsTemplates['thirdchannel/dashboards/alerts/index/group'],
         events: {
             "click .expand-indicator": "toggleAlertViews"
         },

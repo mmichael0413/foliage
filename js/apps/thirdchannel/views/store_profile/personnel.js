@@ -9,7 +9,7 @@ define(function(require) {
                     return context.personnel.links.self;
                 }
             }),
-            template: 'store_profile/personnel_rows',
+            template: 'thirdchannel/store_profile/personnel_rows',
             bodySelector: '.body'
         };
     

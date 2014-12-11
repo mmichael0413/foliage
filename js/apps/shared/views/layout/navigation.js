@@ -9,7 +9,7 @@ define(function (require) {
 
     return Backbone.View.extend({
         el: '#site-wrapper',
-        template: HandlebarsTemplates['layout/main_navigation'],
+        template: HandlebarsTemplates['shared/layout/main_navigation'],
         initialize: function () {
             var _this = this;
 

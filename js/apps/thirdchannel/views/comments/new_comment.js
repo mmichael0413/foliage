@@ -13,7 +13,7 @@ define(function(require){
            this.collection = options.collection;
 
        },
-       template: HandlebarsTemplates['new-comment'],
+       template: HandlebarsTemplates['thirdchannel/new-comment'],
        events: {
            'click .add-comment': 'createComment'
        },

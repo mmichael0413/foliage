@@ -7,7 +7,7 @@ define(function(require) {
         context = require('context');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates.pagination,
+        template: HandlebarsTemplates['thirdchannel/pagination'],
         events: {
             'click .page': 'applyPageChange'
         },

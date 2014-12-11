@@ -9,7 +9,7 @@ define(function(require) {
          */
         StoreListView = PageableListView.extend({
             el: '#stores',
-            template: 'stores/rows',
+            template: 'thirdchannel/stores/rows',
         });
     return StoreListView;
 });

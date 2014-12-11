@@ -6,7 +6,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         el: '#site-filter',
-        template: HandlebarsTemplates.filters,
+        template: HandlebarsTemplates['thirdchannel/filters'],
         initialize: function (options) {
             this.filters = options.filters;
         },

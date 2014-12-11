@@ -1,0 +1,26 @@
+{{#rows}}
+<tr>
+    <td colspan="2" class="<%= note.read ? 'read' : 'unread' %>">
+       <div class="tiny"><i>{{created_at}}</i></div>
+        {{#if_eq 'Comment' note_type}}
+            {{> 'comment'}}
+        {{/if_eq}}
+
+        {{#if_eq 'Message' note_type}}
+            {{> 'newActivity'}}
+        {{/if_eq}}
+
+        {{#if_eq 'Checkin' note_type}}
+            {{> 'newActivity'}}
+        {{/if_eq}}
+
+        <div class="table-actions">
+            {{{activity_url}}} | {{{delete_url}}} {{#if mark_read_url}}| {{{mark_read_url}}}{{/if}}
+        </div>
+    </td>
+</tr>
+{{else}}
+<tr>
+    <td colspan="2">You have no notifications</td>
+</tr>
+{{/rows}}

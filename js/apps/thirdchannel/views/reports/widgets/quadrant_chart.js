@@ -5,7 +5,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         tagName: 'span',
-        template: HandlebarsTemplates['reports/widgets/quadrant_chart'],
+        template: HandlebarsTemplates['thirdchannel/reports/widgets/quadrant_chart'],
         initialize: function (options) {
             this.model = options;
         },
