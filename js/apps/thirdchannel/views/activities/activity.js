@@ -15,7 +15,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         className: 'activity',
-        template: HandlebarsTemplates.activity,
+        template: HandlebarsTemplates['thirdchannel/activity'],
         events: {
             'click .activity_like_button': 'likeActivity',
             'click .start-comment': 'focusComment',

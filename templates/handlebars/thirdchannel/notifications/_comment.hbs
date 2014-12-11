@@ -1,0 +1,9 @@
+<p>{{{author_url}}} {{#if_gt comment_count 0}}and {{comment_count}} other {{#if_eq comment_count 1}}person{{else}}people{{/if_eq}} have {{/if_gt}} {{verb}} on
+{{#if_eq parent_user.id current_user}}
+ 	your
+{{else}}
+    {{{parent_user.url}}}
+{{/if_eq}} 
+{{parent_type}}: {{#if subject}}<strong>{{subject}}</strong>:{{/if}}</p>
+<p class="notification-content">{{comment}}</p>
+

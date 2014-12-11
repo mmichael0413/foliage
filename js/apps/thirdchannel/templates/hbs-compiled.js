@@ -3,6 +3,168 @@ define(['handlebars'], function(Handlebars) {
 this["ThirdChannel"] = this["ThirdChannel"] || {};
 this["ThirdChannel"]["templates"] = this["ThirdChannel"]["templates"] || {};
 
+Handlebars.registerPartial("comment", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "and ";
+  if (helper = helpers.comment_count) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.comment_count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " other ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.program(4, program4, data),fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.comment_count), 1, options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.comment_count), 1, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " have ";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  
+  return "person";
+  }
+
+function program4(depth0,data) {
+  
+  
+  return "people";
+  }
+
+function program6(depth0,data) {
+  
+  
+  return "\n 	your\n";
+  }
+
+function program8(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    ";
+  stack1 = ((stack1 = ((stack1 = (depth0 && depth0.parent_user)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;
+  }
+
+function program10(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "<strong>";
+  if (helper = helpers.subject) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.subject); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</strong>:";
+  return buffer;
+  }
+
+  buffer += "<p>";
+  if (helper = helpers.author_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.author_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " ";
+  stack1 = (helper = helpers.if_gt || (depth0 && depth0.if_gt),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.comment_count), 0, options) : helperMissing.call(depth0, "if_gt", (depth0 && depth0.comment_count), 0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " ";
+  if (helper = helpers.verb) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.verb); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " on\n";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.program(8, program8, data),fn:self.program(6, program6, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.parent_user)),stack1 == null || stack1 === false ? stack1 : stack1.id), (depth0 && depth0.current_user), options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.parent_user)),stack1 == null || stack1 === false ? stack1 : stack1.id), (depth0 && depth0.current_user), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " \n";
+  if (helper = helpers.parent_type) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.parent_type); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ": ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.subject), {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</p>\n<p class=\"notification-content\">";
+  if (helper = helpers.comment) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.comment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n\n";
+  return buffer;
+  }));
+
+Handlebars.registerPartial("newActivity", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += " <p>";
+  if (helper = helpers.author_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.author_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " ";
+  if (helper = helpers.verb) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.verb); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " <strong>";
+  if (helper = helpers.subject) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.subject); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</strong>:</p>\n <p  class=\"notification-content\">";
+  if (helper = helpers.content) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.content); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n";
+  return buffer;
+  }));
+
+Handlebars.registerPartial("alert_details_empty_row", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"col-1 alert-details\"><i class=\"fa fa-spin fa-spinner\"></i></div>";
+  }));
+
+Handlebars.registerPartial("open_alert_rows", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n	<div class=\"item pure-g alert-row\">\n		<p class=\"col-1-2 col-md-1\">";
+  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n		<p class=\"col-1-4 minor-m\">";
+  if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n		<div class=\"col-1-4 col-md-1 alert-actions\">\n			<a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.resolve)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" class=\"btn primary expand resolve-link\"><i class=\"ic fa ic_check\"></i><span class=\"visible-md\">Resolve Alert</span></a>\n			<a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.checkin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" class=\"btn primary report-link\"><i class=\"ic fa ic_report-16\"></i><span class=\"visible-md\">View Report</span></a>\n		</div>\n		\n		";
+  stack1 = self.invokePartial(partials.alert_details_empty_row, 'alert_details_empty_row', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n	</div>\n";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  
+  return "\n	<p>There are no Open Alerts for this Store</p>\n";
+  }
+
+  options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
+  if (helper = helpers.rows) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.rows); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  }));
+
 Handlebars.registerPartial("content", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -86,60 +248,10 @@ function program3(depth0,data) {
   return buffer;
   }));
 
-Handlebars.registerPartial("alert_details_empty_row", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/activity"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  
-
-
-  return "<div class=\"col-1 alert-details\"><i class=\"fa fa-spin fa-spinner\"></i></div>";
-  }));
-
-Handlebars.registerPartial("open_alert_rows", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n	<div class=\"item pure-g alert-row\">\n		<p class=\"col-1-2 col-md-1\">";
-  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n		<p class=\"col-1-4 minor-m\">";
-  if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n		<div class=\"col-1-4 col-md-1 alert-actions\">\n			<a href=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.resolve)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" class=\"btn primary expand resolve-link\"><i class=\"ic fa ic_check\"></i><span class=\"visible-md\">Resolve Alert</span></a>\n			<a href=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.checkin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" class=\"btn primary report-link\"><i class=\"ic fa ic_report-16\"></i><span class=\"visible-md\">View Report</span></a>\n		</div>\n		\n		";
-  stack1 = self.invokePartial(partials.alert_details_empty_row, 'alert_details_empty_row', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n	</div>\n";
-  return buffer;
-  }
-
-function program3(depth0,data) {
-  
-  
-  return "\n	<p>There are no Open Alerts for this Store</p>\n";
-  }
-
-  options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
-  if (helper = helpers.rows) { stack1 = helper.call(depth0, options); }
-  else { helper = (depth0 && depth0.rows); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
-  if(stack1 || stack1 === 0) { return stack1; }
-  else { return ''; }
-  }));
-
-this["ThirdChannel"]["templates"]["activity"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
@@ -161,7 +273,9 @@ function program3(depth0,data) {
   if (helper = helpers.issue_length) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.issue_length); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " Issues Found</h3>\n                <ul class=\"unstyled\">\n                    ";
+    + " "
+    + escapeExpression((helper = helpers.pluralize || (depth0 && depth0.pluralize),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.issue_length), "Issue Found", "Issues Found", options) : helperMissing.call(depth0, "pluralize", (depth0 && depth0.issue_length), "Issue Found", "Issues Found", options)))
+    + "</h3>\n                <ul class=\"unstyled\">\n                    ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.issues), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                </ul>\n                ";
@@ -433,7 +547,7 @@ function program31(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["checkins/store"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/checkins/store"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -550,7 +664,7 @@ function program9(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["comment"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/comment"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -611,7 +725,7 @@ function program5(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["dashboards/alerts/index/alert"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/dashboards/alerts/index/alert"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -637,7 +751,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["dashboards/alerts/index/alerts"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/dashboards/alerts/index/alerts"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
@@ -646,7 +760,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return "<tbody class=\"alerts\"></tbody>\n\n";
   });
 
-this["ThirdChannel"]["templates"]["dashboards/alerts/index/group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/dashboards/alerts/index/group"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -660,7 +774,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["dashboards/alerts/index/section"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/dashboards/alerts/index/section"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -674,7 +788,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["dashboards/alerts/show/store"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/dashboards/alerts/show/store"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -705,7 +819,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["dashboards/alerts/show/stores"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/dashboards/alerts/show/stores"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -719,7 +833,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["filter_active_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/filter_active_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -741,7 +855,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["filters"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/filters"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -788,7 +902,7 @@ function program3(depth0,data) {
   else { return ''; }
   });
 
-this["ThirdChannel"]["templates"]["filters/date_component"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/filters/date_component"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -802,7 +916,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["filters/hidden_component"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/filters/hidden_component"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -822,7 +936,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["filters/list_component"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/filters/list_component"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -862,7 +976,7 @@ function program3(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["filters/spinner_component"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/filters/spinner_component"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
@@ -871,7 +985,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return "<div class='filter-component spinner'>\n    <div class='filter-item'>\n        <i class='fa fa-spinner fa-spin'></i>\n    </div>\n</div>\"";
   });
 
-this["ThirdChannel"]["templates"]["incomplete_activities"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/incomplete_activities"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -889,87 +1003,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["layout/action_buttons"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, helper, options;
-  buffer += "\n    ";
-  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.type), "link", options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.type), "link", options));
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n    ";
-  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.type), "button", options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.type), "button", options));
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n        <a href=\"";
-  if (helper = helpers.link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\" class=\"btn ";
-  if (helper = helpers.className) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.className); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\">\n            ";
-  stack1 = self.invokePartial(partials.content, 'content', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </a>\n    ";
-  return buffer;
-  }
-
-function program4(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n        <button class=\"btn ";
-  if (helper = helpers.className) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.className); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\">\n            ";
-  stack1 = self.invokePartial(partials.content, 'content', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </button>\n    ";
-  return buffer;
-  }
-
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.buttons), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { return stack1; }
-  else { return ''; }
-  });
-
-this["ThirdChannel"]["templates"]["layout/main_navigation"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n        ";
-  stack1 = self.invokePartial(partials.nav_item, 'nav_item', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    ";
-  return buffer;
-  }
-
-  buffer += "<div class=\"navigation\">\n    <div class=\"logo\">\n        <a href=\"";
-  if (helper = helpers.homeLink) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.homeLink); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\">\n\n        <span class=\"ic ic_logo\"></span>\n        <span class=\"third hidden-xs\">\n            THIRD<span class=\"gray-regulartext channel\">CHANNEL</span>\n        </span>\n        </a>\n    </div>\n\n    ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.navItems), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n    <a href=\"javascript:void(0)\" class=\"collapse-nav nav-item minor-s\">\n        <i class=\"ic ic_left\"></i>\n        <span class=\"link\">Collapse</span>\n    </a>\n</div>";
-  return buffer;
-  });
-
-this["ThirdChannel"]["templates"]["loading"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/loading"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
@@ -978,7 +1012,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return "<div class=\"section loading-section\">\n    <div class=\"loading\">\n        <div class=\"fa fa-spin fa-spinner\"></div> Loading...\n    </div>\n</div>\n\n";
   });
 
-this["ThirdChannel"]["templates"]["new-comment"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/new-comment"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -994,7 +1028,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["no_results"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/no_results"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
@@ -1003,7 +1037,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return "<div class=\"\">\n    <i class=\"fa fa-ban\"></i> No Results Found\n</div>\n";
   });
 
-this["ThirdChannel"]["templates"]["notifications/badge"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/notifications/badge"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -1016,34 +1050,28 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["notifications/notification"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/notifications/notification"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var stack1, helper, options, functionType="function", self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, blockHelperMissing=helpers.blockHelperMissing;
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var stack1, helper, options, self=this, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n<tr>\n    <td colspan=\"2\" class=\"<%= note.read ? 'read' : 'unread' %>\">\n        <p>\n            ";
-  if (helper = helpers.author_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.author_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                <span>\n                    ";
-  if (helper = helpers.verb) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.verb); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\n                    ";
-  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, "Comment", (depth0 && depth0.note_type), options) : helperMissing.call(depth0, "if_eq", "Comment", (depth0 && depth0.note_type), options));
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                    on ";
+  buffer += "\n<tr>\n    <td colspan=\"2\" class=\"<%= note.read ? 'read' : 'unread' %>\">\n       <div class=\"tiny\"><i>";
   if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ":\n                </span>\n        </p>\n        ";
-  if (helper = helpers.content) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.content); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+    + "</i></div>\n        ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, "Comment", (depth0 && depth0.note_type), options) : helperMissing.call(depth0, "if_eq", "Comment", (depth0 && depth0.note_type), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        <div class=\"table-actions\">\n            ";
+  buffer += "\n\n        ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, "Message", (depth0 && depth0.note_type), options) : helperMissing.call(depth0, "if_eq", "Message", (depth0 && depth0.note_type), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n        ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, "Checkin", (depth0 && depth0.note_type), options) : helperMissing.call(depth0, "if_eq", "Checkin", (depth0 && depth0.note_type), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n        <div class=\"table-actions\">\n            ";
   if (helper = helpers.activity_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.activity_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -1052,50 +1080,32 @@ function program1(depth0,data) {
   else { helper = (depth0 && depth0.delete_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += " ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.mark_read_url), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.mark_read_url), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </div>\n    </td>\n</tr>\n";
   return buffer;
   }
 function program2(depth0,data) {
   
-  var buffer = "", stack1, helper, options;
-  buffer += "\n\n                        ";
-  stack1 = (helper = helpers.if_activity || (depth0 && depth0.if_activity),options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.parent_type), options) : helperMissing.call(depth0, "if_activity", (depth0 && depth0.parent_type), options));
+  var buffer = "", stack1;
+  buffer += "\n            ";
+  stack1 = self.invokePartial(partials.comment, 'comment', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                    ";
+  buffer += "\n        ";
   return buffer;
   }
-function program3(depth0,data) {
-  
-  var buffer = "", stack1, helper, options;
-  buffer += "\n                            on\n                            ";
-  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.parent_user)),stack1 == null || stack1 === false ? stack1 : stack1.id), (depth0 && depth0.current_user), options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.parent_user)),stack1 == null || stack1 === false ? stack1 : stack1.id), (depth0 && depth0.current_user), options));
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n                            ";
-  if (helper = helpers.parent_type) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.parent_type); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\n                        ";
-  return buffer;
-  }
+
 function program4(depth0,data) {
   
-  
-  return "\n                                your\n                            ";
+  var buffer = "", stack1;
+  buffer += "\n            ";
+  stack1 = self.invokePartial(partials.newActivity, 'newActivity', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        ";
+  return buffer;
   }
 
 function program6(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n                               ";
-  stack1 = ((stack1 = ((stack1 = (depth0 && depth0.parent_user)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                            ";
-  return buffer;
-  }
-
-function program8(depth0,data) {
   
   var buffer = "", stack1, helper;
   buffer += "| ";
@@ -1105,21 +1115,21 @@ function program8(depth0,data) {
   return buffer;
   }
 
-function program10(depth0,data) {
+function program8(depth0,data) {
   
   
   return "\n<tr>\n    <td colspan=\"2\">You have no notifications</td>\n</tr>\n";
   }
 
-  options={hash:{},inverse:self.program(10, program10, data),fn:self.program(1, program1, data),data:data}
+  options={hash:{},inverse:self.program(8, program8, data),fn:self.program(1, program1, data),data:data}
   if (helper = helpers.rows) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.rows); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(10, program10, data),fn:self.program(1, program1, data),data:data}); }
+  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(8, program8, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { return stack1; }
   else { return ''; }
   });
 
-this["ThirdChannel"]["templates"]["pagination"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/pagination"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
@@ -1216,7 +1226,7 @@ function program11(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["photo-modal"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/photo-modal"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -1265,7 +1275,7 @@ function program3(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/index/section"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/index/section"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -1283,7 +1293,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/index/subsection"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/index/subsection"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -1310,7 +1320,7 @@ function program1(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/info/show/checkin"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/info/show/checkin"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -1356,7 +1366,7 @@ function program3(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/info/show/info_list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/info/show/info_list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -1374,7 +1384,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/info/show/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/info/show/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -1408,7 +1418,7 @@ function program1(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/widgets/bar_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/bar_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
@@ -1442,7 +1452,7 @@ function program1(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/widgets/default"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/default"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
@@ -1454,7 +1464,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/widgets/donut_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/donut_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
@@ -1507,7 +1517,7 @@ function program4(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/widgets/horizontal_bar_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/horizontal_bar_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -1531,7 +1541,7 @@ function program1(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/widgets/leading_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/leading_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
@@ -1572,7 +1582,7 @@ function program3(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/widgets/list_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/list_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
@@ -1618,7 +1628,7 @@ function program4(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/widgets/metric_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/metric_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
@@ -1637,7 +1647,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/widgets/multi_question_totals"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/multi_question_totals"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -1674,7 +1684,7 @@ function program1(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/widgets/overview_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/overview_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
@@ -1709,7 +1719,7 @@ function program3(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/widgets/percent_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/percent_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
@@ -1737,7 +1747,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/widgets/quadrant_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/quadrant_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
@@ -1787,7 +1797,7 @@ function program2(depth0,data,depth1,depth2) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/widgets/range_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/range_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
@@ -1825,7 +1835,7 @@ function program2(depth0,data,depth2) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["reports/widgets/resolution_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/resolution_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -1862,7 +1872,7 @@ function program3(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["s3uploader/image"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/s3uploader/image"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -1876,7 +1886,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["s3uploader/upload"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/s3uploader/upload"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -1890,7 +1900,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["store_profile/alerts_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/store_profile/alerts_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -1912,7 +1922,7 @@ function program1(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["store_profile/hoverable_image"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/store_profile/hoverable_image"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -1934,7 +1944,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["store_profile/open_alert_details"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/store_profile/open_alert_details"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -1954,7 +1964,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["store_profile/open_alerts_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/store_profile/open_alerts_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
   var stack1, self=this;
@@ -1965,7 +1975,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   else { return ''; }
   });
 
-this["ThirdChannel"]["templates"]["store_profile/personnel_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/store_profile/personnel_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -2022,7 +2032,7 @@ function program6(depth0,data) {
   else { return ''; }
   });
 
-this["ThirdChannel"]["templates"]["store_profile/photo_modal"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/store_profile/photo_modal"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -2048,7 +2058,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["store_profile/resolved_alert_details"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/store_profile/resolved_alert_details"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -2094,7 +2104,7 @@ function program3(depth0,data) {
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["store_profile/resolved_alerts_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/store_profile/resolved_alerts_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
   var stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -2139,7 +2149,7 @@ function program3(depth0,data) {
   else { return ''; }
   });
 
-this["ThirdChannel"]["templates"]["stores/rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/stores/rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -2179,7 +2189,7 @@ function program3(depth0,data) {
   else { return ''; }
   });
 
-this["ThirdChannel"]["templates"]["teams/rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/teams/rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
@@ -2227,6 +2237,86 @@ function program3(depth0,data) {
   if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { return stack1; }
   else { return ''; }
+  });
+
+this["ThirdChannel"]["templates"]["shared/layout/action_buttons"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n    ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.type), "link", options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.type), "link", options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n    ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.type), "button", options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.type), "button", options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n        <a href=\"";
+  if (helper = helpers.link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"btn ";
+  if (helper = helpers.className) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.className); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n            ";
+  stack1 = self.invokePartial(partials.content, 'content', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </a>\n    ";
+  return buffer;
+  }
+
+function program4(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n        <button class=\"btn ";
+  if (helper = helpers.className) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.className); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n            ";
+  stack1 = self.invokePartial(partials.content, 'content', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </button>\n    ";
+  return buffer;
+  }
+
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.buttons), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  });
+
+this["ThirdChannel"]["templates"]["shared/layout/main_navigation"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n        ";
+  stack1 = self.invokePartial(partials.nav_item, 'nav_item', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    ";
+  return buffer;
+  }
+
+  buffer += "<div class=\"navigation\">\n    <div class=\"logo\">\n        <a href=\"";
+  if (helper = helpers.homeLink) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.homeLink); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n\n        <span class=\"ic ic_logo\"></span>\n        <span class=\"third hidden-xs\">\n            THIRD<span class=\"gray-regulartext channel\">CHANNEL</span>\n        </span>\n        </a>\n    </div>\n\n    ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.navItems), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n    <a href=\"javascript:void(0)\" class=\"collapse-nav nav-item minor-s\">\n        <i class=\"ic ic_left\"></i>\n        <span class=\"link\">Collapse</span>\n    </a>\n</div>";
+  return buffer;
   });
 
 return this["ThirdChannel"]["templates"];

@@ -7,7 +7,7 @@ define(function(require) {
         tagName: 'div',
         className: 'item pure-g alert-row',
         subViewClass: OpenAlertsDetails,
-        template: HandlebarsTemplates['dashboards/alerts/show/store'],
+        template: HandlebarsTemplates['thirdchannel/dashboards/alerts/show/store'],
         initialize: function (options) {
             this.model = options.model;
         },

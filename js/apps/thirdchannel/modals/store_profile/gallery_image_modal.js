@@ -3,7 +3,7 @@ define(function(require) {
 
 		GalleryImageModal = BasePhotoModal.extend({
 			className: 'hoverable-image-modal',
-			templateName: 'store_profile/photo_modal'
+			templateName: 'thirdchannel/store_profile/photo_modal'
 		});
 
 	return GalleryImageModal;

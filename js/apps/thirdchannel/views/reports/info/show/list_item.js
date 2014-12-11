@@ -5,7 +5,7 @@ define(function(require) {
         ReportInfoListCheckinView = require('thirdchannel/views/reports/info/show/checkin');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['reports/info/show/list_item'],
+        template: HandlebarsTemplates['thirdchannel/reports/info/show/list_item'],
         events: {
             "click .info-toggle": "toggleCheckins"
         },

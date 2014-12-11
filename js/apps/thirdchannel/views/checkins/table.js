@@ -6,6 +6,6 @@ define(function(require) {
         el: ".section",
         bodySelector: '.table',
         collectionClass: Members,
-        template: 'checkins/store'
+        template: 'thirdchannel/checkins/store'
     });
 });

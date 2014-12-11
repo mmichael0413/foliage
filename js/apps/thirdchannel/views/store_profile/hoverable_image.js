@@ -1,7 +1,7 @@
 define(function(require) {
 	var Backbone = require('backbone'),
 		context = require('context'),
-		template = require('handlebarsTemplates')['store_profile/hoverable_image'],
+		template = require('handlebarsTemplates')['thirdchannel/store_profile/hoverable_image'],
 
 		//GalleryImageModal = require('thirdchannel/modals/store_profile/gallery_image_modal'),
 

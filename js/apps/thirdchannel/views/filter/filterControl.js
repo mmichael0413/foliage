@@ -2,7 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         $ = require('jquery'),
         context = require('context'),
-        spinnerTemplate = require('handlebarsTemplates')['filters/spinner_component'],
+        spinnerTemplate = require('handlebarsTemplates')['thirdchannel/filters/spinner_component'],
         SingleAnswerComponentView = require('thirdchannel/views/filter/singleAnswerComponent'),
         DateComponentView = require('thirdchannel/views/filter/dateComponent'),
         HiddenComponentView = require('thirdchannel/views/filter/hiddenComponent'),

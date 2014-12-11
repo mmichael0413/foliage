@@ -5,7 +5,7 @@ define(function(require) {
         ReportSubsectionView = require('thirdchannel/views/reports/index/subsection');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['reports/index/section'],
+        template: HandlebarsTemplates['thirdchannel/reports/index/section'],
         initialize: function (options) {
             this.model = options;
         },

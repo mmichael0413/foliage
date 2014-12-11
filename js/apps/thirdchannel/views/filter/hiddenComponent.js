@@ -8,7 +8,7 @@ define(function (require) {
      */
     var HiddenComponent = require('thirdchannel/views/filter/component').extend({
 
-            templateName: 'filters/hidden_component',
+            templateName: 'thirdchannel/filters/hidden_component',
     });
 
     return HiddenComponent;

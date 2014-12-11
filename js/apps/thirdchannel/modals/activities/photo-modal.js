@@ -5,7 +5,7 @@ define(function(require){
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.Modal.extend({
-        templateName: 'photo-modal',
+        templateName: 'thirdchannel/photo-modal',
         initialize: function (options) {
             this.model = options.model;
         },

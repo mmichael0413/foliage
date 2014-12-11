@@ -27,7 +27,7 @@ define(function(require) {
 
             }),
             subViewClass: OpenAlertsDetails,
-            template: 'store_profile/alerts_rows',
+            template: 'thirdchannel/store_profile/alerts_rows',
             bodySelector: '.body',
 
             initialize: function () {

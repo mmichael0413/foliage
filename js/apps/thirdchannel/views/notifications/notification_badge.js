@@ -8,7 +8,7 @@ define(function (require) {
 
     return Backbone.View.extend({
         el: '.notifications',
-        template: HandlebarsTemplates['notifications/badge'],
+        template: HandlebarsTemplates['thirdchannel/notifications/badge'],
         render: function () {
             var _this = this;
             $.ajax({
