@@ -28,10 +28,6 @@ define(function(require) {
                     self.addFilters(collection);
                 }});
             }
-
-            this.model.fetch({success: function (model) {
-                self.constructView(model);
-            }});
             return this;
         },
         addFilters: function (value) {
