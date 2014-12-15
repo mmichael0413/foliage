@@ -29,9 +29,6 @@ define(function(require) {
                 this.filters.fetch({success: function (collection) {
                     self.addFilters(collection);
                 }});
-                this.model.fetch({success: function (model) {
-                    self.constructView(model);
-                }});
             }
             return this;
         },
