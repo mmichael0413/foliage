@@ -127,6 +127,9 @@ define(function(require) {
                     }
                 }
             });
+
+            this.broadCastQueryString();
+
             return shouldTrigger;
         },
 
