@@ -37,6 +37,9 @@ define(function(require){
                                 model.trigger('progress', ((event.loaded / event.total) * 100).toFixed(2));
                             }
                         };
+                        xhr.upload.onerror = function () {
+                            model.trigger('error', xhr.status);
+                        };
                         xhr.upload.onload = function(){
                             model.trigger('complete', 100);
                         };

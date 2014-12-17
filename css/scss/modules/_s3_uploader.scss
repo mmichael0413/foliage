@@ -1,6 +1,21 @@
 .viewer {
   position: relative;
 
+  .error {
+    padding: 0.5em 1em;
+    border-radius: $border-radius-base;
+    margin-top: 0.5em;
+    background-color: lighten($link-color, 20%);
+
+    .message {
+      margin-right: 1.5em;
+    }
+  }
+
+  .error-close {
+    cursor: pointer;
+  }
+
   .holder {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
