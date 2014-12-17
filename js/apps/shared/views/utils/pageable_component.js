@@ -6,7 +6,7 @@ define(function(require) {
 	 *
 	 * 
 	 * @mixin
-	 * @exports thirdchannel/views/utils/pageable_component
+	 * @exports shared/views/utils/pageable_component
 	 */
 	PageableComponent = {
 		renderPagination: function () {

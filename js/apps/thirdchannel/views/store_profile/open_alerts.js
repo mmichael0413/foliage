@@ -5,13 +5,13 @@ define(function(require) {
         BaseAlertsCollection = require('thirdchannel/collections/alerts/base'),
         AlertRowView = require('thirdchannel/views/store_profile/alert_row_view'),
         context = require('context'),
-        Pageable = require('thirdchannel/views/utils/pageable_component'),
+        Pageable = require('shared/views/utils/pageable_component'),
 
         /**
          * Filterable View for displaying Open Alerts
          *
          * 
-         * @mixes module:thirdchannel/views/utils/pageable_component
+         * @mixes module:shared/views/utils/pageable_component
          * @extends {module:thirdchannel/views/shared/filterable_table}
          * @exports thirdchannel/views/store_profile/open_alerts
          */
