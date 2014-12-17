@@ -7,19 +7,12 @@
 <div class="pure-g">
     <div class="col-1-2 col-md-1">
         <a href="/programs/{{program}}/stores/{{id}}">{{name}}</a>, {{address}} {{city}}, {{state}}
-        {{#if special_project}}
-            <div><strong>This store is part of a Special Project</strong></div>
-        {{/if}}
-
     </div>
     <div class="col-1-4 minor-m">{{last_checkin}}</div>
-    <div>
-
-    </div>
     <div class="col-1-4 col-md-1 general-actions">
         {{#if special_project}}
             <div class="action-spacer"></div>
-            <a href="/programs/{{program}}/checkins/{{id}}/choose" class="btn primary"><i class="ic fa ic_report-16"></i><span>Checkin Here</span></a>
+            <a href="/programs/{{program}}/checkins/choose/{{id}}" class="btn primary"><i class="ic fa ic_report-16"></i><span>Checkin Here</span></a>
         {{else}}
             <form accept-charset="UTF-8" action="/programs/{{program}}/checkins" method="post">
                 <input id="id" name="customer_store_id" type="hidden" value="{{id}}">
