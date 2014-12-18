@@ -21,7 +21,6 @@ define(function (require) {
             this.$toggleFilter = $('.toggle-filter');
 
             if (window.bootstrap.navigation){
-                console.log(window.bootstrap.navigation);
                 this.render();
             }
 
