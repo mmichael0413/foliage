@@ -46,7 +46,6 @@ define(function(require) {
         excludeFields: [],
         
         initialize: function (data) {
-
             this.components = {};
 
             // look for any filter components within the filter, then wrap a view around them
@@ -56,7 +55,8 @@ define(function(require) {
                 shouldTrigger = false;
 
             if (!data || !data.collection) {
-                //console.log("We need at least a data.collection to get started with the filter");
+                console.error("We need at least a data.collection to get started with the filter");
+                
                 return false;
             }
             
@@ -203,11 +203,10 @@ define(function(require) {
 
         broadCastQueryString: function () {
             // update the url so that we can access the deep link later on
-            if(this.enableDeepLinks) {
+            if(this.enableDeepLinks && context.router) {
                 context.router.navigate(window.location.pathname + "?" + this.serializeForm(), {trigger: false});
             }
             context.trigger('filter:query', this.$el.serialize());
-
             this.serializeForm();
         },
 

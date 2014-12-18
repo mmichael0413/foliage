@@ -6,8 +6,17 @@ define(function(require) {
 		 * @type {Collection}
 		 */
 		EntriesCollection = Backbone.Collection.extend({
+			queryString: "",
+			parse: function (data) {
+				if (data.items) {
+					this.pages = data.pages;
+					return data.items;
+				} else {
+					return data;
+				}
+			},
 			url: function () {
-				return context.content.links.self;
+				return context.content.links.self + "?" + this.queryString;
 			}
 		});
 

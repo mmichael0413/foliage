@@ -2477,7 +2477,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   else { helper = (depth0 && depth0.units); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + " mins</p>\n\n<p class=\"col-3-12\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.paypalEmail)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</p>\n\n<div class=\"col-3-12 entry-actions\">\n    <a class=\"btn primary\" href=\"#\" title=\"View Checkin Report\"><i class=\"ic ic_report-16\"></i></a>\n    ";
   stack1 = self.invokePartial(partials.expand_action, 'expand_action', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -2509,7 +2509,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   else { helper = (depth0 && depth0.units); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + " mi</p>\n<p class=\"col-3-12\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.paypalEmail)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</p>\n\n<div class=\"col-3-12 entry-actions\">\n    ";
   stack1 = self.invokePartial(partials.expand_action, 'expand_action', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }

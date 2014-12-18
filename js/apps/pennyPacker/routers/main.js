@@ -3,7 +3,7 @@ define(function(require) {
         _ = require('underscore'),
         Backbone = require('backbone'),
         context = require('context'),
-
+        Filter = require('thirdchannel/views/filter/main'),
         EntriesListView = require('pennyPacker/views/entries/list');
         
     /**
@@ -21,6 +21,8 @@ define(function(require) {
         },
 
         entryList: function (programId) {
+            window.c = context;
+            Filter.init();
             var view = new EntriesListView();
             if (context.content.items) {
                 view.bootstrapCollection(context.content);
