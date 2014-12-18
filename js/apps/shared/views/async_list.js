@@ -61,13 +61,13 @@ define(function(require) {
             var shadowBody = $("<div></div>"),
                 self = this,
                 view;
-            if (this.rowView) {
+            if (this.rowView !== undefined) {
                 this.collection.each(function (model) {
-                    view = new self.rowView(model).render();
+                    view = new self.rowView({model:model}).render();
                     shadowBody.append(view.$el);
                     self.activeViews.push(view);
                 });
-            } if (this.rowTemplate) {
+            } else if (this.rowTemplate) {
                 this.collection.each(function (model) {
                     shadowBody.append(HandlebarsTemplates[self.rowTemplate](model.toJSON()));
                 });

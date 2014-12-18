@@ -37,3 +37,12 @@
 		padding-left: 0;	
 	}
 }
+
+.data-section .body .item {
+	&.checkin {
+		background-color: $light-blue;
+	}
+	&.travel {
+		background-color: $light-gray;
+	}
+}

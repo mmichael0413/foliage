@@ -1,6 +1,8 @@
 define(function(require){
 var AsyncListView = require('shared/views/async_list'),
     EntriesCollection = require('pennyPacker/collections/entries'),
+    CheckinView = require('pennyPacker/views/entry/checkin'),
+    TravelView = require('pennyPacker/views/entry/travel'),
         /**
          *
          * The Entries list list
@@ -10,7 +12,19 @@ var AsyncListView = require('shared/views/async_list'),
          */
         EntryListView = AsyncListView.extend({
             el: '#entries',
-            rowTemplate: 'pennyPacker/entries/row',
+            rowView: function(options) {
+                var type = options.model.get('type'),
+                    view = CheckinView;
+
+                if (type == "CHECKIN") {
+                }
+                else if (type == "TRAVEL") {
+                    view = TravelView;
+                } else {
+                    console.error("Model has unknown type of " + type);
+                }
+                return new view(options);
+            },
             collectionClass: EntriesCollection
         });
     return EntryListView;
