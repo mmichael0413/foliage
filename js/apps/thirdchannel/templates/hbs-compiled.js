@@ -248,6 +248,53 @@ function program3(depth0,data) {
   return buffer;
   }));
 
+Handlebars.registerPartial("expand_action", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<a class=\"btn primary expand\" title=\"Expand Entry\">...</a>";
+  }));
+
+Handlebars.registerPartial("valid_indicator", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  
+  return "ic_check";
+  }
+
+function program3(depth0,data) {
+  
+  
+  return "ic_x";
+  }
+
+  buffer += "<div class=\"col-1-12 valid-indicator\"><i class=\"ic ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.valid), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}
+  if (helper = helpers['else']) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0['else']); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers['else']) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\"></i></div>";
+  return buffer;
+  }));
+
+Handlebars.registerPartial("validate_action", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<a class=\"btn primary validate\" title=\"Toggle Entry as valid / invalid\"><i class=\"ic ic_check\"></i></a>";
+  }));
+
 this["ThirdChannel"]["templates"]["thirdchannel/activity"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -2411,49 +2458,65 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 this["ThirdChannel"]["templates"]["pennyPacker/entry/checkin"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<p class=\"col-1-12\">";
+  stack1 = self.invokePartial(partials.valid_indicator, 'valid_indicator', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n<p class=\"col-2-12\">";
   if (helper = helpers.date) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.date); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-3-12\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.paypalEmail)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n<p class=\"col-2-12\">";
-  if (helper = helpers.units) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.units); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + " Minutes</p>\n<p class=\"col-1-12\">";
+    + "</p>\n<p class=\"col-1-12 payment\">$";
   if (helper = helpers.payment) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.payment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>";
+    + "</p>\n<p class=\"col-1-12\">";
+  if (helper = helpers.units) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.units); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " mins</p>\n\n<p class=\"col-3-12\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.paypalEmail)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</p>\n\n<div class=\"col-3-12 entry-actions\">\n    <a class=\"btn primary\" href=\"#\" title=\"View Checkin Report\"><i class=\"ic ic_report-16\"></i></a>\n    ";
+  stack1 = self.invokePartial(partials.expand_action, 'expand_action', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    ";
+  stack1 = self.invokePartial(partials.validate_action, 'validate_action', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "    \n</div>\n";
   return buffer;
   });
 
 this["ThirdChannel"]["templates"]["pennyPacker/entry/travel"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<p class=\"col-1-12\">";
+  stack1 = self.invokePartial(partials.valid_indicator, 'valid_indicator', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n<p class=\"col-2-12\">";
   if (helper = helpers.date) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.date); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-3-12\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.paypalEmail)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n<p class=\"col-2-12\">";
-  if (helper = helpers.units) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.units); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + " Miles</p>\n<p class=\"col-1-12\">";
+    + "</p>\n<p class=\"col-1-12 payment\">$";
   if (helper = helpers.payment) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.payment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>";
+    + "</p>\n\n<p class=\"col-1-12\">";
+  if (helper = helpers.units) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.units); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " mi</p>\n<p class=\"col-3-12\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.paypalEmail)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</p>\n\n<div class=\"col-3-12 entry-actions\">\n    ";
+  stack1 = self.invokePartial(partials.expand_action, 'expand_action', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    ";
+  stack1 = self.invokePartial(partials.validate_action, 'validate_action', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</div>\n\n\n";
   return buffer;
   });
 

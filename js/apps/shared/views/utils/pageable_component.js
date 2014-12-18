@@ -27,7 +27,11 @@ define(function(require) {
                     this.listenTo(this.pager, 'new_page', this.pageChange);    
                 }
 		},
-		renderCollection: function (data) {
+        /**
+         * Looks for .items and .pages
+         * 
+         */
+		bootstrapCollection: function (data) {
             this.count = data.pages.totalCount;
             this.pages = data.pages;
             this.collection.reset(data.items);

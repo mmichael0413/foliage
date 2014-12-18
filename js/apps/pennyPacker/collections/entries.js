@@ -5,12 +5,12 @@ define(function(require) {
 		 * Represents the Entries tied to a specific Program
 		 * @type {Collection}
 		 */
-		EntriesCollection = {
+		EntriesCollection = Backbone.Collection.extend({
 			url: function () {
 				return context.content.links.self;
 			}
-		};
+		});
 
-	return Backbone.Collection.extend(EntriesCollection);
+	return EntriesCollection;
 
 });

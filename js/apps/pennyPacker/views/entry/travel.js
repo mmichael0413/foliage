@@ -3,7 +3,7 @@ define(function (require) {
 		Templates = require('handlebarsTemplates'),
 
 		TravelView = {
-			className: 'item travel',
+			className: 'item entry travel',
 
             render: function () {
                 this.$el.html(Templates['pennyPacker/entry/travel'](this.model.toJSON()));

@@ -10,7 +10,7 @@ define(function (require) {
          * @exports 'pennyPacker/views/entry/checkin'
          */
         CheckinView = {
-            className: 'item checkin',
+            className: 'item entry checkin',
 
             render: function () {
                 this.$el.html(Templates['pennyPacker/entry/checkin'](this.model.toJSON()));

@@ -21,9 +21,11 @@ define(function(require) {
         },
 
         entryList: function (programId) {
-            var view = new EntriesListView().render();
+            var view = new EntriesListView();
             if (context.content.items) {
-                view.bootstrapCollection(context.content.items);
+                view.bootstrapCollection(context.content);
+            } else {
+                view.render();
             }
         }
     });

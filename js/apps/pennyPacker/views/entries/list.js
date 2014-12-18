@@ -1,6 +1,9 @@
 define(function(require){
-var AsyncListView = require('shared/views/async_list'),
+var _ = require('underscore'),
+    AsyncListView = require('shared/views/async_list'),
     EntriesCollection = require('pennyPacker/collections/entries'),
+    //EntriesCollection = require('thirdchannel/collections/shared/async_paged'),
+    Pageable = require('shared/views/utils/pageable_component'),
     CheckinView = require('pennyPacker/views/entry/checkin'),
     TravelView = require('pennyPacker/views/entry/travel'),
         /**
@@ -10,7 +13,7 @@ var AsyncListView = require('shared/views/async_list'),
          * @extends {module:shared/views/async_list}
          * @exports pennyPacker/views/entries/list
          */
-        EntryListView = AsyncListView.extend({
+        EntryListView = {
             el: '#entries',
             rowView: function(options) {
                 var type = options.model.get('type'),
@@ -25,7 +28,13 @@ var AsyncListView = require('shared/views/async_list'),
                 }
                 return new view(options);
             },
-            collectionClass: EntriesCollection
-        });
-    return EntryListView;
+            
+            collectionClass: EntriesCollection,
+            
+            afterRender: function () {
+                this.renderPagination();
+            }
+        };
+    _.extend(EntryListView, Pageable);
+    return AsyncListView.extend(EntryListView);
 });

@@ -38,11 +38,44 @@
 	}
 }
 
-.data-section .body .item {
-	&.checkin {
-		background-color: $light-blue;
+.data-section {
+	padding: 0;
+	.header {
+		padding-top: 0.5em;
+		text-align: center;
 	}
-	&.travel {
-		background-color: $light-gray;
+	.body  {
+
+		.entry-actions {
+			text-align: right;
+			.btn {
+				cursor: pointer;
+			}
+		}
+
+		.item {
+			&.checkin {
+				background-color: $light-blue;
+			}
+			&.travel {
+				background-color: $light-gray;
+			}
+		}
 	}
+}
+
+.entry {
+	.valid-indicator {
+		text-align: center;
+		font-size: 1.25em;
+		.ic_check {
+			color: green;
+		}
+		.ic_x {
+			color: red;
+		}
+	}
+	.payment {
+		font-weight: bold;
+	}	
 }

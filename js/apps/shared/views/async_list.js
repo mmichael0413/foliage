@@ -32,6 +32,7 @@ define(function(require) {
             // listeners for the collection.
             this.listenTo(this.collection, 'reset', this.render);
             this.listenTo(this.collection, 'add', this.render);
+            
             return this;
         },
 
@@ -78,13 +79,13 @@ define(function(require) {
         },
 
         /**
-         * Bootstraps some initial collection data
+         * Bootstraps some initial collection data. looks for an 'items' array in data
          * 
          * @param  {Array} data [description]
          */
         // todo: change this name
         bootstrapCollection: function (data) {
-            this.collection.reset(data);
+            this.collection.reset(data.items);
         },
 
         /**
@@ -94,6 +95,7 @@ define(function(require) {
          */
         fetch: function () {
             var self = this;
+
             self.collection.fetch({reset:true})
                 .done(function () {
                     self.render.apply(self);

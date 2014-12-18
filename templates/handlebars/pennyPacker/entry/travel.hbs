@@ -1,4 +1,13 @@
-<p class="col-1-12">{{date}}</p>
+{{>valid_indicator}}
+<p class="col-2-12">{{date}}</p>
+<p class="col-1-12 payment">${{payment}}</p>
+
+<p class="col-1-12">{{units}} mi</p>
 <p class="col-3-12">{{person.paypalEmail}}</p>
-<p class="col-2-12">{{units}} Miles</p>
-<p class="col-1-12">{{payment}}</p>
+
+<div class="col-3-12 entry-actions">
+    {{>expand_action}}
+    {{>validate_action}}
+</div>
+
+
