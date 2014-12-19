@@ -37,15 +37,17 @@ define(function(require) {
         },
 
         render: function () {
+            
             var $body = this.$el.find(this.bodySelector);
+            $body.html(this.loadingHTML);
             //     data = {
             //         rows: this.collection.toJSON()
             //     };
             // _.extend(data, this.additionalData());
             this._clearActiveViews();
-            $body.html(this.loadingHTML);
-            $body.html(this._renderData(this.collection).html());
-            //$body.html(HandlebarsTemplates[this.template](data));
+            
+            $body.empty().append(this._renderData(this.collection));
+            
             this.afterRender();
             return this;
         },

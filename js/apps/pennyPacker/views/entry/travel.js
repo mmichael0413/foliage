@@ -1,14 +1,10 @@
 define(function (require) {
-	var Backbone = require("backbone"),
-		Templates = require('handlebarsTemplates'),
+    var EntryRowView = require('pennyPacker/views/entry/row'),
 
-		TravelView = {
-			className: 'item entry travel',
+        TravelView = {
+            className: 'item entry travel',
+            template: 'pennyPacker/entry/travel'
 
-            render: function () {
-                this.$el.html(Templates['pennyPacker/entry/travel'](this.model.toJSON()));
-                return this;
-            }
-		};
-	return Backbone.View.extend(TravelView);
+        };
+    return EntryRowView.extend(TravelView);
 });

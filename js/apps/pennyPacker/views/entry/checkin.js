@@ -1,8 +1,5 @@
 define(function (require) {
-    var Backbone = require('backbone'),
-        context = require('context'),
-        Templates = require('handlebarsTemplates'),
-
+    var EntryRowView = require('pennyPacker/views/entry/row'),
         /**
          * Represents a Checkin Row
          * 
@@ -11,12 +8,16 @@ define(function (require) {
          */
         CheckinView = {
             className: 'item entry checkin',
-
-            render: function () {
-                this.$el.html(Templates['pennyPacker/entry/checkin'](this.model.toJSON()));
-                return this;
-            }
+            template: 'pennyPacker/entry/checkin',
+            // events: function () {
+            //     console.log('setting events');
+            //     return {
+            //         'click': function () {
+            //             console.log("yay");
+            //         }
+            //     };
+            // }
         };
 
-    return Backbone.View.extend(CheckinView);
+    return EntryRowView.extend(CheckinView);
 });

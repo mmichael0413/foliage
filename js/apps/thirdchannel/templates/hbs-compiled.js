@@ -260,7 +260,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 Handlebars.registerPartial("valid_indicator", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
+  var buffer = "", stack1, self=this;
 
 function program1(depth0,data) {
   
@@ -275,12 +275,7 @@ function program3(depth0,data) {
   }
 
   buffer += "<div class=\"col-1-12 valid-indicator\"><i class=\"ic ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.valid), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}
-  if (helper = helpers['else']) { stack1 = helper.call(depth0, options); }
-  else { helper = (depth0 && depth0['else']); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers['else']) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}); }
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.valid), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\"></i></div>";
   return buffer;
