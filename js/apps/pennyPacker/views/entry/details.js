@@ -14,7 +14,6 @@ define(function (require) {
 				this.model = new (Backbone.Model.extend({
 					url: options.url
 				}))();
-				console.log(this.model);
 			},
 
 			fetch: function() {
@@ -28,7 +27,7 @@ define(function (require) {
 			},
 
 			render: function () {
-				this.$el.html(Templates[this.template]());
+				this.$el.html(Templates[this.template](this.model.toJSON()));
 				return this;
 			}
 

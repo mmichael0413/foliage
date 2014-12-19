@@ -69,7 +69,10 @@
 }
 
 .entry {
-    
+    .key-info {
+        font-weight: bold;
+        color: $red;
+    }
     .valid-indicator {
         text-align: center;
         font-size: 1.25em;
