@@ -18,6 +18,7 @@
 @import "../../modules/pagination";
 @import "../../modules/site_filter";
 @import "../../modules/pure_grid";
+@import "../../modules/pikaday";
 
 @import "../../modules/data_section";
 @import "../../modules/expanding_table_row";
@@ -30,52 +31,74 @@
 // overrides
 
 .navigation .nav-item {
-	height: inherit;
-	padding-left: 2.5em;
-	white-space: normal;
-	.link {
-		padding-left: 0;	
-	}
+    height: inherit;
+    padding-left: 2.5em;
+    white-space: normal;
+    .link {
+        padding-left: 0;    
+    }
 }
 
 .data-section {
-	padding: 0;
-	.header {
-		padding-top: 0.5em;
-		text-align: center;
-	}
-	.body  {
+    padding: 0;
+    .header {
+        padding-top: 0.5em;
+        text-align: center;
+    }
+    .body  {
 
-		.entry-actions {
-			text-align: right;
-			.btn {
-				cursor: pointer;
-			}
-		}
+        .entry-actions {
+            text-align: right;
+            .btn {
+                cursor: pointer;
+            }
+        }
 
-		.item {
-			&.checkin {
-				background-color: $light-blue;
-			}
-			&.travel {
-				background-color: $light-gray;
-			}
-		}
-	}
+        .item {
+            &.checkin {
+                background-color: $light-blue;
+            }
+            &.travel {
+                background-color: $light-gray;
+            }
+            &.status {
+                text-align: center;
+            }
+        }
+    }
 }
 
 .entry {
-	.valid-indicator {
-		text-align: center;
-		font-size: 1.25em;
-		.ic_check {
-			color: green;
-		}
-		.ic_x {
-			color: red;
-		}
-	}
-	.payment {
-		font-weight: bold;
-	}	
+    
+    .valid-indicator {
+        text-align: center;
+        font-size: 1.25em;
+        .ic_check {
+            color: green;
+        }
+        .ic_x {
+            color: red;
+        }
+    }
+    .payment {
+        font-weight: bold;
+    }
+
+    .sub-view-container {
+        margin: 0 1em 0 1em;
+        position: absolute;
+        overflow: hidden;
+        max-height: 0;
+        -webkit-transition: max-height, 0.8s;
+        -moz-transition: max-height, 0.8s;
+        -ms-transition: max-height, 0.8s;
+        -o-transition: max-height, 0.8s;
+        transition: max-height, 0.8s;
+    } 
+    &.active {
+        .sub-view-container {
+            position: inherit;
+            max-height: 999em;
+        }
+    }  
 }

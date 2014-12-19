@@ -3,10 +3,13 @@
 <p class="col-1-12 payment">${{payment}}</p>
 <p class="col-1-12">{{units}} mins</p>
 
-<p class="col-3-12">{{person.name}}</p>
+<p class="col-2-12">{{person.name}}</p>
+<p class="col-2-12">{{locationName}}</p>
 
-<div class="col-3-12 entry-actions">
+<div class="col-2-12 entry-actions">
     <a class="btn primary" href="#" title="View Checkin Report"><i class="ic ic_report-16"></i></a>
     {{>expand_action}}
     {{>validate_action}}    
 </div>
+
+{{>empty_sub_view}}

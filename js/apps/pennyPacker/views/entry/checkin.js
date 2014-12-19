@@ -1,5 +1,6 @@
 define(function (require) {
     var EntryRowView = require('pennyPacker/views/entry/row'),
+        CheckinDetailsView = require('pennyPacker/views/entry/checkinDetails'),
         /**
          * Represents a Checkin Row
          * 
@@ -9,14 +10,7 @@ define(function (require) {
         CheckinView = {
             className: 'item entry checkin',
             template: 'pennyPacker/entry/checkin',
-            // events: function () {
-            //     console.log('setting events');
-            //     return {
-            //         'click': function () {
-            //             console.log("yay");
-            //         }
-            //     };
-            // }
+            subViewClass: CheckinDetailsView
         };
 
     return EntryRowView.extend(CheckinView);

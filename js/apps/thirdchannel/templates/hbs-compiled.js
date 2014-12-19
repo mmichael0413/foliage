@@ -248,13 +248,25 @@ function program3(depth0,data) {
   return buffer;
   }));
 
-Handlebars.registerPartial("expand_action", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+Handlebars.registerPartial("empty_sub_view", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<a class=\"btn primary expand\" title=\"Expand Entry\">...</a>";
+  return "<div class=\"col-1-1 sub-view-container\"></div>";
+  }));
+
+Handlebars.registerPartial("expand_action", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<a class=\"btn primary details\" title=\"Expand Entry\" href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.self)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">...</a>";
+  return buffer;
   }));
 
 Handlebars.registerPartial("valid_indicator", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -2471,16 +2483,32 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.units) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.units); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " mins</p>\n\n<p class=\"col-3-12\">"
+    + " mins</p>\n\n<p class=\"col-2-12\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n\n<div class=\"col-3-12 entry-actions\">\n    <a class=\"btn primary\" href=\"#\" title=\"View Checkin Report\"><i class=\"ic ic_report-16\"></i></a>\n    ";
+    + "</p>\n<p class=\"col-2-12\">";
+  if (helper = helpers.locationName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.locationName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n\n<div class=\"col-2-12 entry-actions\">\n    <a class=\"btn primary\" href=\"#\" title=\"View Checkin Report\"><i class=\"ic ic_report-16\"></i></a>\n    ";
   stack1 = self.invokePartial(partials.expand_action, 'expand_action', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    ";
   stack1 = self.invokePartial(partials.validate_action, 'validate_action', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "    \n</div>\n";
+  buffer += "    \n</div>\n\n";
+  stack1 = self.invokePartial(partials.empty_sub_view, 'empty_sub_view', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
   return buffer;
+  });
+
+this["ThirdChannel"]["templates"]["pennyPacker/entry/checkin_details"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<h2>My Checkin Details</h2>\n<p>This is a test!</p>\n<p>Sir</p>";
   });
 
 this["ThirdChannel"]["templates"]["pennyPacker/entry/travel"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -2511,7 +2539,10 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   buffer += "\n    ";
   stack1 = self.invokePartial(partials.validate_action, 'validate_action', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>\n\n\n";
+  buffer += "\n</div>\n\n";
+  stack1 = self.invokePartial(partials.empty_sub_view, 'empty_sub_view', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
   return buffer;
   });
 

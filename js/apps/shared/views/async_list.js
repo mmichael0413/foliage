@@ -21,7 +21,8 @@ define(function(require) {
         rowView: undefined,
         activeViews: [],
 
-        loadingHTML: "<tr><td><i class='fa fa-spin fa-spinner'></i></td></tr>",
+        loadingHTML: "<p class='item status'><i class='fa fa-spin fa-spinner fa-2x'></i></p>",
+        emptyHTML: "<p class='item status'>No Results Found</p>",
         failHTML: "Unable to load data. Please contact Tech Support",
         
 
@@ -46,8 +47,10 @@ define(function(require) {
             // _.extend(data, this.additionalData());
             this._clearActiveViews();
             
-            $body.empty().append(this._renderData(this.collection));
-            
+            $body.empty().append(this._renderData(this.collection).children());
+            if ($body.children().length === 0) {
+                $body.html(this.emptyHTML);
+            }
             this.afterRender();
             return this;
         },
