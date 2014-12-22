@@ -2091,7 +2091,7 @@ function program2(depth0,data) {
 function program4(depth0,data) {
   
   
-  return "\n			No Checkins on Record\n		";
+  return "\n			No checkins on record\n		";
   }
 
 function program6(depth0,data) {
@@ -2304,7 +2304,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n<p class=\"item\">No Field Force found for this query.</p>\n";
+  return "\n<p class=\"item\">No field force found for this query.</p>\n";
   }
 
   options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
