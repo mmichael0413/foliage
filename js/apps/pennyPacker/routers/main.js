@@ -4,6 +4,7 @@ define(function(require) {
         Backbone = require('backbone'),
         context = require('context'),
         Filter = require('thirdchannel/views/filter/main'),
+        ActionsView = require('pennyPacker/views/entries/actions'),
         EntriesListView = require('pennyPacker/views/entries/list');
         
     /**
@@ -26,6 +27,7 @@ define(function(require) {
 
             window.c = context;
             Filter.init();
+            new ActionsView().render();
             var view = new EntriesListView();
             if (context.content.items) {
                 view.bootstrapCollection(context.content);

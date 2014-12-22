@@ -1,5 +1,6 @@
 define(function(require){
 var _ = require('underscore'),
+    $ = require('jquery'),
     AsyncListView = require('shared/views/async_list'),
     EntriesCollection = require('pennyPacker/collections/entries'),
     //EntriesCollection = require('thirdchannel/collections/shared/async_paged'),
