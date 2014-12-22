@@ -1,12 +1,12 @@
 <h3>Comments</h3>
 <section class="comments-list">
 {{#each comments}}
-	<p><span class='comment-header'>{{author}} ({{date}}):</span> {{text}}</p>
+	{{>entry_comment}}
 {{else}}
-	<p>No Comments</p>
+	<p class="empty-comments-message">No Comments</p>
 {{/each}}	
 </section>
 
 
-<textarea name="text" id="newCommentText" class="comment-input"></textarea>
+<textarea name="text" class="comment-input"></textarea>
 <button class="btn default comment">Leave Comment</button>

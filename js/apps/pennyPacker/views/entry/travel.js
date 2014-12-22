@@ -6,7 +6,6 @@ define(function (require) {
             className: 'item entry travel',
             template: 'pennyPacker/entry/travel',
             subViewClass: TravelDetailsView
-
         };
     return EntryRowView.extend(TravelView);
 });

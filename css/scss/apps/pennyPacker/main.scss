@@ -102,6 +102,11 @@
             margin: 0;
             height: 5em;
         }
+
+        .comment-header {
+            font-style: italic;
+            margin-right: 1em;
+        }
     } 
     &.active {
         .sub-view-container {

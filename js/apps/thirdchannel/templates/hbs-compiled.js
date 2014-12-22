@@ -257,15 +257,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return "<div class=\"col-1-1 sub-view-container\"></div>";
   }));
 
-Handlebars.registerPartial("entry_comments", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+Handlebars.registerPartial("entry_comment", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n	<p><span class='comment-header'>";
+
+  buffer += "<p><span class='comment-header key-info'>";
   if (helper = helpers.author) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.author); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -277,20 +275,35 @@ function program1(depth0,data) {
   if (helper = helpers.text) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.text); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n";
+    + "</p>";
+  return buffer;
+  }));
+
+Handlebars.registerPartial("entry_comments", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n	";
+  stack1 = self.invokePartial(partials.entry_comment, 'entry_comment', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
   return buffer;
   }
 
 function program3(depth0,data) {
   
   
-  return "\n	<p>No Comments</p>\n";
+  return "\n	<p class=\"empty-comments-message\">No Comments</p>\n";
   }
 
   buffer += "<h3>Comments</h3>\n<section class=\"comments-list\">\n";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.comments), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "	\n</section>\n\n\n<textarea name=\"text\" id=\"newCommentText\" class=\"comment-input\"></textarea>\n<button class=\"btn default comment\">Leave Comment</button>";
+  buffer += "	\n</section>\n\n\n<textarea name=\"text\" class=\"comment-input\"></textarea>\n<button class=\"btn default comment\">Leave Comment</button>";
   return buffer;
   }));
 
