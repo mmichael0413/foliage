@@ -170,7 +170,7 @@ define(function(require) {
                 var i = 0,
                     items = qsHash[view.filterParam];
                 for (i; i < items.length; i++) {
-                    view.addFilterByValue(items[i]);
+                    view.addFilterByValue(decodeURIComponent(items[i]));
                 }
             }
             return success;
@@ -204,7 +204,7 @@ define(function(require) {
         broadCastQueryString: function () {
             // update the url so that we can access the deep link later on
             if(this.enableDeepLinks && context.router) {
-                context.router.navigate(window.location.pathname + "?" + this.serializeForm(), {trigger: false});
+                context.router.navigate(window.location.pathname + "?" + this.serializeForm(), {trigger: false, replace:true});
             }
             context.trigger('filter:query', this.$el.serialize());
             this.serializeForm();

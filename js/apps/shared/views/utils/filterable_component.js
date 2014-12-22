@@ -15,7 +15,7 @@ define(function(require) {
             // backbone will automatically trigger the redrawing of the
             // members
             this.$(this.bodySelector).html(this.loadingHTML);
-            this.collection.queryString = qs;
+            this.collection.setQueryString(qs);
             this.collection.fetch({reset:true});
         }
 

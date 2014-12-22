@@ -88,7 +88,7 @@
     }
 
     .sub-view-container {
-        margin: 0 1em 0 1em;
+        padding: 0 1em 0 1em;
         position: absolute;
         overflow: hidden;
         max-height: 0;
@@ -97,11 +97,20 @@
         -ms-transition: max-height, 0.8s;
         -o-transition: max-height, 0.8s;
         transition: max-height, 0.8s;
+
+        .comment-input {
+            margin: 0;
+            height: 5em;
+        }
     } 
     &.active {
         .sub-view-container {
             position: inherit;
             max-height: 999em;
         }
-    }  
+    } 
+
+    .comments-list {
+        margin-bottom: 2em;
+    } 
 }

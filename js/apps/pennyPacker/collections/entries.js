@@ -9,6 +9,10 @@ define(function(require) {
 		EntriesCollection = Backbone.Collection.extend({
 			model: Entry,
 			queryString: "",
+
+			setQueryString: function (qs) {
+				this.queryString = qs + "&format=json";
+			},
 			parse: function (data) {
 				if (data.items) {
 					this.pages = data.pages;

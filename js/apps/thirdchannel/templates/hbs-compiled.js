@@ -257,6 +257,43 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return "<div class=\"col-1-1 sub-view-container\"></div>";
   }));
 
+Handlebars.registerPartial("entry_comments", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n	<p><span class='comment-header'>";
+  if (helper = helpers.author) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.author); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " (";
+  if (helper = helpers.date) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.date); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "):</span> ";
+  if (helper = helpers.text) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.text); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  
+  return "\n	<p>No Comments</p>\n";
+  }
+
+  buffer += "<h3>Comments</h3>\n<section class=\"comments-list\">\n";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.comments), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "	\n</section>\n\n\n<textarea name=\"text\" id=\"newCommentText\" class=\"comment-input\"></textarea>\n<button class=\"btn default comment\">Leave Comment</button>";
+  return buffer;
+  }));
+
 Handlebars.registerPartial("expand_action", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -2504,8 +2541,8 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 
 this["ThirdChannel"]["templates"]["pennyPacker/entry/checkin_details"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 
   buffer += "<h2>Details for Checkin at ";
@@ -2532,7 +2569,9 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.rate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.rate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "/hr</span></p>\n\n<a class='btn primary'>Adjust duration:</a>\n\n\n<h2>Comments:</h2>";
+    + "/hr</span></p>\n\n<a class='btn primary'>Adjust duration:</a>\n\n\n";
+  stack1 = self.invokePartial(partials.entry_comments, 'entry_comments', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer;
   });
 
@@ -2573,8 +2612,8 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 
 this["ThirdChannel"]["templates"]["pennyPacker/entry/travel_details"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 
   buffer += "<h2>Travel Details for "
@@ -2589,7 +2628,9 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.units) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.units); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " miles</span> travelled at a rate of <span class=\"key-info\">$0.42</span>. </p>\n\n<a class=\"btn primary\">Dispute Travel Distance</a>";
+    + " miles</span> travelled at a rate of <span class=\"key-info\">$0.42</span>. </p>\n\n<a class=\"btn primary\">Dispute Travel Distance</a>\n\n";
+  stack1 = self.invokePartial(partials.entry_comments, 'entry_comments', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer;
   });
 

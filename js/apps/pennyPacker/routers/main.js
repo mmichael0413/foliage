@@ -18,9 +18,12 @@ define(function(require) {
         before: function (parameters) {
             // stuff the bootstrap into the context
             _.extend(context, window.bootstrap);
+            // this may need to be moved into the actual action
+            context.router = context.mainRouter;
         },
 
         entryList: function (programId) {
+
             window.c = context;
             Filter.init();
             var view = new EntriesListView();
@@ -29,6 +32,7 @@ define(function(require) {
             } else {
                 view.render();
             }
+            context.trigger("configure:deepLinks",true);
         }
     });
 

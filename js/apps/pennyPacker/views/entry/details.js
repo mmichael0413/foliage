@@ -10,6 +10,10 @@ define(function (require) {
 		BaseEntryDetailsView = Backbone.View.extend({
 			template:'',
 
+			events: {
+				'click .comment': 'createComment'
+			},
+
 			initialize: function (options) {
 				this.model = new (Backbone.Model.extend({
 					url: options.url
@@ -29,6 +33,11 @@ define(function (require) {
 			render: function () {
 				this.$el.html(Templates[this.template](this.model.toJSON()));
 				return this;
+			},
+
+			createComment: function (e) {
+				e.preventDefault();
+				console.log("Hi");
 			}
 
 		});
