@@ -154,7 +154,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n	<p>There are no Open Alerts for this Store</p>\n";
+  return "\n	<p>There are no open alerts for this store</p>\n";
   }
 
   options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
@@ -2091,13 +2091,13 @@ function program2(depth0,data) {
 function program4(depth0,data) {
   
   
-  return "\n			No Checkins on Record\n		";
+  return "\n			No checkins on record\n		";
   }
 
 function program6(depth0,data) {
   
   
-  return "\n	<p>There are no Personnel assigned to this store</p>\n";
+  return "\n	<p>There are no personnel assigned to this store</p>\n";
   }
 
   options={hash:{},inverse:self.program(6, program6, data),fn:self.program(1, program1, data),data:data}
@@ -2214,7 +2214,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n	<p>There are no Resolved Alerts for this Store</p>\n";
+  return "\n	<p>There are no resolved alerts for this store</p>\n";
   }
 
   options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
@@ -2254,7 +2254,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n	<p class=\"item\">There are no Stores for this query.</p>\n";
+  return "\n	<p class=\"item\">There are no stores for this query.</p>\n";
   }
 
   options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
@@ -2304,7 +2304,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n<p class=\"item\">No Field Force found for this query.</p>\n";
+  return "\n<p class=\"item\">No field force found for this query.</p>\n";
   }
 
   options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
