@@ -33,8 +33,12 @@ define(function(require) {
             // listeners for the collection.
             this.listenTo(this.collection, 'reset', this.render);
             this.listenTo(this.collection, 'add', this.render);
-            
+            this.initializeCustomCollectionListeners();  
             return this;
+        },
+
+        initializeCustomCollectionListeners: function () {
+
         },
 
         render: function () {

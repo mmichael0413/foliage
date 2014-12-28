@@ -5,6 +5,7 @@ define(function(require) {
         context = require('context'),
         Filter = require('thirdchannel/views/filter/main'),
         ActionsView = require('pennyPacker/views/entries/actions'),
+        InvalidEntriesListView = require('pennyPacker/views/entries/invalid'),
         EntriesListView = require('pennyPacker/views/entries/list');
         
     /**
@@ -29,10 +30,16 @@ define(function(require) {
             Filter.init();
             new ActionsView().render();
             var view = new EntriesListView();
+            var invalidView = new InvalidEntriesListView();
             if (context.content.items) {
                 view.bootstrapCollection(context.content);
             } else {
                 view.render();
+            }
+            if (context.invalid.items) {
+                invalidView.bootstrapCollection(context.invalid);
+            } else {
+                invalidView.render();
             }
             context.trigger("configure:deepLinks",true);
         }
