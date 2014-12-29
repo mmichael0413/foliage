@@ -8,6 +8,7 @@ var _ = require('underscore'),
     Filterable = require('shared/views/utils/filterable_component'),
     CheckinView = require('pennyPacker/views/entry/checkin'),
     TravelView = require('pennyPacker/views/entry/travel'),
+    DirectView = require('pennyPacker/views/entry/direct'),
         /**
          *
          * The Entries list list
@@ -29,6 +30,9 @@ var _ = require('underscore'),
                 }
                 else if (type == "TRAVEL") {
                     view = TravelView;
+                }
+                else if (type == "DIRECT") {
+                    view = DirectView;
                 } else {
                     console.error("Model has unknown type of " + type);
                     console.error(options.model);

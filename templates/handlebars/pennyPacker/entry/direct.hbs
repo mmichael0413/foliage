@@ -1,0 +1,14 @@
+{{>valid_indicator}}
+<p class="col-2-12">{{date}}</p>
+<p class="col-2-12 payment">${{payment}}</p>
+
+<p class="col-2-12">{{person.name}}</p>
+<p class="col-2-12">Payment Adjustment</p>
+
+<div class="col-2-12 entry-actions">
+	<a class="btn primary delete" title="Delete Entry" href="{{links.self}}">X</a>
+    {{>expand_action}}
+    {{>validate_action}}
+</div>
+
+{{>empty_sub_view}}

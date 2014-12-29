@@ -9,7 +9,6 @@ define(function(require) {
 				} else {
 					return context.content.links.invalid;
 				}
-				
 			}
 		};
 

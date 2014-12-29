@@ -287,23 +287,23 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 function program1(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n	";
+  buffer += "\n        ";
   stack1 = self.invokePartial(partials.entry_comment, 'entry_comment', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
+  buffer += "\n    ";
   return buffer;
   }
 
 function program3(depth0,data) {
   
   
-  return "\n	<p class=\"empty-comments-message\">No Comments</p>\n";
+  return "\n        <p class=\"empty-comments-message\">No Comments</p>\n    ";
   }
 
-  buffer += "<h3>Comments</h3>\n<section class=\"comments-list\">\n";
+  buffer += "<section class=\"comments\">\n    <h3>Comments</h3>\n    <div class=\"comments-list\">\n    ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.comments), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "	\n</section>\n\n\n<textarea name=\"text\" class=\"comment-input\"></textarea>\n<button class=\"btn default comment\">Leave Comment</button>";
+  buffer += "   \n    </div>\n\n    <textarea name=\"text\" class=\"comment-input\"></textarea>\n    <button class=\"btn default comment\">Leave Comment</button>\n</section>";
   return buffer;
   }));
 
@@ -2582,9 +2582,59 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.rate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.rate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "/hr</span></p>\n\n<a class='btn primary'>Adjust duration:</a>\n\n\n";
+    + "/hr</span></p>\n\n<section class=\"payment-adjustment\">\n    <h3>Payment Adjustment</h3>\n    <p>If Checkin duration seems inappropriate, please enter a new duration - <span class=\"key-info\">in minutes</span> - as a correction.</p>\n    <input type=\"number\" value=\"0\" class=\"adjustment-input\"/><a class='btn primary adjust'>Adjust duration</a> \n</section>\n\n\n";
   stack1 = self.invokePartial(partials.entry_comments, 'entry_comments', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
+  return buffer;
+  });
+
+this["ThirdChannel"]["templates"]["pennyPacker/entry/direct"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  stack1 = self.invokePartial(partials.valid_indicator, 'valid_indicator', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n<p class=\"col-2-12\">";
+  if (helper = helpers.date) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.date); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n<p class=\"col-2-12 payment\">$";
+  if (helper = helpers.payment) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.payment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n\n<p class=\"col-2-12\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</p>\n<p class=\"col-2-12\">Payment Adjustment</p>\n\n<div class=\"col-2-12 entry-actions\">\n	<a class=\"btn primary delete\" title=\"Delete Entry\" href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.self)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">X</a>\n    ";
+  stack1 = self.invokePartial(partials.expand_action, 'expand_action', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    ";
+  stack1 = self.invokePartial(partials.validate_action, 'validate_action', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</div>\n\n";
+  stack1 = self.invokePartial(partials.empty_sub_view, 'empty_sub_view', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;
+  });
+
+this["ThirdChannel"]["templates"]["pennyPacker/entry/direct_details"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+
+  buffer += "<p>";
+  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n";
+  stack1 = self.invokePartial(partials.entry_comments, 'entry_comments', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
   return buffer;
   });
 
@@ -2641,7 +2691,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.units) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.units); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " miles</span> travelled at a rate of <span class=\"key-info\">$0.42</span>. </p>\n\n<a class=\"btn primary\">Dispute Travel Distance</a>\n\n";
+    + " miles</span> travelled at a rate of <span class=\"key-info\">$0.42</span>. </p>\n\n<section class=\"payment-adjustment\">\n	<h3>Payment Adjustment</h3>\n	<p>If Travel distance seems inappropriate, please enter a new mileage as a correction.</p>\n	<input type=\"number\" value=\"0\" class=\"adjustment-input\"/><a class='btn primary adjust'>Adjust Mileage</a>	\n</section>\n\n";
   stack1 = self.invokePartial(partials.entry_comments, 'entry_comments', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer;

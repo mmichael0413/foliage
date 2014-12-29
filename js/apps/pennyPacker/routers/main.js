@@ -29,8 +29,8 @@ define(function(require) {
             window.c = context;
             Filter.init();
             new ActionsView().render();
-            var view = new EntriesListView();
-            var invalidView = new InvalidEntriesListView();
+            var view = new EntriesListView(),
+            invalidView = new InvalidEntriesListView();
             if (context.content.items) {
                 view.bootstrapCollection(context.content);
             } else {

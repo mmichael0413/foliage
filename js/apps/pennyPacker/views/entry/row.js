@@ -23,13 +23,17 @@ define(function (require) {
                 // function. Zero idea why
                 return {
                     'click .validate'    : 'toggleValidation',
-                    'click .details'     : 'toggleSubView',
+                    'click .details'     : 'toggleSubView'
                 };
             },
 
             render: function () {
                 this.$el.html(Templates[this.template](this.model.toJSON()));
+                this.decorate();
                 return this;
+            },
+            decorate: function () {
+                // use to adjuste the markup before it's inserted
             },
 
             toggleValidation: function (e) {
@@ -86,10 +90,7 @@ define(function (require) {
             _toggleButtonSpinner: function ($btn) {
                 $btn.toggleClass('ic_check');
                 $btn.toggleClass('fa fa-spin fa-spinner');
-            },
-
-
-
+            }
 
         };
 

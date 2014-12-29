@@ -8,6 +8,7 @@ var _ = require('underscore'),
     Filterable = require('shared/views/utils/filterable_component'),
     CheckinView = require('pennyPacker/views/entry/checkin'),
     TravelView = require('pennyPacker/views/entry/travel'),
+    DirectView = require('pennyPacker/views/entry/direct'),
         /**
          *
          * The Invalid entries list
@@ -22,7 +23,7 @@ var _ = require('underscore'),
                 this.initFilterable();
             },
             initializeCustomCollectionListeners: function () {
-                
+
             },
 
             rowView: function(options) {
@@ -33,6 +34,9 @@ var _ = require('underscore'),
                 }
                 else if (type == "TRAVEL") {
                     view = TravelView;
+                } 
+                else if (type == "DIRECT") {
+                    view = DirectView;
                 } else {
                     console.error("Model has unknown type of " + type);
                     console.error(options.model);
@@ -41,15 +45,6 @@ var _ = require('underscore'),
             },
 
             afterRender: function () {
-                // code smell, I think. when rendering, we should check the collection size and hide the view if there's no items to display
-                // 
-                if (this.collection.length > 0) {
-                    if (!this.$el.is(':visible')) {
-                        this.$el.fadeIn();
-                    }
-                } else {
-                    this.$el.fadeOut();
-                }
             },
             
             collectionClass: EntriesCollection,

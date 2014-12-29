@@ -61,6 +61,12 @@
             &.travel {
                 background-color: $light-gray;
             }
+            &.direct {
+                background-color: lighten($red, 25%);
+                &.positive {
+                    background-color: #A4BD99;
+                }
+            }
             &.status {
                 text-align: center;
             }
@@ -98,6 +104,10 @@
         -o-transition: max-height, 0.8s;
         transition: max-height, 0.8s;
 
+        .btn {
+            cursor: pointer;
+        }
+
         .comment-input {
             margin: 0;
             height: 5em;
@@ -107,7 +117,18 @@
             font-style: italic;
             margin-right: 1em;
         }
-    } 
+    }
+    .payment-adjustment {
+        margin: 2em 0em;
+
+        .adjustment-input {
+            width: 5em;
+            margin: 0em 1em 0em 0em;
+            padding: 0.25em;
+        } 
+    }
+
+
     &.active {
         .sub-view-container {
             position: inherit;
@@ -117,7 +138,9 @@
 
     .comments-list {
         margin-bottom: 2em;
-    } 
+    }
+
+
 }
 
 #invalidEntries {

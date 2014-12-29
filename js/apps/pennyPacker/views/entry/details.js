@@ -13,14 +13,15 @@ define(function (require) {
             spinnerHTML: "<div class='status'><i class='fa fa-spin fa-spinner fa-2x'></div>",
 
             events: {
-                'click .comment': 'createComment'
+                'click .comment': 'createComment',
+                'click .btn.adjust': 'adjustEntry'
             },
 
             initialize: function (options) {
                 this.model = new (Backbone.Model.extend({
                     url: options.url
                 }))();
-                //this.listenTo(this.model, 'sync', this.render);
+                this.listenTo(this.model, 'sync', this.render);
             },
 
             fetch: function() {
@@ -63,6 +64,26 @@ define(function (require) {
                         });
                 }
                 
+            },
+
+            adjustEntry: function(e) {
+                e.preventDefault();
+                var $input = $(e.currentTarget).prev('.adjustment-input'),
+                    self = this,
+                    adjustment = new (Backbone.Model.extend({
+                        url: this.model.get('links').adjust
+                    }))();
+                
+                if ($input && $input.val() > 0) {
+                    adjustment.set({value: $input.val()});
+                    adjustment.save()
+                    .done(function (data) {
+                        self.model.fetch();
+                    })
+                    .fail(function () {
+                        alert("There was an error adjusting the entry. Please contact tech support");
+                    });
+                }
             }
 
         });

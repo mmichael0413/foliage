@@ -3,7 +3,11 @@
 <p>Agent: {{person.name}}({{person.paypalEmail}})</p>
 <p>Payment <span class="key-info">${{payment}}</span> for <span class="key-info">{{units}}</span> minutes at <span class="key-info">${{rate}}/hr</span></p>
 
-<a class='btn primary'>Adjust duration:</a>
+<section class="payment-adjustment">
+    <h3>Payment Adjustment</h3>
+    <p>If Checkin duration seems inappropriate, please enter a new duration - <span class="key-info">in minutes</span> - as a correction.</p>
+    <input type="number" value="0" class="adjustment-input"/><a class='btn primary adjust'>Adjust duration</a> 
+</section>
 
 
 {{>entry_comments}}
