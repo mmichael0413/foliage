@@ -1,0 +1,14 @@
+<div class="pure-g item">
+    <div class="col-3-4 col-md-1">
+        {{title}}
+    </div>
+    <div class="col-1-4 col-md-1 general-actions">
+        <form accept-charset="UTF-8" action="{{checkin_choose_url}}" method="post">
+            <input id="customer_store_id" name="customer_store_id" type="hidden" value="{{customer_store_id}}">
+            <input id="survey_id" name="survey_id" type="hidden" value="{{survey_id}}">
+            <input id="type" name="type" type="hidden" value="{{checkin_type}}">
+            <input name="authenticity_token" value="{{authenticity_token}}" type="hidden">
+            <button class="btn primary" name="commit"><i class="ic fa ic_location"></i><span>Continue</span></button>
+        </form>
+    </div>
+</div>

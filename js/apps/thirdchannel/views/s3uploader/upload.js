@@ -10,7 +10,7 @@ define(function(require) {
         },
         initialize: function (options) {
             this.model = options.model;
-            this.model.on('progress', this.updateProgress, this).on('complete', this.cleanup, this);
+            this.model.on('progress', this.updateProgress, this).on('error', this.serverError, this).on('complete', this.cleanup, this);
         },
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
@@ -22,6 +22,10 @@ define(function(require) {
         updateProgress: function (data) {
             this.progressBar.width(data+'%');
             this.percentage.text(data+'%');
+        },
+        serverError: function(e) {
+            context.trigger("upload:error", e);
+            this.remove();
         },
         cancel: function(e) {
             this.model.abort();

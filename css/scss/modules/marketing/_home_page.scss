@@ -181,6 +181,7 @@
   @include swb-medium {
     background-color: $palette4 !important;
     background-image: none !important;
+    height: 100vh;
   }
 
   #home-page6-content {
@@ -196,8 +197,16 @@
 }
 
 #home-page7 {
-  height: 93vh;
   background-color: $light-gray;
+
+  #home-page7-content {
+    @include swb-medium {
+      top: 0;
+      -ms-transform: translateY(0%);
+      -webkit-transform: translateY(0%);
+      transform: translateY(0%);
+    }
+  }
 }
 
 #home-page8 {

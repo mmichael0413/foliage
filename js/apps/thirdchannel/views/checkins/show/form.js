@@ -20,6 +20,7 @@ define(function(require) {
         },
         initialize: function (options) {
             this.model = new FormModel(options);
+            this.checkinId = options.checkinId;
             this.images = {};
             this.inventoryTotal = this.$el.find('input.inventory-total');
             this.inventories = this.$el.find('input.inventory');
@@ -69,6 +70,7 @@ define(function(require) {
             var inputSel = model.get('input');
             this.images[inputSel] = this.images[inputSel] || {};
             this.images[inputSel][model.get('uuid')] = this.getImageParams(model);
+            window.localStorage.setItem('checkinImages_' + this.checkinId, JSON.stringify(this.images));
             return this;
         },
         removeImage: function(model) {
@@ -77,6 +79,7 @@ define(function(require) {
             this.images.removed = this.images.removed || {};
             this.images.removed[uuid] = this.images[inputSel][uuid];
             delete this.images[inputSel][uuid];
+            window.localStorage.setItem('checkinImages_' + this.checkinId, JSON.stringify(this.images));
             return this;
         },
         setImageInputValue: function(model) {

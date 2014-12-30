@@ -13,6 +13,7 @@ define(function(require){
         StoreProfileMain = require('thirdchannel/views/store_profile/main'),
         StoresIntelEdit = require('thirdchannel/views/stores/intel/edit'),
         CheckinView = require('thirdchannel/views/checkins/show/checkin'),
+        CheckinChooseView = require('thirdchannel/views/checkins/choose/show/main'),
         DashboardsAlertsSectionsView = require('thirdchannel/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('thirdchannel/views/dashboards/alerts/show/stores'),
         ReportMain = require('thirdchannel/views/reports/index/main'),
@@ -38,6 +39,7 @@ define(function(require){
             'programs/:program_id/stores/:store_id/gallery': 'storeProfileGallery',
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
             'programs/:program_id/checkins/:id': 'checkin',
+            'programs/:program_id/checkins/choose/:id': 'selectCheckin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
             'programs/:program_id/reports': 'reports',
@@ -132,6 +134,10 @@ define(function(require){
 
         checkin : function(programId, id) {
             new CheckinView({programId: programId, checkinId: id}).render();
+        },
+
+        selectCheckin : function(programId, id) {
+            new CheckinChooseView({programId: programId, id: id}).render();
         },
 
         checkinReport: function(programId, id){
