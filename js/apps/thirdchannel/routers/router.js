@@ -121,7 +121,7 @@ define(function(require){
         },
 
         dashboardAlerts: function(programId){
-            $('.dashboard').append(new DashboardsAlertsSectionsView({programId: programId}).render().$el);
+            $('#main-dashboard').append(new DashboardsAlertsSectionsView({programId: programId}).render().$el);
         },
 
         dashboardAlert: function(programId, id){
