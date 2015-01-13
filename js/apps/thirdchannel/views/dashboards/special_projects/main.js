@@ -4,6 +4,7 @@ define(function(require) {
         context = require('context'),
         SpecialProjectsModel = require('thirdchannel/models/dashboards/special_projects'),
         ItemView = require('thirdchannel/views/dashboards/special_projects/item'),
+        PaginationView = require('thirdchannel/views/utils/pagination'),
         Filter = require('thirdchannel/views/filter/main'),
         LoadingView = require('thirdchannel/views/utils/loading');
 
@@ -26,15 +27,23 @@ define(function(require) {
 
             this.model.fetch({data: { page: this.options.page }, processData: true, success: function(specialProjectsModel) {
                 self.loadingView.remove();
-
-                var collection = new Backbone.Collection(specialProjectsModel.get('special_projects'));
-
-                collection.each(function(model) {
-                    self.$('.body').append(new ItemView({programId: self.options.programId, model: model}).render().el);
-                });
+                self.constructView(specialProjectsModel);
             }});
 
             return this;
+        },
+        constructView: function(model) {
+            var self = this;
+
+            this.addPages();
+
+            var collection = new Backbone.Collection(this.model.get('special_projects'));
+            collection.each(function(model) {
+                self.$('.body').append(new ItemView({programId: self.options.programId, model: model}).render().el);
+            });
+        },
+        addPages: function() {
+            this.$el.prepend(new PaginationView(this.model.get('pagination')).render().el);
         }
     });
 });
