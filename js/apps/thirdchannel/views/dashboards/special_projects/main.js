@@ -2,18 +2,19 @@ define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
-        SectionsCollection = require('thirdchannel/collections/dashboards/special_projects/sections'),
-        SectionView = require('thirdchannel/views/dashboards/special_projects/section'),
+        SpecialProjectsModel = require('thirdchannel/models/dashboards/special_projects'),
+        ItemView = require('thirdchannel/views/dashboards/special_projects/item'),
         Filter = require('thirdchannel/views/filter/main'),
         LoadingView = require('thirdchannel/views/utils/loading');
 
     return Backbone.View.extend({
+        el: '.dashboard',
         tagName: 'section',
         className: 'section data-section',
         template: HandlebarsTemplates['thirdchannel/dashboards/special_projects/main'],
         initialize: function(options) {
             this.options = options;
-            this.collection = new SectionsCollection({programId: options.programId});
+            this.model = new SpecialProjectsModel({programId: options.programId, id: options.id, queryString: window.bootstrap});
             this.loadingView = new LoadingView();
         },
         render: function() {
@@ -23,10 +24,13 @@ define(function(require) {
 
             this.$('.body').html(this.loadingView.render().el);
 
-            this.collection.fetch({success: function(collection) {
+            this.model.fetch({data: { page: this.options.page }, processData: true, success: function(specialProjectsModel) {
                 self.loadingView.remove();
+
+                var collection = new Backbone.Collection(specialProjectsModel.get('special_projects'));
+
                 collection.each(function(model) {
-                    self.$('.body').append(new SectionView({programId: self.options.programId, model: model}).render().el);
+                    self.$('.body').append(new ItemView({programId: self.options.programId, model: model}).render().el);
                 });
             }});
 

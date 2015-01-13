@@ -131,7 +131,7 @@ define(function(require){
         },
 
         dashboardSpecialProjects: function(programId) {
-            $('#special-projects-dashboard').append(new DashboardsSpecialProjectsView({programId: programId}).render().el);
+            new DashboardsSpecialProjectsView({programId: programId}).render();
         },
 
         reports: function(programId){

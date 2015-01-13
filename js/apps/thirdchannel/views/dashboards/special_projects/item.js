@@ -5,7 +5,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         className: 'item pure-g',
-        template: HandlebarsTemplates['thirdchannel/dashboards/special_projects/section'],
+        template: HandlebarsTemplates['thirdchannel/dashboards/special_projects/item'],
         initialize: function (options) {
             this.options = options;
             this.model = options.model;
