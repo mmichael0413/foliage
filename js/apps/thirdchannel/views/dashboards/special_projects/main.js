@@ -16,9 +16,10 @@ define(function(require) {
         template: HandlebarsTemplates['thirdchannel/dashboards/special_projects/main'],
         initialize: function(options) {
             this.options = options;
-            this.model = new SpecialProjectsModel({programId: options.programId, id: options.id, queryString: window.bootstrap});
+            this.model = new SpecialProjectsModel({programId: options.programId, queryString: window.bootstrap});
             this.filters = new FiltersCollection({programId: options.programId});
             this.loadingView = new LoadingView();
+            this.listenTo(context, 'filter:query', this.applyFilter);
         },
         render: function() {
             var self = this;
@@ -65,6 +66,7 @@ define(function(require) {
             this.$('.body').html(this.loadingView.render().el);
             this.model.queryString = qs;
             this.model.fetch({success: function(model) {
+                self.loadingView.remove();
                 self.constructView(model);
             }});
         }
