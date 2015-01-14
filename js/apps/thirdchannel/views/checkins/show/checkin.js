@@ -20,6 +20,7 @@ define(function(require) {
             var self = this;
             this.formView = new FormView(this.options).render().$el;
             this.formValidation = new FormValidate({errorPlacementClass: '.question'}).render(this.formView);
+            this.isLocalStorageSupported();
             this.savedImages = JSON.parse(window.localStorage.getItem('checkinImages_' + this.options.checkinId)) || {};
 
             this.$el.find('.body.images').each(function(){
@@ -28,6 +29,16 @@ define(function(require) {
             this.setupImages();
 
             return this;
+        },
+        isLocalStorageSupported: function () {
+            var testKey = 'test', storage = window.sessionStorage;
+            try {
+                storage.setItem(testKey, '1');
+                storage.removeItem(testKey);
+            }
+            catch (error) {
+                alert("We currently don't support private/incognito windows.  Please reopen the checkin using a normal window for your browser.");
+            }
         },
         setupImages: function() {
             for (var key in this.savedImages) {
