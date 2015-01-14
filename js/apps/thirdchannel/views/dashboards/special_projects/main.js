@@ -6,6 +6,7 @@ define(function(require) {
         ItemView = require('thirdchannel/views/dashboards/special_projects/item'),
         PaginationView = require('thirdchannel/views/utils/pagination'),
         Filter = require('thirdchannel/views/filter/main'),
+        FiltersCollection = require('thirdchannel/collections/dashboards/special_projects/filters'),
         LoadingView = require('thirdchannel/views/utils/loading');
 
     return Backbone.View.extend({
@@ -16,6 +17,7 @@ define(function(require) {
         initialize: function(options) {
             this.options = options;
             this.model = new SpecialProjectsModel({programId: options.programId, id: options.id, queryString: window.bootstrap});
+            this.filters = new FiltersCollection({programId: options.programId});
             this.loadingView = new LoadingView();
         },
         render: function() {
@@ -24,6 +26,13 @@ define(function(require) {
             this.$el.html(this.template({}));
 
             this.$('.body').html(this.loadingView.render().el);
+
+            if(!context.instances.dashboardSpecialProjectsFilters) {
+                context.instances.dashboardSpecialProjectsFilters = this.filters;
+                this.filters.fetch({success: function (collection) {
+                    self.addFilters(collection);
+                }});
+            }
 
             this.model.fetch({data: { page: this.options.page }, processData: true, success: function(specialProjectsModel) {
                 self.loadingView.remove();
@@ -43,7 +52,21 @@ define(function(require) {
             });
         },
         addPages: function() {
-            this.$el.prepend(new PaginationView(this.model.get('pagination')).render().el);
+            var pagination = new PaginationView(this.model.get('pagination'));
+            this.$el.prepend(pagination.render().el);
+            this.$el.append(_.clone(pagination).render().el);
+        },
+        addFilters: function(filters) {
+            Filter.init(filters);
+        },
+        applyFilter: function(qs) {
+            var self = this;
+            this.$('.body').empty();
+            this.$('.body').html(this.loadingView.render().el);
+            this.model.queryString = qs;
+            this.model.fetch({success: function(model) {
+                self.constructView(model);
+            }});
         }
     });
 });
