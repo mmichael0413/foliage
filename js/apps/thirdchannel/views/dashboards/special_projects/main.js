@@ -24,7 +24,7 @@ define(function(require) {
         render: function() {
             var self = this;
 
-            this.$el.html(this.template({}));
+            this.$el.html(this.template());
 
             this.$('.body').html(this.loadingView.render().el);
 
@@ -35,10 +35,12 @@ define(function(require) {
                 }});
             }
 
+            /*
             this.model.fetch({data: { page: this.options.page }, processData: true, success: function(specialProjectsModel) {
                 self.loadingView.remove();
                 self.constructView(specialProjectsModel);
             }});
+            */
 
             return this;
         },
@@ -53,9 +55,8 @@ define(function(require) {
             });
         },
         addPages: function() {
-            var pagination = new PaginationView(this.model.get('pagination'));
-            this.$el.prepend(pagination.render().el);
-            this.$el.append(_.clone(pagination).render().el);
+            this.pagination = new PaginationView(this.model.get('pagination'));
+            this.$el.prepend(this.pagination.render().el);
         },
         addFilters: function(filters) {
             Filter.init(filters);
@@ -64,6 +65,9 @@ define(function(require) {
             var self = this;
             this.$('.body').empty();
             this.$('.body').html(this.loadingView.render().el);
+            if(this.pagination) {
+                this.pagination.remove();
+            }
             this.model.queryString = qs;
             this.model.fetch({success: function(model) {
                 self.loadingView.remove();
