@@ -41,21 +41,27 @@ define(function (require) {
 
             createComment: function (e) {
                 e.preventDefault();
-                var $input = $(e.currentTarget).prev('.comment-input'),
+                var $button = $(e.currentTarget),
+                    $input = $button.prev('.comment-input'),
                     $commentsList = $input.prev('.comments-list'),
                     $emptyCommentsMessage = $commentsList.find('.empty-comments-message'),
+                    $buttonSpinner = $(this.spinnerHTML),
                     comment = new (Backbone.Model.extend({
                         url: this.model.get('links').comments
                     }))();
                 if ($input && $input.val()) {
                     $emptyCommentsMessage.remove();
                     $commentsList.append($(this.spinnerHTML));
+                    $buttonSpinner.insertAfter($button);
+                    $button.hide();
                     // add the row and make the text gray
                     comment.set({entryId: this.model.get('id'), text: $input.val()});
                     comment.save()
                         .done(function (data) {
                             $commentsList.children().last().remove();
                             $commentsList.append(Handlebars.partials.entry_comment(data));
+                            $buttonSpinner.remove();
+                            $button.show();
                             
                         })
                         .fail(function () {
