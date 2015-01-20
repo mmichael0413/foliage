@@ -51,6 +51,7 @@ define(function(require) {
 
             var collection = new Backbone.Collection(this.model.get('special_projects'));
             collection.each(function(model) {
+                console.log(model);
                 self.$('.body').append(new ItemView({programId: self.options.programId, model: model}).render().el);
             });
         },
