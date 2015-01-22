@@ -2697,6 +2697,44 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["pennyPacker/programs/directPayment"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<form action=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.action)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" method=\"post\" class=\"pure-g\">\n	<input type=\"hidden\" name=\"program\" value=\"";
+  if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n	<label class=\"col-1-1\">User:</label>\n	<input name=\"person\" type=\"text\" id=\"userTypeahead\" class=\"col-1-1\" required/>\n\n	<label class=\"col-2-12\">Amount ($):</label>\n	<input type=\"number\" name=\"payment\" value=\"";
+  if (helper = helpers.value) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.value); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"col-3-12 payment\" placeholder=\"Dollars\" required/>\n	\n	<label class=\"col-1-1\">Payment Date:</label>\n	<input type=\"text\" name=\"date\" class=\"datepicker col-1-1\"/>\n	\n	\n\n	<label class=\"col-1-1\">Comments:</label>\n	<textarea placeholder=\"Comments...\" class=\"col-1-1 comment\" name=\"comment\"></textarea>\n\n\n	<button class=\"btn default submit\">Make Payment</button>\n</form>";
+  return buffer;
+  });
+
+this["ThirdChannel"]["templates"]["pennyPacker/programs/suggestion"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<p class=\"suggestion\">";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " (";
+  if (helper = helpers.paypalEmail) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.paypalEmail); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ")</p>";
+  return buffer;
+  });
+
 return this["ThirdChannel"]["templates"];
 
 });

@@ -5,17 +5,19 @@ require.config({
     baseUrl: 'http://www.thirdchannel.dev:3031/js/apps/',
 
     paths: {
-        'jquery': "../libs/bower_components/jquery/jquery.min",
-        'jquery_ujs' : '../libs/bower_components/jquery-ujs/src/rails',
+        'jquery'        : "../libs/bower_components/jquery/jquery.min",
+        'jquery_ujs'    : '../libs/bower_components/jquery-ujs/src/rails',
+        'jquery-validate' : '../libs/bower_components/jquery-validation/dist/jquery.validate',
+        'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min',
         'serializeObject' : "../libs/bower_components/jquery-serialize-object/jquery.serialize-object",
-        'underscore': '../libs/bower_components/underscore/underscore',
-        'backbone': '../libs/bower_components/backbone/backbone',
-        'handlebars': '../libs/bower_components/handlebars/handlebars.min',
+        'underscore'    : '../libs/bower_components/underscore/underscore',
+        'backbone'      : '../libs/bower_components/backbone/backbone',
+        'handlebars'    : '../libs/bower_components/handlebars/handlebars.min',
         'handlebarsTemplates': 'thirdchannel/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
-        'helpers' : 'thirdchannel/utils/helpers',
-        'pikaday' : '../libs/bower_components/pikaday/pikaday',
-        'context': 'shared/utils/context',
+        'helpers'       : 'thirdchannel/utils/helpers',
+        'pikaday'       : '../libs/bower_components/pikaday/pikaday',
+        'context'       : 'shared/utils/context',
         
 
     },
@@ -26,6 +28,14 @@ require.config({
         },
         "jquery_ujs": {
             deps: ["jquery"]
+        },
+        "jquery-validate": {
+            deps: ["jquery"],
+            exports: "jquery.validation"
+        },
+        "typeahead": {
+            deps:["jquery"],
+            exports: "$.fn"
         },
         "underscore": {
             deps: ["jquery"],
