@@ -20,7 +20,7 @@ define(function (require) {
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');
 
-            if (window.bootstrap.navigation){
+            if (window.bootstrap && window.bootstrap.navigation){
                 this.render();
             }
 

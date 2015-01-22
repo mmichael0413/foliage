@@ -10,7 +10,7 @@ define(function (require) {
         template: HandlebarsTemplate['shared/layout/action_buttons'],
         initialize: function () {
             this.listenTo(context, 'notification.badge.update', this.updateNotificationBadge);
-            if (window.bootstrap.buttons) {
+            if (window.bootstrap && window.bootstrap.buttons) {
                 this.buttons = window.bootstrap.buttons;
             } else {
                 return;

@@ -12,6 +12,7 @@ define(function(require){
         StoresMain = require('thirdchannel/views/stores/main'),
         StoreProfileMain = require('thirdchannel/views/store_profile/main'),
         StoresIntelEdit = require('thirdchannel/views/stores/intel/edit'),
+        StoreProfileProductsEdit = require('thirdchannel/views/store_profile/products/edit'),
         CheckinView = require('thirdchannel/views/checkins/show/checkin'),
         CheckinChooseView = require('thirdchannel/views/checkins/choose/show/main'),
         DashboardsAlertsSectionsView = require('thirdchannel/views/dashboards/alerts/index/sections'),
@@ -37,6 +38,8 @@ define(function(require){
             'programs/:program_id/stores/:store_id/activity': 'storeProfileActivity',
             'programs/:program_id/stores/:store_id/history': 'storeProfileHistory',
             'programs/:program_id/stores/:store_id/gallery': 'storeProfileGallery',
+            'programs/:program_id/stores/:store_id/product': 'storeProfileProduct',
+            'programs/:program_id/stores/:store_id/product/edit': 'editStoreProfileProduct',
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
             'programs/:program_id/checkins/:id': 'checkin',
             'programs/:program_id/checkins/choose/:id': 'selectCheckin',
@@ -109,6 +112,14 @@ define(function(require){
 
         storeProfileGallery: function () {
             StoreProfileMain.gallery();
+        },
+
+        storeProfileProduct: function () {
+            StoreProfileMain.product();
+        },
+
+        editStoreProfileProduct: function () {
+            StoreProfileProductsEdit.init();
         },
 
         editStoreIntel: function () {
