@@ -59,16 +59,6 @@ define(function(require) {
                     this.listenTo(this.subView, "details:close", function () {
                         self._toggleSubView($button);
                     });
-                    // this.listenTo(this.subView, 'reset:request', function () {
-                        
-                    //     if (self.collection) {
-                        
-                    //         self.collection.fetch({reset: true});    
-                    //     } else {
-                    //         context.trigger('filter:query');
-                    //     }
-                        
-                    // });
                 }
         });
 

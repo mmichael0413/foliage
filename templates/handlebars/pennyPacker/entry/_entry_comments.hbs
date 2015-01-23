@@ -1,0 +1,13 @@
+<section class="comments">
+    <h3>Comments</h3>
+    <div class="comments-list">
+    {{#each comments}}
+        {{>entry_comment}}
+    {{else}}
+        <p class="empty-comments-message">No Comments</p>
+    {{/each}}   
+    </div>
+
+    <textarea name="text" class="comment-input"></textarea>
+    <button class="btn default comment">Leave Comment</button>
+</section>

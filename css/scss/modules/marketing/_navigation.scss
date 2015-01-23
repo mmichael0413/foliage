@@ -11,6 +11,10 @@
   background-color: #fff;
   box-shadow: 0 2px 5px 0px #5D5D5D;
 
+  @include swb-medium {
+    left: inherit;
+  }
+
   .navigation-collapsed {
     a {
       @include swb-medium {
@@ -41,6 +45,7 @@
 
       li {
         float: none;
+        text-align: left;
       }
     }
 

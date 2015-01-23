@@ -1,0 +1,19 @@
+<form action="{{links.action}}" method="post" class="pure-g">
+	<input type="hidden" name="program" value="{{program}}">
+	<label class="col-1-1">User:</label>
+	<input name="person" type="text" id="userTypeahead" class="col-1-1" required/>
+
+	<label class="col-2-12">Amount ($):</label>
+	<input type="number" name="payment" value="{{value}}" class="col-3-12 payment" placeholder="Dollars" required/>
+	
+	<label class="col-1-1">Payment Date:</label>
+	<input type="text" name="date" class="datepicker col-1-1"/>
+	
+	
+
+	<label class="col-1-1">Comments:</label>
+	<textarea placeholder="Comments..." class="col-1-1 comment" name="comment"></textarea>
+
+
+	<button class="btn default submit">Make Payment</button>
+</form>

@@ -1,0 +1,178 @@
+@import "../../lib/normalize";
+@import "../../lib/pure.grids-core";
+@import "../../lib/pure.responsive-grid";
+@import "../../lib/chosen";
+@import '../../../../js/libs/bower_components/slick.js/slick/slick';
+
+@import "../../base/fonts_all";
+@import "../../base/base";
+@import "../../base/text";
+@import "../../base/forms";
+@import "../../base/buttons";
+@import "../../layout/layout_utils";
+@import "../../layout/base_layout";
+
+@import "../../modules/atoms/all";
+@import "../../modules/navigation";
+@import "../../modules/action_row";
+@import "../../modules/pagination";
+@import "../../modules/site_filter";
+@import "../../modules/pure_grid";
+@import "../../modules/pikaday";
+
+@import "../../modules/data_section";
+@import "../../modules/expanding_table_row";
+@import "../../modules/address_title";
+@import "../../modules/atoms/alerts";
+
+@import "../../modules/store_profile_section";
+
+
+// overrides
+
+.navigation .nav-item {
+    height: inherit;
+    padding-left: 2.5em;
+    white-space: normal;
+    .link {
+        padding-left: 0;    
+    }
+}
+
+.data-section {
+    padding: 0;
+    .header {
+        padding-top: 0.5em;
+        text-align: center;
+    }
+    .body  {
+
+        .entry-actions {
+            text-align: right;
+            .btn {
+                cursor: pointer;
+            }
+        }
+
+        .item {
+            &.checkin {
+                background-color: $light-blue;
+            }
+            &.travel {
+                background-color: $light-gray;
+            }
+            &.direct {
+                background-color: lighten($red, 25%);
+                &.positive {
+                    background-color: #A4BD99;
+                }
+            }
+            &.status {
+                text-align: center;
+            }
+        }
+    }
+}
+
+.entry {
+    .key-info {
+        font-weight: bold;
+        color: $red;
+    }
+    .valid-indicator {
+        text-align: center;
+        font-size: 1.25em;
+        .ic_check {
+            color: green;
+        }
+        .ic_x {
+            color: red;
+        }
+    }
+    .payment {
+        font-weight: bold;
+    }
+
+    .sub-view-container {
+        padding: 0 1em 0 1em;
+        position: absolute;
+        overflow: hidden;
+        max-height: 0;
+        -webkit-transition: max-height, 0.8s;
+        -moz-transition: max-height, 0.8s;
+        -ms-transition: max-height, 0.8s;
+        -o-transition: max-height, 0.8s;
+        transition: max-height, 0.8s;
+
+        .btn {
+            cursor: pointer;
+        }
+
+        .comment-input {
+            margin: 0;
+            height: 5em;
+        }
+
+        .comment-header {
+            font-style: italic;
+            margin-right: 1em;
+        }
+    }
+    .payment-adjustment {
+        margin: 2em 0em;
+
+        .adjustment-input {
+            width: 5em;
+            margin: 0em 1em 0em 0em;
+            padding: 0.25em;
+        } 
+    }
+
+
+    &.active {
+        .sub-view-container {
+            position: inherit;
+            max-height: 999em;
+        }
+    } 
+
+    .comments-list {
+        margin-bottom: 2em;
+    }
+}
+
+#directPayment {
+    padding: 1em;
+    //.twitter-typeahead, #userTypeahead {width:100%;}
+    .payment {
+        width: inherit;
+    }
+
+    .datepicker {
+        display: none;
+    }
+    .pika-single {
+        z-index: 10;
+        margin: 0 0 2em 0;
+        padding: initial;
+        width: 25em;
+    }
+
+    .comment {
+        height: 5em;
+    }
+
+    .suggestion {
+        width: 30em;
+        padding:1em;
+        z-index:11;
+        cursor: pointer;
+        background-color: rgba(#ffffff, 0.85);
+        border: 1px solid $text-color;
+    }
+
+}
+
+#invalidEntries {
+    margin-bottom: 5em;
+}

@@ -46,7 +46,6 @@ define(function(require) {
         excludeFields: [],
         
         initialize: function (data) {
-
             this.components = {};
 
             // look for any filter components within the filter, then wrap a view around them
@@ -56,7 +55,8 @@ define(function(require) {
                 shouldTrigger = false;
 
             if (!data || !data.collection) {
-                //console.log("We need at least a data.collection to get started with the filter");
+                console.error("We need at least a data.collection to get started with the filter");
+                
                 return false;
             }
             
@@ -170,7 +170,7 @@ define(function(require) {
                 var i = 0,
                     items = qsHash[view.filterParam];
                 for (i; i < items.length; i++) {
-                    view.addFilterByValue(items[i]);
+                    view.addFilterByValue(decodeURIComponent(items[i]));
                 }
             }
             return success;
@@ -203,11 +203,10 @@ define(function(require) {
 
         broadCastQueryString: function () {
             // update the url so that we can access the deep link later on
-            if(this.enableDeepLinks) {
-                context.router.navigate(window.location.pathname + "?" + this.serializeForm(), {trigger: false});
+            if(this.enableDeepLinks && context.router) {
+                context.router.navigate(window.location.pathname + "?" + this.serializeForm(), {trigger: false, replace:true});
             }
             context.trigger('filter:query', this.$el.serialize());
-
             this.serializeForm();
         },
 

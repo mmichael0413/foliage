@@ -1,0 +1,11 @@
+<h2>Travel Details for {{person.name}}({{person.paypalEmail}})</h2>
+<p>{{label}}</p>
+<p>This results in a distance of <span class="key-info">{{units}} miles</span> travelled at a rate of <span class="key-info">$0.42</span>. </p>
+
+<section class="payment-adjustment">
+	<h3>Payment Adjustment</h3>
+	<p>If Travel distance seems inappropriate, please enter a new mileage as a correction.</p>
+	<input type="number" value="0" class="adjustment-input"/><a class='btn primary adjust'>Adjust Mileage</a>	
+</section>
+
+{{>entry_comments}}
