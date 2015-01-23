@@ -4,6 +4,7 @@ define(function(require) {
         Backbone = require('backbone'),
         context = require('context'),
         Filter = require('thirdchannel/views/filter/main'),
+        DirectPaymentView = require('pennyPacker/views/programs/directPayment'),
         ActionsView = require('pennyPacker/views/entries/actions'),
         InvalidEntriesListView = require('pennyPacker/views/entries/invalid'),
         EntriesListView = require('pennyPacker/views/entries/list');
@@ -14,7 +15,8 @@ define(function(require) {
      */
     var Router = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
-            'entries/:programId(/)' : 'entryList'
+            'entries/:programId(/)' : 'entryList',
+            'program/:programId/direct(/)': 'direct'
         },
 
         before: function (parameters) {
@@ -42,6 +44,11 @@ define(function(require) {
                 invalidView.render();
             }
             context.trigger("configure:deepLinks",true);
+        },
+
+        direct: function (programId) {
+            context.programId = programId;
+            new DirectPaymentView().render();
         }
     });
 

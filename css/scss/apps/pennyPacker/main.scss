@@ -139,7 +139,37 @@
     .comments-list {
         margin-bottom: 2em;
     }
+}
 
+#directPayment {
+    padding: 1em;
+    //.twitter-typeahead, #userTypeahead {width:100%;}
+    .payment {
+        width: inherit;
+    }
+
+    .datepicker {
+        display: none;
+    }
+    .pika-single {
+        z-index: 10;
+        margin: 0 0 2em 0;
+        padding: initial;
+        width: 25em;
+    }
+
+    .comment {
+        height: 5em;
+    }
+
+    .suggestion {
+        width: 30em;
+        padding:1em;
+        z-index:11;
+        cursor: pointer;
+        background-color: rgba(#ffffff, 0.85);
+        border: 1px solid $text-color;
+    }
 
 }
 
