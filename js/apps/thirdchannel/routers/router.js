@@ -50,6 +50,7 @@ define(function(require){
             'programs/:program_id/legal/shipping' : 'shippingForm',
             'programs/:program_id/posts/new' : 'newPost',
 
+            'programs/:program_id/*path' : 'defaultPath',
             '*path': 'notFound'
         },
         // Small hack to add a before and after function to the Router
@@ -64,7 +65,11 @@ define(function(require){
          */
         before: function (parameters) {
             // in addition, the router stuffs all arguments as a list on context.requestParameters;
-            context.programId = /(?![programs])([a-zA-Z0-9-_]+)/.exec(parameters[0])[0];
+            console.log(parameters[0]);
+
+            context.programId = parameters[0];
+
+
             // stuff the bootstrap into the context
             _.extend(context, window.bootstrap);
         },
@@ -160,6 +165,11 @@ define(function(require){
 
         newPost: function(){
             new PostView();
+        },
+
+        defaultPath: function(program_id) {
+
+
         },
 
         notFound: function(){
