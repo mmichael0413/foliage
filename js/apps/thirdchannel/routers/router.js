@@ -64,7 +64,7 @@ define(function(require){
          */
         before: function (parameters) {
             // in addition, the router stuffs all arguments as a list on context.requestParameters;
-            context.programId = /(?![programs])([\w]+)/.exec(parameters[0])[0];
+            context.programId = /(?![programs])([a-zA-Z0-9-_]+)/.exec(parameters[0])[0];
             // stuff the bootstrap into the context
             _.extend(context, window.bootstrap);
         },
