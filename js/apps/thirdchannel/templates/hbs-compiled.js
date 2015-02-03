@@ -2460,7 +2460,7 @@ function program1(depth0,data) {
   if (helper = helpers.last_name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.last_name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</a>\n    <p class=\"col-1-12 minor-m\">"
+    + "</a></p>\n    <p class=\"col-1-12 minor-m\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.address)),stack1 == null || stack1 === false ? stack1 : stack1.state)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</p>\n    <p class=\"col-3-12 col-md-1-2\">";
   if (helper = helpers.email) { stack1 = helper.call(depth0, {hash:{},data:data}); }
