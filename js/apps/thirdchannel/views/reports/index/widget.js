@@ -10,6 +10,7 @@ define(function(require) {
         ReportWidgetListIconView = require('thirdchannel/views/reports/widgets/list_icon'),
         ReportWidgetMetricIconView = require('thirdchannel/views/reports/widgets/metric_icon'),
         ReportWidgetMultiQuestionTotalsView = require('thirdchannel/views/reports/widgets/multi_question_totals'),
+        ReportWidgetMultiQuestionCountsView = require('thirdchannel/views/reports/widgets/multi_question_counts'),
         ReportWidgetOverviewIconView = require('thirdchannel/views/reports/widgets/overview_icon'),
         ReportWidgetPercentIconView = require('thirdchannel/views/reports/widgets/percent_icon'),
         ReportWidgetQuadrantChartView = require('thirdchannel/views/reports/widgets/quadrant_chart'),
@@ -49,6 +50,8 @@ define(function(require) {
                 widget = this.createQuadrantChart();
             } else if (this.model.display_type == 12) {
                 widget = this.createLeadingRow();
+            } else if (this.model.display_type == 13) {
+                widget = this.createMultiQuestionCount()
             }
 
             this.setElement(widget);
@@ -89,6 +92,9 @@ define(function(require) {
         },
         createLeadingRow: function () {
             return new ReportWidgetLeadingRowView(this.model).render().$el;
-        }
+        },
+        createMultiQuestionCount: function () {
+            return new ReportWidgetMultiQuestionCountsView(this.model).render().$el;
+        },
     });
 });
