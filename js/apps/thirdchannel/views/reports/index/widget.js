@@ -95,6 +95,6 @@ define(function(require) {
         },
         createMultiQuestionCount: function () {
             return new ReportWidgetMultiQuestionCountsView(this.model).render().$el;
-        },
+        }
     });
 });
