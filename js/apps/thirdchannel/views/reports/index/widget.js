@@ -51,7 +51,7 @@ define(function(require) {
             } else if (this.model.display_type == 12) {
                 widget = this.createLeadingRow();
             } else if (this.model.display_type == 13) {
-                widget = this.createMultiQuestionCount()
+                widget = this.createMultiQuestionCount();
             }
 
             this.setElement(widget);
