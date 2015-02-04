@@ -12,10 +12,12 @@ define(function(require){
         StoresMain = require('thirdchannel/views/stores/main'),
         StoreProfileMain = require('thirdchannel/views/store_profile/main'),
         StoresIntelEdit = require('thirdchannel/views/stores/intel/edit'),
+        StoreProfileProductsEdit = require('thirdchannel/views/store_profile/products/edit'),
         CheckinView = require('thirdchannel/views/checkins/show/checkin'),
         CheckinChooseView = require('thirdchannel/views/checkins/choose/show/main'),
         DashboardsAlertsSectionsView = require('thirdchannel/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('thirdchannel/views/dashboards/alerts/show/stores'),
+        DashboardsSpecialProjectsView = require('thirdchannel/views/dashboards/special_projects/main'),
         ReportMain = require('thirdchannel/views/reports/index/main'),
         CheckinReportView = require('thirdchannel/views/reports/checkins/show/report'),
         ReportInfoMain = require('thirdchannel/views/reports/info/show/main'),
@@ -37,11 +39,14 @@ define(function(require){
             'programs/:program_id/stores/:store_id/activity': 'storeProfileActivity',
             'programs/:program_id/stores/:store_id/history': 'storeProfileHistory',
             'programs/:program_id/stores/:store_id/gallery': 'storeProfileGallery',
+            'programs/:program_id/stores/:store_id/product': 'storeProfileProduct',
+            'programs/:program_id/stores/:store_id/product/edit': 'editStoreProfileProduct',
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
             'programs/:program_id/checkins/:id': 'checkin',
             'programs/:program_id/checkins/choose/:id': 'selectCheckin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
+            'programs/:program_id/dashboards/special_projects': 'dashboardSpecialProjects',
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
@@ -116,6 +121,14 @@ define(function(require){
             StoreProfileMain.gallery();
         },
 
+        storeProfileProduct: function () {
+            StoreProfileMain.product();
+        },
+
+        editStoreProfileProduct: function () {
+            StoreProfileProductsEdit.init();
+        },
+
         editStoreIntel: function () {
             new StoresIntelEdit().render();
         },
@@ -126,11 +139,15 @@ define(function(require){
         },
 
         dashboardAlerts: function(programId){
-            $('.dashboard').append(new DashboardsAlertsSectionsView({programId: programId}).render().$el);
+            $('#alerts-dashboard').append(new DashboardsAlertsSectionsView({programId: programId}).render().$el);
         },
 
         dashboardAlert: function(programId, id){
             new DashboardsAlertsStoresView({programId: programId, id: id}).render();
+        },
+
+        dashboardSpecialProjects: function(programId) {
+            new DashboardsSpecialProjectsView({programId: programId}).render();
         },
 
         reports: function(programId){

@@ -10,6 +10,11 @@
                     , {{location.address}}
                 </p>
                 {{/if_eq}}
+                {{#if_eq checkin_type "special_project"}}
+                <p class="activity-special-project">
+                    {{survey_title}}
+                </p>
+                {{/if_eq}}
                 <p>
                     <span data-livestamp="{{created_at}}"></span>
                     by

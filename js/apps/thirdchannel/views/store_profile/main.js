@@ -12,6 +12,7 @@ define(function (require) {
         ExpandWrapperView = require('thirdchannel/views/utils/expand_wrapper_view'),
         OpenAlertsView = require('thirdchannel/views/store_profile/open_alerts'),
         GalleryView = require('thirdchannel/views/store_profile/gallery'),
+        ProductView = require('thirdchannel/views/store_profile/products/show'),
         ResolvedAlertsView = require('thirdchannel/views/store_profile/resolved_alerts');
 
     /**
@@ -43,6 +44,9 @@ define(function (require) {
                 Filter.init(new Backbone.Collection());
                 context.instances.galleryView = new GalleryView();
             }
+        },
+        product: function () {
+            new ProductView().bootstrapCollection(window.bootstrap);
         }
     };
     return main;
