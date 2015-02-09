@@ -1,6 +1,6 @@
 define(function(require) {
 	var context = require('context'),
-		EntriesCollection = require('pennypacker/collections/entries'),
+		EntriesCollection = require('pennyPacker/collections/entries'),
 
 		InvalidEntriesCollection = {
 			url: function () {
