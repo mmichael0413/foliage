@@ -7,6 +7,7 @@ define(function(require) {
         DirectPaymentView = require('pennyPacker/views/programs/directPayment'),
         ActionsView = require('pennyPacker/views/entries/actions'),
         InvalidEntriesListView = require('pennyPacker/views/entries/invalid'),
+        MissingTravelListView = require('pennyPacker/views/travel/missingList'),
         EntriesListView = require('pennyPacker/views/entries/list');
         
     /**
@@ -15,6 +16,7 @@ define(function(require) {
      */
     var Router = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
+            'entries/:programId/mileage/missing/list': 'missingTravelList',
             'entries/:programId(/)' : 'entryList',
             'program/:programId/direct(/)': 'direct'
         },
@@ -44,6 +46,12 @@ define(function(require) {
                 invalidView.render();
             }
             context.trigger("configure:deepLinks",true);
+        },
+
+        missingTravelList: function (programId) {
+            var view = new MissingTravelListView();
+            view.collection.reset(context.content.items);
+            view.render();
         },
 
         direct: function (programId) {
