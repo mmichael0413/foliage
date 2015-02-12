@@ -1749,6 +1749,7 @@ function program1(depth0,data) {
   buffer += "\n        <span class=\"pull-right\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.prepend_count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.append_count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</span>\n        ";
   return buffer;
   }
@@ -1759,6 +1760,7 @@ function program3(depth0,data) {
   buffer += "\n        <span class=\"pull-right\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.prepend_count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + escapeExpression((helper = helpers.format_number_from_value_lookup || (depth0 && depth0.format_number_from_value_lookup),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.selected_key), ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.counts), options) : helperMissing.call(depth0, "format_number_from_value_lookup", ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.selected_key), ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.counts), options)))
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.append_count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</span>\n        ";
   return buffer;
   }
@@ -1836,6 +1838,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "\">\n    <h2>"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.prepend_count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + escapeExpression((helper = helpers.format_number || (depth0 && depth0.format_number),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.count), options) : helperMissing.call(depth0, "format_number", ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.count), options)))
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.append_count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</h2>\n    <p>";
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -1852,25 +1855,12 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n            <tr>\n                <td>";
-  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</td>\n                <td>";
+  buffer += "\n        <div class=\"leading-dots leading-row\">\n            <span class=\"pull-right\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.prepend_count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1));
   if (helper = helpers.sum) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.sum); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n            </tr>\n        ";
-  return buffer;
-  }
-
-function program3(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n        <div class=\"leading-dots leading-row\">\n            <span class=\"pull-right\">";
-  if (helper = helpers.sum) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.sum); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.append_count)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</span>\n            <span>";
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -1881,19 +1871,12 @@ function program3(depth0,data) {
 
   buffer += "<div class=\"widget "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.widget_class)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n    <!--<table>\n        <thead>\n        <th colspan=\"2\">";
-  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</th>\n        </thead>\n        <tbody>\n        ";
-  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.rows), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </tbody>\n    </table>-->\n    <h3>";
+    + "\">\n    <h3>";
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</h3>\n    ";
-  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.rows), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.rows), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n</div>";
   return buffer;
