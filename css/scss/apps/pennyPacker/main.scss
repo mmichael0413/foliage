@@ -176,3 +176,17 @@
 #invalidEntries {
     margin-bottom: 5em;
 }
+
+/* consider making this its own module */
+
+.instruction {
+
+    p {
+        margin: 1em 0em;
+    }
+
+    .important {
+        font-weight: bold;
+        color: $red;
+    }
+}

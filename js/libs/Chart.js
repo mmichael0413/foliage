@@ -1272,6 +1272,17 @@
             if (this.showStroke){
                 ctx.stroke();
             }
+
+            var textRight = right - 5;
+            ctx.fillStyle = '#ffffff';
+
+            if ((right - this.left) < 40) {
+                textRight = right + 30;
+                ctx.fillStyle = '#000000';
+            }
+
+            ctx.fillText(this.value + "%", textRight, this.y);
+
         },
         inRange : function(chartX,chartY){
             return (chartY >= this.y - this.height/2 && chartY <= this.y + this.height/2) && (chartX >= this.left && chartX <= this.x);
@@ -1621,8 +1632,16 @@
 
                     ctx.textAlign = "right";
                     ctx.textBaseline = "middle";
+
                     if (this.showLabels){
-                        ctx.fillText(labelString,xStart - 10,yLabelCenter);
+                        var lines = labelString.split('\n');
+
+                        ctx.font = 'bold ' + this.font;
+
+                        for (var i = 0; i<lines.length; i++) {
+                            ctx.fillText(lines[i], xStart - 10, yLabelCenter + (i*15) );
+                            ctx.font = this.font;
+                        }
                     }
                     ctx.beginPath();
                     if (index > 0){
