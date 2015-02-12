@@ -1695,7 +1695,7 @@ function program2(depth0,data,depth1,depth2) {
 function program4(depth0,data) {
   
   
-  return "\n                <a href=\"#\" class=\"btn light\" tag=\"View Breakdown\">View Breakdown</a>\n            ";
+  return "\n                <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">View Breakdown</a>\n            ";
   }
 
   buffer += "<div class=\"widget chart donut "
@@ -1722,7 +1722,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n                <a href=\"#\" class=\"btn light\" tag=\"View Breakdown\">View Breakdown</a>\n            ";
+  return "\n                <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">View Breakdown</a>\n            ";
   }
 
   buffer += "<div class=\"widget "
@@ -1731,10 +1731,10 @@ function program1(depth0,data) {
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</p>\n            <canvas></canvas>\n            ";
+  buffer += "</p>\n            ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_view_list), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </div>\n    </div>\n</div>";
+  buffer += "\n            <canvas></canvas>\n        </div>\n    </div>\n</div>";
   return buffer;
   });
 
@@ -1808,6 +1808,12 @@ function program4(depth0,data) {
   return "\n            <h4>N/A</h4>\n        ";
   }
 
+function program6(depth0,data) {
+  
+  
+  return "\n            <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">View Breakdown</a>\n        ";
+  }
+
   buffer += "<div class=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.widget_class)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" style=\"padding-left: 70px;\">\n    <div class=\"pull-left\" style=\"margin-left: -70px;\">\n        <div class=\"circle-icon circle-md\">\n            <div class=\"circle "
@@ -1820,6 +1826,9 @@ function program4(depth0,data) {
   buffer += escapeExpression(stack1)
     + "</div>\n\n        ";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.list), {hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n        ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_view_list), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    </div>\n    <div class=\"clearfix\"></div>\n</div>";
   return buffer;
