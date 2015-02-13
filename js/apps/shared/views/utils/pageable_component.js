@@ -26,7 +26,7 @@ define(function(require) {
                 // jumping effect as the element is removed, reflowed, then added again.
                 // it's a bit tedius, certainly, but the effect is nice.
                 $paginationHolder.replaceWith(this.pager.$el);
-                //this.listenTo(this.pager, 'new_page', this.pageChange);    
+                this.listenTo(this.pager, 'new_page', this.pageChange);
             }
 		},
         /**

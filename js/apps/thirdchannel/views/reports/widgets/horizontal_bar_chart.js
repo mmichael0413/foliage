@@ -26,7 +26,7 @@ define(function(require) {
                 responsive: true,
                 barValueSpacing: 10,
                 maintainAspectRatio: false,
-                showTooltips: true,
+                showTooltips: false,
                 tooltipTemplate: "<%= value+'%' %>",
                 defaultLegendColors: ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D"]
             }, this.model.config);
@@ -51,7 +51,8 @@ define(function(require) {
                 length_length = this.chartOptions.defaultLegendColors.length;
 
             $.each(this.chartOptions.legendOrder.reverse(), function (index, value) {
-                labels.push(value);
+                var countText = self.model.config.count_text !== undefined ? self.model.config.count_text : 'stores';
+                labels.push(value + "\n" + self.model.results.counts[value] + ' ' + countText );
                 if (self.chartOptions.legendColors !== undefined) {
                     fillColor.push(self.chartOptions.legendColors[value]);
                     strokeColor.push(self.chartOptions.legendColors[value]);

@@ -12,6 +12,7 @@ define(function(require) {
             subViewClass: ResolvedAlertsDetailsView,
             collectionClass: BaseAlertsCollection.extend({
                 resolved: true,
+                per: 20,
             }),
             template: 'thirdchannel/store_profile/resolved_alerts_rows'
         });
