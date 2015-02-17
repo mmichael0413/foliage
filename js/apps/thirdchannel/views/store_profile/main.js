@@ -36,8 +36,8 @@ define(function (require) {
             ActivitiesMain.init(url, null, false);
         },
         history: function () {
-            new OpenAlertsView().renderCollection(context.alerts.open);
-            new ResolvedAlertsView().renderCollection(context.alerts.resolved);
+            new OpenAlertsView().bootstrapCollection(context.alerts.open);
+            new ResolvedAlertsView().bootstrapCollection(context.alerts.resolved);
         },
         gallery: function () {
             if(!context.instances.galleryView) {
