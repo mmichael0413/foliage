@@ -2050,10 +2050,10 @@
         horizontalBar : false,
 
         // String - prefix for the bar's label
-        prefix: '',
+        barLabelPrefix: '',
 
         // String - postfix for the bar's label
-        postfix: '',
+        barLabelPostfix: '',
 
         //Number - Pixel height of Horizontal bar
         barHeight : 20,
@@ -2179,8 +2179,8 @@
                         datasetLabel: dataset.label,
                         strokeColor : dataset.strokeColor,
                         fillColor : dataset.fillColor[index%dataset.fillColor.length],
-                        prefix : options.prefix,
-                        postfix : options.postfix,
+                        prefix : options.barLabelPrefix,
+                        postfix : options.barLabelPostfix,
                         highlightFill : dataset.highlightFill || dataset.fillColor[index%dataset.fillColor.length],
                         highlightStroke : dataset.highlightStroke || dataset.strokeColor
                     }));
