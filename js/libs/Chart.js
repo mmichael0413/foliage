@@ -1281,7 +1281,7 @@
                 ctx.fillStyle = '#000000';
             }
 
-            ctx.fillText(this.value + "%", textRight, this.y);
+            ctx.fillText(this.prefix + this.value + this.postfix, textRight, this.y);
 
         },
         inRange : function(chartX,chartY){
@@ -2049,6 +2049,12 @@
         //Boolean - If this should be a horizontal bar
         horizontalBar : false,
 
+        // String - prefix for the bar's label
+        prefix: '',
+
+        // String - postfix for the bar's label
+        postfix: '',
+
         //Number - Pixel height of Horizontal bar
         barHeight : 20,
 
@@ -2068,7 +2074,6 @@
         name: "Bar",
         defaults : defaultConfig,
         initialize:  function(data){
-
             //Expose options as a scope variable here so we can access it in the ScaleClass
             var options = this.options;
 
@@ -2174,6 +2179,8 @@
                         datasetLabel: dataset.label,
                         strokeColor : dataset.strokeColor,
                         fillColor : dataset.fillColor[index%dataset.fillColor.length],
+                        prefix : options.prefix,
+                        postfix : options.postfix,
                         highlightFill : dataset.highlightFill || dataset.fillColor[index%dataset.fillColor.length],
                         highlightStroke : dataset.highlightStroke || dataset.strokeColor
                     }));

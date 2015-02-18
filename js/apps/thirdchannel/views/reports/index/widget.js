@@ -15,7 +15,8 @@ define(function(require) {
         ReportWidgetPercentIconView = require('thirdchannel/views/reports/widgets/percent_icon'),
         ReportWidgetQuadrantChartView = require('thirdchannel/views/reports/widgets/quadrant_chart'),
         ReportWidgetRangeChartView = require('thirdchannel/views/reports/widgets/range_chart'),
-        ReportWidgetResolutionRowView = require('thirdchannel/views/reports/widgets/resolution_row');
+        ReportWidgetResolutionRowView = require('thirdchannel/views/reports/widgets/resolution_row'),
+        ReportWidgetGenericHorizontalBarChartView = require('thirdchannel/views/reports/widgets/generic_horizontal_bar_chart');
 
     return Backbone.View.extend({
         tagName: "span",
@@ -52,6 +53,8 @@ define(function(require) {
                 widget = this.createLeadingRow();
             } else if (this.model.display_type == 13) {
                 widget = this.createMultiQuestionCount();
+            } else if (this.model.display_type == 14) {
+                widget = this.createGenericHorizontalBarChart();
             }
 
             this.setElement(widget);
@@ -95,6 +98,9 @@ define(function(require) {
         },
         createMultiQuestionCount: function () {
             return new ReportWidgetMultiQuestionCountsView(this.model).render().$el;
+        },
+        createGenericHorizontalBarChart: function () {
+            return new ReportWidgetGenericHorizontalBarChartView(this.model).render().$el;
         }
     });
 });
