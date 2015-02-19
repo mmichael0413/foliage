@@ -3,20 +3,21 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         HandlebarsHelpers = require('handlebarsHelpers'),
-        ReportWidgetBarChartView = require('thirdchannel/views/reports/widgets/bar_chart'),
-        ReportWidgetDonutChartView = require('thirdchannel/views/reports/widgets/donut_chart'),
-        ReportWidgetHorizontalBarChartView = require('thirdchannel/views/reports/widgets/horizontal_bar_chart'),
-        ReportWidgetLeadingRowView = require('thirdchannel/views/reports/widgets/leading_row'),
-        ReportWidgetListIconView = require('thirdchannel/views/reports/widgets/list_icon'),
-        ReportWidgetMetricIconView = require('thirdchannel/views/reports/widgets/metric_icon'),
-        ReportWidgetMultiQuestionTotalsView = require('thirdchannel/views/reports/widgets/multi_question_totals'),
-        ReportWidgetMultiQuestionCountsView = require('thirdchannel/views/reports/widgets/multi_question_counts'),
-        ReportWidgetOverviewIconView = require('thirdchannel/views/reports/widgets/overview_icon'),
-        ReportWidgetPercentIconView = require('thirdchannel/views/reports/widgets/percent_icon'),
-        ReportWidgetQuadrantChartView = require('thirdchannel/views/reports/widgets/quadrant_chart'),
-        ReportWidgetRangeChartView = require('thirdchannel/views/reports/widgets/range_chart'),
-        ReportWidgetResolutionRowView = require('thirdchannel/views/reports/widgets/resolution_row'),
-        ReportWidgetGenericHorizontalBarChartView = require('thirdchannel/views/reports/widgets/generic_horizontal_bar_chart');
+        BarChartView = require('thirdchannel/views/reports/widgets/bar_chart'),
+        DonutChartView = require('thirdchannel/views/reports/widgets/donut_chart'),
+        HorizontalBarChartView = require('thirdchannel/views/reports/widgets/horizontal_bar_chart'),
+        LeadingRowView = require('thirdchannel/views/reports/widgets/leading_row'),
+        ListIconView = require('thirdchannel/views/reports/widgets/list_icon'),
+        MetricIconView = require('thirdchannel/views/reports/widgets/metric_icon'),
+        MultiQuestionTotalsView = require('thirdchannel/views/reports/widgets/multi_question_totals'),
+        MultiQuestionCountsView = require('thirdchannel/views/reports/widgets/multi_question_counts'),
+        OverviewIconView = require('thirdchannel/views/reports/widgets/overview_icon'),
+        PercentIconView = require('thirdchannel/views/reports/widgets/percent_icon'),
+        QuadrantChartView = require('thirdchannel/views/reports/widgets/quadrant_chart'),
+        RangeChartView = require('thirdchannel/views/reports/widgets/range_chart'),
+        ResolutionRowView = require('thirdchannel/views/reports/widgets/resolution_row'),
+        LineChartView = require('thirdchannel/views/reports/widgets/line_chart');
+        GenericHorizontalBarChartView = require('thirdchannel/views/reports/widgets/generic_horizontal_bar_chart');
 
     return Backbone.View.extend({
         tagName: "span",
@@ -54,6 +55,8 @@ define(function(require) {
             } else if (this.model.display_type == 13) {
                 widget = this.createMultiQuestionCount();
             } else if (this.model.display_type == 14) {
+                widget = this.createLineChart();
+            } else if (this.model.display_type == 15) {
                 widget = this.createGenericHorizontalBarChart();
             }
 
@@ -61,46 +64,49 @@ define(function(require) {
             return this;
         },
         createDonutChart: function () {
-            return new ReportWidgetDonutChartView(this.model).render().$el;
+            return new DonutChartView(this.model).render().$el;
         },
         createListIcon: function () {
-            return new ReportWidgetListIconView(this.model).render().$el;
+            return new ListIconView(this.model).render().$el;
         },
         createBarChart: function () {
-            return new ReportWidgetBarChartView(this.model).render().$el;
+            return new BarChartView(this.model).render().$el;
         },
         createPercentIcon: function () {
-            return new ReportWidgetPercentIconView(this.model).render().$el;
+            return new PercentIconView(this.model).render().$el;
         },
         createMetricIcon: function () {
-            return new ReportWidgetMetricIconView(this.model).render().$el;
+            return new MetricIconView(this.model).render().$el;
         },
         createResolutionRow: function () {
-            return new ReportWidgetResolutionRowView(this.model).render().$el;
+            return new ResolutionRowView(this.model).render().$el;
         },
         createOverviewIcon: function () {
-            return new ReportWidgetOverviewIconView(this.model).render().$el;
+            return new OverviewIconView(this.model).render().$el;
         },
         createHorizontalBarChart: function () {
-            return new ReportWidgetHorizontalBarChartView(this.model).render().$el;
+            return new HorizontalBarChartView(this.model).render().$el;
         },
         createRangeChart: function () {
-            return new ReportWidgetRangeChartView(this.model).render().$el;
+            return new RangeChartView(this.model).render().$el;
         },
         createMultiQuestionTotal: function () {
-            return new ReportWidgetMultiQuestionTotalsView(this.model).render().$el;
+            return new MultiQuestionTotalsView(this.model).render().$el;
         },
         createQuadrantChart: function () {
-            return new ReportWidgetQuadrantChartView(this.model).render().$el;
+            return new QuadrantChartView(this.model).render().$el;
         },
         createLeadingRow: function () {
-            return new ReportWidgetLeadingRowView(this.model).render().$el;
+            return new LeadingRowView(this.model).render().$el;
         },
         createMultiQuestionCount: function () {
-            return new ReportWidgetMultiQuestionCountsView(this.model).render().$el;
+            return new MultiQuestionCountsView(this.model).render().$el;
+        },
+        createLineChart: function () {
+            return new LineChartView(this.model).render().$el;
         },
         createGenericHorizontalBarChart: function () {
-            return new ReportWidgetGenericHorizontalBarChartView(this.model).render().$el;
+            return new GenericHorizontalBarChartView(this.model).render().$el;
         }
     });
 });
