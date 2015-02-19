@@ -21,34 +21,39 @@ define(function(require) {
         },
         setupChart: function () {
             var self = this;
+            this.$svg = this.$('.chart svg');
 
             nv.addGraph(function() {
                 var chart = nv.models.lineWithFocusChart()
-                    .x(function(d){return new Date(d.x)});
+                    .x(function(d){return new Date(d.x)}),
+                    dateFormat;
 
-                chart.xAxis.tickFormat(function(d) { return d3.time.format('%b %d %Y')(new Date(d)); });
-                chart.x2Axis.tickFormat(function(d) { return d3.time.format('%b %d %Y')(new Date(d)); });
+                dateFormat = (self.model.config.showDay) ? '%b %d %Y' : '%b %Y'
+
+                chart.xAxis.tickFormat(function(d) { return d3.time.format(dateFormat)(new Date(d)); }).rotateLabels(-45);
+                chart.x2Axis.tickFormat(function(d) { return d3.time.format(dateFormat)(new Date(d)); });
+
+                //chart.yAxis.tickFormat(function(d) { return self.model.config.prefix + d + self.model.config.postfix; });
+                //chart.y2Axis.tickFormat(function(d) { return self.model.config.prefix + d + self.model.config.postfix; });
 
                 chart.xScale(d3.time.scale());
 
-                chart.color(["rgba(88,94,96,0.2)", "rgba(241,95,81,0.2)", "#rgba(159,178,192,0.2)", "#rgba(169,188,77,0.2)"]);
+                chart.color(["rgba(241,95,81,1)", "#rgba(159,178,192,1)", "rgba(88,94,96,1)", "#rgba(169,188,77,1)"]);
                 chart.isArea(true);
 
-                chart.brushExtent([new Date(self.model.config.startDate), new Date(self.model.config.endDate)]);
-                chart.margin({"left":50,"right":50,"top":50,"bottom":50});
+                chart.margin({"left":50,"right":50,"top":0,"bottom":75});
 
-                d3.select('.chart.line svg')
+                d3.select(self.$svg[0])
                     .datum(self.model.results)
-                    .transition().duration(500)
                     .call(chart);
 
-                nv.utils.windowResize(chart.update);
+                //nv.utils.windowResize(chart.update);
+
+                self.listenTo(context, 'report post render', function () {
+                    chart.update;//new Chart(canvas[0].getContext("2d")).Line(self.data, {});
+                });
 
                 return chart;
-            });
-
-            this.listenTo(context, 'report post render', function () {
-                //chart.update;//new Chart(canvas[0].getContext("2d")).Line(self.data, {});
             });
         },
 
