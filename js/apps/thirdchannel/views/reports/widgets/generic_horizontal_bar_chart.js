@@ -2,41 +2,17 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        Charts = require('chartjs'),
+        NVD3 = require('nvd3'),
         context = require('context');
 
     return Backbone.View.extend({
         tagName: 'span',
-        template: HandlebarsTemplates['thirdchannel/reports/widgets/horizontal_bar_chart'],
+        template: HandlebarsTemplates['thirdchannel/reports/widgets/generic_horizontal_bar_chart'],
         initialize: function (options) {
             this.model = options;
-
-            this.model.results.values = this.model.results.values.reverse();
-            this.model.results.counts = this.model.results.counts.reverse();
-            this.model.results.legend = this.model.results.legend.reverse();
-
-            this.chartOptions = _.extend({
-                scaleFontSize: 14,
-                animation: false,
-                scaleShowLabels: true,
-                scaleOverride: false,
-                scaleSteps: 10,
-                scaleStepWidth: 10,
-                scaleStartValue: 0,
-                inGraphDataShow: true,
-                inGraphDataTmpl: "<%=v3+'%'%>",
-                scaleLabel: "<%= value+'%' %>",
-                horizontalBar: true,
-                responsive: true,
-                barValueSpacing: 10,
-                maintainAspectRatio: false,
-                showTooltips: false,
-                tooltipTemplate: "<%= value+'%' %>",
-                defaultLegendColors: ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D"]
-            }, this.model.config);
         },
         render: function () {
-            if (_.size(this.model.results.values) > 0) {
+            if(this.model.results !== undefined && _.size(this.model.results) > 0) {
                 this.$el.html(this.template(this.model));
                 this.setupHorizontalBarChart();
                 this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
@@ -46,43 +22,32 @@ define(function(require) {
         },
         setupHorizontalBarChart: function () {
             var self = this,
-                canvas = this.$el.find("canvas"),
-                labels = [],
-                fillColor = [],
-                strokeColor = [],
-                total_entries = this.model.results.legend.length - 1,
-                length_length = this.chartOptions.defaultLegendColors.length;
+                $chartContainer = this.$('.chart svg');
+            console.log($chartContainer);
 
-            $.each(this.model.results.legend, function(index, value) {
-                var label = value;
-                if(self.model.config.count_text !== undefined) {
-                    label += "\n" + self.model.results.counts[index] + ' ' + self.model.config.count_text;
-                }
-                labels.push(label);
+            nv.addGraph(function() {
+                var chart = nv.models.multiBarHorizontalChart()
+                                        .x(function(d) { return d.label })
+                                        .y(function(d) { return d.value })
+                                        .margin({top: 30, right: 20, bottom: 50, left: 175})
+                                        .showValues(true)           //Show bar value next to each bar.
+                                        .tooltips(true)//Show tooltips on hover.
+                                        .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
 
-                if (self.chartOptions.legendColors !== undefined) {
-                    fillColor.push(self.chartOptions.legendColors[value]);
-                    strokeColor.push(self.chartOptions.legendColors[value]);
-                } else {
-                    fillColor.push(self.chartOptions.defaultLegendColors[(total_entries - index) % length_length]);
-                    strokeColor.push(self.chartOptions.defaultLegendColors[(total_entries - index) % length_length]);
-                }
+                chart.yAxis
+                     .tickFormat(d3.format(',.2f'));
+
+                d3.select($chartContainer[0])
+                    .datum(self.model.results)
+                    .call(chart);
+
+                nv.utils.windowResize(chart.update);
+
+                return chart;
             });
 
-            this.data = {
-                labels: labels,
-                datasets: [
-                    {
-                        fillColor: fillColor,
-                        strokeColor: strokeColor,
-                        data: self.model.results.values,
-                        title: "horizontal chart"
-                    }
-                ]
-            };
-
             this.listenTo(context, 'report post render', function () {
-                new Chart(canvas[0].getContext("2d")).Bar(self.data, self.chartOptions);
+                //new Chart(canvas[0].getContext("2d")).Bar(self.data, self.chartOptions);
             });
         },
         updateViewBreakDownLink : function (qs) {
