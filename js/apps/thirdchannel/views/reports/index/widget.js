@@ -16,7 +16,7 @@ define(function(require) {
         QuadrantChartView = require('thirdchannel/views/reports/widgets/quadrant_chart'),
         RangeChartView = require('thirdchannel/views/reports/widgets/range_chart'),
         ResolutionRowView = require('thirdchannel/views/reports/widgets/resolution_row'),
-        LineChartView = require('thirdchannel/views/reports/widgets/line_chart');
+        LineChartView = require('thirdchannel/views/reports/widgets/line_chart'),
         GenericHorizontalBarChartView = require('thirdchannel/views/reports/widgets/generic_horizontal_bar_chart');
 
     return Backbone.View.extend({
