@@ -426,6 +426,9 @@ module.exports = function(grunt) {
                         dest: 'dist/marketing/images/maximize.png'
                     },
                     {
+                        dest: 'dist/marketing/images/maximize.jpg'
+                    },
+                    {
                         dest: 'dist/marketing/images/whatsthejob.png'
                     }
                 ]
@@ -482,6 +485,9 @@ module.exports = function(grunt) {
                     },
                     {
                         dest: 'dist/marketing/images/maximize.png'
+                    },
+                    {
+                        dest: 'dist/marketing/images/maximize.jpg'
                     },
                     {
                         dest: 'dist/marketing/images/whatsthejob.png'
