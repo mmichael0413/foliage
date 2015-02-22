@@ -8,6 +8,10 @@
   margin: 0 0 0.6em;
   text-align: center;
 
+  &.main-header-white {
+    color: #ffffff;
+  }
+
   &.main-header-light {
     color: $light-gray;
   }

@@ -73,8 +73,8 @@
 #home-page1 {
   height: 92vh;
   background-color: $palette4;
-  background-image: url("../images/maximize.png");
-  background-position: center top;
+  background-image: url("../images/maximize.jpg");
+  background-position: center;
   background-size: cover;
 
   @include swb-medium {
@@ -84,10 +84,15 @@
     background-image: none !important;
   }
 
+  #home-page1-container {
+    background-color: rgba(65,70,72,0.75);
+    width: 100%;
+  }
+
   #home-page1-content {
     margin: 0 auto;
+    padding: 1.25em 0;
     width: 75%;
-    opacity: 1;
 
     @include swb-medium {
       padding: 0.5em;
