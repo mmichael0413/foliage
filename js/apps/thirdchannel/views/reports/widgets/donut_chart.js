@@ -10,6 +10,7 @@ define(function(require) {
         template: HandlebarsTemplates['thirdchannel/reports/widgets/donut_chart'],
         initialize: function (options) {
             this.model = options;
+            this.remapResults();
             this.setDefaultColors();
         },
         render: function () {
@@ -23,7 +24,7 @@ define(function(require) {
         },
         updateViewBreakDownLink : function (qs) {
             var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
-            this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
+            this.$('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
         },
         displayChart: function() {
             var options = _.extend({
@@ -44,11 +45,26 @@ define(function(require) {
 
             new Chart(this.$("canvas")[0].getContext("2d")).Doughnut(data, options);
         },
+        remapResults: function() {
+            if(!_.isArray(this.model.config.legendOrder)) {
+                var self = this,
+                    counts = {},
+                    percentages = {};
+
+                _.each(this.model.config.legendOrder, function(label, key) {
+                    counts[label] = self.model.results.counts[key];
+                    percentages[label] = self.model.results.percentages[key];
+                });
+
+                this.model.results.counts = counts;
+                this.model.results.percentages = percentages;
+            }
+        },
         setDefaultColors: function() {
             if (this.model.config.legendColors === undefined) {
                 var that = this;
                 this.model.config.legendColors = {};
-                _.each(this.model.config.legendOrder, function(value, index) {
+                _.each(_.values(this.model.config.legendOrder), function(value, index) {
                     that.model.config.legendColors[value] = ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D", "#3FB586", '#D6D6D6'][index%6];
                 });
             }
