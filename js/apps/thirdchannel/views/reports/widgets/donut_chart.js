@@ -3,8 +3,7 @@ define(function(require) {
         Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        context = require('context'),
-        displayDonutChart = require('donut_chart');
+        context = require('context');
 
     return Backbone.View.extend({
         tagName: 'span',
@@ -16,7 +15,7 @@ define(function(require) {
         render: function () {
             if (_.size(this.model.results.percentages) > 0) {
                 this.setElement(this.template(this.model));
-                displayDonutChart(this.$el.find("canvas")[0], this.model.results.percentages, this.model.config);
+                this.displayChart();
                 this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
                 context.trigger('filter:request:queryString');
             }
@@ -25,6 +24,25 @@ define(function(require) {
         updateViewBreakDownLink : function (qs) {
             var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
             this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
+        },
+        displayChart: function() {
+            var options = _.extend({
+                segmentShowStroke: false,
+                percentageInnerCutout: 65,
+                showPercentage: false,
+                showImage: false,
+                animation: false,
+                legendColors: {'Yes': '#3FB586', 'No': '#d6d6d6', 'Maybe': 'red'},
+                tooltipTemplate: "<%= value+'%' %>"
+            }, this.model.config);
+
+            var data = [];
+
+            $.each(this.model.results.percentages, function (key, value) {
+                data.push({value: value, color: options.legendColors[key]});
+            });
+
+            new Chart(this.$("canvas")[0].getContext("2d")).Doughnut(data, options);
         },
         setDefaultColors: function() {
             if (this.model.config.legendColors === undefined) {

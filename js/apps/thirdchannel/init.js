@@ -10,7 +10,6 @@ require.config({
         'backbone': '../libs/bower_components/backbone/backbone',
         'handlebars': '../libs/bower_components/handlebars/handlebars.min',
         'expanding': '../libs/expanding',
-        'donut_chart': '../libs/charts/donut_chart',
         'handlebarsTemplates': 'thirdchannel/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
         'context': 'shared/utils/context',
