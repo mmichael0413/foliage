@@ -31,7 +31,7 @@ define(function(require) {
                 var that = this;
                 this.model.config.legendColors = {};
                 _.each(this.model.config.legendOrder, function(value, index) {
-                    that.model.config.legendColors[value] = ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D"][index%4];
+                    that.model.config.legendColors[value] = ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D", "#3FB586", '#D6D6D6'][index%6];
                 });
             }
         }
