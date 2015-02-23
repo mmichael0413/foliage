@@ -38,7 +38,6 @@ define(function(require) {
             }, this.model.config);
 
             var data = [];
-
             $.each(this.model.results.percentages, function (key, value) {
                 data.push({value: value, color: options.legendColors[key]});
             });
@@ -46,7 +45,7 @@ define(function(require) {
             new Chart(this.$("canvas")[0].getContext("2d")).Doughnut(data, options);
         },
         remapResults: function() {
-            if(!_.isArray(this.model.config.legendOrder)) {
+            if(this.model.config.legendOrder !== undefined && !_.isArray(this.model.config.legendOrder)) {
                 var self = this,
                     counts = {},
                     percentages = {};
