@@ -28,10 +28,10 @@ define(function(require) {
                 reverseData: true,
                 horizontalBars: true,
                 axisY: {
-                    offset: 100,
+                    offset: 200,
                     labelOffset: {
                         x: 0,
-                        y: 40
+                        y: 0
                     },
                     scaleMinSpace: 10
                 }
