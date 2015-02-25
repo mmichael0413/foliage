@@ -30,7 +30,7 @@ define(function(require) {
                     offset: 100,
                     labelOffset: {
                         x: 0,
-                        y: 35
+                        y: 40
                     },
                     scaleMinSpace: 10
                 }
