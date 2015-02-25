@@ -47,8 +47,6 @@ define(function(require) {
                 })
             }
 
-            console.log(options);
-
             new Chartist.Bar(this.$('.ct-chart')[0], this.model.results, options);
         },
         updateViewBreakDownLink : function (qs) {
