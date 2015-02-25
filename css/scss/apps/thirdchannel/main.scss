@@ -4,6 +4,11 @@
 @import "../../lib/chosen";
 @import "../../lib/quill.snow";
 @import '../../../../js/libs/bower_components/chartist/dist/scss/chartist';
+/* TODO: find better way of overriding settings since the path for the settings is hardcoded in chartist.scss */
+.ct-chart .ct-bar {
+  fill: none;
+  stroke-width: 25px;
+}
 @import '../../../../js/libs/bower_components/slick.js/slick/slick';
 
 @import "../../base/fonts_all";

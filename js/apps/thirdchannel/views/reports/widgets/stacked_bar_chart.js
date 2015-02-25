@@ -28,11 +28,17 @@ define(function(require) {
                 ]
             }, {
                 stackBars: true,
-                seriesBarDistance: 10,
+                chartPadding: 5,
+                seriesBarDistance: 60,
                 reverseData: true,
                 horizontalBars: true,
                 axisY: {
-                    offset: 70
+                    offset: 100,
+                    labelOffset: {
+                        x: 0,
+                        y: 35
+                    },
+                    scaleMinSpace: 10
                 }
             });
 
