@@ -2,7 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        NVD3 = require('nvd3'),
+        Charts = require('chartist'),
         context = require('context');
 
     return Backbone.View.extend({

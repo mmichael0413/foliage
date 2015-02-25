@@ -1797,7 +1797,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</p>\n            <svg style=\"min-height: 400px; width: 100%\"></svg>\n        </div>\n    </div>\n</div>";
+  buffer += "</p>\n            <div class=\"ct-chart ct-perfect-fourth\"></div>\n        </div>\n    </div>\n</div>";
   return buffer;
   });
 
