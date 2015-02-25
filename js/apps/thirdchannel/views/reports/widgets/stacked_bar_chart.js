@@ -21,7 +21,7 @@ define(function(require) {
             return this;
         },
         setupChart: function () {
-            new Chartist.Bar(this.$('.ct-chart')[0], this.model.results, {
+            var options = {
                 stackBars: true,
                 chartPadding: 5,
                 seriesBarDistance: 60,
@@ -35,13 +35,25 @@ define(function(require) {
                     },
                     scaleMinSpace: 10
                 }
-            });
+            };
 
-            this.listenTo(context, 'report post render', function () {});
+            if(this.model.config.append_label) {
+                options = _.extend(options, {
+                    axisX: {
+                        labelInterpolocationFnc: function(label, index) {
+                            return label + this.model.config.append_label;
+                        }
+                    }
+                })
+            }
+
+            console.log(options);
+
+            new Chartist.Bar(this.$('.ct-chart')[0], this.model.results, options);
         },
         updateViewBreakDownLink : function (qs) {
             var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
-            this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
+            this.$('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
         }
     });
 });
