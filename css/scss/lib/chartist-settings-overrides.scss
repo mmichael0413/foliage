@@ -1,0 +1,28 @@
+// Bar chart bar width
+$ct-bar-width: 25px;
+
+// Series names and colors. This can be extended or customized as desired. Just add more series and colors.
+$ct-series-names: (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u);
+$ct-series-colors: (
+        #585E60,
+        #F15F51,
+        #9FB2C0,
+        #A9BC4D,
+        #3FB586,
+        #D6D6D6,
+        #d70206,
+        #f05b4f,
+        #f4c63d,
+        #d17905,
+        #453d3f,
+        #59922b,
+        #0544d3,
+        #6b0392,
+        #f05b4f,
+        #dda458,
+        #eacf7d,
+        #86797d,
+        #b2c326,
+        #6188e2,
+        #a748ca
+);
