@@ -20,13 +20,7 @@ define(function(require) {
             return this;
         },
         setupChart: function () {
-            new Chartist.Bar(this.$('.ct-chart')[0], {
-                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                series: [
-                    [5, 4, 3, 7, 5, 10, 3],
-                    [3, 2, 9, 5, 4, 6, 4]
-                ]
-            }, {
+            new Chartist.Bar(this.$('.ct-chart')[0], this.model.results, {
                 stackBars: true,
                 chartPadding: 5,
                 seriesBarDistance: 60,
