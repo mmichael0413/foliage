@@ -2,6 +2,16 @@
     <div>
         <div class="chart line">
             <p>{{{title}}}</p>
+            {{#if results.labels}}
+                <ul class="ct-legend">
+                    {{#each result.labels}}
+                        <li class="ct-series-{{@index}}">{{this}}</li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+            {{#unless results.labels}}
+                Test
+            {{/unless}}
             <div class="ct-chart ct-perfect-fourth"></div>
         </div>
     </div>

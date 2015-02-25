@@ -44,7 +44,7 @@ define(function(require) {
                             return label + this.model.config.append_label;
                         }
                     }
-                })
+                });
             }
 
             new Chartist.Bar(this.$('.ct-chart')[0], this.model.results, options);
