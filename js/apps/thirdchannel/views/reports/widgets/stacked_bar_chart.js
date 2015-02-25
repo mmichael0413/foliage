@@ -12,11 +12,12 @@ define(function(require) {
             this.model = options;
         },
         render: function () {
-            /*if (_.size(this.model.results.values) > 0) {}*/
-            this.$el.html(this.template(this.model));
-            this.setupChart();
-            this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
-            context.trigger('filter:request:queryString');
+            if (_.size(this.model.results.series) > 0) {
+                this.$el.html(this.template(this.model));
+                this.setupChart();
+                this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
+                context.trigger('filter:request:queryString');
+            }
             return this;
         },
         setupChart: function () {
