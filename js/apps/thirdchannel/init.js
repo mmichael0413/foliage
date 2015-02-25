@@ -17,6 +17,7 @@ require.config({
         'backbone.modal' : '../libs/bower_components/backbone-modal/backbone.modal',
         'jquery_ujs' : '../libs/bower_components/jquery-ujs/src/rails',
         'chartjs' : '../libs/Chart',
+        'chartjs_stacked_bar': '../libs/bower_components/Chart.StackedBar.js/src/Chart.StackedBar',
         'slick_carousel': '../libs/bower_components/slick.js/slick/slick',
         'livestamp' : '../libs/livestamp.min',
         'moment' : '../libs/moment',
@@ -87,6 +88,9 @@ require.config({
         },
         'chosen': {
             deps: ["jquery"]
+        },
+        'chartjs_stacked_bar': {
+            deps: ['chartjs']
         }
     }
 });

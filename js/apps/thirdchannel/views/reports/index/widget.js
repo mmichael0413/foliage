@@ -17,7 +17,8 @@ define(function(require) {
         RangeChartView = require('thirdchannel/views/reports/widgets/range_chart'),
         ResolutionRowView = require('thirdchannel/views/reports/widgets/resolution_row'),
         LineChartView = require('thirdchannel/views/reports/widgets/line_chart'),
-        GenericHorizontalBarChartView = require('thirdchannel/views/reports/widgets/generic_horizontal_bar_chart');
+        GenericHorizontalBarChartView = require('thirdchannel/views/reports/widgets/generic_horizontal_bar_chart'),
+        StackedBarChartView = require('thirdchannel/views/reports/widgets/stacked_bar_chart');
 
     return Backbone.View.extend({
         tagName: "span",
@@ -58,6 +59,8 @@ define(function(require) {
                 widget = this.createLineChart();
             } else if (this.model.display_type == 15) {
                 widget = this.createGenericHorizontalBarChart();
+            } else if (this.model.display_type == 16) {
+                widget = this.createHorizontalStackedBarChart();
             }
 
             this.setElement(widget);
@@ -107,6 +110,9 @@ define(function(require) {
         },
         createGenericHorizontalBarChart: function () {
             return new GenericHorizontalBarChartView(this.model).render().$el;
+        },
+        createHorizontalStackedBarChart: function() {
+            return new StackedBarChartView(this.model).render().$el;
         }
     });
 });
