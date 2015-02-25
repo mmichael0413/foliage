@@ -28,8 +28,7 @@ require.config({
         'quill-youtube' : '../libs/quill/modules/youtube',
         'helpers' : 'thirdchannel/utils/helpers',
         'pikaday' : '../libs/bower_components/pikaday/pikaday',
-        'd3' : '../libs/bower_components/d3/d3',
-        'nvd3' : '../libs/bower_components/nvd3/build/nv.d3'
+        'chartist' : '../libs/bower_components/chartist/dist/chartist'
     },
     shim: {
         "jquery": {
@@ -89,9 +88,6 @@ require.config({
         },
         'chosen': {
             deps: ["jquery"]
-        },
-        'nvd3': {
-            deps: ["d3"]
         },
         'chartjs_stacked_bar': {
             deps: ['chartjs']
