@@ -27,6 +27,7 @@ define(function(require) {
                 seriesBarDistance: 60,
                 reverseData: true,
                 horizontalBars: true,
+                fullWidth: true,
                 axisY: {
                     offset: 200,
                     labelOffset: {

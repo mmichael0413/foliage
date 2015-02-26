@@ -21,7 +21,8 @@ define(function(require) {
         setupChart: function () {
 
             new Chartist.Line(this.$('.ct-chart')[0], this.model.results, {
-                lineSmooth: Chartist.Interpolation.simple()
+                lineSmooth: Chartist.Interpolation.simple(),
+                fullWidth: true
             });
         },
 
