@@ -922,7 +922,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n<td><span class=\"alert-count\"></span></td>\n<td class=\"expand-indicator open\"></td>\n";
+    + "</td>\n<td><span class=\"alert-count\"><i class=\"fa fa-spinner fa-spin\"></i></span></td>\n<td class=\"expand-indicator open\"></td>\n";
   return buffer;
   });
 
