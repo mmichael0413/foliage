@@ -24,6 +24,7 @@ define(function(require) {
             var options = {
                 stackBars: true,
                 chartPadding: 5,
+                centerBars: false,
                 seriesBarDistance: 60,
                 reverseData: true,
                 horizontalBars: true,
