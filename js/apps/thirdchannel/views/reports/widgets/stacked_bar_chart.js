@@ -39,7 +39,7 @@ define(function(require) {
                     scaleMinSpace: 10
                 },
                 axisX: {
-                    labelInterpolocationFnc: function(label, index) {
+                    labelInterpolationFnc: function(label, index) {
                         if(config.x_prefix) {
                             label = config.x_prefix + label;
                         }
