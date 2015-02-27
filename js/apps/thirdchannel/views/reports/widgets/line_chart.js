@@ -28,6 +28,7 @@ define(function(require) {
                 }),
                 showPoint: false,
                 axisY: {
+                    offset: 50,
                     labelInterpolationFnc: function(value) {
                         if(config.y_postfix) {
                             value = value + config.y_postfix;
