@@ -1,15 +1,11 @@
 <div class="widget {{config.widget_class}}">
-    <div>
-        <div class="chart line">
-            {{#if title}}<p>{{{title}}}</p>{{/if}}
-            {{#if results.legend}}
-                <ul class="ct-legend">
-                    {{#each results.legend}}
-                        <li class="ct-series-{{@index}}">{{this}}</li>
-                    {{/each}}
-                </ul>
-            {{/if}}
-            <div class="ct-chart ct-perfect-fourth"></div>
-        </div>
-    </div>
+    {{#if title}}<p>{{{title}}}</p>{{/if}}
+    {{#if results.legend}}
+        <ul class="ct-legend">
+            {{#each results.legend}}
+                <li class="ct-series-{{@index}}">{{this}}</li>
+            {{/each}}
+        </ul>
+    {{/if}}
+    <div class="ct-chart ct-perfect-fourth"></div>
 </div>

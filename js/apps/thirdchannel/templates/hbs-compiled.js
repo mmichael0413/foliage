@@ -1804,32 +1804,32 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                <ul class=\"ct-legend\">\n                    ";
+  buffer += "\n        <ul class=\"ct-legend\">\n            ";
   stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.legend), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                </ul>\n            ";
+  buffer += "\n        </ul>\n    ";
   return buffer;
   }
 function program4(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                        <li class=\"ct-series-"
+  buffer += "\n                <li class=\"ct-series-"
     + escapeExpression(((stack1 = (data == null || data === false ? data : data.index)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">"
     + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
-    + "</li>\n                    ";
+    + "</li>\n            ";
   return buffer;
   }
 
   buffer += "<div class=\"widget "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.widget_class)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n    <div>\n        <div class=\"chart line\">\n            ";
+    + "\">\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.title), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            ";
+  buffer += "\n    ";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.legend), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            <div class=\"ct-chart ct-perfect-fourth\"></div>\n        </div>\n    </div>\n</div>";
+  buffer += "\n    <div class=\"ct-chart ct-perfect-fourth\"></div>\n</div>";
   return buffer;
   });
 
