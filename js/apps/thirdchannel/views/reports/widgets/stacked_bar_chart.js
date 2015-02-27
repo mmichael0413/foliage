@@ -51,6 +51,10 @@ define(function(require) {
                 }
             };
 
+            if(config.chartHigh) {
+                options.high = config.chartHigh;
+            }
+
             new Chartist.Bar(this.$('.ct-chart')[0], this.model.results, options);
         },
         updateViewBreakDownLink : function (qs) {
