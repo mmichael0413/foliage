@@ -33,7 +33,7 @@
     "pikaday": "1.2.0",
     "slidebars": "~0.10.2",
     "typeahead.js": "~0.10.5",
-    "Chart.StackedBar.js": "~1.0.1"
+    "Chart.StackedBar.js": "~1.0.1",
     "chartist": "0.7.2"
   },
   "resolutions": {

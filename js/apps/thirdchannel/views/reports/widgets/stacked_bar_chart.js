@@ -21,6 +21,7 @@ define(function(require) {
             return this;
         },
         setupChart: function () {
+            var config = this.model.config;
             var options = {
                 stackBars: true,
                 chartPadding: 5,
@@ -36,18 +37,19 @@ define(function(require) {
                         y: 0
                     },
                     scaleMinSpace: 10
+                },
+                axisX: {
+                    labelInterpolocationFnc: function(label, index) {
+                        if(config.x_prefix) {
+                            label = config.x_prefix + label;
+                        }
+                        if(config.x_postfix) {
+                            label = label + config.x_postfix;
+                        }
+                        return label;
+                    }
                 }
             };
-
-            if(this.model.config.append_label) {
-                options = _.extend(options, {
-                    axisX: {
-                        labelInterpolocationFnc: function(label, index) {
-                            return label + this.model.config.append_label;
-                        }
-                    }
-                });
-            }
 
             new Chartist.Bar(this.$('.ct-chart')[0], this.model.results, options);
         },
