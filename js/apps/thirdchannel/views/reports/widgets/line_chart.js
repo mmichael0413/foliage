@@ -30,10 +30,19 @@ define(function(require) {
                 axisY: {
                     offset: 50,
                     labelInterpolationFnc: function(value) {
+                        if(config.y_prefix) {
+                            value = config.y_prefix + value;
+                        }
                         if(config.y_postfix) {
                             value = value + config.y_postfix;
                         }
                         return value;
+                    }
+                },
+                axisX: {
+                    labelOffset: {
+                        x: -50,
+                        y: 5
                     }
                 },
                 classNames: {
