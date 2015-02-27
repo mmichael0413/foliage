@@ -21,9 +21,13 @@ define(function(require) {
         setupChart: function () {
 
             new Chartist.Line(this.$('.ct-chart')[0], this.model.results, {
-                lineSmooth: Chartist.Interpolation.simple(),
-                fullWidth: true,
-                showPoint: false
+                lineSmooth: Chartist.Interpolation.simple({
+                    divisor: 2
+                }),
+                showPoint: false,
+                classNames: {
+                    horizontal: 'ct-rotated'
+                }
             });
         },
 

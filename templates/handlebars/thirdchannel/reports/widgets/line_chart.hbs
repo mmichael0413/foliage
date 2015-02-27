@@ -1,7 +1,7 @@
 <div class="widget {{config.widget_class}}">
     <div>
         <div class="chart line">
-            <p>{{{title}}}</p>
+            {{#if title}}<p>{{{title}}}</p>{{/if}}
             {{#if results.legend}}
                 <ul class="ct-legend">
                     {{#each results.legend}}
