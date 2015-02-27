@@ -19,12 +19,22 @@ define(function(require) {
             return this;
         },
         setupChart: function () {
+            var self = this,
+                config = this.model.config;
 
             new Chartist.Line(this.$('.ct-chart')[0], this.model.results, {
                 lineSmooth: Chartist.Interpolation.simple({
                     divisor: 2
                 }),
                 showPoint: false,
+                axisY: {
+                    labelInterpolationFnc: function(value) {
+                        if(config.y_postfix) {
+                            value = value + config.y_postfix;
+                        }
+                        return value;
+                    }
+                },
                 classNames: {
                     horizontal: 'ct-rotated'
                 }
