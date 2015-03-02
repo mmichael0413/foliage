@@ -27,7 +27,7 @@ define(function(require) {
                     divisor: 2
                 }),
                 fullWidth: true,
-                showPoint: false,
+                showPoint: true,
                 axisY: {
                     offset: 50,
                     labelInterpolationFnc: function(value) {
