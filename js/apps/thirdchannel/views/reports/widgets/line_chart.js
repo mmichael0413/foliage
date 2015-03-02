@@ -29,6 +29,7 @@ define(function(require) {
                 }),
                 fullWidth: true,
                 showPoint: true,
+                chartPadding: 5,
                 axisY: {
                     offset: 50,
                     labelInterpolationFnc: function(value) {
