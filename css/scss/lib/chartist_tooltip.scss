@@ -9,5 +9,17 @@
     color: #fff;
     background: $palette4-rgba;
     z-index: 10;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      margin-left: -8px;
+      border: 8px solid transparent;
+      border-top-color: $palette4-rgba;
+    }
   }
 }
