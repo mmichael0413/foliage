@@ -1,9 +1,9 @@
 <div class="widget {{config.widget_class}}">
     {{#if title}}<p>{{{title}}}</p>{{/if}}
-    {{#if results.legend}}
+    {{#if results.series}}
         <ul class="ct-legend">
-            {{#each results.legend}}
-                <li class="ct-series-{{@index}}">{{this}}</li>
+            {{#each results.series}}
+                <li class="ct-series-{{@index}}">{{this.name}}</li>
             {{/each}}
         </ul>
     {{/if}}
