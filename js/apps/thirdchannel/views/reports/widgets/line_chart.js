@@ -76,8 +76,8 @@ define(function(require) {
 
             $chart.on('mousemove', function(e) {
                 $tooltip.css({
-                    left: (e.offsetX || e.originalEvent.layerX) - ($tooltip.width() / 2) - 8,
-                    top: (e.offsetY || e.originalEvent.layerY) - 60
+                    left: (e.offsetX || e.originalEvent.layerX) - ($tooltip.width() / 2) - 4,
+                    top: (e.offsetY || e.originalEvent.layerY) - ($tooltip.height() + 35)
                 });
             });
         },
