@@ -100,6 +100,7 @@ define(function(require) {
                 seriesName = $legendItem.attr('data-series-name'),
                 $seriesEl = this.$('.ct-series-' + seriesName);
 
+            $legendItem.toggleClass('ct-legend-item-unselected');
             $seriesEl.toggle();
         },
 

@@ -11,6 +11,11 @@
     margin-left: 1em;
     margin-bottom: 0.3em;
     list-style-type: none;
+    cursor: pointer;
+
+    &.ct-legend-item-unselected {
+      text-decoration: line-through;
+    }
   }
 
   li::before {
