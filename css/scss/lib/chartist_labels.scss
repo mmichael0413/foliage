@@ -2,11 +2,12 @@
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
+  z-index: -1;
 }
 
 /* TODO: find a better way to do this */
 .ct-chart {
-  .ct-label {
-    width: 100px;
+  .ct-point {
+    z-index: 2;
   }
 }
