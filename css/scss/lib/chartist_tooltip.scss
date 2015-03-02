@@ -1,0 +1,13 @@
+.ct-chart {
+  .ct-tooltip {
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    min-width: 3.5em;
+    padding: 0.5em;
+    border-radius: 0.75em;
+    color: #fff;
+    background: $palette4-rgba;
+    z-index: 10;
+  }
+}

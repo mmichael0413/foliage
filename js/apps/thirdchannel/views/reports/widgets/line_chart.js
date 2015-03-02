@@ -73,6 +73,13 @@ define(function(require) {
             $chart.on('mouseleave', '.ct-point', function(e) {
                 $tooltip.hide().empty();
             });
+
+            $chart.on('mousemove', function(e) {
+                $tooltip.css({
+                    left: (e.offsetX || e.originalEvent.layerX) - ($tooltip.width() / 2) - 8,
+                    top: (e.offsetY || e.originalEvent.layerY) - 60
+                });
+            });
         },
 
         updateViewBreakDownLink : function (qs) {
