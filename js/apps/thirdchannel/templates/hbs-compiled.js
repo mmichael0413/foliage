@@ -1829,7 +1829,7 @@ function program4(depth0,data) {
   buffer += "\n    ";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.series), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    <div class=\"ct-chart ct-perfect-fourth\"></div>\n</div>";
+  buffer += "\n    <div class=\"ct-chart ct-minor-seventh\"></div>\n</div>";
   return buffer;
   });
 
