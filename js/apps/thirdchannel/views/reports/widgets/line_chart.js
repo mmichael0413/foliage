@@ -19,10 +19,11 @@ define(function(require) {
             return this;
         },
         setupChart: function () {
-            var self = this,
+            var $chart = this.$('.ct-chart'),
+                self = this,
                 config = this.model.config;
 
-            new Chartist.Line(this.$('.ct-chart')[0], this.model.results, {
+            new Chartist.Line($chart[0], this.model.results, {
                 lineSmooth: Chartist.Interpolation.simple({
                     divisor: 2
                 }),
@@ -49,6 +50,28 @@ define(function(require) {
                 classNames: {
                     horizontal: 'ct-rotated'
                 }
+            });
+
+            // Tooltips
+            var $tooltip = $chart.append('<div class="ct-tooltip"></div>').find('.ct-tooltip').hide();
+
+            $chart.on('mouseenter', '.ct-point', function(e) {
+                var $point = $(this),
+                    value = $point.attr('ct:value');
+
+                if(config.tooltip_prefix) {
+                    value = config.tooltip_prefix + value;
+                }
+
+                if(config.tooltip_postfix) {
+                    value = value + config.tooltip_postfix;
+                }
+
+                $tooltip.html(value).show();
+            });
+
+            $chart.on('mouseleave', '.ct-point', function(e) {
+                $tooltip.hide().empty();
             });
         },
 
