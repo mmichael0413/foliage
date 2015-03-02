@@ -57,7 +57,10 @@ define(function(require) {
 
             $chart.on('mouseenter', '.ct-point', function(e) {
                 var $point = $(this),
-                    value = $point.attr('ct:value');
+                    value = $point.attr('ct:value'),
+                    seriesName = $point.parent().attr('ct:series-name'),
+                    displayText = '';
+
 
                 if(config.tooltip_prefix) {
                     value = config.tooltip_prefix + value;
@@ -67,7 +70,13 @@ define(function(require) {
                     value = value + config.tooltip_postfix;
                 }
 
-                $tooltip.html(value).show();
+                if(seriesName) {
+                    displayText = seriesName + '<br>';
+                }
+
+                displayText += value;
+
+                $tooltip.html(displayText).show();
             });
 
             $chart.on('mouseleave', '.ct-point', function(e) {
