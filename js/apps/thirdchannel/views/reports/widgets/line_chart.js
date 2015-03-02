@@ -43,7 +43,7 @@ define(function(require) {
                 },
                 axisX: {
                     labelOffset: {
-                        x: -50,
+                        x: -55,
                         y: 5
                     }
                 },
