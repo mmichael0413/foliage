@@ -2,7 +2,11 @@ define(function(require){
 
     var $ = require('jquery'),
         _ = require('underscore'),
-        Handlebars = require('handlebars');
+        Handlebars = require('handlebars'),
+        chartistSeriesNames = [
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+            'v', 'w', 'x', 'y', 'z', 'aa', 'bb', 'cc', 'dd'
+        ];
 
     Handlebars.registerHelper('if_eq', function(a, b, opts) {
         if(a == b) // Or === depending on your needs
@@ -71,6 +75,10 @@ define(function(require){
         if(object[key]) {
             return object[key].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
+    });
+
+    Handlebars.registerHelper('chartist_series_name', function(index) {
+        return chartistSeriesNames[index];
     });
 });
 

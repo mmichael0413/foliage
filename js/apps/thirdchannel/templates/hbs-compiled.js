@@ -1788,7 +1788,7 @@ function program3(depth0,data) {
 this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/line_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
@@ -1812,9 +1812,11 @@ function program3(depth0,data) {
   }
 function program4(depth0,data) {
   
-  var buffer = "", stack1;
-  buffer += "\n                <li class=\"ct-series-"
-    + escapeExpression(((stack1 = (data == null || data === false ? data : data.index)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+  var buffer = "", stack1, helper, options;
+  buffer += "\n                <li class=\"ct-legend-item ct-legend-"
+    + escapeExpression((helper = helpers.chartist_series_name || (depth0 && depth0.chartist_series_name),options={hash:{},data:data},helper ? helper.call(depth0, (data == null || data === false ? data : data.index), options) : helperMissing.call(depth0, "chartist_series_name", (data == null || data === false ? data : data.index), options)))
+    + "\" data-series-name=\""
+    + escapeExpression((helper = helpers.chartist_series_name || (depth0 && depth0.chartist_series_name),options={hash:{},data:data},helper ? helper.call(depth0, (data == null || data === false ? data : data.index), options) : helperMissing.call(depth0, "chartist_series_name", (data == null || data === false ? data : data.index), options)))
     + "\">"
     + escapeExpression(((stack1 = (depth0 && depth0.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</li>\n            ";

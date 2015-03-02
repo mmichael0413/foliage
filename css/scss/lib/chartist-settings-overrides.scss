@@ -2,6 +2,7 @@
 $ct-bar-width: 25px;
 
 // Series names and colors. This can be extended or customized as desired. Just add more series and colors.
+// NOTE: if you change the seriesName be sure to update handlebarsHelpers and update the series name array
 $ct-series-names: (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, aa, bb, cc, dd);
 $ct-series-colors: (
   #a53426,

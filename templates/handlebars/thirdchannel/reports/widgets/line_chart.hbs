@@ -3,7 +3,7 @@
     {{#if results.series}}
         <ul class="ct-legend">
             {{#each results.series}}
-                <li class="ct-series-{{@index}}">{{this.name}}</li>
+                <li class="ct-legend-item ct-legend-{{chartist_series_name @index}}" data-series-name="{{chartist_series_name @index}}">{{this.name}}</li>
             {{/each}}
         </ul>
     {{/if}}

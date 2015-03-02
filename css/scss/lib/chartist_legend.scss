@@ -23,8 +23,8 @@
     border-radius: 1em;
   }
 
-  @for $i from 0 to length($ct-series-colors) {
-    .ct-series-#{$i}::before {
+  @for $i from 0 to length($ct-series-names) {
+    .ct-legend-#{nth($ct-series-names, $i + 1)}::before {
       background-color: nth($ct-series-colors, $i + 1);
     }
   }

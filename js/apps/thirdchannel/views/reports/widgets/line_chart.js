@@ -8,6 +8,9 @@ define(function(require) {
     return Backbone.View.extend({
         tagName: 'span',
         template: HandlebarsTemplates['thirdchannel/reports/widgets/line_chart'],
+        events: {
+            'click .ct-legend-item': 'toggleSeries'
+        },
         initialize: function (options) {
             this.model = options;
         },
@@ -62,7 +65,6 @@ define(function(require) {
                     seriesName = $point.parent().attr('ct:series-name'),
                     displayText = '';
 
-
                 if(config.tooltip_prefix) {
                     value = config.tooltip_prefix + value;
                 }
@@ -90,6 +92,15 @@ define(function(require) {
                     top: (e.offsetY || e.originalEvent.layerY) - ($tooltip.height() + 28)
                 });
             });
+        },
+
+        toggleSeries: function(e) {
+            e.preventDefault();
+            var $legendItem = $(e.target),
+                seriesName = $legendItem.attr('data-series-name'),
+                $seriesEl = this.$('.ct-series-' + seriesName);
+
+            $seriesEl.toggle();
         },
 
         updateViewBreakDownLink : function (qs) {
