@@ -1807,7 +1807,7 @@ function program3(depth0,data) {
   buffer += "\n        <ul class=\"ct-legend\">\n            ";
   stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.series), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </ul>\n    ";
+  buffer += "\n        </ul>\n        <div class=\"clear\"></div>\n    ";
   return buffer;
   }
 function program4(depth0,data) {
