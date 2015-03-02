@@ -26,6 +26,7 @@ define(function(require) {
                 lineSmooth: Chartist.Interpolation.simple({
                     divisor: 2
                 }),
+                fullWidth: true,
                 showPoint: false,
                 axisY: {
                     offset: 50,
