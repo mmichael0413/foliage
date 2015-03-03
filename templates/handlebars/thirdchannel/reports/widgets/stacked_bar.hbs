@@ -5,9 +5,10 @@
             {{#if results.legend}}
                 <ul class="ct-legend">
                     {{#each results.legend}}
-                        <li class="ct-series-{{@index}}">{{this}}</li>
+                        <li class="ct-legend-item ct-legend-{{chartist_series_name @index}}" data-series-name="{{chartist_series_name @index}}">{{this}}</li>
                     {{/each}}
                 </ul>
+                <div class="clear"></div>
             {{/if}}
             <div class="ct-chart ct-perfect-fourth"></div>
         </div>
