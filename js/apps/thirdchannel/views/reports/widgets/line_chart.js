@@ -24,8 +24,7 @@ define(function(require) {
         setupChart: function () {
             var self = this,
                 canvas = this.$el.find('canvas'),
-                total_entries = this.model.results.labels.length
-                data = [];
+                total_entries = this.model.results.datasets.length;
 
             var options = {
                 animation: false,
@@ -44,7 +43,8 @@ define(function(require) {
                 datasetStroke : true,
                 datasetStrokeWidth : 2,
                 datasetFill : false,
-                defaultLegendColors: ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D"],
+                scaleLabel: "<%= value+'%' %>",
+                defaultLegendColors: ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D", "#8079b8", "#85c194", "#deb99a", "#bce4f9", "#f69d6d", "#8ab2ca", "#a53426", "#8c8d8e", "#00a55a", "#deb99a", "#ef6222", "#4cc3f1", "#025832"],
                 legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
             };
 
