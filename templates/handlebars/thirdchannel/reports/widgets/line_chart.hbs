@@ -1,12 +1,11 @@
 <div class="widget {{config.widget_class}}">
-    {{#if title}}<p>{{{title}}}</p>{{/if}}
-    {{#if results.series}}
-        <ul class="ct-legend">
-            {{#each results.series}}
-                <li class="ct-legend-item ct-legend-{{chartist_series_name @index}}" data-series-name="{{chartist_series_name @index}}">{{this.name}}</li>
-            {{/each}}
-        </ul>
-        <div class="clear"></div>
-    {{/if}}
-    <div class="ct-chart ct-minor-seventh"></div>
+    <div>
+        <div class="chart line-chart">
+            <p>{{{title}}}</p>
+            {{#if show_view_list}}
+                <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
+            {{/if}}
+            <canvas></canvas>
+        </div>
+    </div>
 </div>

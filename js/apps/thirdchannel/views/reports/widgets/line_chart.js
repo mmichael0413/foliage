@@ -2,18 +2,17 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        context = require('context'),
-        Chartist = require('chartist');
+        Charts = require('chartjs'),
+        context = require('context');
 
     return Backbone.View.extend({
         tagName: 'span',
         template: HandlebarsTemplates['thirdchannel/reports/widgets/line_chart'],
-        events: {
-            'click .ct-legend-item': 'toggleSeries'
-        },
+
         initialize: function (options) {
             this.model = options;
         },
+
         render: function () {
             if (_.size(this.model.results) > 0) {
                 this.$el.html(this.template(this.model));
@@ -21,87 +20,49 @@ define(function(require) {
             }
             return this;
         },
+
         setupChart: function () {
-            var $chart = this.$('.ct-chart'),
-                self = this,
-                config = this.model.config;
+            var self = this,
+                canvas = this.$el.find('canvas'),
+                total_entries = this.model.results.labels.length
+                data = [];
 
-            new Chartist.Line($chart[0], this.model.results, {
-                lineSmooth: Chartist.Interpolation.simple({
-                    divisor: 2
-                }),
-                fullWidth: true,
-                showPoint: true,
-                chartPadding: 5,
-                axisY: {
-                    offset: 50,
-                    labelInterpolationFnc: function(value) {
-                        if(config.y_prefix) {
-                            value = config.y_prefix + value;
-                        }
-                        if(config.y_postfix) {
-                            value = value + config.y_postfix;
-                        }
-                        return value;
-                    }
-                },
-                axisX: {
-                    labelOffset: {
-                        x: -55,
-                        y: 5
-                    }
-                },
-                classNames: {
-                    horizontal: 'ct-rotated'
-                }
+            var options = {
+                animation: false,
+                responsive: true,
+                scaleShowGridLines : true,
+                scaleGridLineColor : "rgba(0,0,0,.05)",
+                scaleGridLineWidth : 1,
+                scaleShowHorizontalLines: true,
+                scaleShowVerticalLines: true,
+                bezierCurve : true,
+                bezierCurveTension : 0.4,
+                pointDot : true,
+                pointDotRadius : 4,
+                pointDotStrokeWidth : 1,
+                pointHitDetectionRadius : 20,
+                datasetStroke : true,
+                datasetStrokeWidth : 2,
+                datasetFill : false,
+                defaultLegendColors: ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D"],
+                legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+            };
+
+            var length_length = options.defaultLegendColors.length;
+
+            _.each(self.model.results.datasets, function(dataset, index) {
+                dataset.fillColor = options.defaultLegendColors[(total_entries - index) % length_length];
+                dataset.strokeColor =  options.defaultLegendColors[(total_entries - index) % length_length];
             });
 
-            // Tooltips
-            var $tooltip = $chart.append('<div class="ct-tooltip"></div>').find('.ct-tooltip').hide();
-
-            $chart.on('mouseenter', '.ct-point', function(e) {
-                var $point = $(this),
-                    value = $point.attr('ct:value'),
-                    seriesName = $point.parent().attr('ct:series-name'),
-                    displayText = '';
-
-                if(config.tooltip_prefix) {
-                    value = config.tooltip_prefix + value;
-                }
-
-                if(config.tooltip_postfix) {
-                    value = value + config.tooltip_postfix;
-                }
-
-                if(seriesName) {
-                    displayText = seriesName + '<br>';
-                }
-
-                displayText += value;
-
-                $tooltip.html(displayText).show();
-            });
-
-            $chart.on('mouseleave', '.ct-point', function(e) {
-                $tooltip.hide().empty();
-            });
-
-            $chart.on('mousemove', function(e) {
-                $tooltip.css({
-                    left: (e.offsetX || e.originalEvent.layerX) - ($tooltip.width() / 2) - 4,
-                    top: (e.offsetY || e.originalEvent.layerY) - ($tooltip.height() + 28)
-                });
+            this.listenTo(context, 'report post render', function () {
+                new Chart(canvas[0].getContext("2d")).Line(self.model.results, options);
             });
         },
 
         toggleSeries: function(e) {
             e.preventDefault();
-            var $legendItem = $(e.target),
-                seriesName = $legendItem.attr('data-series-name'),
-                $seriesEl = this.$('.ct-series-' + seriesName);
-
-            $legendItem.toggleClass('ct-legend-item-unselected');
-            $seriesEl.toggle();
+            // TODO: toggle series on the chart (redraw)
         },
 
         updateViewBreakDownLink : function (qs) {
