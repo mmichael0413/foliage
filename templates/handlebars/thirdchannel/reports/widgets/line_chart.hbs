@@ -5,6 +5,11 @@
             {{#if show_view_list}}
                 <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
             {{/if}}
+            <ul class="legend">
+                {{#each results.datasets}}
+                    <li><i class="fa fa-circle" style="color: {{value_lookup this.label ../config.legendColors}}"></i>{{this.label}}</li>
+                {{/each}}
+            </ul>
             <canvas></canvas>
         </div>
     </div>

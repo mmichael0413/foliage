@@ -11,6 +11,7 @@ define(function(require) {
 
         initialize: function (options) {
             this.model = options;
+            this.setupColors();
         },
 
         render: function () {
@@ -23,8 +24,7 @@ define(function(require) {
 
         setupChart: function () {
             var self = this,
-                canvas = this.$el.find('canvas'),
-                total_entries = this.model.results.datasets.length;
+                canvas = this.$el.find('canvas');
 
             var scaleLabel = "value";
             if(this.model.config.y_prefix != undefined) {
@@ -59,12 +59,7 @@ define(function(require) {
                 legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
             }, this.model.config);
 
-            var length_length = options.defaultLegendColors.length;
 
-            _.each(self.model.results.datasets, function(dataset, index) {
-                dataset.fillColor = options.defaultLegendColors[(total_entries - index) % length_length];
-                dataset.strokeColor =  options.defaultLegendColors[(total_entries - index) % length_length];
-            });
 
             this.listenTo(context, 'report post render', function () {
                 new Chart(canvas[0].getContext("2d")).Line(self.model.results, options);
@@ -78,6 +73,22 @@ define(function(require) {
 
         updateViewBreakDownLink : function (qs) {
 
+        },
+
+        setupColors: function() {
+            var self = this,
+                total_entries = this.model.results.datasets.length,
+                legendColors = ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D", "#8079b8", "#85c194", "#deb99a", "#bce4f9", "#f69d6d", "#8ab2ca", "#a53426", "#8c8d8e", "#00a55a", "#deb99a", "#ef6222", "#4cc3f1", "#025832"];
+
+            this.model.config.legendColors = {};
+
+            _.each(self.model.results.datasets, function(dataset, index) {
+                dataset.fillColor = legendColors[(total_entries - index) % legendColors.length];
+                dataset.strokeColor = legendColors[(total_entries - index) % legendColors.length];
+
+                self.model.config.legendColors[dataset.label] = legendColors[(total_entries - index) % legendColors.length];
+            });
         }
+
     });
 });
