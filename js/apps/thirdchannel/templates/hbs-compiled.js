@@ -1801,7 +1801,7 @@ function program3(depth0,data,depth1) {
   var buffer = "", stack1, helper, options;
   buffer += "\n                    <li><i class=\"fa fa-circle\" style=\"color: "
     + escapeExpression((helper = helpers.value_lookup || (depth0 && depth0.value_lookup),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.label), ((stack1 = (depth1 && depth1.config)),stack1 == null || stack1 === false ? stack1 : stack1.legendColors), options) : helperMissing.call(depth0, "value_lookup", (depth0 && depth0.label), ((stack1 = (depth1 && depth1.config)),stack1 == null || stack1 === false ? stack1 : stack1.legendColors), options)))
-    + "\"></i>"
+    + "\"></i> "
     + escapeExpression(((stack1 = (depth0 && depth0.label)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</li>\n                ";
   return buffer;
