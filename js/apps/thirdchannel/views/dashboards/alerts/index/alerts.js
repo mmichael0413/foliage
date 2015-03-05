@@ -31,13 +31,15 @@ define(function(require) {
             return this;
         },
         createAlertGroupView: function (model) {
-            var self = this;
-            var groupId = model.get('id');
-            this.$el.append(new GroupView({groupId: groupId, model: model}).render().$el);
+            var self = this,
+                groupId = model.get('id'),
+                group = new GroupView({groupId: groupId, model: model}).render();
+            this.$el.append(group.$el);
             _.each(model.get('alerts'), function (subModel) {
                 subModel = new CountModel(subModel);
                 self.$el.append(new AlertView({programId: self.options.programId, groupId: groupId, model: subModel}).render().$el);
             });
+            group.toggleAlertViews();
         },
         createAlertView: function (model) {
             this.$el.append(new AlertView({programId: this.options.programId, model: model}).render().$el);
