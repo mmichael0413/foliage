@@ -20,7 +20,8 @@ require.config({
 
         'context': 'shared/utils/context',
         'handlebarsTemplates': 'thirdchannel/templates/hbs-compiled',
-        'handlebarsHelpers' : 'thirdchannel/utils/handlebarsHelpers'
+        'handlebarsHelpers': 'thirdchannel/utils/handlebarsHelpers',
+        'serializeObject': "../libs/bower_components/jquery-serialize-object/jquery.serialize-object",
 
     },
     shim: {
@@ -40,6 +41,9 @@ require.config({
         'backbone': {
             deps: ['jquery', 'underscore', 'handlebars'],
             exports: 'Backbone'
+        },
+        'serializeObject': {
+            deps: ["jquery"]
         }
     },
 

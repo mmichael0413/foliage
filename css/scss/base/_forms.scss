@@ -7,7 +7,7 @@ input[type=text], input[type=password], input[type=number], textarea, select, in
   width: 100%;
 }
 
-input[type=text], input[type=password], input[type=number], textarea, select {
+input[type=text], input[type=password], input[type=number], textarea, select, input[type=date] {
   border: .1em solid $border-color;
   border-radius: $border-radius-base;
   height: 2em;

@@ -1,0 +1,23 @@
+<form id="scheduleForm">
+  <table>
+    <thead>
+      <tr>
+        <th>Month</th>
+        <th>Core Visits</th>
+        <th>Additional Visits</th>
+        <th>Total Visits</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each schedule}}
+      <tr>
+        <td>{{this.month}}</td>
+        <td><input type="number" name="{{this.month}}_core" class="additionalVisit no-margin" value="{{this.occurrences}}"/></td>
+        <td><input type="number" name="{{this.month}}_additional" class="additionalVisit no-margin" value="{{this.additional_occurrences}}"/></td>
+        <td>{{this.total_occurrences}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <button class="subitSchedule btn primary solid">Update Schedule</button>
+</form>

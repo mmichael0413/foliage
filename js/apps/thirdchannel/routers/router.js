@@ -25,7 +25,8 @@ define(function(require){
         NotificationSectionView = require('thirdchannel/views/notifications/notification_section'),
         ShippingView = require('thirdchannel/views/legal/shipping'),
         PostView = require('thirdchannel/views/posts/main'),
-        NotificationBadge = require('thirdchannel/views/notifications/notification_badge');
+        NotificationBadge = require('thirdchannel/views/notifications/notification_badge'),
+        StoreProfileSchedule = require('thirdchannel/views/store_profile/schedule');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
@@ -42,6 +43,7 @@ define(function(require){
             'programs/:program_id/stores/:store_id/product': 'storeProfileProduct',
             'programs/:program_id/stores/:store_id/product/edit': 'editStoreProfileProduct',
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
+            'programs/:program_id/stores/:store_id/schedule' : 'storeProfileSchedule',
             'programs/:program_id/checkins/:id': 'checkin',
             'programs/:program_id/checkins/choose/:id': 'selectCheckin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
@@ -131,6 +133,10 @@ define(function(require){
 
         editStoreIntel: function () {
             new StoresIntelEdit().render();
+        },
+
+        storeProfileSchedule: function() {
+            new StoreProfileSchedule().init();
         },
 
         programProfile: function(program_id, user_id) {
