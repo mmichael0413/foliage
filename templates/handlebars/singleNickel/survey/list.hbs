@@ -1,7 +1,7 @@
 {{#if surveys}}
     <ul>
         {{#each surveys}}
-            <li>{{this.title}}</li>
+            <li><a href="programName/survey/build/{{this.id}}">{{this.title}}</a></li>
         {{/each}}
     </ul>
 {{else}}
