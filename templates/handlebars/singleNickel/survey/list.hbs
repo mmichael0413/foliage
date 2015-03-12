@@ -1,0 +1,9 @@
+{{#if surveys}}
+    <ul>
+        {{#each surveys}}
+            <li>{{this.title}}</li>
+        {{/each}}
+    </ul>
+{{else}}
+    <p>No Surveys</p>
+{{/if}}

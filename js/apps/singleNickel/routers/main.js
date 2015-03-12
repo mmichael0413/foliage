@@ -5,11 +5,13 @@ define(function(require){
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
         MainLayout = require('shared/views/layout/main'),
+        SurveyListView = require('singleNickel/views/survey/list'),
         SurveyBuilder = require('singleNickel/views/survey/build/builder'),
         SurveyModel = require('singleNickel/models/survey/build/survey'),
         SectionModel = require('singleNickel/models/survey/build/section'),
         QuestionModel = require('singleNickel/models/survey/build/question'),
         ChoiceModel = require('singleNickel/models/survey/build/choice'),
+        SurveyCollection = require('singleNickel/collections/survey/surveys'),
         SectionCollection = require('singleNickel/collections/survey/build/sections'),
         QuestionCollection = require('singleNickel/collections/survey/build/questions'),
         ChoiceCollection = require('singleNickel/collections/survey/build/choices');
@@ -34,6 +36,13 @@ define(function(require){
 
         listSurveys: function() {
             console.log('listSurveys');
+            var surveys = new SurveyCollection();
+
+            surveys.fetch().then(function(response) {
+                $('#survey-container').html(new SurveyListView({
+                    collection: surveys
+                }).render().el);
+            });
         },
 
         createSurvey: function(){
