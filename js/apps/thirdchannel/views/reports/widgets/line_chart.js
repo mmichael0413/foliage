@@ -27,10 +27,10 @@ define(function(require) {
                 canvas = this.$el.find('canvas');
 
             var scaleLabel = "value";
-            if(this.model.config.y_prefix != undefined) {
+            if(this.model.config.y_prefix !== undefined) {
                 scaleLabel = "'" + this.model.config.y_prefix + "' + " + scaleLabel;
             }
-            if(this.model.config.y_postfix != undefined) {
+            if(this.model.config.y_postfix !== undefined) {
                 scaleLabel = scaleLabel + " + '" + this.model.config.y_postfix + "'";
             }
             scaleLabel = "<%= " + scaleLabel + " %>";

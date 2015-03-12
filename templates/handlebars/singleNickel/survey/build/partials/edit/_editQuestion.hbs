@@ -1,0 +1,48 @@
+<div class="editor">
+    <div class="header">
+        <label>Edit Question</label>
+        {{> editControls this}}
+    </div>
+    <div class="section">
+        <label>Displayed text</label>
+        <input type="text" name="ask" placeholder="Please enter a text of the question" value="{{attributes.ask}}">
+        <label>Type</label>
+        <select name="type" data-placeholder="Choose a question type">
+            <option></option>
+            {{#select attributes.type}}
+                {{#each lookUps.type}}
+                    <option value="{{@key}}">{{this}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+        <label>Required?</label>
+        <select name="required" data-placeholder="Choose one">
+            <option></option>
+            {{#select attributes.required}}
+                {{#each lookUps.required}}
+                    <option value="{{@key}}">{{this}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+        <label>Can select multiple answers?</label>
+        <select name="multiple" data-placeholder="Choose one">
+            <option></option>
+            {{#select attributes.multiple}}
+                {{#each lookUps.multiple}}
+                    <option value="{{@key}}">{{this}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+        <label>Explanation display text</label>
+        <input type="text" name="placeholder" placeholder="Please enter the text when asking the agent to explain" value="{{attributes.placeholder}}">
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

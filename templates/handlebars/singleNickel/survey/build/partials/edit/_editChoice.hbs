@@ -1,0 +1,18 @@
+<div class="answer-editor">
+    <div class="answer-controls">
+        <a href="#" class="save btn light round"><i class="ic ic_check"></i></a>
+        <a href="#" class="cancel btn light round"><i class="ic ic_x"></i></a>
+    </div>
+    <div class="answer content">
+        <input type="text" name="title" placeholder="Enter answer" value="{{attributes.title}}">
+        <label>Does this choice cause the explanation field to appear?</label>
+        <select name="triggers" data-placeholder="Choose one">
+            <option></option>
+            {{#select attributes.triggers}}
+                {{#each lookUps.triggers}}
+                    <option value="{{@key}}">{{this}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="editor">
+    <div class="header">
+        <label>Edit Survey</label>
+        {{> editControls this}}
+    </div>
+    <div class="section">
+        <label>Name</label>
+        <input type="text" name="title" placeholder="Please enter a name" value="{{attributes.title}}">
+        <label>Type</label>
+        <select name="survey_type" required data-placeholder="Choose a survey type">
+            <option></option>
+            {{#select attributes.survey_type}}
+                {{#each lookUps.survey_type}}
+                    <option value="{{@key}}">{{this}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+    </div>
+</div>
+
+
+
+
+
+
+
