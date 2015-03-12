@@ -1,6 +1,6 @@
 define(function(require){
     var Backbone = require('backbone'),
-        BackboneValidation = require('backboneValidation'),
+        BackboneValidator = require('backboneValidator'),
         ChoiceCollection = require('singleNickel/collections/survey/build/choices');
         
     return Backbone.Model.extend({
@@ -39,10 +39,10 @@ define(function(require){
                 required: true
             },{
                 minLength: 2,
-                msg: "The text is too short, please enter at name with at least 2 characters"
+                message: "The text is too short, please enter at name with at least 2 characters"
             },{
                 maxLength: 255,
-                msg: "The text is too long, please enter at name with at most 255 characters"
+                message: "The text is too long, please enter at name with at most 255 characters"
             }],
             type: {
                 required: true

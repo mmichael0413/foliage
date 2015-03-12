@@ -1,6 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone'),
-        BackboneValidation = require('backboneValidation'),
+        BackboneValidator = require('backboneValidator'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
@@ -20,8 +20,7 @@ define(function(require) {
         },
         render: function(template) {
             this.$el.html((template || this.editTemplate)(this.model));
-            Backbone.Validation.bind(this);
-            //this.$el.find('select').chosen({disable_search: true, width: "100%"});
+            this.bindValidation();
 
             if (this.children !== undefined) {
                 this.$childContainer = this.$el.find('.children');
@@ -56,8 +55,7 @@ define(function(require) {
         update: function(e) {
             this.stopEvent(e);
             var self = this;
-            this.model.set(this.editsToJSON());
-            this.model.validate();
+            this.model.set(this.editsToJSON(), { validate: true });
             if (this.model.isValid()) {
                 this.render(this.showTemplate);
             }

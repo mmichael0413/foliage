@@ -1,6 +1,6 @@
 define(function(require){
     var Backbone = require('backbone'),
-        BackboneValidation = require('backboneValidation');
+        BackboneValidator = require('backboneValidator');
         
     return Backbone.Model.extend({
         type:  "choice",
@@ -19,10 +19,10 @@ define(function(require){
                 required: true
             },{
                 minLength: 2,
-                msg: "The name is too short, please enter at name with at least 2 characters"
+                message: "The name is too short, please enter at name with at least 2 characters"
             },{
                 maxLength: 255,
-                msg: "The name is too long, please enter at name with at most 255 characters"
+                message: "The name is too long, please enter at name with at most 255 characters"
             }],
             triggers: {
                 required: true

@@ -13,7 +13,7 @@ require.config({
         'handlebarsTemplates': 'singleNickel/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
         'context': 'shared/utils/context',
-        'backboneValidation' : '../libs/bower_components/backbone-validation/dist/backbone-validation-amd'
+        'backboneValidator' : '../libs/bower_components/backbone-validator/backbone-validator'
     },
     shim: {
         "jquery": {
@@ -31,7 +31,7 @@ require.config({
             deps: ["underscore"],
             exports: "Backbone"
         },
-        "backboneValidation": {
+        "backboneValidator": {
             deps: ["backbone"]
         },
         "handlebars": {

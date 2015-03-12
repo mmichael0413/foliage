@@ -72,13 +72,9 @@
       border-top-right-radius: 0;
     }
   }
-}
 
-.round {
-  padding: 0.40em;
-  border-radius: 100%;
-}
-
-.invalid {
-  border-color: $red !important;
+  .error-text {
+    margin: -1.5em 0 1.5em 0.5em;
+    color: $red;
+  }
 }

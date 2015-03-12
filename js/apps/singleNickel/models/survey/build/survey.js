@@ -1,6 +1,6 @@
 define(function(require){
     var Backbone = require('backbone'),
-        BackboneValidation = require('backboneValidation'),
+        BackboneValidator = require('backboneValidator'),
         SectionCollection = require('singleNickel/collections/survey/build/sections');
 
     return Backbone.Model.extend({
@@ -22,13 +22,8 @@ define(function(require){
         },
         validation: {
             title: [{
-                required: true
-            },{
-                minLength: 2,
-                msg: "The name is too short, please enter at name with at least 2 characters"
-            },{
-                maxLength: 255,
-                msg: "The name is too long, please enter at name with at most 255 characters"
+                required: true,
+                maxLength: 255
             }],
             survey_type: {
                 required: true
