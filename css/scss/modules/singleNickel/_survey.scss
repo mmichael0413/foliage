@@ -1,0 +1,84 @@
+#survey-container {
+
+  .header {
+    background-color: $light-blue;
+    margin-top: 1em;
+    padding: 1em;
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
+
+    label {
+      float: left;
+      line-height: 2rem;
+    }
+  }
+
+  h3 {
+    padding: 0.25em 1em 0.75em 1em;
+    margin-bottom: 0.5em;
+    text-transform: uppercase;
+    border-bottom: 1px solid $light-gray;
+  }
+
+  label {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .controls {
+    text-align: right;
+    text-transform: capitalize;
+
+    &.show {
+      float: right;
+    }
+
+    &.child {
+      margin-top: 1em;
+    }
+  }
+
+  .question {
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 1px dashed $light-blue;
+    .content {
+      margin: 0.25em 5em 0.5em -1em;
+    }
+
+  }
+
+  .answer-editor {
+    padding: 1em;
+    margin: 1em 0;
+    border: 1px dashed $light-blue;
+  }
+
+  .answer {
+    margin: 1.5em 5em 1.5em 1em;
+     &.show {
+       color: $medium-blue;
+     }
+  }
+
+  .answer-controls
+  {
+    float: right;
+  }
+
+  .editor {
+    .section {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+}
+
+.round {
+  padding: 0.40em;
+  border-radius: 100%;
+}
+
+.invalid {
+  border-color: $red !important;
+}

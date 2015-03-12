@@ -94,6 +94,7 @@ function buildKarmaOptions(serviceName, additionalPaths, additionalExcludes) {
                 "js/libs/bower_components/handlebars/handlebars.min.js",
                 {pattern: "js/libs/bower_components/jquery/jquery.min.js", included: false},
                 {pattern: "js/libs/bower_components/backbone/backbone.js", included: false},
+                {pattern: "js/libs/bower_components/backbone-validator/backbone-validator.js", included: false},
                 {pattern: "js/apps/shared/**/*.js", included: false},
                 {pattern: "js/tests/shared/**/*.js", included: false}
             ],
@@ -306,7 +307,8 @@ module.exports = function(grunt) {
                 files: {
                     "js/apps/thirdchannel/templates/hbs-compiled.js": ["templates/handlebars/thirdchannel/**/*.hbs",
                                                                         "templates/handlebars/shared/**/*.hbs",
-                                                                        "templates/handlebars/pennyPacker/**/*.hbs"]
+                                                                        "templates/handlebars/pennyPacker/**/*.hbs"],
+                    "js/apps/singleNickel/templates/hbs-compiled.js": ["templates/handlebars/singleNickel/**/*.hbs", "templates/handlebars/shared/**/*.hbs"]
                 }
             }
         },

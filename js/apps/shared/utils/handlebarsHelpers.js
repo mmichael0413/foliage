@@ -15,6 +15,13 @@ define(function(require){
             return opts.inverse(this);
     });
 
+    Handlebars.registerHelper('unless_eq', function(a, b, opts) {
+        if(a != b) // Or === depending on your needs
+            return opts.fn(this);
+        else
+            return opts.inverse(this);
+    });
+
     Handlebars.registerHelper('if_activity', function(a,  opts) {
         if(_.contains(['message', 'checkin'], a))
             return opts.fn(this);
@@ -79,6 +86,21 @@ define(function(require){
 
     Handlebars.registerHelper('chartist_series_name', function(index) {
         return chartistSeriesNames[index];
+    });
+
+    Handlebars.registerHelper('partial', function(name, context, opts) {
+        name = name.replace(/\//g, '_');
+        var f = Handlebars.partials[name];
+        if (!f) {
+            return "Partial not loaded";
+        }
+        return new Handlebars.SafeString(f(context));
+    });
+
+    Handlebars.registerHelper('select', function( value, options ){
+        var $el = $('<select />').html( options.fn(this) );
+        $el.find('[value="' + value + '"]').attr({'selected':'selected'});
+        return $el.html();
     });
 });
 
