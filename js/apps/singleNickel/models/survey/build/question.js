@@ -1,5 +1,6 @@
 define(function(require){
-    var Backbone = require('backbone'),
+    var _ = require('underscore'),
+        Backbone = require('backbone'),
         BackboneValidator = require('backboneValidator'),
         ChoiceCollection = require('singleNickel/collections/survey/build/choices');
         
@@ -51,8 +52,12 @@ define(function(require){
                 false: "No"
             }
         },
+        typesWithChildren : ["Survey::QuestionMultiChoice", "Survey::QuestionSelect"],
         initialize: function(options) {
-            this.children = new ChoiceCollection();
+            this.bind('change:type', this.setChildren);
+        },
+        setChildren: function(e, data) {
+            this.children = _.contains(this.typesWithChildren, data) ? new ChoiceCollection() : undefined;
         },
         validation: {
             ask: [{

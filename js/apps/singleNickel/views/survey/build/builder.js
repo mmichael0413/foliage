@@ -17,20 +17,21 @@ define(function(require) {
         },
         initialize: function(options) {
             this.model = options.model;
-            this.children = this.model.children;
         },
         render: function(template) {
             this.$el.html((template || this.editTemplate)(this.model));
             this.bindValidation();
-
+            this.renderChildren();
+            return this;
+        },
+        renderChildren: function(){
+            this.children = this.model.children;
             if (this.children !== undefined) {
                 this.$childContainer = this.$el.find('.children');
                 this.children.each(function(value, index){
                     this.addChild(value);
                 }.bind(this));
             }
-
-            return this;
         },
         add: function(e) {
             this.stopEvent(e);
