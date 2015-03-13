@@ -13,7 +13,8 @@ require.config({
         'handlebarsTemplates': 'singleNickel/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
         'context': 'shared/utils/context',
-        'backboneValidator' : '../libs/bower_components/backbone-validator/backbone-validator'
+        'backboneValidator' : '../libs/bower_components/backbone-validator/backbone-validator',
+        'backboneValidatorPatch': '../libs/backbone-validator/viewCallbackPatch'
     },
     shim: {
         "jquery": {
@@ -33,6 +34,9 @@ require.config({
         },
         "backboneValidator": {
             deps: ["backbone"]
+        },
+        "backboneValidatorPatch": {
+            deps: ["backboneValidator"]
         },
         "handlebars": {
             deps: ["jquery"],
