@@ -1,6 +1,5 @@
 define(function(require){
     var Backbone = require('backbone'),
-        BackboneValidator = require('backboneValidator'),
         QuestionCollection = require('singleNickel/collections/survey/build/questions');
 
     return Backbone.Model.extend({

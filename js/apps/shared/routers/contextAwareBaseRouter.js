@@ -28,7 +28,7 @@ define(function(require) {
             var self = this;
             return Backbone.Router.prototype.route.call(this, route, name, function() {
                 // before hook
-                self.before(arguments);
+                self.before(arguments, route, name);
                 // set the 
                 context.requestParameters = arguments;
                 if (callback) {

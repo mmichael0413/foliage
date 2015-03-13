@@ -1,7 +1,6 @@
 define(function(require){
     var _ = require('underscore'),
         Backbone = require('backbone'),
-        BackboneValidator = require('backboneValidator'),
         ChoiceCollection = require('singleNickel/collections/survey/build/choices');
         
     return Backbone.Model.extend({

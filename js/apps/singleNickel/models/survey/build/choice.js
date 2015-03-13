@@ -1,6 +1,5 @@
 define(function(require){
-    var Backbone = require('backbone'),
-        BackboneValidator = require('backboneValidator');
+    var Backbone = require('backbone');
         
     return Backbone.Model.extend({
         type:  "choice",

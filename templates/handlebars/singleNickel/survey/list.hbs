@@ -1,9 +1,33 @@
-{{#if surveys}}
-    <ul>
+<h1>Surveys</h1>
+<div class="section">
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#if surveys}}
         {{#each surveys}}
-            <li><a href="programName/survey/build/{{this.id}}">{{this.title}}</a></li>
+            <tr>
+                <td><a href="programName/survey/build/{{this.id}}">{{this.title}}</a></td>
+                <td>
+                    <a href="programName/survey/build/{{this.id}}">Edit</a>
+                    <a href="programName/survey/build/{{this.id}}">Delete</a>
+                </td>
+            </tr>
         {{/each}}
-    </ul>
-{{else}}
-    <p>No Surveys</p>
-{{/if}}
+        {{else}}
+            <tr><td>No Surveys</td><td></td></tr>
+        {{/if}}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+

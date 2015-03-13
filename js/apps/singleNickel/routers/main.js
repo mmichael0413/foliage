@@ -12,19 +12,28 @@ define(function(require){
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
-            '': 'listSurveys',
-            'new': 'buildSurvey'
+            '(/)': 'listSurveys',
+            'new(/)': 'buildSurvey'
         },
 
-        before: function (parameters) {
-            // in addition, the router stuffs all arguments as a list on context.requestParameters;
-            context.programId = parameters[0];
+        navigation:  [
+            {title: 'View Surveys', link: '/', route:'(/)', icon: 'ic_clipboard'},
+            {title: 'Create New Survey',  link: 'new', route:'new(/)', icon: 'ic_add'}
+        ],
+
+        before: function (parameters, route, name) {
             // stuff the bootstrap into the context
             _.extend(context, window.bootstrap);
+            window.bootstrap.navigation = _.extend(this.navigation, _.extend(_.find(this.navigation, function(obj) { return obj.route == route }), {active: true}));
         },
 
         listSurveys: function() {
             console.log('listSurveys');
+
+            window.bootstrap.navigation = _.extend(this.navigation,
+                _.extend(_.find(this.navigation, function(obj) { return obj.title == 'Surveys' }),
+                    {active: true}));
+
             var surveys = new SurveyCollection();
 
             surveys.fetch().then(function(response) {
@@ -34,13 +43,19 @@ define(function(require){
             });
         },
         buildSurvey: function(program_id, survey) {
+            window.bootstrap.navigation = _.extend(this.navigation,
+                _.extend(_.find(this.navigation, function(obj) { return obj.title == 'Create' }),
+                    {active: true}));
+
             $('#survey-container').html(new SurveyBuilder({model: new SurveyModel()}).render().$el);
+        },
+        after: function() {
+            MainLayout.init();
         }
     });
 
     var initialize = function(){
         namespacer('bootstrap');
-        MainLayout.init();
         context.router = new AppRouter();
         namespacer('context.instances');
         Backbone.history.start({pushState: true, hashChange: false});
