@@ -18,6 +18,7 @@ input[type=text], input[type=password], input[type=number], textarea, select {
   &.error {
     border-color: $link-color;
     color: $link-color;
+    font-weight: bold;
   }
 }
 

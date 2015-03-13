@@ -59,9 +59,13 @@ define(function(require){
         setChildren: function(e, data) {
             this.children = _.contains(this.typesWithChildren, data) ? new ChoiceCollection() : undefined;
         },
+        optionalValidation: function(value) {
+            return (value !== undefined) && (value == '') ? 'Required' : true;
+        },
         validation: {
             ask: [{
-                required: true
+                required: true,
+                message: "Required"
             },{
                 minLength: 2,
                 message: "The text is too short, please enter at name with at least 2 characters"
@@ -70,10 +74,22 @@ define(function(require){
                 message: "The text is too long, please enter at name with at most 255 characters"
             }],
             type: {
-                required: true
+                required: true,
+                message: "Required"
             },
             required : {
-                required: true
+                required: true,
+                message: "Required"
+            },
+            multiple : {
+                fn: function(value) {return this.optionalValidation(value);}
+            },
+            explain : {
+                fn: function(value) {return this.optionalValidation(value);}
+            },
+            placeholder : {
+                maxLength: 255,
+                fn: function(value) {return this.optionalValidation(value);}
             }
         }
     });

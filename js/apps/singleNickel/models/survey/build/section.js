@@ -15,7 +15,8 @@ define(function(require){
         },
         validation: {
             title: [{
-                required: true
+                required: true,
+                message: "Required"
             },{
                 minLength: 2,
                 message: "The name is too short, please enter at name with at least 2 characters"

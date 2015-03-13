@@ -16,7 +16,8 @@ define(function(require){
         },
         validation: {
             title: [{
-                required: true
+                required: true,
+                message: "Required"
             },{
                 minLength: 2,
                 message: "The name is too short, please enter at name with at least 2 characters"
@@ -25,7 +26,8 @@ define(function(require){
                 message: "The name is too long, please enter at name with at most 255 characters"
             }],
             triggers: {
-                required: true
+                required: true,
+                message: "Required"
             }
         }
     });

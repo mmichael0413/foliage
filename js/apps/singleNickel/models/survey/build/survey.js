@@ -23,10 +23,17 @@ define(function(require){
         validation: {
             title: [{
                 required: true,
-                maxLength: 255
+                message: "Required"
+            },{
+                minLength: 2,
+                message: "The name is too short, please enter at name with at least 2 characters"
+            },{
+                maxLength: 255,
+                message: "The name is too long, please enter at name with at most 255 characters"
             }],
             survey_type: {
-                required: true
+                required: true,
+                message: "Required"
             }
         }
     });

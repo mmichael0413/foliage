@@ -57,7 +57,7 @@ define(function(require) {
         update: function(e) {
             this.stopEvent(e);
             var self = this;
-            this.model.set(this.editsToJSON(), { validate: true });
+            this.model.clear().set(this.editsToJSON());
             if (this.model.isValid()) {
                 this.render(this.showTemplate);
             }
@@ -70,17 +70,17 @@ define(function(require) {
             var self = this,
                 ret = {};
 
-            this.$el.find('input, select').each(function(){
+            this.$el.find('input:enabled, select:enabled').each(function(){
                 var input = self.$(this);
-                ret[input.attr('name')] = input.val();
+                ret[input.attr('name')] = input.val() || '';
             });
 
             return ret;
         },
         updateInputChildren: function(e, data) {
             var element = this.$el.find(e.target).find('option:selected');
-            this.$el.find(element.data('showSiblings')).show();
-            this.$el.find(element.data('hideSiblings')).hide().find('select, input').val('');
+            this.$el.find(element.data('showSiblings')).show().find('select, input').prop( "disabled", false );
+            this.$el.find(element.data('hideSiblings')).hide().find('select, input').val('').prop( "disabled", true );
         }
     });
 
