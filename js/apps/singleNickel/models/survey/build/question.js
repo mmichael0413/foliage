@@ -12,15 +12,35 @@ define(function(require){
         },
         lookUps: {
             type: {
-                "Survey::QuestionInteger": "Number",
-                "Survey::QuestionMultiChoice": "Radio Button",
-                "Survey::QuestionSelect": "Selection",
-                "Survey::QuestionCombo": "Radio Button with Explanation",
-                "Survey::QuestionSelectCombo": "Selection with Explanation",
-                "Survey::QuestionText": "Text",
-                "Survey::QuestionDatetime": "Date Time",
-                "Survey::QuestionHidden": "Hidden",
-                "Survey::QuestionDisabled": "Disabled"
+                "Survey::QuestionInteger": {
+                    text: "Input a number",
+                    hideSiblings: "#questionMultiple,#questionExplain,#questionPlaceholder"
+                },
+                "Survey::QuestionMultiChoice": {
+                    text: "Click a radio button",
+                    hideSiblings: "#questionMultiple",
+                    showSiblings: "#questionExplain"
+                },
+                "Survey::QuestionSelect": {
+                    text: "Select from a drop down",
+                    showSiblings: "#questionMultiple,#questionExplain"
+                },
+                "Survey::QuestionText": {
+                    text: "Fill in some text",
+                    hideSiblings: "#questionMultiple,#questionExplain,#questionPlaceholder"
+                },
+                "Survey::QuestionDatetime": {
+                    text: "Select a date and time",
+                    hideSiblings: "#questionMultiple,#questionExplain,#questionPlaceholder"
+                },
+                "Survey::QuestionHidden": {
+                    text: "Don't show agent",
+                    hideSiblings: "#questionMultiple,#questionExplain,#questionPlaceholder"
+                }
+            },
+            explain: {
+                true: {text: "Yes", showSiblings: "#questionPlaceholder"},
+                false: {text: "No", hideSiblings: "#questionPlaceholder"}
             },
             multiple: {
                 true: "Yes",

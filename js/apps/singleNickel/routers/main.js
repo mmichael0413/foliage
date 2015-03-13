@@ -8,23 +8,12 @@ define(function(require){
         SurveyListView = require('singleNickel/views/survey/list'),
         SurveyBuilder = require('singleNickel/views/survey/build/builder'),
         SurveyModel = require('singleNickel/models/survey/build/survey'),
-        SectionModel = require('singleNickel/models/survey/build/section'),
-        QuestionModel = require('singleNickel/models/survey/build/question'),
-        ChoiceModel = require('singleNickel/models/survey/build/choice'),
-        SurveyCollection = require('singleNickel/collections/survey/surveys'),
-        SectionCollection = require('singleNickel/collections/survey/build/sections'),
-        QuestionCollection = require('singleNickel/collections/survey/build/questions'),
-        ChoiceCollection = require('singleNickel/collections/survey/build/choices');
-
+        SurveyCollection = require('singleNickel/collections/survey/surveys');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             '': 'listSurveys',
-            ':program_id/survey(/index)(/)': 'listSurveys',
-            ':program_id/survey/create(/)': 'createSurvey',
-            ':program_id/survey/:id(/)': 'showSurvey',
-            ':program_id/survey/:id/edit(/)': 'editSurvey',
-            ':program_id/survey/build/:id': 'buildSurvey'
+            'new': 'buildSurvey'
         },
 
         before: function (parameters) {
@@ -44,19 +33,6 @@ define(function(require){
                 }).render().el);
             });
         },
-
-        createSurvey: function(){
-            console.log('createSurvey');
-        },
-
-        showSurvey: function() {
-            console.log('showSurvey');
-        },
-
-        editSurvey: function() {
-            console.log('editSurvey');
-        },
-
         buildSurvey: function(program_id, survey) {
             $('#survey-container').html(new SurveyBuilder({model: new SurveyModel()}).render().$el);
         }

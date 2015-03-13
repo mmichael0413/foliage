@@ -110,6 +110,8 @@
     }
 
     &.round {
+      line-height: 1em;
+      min-width: 1em;
       padding: 0.40em;
       border-radius: 100%;
     }

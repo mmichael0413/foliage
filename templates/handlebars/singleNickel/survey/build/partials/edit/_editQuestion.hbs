@@ -4,18 +4,9 @@
         {{> editControls this}}
     </div>
     <div class="section">
-        <label>Displayed text</label>
+        <label>What is the question asking?</label>
         <input type="text" name="ask" placeholder="Please enter a text of the question" value="{{attributes.ask}}">
-        <label>Type</label>
-        <select name="type" data-placeholder="Choose a question type">
-            <option></option>
-            {{#select attributes.type}}
-                {{#each lookUps.type}}
-                    <option value="{{@key}}">{{this}}</option>
-                {{/each}}
-            {{/select}}
-        </select>
-        <label>Required?</label>
+        <label>Are agents required to answer this question?</label>
         <select name="required" data-placeholder="Choose one">
             <option></option>
             {{#select attributes.required}}
@@ -24,17 +15,41 @@
                 {{/each}}
             {{/select}}
         </select>
-        <label>Can select multiple answers?</label>
-        <select name="multiple" data-placeholder="Choose one">
+        <label>How should agents answer the question?</label>
+        <select name="type" data-placeholder="Choose a question type">
             <option></option>
-            {{#select attributes.multiple}}
-                {{#each lookUps.multiple}}
-                    <option value="{{@key}}">{{this}}</option>
+            {{#select attributes.type}}
+                {{#each lookUps.type}}
+                    <option value="{{@key}}" data-show-siblings="{{this.showSiblings}}" data-hide-siblings="{{this.hideSiblings}}">{{this.text}}</option>
                 {{/each}}
             {{/select}}
         </select>
-        <label>Explanation display text</label>
-        <input type="text" name="placeholder" placeholder="Please enter the text when asking the agent to explain" value="{{attributes.placeholder}}">
+        <div id="questionMultiple" style="{{#unless attributes.multiple}}display: none;{{/unless}}">
+            <label>Can they select multiple answers?</label>
+            <select name="multiple" data-placeholder="Choose one">
+                <option></option>
+                {{#select attributes.multiple}}
+                    {{#each lookUps.multiple}}
+                        <option value="{{@key}}">{{this}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
+        </div>
+        <div id="questionExplain" style="{{#unless attributes.explain}}display: none;{{/unless}}">
+            <label>Should they explain the reason for their answer?</label>
+            <select name="explain" data-placeholder="Choose one">
+                <option></option>
+                {{#select attributes.explain}}
+                    {{#each lookUps.explain}}
+                        <option value="{{@key}}" data-show-siblings="{{this.showSiblings}}" data-hide-siblings="{{this.hideSiblings}}">{{this.text}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
+        </div>
+        <div id="questionPlaceholder" style="{{#unless attributes.placeholder}}display: none;{{/unless}}">
+            <label>What should the placeholder text of the explanation field say?</label>
+            <input type="text" name="placeholder" placeholder="Please enter the text when asking the agent to explain" value="{{attributes.placeholder}}">
+        </div>
     </div>
 </div>
 

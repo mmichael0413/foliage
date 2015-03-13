@@ -12,7 +12,8 @@ define(function(require) {
             'click .edit': 'edit',
             'click .delete': 'delete',
             'click .save': 'update',
-            'click .cancel': 'cancel'
+            'click .cancel': 'cancel',
+            'change select': 'updateInputChildren'
         },
         initialize: function(options) {
             this.model = options.model;
@@ -74,6 +75,11 @@ define(function(require) {
             });
 
             return ret;
+        },
+        updateInputChildren: function(e, data) {
+            var element = this.$el.find(e.target).find('option:selected');
+            this.$el.find(element.data('showSiblings')).show();
+            this.$el.find(element.data('hideSiblings')).hide().find('select, input').val('');
         }
     });
 
