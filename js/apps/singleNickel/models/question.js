@@ -1,7 +1,7 @@
 define(function(require){
     var _ = require('underscore'),
         Backbone = require('backbone'),
-        ChoiceCollection = require('singleNickel/collections/survey/build/choices');
+        Choices = require('singleNickel/collections/choices');
         
     return Backbone.Model.extend({
         type:  "question",
@@ -12,28 +12,28 @@ define(function(require){
         },
         lookUps: {
             type: {
-                "Survey::QuestionInteger": {
+                "QuestionInteger": {
                     text: "Input a number",
                     hideSiblings: "#questionMultiple,#questionExplain,#questionPlaceholder"
                 },
-                "Survey::QuestionMultiChoice": {
+                "QuestionMultiChoice": {
                     text: "Click a radio button",
                     hideSiblings: "#questionMultiple",
                     showSiblings: "#questionExplain"
                 },
-                "Survey::QuestionSelect": {
+                "QuestionSelect": {
                     text: "Select from a drop down",
                     showSiblings: "#questionMultiple,#questionExplain"
                 },
-                "Survey::QuestionText": {
+                "QuestionText": {
                     text: "Fill in some text",
                     hideSiblings: "#questionMultiple,#questionExplain,#questionPlaceholder"
                 },
-                "Survey::QuestionDatetime": {
+                "QuestionDatetime": {
                     text: "Select a date and time",
                     hideSiblings: "#questionMultiple,#questionExplain,#questionPlaceholder"
                 },
-                "Survey::QuestionHidden": {
+                "QuestionHidden": {
                     text: "Don't show agent",
                     hideSiblings: "#questionMultiple,#questionExplain,#questionPlaceholder"
                 }
@@ -51,12 +51,27 @@ define(function(require){
                 false: "No"
             }
         },
-        typesWithChildren : ["Survey::QuestionMultiChoice", "Survey::QuestionSelect"],
-        initialize: function(options) {
+        typesWithChildren : ["QuestionMultiChoice", "QuestionSelect"],
+        initialize: function(params) {
+            this.options = _.extend({}, params.options, {questionId: this.id});
+            this.attributes = params.attributes;
             this.bind('change:type', this.setChildren);
+            this.bind('change:id', this.updateChildren);
         },
         setChildren: function(e, data) {
-            this.children = _.contains(this.typesWithChildren, data) ? new ChoiceCollection() : undefined;
+            this.children = _.contains(this.typesWithChildren, data) ? new Choices([], this.options) : undefined;
+        },
+        updateChildren: function() {
+            this.options = _.extend(this.options, {questionId: this.id});
+            this.children.updateOptions(this.options);
+        },
+        childParams: function() {
+            return {
+                options: this.options,
+                attributes: {
+                    idx: this.children.models.length
+                }
+            };
         },
         optionalValidation: function(value) {
             return (value !== undefined) && (value == '') ? 'Required' : true;

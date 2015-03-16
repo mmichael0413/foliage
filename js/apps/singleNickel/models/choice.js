@@ -1,16 +1,20 @@
 define(function(require){
-    var Backbone = require('backbone'),
-        QuestionCollection = require('singleNickel/collections/survey/build/questions');
-
+    var Backbone = require('backbone');
+        
     return Backbone.Model.extend({
-        type:  "section",
-        childType: 'question',
+        type:  "choice",
         templates: {
-            edit: "editSection",
-            show: "showSection"
+            edit: "editChoice",
+            show: "showChoice"
         },
-        initialize: function(options) {
-            this.children = new QuestionCollection();
+        lookUps: {
+            triggers: {
+                true: "Yes",
+                false: "No"
+            }
+        },
+        initialize: function(params) {
+            this.attributes = params.attributes;
         },
         validation: {
             title: [{
@@ -22,7 +26,11 @@ define(function(require){
             },{
                 maxLength: 255,
                 message: "The name is too long, please enter at name with at most 255 characters"
-            }]
+            }],
+            triggers: {
+                required: true,
+                message: "Required"
+            }
         }
     });
 });

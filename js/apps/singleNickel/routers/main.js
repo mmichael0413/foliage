@@ -7,8 +7,8 @@ define(function(require){
         MainLayout = require('shared/views/layout/main'),
         SurveyListView = require('singleNickel/views/survey/list'),
         SurveyBuilder = require('singleNickel/views/survey/build/builder'),
-        SurveyModel = require('singleNickel/models/survey/build/survey'),
-        SurveyCollection = require('singleNickel/collections/survey/surveys');
+        SurveyModel = require('singleNickel/models/survey'),
+        SurveyCollection = require('singleNickel/collections/surveys');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {

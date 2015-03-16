@@ -15,6 +15,15 @@
                 {{/each}}
             {{/select}}
         </select>
+        <label>Customer</label>
+        <select name="customer" required data-placeholder="Choose a customer">
+            <option></option>
+            {{#select attributes.customer}}
+                {{#each customers.models}}
+                    <option value="{{id}}">{{attributes.name}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
     </div>
 </div>
 

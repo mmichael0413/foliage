@@ -51,7 +51,9 @@ function program2(depth0,data) {
     + "\">\n        <label>Does this choice cause the explanation field to appear?</label>\n        <select name=\"triggers\" data-placeholder=\"Choose one\">\n            <option></option>\n            ";
   stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.triggers), options) : helperMissing.call(depth0, "select", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.triggers), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </select>\n    </div>\n</div>\n";
+  buffer += "\n        </select>\n        <input type=\"hidden\" name=\"idx\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.idx)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n    </div>\n</div>\n";
   return buffer;
   }));
 
@@ -182,7 +184,9 @@ function program13(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\">\n            <label>What should the placeholder text of the explanation field say?</label>\n            <input type=\"text\" name=\"placeholder\" placeholder=\"Please enter the text when asking the agent to explain\" value=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.placeholder)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n        </div>\n    </div>\n</div>\n\n\n\n\n\n\n\n\n\n";
+    + "\">\n        </div>\n        <input type=\"hidden\" name=\"idx\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.idx)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n    </div>\n</div>\n\n\n\n\n\n\n\n\n\n";
   return buffer;
   }));
 
@@ -197,7 +201,9 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    </div>\n    <div class=\"section\">\n        <label>Add Section Header</label>\n        <input type=\"text\" name=\"title\" placeholder=\"Name\" value=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n    </div>\n</div>\n\n\n\n\n\n\n\n\n";
+    + "\">\n    </div>\n    <input type=\"hidden\" name=\"idx\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.idx)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n</div>\n\n\n\n\n\n\n\n\n";
   return buffer;
   }));
 
@@ -226,6 +232,28 @@ function program2(depth0,data) {
   return buffer;
   }
 
+function program4(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                ";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.customers)),stack1 == null || stack1 === false ? stack1 : stack1.models), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            ";
+  return buffer;
+  }
+function program5(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n                    <option value=\"";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</option>\n                ";
+  return buffer;
+  }
+
   buffer += "<div class=\"editor\">\n    <div class=\"header\">\n        <label>Edit Survey</label>\n        ";
   stack1 = self.invokePartial(partials.editControls, 'editControls', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -233,6 +261,9 @@ function program2(depth0,data) {
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">\n        <label>Type</label>\n        <select name=\"survey_type\" required data-placeholder=\"Choose a survey type\">\n            <option></option>\n            ";
   stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.survey_type), options) : helperMissing.call(depth0, "select", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.survey_type), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </select>\n        <label>Customer</label>\n        <select name=\"customer\" required data-placeholder=\"Choose a customer\">\n            <option></option>\n            ";
+  stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.customer), options) : helperMissing.call(depth0, "select", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.customer), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </select>\n    </div>\n</div>\n\n\n\n\n\n\n\n";
   return buffer;

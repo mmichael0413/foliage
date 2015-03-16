@@ -38,7 +38,22 @@ define(function(require) {
             this.addChild();
         },
         addChild: function(child) {
-            this.$childContainer.append(new Builder({model: child || this.children.add({})}).render().$el);
+            var self = this;
+            child = child || this.children.add(this.model.childParams());
+
+            if (child.isNew()) {
+                self.$childContainer.append(new Builder({model: child}).render().$el);
+            } else {
+                this.fetchChild(child);
+            }
+        },
+        fetchChild: function(child) {
+            var self = this;
+            child.fetch().success(function(){
+                self.$childContainer.append(new Builder({model: child}).render().$el);
+            }).fail(function () {
+                alert('An error has occurred.  Please contact Andrew!');
+            });
         },
         edit: function(e) {
             this.stopEvent(e);
@@ -57,9 +72,13 @@ define(function(require) {
         update: function(e) {
             this.stopEvent(e);
             var self = this;
-            this.model.clear().set(this.editsToJSON());
+            this.model.set(this.editsToJSON());
             if (this.model.isValid()) {
-                this.render(this.showTemplate);
+                this.model.save({}, {wait: true}).success(function(){
+                    self.render(self.showTemplate);
+                }).fail(function () {
+                    alert('An error has occurred.  Please contact Andrew!');
+                });
             }
         },
         stopEvent: function(e) {
