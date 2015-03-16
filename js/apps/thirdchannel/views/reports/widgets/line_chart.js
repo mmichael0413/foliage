@@ -18,6 +18,8 @@ define(function(require) {
             if (_.size(this.model.results) > 0) {
                 this.$el.html(this.template(this.model));
                 this.setupChart();
+                this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
+                context.trigger('filter:request:queryString');
             }
             return this;
         },
@@ -73,9 +75,9 @@ define(function(require) {
         },
 
         updateViewBreakDownLink : function (qs) {
-
+            var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
+            this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
         },
-
         setupColors: function() {
             var self = this,
                 total_entries = this.model.results.datasets.length,
