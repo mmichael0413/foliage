@@ -1,4 +1,11 @@
 <div class="controls">
     <a href="#" class="save btn light solid">Save</a>
-    <a href="#" class="cancel btn light">Cancel</a>
+    {{#unless_eq type 'survey'}}
+        <a href="#" class="cancel btn light">Cancel</a>
+    {{/unless_eq}}
+    {{#if_eq type 'survey'}}
+        {{#if attributes.id}}
+        <a href="#" class="cancel btn light">Cancel</a>
+        {{/if}}
+    {{/if_eq}}
 </div>

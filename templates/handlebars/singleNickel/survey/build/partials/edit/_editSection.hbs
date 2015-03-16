@@ -1,6 +1,10 @@
 <div class="editor">
     <div class="header">
-        <label>Edit Section</label>
+        <label>
+            {{#if attributes.id}}Edit{{/if}}
+            {{#unless attributes.id}}Create{{/unless}}
+            Section
+        </label>
         {{> editControls this}}
     </div>
     <div class="section">

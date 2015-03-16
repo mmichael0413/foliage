@@ -63,7 +63,9 @@ define(function(require){
         },
         updateChildren: function() {
             this.options = _.extend(this.options, {questionId: this.id});
-            this.children.updateOptions(this.options);
+            if (this.children !== undefined) {
+                this.children.updateOptions(this.options);
+            }
         },
         childParams: function() {
             return {

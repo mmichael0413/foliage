@@ -14,10 +14,11 @@ define(function(require){
             }
         },
         initialize: function(params) {
+            this.options = params.options;
             this.attributes = params.attributes;
         },
         validation: {
-            title: [{
+            choice: [{
                 required: true,
                 message: "Required"
             },{

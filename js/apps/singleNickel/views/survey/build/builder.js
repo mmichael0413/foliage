@@ -61,7 +61,11 @@ define(function(require) {
         },
         cancel: function(e) {
             this.stopEvent(e);
-            this.render(this.showTemplate);
+            if (this.model.isNew()) {
+                this.remove();
+            } else {
+                this.render(this.showTemplate);
+            }
         },
         delete: function(e) {
             this.stopEvent(e);
