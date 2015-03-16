@@ -85,6 +85,8 @@ define(function(require) {
             _.each(self.model.results.datasets, function(dataset, index) {
                 dataset.fillColor = legendColors[(total_entries - index) % legendColors.length];
                 dataset.strokeColor = legendColors[(total_entries - index) % legendColors.length];
+                dataset.pointStrokeColor = legendColors[(total_entries - index) % legendColors.length];
+                dataset.pointColor = legendColors[(total_entries - index) % legendColors.length];
 
                 self.model.config.legendColors[dataset.label] = legendColors[(total_entries - index) % legendColors.length];
             });
