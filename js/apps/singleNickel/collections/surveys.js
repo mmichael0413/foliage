@@ -1,7 +1,7 @@
 define(function(require){
-    var Backbone = require('backbone');
+    var BaseCollection = require('singleNickel/collections/base');
 
-    return Backbone.Collection.extend({
+    return BaseCollection.extend({
         url: '/api/surveys'
     });
 });

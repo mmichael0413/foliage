@@ -73,7 +73,10 @@ define(function(require) {
         delete: function(e) {
             this.stopEvent(e);
             if (confirm("Please confirm that you wish to delete this " + this.model.type) === true) {
-                this.remove();
+                var self = this;
+                this.model.destroy({success: function(model, response) {
+                    self.remove();
+                }});
             }
         },
         update: function(e) {
@@ -99,6 +102,10 @@ define(function(require) {
             this.$el.find('input:enabled, select:enabled').each(function(){
                 var input = self.$(this);
                 ret[input.attr('name')] = input.val() || '';
+            });
+
+            this.$el.find('input:disabled, select:disabled').each(function(){
+                ret[self.$(this).attr('name')] = null;
             });
 
             return ret;

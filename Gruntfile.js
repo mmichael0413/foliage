@@ -499,6 +499,7 @@ module.exports = function(grunt) {
         },
 
         watch: {
+            options: { interval: 5007 },
             sass: {
                 files: ['css/**/*.scss'],
                 tasks: ['sass', 'copy'],

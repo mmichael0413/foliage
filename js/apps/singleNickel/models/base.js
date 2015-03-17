@@ -26,9 +26,17 @@ define(function(require){
             // Used by other models that inherit this model as a means for initialize
         },
         parse: function (resp, options) {
-            if (!_.isUndefined(resp.children)) {
-                this.children.reset(resp.children);
-                delete resp.children
+            if (!_.isUndefined(resp)) {
+                if (!_.isUndefined(resp.children)) {
+                    this.children.reset(resp.children);
+                    delete resp.children;
+                }
+
+                _.each(resp, function (value, key) {
+                    if (_.isEmpty(value)) {
+                        delete resp[key];
+                    }
+                });
             }
             return resp;
         },

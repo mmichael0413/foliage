@@ -30,7 +30,7 @@
         </select>
         <div id="questionMultiple" style="{{#unless attributes.multiple}}display: none;{{/unless}}">
             <label>Can they select multiple answers?</label>
-            <select name="multiple" data-placeholder="Choose one">
+            <select name="multiple" data-placeholder="Choose one" {{#unless attributes.multiple}}disabled{{/unless}}>
                 <option></option>
                 {{#select attributes.multiple}}
                     {{#each lookUps.multiple}}
@@ -41,7 +41,7 @@
         </div>
         <div id="questionExplain" style="{{#unless attributes.explain}}display: none;{{/unless}}">
             <label>Should they explain the reason for their answer?</label>
-            <select name="explain" data-placeholder="Choose one">
+            <select name="explain" data-placeholder="Choose one" {{#unless attributes.explain}}disabled{{/unless}}>
                 <option></option>
                 {{#select attributes.explain}}
                     {{#each lookUps.explain}}
@@ -52,7 +52,7 @@
         </div>
         <div id="questionPlaceholder" style="{{#unless attributes.placeholder}}display: none;{{/unless}}">
             <label>What should the placeholder text of the explanation field say?</label>
-            <input type="text" name="placeholder" placeholder="Please enter the text when asking the agent to explain" value="{{attributes.placeholder}}">
+            <input type="text" name="placeholder" placeholder="Please enter the text when asking the agent to explain" value="{{attributes.placeholder}}" {{#unless attributes.placeholder}}disabled{{/unless}}>
         </div>
         <input type="hidden" name="idx" value="{{attributes.idx}}">
     </div>

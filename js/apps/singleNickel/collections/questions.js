@@ -1,13 +1,9 @@
 define(function(require){
-    var Backbone = require('backbone'),
+    var BaseCollection = require('singleNickel/collections/base'),
         QuestionModel = require('singleNickel/models/question');
 
-    return Backbone.Collection.extend({
+    return BaseCollection.extend({
         model: QuestionModel,
-        initialize: function(models, options){
-            this.reset(models);
-            this.options = options;
-        },
         url: function() {
             return '/api/surveys/'+ this.options.surveyId + '/sections/' + this.options.sectionId + '/questions/';
         }
