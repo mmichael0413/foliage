@@ -57,6 +57,9 @@ define(function(require){
             'change:type': 'setChildren',
             'change:id': 'updateChildren'
         },
+        setup: function(){
+            if (this.get('type') === undefined || !_.contains(this.typesWithChildren, this.get('type'))) this.children = undefined;
+        },
         setChildren: function(e, data) {
             this.children = _.contains(this.typesWithChildren, data) ? new Choices([], this.options) : undefined;
         },
