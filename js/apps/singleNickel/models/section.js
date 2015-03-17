@@ -1,31 +1,17 @@
 define(function(require){
-    var Backbone = require('backbone'),
+    var BaseModel = require('singleNickel/models/base'),
         Questions = require('singleNickel/collections/questions');
 
-    return Backbone.Model.extend({
+    return BaseModel.extend({
         type:  "section",
         childType: 'question',
+        childrenCollection: Questions,
         templates: {
             edit: "editSection",
             show: "showSection"
         },
-        initialize: function(params) {
-            this.options = _.extend({}, params.options, {sectionId: this.id});
-            this.attributes = params.attributes;
-            this.children = new Questions([], this.options);
-            this.bind('change:id', this.updateChildren);
-        },
-        updateChildren: function() {
-            this.options = _.extend(this.options, {sectionId: this.id});
-            this.children.updateOptions(this.options);
-        },
-        childParams: function() {
-            return {
-                options: this.options,
-                attributes: {
-                    idx: this.children.models.length
-                }
-            };
+        events: {
+            'change:id': "updateChildren"
         },
         validation: {
             title: [{

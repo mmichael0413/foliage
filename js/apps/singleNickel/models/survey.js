@@ -1,11 +1,12 @@
 define(function(require){
-    var Backbone = require('backbone'),
+    var BaseModel = require('singleNickel/models/base'),
         Sections = require('singleNickel/collections/sections'),
         Customers = require('singleNickel/collections/customers');
 
-    return Backbone.Model.extend({
+    return BaseModel.extend({
         type:  "survey",
         childType: 'section',
+        childrenCollection: Sections,
         templates: {
             edit: "editSurvey",
             show: "showSurvey"
@@ -17,15 +18,11 @@ define(function(require){
                 special_project: "Special Project"
             }
         },
-        initialize: function(options) {
-            this.options = _.extend({}, options, {surveyId: this.id});
-            this.children = new Sections([], this.options);
-            this.bind('change:id', this.updateChildren);
-            this.getCustomers();
+        events: {
+            'change:id': "updateChildren"
         },
-        updateChildren: function() {
-            this.options = _.extend(this.options, {surveyId: this.id});
-            this.children.updateOptions(this.options);
+        setup: function(options) {
+            this.getCustomers();
         },
         getCustomers: function(){
             this.customers = new Customers();
@@ -35,14 +32,6 @@ define(function(require){
         },
         url: function() {
             return '/api/surveys/' + (this.id || '');
-        },
-        childParams: function() {
-            return {
-                options: this.options,
-                attributes: {
-                    idx: this.children.models.length
-                }
-            };
         },
         validation: {
             title: [{

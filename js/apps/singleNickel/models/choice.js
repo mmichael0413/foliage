@@ -1,7 +1,8 @@
 define(function(require){
-    var Backbone = require('backbone');
+    var BaseModel = require('singleNickel/models/base');
         
-    return Backbone.Model.extend({
+    return BaseModel.extend({
+        id: '',
         type:  "choice",
         templates: {
             edit: "editChoice",
@@ -12,10 +13,6 @@ define(function(require){
                 true: "Yes",
                 false: "No"
             }
-        },
-        initialize: function(params) {
-            this.options = params.options;
-            this.attributes = params.attributes;
         },
         validation: {
             choice: [{

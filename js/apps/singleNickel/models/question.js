@@ -1,11 +1,12 @@
 define(function(require){
     var _ = require('underscore'),
-        Backbone = require('backbone'),
+        BaseModel = require('singleNickel/models/base'),
         Choices = require('singleNickel/collections/choices');
         
-    return Backbone.Model.extend({
+    return BaseModel.extend({
         type:  "question",
         childType: 'choice',
+        childrenCollection: Choices,
         templates: {
             edit: "editQuestion",
             show: "showQuestion"
@@ -52,31 +53,12 @@ define(function(require){
             }
         },
         typesWithChildren : ["QuestionMultiChoice", "QuestionSelect"],
-        initialize: function(params) {
-            this.options = _.extend({}, params.options, {questionId: this.id});
-            this.attributes = params.attributes;
-            this.bind('change:type', this.setChildren);
-            this.bind('change:id', this.updateChildren);
+        events: {
+            'change:type': 'setChildren',
+            'change:id': 'updateChildren'
         },
         setChildren: function(e, data) {
             this.children = _.contains(this.typesWithChildren, data) ? new Choices([], this.options) : undefined;
-        },
-        updateChildren: function() {
-            this.options = _.extend(this.options, {questionId: this.id});
-            if (this.children !== undefined) {
-                this.children.updateOptions(this.options);
-            }
-        },
-        childParams: function() {
-            return {
-                options: this.options,
-                attributes: {
-                    idx: this.children.models.length
-                }
-            };
-        },
-        optionalValidation: function(value) {
-            return (value !== undefined) && (value == '') ? 'Required' : true;
         },
         validation: {
             ask: [{

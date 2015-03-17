@@ -538,15 +538,15 @@ function program1(depth0,data) {
 function program2(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n            <tr>\n                <td><a href=\"programName/survey/build/"
+  buffer += "\n            <tr>\n                <td><a href=\"api/surveys/"
     + escapeExpression(((stack1 = (depth0 && depth0.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">"
     + escapeExpression(((stack1 = (depth0 && depth0.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a></td>\n                <td>\n                    <a href=\"programName/survey/build/"
+    + "</a></td>\n                <td>\n                    <a href=\"surveys/"
     + escapeExpression(((stack1 = (depth0 && depth0.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">Edit</a>\n                    <a href=\"programName/survey/build/"
+    + "/edit\">Edit</a>\n                    <a href=\"surveys/"
     + escapeExpression(((stack1 = (depth0 && depth0.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">Delete</a>\n                </td>\n            </tr>\n        ";
+    + "/delete\">Delete</a>\n                </td>\n            </tr>\n        ";
   return buffer;
   }
 

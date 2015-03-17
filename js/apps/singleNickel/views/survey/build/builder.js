@@ -19,7 +19,10 @@ define(function(require) {
             this.model = options.model;
         },
         render: function(template) {
-            this.$el.html((template || this.editTemplate)(this.model));
+            if (template === undefined) {
+                template = this.model.isNew() ? this.editTemplate : this.showTemplate;
+            }
+            this.$el.html(template(this.model));
             this.bindValidation();
             this.renderChildren();
             return this;
@@ -28,9 +31,9 @@ define(function(require) {
             this.children = this.model.children;
             if (this.children !== undefined) {
                 this.$childContainer = this.$el.find('.children');
-                this.children.each(function(value, index){
-                    this.addChild(value);
-                }.bind(this));
+                    this.children.each(function(value, index){
+                        this.addChild(value);
+                    }.bind(this));
             }
         },
         add: function(e) {

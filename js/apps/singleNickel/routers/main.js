@@ -13,7 +13,8 @@ define(function(require){
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             '(/)': 'listSurveys',
-            'new(/)': 'buildSurvey'
+            'new(/)': 'buildSurvey',
+            'surveys/:id/edit(/)': 'editSurvey'
         },
 
         navigation:  [
@@ -24,30 +25,29 @@ define(function(require){
         before: function (parameters, route, name) {
             // stuff the bootstrap into the context
             _.extend(context, window.bootstrap);
-            window.bootstrap.navigation = _.extend(this.navigation, _.extend(_.find(this.navigation, function(obj) { return obj.route == route }), {active: true}));
+            window.bootstrap.navigation = _.extend(this.navigation, _.extend(_.find(this.navigation, function(obj) { return obj.route == route; }), {active: true}));
         },
 
         listSurveys: function() {
             console.log('listSurveys');
 
-            window.bootstrap.navigation = _.extend(this.navigation,
-                _.extend(_.find(this.navigation, function(obj) { return obj.title == 'Surveys' }),
-                    {active: true}));
-
             var surveys = new SurveyCollection();
-
             surveys.fetch().then(function(response) {
                 $('#survey-container').html(new SurveyListView({
                     collection: surveys
                 }).render().el);
             });
         },
-        buildSurvey: function(program_id, survey) {
-            window.bootstrap.navigation = _.extend(this.navigation,
-                _.extend(_.find(this.navigation, function(obj) { return obj.title == 'Create' }),
-                    {active: true}));
-
-            $('#survey-container').html(new SurveyBuilder({model: new SurveyModel()}).render().$el);
+        buildSurvey: function() {
+            $('#survey-container').html(new SurveyBuilder({model: new SurveyModel({})}).render().$el);
+        },
+        editSurvey: function(surveyId) {
+            var survey = new SurveyModel({id: surveyId});
+            survey.fetch().success(function(model){
+                $('#survey-container').html(new SurveyBuilder({model: survey}).render().$el);
+            }).fail(function(){
+                alert("contact andrew");
+            });
         },
         after: function() {
             MainLayout.init();

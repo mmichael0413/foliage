@@ -4,10 +4,8 @@ define(function(require){
 
     return Backbone.Collection.extend({
         model: SectionModel,
-        initialize: function(options){
-            this.updateOptions(options);
-        },
-        updateOptions: function(options) {
+        initialize: function(models, options){
+            this.reset(models);
             this.options = options;
         },
         url: function() {
