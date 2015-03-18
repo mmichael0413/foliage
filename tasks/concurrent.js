@@ -4,7 +4,7 @@
  *
  */
 
-'use strict';
+"use strict";
 
 module.exports = function(grunt) {
     return {

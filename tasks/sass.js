@@ -4,7 +4,7 @@
  *
  */
 
-'use strict';
+"use strict";
 
 /**
  * TODO: Figure out if there's a way to make this accessible to all tasks

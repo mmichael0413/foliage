@@ -4,12 +4,12 @@
  *
  */
 
-'use strict';
+"use strict";
 
 module.exports = function(grunt) {
     return {
         // the all task covers all files, excluding the hbs-compiled (auto-generated) and any libs we use (we didn't write them)
-        all: ['Gruntfile.js', 'tasks/**/*.js', 'js/apps/**/*.js'],
+        all: ['Gruntfile.js', 'js/apps/**/*.js'],
         options: {
             ignores: [
                 '**/hbs-compiled.js',

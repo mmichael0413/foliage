@@ -4,7 +4,7 @@
  *
  */
 
-'use strict';
+"use strict";
 
 function buildKarmaOptions(serviceName, additionalPaths, additionalExcludes) {
     var options = {frameworks: ['jasmine', 'requirejs']},

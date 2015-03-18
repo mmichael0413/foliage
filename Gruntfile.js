@@ -1,3 +1,6 @@
+/*global module, require */
+/*jslint regexp: true */
+
 /**
  * Grunt Configurations
  * ====================
@@ -7,9 +10,8 @@
  * Link: https://github.com/firstandthird/load-grunt-config
  */
 
-'use strict';
-
 module.exports = function (grunt) {
+    "use strict";
 
     // load task and configurations
     require('load-grunt-config')(grunt, {
