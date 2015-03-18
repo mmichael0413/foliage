@@ -84,7 +84,7 @@ define(function(require) {
             var self = this;
             this.model.set(this.editsToJSON());
             if (this.model.isValid()) {
-                this.model.save({}, {wait: true}).success(function(){
+                this.model.save().success(function(){
                     self.render(self.showTemplate);
                 }).fail(function () {
                     alert('An error has occurred.  Please contact Andrew!');

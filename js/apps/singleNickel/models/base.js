@@ -31,12 +31,6 @@ define(function(require){
                     this.children.reset(resp.children);
                     delete resp.children;
                 }
-
-                _.each(resp, function (value, key) {
-                    if (_.isEmpty(value)) {
-                        delete resp[key];
-                    }
-                });
             }
             return resp;
         },

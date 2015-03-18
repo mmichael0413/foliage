@@ -25,7 +25,7 @@ define(function(require){
         before: function (parameters, route, name) {
             // stuff the bootstrap into the context
             _.extend(context, window.bootstrap);
-            window.bootstrap.navigation = _.extend(this.navigation, _.extend(_.find(this.navigation, function(obj) { return obj.route == route }), {active: true}));
+            window.bootstrap.navigation = _.extend(this.navigation, _.extend(_.find(this.navigation, function(obj) { return obj.route == route; }), {active: true}));
         },
 
         listSurveys: function() {
