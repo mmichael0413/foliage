@@ -19,7 +19,7 @@ define(function(require){
             }
         },
         events: {
-            'change:id': "updateChildrenAndUrl"
+            'change:id': "updateChildren"
         },
         setup: function(options) {
             this.getCustomers();
@@ -30,12 +30,11 @@ define(function(require){
                 alert('An error has occurred.  Please contact Andrew!');
             });
         },
-        updateChildrenAndUrl: function() {
-            this.updateChildren();
-            Backbone.history.navigate('/surveys/' + this.id + '/edit');
-        },
         url: function() {
             return '/api/surveys/' + (this.id || '');
+        },
+        redirect: function() {
+            return  '/surveys/' + this.id + '/edit';
         },
         validation: {
             title: [{

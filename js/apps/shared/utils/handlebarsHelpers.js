@@ -58,6 +58,14 @@ define(function(require){
         return object[key];
     });
 
+    Handlebars.registerHelper('collection_get', function(id, collection, opts) {
+        return opts.fn(collection.get(id));
+    });
+
+    Handlebars.registerHelper('model_get', function(attr, model) {
+        return model.get(attr);
+    });
+
     Handlebars.registerHelper('threshold_class', function(threshold, key, object) {
         return (Number(threshold) <= Number(object[key])) ? "positive": "negative";
     });

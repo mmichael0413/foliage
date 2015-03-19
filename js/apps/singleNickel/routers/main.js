@@ -5,8 +5,10 @@ define(function(require){
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
         MainLayout = require('shared/views/layout/main'),
-        SurveyListView = require('singleNickel/views/survey/list'),
-        SurveyBuilder = require('singleNickel/views/survey/build/builder'),
+        ListView = require('singleNickel/views/survey/list'),
+        ShowView = require('singleNickel/views/survey/show'),
+        BuilderView = require('singleNickel/views/survey/build/builder'),
+        DeleteView = require('singleNickel/views/survey/delete'),
         SurveyModel = require('singleNickel/models/survey'),
         SurveyCollection = require('singleNickel/collections/surveys');
 
@@ -14,7 +16,9 @@ define(function(require){
         routes: {
             '(/)': 'listSurveys',
             'new(/)': 'buildSurvey',
-            'surveys/:id/edit(/)': 'editSurvey'
+            'surveys/:id(/)': 'showSurvey',
+            'surveys/:id/edit(/)': 'editSurvey',
+            'surveys/:id/delete(/)': 'deleteSurvey'
         },
 
         navigation:  [
@@ -33,21 +37,32 @@ define(function(require){
 
             var surveys = new SurveyCollection();
             surveys.fetch().then(function(response) {
-                $('#survey-container').html(new SurveyListView({
+                $('#survey-container').html(new ListView({
                     collection: surveys
                 }).render().el);
             });
         },
         buildSurvey: function() {
-            $('#survey-container').html(new SurveyBuilder({model: new SurveyModel({})}).render().$el);
+            $('#survey-container').html(new BuilderView({model: new SurveyModel({})}).render().$el);
+        },
+        showSurvey: function(surveyId) {
+            var survey = new SurveyModel({id: surveyId});
+            survey.fetch().success(function(model){
+                $('#survey-container').html(new ShowView({model: survey}).render().$el);
+            }).fail(function(){
+                alert("contact andrew");
+            });
         },
         editSurvey: function(surveyId) {
             var survey = new SurveyModel({id: surveyId});
             survey.fetch().success(function(model){
-                $('#survey-container').html(new SurveyBuilder({model: survey}).render().$el);
+                $('#survey-container').html(new BuilderView({model: survey}).render().$el);
             }).fail(function(){
                 alert("contact andrew");
             });
+        },
+        deleteSurvey: function(surveyId) {
+            $('#survey-container').html(new DeleteView({surveyId: surveyId}).render().$el);
         },
         after: function() {
             MainLayout.init();

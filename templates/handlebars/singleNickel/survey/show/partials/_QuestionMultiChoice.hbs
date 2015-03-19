@@ -1,0 +1,14 @@
+<div class="question-show">
+    <p>{{attributes.ask}}</p>
+    <div class="radio-group">
+    {{#each children.models}}
+        <div>
+            <input type="radio" name="question-{{attributes.id}}-{{attributes.id}}">
+            <label for="question-{{attributes.id}}-{{attributes.id}}">{{attributes.choice}}</label>
+        </div>
+    {{/each}}
+    </div>
+    {{#if attributes.explain}}
+        <input type="text" placeholder="{{attributes.placeholder}}">
+    {{/if}}
+</div>

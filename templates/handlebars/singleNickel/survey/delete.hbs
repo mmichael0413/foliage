@@ -1,0 +1,20 @@
+<h1>Delete Survey</h1>
+<div class="section">
+    <h2>Are you sure you which to delete the following survey?</h2>
+    <div>
+     <p><label>Title:</label> {{attributes.title}}</p>
+     <p><label>Type:</label> {{value_lookup attributes.survey_type lookUps.survey_type}}</p>
+        <p><label>Customer:</label> {{#collection_get attributes.customer customers}} {{model_get 'name' this}} {{/collection_get}}</p>
+    </div>
+    <div class="btn-container">
+        <button id="confirm" class="btn primary solid">Yes, Delete This Survey</button>
+        <a href="/" class="btn light solid">No, Keep this Survey</a>
+    </div>
+</div>
+
+
+
+
+
+
+

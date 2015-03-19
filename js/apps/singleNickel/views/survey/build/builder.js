@@ -86,6 +86,9 @@ define(function(require) {
             if (this.model.isValid()) {
                 this.model.save().success(function(){
                     self.render(self.showTemplate);
+                    if (self.model.redirect !== undefined) {
+                        Backbone.history.navigate(self.model.redirect());
+                    }
                 }).fail(function () {
                     alert('An error has occurred.  Please contact Andrew!');
                 });

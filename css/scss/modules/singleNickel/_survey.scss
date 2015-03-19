@@ -77,4 +77,13 @@
     margin: -1.5em 0 1.5em 0.5em;
     color: $red;
   }
+
+  .radio-group {
+    margin-bottom: 1.5em;
+
+    label {
+      font-weight: normal;
+      text-transform: Capitalize;
+    }
+  }
 }

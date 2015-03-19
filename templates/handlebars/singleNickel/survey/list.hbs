@@ -11,10 +11,10 @@
         {{#if surveys}}
         {{#each surveys}}
             <tr>
-                <td><a href="api/surveys/{{this.id}}">{{this.title}}</a></td>
+                <td><a href="/surveys/{{this.id}}">{{this.title}}</a></td>
                 <td>
-                    <a href="surveys/{{this.id}}/edit">Edit</a>
-                    <a href="surveys/{{this.id}}/delete">Delete</a>
+                    <a href="/surveys/{{this.id}}/edit">Edit</a>
+                    <a href="/surveys/{{this.id}}/delete">Delete</a>
                 </td>
             </tr>
         {{/each}}

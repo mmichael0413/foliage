@@ -14,7 +14,9 @@ require.config({
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
         'context': 'shared/utils/context',
         'backboneValidator' : '../libs/bower_components/backbone-validator/backbone-validator',
-        'backboneValidatorPatch': '../libs/backbone-validator/viewCallbackPatch'
+        'backboneValidatorPatch': '../libs/backbone-validator/viewCallbackPatch',
+        'chosen': "../libs/bower_components/chosen/chosen.jquery",
+        'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker"
     },
     shim: {
         "jquery": {
@@ -51,6 +53,12 @@ require.config({
         },
         'context': {
             deps: ["underscore"]
+        },
+        'chosen': {
+            deps: ["jquery"]
+        },
+        'dateTimePicker': {
+            deps: ["jquery"]
         }
     }
 });

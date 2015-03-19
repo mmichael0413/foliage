@@ -31,6 +31,7 @@ define(function(require) {
         render :function () {
             this.$el.find('select').chosen({disable_search: true, width: "100%"});
             this.$el.find('textarea:visible').expanding();
+            this.$el.find('.datetime').datetimepicker();
             return this;
         },
         saveState: function (e) {

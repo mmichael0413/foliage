@@ -1,0 +1,12 @@
+<div class="question-show">
+    <p>{{attributes.ask}}</p>
+    <select {{#if attributes.multiple}}multiple{{/if}} data-placeholder="Please select {{#if attributes.multiple}}all{{/if}}{{#unless attributes.multiple}}one{{/unless}}">
+        <option></option>
+        {{#each children.models}}
+            <option>{{attributes.choice}}</option>
+        {{/each}}
+    </select>
+    {{#if attributes.explain}}
+        <input type="text" placeholder="{{attributes.placeholder}}">
+    {{/if}}
+</div>
