@@ -19,7 +19,7 @@ define(function(require) {
 
             var self = this;
             this.listenTo(context, 'filter-toggled', function() {
-                setTimeout(function(){ self.triggerPostRender(); }, 2000);
+                setTimeout(function(){ self.triggerPostRender(); }, 300);
             });
         },
         render: function (options) {
