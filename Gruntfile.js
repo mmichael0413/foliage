@@ -34,7 +34,7 @@ module.exports = function (grunt) {
             // name, path, tokens
             fn(tokens[tokens.length - 1], appPaths[i], tokens);
         }
-    }
+    };
 
     // load task and configurations
     require('load-grunt-config')(grunt, {

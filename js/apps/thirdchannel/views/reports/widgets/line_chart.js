@@ -5,6 +5,8 @@ define(function(require) {
         Charts = require('chartjs'),
         context = require('context');
 
+    var defaultLegendColors = ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D", "#8079b8", "#85c194", "#deb99a", "#bce4f9", "#f69d6d", "#8ab2ca", "#a53426", "#8c8d8e", "#00a55a", "#deb99a", "#ef6222", "#4cc3f1", "#025832"];
+
     return Backbone.View.extend({
         tagName: 'span',
         template: HandlebarsTemplates['thirdchannel/reports/widgets/line_chart'],
@@ -58,11 +60,9 @@ define(function(require) {
                 datasetFill : false,
                 showTooltips: false,
                 scaleLabel: scaleLabel,
-                defaultLegendColors: ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D", "#8079b8", "#85c194", "#deb99a", "#bce4f9", "#f69d6d", "#8ab2ca", "#a53426", "#8c8d8e", "#00a55a", "#deb99a", "#ef6222", "#4cc3f1", "#025832"],
+                defaultLegendColors: this.legendColors,
                 legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
             }, this.model.config);
-
-
 
             this.listenTo(context, 'report post render', function () {
                 new Chart(canvas[0].getContext("2d")).Line(self.model.results, options);
@@ -81,17 +81,25 @@ define(function(require) {
         setupColors: function() {
             var self = this,
                 total_entries = this.model.results.datasets.length,
-                legendColors = ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D", "#8079b8", "#85c194", "#deb99a", "#bce4f9", "#f69d6d", "#8ab2ca", "#a53426", "#8c8d8e", "#00a55a", "#deb99a", "#ef6222", "#4cc3f1", "#025832"];
+                setLegendColors = true;
 
-            this.model.config.legendColors = {};
+            if(this.model.config.legendColors !== undefined) {
+                setLegendColors = false;
+                this.legendColors = _.values(this.model.config.legendColors);
+            } else {
+                this.model.config.legendColors = {};
+                this.legendColors = defaultLegendColors;
+            }
 
             _.each(self.model.results.datasets, function(dataset, index) {
-                dataset.fillColor = legendColors[(total_entries - index) % legendColors.length];
-                dataset.strokeColor = legendColors[(total_entries - index) % legendColors.length];
-                dataset.pointStrokeColor = legendColors[(total_entries - index) % legendColors.length];
-                dataset.pointColor = legendColors[(total_entries - index) % legendColors.length];
+                dataset.fillColor = self.legendColors[(total_entries - index) % self.legendColors.length];
+                dataset.strokeColor = self.legendColors[(total_entries - index) % self.legendColors.length];
+                dataset.pointStrokeColor = self.legendColors[(total_entries - index) % self.legendColors.length];
+                dataset.pointColor = self.legendColors[(total_entries - index) % self.legendColors.length];
 
-                self.model.config.legendColors[dataset.label] = legendColors[(total_entries - index) % legendColors.length];
+                if(setLegendColors) {
+                    self.model.config.legendColors[dataset.label] = self.legendColors[(total_entries - index) % self.legendColors.length];
+                }
             });
         }
 
