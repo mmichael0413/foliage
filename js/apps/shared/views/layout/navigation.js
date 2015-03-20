@@ -147,6 +147,8 @@ define(function (require) {
             if(window.localStorage.getItem('main_navigation') === 'expanded-nav' && this.state == 'desktop') {
                 this.collapseNav(null, true);
             }
+
+            context.trigger('filter-toggled');
         },
         toggleSubnav: function (e) {
             if(e) {

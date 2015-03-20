@@ -16,6 +16,11 @@ define(function(require) {
             this.filters = new ReportFilterCollection(options);
             this.listenTo(context, 'filter:query', this.applyFilter);
             this.loadingView = new LoadingView();
+
+            var self = this;
+            this.listenTo(context, 'filter-toggled', function() {
+                setTimeout(function(){ self.triggerPostRender(); }, 2000);
+            });
         },
         render: function (options) {
             var self = this;
