@@ -4,6 +4,7 @@ define(function(require){
 
     return BaseCollection.extend({
         model: SectionModel,
+        comparator: 'idx',
         url: function() {
             return '/api/surveys/'+ this.options.surveyId + '/sections/';
         }
