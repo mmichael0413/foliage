@@ -1,7 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        Model = require('SingleNickel/models/survey');
+        Model = require('singleNickel/models/survey');
 
     return Backbone.View.extend({
         template: HandlebarsTemplates['singleNickel/survey/delete'],
