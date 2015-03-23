@@ -777,7 +777,9 @@ function program2(depth0,data) {
     + escapeExpression(((stack1 = (depth0 && depth0.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "/edit\">Edit</a>\n                    <a href=\"/surveys/"
     + escapeExpression(((stack1 = (depth0 && depth0.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "/delete\">Delete</a>\n                </td>\n            </tr>\n        ";
+    + "/delete\">Delete</a>\n                    <a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1['export'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">Export</a>\n                </td>\n            </tr>\n        ";
   return buffer;
   }
 
