@@ -7,15 +7,27 @@ define(function(require) {
         MainLayout = require('shared/views/layout/main'),
         HandlebarsHelpers = require('handlebarsHelpers'),
 
+        SetSchedule = require('procrastination/views/schedule/list'),
+
         AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
+
             routes: {
-                '/schedule': 'schedule',
+                ':customer_slug/:program_slug/schedule/:person_id': 'schedule',
+            },
+
+            before: function(parameters) {
+                context.customer_slug = parameters[0];
+                context.program_slug = parameters[1];
+                context.base_url = '/' + context.customer_slug + '/' + context.program_slug;
+
+                // stuff the bootstrap into the context
+                _.extend(context, window.bootstrap);
             },
 
             schedule: function() {
-                console.log('here i am');
+                new SetSchedule().fetch();
             }
         });
 
-        return AppRouter;
+    return AppRouter;
 });

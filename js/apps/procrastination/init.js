@@ -6,6 +6,7 @@ require.config({
 
     paths: {
         'jquery'        : "../libs/bower_components/jquery/jquery.min",
+        'jquery-ui'     : "../libs/bower_components/jquery-ui/jquery-ui",
         'jquery_ujs'    : '../libs/bower_components/jquery-ujs/src/rails',
         'jquery-validate' : '../libs/bower_components/jquery-validation/dist/jquery.validate',
         'serializeObject' : "../libs/bower_components/jquery-serialize-object/jquery.serialize-object",
@@ -24,6 +25,9 @@ require.config({
         "jquery": {
             deps: [],
             exports: "$"
+        },
+        "jquery-ui": {
+            deps: ['jquery']
         },
         "jquery_ujs": {
             deps: ["jquery"]
