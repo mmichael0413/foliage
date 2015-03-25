@@ -27,10 +27,10 @@ define(function(require) {
         renderChildren: function(){
             this.children = this.model.children;
             if (this.children !== undefined) {
-                this.$childContainer = this.$el.find('.children');
-                    this.children.each(function(value, index){
-                        this.addChild(value);
-                    }.bind(this));
+                this.$childContainer = this.$('.children');
+                this.children.each(function(value, index) {
+                    this.addChild(value);
+                }.bind(this));
             }
         },
         add: function(e) {
