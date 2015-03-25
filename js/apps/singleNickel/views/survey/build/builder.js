@@ -15,6 +15,9 @@ define(function(require) {
             'click .cancel': 'cancel',
             'change select': 'updateInputChildren'
         },
+        initialize: function() {
+            _.bindAll(this, 'addChild');
+        },
         render: function(template) {
             if (template === undefined) {
                 template = this.model.isNew() ? this.editTemplate : this.showTemplate;
@@ -28,9 +31,7 @@ define(function(require) {
             this.children = this.model.children;
             if (this.children !== undefined) {
                 this.$childContainer = this.$('.children');
-                this.children.each(function(value, index) {
-                    this.addChild(value);
-                }.bind(this));
+                this.children.each(this.addChild);
             }
         },
         add: function(e) {
