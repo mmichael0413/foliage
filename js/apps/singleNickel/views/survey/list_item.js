@@ -23,10 +23,8 @@ define(function(require) {
             var self = this;
             var confirmation = confirm('Are you sure you want to delete this survey?');
             if(confirmation) {
-                var collection = this.model.collection;
                 this.model.destroy().success(function() {
                     self.remove();
-                    collection.remove(self.model);
                 }).fail(function() {
                    alert('Something went wrong... Contact dev team.');
                 });
