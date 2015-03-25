@@ -35,6 +35,8 @@ define(function(require) {
             var self = this;
             this.model.toggleLock().done(function(response) {
                 self.model.set(response);
+            }).fail(function() {
+                alert('Unable to toggle the lock.');
             });
         }
     });
