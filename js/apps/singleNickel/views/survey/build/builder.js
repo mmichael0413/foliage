@@ -42,14 +42,6 @@ define(function(require) {
         addChild: function(child) {
             this.$childContainer.append(new Builder({model: child}).render().el);
         },
-        fetchChild: function(child) {
-            var self = this;
-            child.fetch().success(function(){
-                self.$childContainer.append(new Builder({model: child}).render().$el);
-            }).fail(function () {
-                alert('An error has occurred.  Please contact Andrew!');
-            });
-        },
         edit: function(e) {
             this.stopEvent(e);
             this.render(this.editTemplate);
