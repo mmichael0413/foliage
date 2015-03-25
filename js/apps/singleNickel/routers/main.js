@@ -78,7 +78,7 @@ define(function(require){
         if(window.currentUser !== undefined) {
             context.currentUser = new Backbone.Model(window.currentUser);
         }
-        
+
         Backbone.history.start({pushState: true, hashChange: false});
     };
     return {
