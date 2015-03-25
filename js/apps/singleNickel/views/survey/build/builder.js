@@ -41,14 +41,6 @@ define(function(require) {
         },
         addChild: function(child) {
             this.$childContainer.append(new Builder({model: child}).render().el);
-
-            /*
-            if (child.isNew()) {
-                self.$childContainer.append(new Builder({model: child}).render().$el);
-            } else {
-                this.fetchChild(child);
-            }
-            */
         },
         fetchChild: function(child) {
             var self = this;
