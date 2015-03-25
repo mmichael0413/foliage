@@ -771,9 +771,9 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a></td>\n<td>\n    <a href=\"/surveys/"
+    + "</a></td>\n<td>\n    <a class=\"btn primary\" href=\"/surveys/"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "/edit\">Edit</a>\n    <a href=\"#\" class=\"delete\">Delete</a>\n    <a class=\"btn primary\" href=\""
+    + "/edit\"><i class=\"ic fa ic_post\"></i></a>\n    <a class=\"btn primary\" href=\"#\" class=\"delete\" alt=\"Remove Survey\"><i class=\"ic fa ic_x\"></i></a>\n    <a class=\"btn primary\" href=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.links)),stack1 == null || stack1 === false ? stack1 : stack1['export'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" alt=\"Export Survey YAML\"><i class=\"ic fa ic_download\"></i></a>\n</td>";
   return buffer;
