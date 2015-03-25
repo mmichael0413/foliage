@@ -92,9 +92,9 @@ define(function(require){
 
         Handlebars.registerHelper('lockActionDisplay', function(locked) {
            if(locked) {
-               return 'Lock'
-           } else {
                return 'Unlock'
+           } else {
+               return 'Lock'
            }
         });
 
