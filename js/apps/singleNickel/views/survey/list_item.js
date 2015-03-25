@@ -7,10 +7,12 @@ define(function(require) {
         tagName: 'tr',
         template: HandlebarsTemplates['singleNickel/survey/list_item'],
         events: {
-          'click .delete': 'removeSurvey'
+          'click .delete': 'removeSurvey',
+          'click .lock': 'toggleLock'
         },
         initialize: function() {
-            _.bindAll(this, 'removeSurvey');
+            _.bindAll(this, 'removeSurvey', 'toggleLock');
+            this.listenTo(this.model, 'change:locked', this.render);
         },
         render: function() {
             this.$el.html(this.template({survey: this.model.toJSON()}));
@@ -29,6 +31,13 @@ define(function(require) {
                    alert('Something went wrong... Contact dev team.');
                 });
             }
+        },
+        toggleLock: function(e) {
+            e.preventDefault();
+            var self = this;
+            this.model.toggleLock().done(function(response) {
+                self.model.set(response);
+            });
         }
     });
 

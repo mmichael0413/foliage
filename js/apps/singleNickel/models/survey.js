@@ -1,5 +1,7 @@
 define(function(require){
-    var BaseModel = require('singleNickel/models/base'),
+    var _ = require('underscore'),
+        Backbone = require('backbone'),
+        BaseModel = require('singleNickel/models/base'),
         Sections = require('singleNickel/collections/sections'),
         Customers = require('singleNickel/collections/customers');
 
@@ -35,6 +37,16 @@ define(function(require){
         },
         redirect: function() {
             return  '/surveys/' + this.id + '/edit';
+        },
+        toggleLock: function(opts) {
+            var options = {
+                    url: this.url() + '/lock',
+                    type: 'PUT'
+                };
+
+            _.extend(options, opts);
+
+            return (this.sync || Backbone.sync).call(this, null, this, options);
         },
         validation: {
             title: [{
