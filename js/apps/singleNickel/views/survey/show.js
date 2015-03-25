@@ -13,8 +13,8 @@ define(function(require) {
             var self = this;
             this.model.fetch().success(function() {
                 self.$el.html(self.template(self.model));
-                self.$el.find('select').chosen({disable_search: true, width: "100%"});
-                self.$el.find('.datetime').datetimepicker();
+                self.$('select').chosen({disable_search: true, width: "100%"});
+                self.$('.datetime').datetimepicker();
             }).fail(function() {
                 alert('There was a problem with show.  Contact Andrew!');
             });
