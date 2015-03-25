@@ -2,6 +2,7 @@ define(function(require){
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
+        Handlebars = require('handlebars'),
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
         MainLayout = require('shared/views/layout/main'),
@@ -9,6 +10,7 @@ define(function(require){
         ShowView = require('singleNickel/views/survey/show'),
         BuilderView = require('singleNickel/views/survey/build/builder'),
         DeleteView = require('singleNickel/views/survey/delete'),
+        User = require('singleNickel/models/user'),
         SurveyModel = require('singleNickel/models/survey'),
         SurveyCollection = require('singleNickel/collections/surveys');
 
@@ -77,8 +79,24 @@ define(function(require){
 
         context.currentUser = null;
         if(window.currentUser !== undefined) {
-            context.currentUser = new Backbone.Model(window.currentUser);
+            context.currentUser = new User(window.currentUser);
         }
+
+        Handlebars.registerHelper('isSuperAdmin', function(options) {
+            if(context.currentUser.isSuperAdmin()) {
+                return options.fn(this);
+            } else {
+                return options.inverse(this);
+            }
+        });
+
+        Handlebars.registerHelper('lockActionDisplay', function(locked) {
+           if(locked) {
+               return 'Lock'
+           } else {
+               return 'Unlock'
+           }
+        });
 
         Backbone.history.start({pushState: true, hashChange: false});
     };

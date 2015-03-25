@@ -764,18 +764,48 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["ThirdChannel"]["templates"]["singleNickel/survey/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
+function program1(depth0,data) {
+  
+  
+  return "\n        <strong>Survey Locked</strong>\n    ";
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n        <a class=\"btn primary\" href=\"/surveys/"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "/edit\"><i class=\"ic fa ic_post\"></i></a>\n        <a class=\"btn primary delete\" href=\"#\" alt=\"Remove Survey\"><i class=\"ic fa ic_x\"></i></a>\n    ";
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n        <a class=\"btn primary lock\" href=\"#\" alt=\"Toggle Locked\"><i class=\"ic fa ic_open-circle\"></i> "
+    + escapeExpression((helper = helpers.lockActionDisplay || (depth0 && depth0.lockActionDisplay),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options) : helperMissing.call(depth0, "lockActionDisplay", ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options)))
+    + "</a>\n    ";
+  return buffer;
+  }
 
   buffer += "<td><a href=\"/surveys/"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a></td>\n<td>\n    <a class=\"btn primary\" href=\"/surveys/"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "/edit\"><i class=\"ic fa ic_post\"></i></a>\n    <a class=\"btn primary delete\" href=\"#\" alt=\"Remove Survey\"><i class=\"ic fa ic_x\"></i></a>\n    <a class=\"btn primary\" href=\""
+    + "</a></td>\n<td>\n    ";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    <a class=\"btn primary\" href=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.links)),stack1 == null || stack1 === false ? stack1 : stack1['export'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" alt=\"Export Survey YAML\"><i class=\"ic fa ic_download\"></i></a>\n    <a class=\"btn primary\" href=\"#\" alt=\"Toggle Locked\"><i class=\"ic fa ic_open-circle\"></i> Unlocked</a>\n</td>";
+    + "\" alt=\"Export Survey YAML\"><i class=\"ic fa ic_download\"></i></a>\n    ";
+  options={hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data}
+  if (helper = helpers.isSuperAdmin) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.isSuperAdmin); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.isSuperAdmin) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</td>";
   return buffer;
   });
 

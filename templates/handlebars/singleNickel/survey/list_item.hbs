@@ -1,7 +1,13 @@
 <td><a href="/surveys/{{survey.id}}">{{survey.title}}</a></td>
 <td>
-    <a class="btn primary" href="/surveys/{{survey.id}}/edit"><i class="ic fa ic_post"></i></a>
-    <a class="btn primary delete" href="#" alt="Remove Survey"><i class="ic fa ic_x"></i></a>
+    {{#if survey.locked}}
+        <strong>Survey Locked</strong>
+    {{else}}
+        <a class="btn primary" href="/surveys/{{survey.id}}/edit"><i class="ic fa ic_post"></i></a>
+        <a class="btn primary delete" href="#" alt="Remove Survey"><i class="ic fa ic_x"></i></a>
+    {{/if}}
     <a class="btn primary" href="{{survey.links.export}}" alt="Export Survey YAML"><i class="ic fa ic_download"></i></a>
-    <a class="btn primary lock" href="#" alt="Toggle Locked"><i class="ic fa ic_open-circle"></i> Unlocked</a>
+    {{#isSuperAdmin}}
+        <a class="btn primary lock" href="#" alt="Toggle Locked"><i class="ic fa ic_open-circle"></i> {{ lockActionDisplay survey.locked }}</a>
+    {{/isSuperAdmin}}
 </td>
