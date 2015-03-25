@@ -16,7 +16,7 @@ define(function(require) {
             this.model.fetch().success(function() {
                 self.$el.html(self.template(self.model));
             }).fail(function() {
-                alert('There was a problem with delete.  Contact Andrew!')
+                alert('There was a problem with delete.  Contact Andrew!');
             });
 
             return this;
@@ -25,7 +25,7 @@ define(function(require) {
             this.model.destroy().success(function() {
                 window.location.href = '/';
             }).fail(function() {
-                alert('There was a problem with delete.  Contact Andrew!')
+                alert('There was a problem with delete.  Contact Andrew!');
             });
         }
     });

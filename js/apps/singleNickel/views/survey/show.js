@@ -16,7 +16,7 @@ define(function(require) {
                 self.$el.find('select').chosen({disable_search: true, width: "100%"});
                 self.$el.find('.datetime').datetimepicker();
             }).fail(function() {
-                alert('There was a problem with show.  Contact Andrew!')
+                alert('There was a problem with show.  Contact Andrew!');
             });
 
             return this;
