@@ -50,7 +50,7 @@ define(function(require){
         },
         showSurvey: function(surveyId) {
             var survey = new SurveyModel({id: surveyId});
-            survey.fetch().success(function(model){
+            survey.fetch().done(function(model){
                 $('#survey-container').html(new ShowView({model: survey}).render().$el);
             }).fail(function(){
                 alert("contact andrew");

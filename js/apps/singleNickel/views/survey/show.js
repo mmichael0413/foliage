@@ -10,15 +10,9 @@ define(function(require) {
             this.model = args.model;
         },
         render: function() {
-            var self = this;
-            this.model.fetch().success(function() {
-                self.$el.html(self.template(self.model));
-                self.$('select').chosen({disable_search: true, width: "100%"});
-                self.$('.datetime').datetimepicker();
-            }).fail(function() {
-                alert('There was a problem with show.  Contact Andrew!');
-            });
-
+            this.$el.html(this.template(this.model));
+            this.$('select').chosen({disable_search: true, width: "100%"});
+            this.$('.datetime').datetimepicker();
             return this;
         }
     });
