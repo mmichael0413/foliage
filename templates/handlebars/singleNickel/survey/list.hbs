@@ -7,22 +7,7 @@
             <th>Actions</th>
         </tr>
         </thead>
-        <tbody>
-        {{#if surveys}}
-        {{#each surveys}}
-            <tr>
-                <td><a href="/surveys/{{this.id}}">{{this.title}}</a></td>
-                <td>
-                    <a href="/surveys/{{this.id}}/edit">Edit</a>
-                    <a href="/surveys/{{this.id}}/delete">Delete</a>
-                    <a href="{{this.links.export}}">Export</a>
-                </td>
-            </tr>
-        {{/each}}
-        {{else}}
-            <tr><td>No Surveys</td><td></td></tr>
-        {{/if}}
-        </tbody>
+        <tbody id="survey-list-items"></tbody>
     </table>
 </div>
 
