@@ -73,6 +73,12 @@ define(function(require){
         namespacer('bootstrap');
         context.router = new AppRouter();
         namespacer('context.instances');
+
+        context.currentUser = null;
+        if(window.currentUser !== undefined) {
+            context.currentUser = new Backbone.Model(window.currentUser);
+        }
+        
         Backbone.history.start({pushState: true, hashChange: false});
     };
     return {
