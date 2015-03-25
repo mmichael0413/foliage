@@ -36,12 +36,10 @@ define(function(require) {
         },
         add: function(e) {
             this.stopEvent(e);
-            this.addChild();
+            var child = this.children.add(this.model.childParams());
+            this.addChild(child);
         },
         addChild: function(child) {
-            var self = this;
-            child = child || this.children.add(this.model.childParams());
-
             this.$childContainer.append(new Builder({model: child}).render().el);
 
             /*
