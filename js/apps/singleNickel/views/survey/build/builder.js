@@ -15,9 +15,6 @@ define(function(require) {
             'click .cancel': 'cancel',
             'change select': 'updateInputChildren'
         },
-        initialize: function(options) {
-            this.model = options.model;
-        },
         render: function(template) {
             if (template === undefined) {
                 template = this.model.isNew() ? this.editTemplate : this.showTemplate;
