@@ -15,6 +15,7 @@ define(function(require){
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             '(/)': 'listSurveys',
+            'surveys(/)': 'listSurveys',
             'new(/)': 'buildSurvey',
             'surveys/:id(/)': 'showSurvey',
             'surveys/:id/edit(/)': 'editSurvey',
