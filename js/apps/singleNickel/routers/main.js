@@ -35,9 +35,11 @@ define(function(require){
             window.bootstrap.navigation = _.extend(this.navigation, _.extend(_.find(this.navigation, function(obj) { return obj.route == route; }), {active: true}));
         },
 
-        listSurveys: function() {
-            console.log('listSurveys');
+        after: function() {
+            MainLayout.init();
+        },
 
+        listSurveys: function() {
             var surveys = new SurveyCollection();
             surveys.fetch().then(function(response) {
                 $('#survey-container').html(new ListView({
@@ -66,9 +68,6 @@ define(function(require){
         },
         deleteSurvey: function(surveyId) {
             $('#survey-container').html(new DeleteView({surveyId: surveyId}).render().$el);
-        },
-        after: function() {
-            MainLayout.init();
         }
     });
 
@@ -92,9 +91,9 @@ define(function(require){
 
         Handlebars.registerHelper('lockActionDisplay', function(locked) {
            if(locked) {
-               return 'Unlock'
+               return 'Unlock';
            } else {
-               return 'Lock'
+               return 'Lock';
            }
         });
 
