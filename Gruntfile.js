@@ -392,6 +392,18 @@ module.exports = function(grunt) {
                         dest: 'dist/thirdchannel/js/require.js'
                     },
                     {
+                        dest: 'dist/singleNickel/css/main.css'
+                    },
+                    {
+                        dest: 'dist/singleNickel/js/app.js'
+                    },
+                    {
+                        dest: 'dist/singleNickel/js/app.js.map'
+                    },
+                    {
+                        dest: 'dist/singleNickel/js/require.js'
+                    },
+                    {
                         dest: 'dist/marketing/css/main.css'
                     },
                     {
@@ -451,6 +463,18 @@ module.exports = function(grunt) {
                     },
                     {
                         dest: 'dist/thirdchannel/js/require.js'
+                    },
+                    {
+                        dest: 'dist/singleNickel/css/main.css'
+                    },
+                    {
+                        dest: 'dist/singleNickel/js/app.js'
+                    },
+                    {
+                        dest: 'dist/singleNickel/js/app.js.map'
+                    },
+                    {
+                        dest: 'dist/singleNickel/js/require.js'
                     },
                     {
                         dest: 'dist/marketing/css/main.css'

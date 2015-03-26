@@ -4,6 +4,6 @@ define(function(require){
 
     return BaseCollection.extend({
         model: Survey,
-        url: '/api/surveys'
+        url: '/api/surveys.json'
     });
 });
