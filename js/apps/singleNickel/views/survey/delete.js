@@ -1,5 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         Model = require('singleNickel/models/survey');
 
@@ -16,7 +17,7 @@ define(function(require) {
             this.model.fetch().success(function() {
                 self.$el.html(self.template(self.model));
             }).fail(function() {
-                alert('There was a problem with delete.  Contact Andrew!');
+                context.trigger('error');
             });
 
             return this;
@@ -25,7 +26,7 @@ define(function(require) {
             this.model.destroy().success(function() {
                 window.location.href = '/';
             }).fail(function() {
-                alert('There was a problem with delete.  Contact Andrew!');
+                context.trigger('error');
             });
         }
     });

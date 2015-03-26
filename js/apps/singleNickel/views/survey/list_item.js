@@ -26,7 +26,7 @@ define(function(require) {
                 this.model.destroy().success(function() {
                     self.remove();
                 }).fail(function() {
-                   alert('Something went wrong... Contact dev team.');
+                    context.trigger('error');
                 });
             }
         },
@@ -36,7 +36,7 @@ define(function(require) {
             this.model.toggleLock().done(function(response) {
                 self.model.set(response);
             }).fail(function() {
-                alert('Unable to toggle the lock.');
+                context.trigger('error');
             });
         }
     });

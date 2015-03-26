@@ -5,7 +5,7 @@ define(function(require){
         Handlebars = require('handlebars'),
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
-        MainLayout = require('shared/views/layout/main'),
+        MainLayout = require('singleNickel/views/layout/main'),
         ListView = require('singleNickel/views/survey/list'),
         ShowView = require('singleNickel/views/survey/show'),
         BuilderView = require('singleNickel/views/survey/build/builder'),
@@ -45,7 +45,7 @@ define(function(require){
             surveys.fetch().then(function(response) {
                 $('#survey-container').html(new ListView({collection: surveys}).render().el);
             }).fail(function() {
-                alert('error');
+                context.trigger('error');
             });
         },
         buildSurvey: function() {
@@ -56,7 +56,7 @@ define(function(require){
             survey.fetch().done(function(model){
                 $('#survey-container').html(new ShowView({model: survey}).render().el);
             }).fail(function(){
-                alert("error");
+                context.trigger('error');
             });
         },
         editSurvey: function(surveyId) {
@@ -64,7 +64,7 @@ define(function(require){
             survey.fetch().success(function(model) {
                 $('#survey-container').html(new BuilderView({model: survey}).render().el);
             }).fail(function(){
-                alert("error");
+                context.trigger('error');
             });
         },
         deleteSurvey: function(surveyId) {

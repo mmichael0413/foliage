@@ -61,7 +61,7 @@ define(function(require) {
                 this.model.destroy().done(function() {
                     self.remove();
                 }).fail(function() {
-                   alert('An error has occurred.');
+                    context.trigger('error');
                 });
             }
         },
@@ -76,7 +76,7 @@ define(function(require) {
                         Backbone.history.navigate(self.model.redirect());
                     }
                 }).fail(function () {
-                    alert('An error has occurred.  Please contact Andrew!');
+                    context.trigger('error');
                 });
             }
         },
