@@ -12,7 +12,8 @@ define(function(require){
         DeleteView = require('singleNickel/views/survey/delete'),
         User = require('singleNickel/models/user'),
         SurveyModel = require('singleNickel/models/survey'),
-        SurveyCollection = require('singleNickel/collections/surveys');
+        SurveyCollection = require('singleNickel/collections/surveys'),
+        Customers = require('singleNickel/collections/customers');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
@@ -75,6 +76,8 @@ define(function(require){
         namespacer('bootstrap');
         context.router = new AppRouter();
         namespacer('context.instances');
+
+        context.customers = new Customers(window.customers);
 
         context.currentUser = null;
         if(window.currentUser !== undefined) {

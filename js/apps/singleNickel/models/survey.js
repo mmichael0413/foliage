@@ -1,6 +1,7 @@
 define(function(require){
     var _ = require('underscore'),
         Backbone = require('backbone'),
+        context = require('context'),
         BaseModel = require('singleNickel/models/base'),
         Sections = require('singleNickel/collections/sections'),
         Customers = require('singleNickel/collections/customers');
@@ -25,13 +26,7 @@ define(function(require){
         },
         setup: function(options) {
             this.options.survey = this;
-            this.getCustomers();
-        },
-        getCustomers: function(){
-            this.customers = new Customers();
-            this.customers.fetch({async:false}).fail(function () {
-                alert('An error has occurred.  Please contact Andrew!');
-            });
+            this.customers = context.customers;
         },
         url: function() {
             return '/api/surveys/' + (this.id || '');

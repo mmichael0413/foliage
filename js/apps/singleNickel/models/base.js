@@ -12,10 +12,6 @@ define(function(require){
             this.options[this.type + "Id"] = this.id;
             if (!_.isUndefined(options.attributes)) this.set(options.attributes);
             if (_.isFunction(this.childrenCollection)) this.children = new this.childrenCollection((options.children || []), this.options);
-            //if(this.options.survey !== undefined) {
-            //    console.log(this.options.survey.get('locked'));
-            //    this.set('locked', this.options.survey.get('locked'));
-            //}
             if(this.options.survey !== undefined) {
                 this.listenTo(this.options.survey, 'change:locked', this.surveyLockChange);
             }
