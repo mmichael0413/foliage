@@ -16,6 +16,14 @@ define(function (require) {
             return this;
         },
         displayAlert: function() {
+            var wWidth = $(window).width(),
+                wHeight = $(window).height(),
+                width = this.$('.alert').width(),
+                height = 75,
+                top = (wHeight/2) - (height/2),
+                left = (wWidth/2) - (width/2);
+
+            this.$('.alert').css({'left': left, 'top': top});
             this.$('.alert').show().delay(5000).fadeOut();
         },
         hideAlert: function() {
