@@ -6,7 +6,7 @@ define(function(require){
         BackboneValidatorPatch = require('backboneValidatorPatch'),
         Router = require('singleNickel/routers/main');
 
-    var initialize = function(){
+    var initialize = function() {
         Router.initialize();
     };
 

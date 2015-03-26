@@ -58,9 +58,11 @@ define(function(require) {
             this.stopEvent(e);
             if (confirm("Please confirm that you wish to delete this " + this.model.type) === true) {
                 var self = this;
-                this.model.destroy({success: function(model, response) {
+                this.model.destroy().done(function() {
                     self.remove();
-                }});
+                }).fail(function() {
+                   alert('An error has occurred.');
+                });
             }
         },
         update: function(e) {
