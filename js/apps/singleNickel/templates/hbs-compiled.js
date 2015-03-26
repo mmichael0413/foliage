@@ -426,12 +426,14 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 Handlebars.registerPartial("showSurvey", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 
   buffer += "<div>\n    <div class=\"controls show\">\n        <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_post\"></i></a>\n    </div>\n    <h1>"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</h1>\n    <div class=\"children survey\"></div>\n    <div class=\"controls child\">\n        <a href=\"#\" class=\"add btn light solid\"><i class=\"ic ic_add\"></i> Add New Section</a>\n    </div>\n</div>\n\n\n";
+    + "</h1>\n    <h2>"
+    + escapeExpression((helper = helpers.lockDisplay || (depth0 && depth0.lockDisplay),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options) : helperMissing.call(depth0, "lockDisplay", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options)))
+    + " for editing</h2>\n    <div class=\"children survey\"></div>\n    <div class=\"controls child\">\n        <a href=\"#\" class=\"add btn light solid\"><i class=\"ic ic_add\"></i> Add New Section</a>\n    </div>\n</div>\n\n\n";
   return buffer;
   }));
 

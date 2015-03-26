@@ -97,6 +97,14 @@ define(function(require){
            }
         });
 
+        Handlebars.registerHelper('lockDisplay', function(locked) {
+            if(locked) {
+                return 'Locked';
+            } else {
+                return 'Unlocked';
+            }
+        });
+
         Handlebars.registerHelper('lockActionIconClass', function(locked) {
            if(locked) {
                return 'ic_open-circle'
