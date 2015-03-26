@@ -29,7 +29,7 @@ define(function(require){
             this.customers = context.customers;
         },
         url: function() {
-            return '/api/surveys/' + ((this.id !== undefined) ? '/' + this.id : '') + '.json';
+            return '/api/surveys' + (this.isNew() ? '' : '/' + this.id) + '.json';
         },
         redirect: function() {
             return  '/surveys/' + this.id + '/edit';
