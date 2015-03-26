@@ -24,7 +24,7 @@ define(function (require) {
                 left = (wWidth/2) - (width/2);
 
             this.$('.alert').css({'left': left, 'top': top});
-            this.$('.alert').show().delay(5000).fadeOut();
+            this.$('.alert').show().delay(3500).fadeOut();
         },
         hideAlert: function() {
             this.$('.alert').hide();
