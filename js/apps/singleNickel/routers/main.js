@@ -97,6 +97,14 @@ define(function(require){
            }
         });
 
+        Handlebars.registerHelper('lockActionIconClass', function(locked) {
+           if(locked) {
+               return 'ic_open-circle'
+           } else {
+               return 'ic_closed-circle'
+           }
+        });
+
         Backbone.history.start({pushState: true, hashChange: false});
     };
     return {

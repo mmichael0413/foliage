@@ -8,6 +8,6 @@
     {{/if}}
     <a class="btn primary" href="{{survey.links.export}}" alt="Export Survey YAML"><i class="ic fa ic_download"></i></a>
     {{#isSuperAdmin}}
-        <a class="btn primary lock" href="#" alt="Toggle Locked"><i class="ic fa ic_open-circle"></i> {{ lockActionDisplay survey.locked }}</a>
+        <a class="btn primary lock" href="#" alt="Toggle Locked"><i class="ic fa {{ lockActionIconClass survey.locked }}"></i> {{ lockActionDisplay survey.locked }}</a>
     {{/isSuperAdmin}}
 </td>

@@ -784,7 +784,9 @@ function program3(depth0,data) {
 function program5(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n        <a class=\"btn primary lock\" href=\"#\" alt=\"Toggle Locked\"><i class=\"ic fa ic_open-circle\"></i> "
+  buffer += "\n        <a class=\"btn primary lock\" href=\"#\" alt=\"Toggle Locked\"><i class=\"ic fa "
+    + escapeExpression((helper = helpers.lockActionIconClass || (depth0 && depth0.lockActionIconClass),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options) : helperMissing.call(depth0, "lockActionIconClass", ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options)))
+    + "\"></i> "
     + escapeExpression((helper = helpers.lockActionDisplay || (depth0 && depth0.lockActionDisplay),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options) : helperMissing.call(depth0, "lockActionDisplay", ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options)))
     + "</a>\n    ";
   return buffer;
