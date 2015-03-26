@@ -1,8 +1,12 @@
 <div class="section">
-    {{> showControls this}}
+    {{#unless attributes.locked}}
+        {{> showControls this}}
+    {{/unless}}
     <h3>{{attributes.title}}</h3>
     <div class="children"></div>
-    <div class="controls child">
-        <a href="#" class="add btn light solid"><i class="ic ic_add"></i> Add New Question</a>
-    </div>
+    {{#unless attributes.locked}}
+        <div class="controls child">
+            <a href="#" class="add btn light solid"><i class="ic ic_add"></i> Add New Question</a>
+        </div>
+    {{/unless}}
 </div>

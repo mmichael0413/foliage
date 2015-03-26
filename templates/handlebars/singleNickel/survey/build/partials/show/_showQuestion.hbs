@@ -1,14 +1,18 @@
 <div class="question">
-    <div class="controls show">
-        <a href="#" class="edit btn light round"><i class="ic ic_post"></i></a>
-        <a href="#" class="delete btn primary round"><i class="ic ic_remove"></i></a>
-    </div>
+    {{#unless attributes.locked}}
+        <div class="controls show">
+            <a href="#" class="edit btn light round"><i class="ic ic_post"></i></a>
+            <a href="#" class="delete btn primary round"><i class="ic ic_remove"></i></a>
+        </div>
+    {{/unless}}
     <p class="content">{{attributes.ask}}</p>
     {{#if children}}
         <div class="children"></div>
-        <div class="controls child">
-            <a href="#" class="add btn light round"><i class="ic ic_add"></i></a>
-        </div>
+        {{#unless attributes.locked}}
+            <div class="controls child">
+                <a href="#" class="add btn light round"><i class="ic ic_add"></i></a>
+            </div>
+        {{/unless}}
     {{/if}}
     {{#if attributes.placeholder}}
         <input type="text" placeholder="{{attributes.placeholder}}">

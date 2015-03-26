@@ -42,32 +42,32 @@ define(function(require){
         listSurveys: function() {
             var surveys = new SurveyCollection();
             surveys.fetch().then(function(response) {
-                $('#survey-container').html(new ListView({
-                    collection: surveys
-                }).render().el);
+                $('#survey-container').html(new ListView({collection: surveys}).render().el);
+            }).fail(function() {
+                alert('error');
             });
         },
         buildSurvey: function() {
-            $('#survey-container').html(new BuilderView({model: new SurveyModel({})}).render().$el);
+            $('#survey-container').html(new BuilderView({model: new SurveyModel({})}).render().el);
         },
         showSurvey: function(surveyId) {
             var survey = new SurveyModel({id: surveyId});
             survey.fetch().done(function(model){
-                $('#survey-container').html(new ShowView({model: survey}).render().$el);
+                $('#survey-container').html(new ShowView({model: survey}).render().el);
             }).fail(function(){
-                alert("contact andrew");
+                alert("error");
             });
         },
         editSurvey: function(surveyId) {
             var survey = new SurveyModel({id: surveyId});
-            survey.fetch().success(function(model){
-                $('#survey-container').html(new BuilderView({model: survey}).render().$el);
+            survey.fetch().success(function(model) {
+                $('#survey-container').html(new BuilderView({model: survey}).render().el);
             }).fail(function(){
-                alert("contact andrew");
+                alert("error");
             });
         },
         deleteSurvey: function(surveyId) {
-            $('#survey-container').html(new DeleteView({surveyId: surveyId}).render().$el);
+            $('#survey-container').html(new DeleteView({surveyId: surveyId}).render().el);
         }
     });
 

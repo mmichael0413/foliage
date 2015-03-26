@@ -24,6 +24,7 @@ define(function(require){
             'change:id': "updateChildren"
         },
         setup: function(options) {
+            this.options.survey = this;
             this.getCustomers();
         },
         getCustomers: function(){
@@ -67,6 +68,9 @@ define(function(require){
                 required: true,
                 message: "Required"
             }
+        },
+        defaults: {
+            "locked": false
         }
     });
 });
