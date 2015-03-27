@@ -2,9 +2,6 @@
     <div>
         <div class="chart line-chart">
             <p>{{{title}}}</p>
-            {{#if show_view_list}}
-                <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
-            {{/if}}
             <ul class="legend">
                 {{#each results.datasets}}
                     <li><i class="fa fa-circle" style="color: {{value_lookup this.label ../config.legendColors}}"></i> {{this.label}}</li>
@@ -12,5 +9,8 @@
             </ul>
             <canvas></canvas>
         </div>
+        {{#if show_view_list}}
+            <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
+        {{/if}}
     </div>
 </div>

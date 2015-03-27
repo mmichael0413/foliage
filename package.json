@@ -9,24 +9,25 @@
     "rework-pure-grids": "1.0.0"
   },
   "devDependencies": {
+    "grunt-aws-s3": "*",
+    "grunt-concurrent": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-copy": "*",
     "grunt-contrib-handlebars": "^0.8.0",
     "grunt-contrib-jshint": "0.6.4",
     "grunt-contrib-requirejs": "^0.4.4",
     "grunt-contrib-sass": "^0.7.3",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-nodemon": "*",
-    "grunt-concurrent": "*",
-    "grunt-pure-grids": "^1.0.2",
-    "grunt-contrib-copy": "*",
-    "grunt-aws-s3": "*",
     "grunt-invalidate-cloudfront": "*",
-    "grunt-contrib-clean": "*",
-    "matchdep": "^0.3.0",
-    "mime": "*",
     "grunt-karma": "^0.9.0",
-    "karma-requirejs": "~0.2.1",
-    "karma-phantomjs-launcher": "~0.1.3",
+    "grunt-nodemon": "*",
+    "grunt-pure-grids": "^1.0.2",
+    "karma-jasmine": "^0.2.3",
     "karma-osx-reporter": "^0.1.0",
-    "karma-jasmine": "^0.2.3"
+    "karma-phantomjs-launcher": "~0.1.3",
+    "karma-requirejs": "~0.2.1",
+    "load-grunt-config": "^0.16.0",
+    "matchdep": "^0.3.0",
+    "mime": "*"
   }
 }
