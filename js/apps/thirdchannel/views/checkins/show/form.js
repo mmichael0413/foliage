@@ -4,7 +4,8 @@ define(function(require) {
         FormModel = require('thirdchannel/models/checkins/show/form'),
         SerializeObject = require('serializeObject'),
         Chosen = require('chosen'),
-        Expanding = require('expanding');
+        Expanding = require('expanding'),
+        DateTimePicker = require('dateTimePicker');
 
     return Backbone.View.extend({
         el: '.checkin-form',

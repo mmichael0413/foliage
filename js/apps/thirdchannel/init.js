@@ -28,7 +28,8 @@ require.config({
         'quill-youtube' : '../libs/quill/modules/youtube',
         'helpers' : 'thirdchannel/utils/helpers',
         'pikaday' : '../libs/bower_components/pikaday/pikaday',
-        'chartist' : '../libs/bower_components/chartist/dist/chartist'
+        'chartist' : '../libs/bower_components/chartist/dist/chartist',
+        'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker"
     },
     shim: {
         "jquery": {
@@ -91,6 +92,9 @@ require.config({
         },
         'chartjs_stacked_bar': {
             deps: ['chartjs']
+        },
+        'dateTimePicker': {
+            deps: ["jquery"]
         }
     }
 });
