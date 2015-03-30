@@ -7,7 +7,7 @@ define(function(require){
         childrenCollection: undefined,
         events: {},
         initialize: function(options) {
-            _.bindAll(this, 'surveyLockChange')
+            _.bindAll(this, 'surveyLockChange');
             this.options = options.options || {};
             this.options[this.type + "Id"] = this.id;
             if (!_.isUndefined(options.attributes)) this.set(options.attributes);

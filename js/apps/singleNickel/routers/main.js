@@ -110,9 +110,9 @@ define(function(require){
 
         Handlebars.registerHelper('lockActionIconClass', function(locked) {
            if(locked) {
-               return 'ic_open-circle'
+               return 'ic_open-circle';
            } else {
-               return 'ic_closed-circle'
+               return 'ic_closed-circle';
            }
         });
 
