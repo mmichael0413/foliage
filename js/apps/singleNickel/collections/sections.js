@@ -6,7 +6,7 @@ define(function(require){
         model: SectionModel,
         comparator: 'idx',
         url: function() {
-            return '/api/surveys/'+ this.options.surveyId + '/sections.json';
+            return '/api/surveys/'+ this.options.surveyId + '/sections';
         }
     });
 });
