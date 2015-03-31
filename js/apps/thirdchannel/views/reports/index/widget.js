@@ -61,6 +61,8 @@ define(function(require) {
                 widget = this.createGenericHorizontalBarChart();
             } else if (this.model.display_type == 16) {
                 widget = this.createHorizontalStackedBarChart();
+            } else if (this.model.display_type == 17) {
+                widget = this.createHeatmap();
             }
 
             this.setElement(widget);
@@ -113,6 +115,9 @@ define(function(require) {
         },
         createHorizontalStackedBarChart: function() {
             return new StackedBarChartView(this.model).render().$el;
+        },
+        createHeatmap: function() {
+            return new HeatmapView(this.model).render().$el;
         }
     });
 });
