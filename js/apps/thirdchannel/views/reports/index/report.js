@@ -18,8 +18,8 @@ define(function(require) {
             this.loadingView = new LoadingView();
 
             var self = this;
-            this.listenTo(context, 'filter-toggled', function() {
-                setTimeout(function(){ self.triggerPostRender(); }, 1000);
+            this.listenTo(context, 'filter-toggled:complete', function() {
+                self.triggerPostRender();
             });
         },
         render: function (options) {

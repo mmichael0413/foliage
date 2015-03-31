@@ -99,7 +99,11 @@ define(function (require) {
             'click .collapse-nav': 'collapseNav',
             "click .scroll-top" : "scrollTop",
             "click .content-holder" : "closeNav",
-            "click #mobile-header" : "closeNav"
+            "click #mobile-header" : "closeNav",
+            "transitionend" : "navTransitionEnd",
+            "webkitTransitionEnd" : "navTransitionEnd",
+            "oTransitionEnd" : "navTransitionEnd",
+            "MSTransitionEnd" : "navTransitionEnd"
         },
         render: function(){
              this.$('#site-menu').append(this.template({navItems: window.bootstrap.navigation}));
@@ -149,6 +153,11 @@ define(function (require) {
             }
 
             context.trigger('filter-toggled');
+        },
+        navTransitionEnd: function (e) {
+            if (e.originalEvent.propertyName == 'transform') {
+                context.trigger('filter-toggled:complete');
+            }
         },
         toggleSubnav: function (e) {
             if(e) {
