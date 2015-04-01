@@ -6,7 +6,7 @@ define(function(require){
         model: QuestionModel,
         comparator: 'idx',
         url: function() {
-            return '/api/surveys/'+ this.options.surveyId + '/sections/' + this.options.sectionId + '/questions.json';
+            return '/api/surveys/'+ this.options.surveyId + '/sections/' + this.options.sectionId + '/questions';
         }
     });
 });
