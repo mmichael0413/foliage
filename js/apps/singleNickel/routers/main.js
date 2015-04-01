@@ -31,13 +31,15 @@ define(function(require){
         ],
 
         before: function (parameters, route, name) {
-            // stuff the bootstrap into the context
-            _.extend(context, window.bootstrap);
-            window.bootstrap.navigation = _.extend(this.navigation, _.extend(_.find(this.navigation, function(obj) { return obj.route == route; }), {active: true}));
-        },
+            console.log(route);
 
-        after: function() {
-            MainLayout.init();
+            var active = _.find(this.navigation, function(obj) { return obj.route == route; });
+            if(active !== undefined) {
+                _.extend(this.navigation, _.extend(active, {active: true}));
+            }
+            window.bootstrap.navigation = this.navigation;
+
+            context.trigger('navigation:changed');
         },
 
         listSurveys: function() {
@@ -117,6 +119,8 @@ define(function(require){
         });
 
         Backbone.history.start({pushState: true, hashChange: false});
+
+        MainLayout.init();
     };
     return {
         initialize: initialize
