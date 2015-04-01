@@ -26,18 +26,25 @@ define(function(require){
         },
 
         navigation:  [
-            {title: 'View Surveys', link: '/', route:'(/)', icon: 'ic_clipboard'},
-            {title: 'Create New Survey',  link: '/new', route:'new(/)', icon: 'ic_add'}
+            {title: 'View Surveys', link: '/', route:'(/)', icon: 'ic_clipboard', active: false},
+            {title: 'Create New Survey',  link: '/new', route:'new(/)', icon: 'ic_add', active: false}
         ],
+
+        initialize: function() {
+            window.bootstrap.navigation = _.clone(this.navigation);
+        },
 
         before: function (parameters, route, name) {
             console.log(route);
 
-            var active = _.find(this.navigation, function(obj) { return obj.route == route; });
-            if(active !== undefined) {
-                _.extend(this.navigation, _.extend(active, {active: true}));
+            _.each(window.bootstrap.navigation, function(nav) {
+                nav.active = false;
+            });
+
+            var activeNavigation = _.find(window.bootstrap.navigation, function(obj) { return obj.route == route; });
+            if(activeNavigation !== undefined) {
+                _.extend(window.bootstrap.navigation, _.extend(activeNavigation, {active: true}));
             }
-            window.bootstrap.navigation = this.navigation;
 
             context.trigger('navigation:changed');
         },

@@ -24,7 +24,7 @@ define(function (require) {
                 this.render();
             }
 
-            //this.listenTo(context, 'navigation:changed', this.render);
+            this.listenTo(context, 'navigation:changed', this.render);
 
             if(!this.isLocalStorageSupported()) {
                 return;
