@@ -35,8 +35,6 @@ define(function(require){
         },
 
         before: function (parameters, route, name) {
-            console.log(route);
-
             _.each(window.bootstrap.navigation, function(nav) {
                 nav.active = false;
             });
