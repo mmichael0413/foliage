@@ -24,6 +24,8 @@ define(function (require) {
                 this.render();
             }
 
+            this.listenTo(context, 'navigation:changed', this.render);
+
             if(!this.isLocalStorageSupported()) {
                 return;
             }
@@ -106,7 +108,7 @@ define(function (require) {
             "MSTransitionEnd" : "navTransitionEnd"
         },
         render: function(){
-             this.$('#site-menu').append(this.template({navItems: window.bootstrap.navigation}));
+            this.$('#site-menu').html(this.template({navItems: window.bootstrap.navigation}));
         },
         toggleNav: function (e) {
             if(e) {

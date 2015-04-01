@@ -26,18 +26,25 @@ define(function(require){
         },
 
         navigation:  [
-            {title: 'View Surveys', link: '/', route:'(/)', icon: 'ic_clipboard'},
-            {title: 'Create New Survey',  link: '/new', route:'new(/)', icon: 'ic_add'}
+            {title: 'View Surveys', link: '/', route:'(/)', icon: 'ic_clipboard', active: false},
+            {title: 'Create New Survey',  link: '/new', route:'new(/)', icon: 'ic_add', active: false}
         ],
 
-        before: function (parameters, route, name) {
-            // stuff the bootstrap into the context
-            _.extend(context, window.bootstrap);
-            window.bootstrap.navigation = _.extend(this.navigation, _.extend(_.find(this.navigation, function(obj) { return obj.route == route; }), {active: true}));
+        initialize: function() {
+            window.bootstrap.navigation = _.clone(this.navigation);
         },
 
-        after: function() {
-            MainLayout.init();
+        before: function (parameters, route, name) {
+            _.each(window.bootstrap.navigation, function(nav) {
+                nav.active = false;
+            });
+
+            var activeNavigation = _.find(window.bootstrap.navigation, function(obj) { return obj.route == route; });
+            if(activeNavigation !== undefined) {
+                _.extend(window.bootstrap.navigation, _.extend(activeNavigation, {active: true}));
+            }
+
+            context.trigger('navigation:changed');
         },
 
         listSurveys: function() {
@@ -117,6 +124,8 @@ define(function(require){
         });
 
         Backbone.history.start({pushState: true, hashChange: false});
+
+        MainLayout.init();
     };
     return {
         initialize: initialize
