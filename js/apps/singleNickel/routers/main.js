@@ -99,30 +99,6 @@ define(function(require){
             }
         });
 
-        Handlebars.registerHelper('lockActionDisplay', function(locked) {
-           if(locked) {
-               return 'Unlock';
-           } else {
-               return 'Lock';
-           }
-        });
-
-        Handlebars.registerHelper('lockDisplay', function(locked) {
-            if(locked) {
-                return 'Locked';
-            } else {
-                return 'Unlocked';
-            }
-        });
-
-        Handlebars.registerHelper('lockActionIconClass', function(locked) {
-           if(locked) {
-               return 'ic_open-circle';
-           } else {
-               return 'ic_closed-circle';
-           }
-        });
-
         Backbone.history.start({pushState: true, hashChange: false});
 
         MainLayout.init();
