@@ -6,19 +6,19 @@ define(function(require) {
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/heatmap'],
         initialize: function (options) {
-            this.model = options;
-            this.model.config.legend = JSON.parse(this.model.config.legend);
-
             var self = this,
                 legend = {};
+
+            this.model = options;
+
+            // Build the legend collection (dealing with hstore -> json weirdness)
+            this.model.config.legend = JSON.parse(this.model.config.legend);
 
             _.each(this.model.config.legend, function(key, i) {
                legend[key] = self.model.config.legendColors[i];
             });
 
             this.model.config.legend = legend;
-
-            console.log(this.model.config.legend);
 
             console.log(this.model);
         },
