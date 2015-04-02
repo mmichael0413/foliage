@@ -1,0 +1,8 @@
+<div class="widget heatmap {{config.widget_class}}">
+    <p>{{{title}}}</p>
+    <ul class="legend">
+        {{#each config.legend}}
+            <li><i class="fa fa-circle" style="color: {{this}}"></i> {{@key}}</li>
+        {{/each}}
+    </ul>
+</div>

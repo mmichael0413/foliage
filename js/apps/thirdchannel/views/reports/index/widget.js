@@ -18,7 +18,8 @@ define(function(require) {
         ResolutionRowView = require('thirdchannel/views/reports/widgets/resolution_row'),
         LineChartView = require('thirdchannel/views/reports/widgets/line_chart'),
         GenericHorizontalBarChartView = require('thirdchannel/views/reports/widgets/generic_horizontal_bar_chart'),
-        StackedBarChartView = require('thirdchannel/views/reports/widgets/stacked_bar_chart');
+        StackedBarChartView = require('thirdchannel/views/reports/widgets/stacked_bar_chart'),
+        HeatmapView = require('thirdchannel/views/reports/widgets/heatmap');
 
     return Backbone.View.extend({
         tagName: "span",
