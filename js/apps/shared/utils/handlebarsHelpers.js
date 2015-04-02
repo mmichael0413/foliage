@@ -110,5 +110,21 @@ define(function(require){
         $el.find('[value="' + value + '"]').attr({'selected':'selected'});
         return $el.html();
     });
+
+    Handlebars.registerHelper('lockDisplay', function(locked) {
+        if(locked) {
+            return 'Unlock';
+        } else {
+            return 'Lock';
+        }
+    });
+
+    Handlebars.registerHelper('lockActionIconClass', function(locked) {
+        if(locked) {
+            return 'ic_unlock';
+        } else {
+            return 'ic_lock';
+        }
+    });
 });
 
