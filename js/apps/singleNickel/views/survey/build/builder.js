@@ -13,10 +13,15 @@ define(function(require) {
             'click .delete': 'delete',
             'click .save': 'update',
             'click .cancel': 'cancel',
+            'click .up': 'moveUp',
+            'click .down': 'moveDown',
             'change select': 'updateInputChildren'
         },
         initialize: function() {
             _.bindAll(this, 'addChild');
+            if(this.model.children !== undefined) {
+                this.listenTo(this.model.children, 'sort', this.renderChildren);
+            }
         },
         render: function(template) {
             if (template === undefined) {
@@ -29,6 +34,7 @@ define(function(require) {
         },
         renderChildren: function(){
             this.children = this.model.children;
+            this.$('.children').empty();
             if (this.children !== undefined) {
                 this.$childContainer = this.$('.children');
                 this.children.each(this.addChild);
@@ -36,7 +42,7 @@ define(function(require) {
         },
         add: function(e) {
             this.stopEvent(e);
-            var child = this.children.add(this.model.childParams());
+            var child = this.children.add(this.model.childParams(), {sort: false});
             this.addChild(child);
         },
         addChild: function(child) {
@@ -52,6 +58,47 @@ define(function(require) {
                 this.remove();
             } else {
                 this.render(this.showTemplate);
+            }
+        },
+        moveUp: function(e) {
+            this.stopEvent(e);
+
+            var collection = this.model.collection,
+                index = collection.indexOf(this.model),
+                currentIdx = this.model.get('idx');
+
+            if(index > 0) {
+                var modelToSwap = collection.at(index - 1);
+
+                if(modelToSwap !== undefined) {
+                    var swapIdx = modelToSwap.get('idx');
+
+                    this.model.set('idx', swapIdx);
+                    modelToSwap.set('idx', currentIdx);
+
+                    collection.sort();
+                }
+            }
+        },
+        moveDown: function(e) {
+            this.stopEvent(e);
+
+            var collection = this.model.collection,
+                lastIndex = collection.indexOf(collection.last()),
+                index = collection.indexOf(this.model),
+                currentIdx = this.model.get('idx');
+
+            if(index < lastIndex) {
+                var modelToSwap = collection.at(index + 1);
+
+                if(modelToSwap !== undefined) {
+                    var swapIdx = modelToSwap.get('idx');
+
+                    this.model.set('idx', swapIdx);
+                    modelToSwap.set('idx', currentIdx);
+
+                    collection.sort();
+                }
             }
         },
         delete: function(e) {

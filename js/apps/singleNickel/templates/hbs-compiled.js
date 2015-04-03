@@ -45,7 +45,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"controls show\">\n    <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n    <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n</div>";
+  return "<div class=\"controls show\">\n    <a href=\"#\" class=\"up btn light round\"><i class=\"ic ic_up\"></i></a>\n    <a href=\"#\" class=\"down btn light round\"><i class=\"ic ic_down\"></i></a>\n    <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n    <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n</div>";
   }));
 
 Handlebars.registerPartial("editChoice", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -370,7 +370,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n        <div class=\"answer-controls\">\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n            <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n        </div>\n    ";
+  return "\n        <div class=\"answer-controls\">\n            <a href=\"#\" class=\"up btn light round\"><i class=\"ic ic_up\"></i></a>\n            <a href=\"#\" class=\"down btn light round\"><i class=\"ic ic_down\"></i></a>\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n            <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n        </div>\n    ";
   }
 
   buffer += "<div>\n    ";
@@ -390,7 +390,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n        <div class=\"controls show\">\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n            <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n        </div>\n    ";
+  return "\n        <div class=\"controls show\">\n            <a href=\"#\" class=\"up btn light round\"><i class=\"ic ic_up\"></i></a>\n            <a href=\"#\" class=\"down btn light round\"><i class=\"ic ic_down\"></i></a>\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n            <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n        </div>\n    ";
   }
 
 function program3(depth0,data) {
