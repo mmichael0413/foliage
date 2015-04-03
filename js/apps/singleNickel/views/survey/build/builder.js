@@ -43,6 +43,7 @@ define(function(require) {
         add: function(e) {
             this.stopEvent(e);
             var child = this.children.add(this.model.childParams(), {sort: false});
+            console.log(child);
             this.addChild(child);
         },
         addChild: function(child) {
@@ -76,7 +77,11 @@ define(function(require) {
                     this.model.set('idx', swapIdx);
                     modelToSwap.set('idx', currentIdx);
 
-                    collection.sort();
+                    collection.parent.updateChildIndices().done(function() {
+                        collection.sort();
+                    }).fail(function() {
+                        context.trigger('error');
+                    });
                 }
             }
         },
@@ -97,7 +102,11 @@ define(function(require) {
                     this.model.set('idx', swapIdx);
                     modelToSwap.set('idx', currentIdx);
 
-                    collection.sort();
+                    collection.parent.updateChildIndices().done(function() {
+                        collection.sort();
+                    }).fail(function() {
+                        context.trigger('error');
+                    });
                 }
             }
         },

@@ -14,6 +14,7 @@ define(function(require){
             if (!_.isUndefined(options.attributes)) this.set(options.attributes);
             if (_.isFunction(this.childrenCollection)) {
                 this.children = new this.childrenCollection((options.children || []), this.options);
+                this.children.parent = this;
                 this.listenTo(this.children, 'sort', this.updateChildIndices);
             }
             if(this.options.survey !== undefined) {
@@ -62,18 +63,18 @@ define(function(require){
                 });
             });
 
-            // TODO:
-            // Ideally, would like updateChildIndices be called from where the action actually happened (moveUp or moveDown in the builder)
-            // For that to happen either the child models need to know or the collection of the child objects needs to know the parent object.
-            this.save(attributes, {patch: true}).error(function() {
-               context.trigger('error');
-            });
+            return this.save(attributes, {patch: true});
         },
         childParams: function() {
+            var idx = 0,
+                last = this.children.last();
+
+            if(last !== undefined) idx = last.get('idx') + 1;
+
             return {
                 options: this.options,
                 attributes: {
-                    idx: this.children.models.length
+                    idx: idx
                 }
             };
         },
