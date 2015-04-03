@@ -43,7 +43,6 @@ define(function(require) {
         add: function(e) {
             this.stopEvent(e);
             var child = this.children.add(this.model.childParams(), {sort: false});
-            console.log(child);
             this.addChild(child);
         },
         addChild: function(child) {
