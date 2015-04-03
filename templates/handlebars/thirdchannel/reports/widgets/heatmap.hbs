@@ -8,16 +8,20 @@
     <table class="heatmap">
         {{#each results.accounts}}
             <tr>
-                <td class="heatmap-row-label">{{@key}}</td>
+                <td class="row-label">{{@key}}</td>
                 {{#each this.data}}
-                    <td class="entry" style="background-color: {{this.classification}}">{{this.value}}</td>
+                    <td class="entry" style="background-color: {{this.classification}}">
+                        <div class="heatmap-content">
+                            {{this.value}}
+                        </div>
+                    </td>
                 {{/each}}
             </tr>
         {{/each}}
         <tr>
             <td></td>
             {{#each results.categories}}
-               <td class="heatmap-column-label">{{this}}</td>
+               <td class="column-label">{{this}}</td>
             {{/each}}
         </tr>
     </table>

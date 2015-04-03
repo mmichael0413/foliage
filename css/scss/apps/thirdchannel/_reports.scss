@@ -219,3 +219,92 @@ ul.legend {
   }
 }
 
+/*
+table.heatmap {
+  width: 100%;
+
+  td.entry {
+    table-layout: fixed;
+  }
+
+  td.entry {
+    width: 2%;
+    height: 0;
+
+    &:after{
+      content: '';
+      display: block;
+    }
+
+    .heatmap-content {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+  }
+
+  .column-label {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+}
+*/
+
+/* Div based table */
+/*
+div.heatmap {
+  display: table;
+  width: 100%;
+
+  .heatmap-row {
+    display: table-row;
+    width: auto;
+    clear: both;
+  }
+
+  .heatmap-row-label {
+    width: 100%;
+  }
+
+  .heatmap-col {
+    display: table-cell;
+    width: 25%;
+    padding: 10px;
+  }
+
+  .heatmap-entry {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+  }
+}
+*/
+/* Flex
+.heatmap-flex {
+  margin-top: 2em;
+
+  .heatmap-row {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+
+    flex-flow: row nowrap;
+  }
+
+  .heatmap-row-label {
+    flex-grow: 2;
+  }
+
+  .heatmap-col {
+    flex: 1;
+    text-align: center;
+    border: 1px solid #333;
+  }
+}

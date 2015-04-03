@@ -1737,7 +1737,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n            <tr>\n                <td class=\"heatmap-row-label\">"
+  buffer += "\n            <tr>\n                <td class=\"row-label\">"
     + escapeExpression(((stack1 = (data == null || data === false ? data : data.key)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</td>\n                ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.data), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
@@ -1750,18 +1750,40 @@ function program4(depth0,data) {
   var buffer = "", stack1;
   buffer += "\n                    <td class=\"entry\" style=\"background-color: "
     + escapeExpression(((stack1 = (depth0 && depth0.classification)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">"
+    + "\">\n                        <div class=\"heatmap-content\">\n                            "
     + escapeExpression(((stack1 = (depth0 && depth0.value)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</td>\n                ";
+    + "\n                        </div>\n                    </td>\n                ";
   return buffer;
   }
 
 function program6(depth0,data) {
   
   var buffer = "";
-  buffer += "\n               <td class=\"heatmap-column-label\">"
+  buffer += "\n               <td class=\"column-label\">"
     + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
     + "</td>\n            ";
+  return buffer;
+  }
+
+function program8(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n            <div class=\"heatmap-row\">\n                <div class=\"heatmap-row-label heatmap-col\">"
+    + escapeExpression(((stack1 = (data == null || data === false ? data : data.key)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\n                ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.data), {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </div>\n        ";
+  return buffer;
+  }
+function program9(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                    <div class=\"heatmap-col heatmap-entry\" style=\"background-color: "
+    + escapeExpression(((stack1 = (depth0 && depth0.classification)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n                        "
+    + escapeExpression(((stack1 = (depth0 && depth0.value)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\n                    </div>\n                ";
   return buffer;
   }
 
@@ -1780,7 +1802,13 @@ function program6(depth0,data) {
   buffer += "\n        <tr>\n            <td></td>\n            ";
   stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.categories), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </tr>\n    </table>\n</div>";
+  buffer += "\n        </tr>\n    </table>\n\n    <div class=\"heatmap\">\n        ";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.accounts), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </div>\n\n    <div class=\"heatmap-flex\">\n        ";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.accounts), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </div>\n</div>";
   return buffer;
   });
 
