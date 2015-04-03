@@ -99,6 +99,14 @@ define(function(require){
             }
         });
 
+        Handlebars.registerHelper('lockDisplay', function(locked) {
+            if(locked) {
+                return 'Locked';
+            } else {
+                return 'Unlocked';
+            }
+        });
+
         Handlebars.registerHelper('displaySurveyType', function(survey) {
             return survey.surveyType();
         });
