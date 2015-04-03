@@ -29,6 +29,7 @@ require.config({
         'helpers' : 'thirdchannel/utils/helpers',
         'pikaday' : '../libs/bower_components/pikaday/pikaday',
         'chartist' : '../libs/bower_components/chartist/dist/chartist',
+        'd3': '../libs/bower_components/d3/d3.min',
         'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker"
     },
     shim: {
