@@ -11,11 +11,11 @@ define(function(require){
             _.bindAll(this, 'surveyLockChange');
             this.options = options.options || {};
             this.options[this.type + "Id"] = this.id;
+
             if (!_.isUndefined(options.attributes)) this.set(options.attributes);
             if (_.isFunction(this.childrenCollection)) {
                 this.children = new this.childrenCollection((options.children || []), this.options);
                 this.children.parent = this;
-                this.listenTo(this.children, 'sort', this.updateChildIndices);
             }
             if(this.options.survey !== undefined) {
                 this.listenTo(this.options.survey, 'change:locked', this.surveyLockChange);
