@@ -62,6 +62,9 @@ define(function(require){
                 });
             });
 
+            // TODO:
+            // Ideally, would like updateChildIndices be called from where the action actually happened (moveUp or moveDown in the builder)
+            // For that to happen either the child models need to know or the collection of the child objects needs to know the parent object.
             this.save(attributes, {patch: true}).error(function() {
                context.trigger('error');
             });
