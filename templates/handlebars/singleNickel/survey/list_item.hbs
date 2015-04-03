@@ -1,13 +1,15 @@
-<td><a href="/surveys/{{survey.id}}">{{survey.title}}</a></td>
+<td><a href="/surveys/{{id}}">{{title}}</a></td>
+<td>{{customer}}</td>
+<td>{{ displaySurveyType survey }}</td>
 <td>
-    {{#if survey.locked}}
+    {{#if locked}}
         <strong>Survey Locked</strong>
     {{else}}
-        <a class="btn light round" href="/surveys/{{survey.id}}/edit"><i class="ic fa ic_edit"></i></a>
+        <a class="btn light round" href="/surveys/{{id}}/edit"><i class="ic fa ic_edit"></i></a>
         <a class="btn primary delete round" href="#" alt="Remove Survey"><i class="ic fa ic_x"></i></a>
     {{/if}}
-    <a data-bypass="true" class="btn light round" href="{{survey.links.export}}" alt="Export Survey YAML"><i class="ic fa ic_download"></i></a>
+    <a data-bypass="true" class="btn light round" href="{{links.export}}" alt="Export Survey YAML"><i class="ic fa ic_download"></i></a>
     {{#isSuperAdmin}}
-        <a class="btn light round lock" href="#" alt="Toggle Locked"><i class="ic fa {{ lockActionIconClass survey.locked }}"></i></a>
+        <a class="btn light round lock" href="#" alt="Toggle Locked"><i class="ic fa {{ lockActionIconClass locked }}"></i></a>
     {{/isSuperAdmin}}
 </td>

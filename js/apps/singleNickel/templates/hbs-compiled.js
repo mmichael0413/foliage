@@ -819,7 +819,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<a class=\"btn light round pull-right\" href=\"/new\" alt=\"Create Survey\"><i class=\"ic ic_add\"></i></a>\n<h1>Surveys</h1>\n<div class=\"section\">\n    <table>\n        <thead>\n        <tr>\n            <th>Name</th>\n            <th>Actions</th>\n        </tr>\n        </thead>\n        <tbody id=\"survey-list-items\"></tbody>\n    </table>\n</div>\n\n\n\n\n\n\n\n";
+  return "<a class=\"btn light round pull-right\" href=\"/new\" alt=\"Create Survey\"><i class=\"ic ic_add\"></i></a>\n<h1>Surveys</h1>\n<div class=\"section\">\n    <table>\n        <thead>\n        <tr>\n            <th>Name</th>\n            <th>Customer</th>\n            <th>Type</th>\n            <th>Actions</th>\n        </tr>\n        </thead>\n        <tbody id=\"survey-list-items\"></tbody>\n    </table>\n</div>\n\n\n\n\n\n\n\n";
   });
 
 this["ThirdChannel"]["templates"]["singleNickel/survey/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -835,31 +835,43 @@ function program1(depth0,data) {
 
 function program3(depth0,data) {
   
-  var buffer = "", stack1;
-  buffer += "\n        <a class=\"btn light round\" href=\"/surveys/"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+  var buffer = "", stack1, helper;
+  buffer += "\n        <a class=\"btn light round\" href=\"/surveys/";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
     + "/edit\"><i class=\"ic fa ic_edit\"></i></a>\n        <a class=\"btn primary delete round\" href=\"#\" alt=\"Remove Survey\"><i class=\"ic fa ic_x\"></i></a>\n    ";
   return buffer;
   }
 
 function program5(depth0,data) {
   
-  var buffer = "", stack1, helper, options;
+  var buffer = "", helper, options;
   buffer += "\n        <a class=\"btn light round lock\" href=\"#\" alt=\"Toggle Locked\"><i class=\"ic fa "
-    + escapeExpression((helper = helpers.lockActionIconClass || (depth0 && depth0.lockActionIconClass),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options) : helperMissing.call(depth0, "lockActionIconClass", ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options)))
+    + escapeExpression((helper = helpers.lockActionIconClass || (depth0 && depth0.lockActionIconClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.locked), options) : helperMissing.call(depth0, "lockActionIconClass", (depth0 && depth0.locked), options)))
     + "\"></i></a>\n    ";
   return buffer;
   }
 
-  buffer += "<td><a href=\"/surveys/"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a></td>\n<td>\n    ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  buffer += "<td><a href=\"/surveys/";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</a></td>\n<td>";
+  if (helper = helpers.customer) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.customer); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</td>\n<td>"
+    + escapeExpression((helper = helpers.displaySurveyType || (depth0 && depth0.displaySurveyType),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.survey), options) : helperMissing.call(depth0, "displaySurveyType", (depth0 && depth0.survey), options)))
+    + "</td>\n<td>\n    ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.locked), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    <a data-bypass=\"true\" class=\"btn light round\" href=\""
-    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.links)),stack1 == null || stack1 === false ? stack1 : stack1['export'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1['export'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" alt=\"Export Survey YAML\"><i class=\"ic fa ic_download\"></i></a>\n    ";
   options={hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data}
   if (helper = helpers.isSuperAdmin) { stack1 = helper.call(depth0, options); }

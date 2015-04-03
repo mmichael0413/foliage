@@ -99,6 +99,10 @@ define(function(require){
             }
         });
 
+        Handlebars.registerHelper('displaySurveyType', function(survey) {
+            return survey.surveyType();
+        });
+
         Backbone.history.start({pushState: true, hashChange: false});
 
         MainLayout.init();
