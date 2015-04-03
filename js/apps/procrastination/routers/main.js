@@ -1,18 +1,17 @@
 define(function(require) {
     var $ = require('jquery'),
         _ = require('underscore'),
-        Backbone = require('backbone'),
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
-        MainLayout = require('shared/views/layout/main'),
-        HandlebarsHelpers = require('handlebarsHelpers'),
-
+        Filter = require('thirdchannel/views/filter/main'),
         SetSchedule = require('procrastination/views/schedule/list'),
+        ManageSchedule = require('procrastination/views/admin/list_scheduling_progress'),
 
         AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
 
             routes: {
                 ':customer_slug/:program_slug/schedule/:person_id': 'schedule',
+                ':customer_slug/:program_slug/admin/scheduling/upcoming': 'manageSchedule',
             },
 
             before: function(parameters) {
@@ -26,6 +25,17 @@ define(function(require) {
 
             schedule: function() {
                 new SetSchedule().fetch();
+            },
+
+            manageSchedule: function() {
+                Filter.init();
+                var view = new ManageSchedule();
+                if(context.content) {
+                    view.bootstrapCollection(context.content)
+                } else {
+                    view.fetch();
+                }
+
             }
         });
 

@@ -24,7 +24,7 @@ define(function(require) {
             // collection ->
             // window.filterBootstrap -> can contain a list of filters, plus a url for additional filters to load async
             // 
-            
+
             if (!collection && window.filterBootstrap) {
                 collection = new Backbone.Collection(window.filterBootstrap.filters);
                 url = window.filterBootstrap.filters_url;
