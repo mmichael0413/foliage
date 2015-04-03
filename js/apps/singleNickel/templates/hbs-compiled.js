@@ -42,10 +42,28 @@ function program4(depth0,data) {
 Handlebars.registerPartial("showControls", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
   
+  
+  return "\n        <a href=\"#\" class=\"up btn light round\"><i class=\"ic ic_up\"></i></a>\n    ";
+  }
 
+function program3(depth0,data) {
+  
+  
+  return "\n        <a href=\"#\" class=\"down btn light round\"><i class=\"ic ic_down\"></i></a>\n    ";
+  }
 
-  return "<div class=\"controls show\">\n    <a href=\"#\" class=\"up btn light round\"><i class=\"ic ic_up\"></i></a>\n    <a href=\"#\" class=\"down btn light round\"><i class=\"ic ic_down\"></i></a>\n    <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n    <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n</div>";
+  buffer += "<div class=\"controls show\">\n    ";
+  stack1 = (helper = helpers.unlessFirstChild || (depth0 && depth0.unlessFirstChild),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, depth0, options) : helperMissing.call(depth0, "unlessFirstChild", depth0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    ";
+  stack1 = (helper = helpers.unlessLastChild || (depth0 && depth0.unlessLastChild),options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data},helper ? helper.call(depth0, depth0, options) : helperMissing.call(depth0, "unlessLastChild", depth0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n    <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n</div>";
+  return buffer;
   }));
 
 Handlebars.registerPartial("editChoice", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -365,12 +383,30 @@ function program9(depth0,data) {
 Handlebars.registerPartial("showChoice", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, self=this, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, self=this, helperMissing=helpers.helperMissing, functionType="function", escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
+  var buffer = "", stack1, helper, options;
+  buffer += "\n        <div class=\"answer-controls\">\n            ";
+  stack1 = (helper = helpers.unlessFirstChild || (depth0 && depth0.unlessFirstChild),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, depth0, options) : helperMissing.call(depth0, "unlessFirstChild", depth0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            ";
+  stack1 = (helper = helpers.unlessLastChild || (depth0 && depth0.unlessLastChild),options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, depth0, options) : helperMissing.call(depth0, "unlessLastChild", depth0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n            <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n        </div>\n    ";
+  return buffer;
+  }
+function program2(depth0,data) {
   
-  return "\n        <div class=\"answer-controls\">\n            <a href=\"#\" class=\"up btn light round\"><i class=\"ic ic_up\"></i></a>\n            <a href=\"#\" class=\"down btn light round\"><i class=\"ic ic_down\"></i></a>\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n            <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n        </div>\n    ";
+  
+  return "\n                <a href=\"#\" class=\"up btn light round\"><i class=\"ic ic_up\"></i></a>\n            ";
+  }
+
+function program4(depth0,data) {
+  
+  
+  return "\n                <a href=\"#\" class=\"down btn light round\"><i class=\"ic ic_down\"></i></a>\n            ";
   }
 
   buffer += "<div>\n    ";
@@ -385,30 +421,48 @@ function program1(depth0,data) {
 Handlebars.registerPartial("showQuestion", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, self=this, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, self=this, helperMissing=helpers.helperMissing, functionType="function", escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
+  var buffer = "", stack1, helper, options;
+  buffer += "\n        <div class=\"controls show\">\n            ";
+  stack1 = (helper = helpers.unlessFirstChild || (depth0 && depth0.unlessFirstChild),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, depth0, options) : helperMissing.call(depth0, "unlessFirstChild", depth0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            ";
+  stack1 = (helper = helpers.unlessLastChild || (depth0 && depth0.unlessLastChild),options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, depth0, options) : helperMissing.call(depth0, "unlessLastChild", depth0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n            <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n        </div>\n    ";
+  return buffer;
+  }
+function program2(depth0,data) {
   
-  return "\n        <div class=\"controls show\">\n            <a href=\"#\" class=\"up btn light round\"><i class=\"ic ic_up\"></i></a>\n            <a href=\"#\" class=\"down btn light round\"><i class=\"ic ic_down\"></i></a>\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n            <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n        </div>\n    ";
+  
+  return "\n                <a href=\"#\" class=\"up btn light round\"><i class=\"ic ic_up\"></i></a>\n            ";
   }
 
-function program3(depth0,data) {
+function program4(depth0,data) {
+  
+  
+  return "\n                <a href=\"#\" class=\"down btn light round\"><i class=\"ic ic_down\"></i></a>\n            ";
+  }
+
+function program6(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n        <div class=\"children\"></div>\n        ";
-  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.locked), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.locked), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    ";
   return buffer;
   }
-function program4(depth0,data) {
+function program7(depth0,data) {
   
   
   return "\n            <div class=\"controls child\">\n                <a href=\"#\" class=\"add btn light round\"><i class=\"ic ic_add\"></i></a>\n            </div>\n        ";
   }
 
-function program6(depth0,data) {
+function program9(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n        <input type=\"text\" placeholder=\""
@@ -423,10 +477,10 @@ function program6(depth0,data) {
   buffer += "\n    <p class=\"content\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.ask)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</p>\n    ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.children), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.children), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.placeholder), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.placeholder), {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n</div>\n\n\n\n";
   return buffer;

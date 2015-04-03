@@ -107,6 +107,21 @@ define(function(require){
             }
         });
 
+        Handlebars.registerHelper('unlessFirstChild', function(object, options) {
+            var index = object.collection.indexOf(object);
+            if(index != 0) {
+                return options.fn(this);
+            }
+        });
+
+        Handlebars.registerHelper('unlessLastChild', function(object, options) {
+            var index = object.collection.indexOf(object),
+                lastIndex = object.collection.indexOf(object.collection.last());
+            if(index != lastIndex) {
+                return options.fn(this);
+            }
+        });
+
         Handlebars.registerHelper('displaySurveyType', function(survey) {
             return survey.surveyType();
         });
