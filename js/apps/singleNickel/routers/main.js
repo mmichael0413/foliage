@@ -99,14 +99,6 @@ define(function(require){
             }
         });
 
-        Handlebars.registerHelper('lockActionDisplay', function(locked) {
-           if(locked) {
-               return 'Unlock';
-           } else {
-               return 'Lock';
-           }
-        });
-
         Handlebars.registerHelper('lockDisplay', function(locked) {
             if(locked) {
                 return 'Locked';
@@ -115,12 +107,23 @@ define(function(require){
             }
         });
 
-        Handlebars.registerHelper('lockActionIconClass', function(locked) {
-           if(locked) {
-               return 'ic_open-circle';
-           } else {
-               return 'ic_closed-circle';
-           }
+        Handlebars.registerHelper('unlessFirstChild', function(object, options) {
+            var index = object.collection.indexOf(object);
+            if(index != 0) {
+                return options.fn(this);
+            }
+        });
+
+        Handlebars.registerHelper('unlessLastChild', function(object, options) {
+            var index = object.collection.indexOf(object),
+                lastIndex = object.collection.indexOf(object.collection.last());
+            if(index != lastIndex) {
+                return options.fn(this);
+            }
+        });
+
+        Handlebars.registerHelper('displaySurveyType', function(survey) {
+            return survey.surveyType();
         });
 
         Backbone.history.start({pushState: true, hashChange: false});

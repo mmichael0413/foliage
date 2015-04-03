@@ -1,6 +1,7 @@
 define(function(require){
     var _ = require('underscore'),
-        Backbone = require('backbone');
+        Backbone = require('backbone'),
+        context = require('context');
 
     return Backbone.Model.extend({
         id: '',
@@ -10,8 +11,12 @@ define(function(require){
             _.bindAll(this, 'surveyLockChange');
             this.options = options.options || {};
             this.options[this.type + "Id"] = this.id;
+
             if (!_.isUndefined(options.attributes)) this.set(options.attributes);
-            if (_.isFunction(this.childrenCollection)) this.children = new this.childrenCollection((options.children || []), this.options);
+            if (_.isFunction(this.childrenCollection)) {
+                this.children = new this.childrenCollection((options.children || []), this.options);
+                this.children.parent = this;
+            }
             if(this.options.survey !== undefined) {
                 this.listenTo(this.options.survey, 'change:locked', this.surveyLockChange);
             }
@@ -44,11 +49,32 @@ define(function(require){
                 this.children.options = this.options;
             }
         },
+        updateChildIndices: function() {
+            // not sure if there's a better way at getting the type of the children
+            var childAttributes = this.children.at(0).type + '_attributes';
+
+            var attributes = {};
+            attributes[childAttributes] = [];
+
+            this.children.each(function(child) {
+                attributes[childAttributes].push({
+                    id: child.id,
+                    idx: child.get('idx')
+                });
+            });
+
+            return this.save(attributes, {patch: true});
+        },
         childParams: function() {
+            var idx = 0,
+                last = this.children.last();
+
+            if(last !== undefined) idx = last.get('idx') + 1;
+
             return {
                 options: this.options,
                 attributes: {
-                    idx: this.children.models.length
+                    idx: idx
                 }
             };
         },

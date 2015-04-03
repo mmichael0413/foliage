@@ -15,7 +15,8 @@ define(function(require) {
             this.listenTo(this.model, 'change:locked', this.render);
         },
         render: function() {
-            this.$el.html(this.template({survey: this.model.toJSON()}));
+            var attributes = _.extend({survey: this.model}, this.model.toJSON());
+            this.$el.html(this.template(attributes));
             return this;
         },
         removeSurvey: function(e) {

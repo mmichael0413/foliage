@@ -29,7 +29,7 @@ define(function(require){
             this.customers = context.customers;
         },
         url: function() {
-            return '/api/surveys' + (this.isNew() ? '' : '/' + this.id) + '.json';
+            return '/api/surveys' + (this.isNew() ? '' : '/' + this.id);
         },
         redirect: function() {
             return  '/surveys/' + this.id + '/edit';
@@ -43,6 +43,9 @@ define(function(require){
             _.extend(options, opts);
 
             return (this.sync || Backbone.sync).call(this, null, this, options);
+        },
+        surveyType: function() {
+          return this.lookUps.survey_type[this.get('survey_type')];
         },
         validation: {
             title: [{
