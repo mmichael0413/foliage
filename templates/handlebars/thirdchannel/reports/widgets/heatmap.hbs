@@ -5,26 +5,5 @@
             <li><i class="fa fa-circle" style="color: {{this}}"></i> {{@key}}</li>
         {{/each}}
     </ul>
-    <table class="heatmap">
-        {{#each results.accounts}}
-            <tr>
-                <td class="row-label">{{@key}}</td>
-                {{#each this.data}}
-                    <td class="entry" style="background-color: {{this.classification}}">
-                        <div class="heatmap-content">
-                            {{this.value}}
-                        </div>
-                    </td>
-                {{/each}}
-            </tr>
-        {{/each}}
-        <tr>
-            <td></td>
-            {{#each results.categories}}
-               <td class="column-label">{{this}}</td>
-            {{/each}}
-        </tr>
-    </table>
-
     <div class="heatmap"><svg></svg></div>
 </div>
