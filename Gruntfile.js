@@ -38,10 +38,6 @@ module.exports = function (grunt) {
 
     // load task and configurations
     require('load-grunt-config')(grunt, {
-        configPath: __dirname +  '/tasks',
-        data: {
-            pkg: grunt.file.readJSON('package.json'),
-            year: new Date().getFullYear()
-        }
+        configPath: __dirname +  '/tasks/'  + (grunt.option("app") ? grunt.option("app") : "all")
     });
 };

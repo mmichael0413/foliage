@@ -1,0 +1,18 @@
+build-dev:
+  - 'clean'
+  - 'jshint'
+  - 'copy'
+
+build-beta:
+  - 'clean'
+  - 'jshint'
+  - 'copy'
+  - 'aws_s3:staging'
+  - 'invalidate_cloudfront:staging'
+
+build-prod:
+  - 'clean'
+  - 'jshint'
+  - 'copy'
+  - 'aws_s3:production'
+  - 'invalidate_cloudfront:production'

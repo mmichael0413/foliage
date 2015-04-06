@@ -19,9 +19,9 @@ module.exports = function(grunt) {
                     CacheControl: 'public, max-age=30'
                 },
                 mime: {
-                    'dist/thirdchannel/fonts/nexa_bold-webfont.woff': 'application/font-woff',
-                    'dist/thirdchannel/fonts/nexa_light-webfont.woff': 'application/font-woff',
-                    'dist/thirdchannel/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.woff': 'application/font-woff'
+                    'dist/shared/fonts/nexa_bold-webfont.woff': 'application/font-woff',
+                    'dist/shared/fonts/nexa_light-webfont.woff': 'application/font-woff',
+                    'dist/shared/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.woff': 'application/font-woff'
                 }
             },
             files: [
@@ -38,9 +38,9 @@ module.exports = function(grunt) {
                     CacheControl: 'public, max-age=30'
                 },
                 mime: {
-                    'dist/thirdchannel/fonts/nexa_bold-webfont.woff': 'application/font-woff',
-                    'dist/thirdchannel/fonts/nexa_light-webfont.woff': 'application/font-woff',
-                    'dist/thirdchannel/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.woff': 'application/font-woff'
+                    'dist/shared/fonts/nexa_bold-webfont.woff': 'application/font-woff',
+                    'dist/shared/fonts/nexa_light-webfont.woff': 'application/font-woff',
+                    'dist/shared/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.woff': 'application/font-woff'
                 }
             },
             files: [
