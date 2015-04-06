@@ -3,7 +3,8 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         d3 = require('d3'),
-        context = require('context');
+        context = require('context'),
+        LoadingView = require('thirdchannel/views/utils/loading');
 
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/heatmap'],
@@ -22,22 +23,27 @@ define(function(require) {
 
             this.model.config.legend = legend;
 
+            this.loadingView = new LoadingView();
+
             console.log(this.model.results);
         },
         render: function () {
             var self = this;
 
             this.setElement(this.template(this.model));
-            this.listenTo(context, 'report post render', function() {
-                self.renderChart();
+            this.$('.heatmap').append(this.loadingView.render().el);
+            this.listenTo(context, 'filter-toggled:complete', function() {
+                setTimeout(function() {
+                    self.loadingView.remove();
+                    self.renderChart();
+                }, 1000);
             });
             return this;
         },
         renderChart: function() {
             var self = this,
-                $heatmap = this.$('.heatmap');
-
-            var width = $heatmap.width();
+                $heatMap = this.$('.heatmap'),
+                width = $heatMap.width();
 
             var dataValues = _.values(this.model.results.accounts),
                 rowLabels = _.keys(this.model.results.accounts),
@@ -53,16 +59,16 @@ define(function(require) {
 
             svg.attr('width', width).attr('height', height);
 
-            var heatmap = svg.selectAll('g')
+            var heatMap = svg.selectAll('g')
                                 .data(dataValues)
                             .enter()
                                 .append('g');
 
-            heatmap.attr('transform', function(d, i) {
+            heatMap.attr('transform', function(d, i) {
                 return 'translate(0 ' + (rectHeight * i) + ')';
             });
 
-            var rect = heatmap.selectAll('rect')
+            var rect = heatMap.selectAll('rect')
                     .data(function(d) { return d; })
                 .enter()
                     .append('rect');
