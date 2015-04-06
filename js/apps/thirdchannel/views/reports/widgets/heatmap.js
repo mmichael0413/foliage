@@ -39,14 +39,15 @@ define(function(require) {
 
             var width = $heatmap.width();
 
-            var numberOfEntries = this.model.results.categories.length,
-                dataValues = _.values(this.model.results.accounts),
+            var dataValues = _.values(this.model.results.accounts),
                 rowLabels = _.keys(this.model.results.accounts),
-                colLabels = this.model.results.categories;
+                colLabels = this.model.results.categories,
+                numOfRows = rowLabels.length,
+                numOfCols = colLabels.length;
 
-            var rectWidth = width / numberOfEntries,
+            var rectWidth = width / numOfCols,
                 rectHeight = rectWidth,
-                height = rectHeight * numberOfEntries;
+                height = rectHeight * numOfRows;
 
             var svg = d3.select(this.$('svg')[0]);
 
@@ -70,7 +71,7 @@ define(function(require) {
                 .attr('height', rectHeight)
                 .attr('stroke', '#cccccc')
                 .attr('stroke-width', '1px')
-                .attr('fill', function(d, i) {
+                .attr('fill', function(d) {
                     return d.classification;
                 })
                 .attr('x', function(d, i) {
