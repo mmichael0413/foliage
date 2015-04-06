@@ -6,6 +6,9 @@ define(function(require) {
         context = require('context'),
         LoadingView = require('thirdchannel/views/utils/loading');
 
+    var rowLabelMargin = 150;
+    var colLabelMargin = 150;
+
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/heatmap'],
         initialize: function (options) {
@@ -53,13 +56,13 @@ define(function(require) {
                 numOfRows = rowLabels.length,
                 numOfCols = colLabels.length;
 
-            var rectWidth = width / numOfCols,
+            var rectWidth = (width - rowLabelMargin) / numOfCols,
                 rectHeight = rectWidth,
                 height = rectHeight * numOfRows;
 
             var svg = d3.select(this.$('svg')[0]);
 
-            svg.attr('width', width).attr('height', height);
+            svg.attr('width', width).attr('height', height + colLabelMargin);
 
             var heatMap = svg.selectAll('g')
                                 .data(dataValues)
@@ -67,7 +70,7 @@ define(function(require) {
                                 .append('g');
 
             heatMap.attr('class', 'tile-row')
-                   .attr('transform', function(d, i) { return 'translate(0 ' + (rectHeight * i) + ')'; });
+                   .attr('transform', function(d, i) { return 'translate(' + rowLabelMargin + ' ' + (rectHeight * i) + ')'; });
 
             var rect = heatMap.selectAll('rect')
                     .data(function(d) { return d; })
@@ -89,6 +92,23 @@ define(function(require) {
             rect.append('title').text(function(d) {
                 return d.label + ' - ' + ((d.value !== null) ? d.value : 'N/A');
             });
+
+            var yScale = d3.scale.ordinal().domain(rowLabels).rangeBands([0, height]),
+                yAxis = d3.svg.axis().scale(yScale).orient('right');
+
+            svg.append('g').attr('transform', 'translate(0 0)').call(yAxis);
+
+            var xScale = d3.scale.ordinal()
+                    .domain(colLabels)
+                    .rangeBands([rowLabelMargin, width]),
+                xAxis = d3.svg.axis().scale(xScale).orient('top');
+
+            svg.append('g').attr('transform', 'translate(0 ' + (height + rowLabelMargin)  + ')')
+                .call(xAxis)
+                .selectAll('text')
+                .attr('dy', '1em')
+                .attr('transform', 'rotate(-90)')
+                .style('text-anchor', 'start');
         },
         resizeChart: function() {
             var self = this,
@@ -100,13 +120,13 @@ define(function(require) {
                 numOfRows = rowLabels.length,
                 numOfCols = colLabels.length;
 
-            var rectWidth = width / numOfCols,
+            var rectWidth = (width - rowLabelMargin) / numOfCols,
                 rectHeight = rectWidth,
                 height = rectHeight * numOfRows;
 
             var svg = d3.select(this.$('svg')[0]);
 
-            svg.attr('width', width).attr('height', height);
+            svg.attr('width', width).attr('height', height + colLabelMargin);
 
             svg.selectAll('rect.tile')
                .attr('width', rectWidth)
@@ -115,7 +135,7 @@ define(function(require) {
                     return rectWidth * (i % numOfCols);
                });
 
-            svg.selectAll('g.tile-row').attr('transform', function(d, i) { return 'translate(0 ' + (rectHeight * i) + ')'; });
+            svg.selectAll('g.tile-row').attr('transform', function(d, i) { return 'translate(' + rowLabelMargin + ' ' + (rectHeight * i) + ')'; });
         }
     });
 });
