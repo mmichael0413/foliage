@@ -218,3 +218,33 @@ ul.legend {
     /*cursor: pointer;*/
   }
 }
+
+ul.heatmap-legend {
+  width: 100%;
+  height: 100%;
+  font-size: 0.9em;
+  padding: 0;
+  margin: 0;
+
+  &::after {
+    content: ' ';
+    clear: both;
+  }
+
+  li {
+    float: left;
+    width: 25%;
+    position: relative;
+    padding-left: 1em;
+    margin-bottom: 0.3em;
+    list-style-type: none;
+
+    i {
+      text-shadow: -1px -1px 0 #000,
+                   1px -1px 0 #000,
+                   -1px  1px 0 #000,
+                   1px  1px 0 #000;
+    }
+  }
+}
+
