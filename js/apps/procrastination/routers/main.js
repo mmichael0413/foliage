@@ -4,14 +4,16 @@ define(function(require) {
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
         Filter = require('thirdchannel/views/filter/main'),
-        SetSchedule = require('procrastination/views/schedule/list'),
+        SetSchedule = require('procrastination/views/schedule/list_to_be_scheduled'),
+        ListSchedule = require('procrastination/views/schedule/list_scheduled'),
         ManageSchedule = require('procrastination/views/admin/list_scheduling_progress'),
 
         AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
 
             routes: {
-                ':customer_slug/:program_slug/schedule/:person_id': 'schedule',
-                ':customer_slug/:program_slug/admin/scheduling/upcoming': 'manageSchedule',
+                ':customer_slug/:program_slug/schedule/:person_id/create': 'createSchedule',
+                ':customer_slug/:program_slug/schedule/:person_id': 'showSchedule',
+                ':customer_slug/:program_slug/admin/scheduling/upcoming': 'manageSchedule'
             },
 
             before: function(parameters) {
@@ -23,15 +25,25 @@ define(function(require) {
                 _.extend(context, window.bootstrap);
             },
 
-            schedule: function() {
+            createSchedule: function() {
                 new SetSchedule().fetch();
+            },
+
+            showSchedule: function() {
+                console.log('show it');
+
+
+                var view =  new ListSchedule();
+                if(context.content) {
+                    view.bootstrapCollection(context.content);
+                }
             },
 
             manageSchedule: function() {
                 Filter.init();
                 var view = new ManageSchedule();
                 if(context.content) {
-                    view.bootstrapCollection(context.content)
+                    view.bootstrapCollection(context.content);
                 } else {
                     view.fetch();
                 }

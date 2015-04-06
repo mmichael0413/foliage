@@ -18,6 +18,8 @@ require.config({
         'helpers'       : 'thirdchannel/utils/helpers',
         'pikaday'       : '../libs/bower_components/pikaday/pikaday',
         'context'       : 'shared/utils/context',
+        'fullcalendar'  : '../libs/bower_components/fullcalendar/dist/fullcalendar',
+        'moment'        : '../libs/bower_components/moment/moment'
         
 
     },
@@ -57,6 +59,9 @@ require.config({
         },
         'context': {
             deps: ["underscore"]
+        },
+        'fullcalendar' : {
+            deps: ["moment", "jquery"]
         }
     }
 });

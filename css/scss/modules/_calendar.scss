@@ -1,0 +1,52 @@
+@mixin schedules ($color){
+  border-radius: $border-radius-base;
+  .ui-draggable {
+    background-color: $color;
+    padding: 1em .5em;
+    border-radius: $border-radius-base;
+    border: 1px solid darken($color, 20%);
+    margin-bottom: 2px;
+    &.ui-draggable-dragging {
+      border-radius: $border-radius-base;
+      background-color: $color;
+    }
+    &.drag-active {
+      background-color: darken($color, 20%);
+    }
+  }
+}
+
+.schedule-container {
+  overflow-y: scroll;
+  max-height: 600px;
+  .unscheduled {
+    .schedules {
+      margin-bottom: 1em;
+      @include schedules($palette1);
+    }
+  }
+  .scheduled {
+    .schedules {
+      @include schedules(lighten($palette5, 30%));
+    }
+
+  }
+}
+
+.grid {
+  &:first-of-type {
+    padding-right: 1em;
+  }
+}
+
+.tooltipevent {
+  background-color: white;
+  padding: 1em;
+  border-radius: $border-radius-base;
+  border: 1px solid $palette5;
+  position: absolute;
+  z-index: 100001;
+  -webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+}
