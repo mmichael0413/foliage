@@ -233,11 +233,14 @@ ul.heatmap-legend {
 
   li {
     float: left;
-    width: 25%;
     position: relative;
-    padding-left: 1em;
+    padding-left: 1.25em;
     margin-bottom: 0.3em;
     list-style-type: none;
+
+    &:first-child {
+      padding-left: 0;
+    }
 
     i {
       text-shadow: -1px -1px 0 #ccc,

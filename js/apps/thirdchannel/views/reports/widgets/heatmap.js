@@ -39,15 +39,10 @@ define(function(require) {
 
             var width = $heatmap.width();
 
-            var numberOfEntries = 0,
+            var numberOfEntries = this.model.results.categories.length,
                 dataValues = _.values(this.model.results.accounts),
                 rowLabels = _.keys(this.model.results.accounts),
-                colLabels = [];
-
-            if(_.any(dataValues)) {
-                numberOfEntries = dataValues[0].length;
-                colLabels = _.map(dataValues[0], function(d) { return d.label; });
-            }
+                colLabels = this.model.results.categories;
 
             var rectWidth = width / numberOfEntries,
                 rectHeight = rectWidth,
