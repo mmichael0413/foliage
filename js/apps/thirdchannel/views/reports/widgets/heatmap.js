@@ -9,6 +9,8 @@ define(function(require) {
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/heatmap'],
         initialize: function (options) {
+            _.bindAll(this, 'renderChart', 'resizeChart');
+
             var self = this,
                 legend = {};
 
@@ -25,19 +27,19 @@ define(function(require) {
 
             this.loadingView = new LoadingView();
 
-            console.log(this.model.results);
-        },
-        render: function () {
-            var self = this;
-
-            this.setElement(this.template(this.model));
-            this.$('.heatmap').append(this.loadingView.render().el);
             this.listenTo(context, 'filter-toggled:complete', function() {
                 setTimeout(function() {
                     self.loadingView.remove();
                     self.renderChart();
                 }, 1000);
             });
+
+            $(window).resize(self.resizeChart);
+        },
+        render: function () {
+            this.setElement(this.template(this.model));
+            this.$('.heatmap').append(this.loadingView.render().el);
+
             return this;
         },
         renderChart: function() {
@@ -64,16 +66,16 @@ define(function(require) {
                             .enter()
                                 .append('g');
 
-            heatMap.attr('transform', function(d, i) {
-                return 'translate(0 ' + (rectHeight * i) + ')';
-            });
+            heatMap.attr('class', 'tile-row')
+                   .attr('transform', function(d, i) { return 'translate(0 ' + (rectHeight * i) + ')'; });
 
             var rect = heatMap.selectAll('rect')
                     .data(function(d) { return d; })
                 .enter()
                     .append('rect');
 
-            rect.attr('width', rectWidth)
+            rect.attr('class', 'tile')
+                .attr('width', rectWidth)
                 .attr('height', rectHeight)
                 .attr('stroke', '#cccccc')
                 .attr('stroke-width', '1px')
@@ -87,6 +89,33 @@ define(function(require) {
             rect.append('title').text(function(d) {
                 return d.label + ' - ' + ((d.value !== null) ? d.value : 'N/A');
             });
+        },
+        resizeChart: function() {
+            var self = this,
+                $heatMap = this.$('.heatmap'),
+                width = $heatMap.width();
+
+            var rowLabels = _.keys(this.model.results.accounts),
+                colLabels = this.model.results.categories,
+                numOfRows = rowLabels.length,
+                numOfCols = colLabels.length;
+
+            var rectWidth = width / numOfCols,
+                rectHeight = rectWidth,
+                height = rectHeight * numOfRows;
+
+            var svg = d3.select(this.$('svg')[0]);
+
+            svg.attr('width', width).attr('height', height);
+
+            svg.selectAll('rect.tile')
+               .attr('width', rectWidth)
+               .attr('height', rectHeight)
+               .attr('x', function(d, i) {
+                    return rectWidth * (i % numOfCols);
+               });
+
+            svg.selectAll('g.tile-row').attr('transform', function(d, i) { return 'translate(0 ' + (rectHeight * i) + ')'; });
         }
     });
 });
