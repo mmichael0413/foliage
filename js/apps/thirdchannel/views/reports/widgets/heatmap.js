@@ -25,53 +25,66 @@ define(function(require) {
             console.log(this.model.results);
         },
         render: function () {
+            var self = this;
+
             this.setElement(this.template(this.model));
             this.listenTo(context, 'report post render', function() {
-                this.renderChart();
+                self.renderChart();
             });
             return this;
         },
         renderChart: function() {
             var self = this,
-                $heatmapContainer = this.$('.heatmap'),
-                svg = $heatmapContainer.find('svg')[0];
+                $heatmap = this.$('.heatmap');
 
-            var numberOfCols = this.model.results.categories.length;
-            var numberOfRows = _.keys(this.model.results.accounts).length;
+            var width = $heatmap.width();
 
-            var width = $heatmapContainer.width();
-            var rectWidth = width / numberOfCols,
-                rectHeight = rectWidth;
+            var numberOfEntries = 0,
+                dataValues = _.values(this.model.results.accounts),
+                rowLabels = _.keys(this.model.results.accounts),
+                colLabels = [];
 
-            var height = rectHeight * numberOfRows;
+            if(_.any(dataValues)) {
+                numberOfEntries = dataValues[0].length;
+                colLabels = _.map(dataValues[0], function(d) { return d.label; });
+            }
 
-            console.log('Width: ' + width);
-            console.log('Height: ' + height);
+            var rectWidth = width / numberOfEntries,
+                rectHeight = rectWidth,
+                height = rectHeight * numberOfEntries;
 
-            var heatmap = d3.select(svg);
+            var svg = d3.select(this.$('svg')[0]);
 
-            heatmap.attr('width', width)
-                .attr('height', height);
+            svg.attr('width', width).attr('height', height);
 
-            var data = _.flatten(_.values(this.model.results.accounts));
+            var heatmap = svg.selectAll('g')
+                                .data(dataValues)
+                            .enter()
+                                .append('g');
 
-            heatmap.selectAll('rect')
-                .data(data)
+            heatmap.attr('transform', function(d, i) {
+                return 'translate(0 ' + (rectHeight * i) + ')';
+            });
+
+            var rect = heatmap.selectAll('rect')
+                    .data(function(d) { return d; })
                 .enter()
-                    .append('rect')
-                    .attr('stroke', '#cccccc')
-                    .attr('stroke-width', '1px')
-                    .attr('width', rectWidth)
-                    .attr('height', rectHeight)
-                    .attr('x', function(d, i) {
-                        return rectWidth * (i % numberOfCols);
-                    })
-                    .attr('y', function(d, i) {
-                        return rectHeight * (i - (i % numberOfCols)) / numberOfCols;
-                    })
-                    .attr('fill', function(d, i) {
-                        return d.classification;
-                    });
+                    .append('rect');
+
+            rect.attr('width', rectWidth)
+                .attr('height', rectHeight)
+                .attr('stroke', '#cccccc')
+                .attr('stroke-width', '1px')
+                .attr('fill', function(d, i) {
+                    return d.classification;
+                })
+                .attr('x', function(d, i) {
+                    return rectWidth * i;
+                });
+
+            rect.append('title').text(function(d) {
+                return d.label + ' - ' + ((d.value !== null) ? d.value : 'N/A');
+            });
         }
     });
 });
