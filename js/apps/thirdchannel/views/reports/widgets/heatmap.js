@@ -35,6 +35,11 @@ define(function(require) {
                 self.renderChart();
             }, 500));
 
+            var xScale = null,
+                xAxis = null,
+                yScale = null,
+                yAxis = null;
+
             $(window).resize(self.resizeChart);
         },
         render: function () {
@@ -94,15 +99,17 @@ define(function(require) {
                 return d.label + ' - ' + ((d.value !== null) ? d.value : 'N/A');
             });
 
-            var yScale = d3.scale.ordinal().domain(rowLabels).rangeBands([0, height]),
-                yAxis = d3.svg.axis().scale(yScale).orient('right');
+            yScale = d3.scale.ordinal().domain(rowLabels).rangeBands([0, height]);
+            yAxis = d3.svg.axis().scale(yScale).orient('right');
 
-            svg.append('g').attr('transform', 'translate(0 0)').call(yAxis);
+            svg.append('g').attr('class', 'y axis').attr('transform', 'translate(0 0)').call(yAxis);
 
-            var xScale = d3.scale.ordinal().domain(colLabels).rangeBands([rowLabelMargin, width]),
-                xAxis = d3.svg.axis().scale(xScale).orient('top');
+            xScale = d3.scale.ordinal().domain(colLabels).rangeBands([rowLabelMargin, width]);
+            xAxis = d3.svg.axis().scale(xScale).orient('top');
 
-            svg.append('g').attr('transform', 'translate(0 ' + (height + rowLabelMargin)  + ')')
+            svg.append('g')
+                .attr('class', 'x axis')
+                .attr('transform', 'translate(0 ' + (height + rowLabelMargin)  + ')')
                 .call(xAxis)
                 .selectAll('text')
                 .attr('dy', '1em')
@@ -136,6 +143,12 @@ define(function(require) {
                });
 
             svg.selectAll('g.tile-row').attr('transform', function(d, i) { return 'translate(' + rowLabelMargin + ' ' + (rectHeight * i) + ')'; });
+
+            yScale.rangeBands([0, height]);
+            xScale.rangeBands([rowLabelMargin, width]);
+
+            svg.selectAll('.x.axis').attr('transform', 'translate(0' + height  + ')').call(xAxis);
+            svg.selectAll('.y.axis').call(yAxis);
         }
     });
 });
