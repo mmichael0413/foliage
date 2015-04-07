@@ -30,10 +30,18 @@ define(function(require) {
 
             this.loadingView = new LoadingView();
 
-            this.listenTo(context, 'report post render', _.debounce(function() {
-                self.loadingView.remove();
-                self.renderChart();
-            }, 500));
+            if(window.pdf === undefined) {
+                this.listenTo(context, 'report post render', _.debounce(function() {
+                    self.loadingView.remove();
+                    self.renderChart();
+                }, 500));
+            } else {
+                this.listenTo(context, 'report post render', function() {
+                    console.log('here');
+                    self.renderChart();
+                });
+            }
+
 
             var xScale = null,
                 xAxis = null,
