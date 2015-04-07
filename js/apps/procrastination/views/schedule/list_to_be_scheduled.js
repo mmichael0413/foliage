@@ -103,8 +103,8 @@ define(function (require) {
 
             if(groupedSchedules.true !== undefined) {
                 this.scheduledCount = groupedSchedules.true.length;
-                _.each(this.collection.models, function () {
-                    self.renderModel.apply(self, groupedSchedules.true);
+                _.each(this.collection.models, function (model) {
+                    self.renderModel(model);
                 });
             }
             $('.scheduled .count').html(this.scheduledCount);
@@ -112,8 +112,8 @@ define(function (require) {
             if(groupedSchedules.false !== undefined) {
                 this.unscheduledCount = groupedSchedules.false.length;
 
-                _.each(this.collection.models, function () {
-                    self.renderModel.apply(self, groupedSchedules.false);
+                _.each(this.collection.models, function (model) {
+                    self.renderModel(model);
                 });
             } else {
                 this.$('.schedule-container .unscheduled .schedules').html('All visits have been scheduled.');
