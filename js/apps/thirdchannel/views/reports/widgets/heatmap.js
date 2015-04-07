@@ -33,13 +33,16 @@ define(function(require) {
             this.listenTo(context, 'report post render', _.debounce(function() {
                 self.loadingView.remove();
                 self.renderChart();
-            }, 1000));
+            }, 500));
 
             $(window).resize(self.resizeChart);
         },
         render: function () {
             this.setElement(this.template(this.model));
-            this.$('.heatmap').append(this.loadingView.render().el);
+
+            if(window.pdf === undefined) {
+                this.$('.heatmap').append(this.loadingView.render().el);
+            }
 
             return this;
         },
