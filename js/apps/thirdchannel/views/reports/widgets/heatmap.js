@@ -7,7 +7,7 @@ define(function(require) {
         LoadingView = require('thirdchannel/views/utils/loading');
 
     var rowLabelMargin = 125;
-    var colLabelMargin = 125;
+    var colLabelMargin = 130;
 
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/heatmap'],
@@ -111,17 +111,16 @@ define(function(require) {
             svg.append('g').attr('class', 'y axis').attr('transform', 'translate(' + rectWidth * numOfCols + ' 0)').call(yAxis);
 
             xScale = d3.scale.ordinal().domain(colLabels).rangeBands([0, width - rowLabelMargin]);
-            xAxis = d3.svg.axis().scale(xScale).orient('top');
+            xAxis = d3.svg.axis().scale(xScale).orient('bottom');
 
             svg.append('g')
                 .attr('class', 'x axis')
-                .attr('transform', 'translate(0 ' + (height + rowLabelMargin)  + ')')
+                .attr('transform', 'translate(0 ' + height + ')')
                 .call(xAxis)
                 .selectAll('text')
-                    .attr('dy', '1em')
-                    .attr('transform', 'rotate(-90)')
+                    .attr('transform', 'translate(-15, 5) rotate(-90)')
                     .attr('fill', '#434748')
-                    .style('text-anchor', 'start');
+                    .style('text-anchor', 'end');
         },
         resizeChart: function() {
             var self = this,
@@ -154,13 +153,13 @@ define(function(require) {
             xScale.rangeBands([0, width - rowLabelMargin]);
 
             svg.selectAll('.x.axis')
-                .attr('transform', 'translate(0 ' + (height + rowLabelMargin) + ')')
-                .call(xAxis.orient('top'))
+                .attr('transform', 'translate(0 ' + height + ')')
+                .call(xAxis.orient('bottom'))
                 .selectAll('text')
                     .attr('dy', '1em')
-                    .attr('transform', 'rotate(-90)')
+                    .attr('transform', 'translate(-15, 5) rotate(-90)')
                     .attr('fill', '#434748')
-                    .style('text-anchor', 'start');
+                    .style('text-anchor', 'end');
 
             svg.selectAll('.y.axis').attr('transform', 'translate(' + rectWidth * numOfCols + ' 0)').call(yAxis.orient('right'));
         }
