@@ -112,10 +112,10 @@ define(function(require) {
                 .attr('transform', 'translate(0 ' + (height + rowLabelMargin)  + ')')
                 .call(xAxis)
                 .selectAll('text')
-                .attr('dy', '1em')
-                .attr('transform', 'rotate(-90)')
-                .attr('fill', '#434748')
-                .style('text-anchor', 'start');
+                    .attr('dy', '1em')
+                    .attr('transform', 'rotate(-90)')
+                    .attr('fill', '#434748')
+                    .style('text-anchor', 'start');
         },
         resizeChart: function() {
             var self = this,
@@ -147,7 +147,7 @@ define(function(require) {
             yScale.rangeBands([0, height]);
             xScale.rangeBands([rowLabelMargin, width]);
 
-            svg.selectAll('.x.axis').attr('transform', 'translate(0' + height  + ')').call(xAxis);
+            svg.selectAll('.x.axis').call(xAxis);
             svg.selectAll('.y.axis').call(yAxis);
         }
     });
