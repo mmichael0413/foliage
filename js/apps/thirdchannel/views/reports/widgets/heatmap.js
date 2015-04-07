@@ -37,7 +37,6 @@ define(function(require) {
                 }, 500));
             } else {
                 this.listenTo(context, 'report post render', function() {
-                    console.log('here');
                     self.renderChart();
                 });
             }
