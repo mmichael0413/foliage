@@ -40,8 +40,7 @@ define(function(require) {
                     self.renderChart();
                 });
             }
-
-
+            
             var xScale = null,
                 xAxis = null,
                 yScale = null,
