@@ -6,9 +6,6 @@ define(function(require) {
         context = require('context'),
         LoadingView = require('thirdchannel/views/utils/loading');
 
-    var rowLabelMargin = 125;
-    var colLabelMargin = 130;
-
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/heatmap'],
         initialize: function (options) {
@@ -18,6 +15,10 @@ define(function(require) {
                 legend = {};
 
             this.model = options;
+
+            // default row and col margins
+            this.rowLabelMargin = 125;
+            this.colLabelMargin = 130;
 
             // Build the legend collection (dealing with hstore -> json weirdness)
             this.model.config.legend = JSON.parse(this.model.config.legend);
@@ -68,13 +69,33 @@ define(function(require) {
                 numOfRows = rowLabels.length,
                 numOfCols = colLabels.length;
 
-            var rectWidth = (width - rowLabelMargin) / numOfCols,
+            var svg = d3.select(this.$('svg')[0]);
+
+            var labels = svg.selectAll('text')
+                            .data(colLabels)
+                            .enter()
+                                .append('text')
+                                .classed('label-text', true)
+                                .text(function(d) { return d; });
+
+            this.colLabelMargin = d3.max(labels[0], function(el) { return (el).getBBox().width; });
+            labels.remove();
+
+            labels = svg.selectAll('text')
+                        .data(rowLabels)
+                        .enter()
+                            .append('text')
+                            .classed('label-text', true)
+                            .text(function(d) { return d; });
+
+            this.rowLabelMargin = d3.max(labels[0], function(el) { return (el).getBBox().width; });
+            labels.remove();
+
+            var rectWidth = (width - this.rowLabelMargin) / numOfCols,
                 rectHeight = rectWidth,
                 height = rectHeight * numOfRows;
 
-            var svg = d3.select(this.$('svg')[0]);
-
-            svg.attr('width', width).attr('height', height + colLabelMargin);
+            svg.attr('width', width + this.rowLabelMargin).attr('height', height + this.colLabelMargin);
 
             var heatMap = svg.selectAll('g')
                                 .data(dataValues)
@@ -110,7 +131,7 @@ define(function(require) {
 
             svg.append('g').attr('class', 'y axis').attr('transform', 'translate(' + rectWidth * numOfCols + ' 0)').call(yAxis);
 
-            xScale = d3.scale.ordinal().domain(colLabels).rangeBands([0, width - rowLabelMargin]);
+            xScale = d3.scale.ordinal().domain(colLabels).rangeBands([0, width - this.rowLabelMargin]);
             xAxis = d3.svg.axis().scale(xScale).orient('bottom');
 
             svg.append('g')
@@ -132,13 +153,13 @@ define(function(require) {
                 numOfRows = rowLabels.length,
                 numOfCols = colLabels.length;
 
-            var rectWidth = (width - rowLabelMargin) / numOfCols,
+            var rectWidth = (width - this.rowLabelMargin) / numOfCols,
                 rectHeight = rectWidth,
                 height = rectHeight * numOfRows;
 
             var svg = d3.select(this.$('svg')[0]);
 
-            svg.attr('width', width).attr('height', height + colLabelMargin);
+            svg.attr('width', width).attr('height', height + this.colLabelMargin);
 
             svg.selectAll('rect.tile')
                .attr('width', rectWidth)
@@ -150,7 +171,7 @@ define(function(require) {
             svg.selectAll('g.tile-row').attr('transform', function(d, i) { return 'translate(0 ' + (rectHeight * i) + ')'; });
 
             yScale.rangeBands([0, height]);
-            xScale.rangeBands([0, width - rowLabelMargin]);
+            xScale.rangeBands([0, width - this.rowLabelMargin]);
 
             svg.selectAll('.x.axis')
                 .attr('transform', 'translate(0 ' + height + ')')
