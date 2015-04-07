@@ -156,7 +156,6 @@ define(function(require) {
                 .attr('transform', 'translate(0 ' + height + ')')
                 .call(xAxis.orient('bottom'))
                 .selectAll('text')
-                    .attr('dy', '1em')
                     .attr('transform', 'translate(-15, 5) rotate(-90)')
                     .attr('fill', '#434748')
                     .style('text-anchor', 'end');
