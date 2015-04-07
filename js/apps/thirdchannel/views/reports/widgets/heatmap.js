@@ -147,8 +147,15 @@ define(function(require) {
             yScale.rangeBands([0, height]);
             xScale.rangeBands([rowLabelMargin, width]);
 
-            svg.selectAll('.x.axis').call(xAxis);
-            svg.selectAll('.y.axis').call(yAxis);
+            svg.selectAll('.x.axis')
+                .attr('transform', 'translate(0 ' + (height + colLabelMargin) + ')')
+                .call(xAxis.orient('top'))
+                .selectAll('text')
+                    .attr('dy', '1em')
+                    .attr('transform', 'rotate(-90)')
+                    .attr('fill', '#434748')
+                    .style('text-anchor', 'start');
+            svg.selectAll('.y.axis').call(yAxis.orient('right'));
         }
     });
 });
