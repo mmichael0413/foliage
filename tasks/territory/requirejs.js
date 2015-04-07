@@ -1,5 +1,5 @@
 /**
- * requirejs
+ * requirejs:territory
  * ==========
  *
  */
@@ -8,12 +8,12 @@
 
 module.exports = function(grunt) {
     return {
-        singleNickel: {
+        territory: {
             options: {
-                mainConfigFile: "js/apps/singleNickel/init.js",
+                mainConfigFile: "js/apps/territory/init.js",
                 baseUrl: 'js/apps',
-                name: 'singleNickel/init',
-                out: 'dist/singleNickel/js/app.js',
+                name: 'territory/init',
+                out: 'dist/territory/js/app.js',
                 removeCombined: true,
                 findNestedDependencies: true,
                 generateSourceMaps: true,

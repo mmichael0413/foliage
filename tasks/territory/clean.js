@@ -1,5 +1,5 @@
 /**
- * clean
+ * clean:territory
  * ==========
  *
  */
@@ -8,6 +8,6 @@
 
 module.exports = function(grunt) {
     return {
-        singleNickel: ['dist/singleNickel']
+        territory: ['dist/territory']
     };
 };

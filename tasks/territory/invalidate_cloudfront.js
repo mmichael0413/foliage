@@ -1,5 +1,5 @@
 /**
- * invalidate_cloudfront
+ * invalidate_cloudfront:territory
  * ==========
  *
  */
@@ -9,21 +9,21 @@
 module.exports = function(grunt) {
     var fileList = [
         {
-            dest: 'dist/singleNickel/css/main.css'
+            dest: 'dist/territory/css/main.css'
         },
         {
-            dest: 'dist/singleNickel/css/main.css.map'
+            dest: 'dist/territory/css/main.css.map'
         },
         {
-            dest: 'dist/singleNickel/js/app.js'
+            dest: 'dist/territory/js/app.js'
         },
         {
-            dest: 'dist/singleNickel/js/app.js.map'
+            dest: 'dist/territory/js/app.js.map'
         }
-    ]
+    ];
 
     return {
-        singleNickel: {
+        territory: {
             options: {
                 key: process.env.AWS_ACCESS_KEY_ID, // Use the variables
                 secret: process.env.AWS_SECRET_ACCESS_KEY, // You can also use env variables
@@ -42,6 +42,5 @@ module.exports = function(grunt) {
                 files: fileList
             }
         }
-
     };
 };

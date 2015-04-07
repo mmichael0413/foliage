@@ -1,5 +1,5 @@
 /**
- * invalidate_cloudfront
+ * invalidate_cloudfront:marketing
  * ==========
  *
  */
@@ -9,45 +9,54 @@
 module.exports = function(grunt) {
     var fileList = [
         {
-            dest: 'dist/shared/fonts/nexa_bold-webfont.eot'
+            dest: 'dist/marketing/css/main.css'
         },
         {
-            dest: 'dist/shared/fonts/nexa_bold-webfont.svg'
+            dest: 'dist/marketing/css/main.css.map'
         },
         {
-            dest: 'dist/shared/fonts/nexa_bold-webfont.ttf'
+            dest: 'dist/marketing/js/app.js'
         },
         {
-            dest: 'dist/shared/fonts/nexa_bold-webfont.woff'
+            dest: 'dist/marketing/js/app.js.map'
         },
         {
-            dest: 'dist/shared/fonts/nexa_light-webfont.eot'
+            dest: 'dist/marketing/js/require.js'
         },
         {
-            dest: 'dist/shared/fonts/nexa_light-webfont.svg'
+            dest: 'dist/marketing/images/agents.jpg'
         },
         {
-            dest: 'dist/shared/fonts/nexa_light-webfont.ttf'
+            dest: 'dist/marketing/images/agents.png'
         },
         {
-            dest: 'dist/shared/fonts/nexa_light-webfont.woff'
+            dest: 'dist/marketing/images/capture.png'
         },
         {
-            dest: 'dist/shared/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.eot'
+            dest: 'dist/marketing/images/contact.png'
         },
         {
-            dest: 'dist/shared/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.svg'
+            dest: 'dist/marketing/images/facebook.png'
         },
         {
-            dest: 'dist/shared/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.ttf'
+            dest: 'dist/marketing/images/howdo.png'
         },
         {
-            dest: 'dist/shared/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.woff'
+            dest: 'dist/marketing/images/linkedin.png'
+        },
+        {
+            dest: 'dist/marketing/images/maximize.png'
+        },
+        {
+            dest: 'dist/marketing/images/maximize.jpg'
+        },
+        {
+            dest: 'dist/marketing/images/whatsthejob.png'
         }
     ];
 
     return {
-        shared: {
+        marketing: {
             options: {
                 key: process.env.AWS_ACCESS_KEY_ID, // Use the variables
                 secret: process.env.AWS_SECRET_ACCESS_KEY, // You can also use env variables

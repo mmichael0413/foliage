@@ -1,5 +1,5 @@
 /**
- * clean
+ * clean:thirdchannel
  * ==========
  *
  */
@@ -8,6 +8,6 @@
 
 module.exports = function(grunt) {
     return {
-        singleNickel: ['dist/singleNickel']
+        thirdchannel: ['dist/thirdchannel']
     };
 };

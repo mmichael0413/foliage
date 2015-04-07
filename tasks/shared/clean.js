@@ -1,5 +1,5 @@
 /**
- * clean
+ * clean:shared
  * ==========
  *
  */
@@ -7,5 +7,7 @@
 "use strict";
 
 module.exports = function(grunt) {
-    return ['dist/shared'];
+    return {
+        shared: ['dist/shared']
+    };
 };

@@ -1,5 +1,5 @@
 /**
- * invalidate_cloudfront
+ * invalidate_cloudfront:bigTastysBackDoor
  * ==========
  *
  */
@@ -9,21 +9,24 @@
 module.exports = function(grunt) {
     var fileList = [
         {
-            dest: 'dist/singleNickel/css/main.css'
+            dest: 'dist/bigTastysBackDoor/css/main.css'
         },
         {
-            dest: 'dist/singleNickel/css/main.css.map'
+            dest: 'dist/bigTastysBackDoor/css/main.css.map'
         },
         {
-            dest: 'dist/singleNickel/js/app.js'
+            dest: 'dist/bigTastysBackDoor/js/app.js'
         },
         {
-            dest: 'dist/singleNickel/js/app.js.map'
+            dest: 'dist/bigTastysBackDoor/js/app.js.map'
+        },
+        {
+            dest: 'dist/bigTastysBackDoor/js/require.js'
         }
-    ]
+    ];
 
     return {
-        singleNickel: {
+        bigTastysBackDoor: {
             options: {
                 key: process.env.AWS_ACCESS_KEY_ID, // Use the variables
                 secret: process.env.AWS_SECRET_ACCESS_KEY, // You can also use env variables
@@ -42,6 +45,5 @@ module.exports = function(grunt) {
                 files: fileList
             }
         }
-
     };
 };

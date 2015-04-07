@@ -1,5 +1,5 @@
 /**
- * requirejs
+ * requirejs:pennyPacker
  * ==========
  *
  */
@@ -8,12 +8,12 @@
 
 module.exports = function(grunt) {
     return {
-        singleNickel: {
+        pennyPacker: {
             options: {
-                mainConfigFile: "js/apps/singleNickel/init.js",
+                mainConfigFile: "js/apps/pennyPacker/init.js",
                 baseUrl: 'js/apps',
-                name: 'singleNickel/init',
-                out: 'dist/singleNickel/js/app.js',
+                name: 'pennyPacker/init',
+                out: 'dist/pennyPacker/js/app.js',
                 removeCombined: true,
                 findNestedDependencies: true,
                 generateSourceMaps: true,

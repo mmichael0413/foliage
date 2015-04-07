@@ -1,5 +1,5 @@
 /**
- * handlebars:singleNickel
+ * handlebars:thirdchannel
  * ==========
  *
  */
@@ -8,20 +8,20 @@
 
 module.exports = function(grunt) {
     return {
-        singleNickel: {
+        thirdchannel: {
             compile: {
                 options: {
                     // so we can use it with require!
                     amd: true,
-                    namespace: "SingleNickel.templates",
+                    namespace: "ThirdChannel.templates",
                     processName: function(filename) {
                         return filename.replace('templates/handlebars/', '').replace('.hbs', '');
                     }
                 },
                 files: {
-                    "js/apps/singleNickel/templates/hbs-compiled.js": [
+                    "js/apps/thirdchannel/templates/hbs-compiled.js": [
                         "templates/handlebars/shared/**/*.hbs",
-                        "templates/handlebars/singleNickel/**/*.hbs"
+                        "templates/handlebars/thirdchannel/**/*.hbs"
                     ]
                 }
             }

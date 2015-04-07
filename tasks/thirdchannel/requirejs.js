@@ -1,5 +1,5 @@
 /**
- * requirejs
+ * requirejs:thirdchannel
  * ==========
  *
  */
@@ -8,12 +8,12 @@
 
 module.exports = function(grunt) {
     return {
-        singleNickel: {
+        thirdchannel: {
             options: {
-                mainConfigFile: "js/apps/singleNickel/init.js",
+                mainConfigFile: "js/apps/thirdchannel/init.js",
                 baseUrl: 'js/apps',
-                name: 'singleNickel/init',
-                out: 'dist/singleNickel/js/app.js',
+                name: 'thirdchannel/init',
+                out: 'dist/thirdchannel/js/app.js',
                 removeCombined: true,
                 findNestedDependencies: true,
                 generateSourceMaps: true,

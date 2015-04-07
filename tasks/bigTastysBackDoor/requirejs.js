@@ -1,5 +1,5 @@
 /**
- * requirejs
+ * requirejs:bigTastysBackDoor
  * ==========
  *
  */
@@ -8,12 +8,12 @@
 
 module.exports = function(grunt) {
     return {
-        singleNickel: {
+        bigTastysBackDoor: {
             options: {
-                mainConfigFile: "js/apps/singleNickel/init.js",
+                mainConfigFile: "js/apps/bigTastysBackDoor/init.js",
                 baseUrl: 'js/apps',
-                name: 'singleNickel/init',
-                out: 'dist/singleNickel/js/app.js',
+                name: 'bigTastysBackDoor/init',
+                out: 'dist/bigTastysBackDoor/js/app.js',
                 removeCombined: true,
                 findNestedDependencies: true,
                 generateSourceMaps: true,

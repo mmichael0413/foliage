@@ -1,5 +1,5 @@
 /**
- * jshint
+ * jshint:bigTastysBackDoor
  * ==========
  *
  */
@@ -9,7 +9,7 @@
 module.exports = function(grunt) {
     return {
         // the all task covers all files, excluding the hbs-compiled (auto-generated) and any libs we use (we didn't write them)
-        singleNickel: ['js/apps/singleNickel/**/*.js'],
+        bigTastysBackDoor: ['js/apps/bigTastysBackDoor/**/*.js'],
         options: {
             ignores: [
                 '**/hbs-compiled.js',

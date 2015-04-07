@@ -6,7 +6,8 @@
     "grunt-cli": "~0.1.13",
     "normalize.css": "^3.0.1",
     "rework": "1.0.1",
-    "rework-pure-grids": "1.0.0"
+    "rework-pure-grids": "1.0.0",
+    "lodash": "3.6.0"
   },
   "devDependencies": {
     "grunt-aws-s3": "*",
