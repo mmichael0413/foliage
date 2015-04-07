@@ -4,7 +4,7 @@ define(function(require){
 	Schedule = require('procrastination/models/schedule/main');
 
 	ScheduleCollection = Backbone.Collection.extend({
-		initialize: function(options){
+		initialize: function(models, options){
 			this.aggregateId = options.aggregateId;
 			this.personId = options.personId;
 			this.programId = options.programId;

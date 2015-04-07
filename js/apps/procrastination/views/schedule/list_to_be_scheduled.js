@@ -2,7 +2,6 @@ define(function (require) {
     var jquery = require('jquery'),
         Backbone = require('backbone'),
         jqueryui = require('jquery-ui'),
-        Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
         FullCalendar = require('fullcalendar'),
@@ -20,18 +19,18 @@ define(function (require) {
 
             this.listenTo(this, 'fullcalendar.date.create', this.updateSchedule);
 
-            this.aggregate = bootstrap.aggregateId;
-            this.collection = new ScheduleCollection({
+            this.aggregate = context.aggregateId;
+            this.collection = new ScheduleCollection(null, {
                 aggregateId: this.aggregate,
-                personId: bootstrap.personId,
-                programId: bootstrap.programId
+                personId: context.personId,
+                programId: context.programId
             });
 
             this.calendar = this.$('#calendar').fullCalendar({
                 // put your options and callbacks here
                 droppable: true,
                 eventLimit: 2,
-                defaultDate: bootstrap.startDate,
+                defaultDate: context.startDate,
                 header: {
                     left: 'title',
                     center: '',
@@ -88,6 +87,12 @@ define(function (require) {
         },
         render: function () {
             var self = this;
+
+            if(this.collection.models.length === 0) {
+                this.$('.schedule-container .unscheduled .schedules').html('No visits are required for this month.');
+                return this;
+            }
+
             // if collection has models, render them
             this.$('.schedule-container .unscheduled .schedules').html('');
             this.$('.schedule-container .scheduled .schedules').html('');
@@ -110,6 +115,8 @@ define(function (require) {
                 _.each(this.collection.models, function () {
                     self.renderModel.apply(self, groupedSchedules.false);
                 });
+            } else {
+                this.$('.schedule-container .unscheduled .schedules').html('All visits have been scheduled.');
             }
             $('.unscheduled .count').html(this.unscheduledCount);
 

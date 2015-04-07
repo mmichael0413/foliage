@@ -1,7 +1,6 @@
 define(function (require) {
     var Backbone = require('backbone'),
         context = require('context'),
-        HandlebarsTemplates = require('handlebarsTemplates'),
         ScheduleRowGroup = require('procrastination/views/schedule/show_schedule_group'),
         ScheduledVisitsCollection = require('procrastination/collections/schedule/list_schedules');
 
@@ -19,6 +18,11 @@ define(function (require) {
         render: function() {
             var self = this;
 
+            if(this.collection.models.length === 0) {
+                this.$el.append('No visits have been scheduled for this month.');
+                return this;
+            }
+
             var groupedVisits = this.collection.groupBy(function(model) {
                 return model.get('dateScheduled');
             });
@@ -29,14 +33,6 @@ define(function (require) {
                 self.$el.append(group.render().el);
                // console.log(groupedVisits[date]);
             });
-
-            //_.each(this.collection.models, function (model) {
-            //    var scheduleRow = new ScheduleRow({
-            //        model: model
-            //    });
-            //
-            //    self.$el.append(scheduleRow.render().el);
-            //});
         }
     });
 

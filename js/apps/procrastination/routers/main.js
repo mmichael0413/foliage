@@ -30,12 +30,11 @@ define(function(require) {
             },
 
             showSchedule: function() {
-                console.log('show it');
-
-
                 var view =  new ListSchedule();
                 if(context.content) {
                     view.bootstrapCollection(context.content);
+                } else {
+                    view.render();
                 }
             },
 
