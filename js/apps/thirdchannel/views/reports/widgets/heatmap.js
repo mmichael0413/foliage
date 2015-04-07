@@ -30,12 +30,10 @@ define(function(require) {
 
             this.loadingView = new LoadingView();
 
-            this.listenTo(context, 'filter-toggled:complete', function() {
-                setTimeout(function() {
-                    self.loadingView.remove();
-                    self.renderChart();
-                }, 1000);
-            });
+            this.listenTo(context, 'report post render', _.debounce(function() {
+                self.loadingView.remove();
+                self.renderChart();
+            }, 1000));
 
             $(window).resize(self.resizeChart);
         },
