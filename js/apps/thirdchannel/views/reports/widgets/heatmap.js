@@ -6,8 +6,8 @@ define(function(require) {
         context = require('context'),
         LoadingView = require('thirdchannel/views/utils/loading');
 
-    var rowLabelMargin = 150;
-    var colLabelMargin = 150;
+    var rowLabelMargin = 125;
+    var colLabelMargin = 125;
 
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/heatmap'],
@@ -98,9 +98,7 @@ define(function(require) {
 
             svg.append('g').attr('transform', 'translate(0 0)').call(yAxis);
 
-            var xScale = d3.scale.ordinal()
-                    .domain(colLabels)
-                    .rangeBands([rowLabelMargin, width]),
+            var xScale = d3.scale.ordinal().domain(colLabels).rangeBands([rowLabelMargin, width]),
                 xAxis = d3.svg.axis().scale(xScale).orient('top');
 
             svg.append('g').attr('transform', 'translate(0 ' + (height + rowLabelMargin)  + ')')
@@ -108,6 +106,7 @@ define(function(require) {
                 .selectAll('text')
                 .attr('dy', '1em')
                 .attr('transform', 'rotate(-90)')
+                .attr('fill', '#434748')
                 .style('text-anchor', 'start');
         },
         resizeChart: function() {

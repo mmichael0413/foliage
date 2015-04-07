@@ -255,5 +255,10 @@ ul.heatmap-legend {
   path.domain {
     display: none;
   }
+
+  g.tick text {
+    font-family: 'Open Sans', 'sans-serif';
+    font-size: 0.9em;
+  }
 }
 
