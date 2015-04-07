@@ -1,5 +1,6 @@
-# Build Tasks
-# NOT TO BE RUN ALONE
+#########################################
+# Build Dependent Tasks                 #
+#########################################
 test:
   - 'jshint'
   - 'karma'
@@ -18,7 +19,9 @@ release-prod:
   - 'copy'
   - 'aws_s3:production'
   - 'invalidate_cloudfront:production'
-# END
+#########################################
+# END                                   #
+#########################################
 
 
 default:
@@ -31,9 +34,9 @@ build-dev:
   - 'copy'
 
 build-beta:
-#  - 'clean'
-#  - 'test'
-#  - 'build'
+  - 'clean'
+  - 'test'
+  - 'build'
   - 'release-beta'
 
 build-prod:
