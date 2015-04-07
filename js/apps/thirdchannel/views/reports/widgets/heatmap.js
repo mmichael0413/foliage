@@ -82,7 +82,7 @@ define(function(require) {
                                 .append('g');
 
             heatMap.attr('class', 'tile-row')
-                   .attr('transform', function(d, i) { return 'translate(' + rowLabelMargin + ' ' + (rectHeight * i) + ')'; });
+                   .attr('transform', function(d, i) { return 'translate(0 ' + (rectHeight * i) + ')'; });
 
             var rect = heatMap.selectAll('rect')
                     .data(function(d) { return d; })
@@ -108,9 +108,9 @@ define(function(require) {
             yScale = d3.scale.ordinal().domain(rowLabels).rangeBands([0, height]);
             yAxis = d3.svg.axis().scale(yScale).orient('right');
 
-            svg.append('g').attr('class', 'y axis').attr('transform', 'translate(0 0)').call(yAxis);
+            svg.append('g').attr('class', 'y axis').attr('transform', 'translate(' + rectWidth * numOfCols + ' 0)').call(yAxis);
 
-            xScale = d3.scale.ordinal().domain(colLabels).rangeBands([rowLabelMargin, width]);
+            xScale = d3.scale.ordinal().domain(colLabels).rangeBands([0, width - rowLabelMargin]);
             xAxis = d3.svg.axis().scale(xScale).orient('top');
 
             svg.append('g')
@@ -148,20 +148,21 @@ define(function(require) {
                     return rectWidth * (i % numOfCols);
                });
 
-            svg.selectAll('g.tile-row').attr('transform', function(d, i) { return 'translate(' + rowLabelMargin + ' ' + (rectHeight * i) + ')'; });
+            svg.selectAll('g.tile-row').attr('transform', function(d, i) { return 'translate(0 ' + (rectHeight * i) + ')'; });
 
             yScale.rangeBands([0, height]);
-            xScale.rangeBands([rowLabelMargin, width]);
+            xScale.rangeBands([0, width - rowLabelMargin]);
 
             svg.selectAll('.x.axis')
-                .attr('transform', 'translate(0 ' + (height + colLabelMargin) + ')')
+                .attr('transform', 'translate(0 ' + (height + rowLabelMargin) + ')')
                 .call(xAxis.orient('top'))
                 .selectAll('text')
                     .attr('dy', '1em')
                     .attr('transform', 'rotate(-90)')
                     .attr('fill', '#434748')
                     .style('text-anchor', 'start');
-            svg.selectAll('.y.axis').call(yAxis.orient('right'));
+
+            svg.selectAll('.y.axis').attr('transform', 'translate(' + rectWidth * numOfCols + ' 0)').call(yAxis.orient('right'));
         }
     });
 });
