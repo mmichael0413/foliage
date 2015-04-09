@@ -1,34 +1,46 @@
-default:
-  - 'concurrent:dev'
-
+#########################################
+# Build Dependent Tasks                 #
+#########################################
 test:
-  - 'karma:thirdchannel'
-  - 'karma:territory'
+  - 'jshint'
+  - 'karma'
 
-build-dev:
-  - 'clean'
+build:
   - 'sass'
   - 'handlebars'
-  - 'test'
   - 'requirejs'
-  - 'copy'
 
-build-beta:
-  - 'clean'
-  - 'sass'
-  - 'handlebars'
-  - 'test'
-  - 'requirejs'
+release-beta:
   - 'copy'
   - 'aws_s3:staging'
   - 'invalidate_cloudfront:staging'
 
-build-prod:
-  - 'clean'
-  - 'sass'
-  - 'handlebars'
-  - 'test'
-  - 'requirejs'
+release-prod:
   - 'copy'
   - 'aws_s3:production'
   - 'invalidate_cloudfront:production'
+#########################################
+# END                                   #
+#########################################
+
+
+default:
+  - 'concurrent:dev'
+
+build-dev:
+  - 'clean'
+  - 'test'
+  - 'build'
+  - 'copy'
+
+build-beta:
+  - 'clean'
+  - 'test'
+  - 'build'
+  - 'release-beta'
+
+build-prod:
+  - 'clean'
+  - 'test'
+  - 'build'
+  - 'release-prod'

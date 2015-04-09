@@ -16,12 +16,7 @@ require.config({
         'jquery': '../libs/bower_components/jquery/jquery.min',
         'underscore': '../libs/bower_components/underscore/underscore',
         'backbone': '../libs/bower_components/backbone/backbone',
-        'handlebars': '../libs/bower_components/handlebars/handlebars.min',
-
-        'context': 'shared/utils/context',
-        'handlebarsTemplates': 'thirdchannel/templates/hbs-compiled',
-        'handlebarsHelpers' : 'thirdchannel/utils/handlebarsHelpers'
-
+        'handlebars': '../libs/bower_components/handlebars/handlebars.min'
     },
     shim: {
 
@@ -33,9 +28,6 @@ require.config({
             exports: '_'
         },
 
-        'handlebars': {
-            exports: 'Handlebars'
-        },
 
         'backbone': {
             deps: ['jquery', 'underscore', 'handlebars'],

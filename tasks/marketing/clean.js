@@ -1,5 +1,5 @@
 /**
- * clean
+ * clean:marketing
  * ==========
  *
  */
@@ -7,5 +7,7 @@
 "use strict";
 
 module.exports = function(grunt) {
-    return ['dist'];
+    return {
+        marketing: ['dist/marketing']
+    };
 };
