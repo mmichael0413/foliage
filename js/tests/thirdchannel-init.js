@@ -20,7 +20,7 @@ require.config({
 
         'context': 'shared/utils/context',
         'handlebarsTemplates': 'thirdchannel/templates/hbs-compiled',
-        'handlebarsHelpers' : 'thirdchannel/utils/handlebarsHelpers',
+        'handlebarsHelpers' : 'thirdchannel/utils/handlebarsHelpers'
 
     },
     shim: {

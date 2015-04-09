@@ -1,7 +1,90 @@
 define(['handlebars'], function(Handlebars) {
 
-this["ThirdChannel"] = this["ThirdChannel"] || {};
-this["ThirdChannel"]["templates"] = this["ThirdChannel"]["templates"] || {};
+this["SingleNickel"] = this["SingleNickel"] || {};
+this["SingleNickel"]["templates"] = this["SingleNickel"]["templates"] || {};
+
+Handlebars.registerPartial("content", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n    <i class=\"ic fa ";
+  if (helper = helpers.icon) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.icon); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"></i>\n";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n    <span>";
+  if (helper = helpers.text) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.text); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n";
+  return buffer;
+  }
+
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.icon), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.text), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  return buffer;
+  }));
+
+Handlebars.registerPartial("nav_item", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  
+  return "active";
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n        <i class=\"ic ";
+  if (helper = helpers.icon2) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.icon2); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"></i>\n    ";
+  return buffer;
+  }
+
+  buffer += "<a href=\"";
+  if (helper = helpers.link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"nav-item ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.active), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " ";
+  if (helper = helpers.className) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.className); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n    <i class=\"ic ";
+  if (helper = helpers.icon) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.icon); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"></i>\n    <span class=\"link\">";
+  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n    ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.icon2), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</a>";
+  return buffer;
+  }));
 
 Handlebars.registerPartial("editControls", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
@@ -42,10 +125,28 @@ function program4(depth0,data) {
 Handlebars.registerPartial("showControls", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
   
+  
+  return "\n        <a href=\"#\" class=\"up btn light round\"><i class=\"ic ic_up\"></i></a>\n    ";
+  }
 
+function program3(depth0,data) {
+  
+  
+  return "\n        <a href=\"#\" class=\"down btn light round\"><i class=\"ic ic_down\"></i></a>\n    ";
+  }
 
-  return "<div class=\"controls show\">\n    <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_post\"></i></a>\n    <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n</div>";
+  buffer += "<div class=\"controls show\">\n    ";
+  stack1 = (helper = helpers.unlessFirstChild || (depth0 && depth0.unlessFirstChild),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, depth0, options) : helperMissing.call(depth0, "unlessFirstChild", depth0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    ";
+  stack1 = (helper = helpers.unlessLastChild || (depth0 && depth0.unlessLastChild),options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data},helper ? helper.call(depth0, depth0, options) : helperMissing.call(depth0, "unlessLastChild", depth0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n    <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n</div>";
+  return buffer;
   }));
 
 Handlebars.registerPartial("editChoice", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -365,12 +466,30 @@ function program9(depth0,data) {
 Handlebars.registerPartial("showChoice", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, self=this, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, self=this, helperMissing=helpers.helperMissing, functionType="function", escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
+  var buffer = "", stack1, helper, options;
+  buffer += "\n        <div class=\"answer-controls\">\n            ";
+  stack1 = (helper = helpers.unlessFirstChild || (depth0 && depth0.unlessFirstChild),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, depth0, options) : helperMissing.call(depth0, "unlessFirstChild", depth0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            ";
+  stack1 = (helper = helpers.unlessLastChild || (depth0 && depth0.unlessLastChild),options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, depth0, options) : helperMissing.call(depth0, "unlessLastChild", depth0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n            <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n        </div>\n    ";
+  return buffer;
+  }
+function program2(depth0,data) {
   
-  return "\n        <div class=\"answer-controls\">\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_post\"></i></a>\n            <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n        </div>\n    ";
+  
+  return "\n                <a href=\"#\" class=\"up btn light round\"><i class=\"ic ic_up\"></i></a>\n            ";
+  }
+
+function program4(depth0,data) {
+  
+  
+  return "\n                <a href=\"#\" class=\"down btn light round\"><i class=\"ic ic_down\"></i></a>\n            ";
   }
 
   buffer += "<div>\n    ";
@@ -385,30 +504,48 @@ function program1(depth0,data) {
 Handlebars.registerPartial("showQuestion", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, self=this, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, self=this, helperMissing=helpers.helperMissing, functionType="function", escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
+  var buffer = "", stack1, helper, options;
+  buffer += "\n        <div class=\"controls show\">\n            ";
+  stack1 = (helper = helpers.unlessFirstChild || (depth0 && depth0.unlessFirstChild),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, depth0, options) : helperMissing.call(depth0, "unlessFirstChild", depth0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            ";
+  stack1 = (helper = helpers.unlessLastChild || (depth0 && depth0.unlessLastChild),options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, depth0, options) : helperMissing.call(depth0, "unlessLastChild", depth0, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n            <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n        </div>\n    ";
+  return buffer;
+  }
+function program2(depth0,data) {
   
-  return "\n        <div class=\"controls show\">\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_post\"></i></a>\n            <a href=\"#\" class=\"delete btn primary round\"><i class=\"ic ic_remove\"></i></a>\n        </div>\n    ";
+  
+  return "\n                <a href=\"#\" class=\"up btn light round\"><i class=\"ic ic_up\"></i></a>\n            ";
   }
 
-function program3(depth0,data) {
+function program4(depth0,data) {
+  
+  
+  return "\n                <a href=\"#\" class=\"down btn light round\"><i class=\"ic ic_down\"></i></a>\n            ";
+  }
+
+function program6(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n        <div class=\"children\"></div>\n        ";
-  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.locked), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.locked), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    ";
   return buffer;
   }
-function program4(depth0,data) {
+function program7(depth0,data) {
   
   
   return "\n            <div class=\"controls child\">\n                <a href=\"#\" class=\"add btn light round\"><i class=\"ic ic_add\"></i></a>\n            </div>\n        ";
   }
 
-function program6(depth0,data) {
+function program9(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n        <input type=\"text\" placeholder=\""
@@ -423,10 +560,10 @@ function program6(depth0,data) {
   buffer += "\n    <p class=\"content\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.ask)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</p>\n    ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.children), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.children), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.placeholder), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.placeholder), {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n</div>\n\n\n\n";
   return buffer;
@@ -473,7 +610,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n        <div class=\"controls show\">\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_post\"></i></a>\n        </div>\n    ";
+  return "\n        <div class=\"controls show\">\n            <a href=\"#\" class=\"edit btn light round\"><i class=\"ic ic_edit\"></i></a>\n        </div>\n    ";
   }
 
 function program3(depth0,data) {
@@ -687,217 +824,7 @@ function program1(depth0,data) {
   return buffer;
   }));
 
-Handlebars.registerPartial("content", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n    <i class=\"ic fa ";
-  if (helper = helpers.icon) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.icon); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\"></i>\n";
-  return buffer;
-  }
-
-function program3(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n    <span>";
-  if (helper = helpers.text) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.text); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</span>\n";
-  return buffer;
-  }
-
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.icon), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.text), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  return buffer;
-  }));
-
-Handlebars.registerPartial("nav_item", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
-
-function program1(depth0,data) {
-  
-  
-  return "active";
-  }
-
-function program3(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n        <i class=\"ic ";
-  if (helper = helpers.icon2) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.icon2); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\"></i>\n    ";
-  return buffer;
-  }
-
-  buffer += "<a href=\"";
-  if (helper = helpers.link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\" class=\"nav-item ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.active), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " ";
-  if (helper = helpers.className) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.className); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\">\n    <i class=\"ic ";
-  if (helper = helpers.icon) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.icon); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\"></i>\n    <span class=\"link\">";
-  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</span>\n    ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.icon2), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</a>";
-  return buffer;
-  }));
-
-this["ThirdChannel"]["templates"]["singleNickel/survey/build/edit"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-
-
-  return escapeExpression((helper = helpers.partial || (depth0 && depth0.partial),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.templates)),stack1 == null || stack1 === false ? stack1 : stack1.edit), depth0, options) : helperMissing.call(depth0, "partial", ((stack1 = (depth0 && depth0.templates)),stack1 == null || stack1 === false ? stack1 : stack1.edit), depth0, options)));
-  });
-
-this["ThirdChannel"]["templates"]["singleNickel/survey/build/show"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-
-
-  return escapeExpression((helper = helpers.partial || (depth0 && depth0.partial),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.templates)),stack1 == null || stack1 === false ? stack1 : stack1.show), depth0, options) : helperMissing.call(depth0, "partial", ((stack1 = (depth0 && depth0.templates)),stack1 == null || stack1 === false ? stack1 : stack1.show), depth0, options)));
-  });
-
-this["ThirdChannel"]["templates"]["singleNickel/survey/delete"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
-
-function program1(depth0,data) {
-  
-  var buffer = "", helper, options;
-  buffer += " "
-    + escapeExpression((helper = helpers.model_get || (depth0 && depth0.model_get),options={hash:{},data:data},helper ? helper.call(depth0, "name", depth0, options) : helperMissing.call(depth0, "model_get", "name", depth0, options)))
-    + " ";
-  return buffer;
-  }
-
-  buffer += "<h1>Delete Survey</h1>\n<div class=\"section\">\n    <h2>Are you sure you which to delete the following survey?</h2>\n    <div>\n     <p><label>Title:</label> "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n     <p><label>Type:</label> "
-    + escapeExpression((helper = helpers.value_lookup || (depth0 && depth0.value_lookup),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.survey_type), ((stack1 = (depth0 && depth0.lookUps)),stack1 == null || stack1 === false ? stack1 : stack1.survey_type), options) : helperMissing.call(depth0, "value_lookup", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.survey_type), ((stack1 = (depth0 && depth0.lookUps)),stack1 == null || stack1 === false ? stack1 : stack1.survey_type), options)))
-    + "</p>\n        <p><label>Customer:</label> ";
-  stack1 = (helper = helpers.collection_get || (depth0 && depth0.collection_get),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.customer), (depth0 && depth0.customers), options) : helperMissing.call(depth0, "collection_get", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.customer), (depth0 && depth0.customers), options));
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</p>\n    </div>\n    <div class=\"btn-container\">\n        <button id=\"confirm\" class=\"btn primary solid\">Yes, Delete This Survey</button>\n        <a href=\"/\" class=\"btn light solid\">No, Keep this Survey</a>\n    </div>\n</div>\n\n\n\n\n\n\n\n";
-  return buffer;
-  });
-
-this["ThirdChannel"]["templates"]["singleNickel/survey/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  
-
-
-  return "<a class=\"btn light round pull-right\" href=\"/new\" alt=\"Create Survey\"><i class=\"ic ic_add\"></i></a>\n<h1>Surveys</h1>\n<div class=\"section\">\n    <table>\n        <thead>\n        <tr>\n            <th>Name</th>\n            <th>Actions</th>\n        </tr>\n        </thead>\n        <tbody id=\"survey-list-items\"></tbody>\n    </table>\n</div>\n\n\n\n\n\n\n\n";
-  });
-
-this["ThirdChannel"]["templates"]["singleNickel/survey/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this, blockHelperMissing=helpers.blockHelperMissing;
-
-function program1(depth0,data) {
-  
-  
-  return "\n        <strong>Survey Locked</strong>\n    ";
-  }
-
-function program3(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n        <a class=\"btn primary\" href=\"/surveys/"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "/edit\"><i class=\"ic fa ic_post\"></i></a>\n        <a class=\"btn primary delete\" href=\"#\" alt=\"Remove Survey\"><i class=\"ic fa ic_x\"></i></a>\n    ";
-  return buffer;
-  }
-
-function program5(depth0,data) {
-  
-  var buffer = "", stack1, helper, options;
-  buffer += "\n        <a class=\"btn primary lock\" href=\"#\" alt=\"Toggle Locked\"><i class=\"ic fa "
-    + escapeExpression((helper = helpers.lockActionIconClass || (depth0 && depth0.lockActionIconClass),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options) : helperMissing.call(depth0, "lockActionIconClass", ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options)))
-    + "\"></i> "
-    + escapeExpression((helper = helpers.lockActionDisplay || (depth0 && depth0.lockActionDisplay),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options) : helperMissing.call(depth0, "lockActionDisplay", ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), options)))
-    + "</a>\n    ";
-  return buffer;
-  }
-
-  buffer += "<td><a href=\"/surveys/"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a></td>\n<td>\n    ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.locked), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    <a data-bypass=\"true\" class=\"btn primary\" href=\""
-    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.survey)),stack1 == null || stack1 === false ? stack1 : stack1.links)),stack1 == null || stack1 === false ? stack1 : stack1['export'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" alt=\"Export Survey YAML\"><i class=\"ic fa ic_download\"></i></a>\n    ";
-  options={hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data}
-  if (helper = helpers.isSuperAdmin) { stack1 = helper.call(depth0, options); }
-  else { helper = (depth0 && depth0.isSuperAdmin); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.isSuperAdmin) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data}); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</td>";
-  return buffer;
-  });
-
-this["ThirdChannel"]["templates"]["singleNickel/survey/show"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, self=this, functionType="function", escapeExpression=this.escapeExpression;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n    ";
-  stack1 = self.invokePartial(partials.section, 'section', depth0, helpers, partials, data);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
-  return buffer;
-  }
-
-  buffer += "<h1>Preview: "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + " <a class=\"btn primary\" href=\""
-    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.links)),stack1 == null || stack1 === false ? stack1 : stack1['export'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" alt=\"Export Survey YAML\"><i class=\"ic fa ic_download\"></i></a></h1>\n\n";
-  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.children)),stack1 == null || stack1 === false ? stack1 : stack1.models), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  return buffer;
-  });
-
-this["ThirdChannel"]["templates"]["shared/layout/action_buttons"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["SingleNickel"]["templates"]["shared/layout/action_buttons"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
   var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
@@ -951,7 +878,7 @@ function program4(depth0,data) {
   else { return ''; }
   });
 
-this["ThirdChannel"]["templates"]["shared/layout/main_navigation"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["SingleNickel"]["templates"]["shared/layout/main_navigation"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
   var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
@@ -977,6 +904,143 @@ function program1(depth0,data) {
   return buffer;
   });
 
-return this["ThirdChannel"]["templates"];
+this["SingleNickel"]["templates"]["singleNickel/survey/build/edit"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+
+  return escapeExpression((helper = helpers.partial || (depth0 && depth0.partial),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.templates)),stack1 == null || stack1 === false ? stack1 : stack1.edit), depth0, options) : helperMissing.call(depth0, "partial", ((stack1 = (depth0 && depth0.templates)),stack1 == null || stack1 === false ? stack1 : stack1.edit), depth0, options)));
+  });
+
+this["SingleNickel"]["templates"]["singleNickel/survey/build/show"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+
+  return escapeExpression((helper = helpers.partial || (depth0 && depth0.partial),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.templates)),stack1 == null || stack1 === false ? stack1 : stack1.show), depth0, options) : helperMissing.call(depth0, "partial", ((stack1 = (depth0 && depth0.templates)),stack1 == null || stack1 === false ? stack1 : stack1.show), depth0, options)));
+  });
+
+this["SingleNickel"]["templates"]["singleNickel/survey/delete"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", helper, options;
+  buffer += " "
+    + escapeExpression((helper = helpers.model_get || (depth0 && depth0.model_get),options={hash:{},data:data},helper ? helper.call(depth0, "name", depth0, options) : helperMissing.call(depth0, "model_get", "name", depth0, options)))
+    + " ";
+  return buffer;
+  }
+
+  buffer += "<h1>Delete Survey</h1>\n<div class=\"section\">\n    <h2>Are you sure you which to delete the following survey?</h2>\n    <div>\n     <p><label>Title:</label> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</p>\n     <p><label>Type:</label> "
+    + escapeExpression((helper = helpers.value_lookup || (depth0 && depth0.value_lookup),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.survey_type), ((stack1 = (depth0 && depth0.lookUps)),stack1 == null || stack1 === false ? stack1 : stack1.survey_type), options) : helperMissing.call(depth0, "value_lookup", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.survey_type), ((stack1 = (depth0 && depth0.lookUps)),stack1 == null || stack1 === false ? stack1 : stack1.survey_type), options)))
+    + "</p>\n        <p><label>Customer:</label> ";
+  stack1 = (helper = helpers.collection_get || (depth0 && depth0.collection_get),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.customer), (depth0 && depth0.customers), options) : helperMissing.call(depth0, "collection_get", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.customer), (depth0 && depth0.customers), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</p>\n    </div>\n    <div class=\"btn-container\">\n        <button id=\"confirm\" class=\"btn primary solid\">Yes, Delete This Survey</button>\n        <a href=\"/\" class=\"btn light solid\">No, Keep this Survey</a>\n    </div>\n</div>\n\n\n\n\n\n\n\n";
+  return buffer;
+  });
+
+this["SingleNickel"]["templates"]["singleNickel/survey/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<a class=\"btn light round pull-right\" href=\"/new\" alt=\"Create Survey\"><i class=\"ic ic_add\"></i></a>\n<h1>Surveys</h1>\n<div class=\"section\">\n    <table>\n        <thead>\n        <tr>\n            <th>Name</th>\n            <th>Customer</th>\n            <th>Type</th>\n            <th>Actions</th>\n        </tr>\n        </thead>\n        <tbody id=\"survey-list-items\"></tbody>\n    </table>\n</div>\n\n\n\n\n\n\n\n";
+  });
+
+this["SingleNickel"]["templates"]["singleNickel/survey/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  
+  return "\n        <strong>Survey Locked</strong>\n    ";
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n        <a class=\"btn light round\" href=\"/surveys/";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "/edit\"><i class=\"ic fa ic_edit\"></i></a>\n        <a class=\"btn primary delete round\" href=\"#\" alt=\"Remove Survey\"><i class=\"ic fa ic_x\"></i></a>\n    ";
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
+  var buffer = "", helper, options;
+  buffer += "\n        <a class=\"btn light round lock\" href=\"#\" alt=\"Toggle Locked\"><i class=\"ic fa "
+    + escapeExpression((helper = helpers.lockActionIconClass || (depth0 && depth0.lockActionIconClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.locked), options) : helperMissing.call(depth0, "lockActionIconClass", (depth0 && depth0.locked), options)))
+    + "\"></i></a>\n    ";
+  return buffer;
+  }
+
+  buffer += "<td><a href=\"/surveys/";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</a></td>\n<td>";
+  if (helper = helpers.customer) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.customer); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</td>\n<td>"
+    + escapeExpression((helper = helpers.displaySurveyType || (depth0 && depth0.displaySurveyType),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.survey), options) : helperMissing.call(depth0, "displaySurveyType", (depth0 && depth0.survey), options)))
+    + "</td>\n<td>\n    ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.locked), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    <a data-bypass=\"true\" class=\"btn light round\" href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1['export'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" alt=\"Export Survey YAML\"><i class=\"ic fa ic_download\"></i></a>\n    ";
+  options={hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data}
+  if (helper = helpers.isSuperAdmin) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.isSuperAdmin); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.isSuperAdmin) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</td>";
+  return buffer;
+  });
+
+this["SingleNickel"]["templates"]["singleNickel/survey/show"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, self=this, functionType="function", escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    ";
+  stack1 = self.invokePartial(partials.section, 'section', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;
+  }
+
+  buffer += "<a class=\"btn light round pull-right\" href=\""
+    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.links)),stack1 == null || stack1 === false ? stack1 : stack1['export'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" alt=\"Export Survey YAML\"><i class=\"ic fa ic_download\"></i></a>\n<h1>Preview: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</h1>\n\n";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.children)),stack1 == null || stack1 === false ? stack1 : stack1.models), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  return buffer;
+  });
+
+return this["SingleNickel"]["templates"];
 
 });
