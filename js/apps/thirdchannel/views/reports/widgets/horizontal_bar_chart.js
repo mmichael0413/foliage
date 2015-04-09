@@ -11,6 +11,10 @@ define(function(require) {
         initialize: function (options) {
             this.model = options;
 
+            if(this.model.config.legendOrder === undefined) {
+                this.model.config.legendOrder = _.keys(this.model.results.percentages);
+            }
+
             this.chartOptions = _.extend({
                 scaleFontSize: 14,
                 animation: false,
