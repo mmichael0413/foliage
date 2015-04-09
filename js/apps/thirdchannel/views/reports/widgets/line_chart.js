@@ -64,9 +64,11 @@ define(function(require) {
                 legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
             }, this.model.config);
 
-            this.listenTo(context, 'report post render', function () {
-                new Chart(canvas[0].getContext("2d")).Line(self.model.results, options);
-            });
+            this.listenTo(context, 'report post render', _.debounce(function () {
+                setTimeout(function() {
+                    new Chart(canvas[0].getContext("2d")).Line(self.model.results, options);
+                }, 500);
+            }, 500));
         },
 
         toggleSeries: function(e) {

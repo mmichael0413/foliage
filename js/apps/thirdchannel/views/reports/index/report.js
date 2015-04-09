@@ -18,9 +18,11 @@ define(function(require) {
             this.loadingView = new LoadingView();
 
             var self = this;
-            this.listenTo(context, 'filter-toggled:complete', function() {
-                self.triggerPostRender();
-            });
+            this.listenTo(context, 'filter-toggled:complete', _.debounce(function() {
+                setTimeout(function() {
+                    self.triggerPostRender();
+                }, 500);
+            }, 500));
         },
         render: function (options) {
             var self = this;

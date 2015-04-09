@@ -24,7 +24,11 @@ define(function (require) {
                 this.render();
             }
 
-            this.listenTo(context, 'navigation:changed', this.render);
+            this.listenTo(context, 'navigation:changed', _.debounce(function() {
+                setTimeout(function () {
+                    _this.render();
+                }, 500);
+            }, 500));
 
             if(!this.isLocalStorageSupported()) {
                 return;
