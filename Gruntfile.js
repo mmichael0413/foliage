@@ -80,12 +80,16 @@ module.exports = function (grunt) {
 
         if (apps !== undefined) {
             paths.push(basePath + 'shared');
-            for (var index in apps.split(',')) {
+            apps = apps.split(',');
+            for (var index in apps) {
                 paths.push(basePath + apps[index]);
             }
         } else {
+            apps = "all";
             paths = paths.concat(grunt.file.expand(basePath + '*/'));
         }
+
+        console.log("Building for apps: " + apps);
 
         return paths;
     };

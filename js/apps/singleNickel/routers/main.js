@@ -109,7 +109,7 @@ define(function(require){
 
         Handlebars.registerHelper('unlessFirstChild', function(object, options) {
             var index = object.collection.indexOf(object);
-            if(index != 0) {
+            if(index !== 0) {
                 return options.fn(this);
             }
         });
