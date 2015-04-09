@@ -62,10 +62,11 @@ define(function(require) {
             
             shouldTrigger = this.renderFilterCollection(data.collection, qsHash);
 
+            var self = this;
+
             if (data.url) {
                 
-                var self = this,
-                    $spinner = $(spinnerTemplate()),
+                var $spinner = $(spinnerTemplate()),
                     asyncFilters = new (Backbone.Collection.extend({
                         url: data.url
                     }))();
@@ -85,7 +86,11 @@ define(function(require) {
             this._applyQSGlobal(qsHash);
 
             this.listenTo(context, 'filter:request', this.handleFilterRequest);
-            this.listenTo(context, 'filter:request:queryString', this.handleFilterRequestQueryString);
+            this.listenTo(context, 'filter:request:queryString', _.debounce(function () {
+                setTimeout(function() {
+                    self.handleFilterRequestQueryString();
+                }, 500);
+            }), 500);
             this.listenTo(context, 'filter:set', this.setFromExternal);
             this.listenTo(context, 'filter:set:quiet', this.setFromExternalQuiet);
             this.listenTo(context, 'configure:deepLinks', this.configureDeepLinks);

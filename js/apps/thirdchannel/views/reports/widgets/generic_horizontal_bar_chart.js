@@ -2,7 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        Charts = require('chartist'),
+        Charts = require('chartjs'),
         context = require('context');
 
     return Backbone.View.extend({
@@ -19,7 +19,7 @@ define(function(require) {
                 scaleFontSize: 14,
                 animation: false,
                 scaleShowLabels: true,
-                scaleOverride: false,
+                scaleOverride: true,
                 scaleSteps: 10,
                 scaleStepWidth: 10,
                 scaleStartValue: 0,
@@ -51,7 +51,10 @@ define(function(require) {
                 fillColor = [],
                 strokeColor = [],
                 total_entries = this.model.results.legend.length - 1,
-                length_length = this.chartOptions.defaultLegendColors.length;
+                length_length = this.chartOptions.defaultLegendColors.length,
+                maxValue = Math.max.apply(Math, self.model.results.values);
+
+            this.chartOptions.scaleStepWidth = maxValue / 10;
 
             $.each(this.model.results.legend, function(index, value) {
                 var label = value;
@@ -81,9 +84,11 @@ define(function(require) {
                 ]
             };
 
-            this.listenTo(context, 'report post render', function () {
-                new Chart(canvas[0].getContext("2d")).Bar(self.data, self.chartOptions);
-            });
+            this.listenTo(context, 'report post render', _.debounce(function () {
+                setTimeout(function() {
+                    new Chart(canvas[0].getContext("2d")).Bar(self.data, self.chartOptions);
+                }, 500);
+            }, 500));
         },
         updateViewBreakDownLink : function (qs) {
             var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
