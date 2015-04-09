@@ -63,8 +63,8 @@ define(function(require) {
                 $heatMap = this.$('.heatmap'),
                 width = $heatMap.width();
 
-            var dataValues = _.values(this.model.results.accounts),
-                rowLabels = _.keys(this.model.results.accounts),
+            var dataValues = this.model.results.values,
+                rowLabels = this.model.results.accounts,
                 colLabels = this.model.results.categories,
                 numOfRows = rowLabels.length,
                 numOfCols = colLabels.length;
