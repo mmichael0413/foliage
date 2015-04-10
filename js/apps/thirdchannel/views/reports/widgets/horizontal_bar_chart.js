@@ -80,9 +80,11 @@ define(function(require) {
                 ]
             };
 
-            this.listenTo(context, 'report post render', function () {
-                new Chart(canvas[0].getContext("2d")).Bar(self.data, self.chartOptions);
-            });
+            this.listenTo(context, 'report post render', _.debounce(function () {
+                setTimeout(function() {
+                    new Chart(canvas[0].getContext("2d")).Bar(self.data, self.chartOptions);
+                }, 500);
+            }, 500));
         },
         updateViewBreakDownLink : function (qs) {
             var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
