@@ -130,7 +130,7 @@ define(function(require) {
 
             rect.on('click', function(d, i) {
                 var viewBreakDownLink = '/programs/Merchandising/reports/all/info/' + self.model.widget_id + '?';
-                
+
                 viewBreakDownLink += 'start_date=' + self.queryString['start_date'];
                 viewBreakDownLink += '&end_date=' + self.queryString['end_date'];
 
