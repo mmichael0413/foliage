@@ -9,12 +9,14 @@ define(function(require) {
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/heatmap'],
         initialize: function (options) {
-            _.bindAll(this, 'renderChart', 'resizeChart');
+            _.bindAll(this, 'renderChart', 'resizeChart', 'updateQueryString');
 
             var self = this,
                 legend = {};
 
             this.model = options;
+
+            this.listenTo(context, 'filter:queryString', this.updateQueryString);
 
             // default row and col margins
             this.rowLabelMargin = 125;
@@ -126,6 +128,25 @@ define(function(require) {
                 return d.label + ' - ' + ((d.value !== null) ? d.value : 'N/A');
             });
 
+            rect.on('click', function(d, i) {
+                var viewBreakDownLink = '/programs/Merchandising/reports/all/info/' + self.model.widget_id + '?';
+                
+                viewBreakDownLink += 'start_date=' + self.queryString['start_date'];
+                viewBreakDownLink += '&end_date=' + self.queryString['end_date'];
+
+                if(d.info_list_filters !== undefined) {
+                    _.each(d.info_list_filters, function(val, param) {
+                        viewBreakDownLink += '&' + param + '=' + val;
+                    });
+                }
+
+                //console.log(viewBreakDownLink);
+
+                //context.router.navigate(viewBreakDownLink, {trigger: true});
+                // ugh...
+                window.location = viewBreakDownLink;
+            });
+
             yScale = d3.scale.ordinal().domain(rowLabels).rangeBands([0, height]);
             yAxis = d3.svg.axis().scale(yScale).orient('right');
 
@@ -182,6 +203,20 @@ define(function(require) {
                     .style('text-anchor', 'end');
 
             svg.selectAll('.y.axis').attr('transform', 'translate(' + rectWidth * numOfCols + ' 0)').call(yAxis.orient('right'));
+        },
+        updateQueryString: function(qs) {
+            var vars = decodeURI(qs).split('&'),
+                data = {};
+
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (!data[pair[0]]) {
+                    data[pair[0]] = [];
+                }
+                data[pair[0]] = pair[1];
+            }
+
+            this.queryString = data;
         }
     });
 });
