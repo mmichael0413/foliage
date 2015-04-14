@@ -133,8 +133,8 @@ define(function(require) {
                 rect.on('click', function(d, i) {
                     var viewBreakDownLink = '/programs/Merchandising/reports/all/info/' + self.model.widget_id + '?';
 
-                    viewBreakDownLink += 'start_date=' + self.queryString['start_date'];
-                    viewBreakDownLink += '&end_date=' + self.queryString['end_date'];
+                    viewBreakDownLink += 'start_date=' + self.queryString.start_date;
+                    viewBreakDownLink += '&end_date=' + self.queryString.end_date;
 
                     if(d.info_list_filters !== undefined) {
                         _.each(d.info_list_filters, function(val, param) {
