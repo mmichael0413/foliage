@@ -113,6 +113,7 @@ define(function(require) {
                     .append('rect');
 
             rect.attr('class', 'tile')
+                .classed('clickable', this.model.show_view_list)
                 .attr('width', rectWidth)
                 .attr('height', rectHeight)
                 .attr('stroke', '#cccccc')
@@ -128,24 +129,24 @@ define(function(require) {
                 return d.label + ' - ' + ((d.value !== null) ? d.value : 'N/A');
             });
 
-            rect.on('click', function(d, i) {
-                var viewBreakDownLink = '/programs/Merchandising/reports/all/info/' + self.model.widget_id + '?';
+            if(this.model.show_view_list) {
+                rect.on('click', function(d, i) {
+                    var viewBreakDownLink = '/programs/Merchandising/reports/all/info/' + self.model.widget_id + '?';
 
-                viewBreakDownLink += 'start_date=' + self.queryString['start_date'];
-                viewBreakDownLink += '&end_date=' + self.queryString['end_date'];
+                    viewBreakDownLink += 'start_date=' + self.queryString['start_date'];
+                    viewBreakDownLink += '&end_date=' + self.queryString['end_date'];
 
-                if(d.info_list_filters !== undefined) {
-                    _.each(d.info_list_filters, function(val, param) {
-                        viewBreakDownLink += '&' + param + '=' + val;
-                    });
-                }
+                    if(d.info_list_filters !== undefined) {
+                        _.each(d.info_list_filters, function(val, param) {
+                            viewBreakDownLink += '&' + param + '=' + val;
+                        });
+                    }
 
-                //console.log(viewBreakDownLink);
-
-                //context.router.navigate(viewBreakDownLink, {trigger: true});
-                // ugh...
-                window.location = viewBreakDownLink;
-            });
+                    //context.router.navigate(viewBreakDownLink, {trigger: true});
+                    // ugh...
+                    window.location = viewBreakDownLink;
+                });
+            }
 
             yScale = d3.scale.ordinal().domain(rowLabels).rangeBands([0, height]);
             yAxis = d3.svg.axis().scale(yScale).orient('right');
