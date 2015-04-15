@@ -1,14 +1,7 @@
 <div class="widget {{config.widget_class}}">
     <div>
-        <div class="chart line-chart">
-            <p>{{{title}}}</p>
-            <ul class="legend">
-                {{#each results.datasets}}
-                    <li><i class="fa fa-circle" style="color: {{value_lookup this.label ../config.legendColors}}"></i> {{this.label}}</li>
-                {{/each}}
-            </ul>
-            <canvas></canvas>
-        </div>
+        <p>{{{title}}}</p>
+        <div class="chart line-chart"></div>
         {{#if show_view_list}}
             <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
         {{/if}}
