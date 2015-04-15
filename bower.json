@@ -37,7 +37,8 @@
     "chartist": "0.7.2",
     "backbone-validator": "0.3.3",
     "datetimepicker" : "2.4.1",
-    "d3": "~3.5.5"
+    "d3": "~3.5.5",
+    "c3": "0.4.10"
   },
   "resolutions": {
     "jquery": "~2.0.3"
