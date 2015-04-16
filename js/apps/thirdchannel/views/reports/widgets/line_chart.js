@@ -5,7 +5,7 @@ define(function(require) {
         Charts = require('chartjs'),
         context = require('context');
 
-    var defaultLegendColors = ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D", "#8079b8", "#85c194", "#deb99a", "#bce4f9", "#f69d6d", "#8ab2ca", "#a53426", "#8c8d8e", "#00a55a", "#deb99a", "#ef6222", "#4cc3f1", "#025832"];
+    var defaultLegendColors = ["#F15F51", "#9FB2C0", "#A9BC4D", "#8079b8", "#85c194", "#deb99a", "#bce4f9", "#f69d6d", "#8ab2ca", "#a53426", "#8c8d8e", "#00a55a", "#deb99a", "#ef6222", "#4cc3f1", "#025832", "#585E60"];
 
     return Backbone.View.extend({
         tagName: 'span',
@@ -88,26 +88,20 @@ define(function(require) {
         },
         setupColors: function() {
             var self = this,
-                total_entries = this.model.results.datasets.length,
-                setLegendColors = true;
+                total_entries = this.model.results.datasets.length;
 
-            if(this.model.config.legendColors !== undefined) {
-                setLegendColors = false;
-                this.legendColors = _.values(this.model.config.legendColors);
-            } else {
+            if(this.model.config.legendColors === undefined) {
                 this.model.config.legendColors = {};
-                this.legendColors = defaultLegendColors;
+                _.each(this.model.results.datasets, function(dataset, index) {
+                    self.model.config.legendColors[dataset.label] = defaultLegendColors[index % defaultLegendColors.length];
+                });
             }
 
             _.each(self.model.results.datasets, function(dataset, index) {
-                dataset.fillColor = self.legendColors[(total_entries - index) % self.legendColors.length];
-                dataset.strokeColor = self.legendColors[(total_entries - index) % self.legendColors.length];
-                dataset.pointStrokeColor = self.legendColors[(total_entries - index) % self.legendColors.length];
-                dataset.pointColor = self.legendColors[(total_entries - index) % self.legendColors.length];
-
-                if(setLegendColors) {
-                    self.model.config.legendColors[dataset.label] = self.legendColors[(total_entries - index) % self.legendColors.length];
-                }
+                dataset.fillColor = self.model.config.legendColors[dataset.label];
+                dataset.strokeColor = self.model.config.legendColors[dataset.label];
+                dataset.pointStrokeColor = self.model.config.legendColors[dataset.label];
+                dataset.pointColor = self.model.config.legendColors[dataset.label];
             });
         }
 
