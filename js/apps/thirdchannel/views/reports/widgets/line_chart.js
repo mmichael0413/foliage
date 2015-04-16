@@ -2,6 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
+        d3 = require('d3'),
         c3 = require('c3'),
         context = require('context');
 
@@ -69,37 +70,70 @@ define(function(require) {
 //                legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
 //            }, this.model.config);
 
-//            if(window.pdf === undefined) {
-//                this.listenTo(context, 'report post render', _.debounce(function () {
-//                    setTimeout(function() {
-//                        new Chart(canvas[0].getContext("2d")).Line(self.model.results, options);
-//                    }, 500);
-//                }, 500));
-//            } else {
-//                this.listenTo(context, 'report post render', function() {
-//                    new Chart(canvas[0].getContext("2d")).Line(self.model.results, options);
-//                });
-//            }
-
             if(window.pdf === undefined) {
                 this.listenTo(context, 'report post render', _.debounce(function () {
                     setTimeout(function() {
                         var chart = c3.generate({
                             bindto: self.$el.find('.chart.line-chart')[0],
                             data: {
-                                columns: [
-                                    ['data1', 30, 200, 100, 400, 150, 250],
-                                    ['data2', 50, 20, 10, 40, 15, 25]
-                                ]
+                                x: 'x',
+                                columns: self.model.results.datasets,
+                                type: 'area-spline'
+                            },
+                            axis: {
+                                x: {
+                                    type: 'timeseries',
+                                    tick: {
+                                        format: '%m/%d/%y'
+                                    }
+                                },
+                                y: {
+                                    tick: {
+                                        format: d3.format('%')
+                                    }
+                                }
+                            },
+                            padding: {
+                                right: 50
+                            },
+                            color: {
+                                pattern: defaultLegendColors
                             }
+
                         });
                     }, 500);
                 }, 500));
             } else {
-                this.listenTo(context, 'report post render', function() {
+                this.listenTo(context, 'report post render', function () {
+                    var chart = c3.generate({
+                        bindto: self.$el.find('.chart.line-chart')[0],
+                        data: {
+                            x: 'x',
+                            columns: self.model.results.datasets,
+                            type: 'area-spline'
+                        },
+                        axis: {
+                            x: {
+                                type: 'timeseries',
+                                tick: {
+                                    format: '%m/%d/%y'
+                                }
+                            },
+                            y: {
+                                format: d3.format('%')
+                            }
+                        },
+                        padding: {
+                            right: 50
+                        },
+                        color: {
+                            pattern: defaultLegendColors
+                        }
 
-                });
+                    });
+                }, 500);
             }
+
 
 
 
