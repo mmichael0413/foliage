@@ -13,7 +13,7 @@ require.config({
         'underscore'    : '../libs/bower_components/underscore/underscore',
         'backbone'      : '../libs/bower_components/backbone/backbone',
         'handlebars'    : '../libs/bower_components/handlebars/handlebars.min',
-        'handlebarsTemplates': 'thirdchannel/templates/hbs-compiled',
+        'handlebarsTemplates': 'procrastination/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
         'helpers'       : 'thirdchannel/utils/helpers',
         'pikaday'       : '../libs/bower_components/pikaday/pikaday',

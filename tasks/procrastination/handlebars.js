@@ -20,7 +20,8 @@ module.exports = function(grunt) {
             files: {
                 "js/apps/procrastination/templates/hbs-compiled.js": [
                     "templates/handlebars/shared/**/*.hbs",
-                    "templates/handlebars/procrastination/**/*.hbs"
+                    "templates/handlebars/procrastination/**/*.hbs",
+                    "templates/handlebars/thirdchannel/filters/**/*.hbs"
                 ]
             }
         }
