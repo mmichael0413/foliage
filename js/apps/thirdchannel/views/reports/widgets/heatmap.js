@@ -131,10 +131,7 @@ define(function(require) {
 
             if(this.model.show_view_list) {
                 rect.on('click', function(d, i) {
-                    var viewBreakDownLink = '/programs/Merchandising/reports/all/info/' + self.model.widget_id + '?';
-
-                    viewBreakDownLink += 'start_date=' + self.queryString.start_date;
-                    viewBreakDownLink += '&end_date=' + self.queryString.end_date;
+                    var viewBreakDownLink = '/programs/Merchandising/reports/all/info/' + self.model.widget_id + '?' + this.queryString;
 
                     if(d.info_list_filters !== undefined) {
                         _.each(d.info_list_filters, function(val, param) {
@@ -206,18 +203,7 @@ define(function(require) {
             svg.selectAll('.y.axis').attr('transform', 'translate(' + rectWidth * numOfCols + ' 0)').call(yAxis.orient('right'));
         },
         updateQueryString: function(qs) {
-            var vars = decodeURI(qs).split('&'),
-                data = {};
-
-            for (var i = 0; i < vars.length; i++) {
-                var pair = vars[i].split("=");
-                if (!data[pair[0]]) {
-                    data[pair[0]] = [];
-                }
-                data[pair[0]] = pair[1];
-            }
-
-            this.queryString = data;
+            this.queryString = qs;
         }
     });
 });
