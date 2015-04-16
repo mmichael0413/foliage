@@ -87,8 +87,7 @@ define(function(require) {
             this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
         },
         setupColors: function() {
-            var self = this,
-                total_entries = this.model.results.datasets.length;
+            var self = this;
 
             if(this.model.config.legendColors === undefined) {
                 this.model.config.legendColors = {};
