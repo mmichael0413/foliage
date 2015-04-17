@@ -69,7 +69,7 @@ define(function(require){
             var idx = 0,
                 last = this.children.last();
 
-            if(last !== undefined) idx = parseInt(last.get('idx')) + 1;
+            if(last !== undefined) idx = parseInt(last.get('idx'), 0) + 1;
 
             return {
                 options: this.options,
