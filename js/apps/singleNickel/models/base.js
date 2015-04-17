@@ -59,7 +59,7 @@ define(function(require){
             this.children.each(function(child) {
                 attributes[childAttributes].push({
                     id: child.id,
-                    idx: child.get('idx')
+                    idx: parseInt(child.get('idx'), 0)
                 });
             });
 
