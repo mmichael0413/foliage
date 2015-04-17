@@ -103,7 +103,7 @@ define(function (require) {
 
             if(groupedSchedules.true !== undefined) {
                 this.scheduledCount = groupedSchedules.true.length;
-                _.each(this.collection.models, function (model) {
+                _.each(groupedSchedules.true, function (model) {
                     self.renderModel(model);
                 });
             }
@@ -112,7 +112,7 @@ define(function (require) {
             if(groupedSchedules.false !== undefined) {
                 this.unscheduledCount = groupedSchedules.false.length;
 
-                _.each(this.collection.models, function (model) {
+                _.each(groupedSchedules.false, function (model) {
                     self.renderModel(model);
                 });
             } else {
