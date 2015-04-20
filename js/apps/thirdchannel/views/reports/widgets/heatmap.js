@@ -9,12 +9,14 @@ define(function(require) {
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/heatmap'],
         initialize: function (options) {
-            _.bindAll(this, 'renderChart', 'resizeChart');
+            _.bindAll(this, 'renderChart', 'resizeChart', 'updateQueryString');
 
             var self = this,
                 legend = {};
 
             this.model = options;
+
+            this.listenTo(context, 'filter:queryString', this.updateQueryString);
 
             // default row and col margins
             this.rowLabelMargin = 125;
@@ -111,6 +113,7 @@ define(function(require) {
                     .append('rect');
 
             rect.attr('class', 'tile')
+                .classed('clickable', this.model.show_view_list)
                 .attr('width', rectWidth)
                 .attr('height', rectHeight)
                 .attr('stroke', '#cccccc')
@@ -125,6 +128,22 @@ define(function(require) {
             rect.append('title').text(function(d) {
                 return d.label + ' - ' + ((d.value !== null) ? d.value : 'N/A');
             });
+
+            if(this.model.show_view_list) {
+                rect.on('click', function(d, i) {
+                    var viewBreakDownLink = '/programs/Merchandising/reports/all/info/' + self.model.widget_id + '?' + this.queryString;
+
+                    if(d.info_list_filters !== undefined) {
+                        _.each(d.info_list_filters, function(val, param) {
+                            viewBreakDownLink += '&' + param + '=' + val;
+                        });
+                    }
+
+                    //context.router.navigate(viewBreakDownLink, {trigger: true});
+                    // ugh...
+                    window.location = viewBreakDownLink;
+                });
+            }
 
             yScale = d3.scale.ordinal().domain(rowLabels).rangeBands([0, height]);
             yAxis = d3.svg.axis().scale(yScale).orient('right');
@@ -182,6 +201,9 @@ define(function(require) {
                     .style('text-anchor', 'end');
 
             svg.selectAll('.y.axis').attr('transform', 'translate(' + rectWidth * numOfCols + ' 0)').call(yAxis.orient('right'));
+        },
+        updateQueryString: function(qs) {
+            this.queryString = qs;
         }
     });
 });
