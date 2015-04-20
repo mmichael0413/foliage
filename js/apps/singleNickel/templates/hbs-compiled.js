@@ -587,7 +587,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n        <div class=\"controls child\">\n            <a href=\"#\" class=\"add btn light solid\"><i class=\"ic ic_add\"></i> Add New Question</a>\n        </div>\n    ";
+  return "\n        <div class=\"controls child\">\n            <a href=\"#\" class=\"add btn light solid\"><i class=\"ic ic_add\"></i> Add New Question</a>\n            <a href=\"#\" class=\"clone btn light round\">Clone</a>\n        </div>\n    ";
   }
 
   buffer += "<div class=\"section\">\n    ";

@@ -15,6 +15,7 @@ define(function(require) {
             'click .cancel': 'cancel',
             'click .up': 'moveUp',
             'click .down': 'moveDown',
+            'click .clone': 'clone',
             'change select': 'updateInputChildren'
         },
         initialize: function() {
@@ -142,6 +143,18 @@ define(function(require) {
                 }).fail(function () {
                     context.trigger('error');
                 });
+            }
+        },
+        clone: function(e) {
+            this.stopEvent(e);
+            var self = this;
+            
+            if(this.model.createClone !== undefined) {
+                this.model.createClone().success(function(response) {
+                    self.model.collection.add(response);
+                }).fail(function() {
+                    context.trigger('error');
+                })
             }
         },
         stopEvent: function(e) {
