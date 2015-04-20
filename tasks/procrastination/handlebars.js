@@ -21,7 +21,8 @@ module.exports = function(grunt) {
                 "js/apps/procrastination/templates/hbs-compiled.js": [
                     "templates/handlebars/shared/**/*.hbs",
                     "templates/handlebars/procrastination/**/*.hbs",
-                    "templates/handlebars/thirdchannel/filters/**/*.hbs"
+                    "templates/handlebars/thirdchannel/filters/**/*.hbs",
+                    "templates/handlebars/thirdchannel/pagination.hbs"
                 ]
             }
         }
