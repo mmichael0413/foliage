@@ -21,6 +21,7 @@ define(function(require) {
             _.bindAll(this, 'addChild');
             if(this.model.children !== undefined) {
                 this.listenTo(this.model.children, 'sort', this.renderChildren);
+                this.listenTo(this.model.children, 'remove', this.renderChildren);
             }
         },
         render: function(template) {
