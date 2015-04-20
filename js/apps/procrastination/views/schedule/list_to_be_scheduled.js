@@ -44,9 +44,12 @@ define(function (require) {
                         return dateScheduled !== undefined && dateScheduled !== null;
                     });
                     _.each(scheduledVisits, function (model) {
+                        var label = model.get('storeName') + ":<br/>" + model.get('street') + "<br/>" + model.get('city') + ", " + model.get('state');
+
                         events.push({
                             id: model.get('id'),
                             title: model.get('storeName'),
+                            store: label,
                             start: model.get('dateScheduled'),
                             allDay: true
                         });
@@ -59,7 +62,7 @@ define(function (require) {
                     self.trigger('fullcalendar.date.create', date, id);
                 },
                 eventMouseover: function (calEvent, jsEvent) {
-                    var tooltip = '<div class="tooltipevent">' + calEvent.title + '</div>';
+                    var tooltip = '<div class="tooltipevent">' + calEvent.store + '</div>';
                     $("body").append(tooltip);
                     $(this).mouseover(function (e) {
                         $(this).css('z-index', 10000);
