@@ -22,6 +22,7 @@ define(function(require) {
             if(this.model.children !== undefined) {
                 this.listenTo(this.model.children, 'sort', this.renderChildren);
                 this.listenTo(this.model.children, 'remove', this.renderChildren);
+                this.listenTo(this.model.children, 'created', this.renderChildren);
             }
         },
         render: function(template) {
@@ -123,11 +124,18 @@ define(function(require) {
         },
         update: function(e) {
             this.stopEvent(e);
-            var self = this;
+            var self = this,
+                isNew = this.model.isNew();
+
             this.model.set(this.editsToJSON());
             if (this.model.isValid()) {
                 this.model.save().success(function(){
                     self.render(self.showTemplate);
+
+                    if(isNew) {
+                        self.model.collection.trigger('created');
+                    }
+
                     if (self.model.redirect !== undefined) {
                         Backbone.history.navigate(self.model.redirect());
                     }
