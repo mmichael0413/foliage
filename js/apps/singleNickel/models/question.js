@@ -92,6 +92,9 @@ define(function(require){
                 maxLength: 255,
                 fn: function(value) {return this.optionalValidation(value);}
             }
+        },
+        defaults: {
+            required: true
         }
     });
 });
