@@ -148,7 +148,7 @@ define(function(require) {
         clone: function(e) {
             this.stopEvent(e);
             var self = this;
-            
+
             if(this.model.createClone !== undefined) {
                 this.model.createClone().success(function(response) {
                     self.model.collection.add(response);

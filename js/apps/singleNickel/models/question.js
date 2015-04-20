@@ -63,6 +63,16 @@ define(function(require){
         setChildren: function(e, data) {
             this.children = _.contains(this.typesWithChildren, data) ? new Choices([], this.options) : undefined;
         },
+        createClone: function(opts) {
+            var options = {
+                url: this.url() + '/clone',
+                type: 'POST'
+            };
+
+            _.extend(options, opts);
+
+            return (this.sync || Backbone.sync).call(this, null, this, options);
+        },
         validation: {
             ask: [{
                 required: true,
