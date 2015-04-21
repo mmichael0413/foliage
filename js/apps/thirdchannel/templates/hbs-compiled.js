@@ -1242,11 +1242,23 @@ function program1(depth0,data) {
   if (helper = helpers.sku) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.sku); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>No Description Available</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>0</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>";
+    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>No Description Available</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>";
+  if (helper = helpers.usd) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.usd); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>";
   if (helper = helpers.unitsSold) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.unitsSold); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>0</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>0</p>\n	</div>\n\n";
+    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>";
+  if (helper = helpers.unitsOnHand) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.unitsOnHand); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>";
+  if (helper = helpers.emptyStores) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.emptyStores); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n	</div>\n\n";
   return buffer;
   }
 
