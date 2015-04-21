@@ -17,9 +17,11 @@ define(function(require) {
 		TopSkusView = {
 
 			el: "#topSkus",
+			loadingHTML: "<i class='fa fa-spin fa-spinner fa-4x'></i>",
 
 			initialize: function () {
 				this.model = new TopSkusModel();
+				this.$body = this.$el.find('.body');
 				this.listenTo(context, 'filter:query', this.applyFilter);
 				this.listenTo(this.model, 'sync', this.render);
 
@@ -29,6 +31,7 @@ define(function(require) {
 
 			applyFilter: function (qs) {
 				this.model.queryString = qs;
+				this.$body.html(this.loadingHTML);
                 this.model.fetch();
 			},
 
@@ -36,10 +39,8 @@ define(function(require) {
 				var report = {
                     data: this.model.toJSON()
                 };
-                console.log(templates);
-                console.log(templates['thirdchannel/labs/top_sku_rows']);
 
-                this.$el.html(templates['thirdchannel/labs/top_sku_rows'](report.data));
+                this.$body.html(templates['thirdchannel/labs/top_sku_rows'](report.data));
 				
 			}
 

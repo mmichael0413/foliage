@@ -1228,6 +1228,36 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/labs/top_sku_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n\n	<div class=\"col-1-6\">\n		<p>"
+    + escapeExpression((helper = helpers.index_inc || (depth0 && depth0.index_inc),options={hash:{},data:data},helper ? helper.call(depth0, (data == null || data === false ? data : data.index), options) : helperMissing.call(depth0, "index_inc", (data == null || data === false ? data : data.index), options)))
+    + ") ";
+  if (helper = helpers.sku) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.sku); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>No Description Available</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>0</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>";
+  if (helper = helpers.unitsSold) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.unitsSold); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>0</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>0</p>\n	</div>\n\n";
+  return buffer;
+  }
+
+  options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}
+  if (helper = helpers.skus) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.skus); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.skus) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/loading"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
