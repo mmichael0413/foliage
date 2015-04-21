@@ -565,7 +565,7 @@ function program9(depth0,data) {
   buffer += "\n    ";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.placeholder), {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>\n\n\n\n";
+  buffer += "\n    <div class=\"controls child\">\n        <a href=\"#\" class=\"clone btn light round\"><i class=\"ic ic_clipboard\"></i></a>\n    </div>\n</div>\n\n\n\n";
   return buffer;
   }));
 
@@ -587,7 +587,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n        <div class=\"controls child\">\n            <a href=\"#\" class=\"add btn light solid\"><i class=\"ic ic_add\"></i> Add New Question</a>\n        </div>\n    ";
+  return "\n        <div class=\"controls child\">\n            <a href=\"#\" class=\"add btn light solid\"><i class=\"ic ic_add\"></i> Add New Question</a>\n            <a href=\"#\" class=\"clone btn light round\"><i class=\"ic ic_clipboard\"></i></a>\n        </div>\n    ";
   }
 
   buffer += "<div class=\"section\">\n    ";

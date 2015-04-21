@@ -29,6 +29,9 @@ define(function(require){
                 required: true,
                 message: "Required"
             }
+        },
+        defaults: {
+            triggers: false
         }
     });
 });

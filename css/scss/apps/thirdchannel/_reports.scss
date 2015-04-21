@@ -256,6 +256,10 @@ ul.heatmap-legend {
     display: none;
   }
 
+  rect.clickable {
+    cursor: pointer;
+  }
+
   g.tick text {
     font-family: 'Open Sans', 'sans-serif';
     font-size: 0.9em;

@@ -59,7 +59,7 @@ define(function(require){
             this.children.each(function(child) {
                 attributes[childAttributes].push({
                     id: child.id,
-                    idx: child.get('idx')
+                    idx: parseInt(child.get('idx'), 0)
                 });
             });
 
@@ -69,7 +69,7 @@ define(function(require){
             var idx = 0,
                 last = this.children.last();
 
-            if(last !== undefined) idx = last.get('idx') + 1;
+            if(last !== undefined) idx = parseInt(last.get('idx'), 0) + 1;
 
             return {
                 options: this.options,
