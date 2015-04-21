@@ -86,7 +86,7 @@ define(function (require) {
             return this;
         },
         events: {
-            'click .save-schedule': 'saveSchedule'
+
         },
         render: function () {
             var self = this;
@@ -151,17 +151,7 @@ define(function (require) {
             }
 
         },
-        saveSchedule: function (e) {
-            e.preventDefault();
-            e.stopPropagation();
 
-            if(this.unscheduledCount > 0) {
-                console.log('Not all schedules have been completed.');
-            } else {
-                console.log('All visits have been scheduled');
-            }
-
-        },
         updateSchedule: function (date, id) {
 
 
