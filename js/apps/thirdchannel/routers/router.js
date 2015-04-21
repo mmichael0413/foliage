@@ -26,7 +26,8 @@ define(function(require){
         ShippingView = require('thirdchannel/views/legal/shipping'),
         PostView = require('thirdchannel/views/posts/main'),
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge'),
-        StoreProfileSchedule = require('thirdchannel/views/store_profile/schedule');
+        StoreProfileSchedule = require('thirdchannel/views/store_profile/schedule'),
+        Labs = require('thirdchannel/views/labs/main');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
@@ -56,6 +57,7 @@ define(function(require){
             'programs/:program_id/notifications' : 'notificationList',
             'programs/:program_id/legal/shipping' : 'shippingForm',
             'programs/:program_id/posts/new' : 'newPost',
+            'programs/:program_id/labs/sku_sales': 'labsSkus',
 
             'programs/:program_id/*path' : 'defaultPath',
             '*path': 'notFound'
@@ -72,11 +74,7 @@ define(function(require){
          */
         before: function (parameters) {
             // in addition, the router stuffs all arguments as a list on context.requestParameters;
-            console.log(parameters[0]);
-
             context.programId = parameters[0];
-
-
             // stuff the bootstrap into the context
             _.extend(context, window.bootstrap);
         },
@@ -188,6 +186,10 @@ define(function(require){
 
         newPost: function(){
             new PostView();
+        },
+
+        labsSkus: function () {
+            Labs.skus();
         },
 
         defaultPath: function(program_id) {
