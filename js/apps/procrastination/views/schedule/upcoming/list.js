@@ -5,12 +5,12 @@ define(function (require) {
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
         FullCalendar = require('fullcalendar'),
-        ScheduleCollection = require('procrastination/collections/schedule/create_schedules'),
-        StoreSchedule = require('procrastination/views/schedule/show_to_be_scheduled');
+        ScheduleCollection = require('procrastination/collections/schedule/upcoming/create_schedules'),
+        StoreSchedule = require('procrastination/views/schedule/upcoming/show');
 
     return Backbone.View.extend({
         el: '.section',
-        template: HandlebarsTemplates['procrastination/schedule/list'],
+        template: HandlebarsTemplates['procrastination/schedule/upcoming/list'],
 
         initialize: function () {
             var self = this;

@@ -11,7 +11,7 @@ define(function(require){
 		},
 		model: Schedule,
 		url: function(){
-			return context.base_url + '/schedule/list/' + this.aggregateId;
+			return context.base_url + '/schedule/list/upcoming/' + this.aggregateId;
 		}
 	});
 

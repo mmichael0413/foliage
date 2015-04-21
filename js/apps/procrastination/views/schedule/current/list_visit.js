@@ -8,7 +8,7 @@ define(function (require) {
         template: HandlebarsTemplates['procrastination/schedule/schedule_row'],
         initialize: function(options) {
             this.model = options.model;
-            console.log('initialize');
+            console.log('initialize me');
         },
 
         render: function() {
