@@ -154,7 +154,7 @@ define(function(require) {
                     self.model.collection.add(response);
                 }).fail(function() {
                     context.trigger('error');
-                })
+                });
             }
         },
         stopEvent: function(e) {
