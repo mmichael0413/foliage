@@ -13,7 +13,6 @@ define(function(require) {
 
         initialize: function (options) {
             this.model = options;
-            this.setupColors();
         },
 
         render: function () {
