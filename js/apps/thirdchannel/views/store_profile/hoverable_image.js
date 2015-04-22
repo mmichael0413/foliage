@@ -16,7 +16,6 @@ define(function(require) {
 				'mouseover': 'mouseOver',
 				'mouseout': 'mouseOut',
 				'click': 'openModal'
-				
 			},
 
 			render: function () {
@@ -39,8 +38,8 @@ define(function(require) {
 				this.$el.removeClass('active');
 			},
 
-			openModal: function (e) {
-				e.stopPropagation();
+			openModal: function(e) {
+                e.stopPropagation();
 				context.trigger('gallery:image:open', this.model);
 			}
 

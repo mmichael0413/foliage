@@ -21,7 +21,7 @@ define(function(require) {
                 var self = this;
                 this.listenTo(context, 'gallery:image:open', function(model) {
                     self.modal = new GalleryImageModal({model: model});
-                    $("body").append(this.modal.render().el);
+                    $("body").append(self.modal.render().el);
                 });
             },
 

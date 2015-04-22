@@ -13,31 +13,32 @@ define(function(require) {
          */
         ProfileCarousel = Backbone.View.extend({
             el: '#images',
-
+            
             events: {
                 'click .arrow-left' : 'prevSlide',
-                'click .arrow-right' : 'nextSlide',
+                'click .arrow-right' : 'nextSlide'
             },
 
-            initialize: function () {
+            initialize: function() {
                 var self = this;
+                console.log(this);
                 this.listenTo(context, 'gallery:image:open', function(model) {
                     self.modal = new GalleryImageModal({model: model});
-                    $("body").append(this.modal.render().el);
+                    $("body").append(self.modal.render().el);
                 });
             },
 
             render: function () {
-                var galleryBody = this.$el.find(".carousel");
+                var self = this;
                 if (context.images && context.images.length > 0) {
-                _.each(context.images, function (image){
-                    galleryBody.append(new HoverableImageView({model: new Backbone.Model(image)}).render().$el);
-                });    
+                    _.each(context.images, function (image){
+                        self.$el.append(new HoverableImageView({model: new Backbone.Model(image)}).render().$el);
+                    });
                 } else {
-                    galleryBody.append("<p>There are no images for this store.</p>");
+                    this.$el.append("<p>There are no images for this store.</p>");
                 }
                             
-                this.carousel = galleryBody.slick({
+                this.carousel = this.$el.slick({
                     slidesToShow: 3,
                     slidesToScroll: 1,
                     focusOnSelect: true,
@@ -46,7 +47,7 @@ define(function(require) {
                     arrows: false,
                     responsive: [
                         {
-                            breakpoint: 568,
+                            breakpoint: 480,
                             settings: {
                                 slidesToShow: 1,
                                 slidesToScroll: 1
