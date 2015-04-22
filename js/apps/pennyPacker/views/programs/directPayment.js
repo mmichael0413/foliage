@@ -40,6 +40,7 @@ define(function (require) {
                 var self = this,
                     $input = this.$el.find(".datepicker"),
                     datepicker = new Pikaday({field: $input[0],
+                         format: 'YYYY-MM-DD',
                          bound: false,
                          onSelect : function(){
                              $input.val(datepicker.toString());
