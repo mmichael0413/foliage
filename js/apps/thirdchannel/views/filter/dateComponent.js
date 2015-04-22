@@ -42,6 +42,7 @@ define(function (require) {
                 var date = new Date(value);
                 this.datepicker.setDate(new Date(date.getTime() + date.getTimezoneOffset()*(60000)), true);
             }
+            this.closeFilter();
         },
         handleDateChange: function (e) {
 
