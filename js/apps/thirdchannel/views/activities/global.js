@@ -3,7 +3,7 @@ define(function(require){
         _ = require('underscore'),
         Backbone = require('backbone'),
         context = require('context'),
-        PhotoModal = require('thirdchannel/modals/activities/photo-modal'),
+        PhotoModal = require('thirdchannel/modals/photo_modal'),
         SlickCarousel = require('slick_carousel');
 
     return Backbone.View.extend({

@@ -3,17 +3,17 @@ define(function(require) {
         _ = require('underscore'),
         $ = require('jquery'),
         context = require('context'),
-        GalleryImageModal = require('thirdchannel/modals/store_profile/gallery_image_modal'),
-        HoverableImageView = require('thirdchannel/views/store_profile/hoverable_image'),
-        
+        GalleryImageModal = require('thirdchannel/modals/gallery_image_modal'),
+        HoverableImageView = require('thirdchannel/views/shared/hoverable_image'),
+
         /**
          *
-         * 
-         * @exports thirdchannel/views/store_profile/profile_carousel
+         *
+         * @exports thirdchannel/views/shared/carousel
          */
         ProfileCarousel = Backbone.View.extend({
             el: '#images',
-            
+
             events: {
                 'click .arrow-left' : 'prevSlide',
                 'click .arrow-right' : 'nextSlide'
@@ -36,7 +36,7 @@ define(function(require) {
                 } else {
                     this.$el.append("<p>There are no images for this store.</p>");
                 }
-                            
+
                 this.carousel = this.$el.slick({
                     slidesToShow: 3,
                     slidesToScroll: 1,

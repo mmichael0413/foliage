@@ -10,7 +10,7 @@ define(function(require) {
         OpenAlertsView = require('thirdchannel/views/store_profile/open_alerts'),
         BaseAlertsCollection = require('thirdchannel/collections/alerts/base'),
         Expanding = require('expanding'),
-        ProfileCarousel = require('thirdchannel/views/store_profile/profile_carousel'),
+        ProfileCarousel = require('thirdchannel/views/shared/carousel'),
         AllOpenAlertsView = OpenAlertsView.extend({
             collectionClass: BaseAlertsCollection.extend({
                 resolved: false,

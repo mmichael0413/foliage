@@ -8,7 +8,7 @@ define(function (require) {
         ActivitiesMain = require('thirdchannel/views/activities/main'),
 
         PersonnelSectionView = require('thirdchannel/views/store_profile/personnel'),
-        ProfileCarouselView = require('thirdchannel/views/store_profile/profile_carousel'),
+        ProfileCarouselView = require('thirdchannel/views/shared/carousel'),
         ExpandWrapperView = require('thirdchannel/views/utils/expand_wrapper_view'),
         OpenAlertsView = require('thirdchannel/views/store_profile/open_alerts'),
         GalleryView = require('thirdchannel/views/store_profile/gallery'),
