@@ -10,7 +10,7 @@ define(function(require) {
         OpenAlertsView = require('thirdchannel/views/store_profile/open_alerts'),
         BaseAlertsCollection = require('thirdchannel/collections/alerts/base'),
         Expanding = require('expanding'),
-        ProfileCarousel = require('thirdchannel/views/shared/carousel'),
+        CarouselView = require('thirdchannel/views/shared/carousel'),
         AllOpenAlertsView = OpenAlertsView.extend({
             collectionClass: BaseAlertsCollection.extend({
                 resolved: false,
@@ -32,8 +32,7 @@ define(function(require) {
             context.alerts.created_checkin_id = options.id;
             this.activityModel = new ActivityModel(window.checkinReportData.activity, {});
 
-            this.gallery = new ProfileCarousel({el: '.image-container'});
-            this.gallery.render();
+            new CarouselView().render();
         },
         render: function (options) {
             new AllOpenAlertsView().fetch();

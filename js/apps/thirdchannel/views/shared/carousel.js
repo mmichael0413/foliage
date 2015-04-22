@@ -11,7 +11,7 @@ define(function(require) {
          *
          * @exports thirdchannel/views/shared/carousel
          */
-        ProfileCarousel = Backbone.View.extend({
+        Carousel = Backbone.View.extend({
             el: '#images',
 
             events: {
@@ -28,16 +28,16 @@ define(function(require) {
             },
 
             render: function () {
-                var self = this;
+                var $carousel = this.$('.carousel');
                 if (context.images && context.images.length > 0) {
                     _.each(context.images, function (image){
-                        self.$el.append(new HoverableImageView({model: new Backbone.Model(image)}).render().$el);
+                        $carousel.append(new HoverableImageView({model: new Backbone.Model(image)}).render().$el);
                     });
                 } else {
-                    this.$el.append("<p>There are no images for this store.</p>");
+                    $carousel.append("<p>There are no images for this store.</p>");
                 }
 
-                this.carousel = this.$el.slick({
+                this.carousel = $carousel.slick({
                     slidesToShow: 3,
                     slidesToScroll: 1,
                     focusOnSelect: true,
@@ -65,5 +65,5 @@ define(function(require) {
             }
         });
 
-    return ProfileCarousel;
+    return Carousel;
 });

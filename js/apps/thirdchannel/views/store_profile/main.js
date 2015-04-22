@@ -8,7 +8,7 @@ define(function (require) {
         ActivitiesMain = require('thirdchannel/views/activities/main'),
 
         PersonnelSectionView = require('thirdchannel/views/store_profile/personnel'),
-        ProfileCarouselView = require('thirdchannel/views/shared/carousel'),
+        CarouselView = require('thirdchannel/views/shared/carousel'),
         ExpandWrapperView = require('thirdchannel/views/utils/expand_wrapper_view'),
         OpenAlertsView = require('thirdchannel/views/store_profile/open_alerts'),
         GalleryView = require('thirdchannel/views/store_profile/gallery'),
@@ -26,7 +26,7 @@ define(function (require) {
             _.extend(context, window.bootstrap);
             new PersonnelSectionView().fetch();
             new OpenAlertsView().fetch();
-            new ProfileCarouselView().render();
+            new CarouselView().render();
             var wrapper = new ExpandWrapperView();
             
             wrapper.setElement('#site-canvas').render();
