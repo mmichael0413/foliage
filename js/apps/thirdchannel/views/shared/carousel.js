@@ -29,9 +29,9 @@ define(function(require) {
 
             render: function () {
                 var $carousel = this.$('.carousel');
-                if (context.images && context.images.length > 0) {
-                    _.each(context.images, function (image){
-                        $carousel.append(new HoverableImageView({model: new Backbone.Model(image)}).render().$el);
+                if(!this.collection.isEmpty()) {
+                    this.collection.each(function(image){
+                        $carousel.append(new HoverableImageView({model: image}).render().$el);
                     });
                 } else {
                     $carousel.append("<p>There are no images for this store.</p>");

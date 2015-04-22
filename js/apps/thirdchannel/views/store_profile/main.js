@@ -26,7 +26,7 @@ define(function (require) {
             _.extend(context, window.bootstrap);
             new PersonnelSectionView().fetch();
             new OpenAlertsView().fetch();
-            new CarouselView().render();
+            new CarouselView({collection: new Backbone.Collection(context.images)}).render();
             var wrapper = new ExpandWrapperView();
             
             wrapper.setElement('#site-canvas').render();

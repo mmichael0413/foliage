@@ -32,7 +32,7 @@ define(function(require) {
             context.alerts.created_checkin_id = options.id;
             this.activityModel = new ActivityModel(window.checkinReportData.activity, {});
 
-            new CarouselView().render();
+            new CarouselView({collection: new Backbone.Collection(context.images)}).render();
         },
         render: function (options) {
             new AllOpenAlertsView().fetch();
