@@ -21,7 +21,6 @@ define(function(require) {
 
             initialize: function() {
                 var self = this;
-                console.log(this);
                 this.listenTo(context, 'gallery:image:open', function(model) {
                     self.modal = new GalleryImageModal({model: model});
                     $("body").append(self.modal.render().el);
