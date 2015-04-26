@@ -1228,6 +1228,41 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/labs/sales_compare/retail_sales"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n	<div class=\"col-1-2\">";
+  if (helper = helpers.date) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.date); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ":</div>\n	<div class=\"col-1-2\">";
+  if (helper = helpers.cents) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.cents); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n\n";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  
+  return "\n<p class=\"col-1-1\">No Sales numbers found for this date range</p>\n";
+  }
+
+  options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
+  if (helper = helpers.sales) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.sales); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.sales) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n<p class=\"col-1-1\">Note: this will be a graph soon</p>\n";
+  return buffer;
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/labs/top_sku_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -1258,14 +1293,20 @@ function program1(depth0,data) {
   if (helper = helpers.emptyStores) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.emptyStores); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n	</div>\n\n";
+    + "</p>\n	</div>\n";
   return buffer;
   }
 
-  options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}
+function program3(depth0,data) {
+  
+  
+  return "\n	<p class=\"col-1-1\">No Report Data found for this date range</p>\n\n";
+  }
+
+  options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
   if (helper = helpers.skus) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.skus); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.skus) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
+  if (!helpers.skus) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { return stack1; }
   else { return ''; }
   });

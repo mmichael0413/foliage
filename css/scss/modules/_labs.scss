@@ -1,0 +1,24 @@
+.labs {
+	h2 {
+		margin: 0;
+		text-align: center;
+	}
+	&.split {
+		.left {
+			.section {
+				margin-right: 1em;
+			}
+		}
+		.right {
+			.section {
+				margin-left: 1em;
+			}
+		}
+		
+	}
+	&.section {
+		.header {
+			border-bottom: 1px solid $main-background;
+		}
+	}
+}

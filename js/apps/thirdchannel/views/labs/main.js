@@ -2,8 +2,9 @@ define(function(require) {
 
 	var context = require('context'),
 		_ = require('underscore'),
-		//Backbone = require('backbone'),
 		Filter = require('thirdchannel/views/filter/main'),
+		SalesCompareView = require('thirdchannel/views/labs/sales_compare'),
+		MetaInfoView = require('thirdchannel/views/labs/sc/meta'),
 		TopSkusView = require('thirdchannel/views/labs/top_skus');
 
 
@@ -16,12 +17,15 @@ define(function(require) {
 			this.init();
 			Filter.init();
 			new TopSkusView();
+		},
+		salesCompare: function () {
+			this.init();
+			Filter.init();
+			new MetaInfoView();
+			new SalesCompareView();
 		}
 	};
 
 	return main;
 
-
-
-	
 });
