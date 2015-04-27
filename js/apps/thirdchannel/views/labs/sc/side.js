@@ -54,10 +54,10 @@ define(function(require) {
 			},
 
 			render: function () {
-				console.log(this.model.toJSON());
 				this._renderMeta();
 				this._renderWidgets("Visual Merchandising", ["display", "moved", "currentPOP"]);
-				this._renderWidgets("Physical Footprint", ["fixtures", "damage", "visibility"]);
+				//this._renderWidgets("Physical Footprint", ["fixtures", "damage", "visibility"]);
+				this._renderWidgets("Physical Footprint", ["visibility"]);
 				this._renderWidgets("Store Associate Education", ["educated", "educatedOn"]);
 				this._renderWidgets("Customer Interactions", ["consumersSpoken", "sold", "retail"]);
 				this._renderWidgets("Product Categories", ["categories"]);

@@ -1,3 +1,4 @@
+/*globals Chart */
 define(function(require) {
     var Backbone = require('backbone'),
         _ = require('underscore'),
@@ -54,10 +55,48 @@ define(function(require) {
             },
 
             render: function () {
-                var data = this.model.toJSON();
-                this.$leftRetail.html(templates['thirdchannel/labs/sales_compare/retail_sales']({sales: data.topWeeklySales}));
-                this.$rightRetail.html(templates['thirdchannel/labs/sales_compare/retail_sales']({sales: data.weeklySales}));
+                
+                this.$leftRetail.html(templates['thirdchannel/labs/sales_compare/retail_sales']({sales: this.model.get('topWeeklySales')}));
+                this.$rightRetail.html(templates['thirdchannel/labs/sales_compare/retail_sales']({sales: this.model.get('weeklySales')}));
+                var data = this.model.toJSON(),
+                    $leftCtx = this.$leftRetail.find('.retail-sales')[0].getContext("2d"),
+                    $rightCtx = this.$rightRetail.find('.retail-sales')[0].getContext("2d");
+                
+                this._buildChart($leftCtx, data.topWeeklySales);
+                this._buildChart($rightCtx, data.weeklySales);
+
+
+                
                 return this;
+            },
+
+            _buildChart: function (ctx, list) {
+                this._formatCents(list);
+                var labels = _.map(list, function (item) { return item.date; }),
+                    points = _.map(list, function (item) { return item.rawUSD; }),
+                    data = {
+                        labels: labels,
+                        datasets: [
+                        {
+                            label: "Test",
+                            fillColor: "rgba(241,95,81,0.2)",
+                            strokeColor: "rgba(241,95,81,1)",
+                            pointColor: "rgba(241,95,81,1)",
+                            pointStrokeColor: "#fff",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(220,220,220,1)",
+                            data: points
+                        }]
+                    };
+                new Chart(ctx).Line(data, {});
+            },
+
+            _formatCents: function (list) {
+                var i = 0,
+                    max = list.length;
+                for (i; i < max; i++) {
+                    list[i].rawUSD = Math.round(list[i].cents/100);
+                }
             }
         };
     return Backbone.View.extend(SalesCompareView);
