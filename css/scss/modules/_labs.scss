@@ -1,8 +1,17 @@
 .labs {
+	.statistic {
+		font-size: 1.5em;
+  		color: #f15f51;
+	}
 	h2 {
 		margin: 0;
-		text-align: center;
 	}
+	.header {
+		h2 {
+			text-align: center;
+		}	
+	}
+	
 	&.split {
 		.left {
 			.section {
@@ -21,4 +30,15 @@
 			border-bottom: 1px solid $main-background;
 		}
 	}
+
+	.widget {
+		&.col-1-2 {
+			width:100%;
+		}
+		.leading-dots {
+			background: none;
+		}
+	}
+
+
 }

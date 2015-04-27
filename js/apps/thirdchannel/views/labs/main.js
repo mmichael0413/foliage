@@ -4,7 +4,8 @@ define(function(require) {
 		_ = require('underscore'),
 		Filter = require('thirdchannel/views/filter/main'),
 		SalesCompareView = require('thirdchannel/views/labs/sales_compare'),
-		MetaInfoView = require('thirdchannel/views/labs/sc/meta'),
+		//MetaInfoView = require('thirdchannel/views/labs/sc/meta'),
+		SalesCompareSideView = require('thirdchannel/views/labs/sc/side'),
 		TopSkusView = require('thirdchannel/views/labs/top_skus');
 
 
@@ -21,8 +22,10 @@ define(function(require) {
 		salesCompare: function () {
 			this.init();
 			Filter.init();
-			new MetaInfoView();
+			//new MetaInfoView();
 			new SalesCompareView();
+			new SalesCompareSideView({el:'.left'});
+			new SalesCompareSideView({el:'.right', global:true});
 		}
 	};
 

@@ -47,7 +47,8 @@ define(function(require) {
                     uuids: _.map(data.stores, function (store){
                         return store.customerStoreUUID;
                     }),
-                    topStores: data.stores.length
+                    topStores: data.stores.length,
+                    queryString: this.model.queryString
                 };
                 context.trigger("topStores:received", message);
             },

@@ -1228,6 +1228,28 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/labs/sales_compare/meta"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"col-1-6\">\n	<p class=\"statistic\">";
+  if (helper = helpers.totalStores) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.totalStores); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n	<p>Stores</p>\n</div>\n\n<div class=\"col-1-3\">\n	<p class=\"statistic\">";
+  if (helper = helpers.states) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.states); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n	<p>States Covered</p>\n</div>\n\n<div class=\"col-1-2\">\n	<p class=\"statistic\">";
+  if (helper = helpers.averageUnits) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.averageUnits); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n	<p>Avg. Units on Display</p>\n</div>";
+  return buffer;
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/labs/sales_compare/retail_sales"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -1260,6 +1282,20 @@ function program3(depth0,data) {
   if (!helpers.sales) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n<p class=\"col-1-1\">Note: this will be a graph soon</p>\n";
+  return buffer;
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/labs/sales_compare/widget_section"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<section class=\"section labs\">\n\n	<h2 class=\"header\">";
+  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</h2>\n	<div class=\"widgets\"></div>\n</section>";
   return buffer;
   });
 
