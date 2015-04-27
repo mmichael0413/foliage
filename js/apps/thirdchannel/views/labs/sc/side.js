@@ -66,6 +66,17 @@ define(function(require) {
 				return this;
 			},
 
+			updateLinks: function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+				var $link = $(e.currentTarget),
+					href = $link.attr("href");
+				if (this.global !== true) {
+					href = href + "&customer_store_id=" + this.model.get('report').customer_store_id;
+				}
+				window.location = "../" + href;
+			},
+
 			_renderMeta: function () {
 				var data = {
 					totalStores: this.model.get('totalStores'),
@@ -82,8 +93,11 @@ define(function(require) {
 				for (i; i < max; i++) {
 					$template.find('.widgets').append(new WidgetView(this.model.get('report')[keys[i]]).render().$el);
 				}
-
+				
 				this.$widgetContainer.append($template);
+				this.$widgetContainer.find(".breakdown-link").on("click", function (e) {
+					this.updateLinks(e);
+				}.bind(this));
 			}
 		});
 
