@@ -1,0 +1,46 @@
+.labs {
+	.statistic {
+		font-size: 1.5em;
+  		color: #f15f51;
+	}
+	h2 {
+		margin: 0;
+	}
+	.header {
+		h2 {
+			text-align: center;
+		}	
+	}
+	
+	&.split {
+		.left {
+			.section {
+				margin-right: 1em;
+			}
+		}
+		.right {
+			.section {
+				margin-left: 1em;
+			}
+		}
+		
+	}
+	&.section {
+		.header {
+			border-bottom: 1px solid $main-background;
+		}
+	}
+
+	.widget {
+		padding-bottom: 2em;
+		
+		&.col-1-2 {
+			width:100%;
+		}
+		.leading-dots {
+			background: none;
+		}
+	}
+
+
+}
