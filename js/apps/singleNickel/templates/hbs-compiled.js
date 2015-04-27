@@ -959,7 +959,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["SingleNickel"]["templates"]["singleNickel/survey/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
@@ -969,16 +969,27 @@ function program1(depth0,data) {
 
 function program3(depth0,data) {
   
-  var buffer = "", stack1, helper;
+  var buffer = "", stack1, helper, options;
   buffer += "\n        <a class=\"btn light round\" href=\"/surveys/";
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "/edit\"><i class=\"ic fa ic_edit\"></i></a>\n        <a class=\"btn primary delete round\" href=\"#\" alt=\"Remove Survey\"><i class=\"ic fa ic_x\"></i></a>\n    ";
+    + "/edit\"><i class=\"ic fa ic_edit\"></i></a>\n        <a class=\"btn primary delete round\" href=\"#\" alt=\"Remove Survey\"><i class=\"ic fa ic_x\"></i></a>\n        ";
+  options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}
+  if (helper = helpers.isAdmin) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.isAdmin); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.isAdmin) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    ";
   return buffer;
   }
+function program4(depth0,data) {
+  
+  
+  return "\n            <a href=\"#\" class=\"btn light round reindex\" alt=\"Re-Index\"><i class=\"ic fa ic_check\"></i></a>\n        ";
+  }
 
-function program5(depth0,data) {
+function program6(depth0,data) {
   
   var buffer = "", helper, options;
   buffer += "\n        <a class=\"btn light round lock\" href=\"#\" alt=\"Toggle Locked\"><i class=\"ic fa "
@@ -1007,10 +1018,10 @@ function program5(depth0,data) {
   buffer += "\n    <a data-bypass=\"true\" class=\"btn light round\" href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1['export'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" alt=\"Export Survey YAML\"><i class=\"ic fa ic_download\"></i></a>\n    ";
-  options={hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data}
+  options={hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data}
   if (helper = helpers.isSuperAdmin) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.isSuperAdmin); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.isSuperAdmin) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data}); }
+  if (!helpers.isSuperAdmin) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n</td>";
   return buffer;
