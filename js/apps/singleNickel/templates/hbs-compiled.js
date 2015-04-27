@@ -1015,7 +1015,7 @@ function program6(depth0,data) {
     + "</td>\n<td>\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.locked), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    <a data-bypass=\"true\" class=\"btn light round\" href=\""
+  buffer += "\n    <a href=\"#\" class=\"btn light round clone\" alt=\"Clone Survey\"><i class=\"ic fa ic_clipboard\"></i></a>\n    <a data-bypass=\"true\" class=\"btn light round\" href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1['export'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" alt=\"Export Survey YAML\"><i class=\"ic fa ic_download\"></i></a>\n    ";
   options={hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data}

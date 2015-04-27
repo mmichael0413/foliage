@@ -9,7 +9,8 @@ define(function(require) {
         events: {
           'click .delete': 'removeSurvey',
           'click .lock': 'toggleLock',
-          'click .reindex': 'reindexSurvey'
+          'click .reindex': 'reindexSurvey',
+          'click .clone': 'cloneSurvey'
         },
         initialize: function() {
             _.bindAll(this, 'removeSurvey', 'toggleLock');
@@ -43,10 +44,20 @@ define(function(require) {
         },
         reindexSurvey: function(e) {
             e.preventDefault();
-            var self = this;
 
             this.model.reindex().done(function(response) {
                 alert('Successfully re-indexed survey');
+            }).fail(function() {
+                context.trigger('error');
+            });
+        },
+        cloneSurvey: function(e) {
+            e.preventDefault();
+
+            var self = this;
+
+            this.model.cloneSurvey().done(function(response) {
+                self.model.collection.add(response);
             }).fail(function() {
                 context.trigger('error');
             });
