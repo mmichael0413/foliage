@@ -19,7 +19,7 @@ define(function(require) {
             'change select': 'updateInputChildren'
         },
         initialize: function() {
-            _.bindAll(this, 'addChild');
+            _.bindAll(this, 'addChild', 'clone');
             if(this.model.children !== undefined) {
                 this.listenTo(this.model.children, 'sort', this.renderChildren);
                 this.listenTo(this.model.children, 'remove', this.renderChildren);
@@ -152,6 +152,10 @@ define(function(require) {
             if(this.model.createClone !== undefined) {
                 this.model.createClone().success(function(response) {
                     self.model.collection.add(response);
+                    var m = self.model.collection.get(response.id);
+                    $('.content-holder').animate({
+                        scrollTop: $('#' + m.type + '-' + m.id)[0].offsetTop
+                    }, 500);
                 }).fail(function() {
                     context.trigger('error');
                 });
