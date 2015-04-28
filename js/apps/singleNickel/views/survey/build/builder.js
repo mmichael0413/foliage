@@ -2,7 +2,8 @@ define(function(require) {
     var Backbone = require('backbone'),
         BackboneValidator = require('backboneValidator'),
         context = require('context'),
-        HandlebarsTemplates = require('handlebarsTemplates');
+        HandlebarsTemplates = require('handlebarsTemplates'),
+        Noty = require('noty');
 
     var Builder =  Backbone.View.extend({
         editTemplate: HandlebarsTemplates['singleNickel/survey/build/edit'],
