@@ -13,6 +13,16 @@ define(function(require){
         events: {
             'change:id': "updateChildren"
         },
+        createClone: function(opts) {
+            var options = {
+                url: this.url() + '/clone',
+                type: 'POST'
+            };
+
+            _.extend(options, opts);
+
+            return (this.sync || Backbone.sync).call(this, null, this, options);
+        },
         validation: {
             title: [{
                 required: true,

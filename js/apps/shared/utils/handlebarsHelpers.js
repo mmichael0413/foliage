@@ -78,6 +78,13 @@ define(function (require) {
         return ret;
     });
 
+    /*
+        Use with {{@index}} to increment the @index in order to start with 1
+     */
+    Handlebars.registerHelper("index_inc", function (value, options){
+        return parseInt(value, 10) + 1;
+    });
+
     Handlebars.registerHelper('if_present', function (object, block) {
         return (object === undefined) ? '' : block.fn(this);
     });

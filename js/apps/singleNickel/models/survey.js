@@ -44,6 +44,26 @@ define(function(require){
 
             return (this.sync || Backbone.sync).call(this, null, this, options);
         },
+        reindex: function(opts) {
+            var options = {
+                url: this.url() + '/reindex',
+                type: 'PUT'
+            };
+
+            _.extend(options, opts);
+
+            return (this.sync || Backbone.sync).call(this, null, this, options);
+        },
+        cloneSurvey: function(opts) {
+            var options = {
+                url: this.url() + '/clone',
+                type: 'POST'
+            };
+
+            _.extend(options, opts);
+
+            return (this.sync || Backbone.sync).call(this, null, this, options);
+        },
         surveyType: function() {
           return this.lookUps.survey_type[this.get('survey_type')];
         },

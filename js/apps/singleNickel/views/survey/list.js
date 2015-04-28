@@ -8,6 +8,7 @@ define(function(require) {
         template: HandlebarsTemplates['singleNickel/survey/list'],
         initialize: function() {
             _.bindAll(this, 'renderSurveyItem');
+            this.listenTo(this.collection, 'add', this.renderSurveyItem);
         },
         render: function() {
             this.$el.html(this.template());

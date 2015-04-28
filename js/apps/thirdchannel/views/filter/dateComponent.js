@@ -13,7 +13,6 @@ define(function (require) {
 
         templateName: 'thirdchannel/filters/date_component',
 
-
         render: function () {
             var self = this;
             this.activeFilters = [];
@@ -22,6 +21,7 @@ define(function (require) {
             this.$el.html( handlebarsTemplates[this.templateName]( this.model.toJSON() ) );
 
             this.datepicker = new Pikaday({field: this.$el.find("input")[0],
+                         format: 'YYYY-MM-DD',
                          bound: false,
                          onSelect : function(){
                              context.trigger('filter:request');
@@ -42,6 +42,7 @@ define(function (require) {
                 var date = new Date(value);
                 this.datepicker.setDate(new Date(date.getTime() + date.getTimezoneOffset()*(60000)), true);
             }
+            this.closeFilter();
         },
         handleDateChange: function (e) {
 

@@ -1,10 +1,10 @@
 define(function(require) {
     var $ = require('jquery'),
         context = require('context'),
-        HoverableImageView = require('thirdchannel/views/store_profile/hoverable_image'),
+        HoverableImageView = require('thirdchannel/views/shared/hoverable_image'),
         InfiniteScrollView = require('thirdchannel/views/shared/infinite_scroll'),
         InfiniteCollection = require('thirdchannel/collections/shared/infinite'),
-        GalleryImageModal = require('thirdchannel/modals/store_profile/gallery_image_modal'),
+        GalleryImageModal = require('thirdchannel/modals/gallery_image_modal'),
 
         /**
          *
@@ -21,7 +21,7 @@ define(function(require) {
                 var self = this;
                 this.listenTo(context, 'gallery:image:open', function(model) {
                     self.modal = new GalleryImageModal({model: model});
-                    $("body").append(this.modal.render().el);
+                    $("body").append(self.modal.render().el);
                 });
             },
 

@@ -15,12 +15,15 @@ define(function(require) {
             'click .cancel': 'cancel',
             'click .up': 'moveUp',
             'click .down': 'moveDown',
+            'click .clone': 'clone',
             'change select': 'updateInputChildren'
         },
         initialize: function() {
-            _.bindAll(this, 'addChild');
+            _.bindAll(this, 'addChild', 'clone');
             if(this.model.children !== undefined) {
                 this.listenTo(this.model.children, 'sort', this.renderChildren);
+                this.listenTo(this.model.children, 'remove', this.renderChildren);
+                this.listenTo(this.model.children, 'created', this.renderChildren);
             }
         },
         render: function(template) {
@@ -122,15 +125,38 @@ define(function(require) {
         },
         update: function(e) {
             this.stopEvent(e);
-            var self = this;
+            var self = this,
+                isNew = this.model.isNew();
+
             this.model.set(this.editsToJSON());
             if (this.model.isValid()) {
                 this.model.save().success(function(){
                     self.render(self.showTemplate);
+
+                    if(isNew) {
+                        self.model.collection.trigger('created');
+                    }
+
                     if (self.model.redirect !== undefined) {
                         Backbone.history.navigate(self.model.redirect());
                     }
                 }).fail(function () {
+                    context.trigger('error');
+                });
+            }
+        },
+        clone: function(e) {
+            this.stopEvent(e);
+            var self = this;
+
+            if(this.model.createClone !== undefined) {
+                this.model.createClone().success(function(response) {
+                    self.model.collection.add(response);
+                    var m = self.model.collection.get(response.id);
+                    $('.content-holder').animate({
+                        scrollTop: $('#' + m.type + '-' + m.id)[0].offsetTop
+                    }, 500);
+                }).fail(function() {
                     context.trigger('error');
                 });
             }

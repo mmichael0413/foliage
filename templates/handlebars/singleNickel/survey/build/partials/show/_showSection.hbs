@@ -1,7 +1,5 @@
-<div class="section">
-    {{#unless attributes.locked}}
-        {{> showControls this}}
-    {{/unless}}
+<div class="section" id="section-{{attributes.id}}">
+    {{> showControls this}}
     <h3>{{attributes.title}}</h3>
     <div class="children"></div>
     {{#unless attributes.locked}}

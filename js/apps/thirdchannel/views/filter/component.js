@@ -63,6 +63,10 @@ define(function(require) {
             $icon.toggleClass(this.openClassName);
             $list.toggleClass(this.openClassName);
         },
+        closeFilter: function() {
+            this.$el.find('.expand-indicator').removeClass(this.openClassName);
+            this.$el.find('.filter-list').removeClass(this.openClassName);
+        },
         /**
          * Handler for the click event
          * 

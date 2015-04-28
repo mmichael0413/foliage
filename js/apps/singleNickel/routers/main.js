@@ -99,6 +99,14 @@ define(function(require){
             }
         });
 
+        Handlebars.registerHelper('isAdmin', function(options) {
+            if(context.currentUser.isAdmin()) {
+                return options.fn(this);
+            } else {
+                return options.inverse(this);
+            }
+        });
+
         Handlebars.registerHelper('lockDisplay', function(locked) {
             if(locked) {
                 return 'Locked';

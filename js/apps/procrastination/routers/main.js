@@ -4,8 +4,8 @@ define(function(require) {
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
         Filter = require('thirdchannel/views/filter/main'),
-        SetSchedule = require('procrastination/views/schedule/list_to_be_scheduled'),
-        ListSchedule = require('procrastination/views/schedule/list_scheduled'),
+        SetSchedule = require('procrastination/views/schedule/upcoming/list'),
+        ListSchedule = require('procrastination/views/schedule/current/main'),
         ManageSchedule = require('procrastination/views/admin/list_scheduling_progress'),
 
         AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
@@ -31,11 +31,7 @@ define(function(require) {
 
             showSchedule: function() {
                 var view =  new ListSchedule();
-                if(context.content) {
-                    view.bootstrapCollection(context.content);
-                } else {
-                    view.render();
-                }
+                view.fetch();
             },
 
             manageSchedule: function() {

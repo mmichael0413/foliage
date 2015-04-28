@@ -8,7 +8,9 @@ define(function(require) {
         template: HandlebarsTemplates['singleNickel/survey/list_item'],
         events: {
           'click .delete': 'removeSurvey',
-          'click .lock': 'toggleLock'
+          'click .lock': 'toggleLock',
+          'click .reindex': 'reindexSurvey',
+          'click .clone': 'cloneSurvey'
         },
         initialize: function() {
             _.bindAll(this, 'removeSurvey', 'toggleLock');
@@ -36,6 +38,26 @@ define(function(require) {
             var self = this;
             this.model.toggleLock().done(function(response) {
                 self.model.set(response);
+            }).fail(function() {
+                context.trigger('error');
+            });
+        },
+        reindexSurvey: function(e) {
+            e.preventDefault();
+
+            this.model.reindex().done(function(response) {
+                alert('Successfully re-indexed survey');
+            }).fail(function() {
+                context.trigger('error');
+            });
+        },
+        cloneSurvey: function(e) {
+            e.preventDefault();
+
+            var self = this;
+
+            this.model.cloneSurvey().done(function(response) {
+                self.model.collection.add(response);
             }).fail(function() {
                 context.trigger('error');
             });

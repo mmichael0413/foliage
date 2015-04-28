@@ -36,6 +36,8 @@ define(function(require) {
                 //proceed!
                 SingleAnswerComponent.__super__._addFilterFromLink.call(this, $link);
             }
+
+            this.closeFilter();
         }
     });
 

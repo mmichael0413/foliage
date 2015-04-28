@@ -5,12 +5,12 @@ define(function (require) {
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
         FullCalendar = require('fullcalendar'),
-        ScheduleCollection = require('procrastination/collections/schedule/create_schedules'),
-        StoreSchedule = require('procrastination/views/schedule/show_to_be_scheduled');
+        ScheduleCollection = require('procrastination/collections/schedule/upcoming/create_schedules'),
+        StoreSchedule = require('procrastination/views/schedule/upcoming/show');
 
     return Backbone.View.extend({
         el: '.section',
-        template: HandlebarsTemplates['procrastination/schedule/list'],
+        template: HandlebarsTemplates['procrastination/schedule/upcoming/list'],
 
         initialize: function () {
             var self = this;
@@ -44,9 +44,12 @@ define(function (require) {
                         return dateScheduled !== undefined && dateScheduled !== null;
                     });
                     _.each(scheduledVisits, function (model) {
+                        var label = model.get('storeName') + ":<br/>" + model.get('street') + "<br/>" + model.get('city') + ", " + model.get('state');
+
                         events.push({
                             id: model.get('id'),
                             title: model.get('storeName'),
+                            store: label,
                             start: model.get('dateScheduled'),
                             allDay: true
                         });
@@ -59,7 +62,7 @@ define(function (require) {
                     self.trigger('fullcalendar.date.create', date, id);
                 },
                 eventMouseover: function (calEvent, jsEvent) {
-                    var tooltip = '<div class="tooltipevent">' + calEvent.title + '</div>';
+                    var tooltip = '<div class="tooltipevent">' + calEvent.store + '</div>';
                     $("body").append(tooltip);
                     $(this).mouseover(function (e) {
                         $(this).css('z-index', 10000);
@@ -83,7 +86,7 @@ define(function (require) {
             return this;
         },
         events: {
-            'click .save-schedule': 'saveSchedule'
+
         },
         render: function () {
             var self = this;
@@ -103,7 +106,7 @@ define(function (require) {
 
             if(groupedSchedules.true !== undefined) {
                 this.scheduledCount = groupedSchedules.true.length;
-                _.each(this.collection.models, function (model) {
+                _.each(groupedSchedules.true, function (model) {
                     self.renderModel(model);
                 });
             }
@@ -112,7 +115,7 @@ define(function (require) {
             if(groupedSchedules.false !== undefined) {
                 this.unscheduledCount = groupedSchedules.false.length;
 
-                _.each(this.collection.models, function (model) {
+                _.each(groupedSchedules.false, function (model) {
                     self.renderModel(model);
                 });
             } else {
@@ -148,17 +151,7 @@ define(function (require) {
             }
 
         },
-        saveSchedule: function (e) {
-            e.preventDefault();
-            e.stopPropagation();
 
-            if(this.unscheduledCount > 0) {
-                console.log('Not all schedules have been completed.');
-            } else {
-                console.log('All visits have been scheduled');
-            }
-
-        },
         updateSchedule: function (date, id) {
 
 
