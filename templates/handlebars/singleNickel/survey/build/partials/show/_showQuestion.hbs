@@ -1,16 +1,5 @@
 <div class="question" id="question-{{attributes.id}}">
-    {{#unless attributes.locked}}
-        <div class="controls show">
-            {{#unlessFirstChild this}}
-                <a href="#" class="up btn light round"><i class="ic ic_up"></i></a>
-            {{/unlessFirstChild}}
-            {{#unlessLastChild this}}
-                <a href="#" class="down btn light round"><i class="ic ic_down"></i></a>
-            {{/unlessLastChild}}
-            <a href="#" class="edit btn light round"><i class="ic ic_edit"></i></a>
-            <a href="#" class="delete btn primary round"><i class="ic ic_remove"></i></a>
-        </div>
-    {{/unless}}
+    {{> showControls this}}
     <p class="content">{{attributes.ask}}</p>
     {{#if children}}
         <div class="children"></div>
@@ -24,7 +13,6 @@
         <input type="text" placeholder="{{attributes.placeholder}}">
     {{/if}}
     <div class="controls child">
-        <a href="#" class="clone btn light round"><i class="ic ic_sheep"></i></a>
     </div>
 </div>
 
