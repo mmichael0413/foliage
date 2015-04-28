@@ -55,7 +55,10 @@ define(function(require) {
 
 			render: function () {
 				this._renderMeta();
-				this._renderWidgets("Visual Merchandising", ["display", "moved", "currentPOP", "sharing", "otherBrands"]);
+				this._renderWidgets("Visual Merchandising", ["display", "moved", "currentPOP", "sharing", "otherBrands"], function ($template, report) {
+					var downstock = ((report.moved.results.count / report.display.results.count) * 100).toFixed(2);
+					$template.find(".widgets").prepend("<div class='widget'>Downstock vs. Initial Display: <span class='pull-right'>" + downstock + "%</span></div>");
+				});
 				//this._renderWidgets("Physical Footprint", ["fixtures", "damage", "visibility"]);
 				this._renderWidgets("Physical Footprint", ["visibility"]);
 				this._renderWidgets("Store Associate Education", ["educated", "educatedOn"]);
@@ -86,12 +89,18 @@ define(function(require) {
 				this.$meta.html(templates['thirdchannel/labs/sales_compare/meta'](data));
 			},
 
-			_renderWidgets: function (title, keys) {
+			
+			_renderWidgets: function (title, keys, fn) {
 				var $template = $(templates['thirdchannel/labs/sales_compare/widget_section']({title: title})),
+					report = this.model.get('report'),
 					i = 0,
 					max = keys.length;
 				for (i; i < max; i++) {
-					$template.find('.widgets').append(new WidgetView(this.model.get('report')[keys[i]]).render().$el);
+					$template.find('.widgets').append(new WidgetView(report[keys[i]]).render().$el);
+				}
+				// execute the optional callback
+				if (fn !== undefined) {
+					fn($template, report);
 				}
 				
 				this.$widgetContainer.append($template);
