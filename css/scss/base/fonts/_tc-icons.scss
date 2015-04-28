@@ -1,16 +1,14 @@
 //
 // Icon Font: tc-icons
 //
-// EDITS TO THIS ALSO NEED EDITS TO GRUNT.JS S3 UPLOAD.
-
 
 @font-face {
   font-family: "tc-icons";
-  src: url("../../shared/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.eot");
-  src: url("../../shared/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.eot?#iefix") format("embedded-opentype"),
-       url("../../shared/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.woff") format("woff"),
-       url("../../shared/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.ttf") format("truetype"),
-       url("../../shared/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.svg#tc-icons") format("svg");
+  src: url("../../shared/fonts/tc-icons_822f1db99fd30a1b15edf1a3e5d340d4.eot");
+  src: url("../../shared/fonts/tc-icons_822f1db99fd30a1b15edf1a3e5d340d4.eot?#iefix") format("embedded-opentype"),
+       url("../../shared/fonts/tc-icons_822f1db99fd30a1b15edf1a3e5d340d4.woff") format("woff"),
+       url("../../shared/fonts/tc-icons_822f1db99fd30a1b15edf1a3e5d340d4.ttf") format("truetype"),
+       url("../../shared/fonts/tc-icons_822f1db99fd30a1b15edf1a3e5d340d4.svg#tc-icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -18,7 +16,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: "tc-icons";
-    src: url("../../shared/fonts/tc-icons_c8b56c84192912040a103bcfbd9a7a98.svg#tc-icons") format("svg");
+    src: url("../../shared/fonts/tc-icons_822f1db99fd30a1b15edf1a3e5d340d4.svg#tc-icons") format("svg");
   }
 }
 
@@ -31,6 +29,7 @@
 .ic_calendar:before,
 .ic_check:before,
 .ic_clipboard:before,
+.ic_clone:before,
 .ic_closed-circle:before,
 .ic_comment:before,
 .ic_dashboard:before,
@@ -54,6 +53,7 @@
 .ic_report-16:before,
 .ic_right:before,
 .ic_search:before,
+.ic_sheep:before,
 .ic_star:before,
 .ic_store:before,
 .ic_top:before,
@@ -81,6 +81,7 @@
 .ic_calendar:before { content: "\f1aa"; }
 .ic_check:before { content: "\f18e"; }
 .ic_clipboard:before { content: "\f18f"; }
+.ic_clone:before { content: "\f1af"; }
 .ic_closed-circle:before { content: "\f190"; }
 .ic_comment:before { content: "\f191"; }
 .ic_dashboard:before { content: "\f192"; }
@@ -104,6 +105,7 @@
 .ic_report-16:before { content: "\f1a2"; }
 .ic_right:before { content: "\f1a3"; }
 .ic_search:before { content: "\f1a4"; }
+.ic_sheep:before { content: "\f1b0"; }
 .ic_star:before { content: "\f1a5"; }
 .ic_store:before { content: "\f1a6"; }
 .ic_top:before { content: "\f1ad"; }
@@ -118,6 +120,7 @@ $font-tc-icons-ic_blank: "\f18d";
 $font-tc-icons-ic_calendar: "\f1aa";
 $font-tc-icons-ic_check: "\f18e";
 $font-tc-icons-ic_clipboard: "\f18f";
+$font-tc-icons-ic_clone: "\f1af";
 $font-tc-icons-ic_closed-circle: "\f190";
 $font-tc-icons-ic_comment: "\f191";
 $font-tc-icons-ic_dashboard: "\f192";
@@ -141,6 +144,7 @@ $font-tc-icons-ic_report-05: "\f1a1";
 $font-tc-icons-ic_report-16: "\f1a2";
 $font-tc-icons-ic_right: "\f1a3";
 $font-tc-icons-ic_search: "\f1a4";
+$font-tc-icons-ic_sheep: "\f1b0";
 $font-tc-icons-ic_star: "\f1a5";
 $font-tc-icons-ic_store: "\f1a6";
 $font-tc-icons-ic_top: "\f1ad";

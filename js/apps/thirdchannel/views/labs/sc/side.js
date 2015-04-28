@@ -55,7 +55,7 @@ define(function(require) {
 
 			render: function () {
 				this._renderMeta();
-				this._renderWidgets("Visual Merchandising", ["display", "moved", "currentPOP"]);
+				this._renderWidgets("Visual Merchandising", ["display", "moved", "currentPOP", "sharing", "otherBrands"]);
 				//this._renderWidgets("Physical Footprint", ["fixtures", "damage", "visibility"]);
 				this._renderWidgets("Physical Footprint", ["visibility"]);
 				this._renderWidgets("Store Associate Education", ["educated", "educatedOn"]);
