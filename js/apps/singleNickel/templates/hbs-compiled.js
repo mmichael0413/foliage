@@ -354,7 +354,7 @@ function program19(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += ">\n        </div>\n        <input type=\"hidden\" name=\"idx\" value=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.idx)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n    </div>\n</div>\n\n\n\n\n\n\n\n\n\n";
+    + "\">\n    </div>\n</div>";
   return buffer;
   }));
 
@@ -499,14 +499,23 @@ function program4(depth0,data) {
   return "\n                <a href=\"#\" class=\"down btn light round\"><i class=\"ic ic_down\"></i></a>\n            ";
   }
 
+function program6(depth0,data) {
+  
+  
+  return "\n                <span> (triggers explain)</span>\n            ";
+  }
+
   buffer += "<div class=\"choice\" id=\"choice-"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">\n    ";
   stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.locked), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    <div class=\"answer show\">\n        <p>"
+  buffer += "\n    <div class=\"answer show\">\n        <p>\n            "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.choice)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n    </div>\n</div>\n\n";
+    + "\n            ";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.triggers), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </p>\n    </div>\n</div>\n\n";
   return buffer;
   }));
 
@@ -577,7 +586,7 @@ function program1(depth0,data) {
     + "</h3>\n    <div class=\"children\"></div>\n    ";
   stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.locked), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>\n";
+  buffer += "\n</div>";
   return buffer;
   }));
 
@@ -610,7 +619,7 @@ function program3(depth0,data) {
     + " for editing</h2>\n    <div class=\"children survey\"></div>\n    ";
   stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.locked), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>\n\n\n";
+  buffer += "\n</div>";
   return buffer;
   }));
 
