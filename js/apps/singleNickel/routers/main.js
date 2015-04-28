@@ -83,6 +83,7 @@ define(function(require){
         displayError: function() {
             noty({
                 layout: 'topRight',
+                theme: 'relax',
                 text: 'Whoops, something went wrong... Contact tech support.',
                 type: 'error',
                 animation: {
