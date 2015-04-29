@@ -12,15 +12,15 @@ define(function(require) {
         template: HandlebarsTemplates['thirdchannel/reports/widgets/donut_chart'],
         initialize: function (options) {
             this.model = options;
-            this.remapResults();
-            this.setDefaultColors();
+            //this.remapResults();
+            //this.setDefaultColors();
         },
         render: function () {
             if (_.size(this.model.results.percentages) > 0) {
-                this.setElement(this.template(this.model));
-                this.setupChart();
-                this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
-                context.trigger('filter:request:queryString');
+                //this.setElement(this.template(this.model));
+                //this.setupChart();
+                //this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
+                //context.trigger('filter:request:queryString');
             }
             return this;
         },

@@ -77,6 +77,8 @@ define(function(require){
         before: function (parameters) {
             // in addition, the router stuffs all arguments as a list on context.requestParameters;
             context.programId = parameters[0];
+            context.defaultLegendColors = ["#F15F51", "#9FB2C0", "#A9BC4D", "#8079b8", "#85c194", "#deb99a", "#bce4f9", "#f69d6d", "#8ab2ca", "#a53426", "#8c8d8e", "#00a55a", "#deb99a", "#ef6222", "#4cc3f1", "#025832", "#585E60"];
+
             // stuff the bootstrap into the context
             _.extend(context, window.bootstrap);
         },
