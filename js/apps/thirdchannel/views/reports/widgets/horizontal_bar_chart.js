@@ -2,7 +2,6 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        d3 = require('d3'),
         c3 = require('c3'),
         context = require('context');
 
@@ -24,7 +23,6 @@ define(function(require) {
             return this;
         },
         setupChart: function () {
-
             var newHeight = _.size(this.model.results.categories) * 60,
                 self = this;
 
@@ -67,61 +65,22 @@ define(function(require) {
                 legend: {
                     show: false
                 }
-
             };
 
-//            var chartConfig = {
-//                size: {
-//                    height: newHeight
-//                },
-//                data: {
-//                    x: 'x',
-//                    labels: true,
-//                    columns: [
-//                        ['data1',40, 30, 200, 100, 400, 150, 250, 50, 100, 250, 67, 190, 48, 123, 76, 54, 254],
-//                        ['x','Travel and Hospitality','Life Science and Pharma', 'Saas and Cloud', 'Hi-tech Manufacturing', 'Software', 'Business Services', 'Govt/Public Sector', 'Energy', 'Manufacturing', 'Healthcare','Media','Internet','Retail','Biotech','Automobile','Consumer Goods','Financial Services']
-//                    ],
-//                    type: 'bar',
-//                    color: function (color, d) {
-//                        return d3.rgb("#F15F51");
-//                    }
-//                },
-//                axis: {
-//                    rotated: true,
-//                    x: {
-//                        type: 'category',
-//                        tick:{
-//                            multiline: false
-//                        }
-//                    }
-//                },
-//                legend: {
-//                    show: false
-//                },
-//                tooltip: {
-//                    show: false
-//                }
-//            };
-
             // Idea is that the chartConfig is returned from a call to the report service
-            chartConfig.bindto = this.$el.find('.chart')[0];
-            //this.chart =
-
+            chartConfig.bindto = this.$('.chart')[0];
 
             if(window.pdf === undefined) {
-                this.listenTo(context, 'report post render', _.debounce(function () {
+                this.listenTo(context, 'report post render', _.debounce(function() {
                     setTimeout(function() {
                         c3.generate(chartConfig);
                     }, 500);
                 }, 500));
             } else {
-                this.listenTo(context, 'report post render', function () {
+                this.listenTo(context, 'report post render', function() {
                     c3.generate(chartConfig);
-                }, 500);
+                });
             }
-
-
-
         },
         updateViewBreakDownLink : function (qs) {
             var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';

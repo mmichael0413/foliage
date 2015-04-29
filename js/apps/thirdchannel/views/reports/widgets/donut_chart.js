@@ -2,7 +2,6 @@ define(function(require) {
     var _ = require('underscore'),
         Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        d3 = require('d3'),
         c3 = require('c3'),
         context = require('context');
 
