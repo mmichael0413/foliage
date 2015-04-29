@@ -27,10 +27,24 @@ define(function(require) {
         setupChart: function () {
             var self = this;
 
+            console.log(self.model);
+
             this.config = _.extend(this.config, {
                 bindto: self.$el.find('.chart.donut-chart')[0],
                 color: {
                     pattern: context.defaultLegendColors
+                },
+                tooltip: {
+                    format: {
+                        value: function(value, ratio, id, index) {
+                            var label = value;
+                            label += ' ' + (self.model.config.count_text ? self.model.config.count_text : 'stores');
+                            if(ratio !== undefined) {
+                                label = d3.format('.1%')(ratio) + "<br>" + label;
+                            }
+                            return label;
+                        }
+                    }
                 }
             });
 
