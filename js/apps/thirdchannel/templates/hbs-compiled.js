@@ -1007,7 +1007,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-1-7\">Name</h3>\n        <h3 class=\"header col-1-7\"># of Stores</h3>\n        <h3 class=\"header col-1-7\"># of Stores w/ Unresolved Alerts</h3>\n        <h3 class=\"header col-1-7\">% Complete</h3>\n        <h3 class=\"header col-1-7\">Start Date</h3>\n        <h3 class=\"header col-1-7\">End Date</h3>\n        <h3 class=\"header col-1-7\">Status</h3>\n    </div>\n    <div class=\"body\"></div>\n</div>";
+  return "<div class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-1-7\">Name</h3>\n        <h3 class=\"header col-1-7\"># Stores</h3>\n        <h3 class=\"header col-1-7\"># Stores that Need Revisit</h3>\n        <h3 class=\"header col-1-7\">% Complete</h3>\n        <h3 class=\"header col-1-7\">Start Date</h3>\n        <h3 class=\"header col-1-7\">End Date</h3>\n        <h3 class=\"header col-1-7\">Status</h3>\n    </div>\n    <div class=\"body\"></div>\n</div>";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/filter_active_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
