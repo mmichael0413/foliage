@@ -1,50 +1,54 @@
 define(function(require) {
     var _ = require('underscore'),
         Backbone = require('backbone'),
-        Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
+        d3 = require('d3'),
+        c3 = require('c3'),
         context = require('context');
 
-    var defaultColors = ["#585E60", "#F15F51", "#9FB2C0", "#A9BC4D", "#3FB586", '#D6D6D6'];
-
     return Backbone.View.extend({
-        tagName: 'span',
         template: HandlebarsTemplates['thirdchannel/reports/widgets/donut_chart'],
+
         initialize: function (options) {
             this.model = options;
-            //this.remapResults();
-            //this.setDefaultColors();
+            this.config = this.model.results;
         },
+
         render: function () {
-            if (_.size(this.model.results.percentages) > 0) {
-                //this.setElement(this.template(this.model));
-                //this.setupChart();
-                //this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
-                //context.trigger('filter:request:queryString');
+            if (_.size(this.model.results) > 0) {
+                this.setElement(this.template(this.model));
+                this.setupChart();
+                this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
+                context.trigger('filter:request:queryString');
             }
             return this;
         },
-        setupChart: function() {
-            var options = _.extend({
-                segmentShowStroke: false,
-                percentageInnerCutout: 65,
-                showPercentage: false,
-                showImage: false,
-                animation: false,
-                legendColors: {'Yes': '#3FB586', 'No': '#d6d6d6', 'Maybe': 'red'},
-                tooltipTemplate: "<%= value+'%' %>"
-            }, this.model.config);
 
-            var data = [];
-            $.each(this.model.results.percentages, function (key, value) {
-                data.push({value: value, color: options.legendColors[key]});
+        setupChart: function () {
+            var self = this;
+
+            this.config = _.extend(this.config, {
+                bindto: self.$el.find('.chart.donut-chart')[0],
+                color: {
+                    pattern: context.defaultLegendColors
+                }
             });
 
-            new Chart(this.$("canvas")[0].getContext("2d")).Doughnut(data, options);
+            if(window.pdf === undefined) {
+                this.listenTo(context, 'report post render', _.debounce(function () {
+                    setTimeout(function() {
+                        var chart = c3.generate(self.config);
+                    }, 500);
+                }, 500));
+            } else {
+                this.listenTo(context, 'report post render', function () {
+                    var chart = c3.generate(self.config);
+                });
+            }
         },
         updateViewBreakDownLink : function (qs) {
             var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
-            this.$('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
+            this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
         }
     });
 });
