@@ -1,12 +1,9 @@
 <div class="widget chart donut {{config.widget_class}}">
     <p>{{title}}</p>
     <div>
-        <div class="chart donut-chart"></div>
-        <div class="legend">
-
-            {{#if show_view_list}}
-                <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
-            {{/if}}
-        </div>
+        {{#if show_view_list}}
+            <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
+        {{/if}}
     </div>
+    <div class="chart donut-chart"></div>
 </div>

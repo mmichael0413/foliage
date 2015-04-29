@@ -1797,7 +1797,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n                <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">View Breakdown</a>\n            ";
+  return "\n            <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">View Breakdown</a>\n        ";
   }
 
   buffer += "<div class=\"widget chart donut "
@@ -1806,10 +1806,10 @@ function program1(depth0,data) {
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n    <div>\n        <div class=\"chart donut-chart\"></div>\n        <div class=\"legend\">\n\n            ";
+    + "</p>\n    <div>\n        ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_view_list), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </div>\n    </div>\n</div>";
+  buffer += "\n    </div>\n    <div class=\"chart donut-chart\"></div>\n</div>";
   return buffer;
   });
 
