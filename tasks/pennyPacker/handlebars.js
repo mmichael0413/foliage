@@ -20,7 +20,9 @@ module.exports = function(grunt) {
             files: {
                 "js/apps/pennyPacker/templates/hbs-compiled.js": [
                     "templates/handlebars/shared/**/*.hbs",
-                    "templates/handlebars/pennyPacker/**/*.hbs"
+                    "templates/handlebars/pennyPacker/**/*.hbs",
+                    "templates/handlebars/thirdchannel/filters/**/*.hbs",
+                    "templates/handlebars/thirdchannel/pagination.hbs"
                 ]
             }
         }
