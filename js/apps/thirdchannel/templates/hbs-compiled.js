@@ -1317,11 +1317,13 @@ function program1(depth0,data) {
   if (helper = helpers.unitsOnHand) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.unitsOnHand); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>";
+    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p><a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.emptyStores)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">";
   if (helper = helpers.emptyStores) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.emptyStores); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n	</div>\n";
+    + "</a></p>\n	</div>\n";
   return buffer;
   }
 
