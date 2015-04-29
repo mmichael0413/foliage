@@ -30,7 +30,7 @@ define(function(require) {
             console.log(self.model);
 
             this.config = _.extend(this.config, {
-                bindto: self.$el.find('.chart.donut-chart')[0],
+                bindto: self.$('.chart.donut-chart')[0],
                 color: {
                     pattern: context.defaultLegendColors
                 },
