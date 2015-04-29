@@ -37,12 +37,12 @@ define(function(require) {
             if(window.pdf === undefined) {
                 this.listenTo(context, 'report post render', _.debounce(function () {
                     setTimeout(function() {
-                        var chart = c3.generate(self.config);
+                        c3.generate(self.config);
                     }, 500);
                 }, 500));
             } else {
                 this.listenTo(context, 'report post render', function () {
-                    var chart = c3.generate(self.config);
+                    c3.generate(self.config);
                 });
             }
         },
