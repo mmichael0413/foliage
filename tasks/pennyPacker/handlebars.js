@@ -22,7 +22,8 @@ module.exports = function(grunt) {
                     "templates/handlebars/shared/**/*.hbs",
                     "templates/handlebars/pennyPacker/**/*.hbs",
                     "templates/handlebars/thirdchannel/filters/**/*.hbs",
-                    "templates/handlebars/thirdchannel/pagination.hbs"
+                    "templates/handlebars/thirdchannel/pagination.hbs",
+                    "templates/handlebars/thirdchannel/*.hbs"
                 ]
             }
         }
