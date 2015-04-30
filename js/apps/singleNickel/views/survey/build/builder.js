@@ -134,7 +134,7 @@ define(function(require) {
                 this.model.save().success(function(){
                     self.render(self.showTemplate);
 
-                    if(isNew) {
+                    if(isNew && self.model.collection !== undefined) {
                         self.model.collection.trigger('created');
                     }
 
