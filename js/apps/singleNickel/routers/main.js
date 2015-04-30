@@ -154,7 +154,7 @@ define(function(require){
 
         // cause choice trigger is saved as a string initially...
         Handlebars.registerHelper('isChoiceTrigger', function(trigger, options) {
-            if(eval(trigger)) {
+            if((typeof trigger === 'string' && trigger === 'true') || (typeof trigger === 'boolean' && trigger)) {
                 return options.fn(this);
             }
         });
