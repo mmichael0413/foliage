@@ -473,7 +473,7 @@ function program9(depth0,data) {
 Handlebars.registerPartial("showChoice", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, self=this, helperMissing=helpers.helperMissing, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, options, self=this, helperMissing=helpers.helperMissing, functionType="function", escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
@@ -513,7 +513,7 @@ function program6(depth0,data) {
   buffer += "\n    <div class=\"answer show\">\n        <p>\n            "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.choice)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\n            ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.triggers), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  stack1 = (helper = helpers.isChoiceTrigger || (depth0 && depth0.isChoiceTrigger),options={hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.triggers), options) : helperMissing.call(depth0, "isChoiceTrigger", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.triggers), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </p>\n    </div>\n</div>\n\n";
   return buffer;

@@ -152,6 +152,13 @@ define(function(require){
             return survey.surveyType();
         });
 
+        // cause choice trigger is saved as a string initially...
+        Handlebars.registerHelper('isChoiceTrigger', function(trigger, options) {
+            if(eval(trigger)) {
+                return options.fn(this);
+            }
+        });
+
         Backbone.history.start({pushState: true, hashChange: false});
 
         MainLayout.init();

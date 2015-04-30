@@ -14,9 +14,9 @@
     <div class="answer show">
         <p>
             {{attributes.choice}}
-            {{#if attributes.triggers}}
+            {{#isChoiceTrigger attributes.triggers }}
                 <span> (triggers explain)</span>
-            {{/if}}
+            {{/isChoiceTrigger}}
         </p>
     </div>
 </div>

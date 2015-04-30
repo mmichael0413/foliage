@@ -141,7 +141,7 @@ define(function(require) {
                     if (self.model.redirect !== undefined) {
                         Backbone.history.navigate(self.model.redirect());
                     }
-                }).fail(function () {
+                }).fail(function() {
                     context.trigger('error');
                 });
             }
