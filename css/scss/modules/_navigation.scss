@@ -14,6 +14,12 @@
             right: -4em;
             top: .03em;
         }
+        /* why are we absolute positioning all font awesome icons to the right? I do the following because of the above*/
+        .fa.fa-nav {
+          position: inherit;
+          right: 0;
+          top: 0;
+        }
         &:hover {
             background-color: darken($nav-background, 5%);
         }
