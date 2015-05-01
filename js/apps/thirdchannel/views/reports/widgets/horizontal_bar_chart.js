@@ -2,6 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
+        d3 = require('d3'),
         c3 = require('c3'),
         context = require('context');
 
@@ -12,9 +13,10 @@ define(function(require) {
         template: HandlebarsTemplates['thirdchannel/reports/widgets/horizontal_bar_chart'],
         initialize: function (options) {
             this.model = options;
+            this.config = this.model.results;
         },
         render: function () {
-            if (_.size(this.model.results.categories) > 0) {
+            if (_.size(this.model.results) > 0) {
                 this.setElement(this.template(this.model));
                 this.setupChart();
                 this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
@@ -23,63 +25,49 @@ define(function(require) {
             return this;
         },
         setupChart: function () {
-            var newHeight = _.size(this.model.results.categories) * 60,
-                self = this;
+            var self = this,
+                y_prefix  = (this.model.config.y_prefix  !== undefined) ? this.model.config.y_prefix + " "  : '',
+                y_postfix = (this.model.config.y_postfix !== undefined) ? " " + this.model.config.y_postfix : '';
 
-            var chartConfig = {
-                size: {
-                    height: newHeight
+            this.config = $.extend( true, this.config, {
+                axis: {
+                    rotated: true,
+                    y: {
+                        tick: {
+                            format: function (x) {
+                                return y_prefix + x + y_postfix;
+                            }
+                        }
+                    }
                 },
+                bindto: self.$('.chart.horizontal-bar')[0],
                 data: {
-                    columns: self.model.results.columns,
-                    type: 'bar',
                     labels: {
                         format: function (v, id, i, j) {
                             if (i !== undefined && id !== undefined) {
-                                return self.model.results.tooltips[i] + " " + id;
+                                return self.config.tooltip.values[i] + " " + id;
                             }
                         }
                     },
                     color: function (color, d) {
                         return defaultLegendColors[d.index % defaultLegendColors.length];
                     }
-
-                },
-                axis: {
-                    rotated: true,
-                    x: {
-                        type: 'category',
-                        categories: self.model.results.categories
-                    },
-                    y: {
-                        tick: {
-                            format: d3.format('%')
-                        }
-                    }
-                },
-                grid: {
-                    focus: {
-                        show: false
-                    }
-                },
-                legend: {
-                    show: false
                 }
-            };
+            });
 
-            // Idea is that the chartConfig is returned from a call to the report service
-            chartConfig.bindto = this.$('.chart')[0];
+
 
             if(window.pdf === undefined) {
-                this.listenTo(context, 'report post render', _.debounce(function() {
+                this.listenTo(context, 'report post render', _.debounce(function () {
                     setTimeout(function() {
-                        c3.generate(chartConfig);
+                        console.log(self.config);
+                        c3.generate(self.config);
                     }, 500);
                 }, 500));
             } else {
-                this.listenTo(context, 'report post render', function() {
-                    c3.generate(chartConfig);
-                });
+                this.listenTo(context, 'report post render', function () {
+                    c3.generate(self.config);
+                }, 500);
             }
         },
         updateViewBreakDownLink : function (qs) {
