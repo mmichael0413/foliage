@@ -10,7 +10,7 @@ define(function(require) {
             this.model = options;
         },
         render: function () {
-            if (_.size(this.model.results.percentages) > 0) {
+            if (_.size(this.model.results) > 0) {
                 this.setElement(this.template(this.model));
             }
             return this;

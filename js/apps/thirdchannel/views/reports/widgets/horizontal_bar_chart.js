@@ -10,7 +10,7 @@ define(function(require) {
 
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['thirdchannel/reports/widgets/horizontal_bar_chart'],
+        template: HandlebarsTemplates['thirdchannel/reports/widgets/bar_chart'],
         initialize: function (options) {
             this.model = options;
             this.config = this.model.results;
