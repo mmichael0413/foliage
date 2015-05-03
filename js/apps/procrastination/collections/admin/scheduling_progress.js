@@ -27,9 +27,9 @@ define(function(require){
 
 		url: function() {
             if(this.queryString){
-                return context.base_url + '/admin/scheduling/upcoming/list' + "?" + this.queryString;
+                return context.base_url + context.url + "?" + this.queryString;
             } else {
-                return context.base_url + '/admin/scheduling/upcoming/list';
+                return context.base_url + context.url;
             }
 
 		}

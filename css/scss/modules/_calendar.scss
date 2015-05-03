@@ -6,6 +6,9 @@
     border-radius: $border-radius-base;
     border: 1px solid darken($color, 20%);
     margin-bottom: 2px;
+    &.task {
+      background-color:$palette7;
+    }
     &.ui-draggable-dragging {
       border-radius: $border-radius-base;
       background-color: $color;
