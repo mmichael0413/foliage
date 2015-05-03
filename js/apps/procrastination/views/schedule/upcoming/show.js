@@ -35,6 +35,9 @@ define(function (require) {
                     $(event.target).removeClass('drag-active');
                 }
             });
+            if(this.model.get('taskId')){
+                this.$el.addClass('task');
+            }
             return this;
         },
         updateScheduledDate: function (e) {
