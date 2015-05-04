@@ -1,3 +1,10 @@
+$color1: #F5FAFF;
+$color2: #E6F5EB;
+$color3: #FFF5E6;
+$color4: #FAEBE6;
+$color5: #F0EBE6;
+
+
 @mixin schedules ($color){
   border-radius: $border-radius-base;
   .ui-draggable {
@@ -7,8 +14,15 @@
     border: 1px solid darken($color, 20%);
     margin-bottom: 2px;
     &.task {
-      background-color:$palette7;
+      background-color:lighten($palette7, 20%);
     }
+    &.task-0 {  background-color: $color1;  }
+    &.task-1 {  background-color: $color2;  }
+    &.task-2 {  background-color: $color3;  }
+    &.task-3 {  background-color: $color4;  }
+    &.task-4 {  background-color: $color5;  }
+    &.task-5 {  background-color: $palette6;  }
+    &.task-6 {  background-color: $palette7;  }
     &.ui-draggable-dragging {
       border-radius: $border-radius-base;
       background-color: $color;
@@ -30,7 +44,7 @@
   }
   .scheduled {
     .schedules {
-      @include schedules(lighten($palette5, 30%));
+      @include schedules(lighten($palette5, 15%));
     }
 
   }
@@ -46,10 +60,46 @@
   background-color: white;
   padding: 1em;
   border-radius: $border-radius-base;
-  border: 1px solid $palette5;
+  border: 1px solid $palette3;
   position: absolute;
   z-index: 100001;
   -webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
   -moz-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
   box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+}
+.fc-event {
+  color: $palette3;
+  &.task-0 {
+    background-color: $color1;
+    border-color: darken($color1, 20%);
+  }
+  &.task-1 {
+    background-color: $color2;
+    border-color: darken($color2, 20%);
+  }
+  &.task-2 {
+    background-color: $color3;
+    border-color: darken($color3, 20%);
+  }
+  &.task-3 {
+    background-color: $color4;
+    border-color: darken($color4, 20%);
+  }
+}
+
+.section-buttons {
+  text-align: right;
+  a {
+    margin-left: .5em;
+  }
+}
+
+.hide-element {
+  display:none;
+}
+
+.list{
+  .schedule-group:first-of-type {
+    margin-top: 1em;
+  }
 }
