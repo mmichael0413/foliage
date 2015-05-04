@@ -6,7 +6,7 @@
         {{#each results}}
             <tr>
                 <td>{{this.label}}</td>
-                <td>{{this.value}}%</td>
+                <td>{{../config.prefix}}{{this.value}}{{../config.postfix}}</td>
             </tr>
         {{/each}}
     </table>
