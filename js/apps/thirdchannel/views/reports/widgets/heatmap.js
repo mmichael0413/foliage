@@ -6,6 +6,8 @@ define(function(require) {
         context = require('context'),
         LoadingView = require('thirdchannel/views/utils/loading');
 
+    var maxRectWidth = 75;
+
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/heatmap'],
         initialize: function (options) {
@@ -26,7 +28,7 @@ define(function(require) {
             this.model.config.legend = JSON.parse(this.model.config.legend);
 
             _.each(this.model.config.legend, function(key, i) {
-               legend[key] = self.model.config.legendColors[i];
+                legend[key] = self.model.config.legendColors[i];
             });
 
             this.model.config.legend = legend;
@@ -43,7 +45,7 @@ define(function(require) {
                     self.renderChart();
                 });
             }
-            
+
             var xScale = null,
                 xAxis = null,
                 yScale = null,
@@ -66,51 +68,53 @@ define(function(require) {
                 width = $heatMap.width();
 
             var dataValues = this.model.results.values,
-                rowLabels = this.model.results.accounts,
-                colLabels = this.model.results.categories,
+                rowLabels = this.model.results.row_labels,
+                colLabels = this.model.results.col_labels,
                 numOfRows = rowLabels.length,
                 numOfCols = colLabels.length;
 
             var svg = d3.select(this.$('svg')[0]);
 
             var labels = svg.selectAll('text')
-                            .data(colLabels)
-                            .enter()
-                                .append('text')
-                                .classed('label-text', true)
-                                .text(function(d) { return d; });
+                .data(colLabels)
+                .enter()
+                .append('text')
+                .classed('label-text', true)
+                .text(function(d) { return d; });
 
             this.colLabelMargin = d3.max(labels[0], function(el) { return (el).getBBox().width; });
             labels.remove();
 
             labels = svg.selectAll('text')
-                        .data(rowLabels)
-                        .enter()
-                            .append('text')
-                            .classed('label-text', true)
-                            .text(function(d) { return d; });
+                .data(rowLabels)
+                .enter()
+                .append('text')
+                .classed('label-text', true)
+                .text(function(d) { return d; });
 
             this.rowLabelMargin = d3.max(labels[0], function(el) { return (el).getBBox().width; });
             labels.remove();
 
-            var rectWidth = (width - this.rowLabelMargin) / numOfCols,
+            var _rectWidth = (width - this.rowLabelMargin) / numOfCols;
+
+            var rectWidth = (_rectWidth > maxRectWidth ? maxRectWidth : _rectWidth),
                 rectHeight = rectWidth,
                 height = rectHeight * numOfRows;
 
             svg.attr('width', width + this.rowLabelMargin).attr('height', height + this.colLabelMargin);
 
             var heatMap = svg.selectAll('g')
-                                .data(dataValues)
-                            .enter()
-                                .append('g');
+                .data(dataValues)
+                .enter()
+                .append('g');
 
             heatMap.attr('class', 'tile-row')
-                   .attr('transform', function(d, i) { return 'translate(0 ' + (rectHeight * i) + ')'; });
+                .attr('transform', function(d, i) { return 'translate(0 ' + (rectHeight * i) + ')'; });
 
             var rect = heatMap.selectAll('rect')
-                    .data(function(d) { return d; })
+                .data(function(d) { return d; })
                 .enter()
-                    .append('rect');
+                .append('rect');
 
             rect.attr('class', 'tile')
                 .classed('clickable', this.model.show_view_list)
@@ -150,7 +154,7 @@ define(function(require) {
 
             svg.append('g').attr('class', 'y axis').attr('transform', 'translate(' + rectWidth * numOfCols + ' 0)').call(yAxis);
 
-            xScale = d3.scale.ordinal().domain(colLabels).rangeBands([0, width - this.rowLabelMargin]);
+            xScale = d3.scale.ordinal().domain(colLabels).rangeBands([0, rectWidth * numOfCols]);
             xAxis = d3.svg.axis().scale(xScale).orient('bottom');
 
             svg.append('g')
@@ -158,9 +162,9 @@ define(function(require) {
                 .attr('transform', 'translate(0 ' + height + ')')
                 .call(xAxis)
                 .selectAll('text')
-                    .attr('transform', 'translate(-15, 5) rotate(-90)')
-                    .attr('fill', '#434748')
-                    .style('text-anchor', 'end');
+                .attr('transform', 'translate(-15, 5) rotate(-90)')
+                .attr('fill', '#434748')
+                .style('text-anchor', 'end');
         },
         resizeChart: function() {
             var self = this,
@@ -172,7 +176,9 @@ define(function(require) {
                 numOfRows = rowLabels.length,
                 numOfCols = colLabels.length;
 
-            var rectWidth = (width - this.rowLabelMargin) / numOfCols,
+            var _rectWidth = (width - this.rowLabelMargin) / numOfCols;
+
+            var rectWidth = (_rectWidth > maxRectWidth ? maxRectWidth : _rectWidth),
                 rectHeight = rectWidth,
                 height = rectHeight * numOfRows;
 
@@ -181,24 +187,24 @@ define(function(require) {
             svg.attr('width', width).attr('height', height + this.colLabelMargin);
 
             svg.selectAll('rect.tile')
-               .attr('width', rectWidth)
-               .attr('height', rectHeight)
-               .attr('x', function(d, i) {
+                .attr('width', rectWidth)
+                .attr('height', rectHeight)
+                .attr('x', function(d, i) {
                     return rectWidth * (i % numOfCols);
-               });
+                });
 
             svg.selectAll('g.tile-row').attr('transform', function(d, i) { return 'translate(0 ' + (rectHeight * i) + ')'; });
 
             yScale.rangeBands([0, height]);
-            xScale.rangeBands([0, width - this.rowLabelMargin]);
+            xScale.rangeBands([0, rectWidth * numOfCols]);
 
             svg.selectAll('.x.axis')
                 .attr('transform', 'translate(0 ' + height + ')')
                 .call(xAxis.orient('bottom'))
                 .selectAll('text')
-                    .attr('transform', 'translate(-15, 5) rotate(-90)')
-                    .attr('fill', '#434748')
-                    .style('text-anchor', 'end');
+                .attr('transform', 'translate(-15, 5) rotate(-90)')
+                .attr('fill', '#434748')
+                .style('text-anchor', 'end');
 
             svg.selectAll('.y.axis').attr('transform', 'translate(' + rectWidth * numOfCols + ' 0)').call(yAxis.orient('right'));
         },
