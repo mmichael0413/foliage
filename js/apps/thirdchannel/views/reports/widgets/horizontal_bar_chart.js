@@ -27,7 +27,8 @@ define(function(require) {
         setupChart: function () {
             var self = this,
                 y_prefix  = (this.model.config.y_prefix  !== undefined) ? this.model.config.y_prefix + " "  : '',
-                y_postfix = (this.model.config.y_postfix !== undefined) ? " " + this.model.config.y_postfix : '';
+                y_postfix = (this.model.config.y_postfix !== undefined) ? " " + this.model.config.y_postfix : '',
+                colors = this.model.config.colors || defaultLegendColors;
 
             this.config = $.extend( true, this.config, {
                 axis: {
@@ -50,7 +51,7 @@ define(function(require) {
                         }
                     },
                     color: function (color, d) {
-                        return defaultLegendColors[d.index % defaultLegendColors.length];
+                        return colors[d.index % colors.length];
                     }
                 }
             });
