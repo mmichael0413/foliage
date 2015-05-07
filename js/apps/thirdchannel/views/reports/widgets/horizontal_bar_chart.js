@@ -30,7 +30,7 @@ define(function(require) {
                 y_postfix = (this.model.config.y_postfix !== undefined) ? " " + this.model.config.y_postfix : '',
                 colors = this.model.config.colors || defaultLegendColors;
 
-            this.config = $.extend( true, this.config, {
+            this.chart = c3.generate($.extend( true, this.config, {
                 axis: {
                     rotated: true,
                     y: {
@@ -54,20 +54,17 @@ define(function(require) {
                         return colors[d.index % colors.length];
                     }
                 }
-            });
-
-
+            }));
 
             if(window.pdf === undefined) {
                 this.listenTo(context, 'report post render', _.debounce(function () {
                     setTimeout(function() {
-                        console.log(self.config);
-                        c3.generate(self.config);
+                        self.chart.flush();
                     }, 500);
                 }, 500));
             } else {
                 this.listenTo(context, 'report post render', function () {
-                    c3.generate(self.config);
+                    self.chart.flush();
                 }, 500);
             }
         },

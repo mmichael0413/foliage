@@ -27,23 +27,30 @@ define(function(require) {
         setupChart: function () {
             var self = this;
 
-            this.config = _.extend(this.config, {
-                bindto: self.$el.find('.chart.line-chart')[0],
-                color: {
-                    pattern: context.defaultLegendColors
-                }
-            });
-
             if(window.pdf === undefined) {
                 this.listenTo(context, 'report post render', _.debounce(function () {
                     setTimeout(function() {
-                        var chart = c3.generate(self.config);
+                        self.createChart();
+                        self.chart.flush();
                     }, 500);
                 }, 500));
             } else {
                 this.listenTo(context, 'report post render', function () {
-                    var chart = c3.generate(self.config);
+                    self.createChart();
+                    self.chart.flush();
                 });
+            }
+        },
+        createChart: function() {
+            // Temp fix for the fact that the line chart area color does not update on flush if the original size is 0
+            var self = this;
+            if (this.chart === undefined) {
+                this.chart = c3.generate(_.extend(this.config, {
+                    bindto: self.$el.find('.chart.line-chart')[0],
+                    color: {
+                        pattern: context.defaultLegendColors
+                    }
+                }));
             }
         },
         updateViewBreakDownLink : function (qs) {

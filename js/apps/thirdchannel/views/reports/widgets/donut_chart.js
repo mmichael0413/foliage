@@ -26,9 +26,7 @@ define(function(require) {
         setupChart: function () {
             var self = this;
 
-            console.log(self.model);
-
-            this.config = _.extend(this.config, {
+            this.chart = c3.generate(_.extend(this.config, {
                 bindto: self.$('.chart.donut-chart')[0],
                 color: {
                     pattern: context.defaultLegendColors
@@ -45,17 +43,17 @@ define(function(require) {
                         }
                     }
                 }
-            });
+            }));
 
             if(window.pdf === undefined) {
                 this.listenTo(context, 'report post render', _.debounce(function () {
                     setTimeout(function() {
-                        c3.generate(self.config);
+                        self.chart.flush();
                     }, 500);
                 }, 500));
             } else {
                 this.listenTo(context, 'report post render', function () {
-                    c3.generate(self.config);
+                    self.chart.flush();
                 });
             }
         },
