@@ -16,13 +16,6 @@ define(function(require) {
             this.filters = new ReportFilterCollection(options);
             this.listenTo(context, 'filter:query', this.applyFilter);
             this.loadingView = new LoadingView();
-
-            var self = this;
-            this.listenTo(context, 'filter-toggled:complete', _.debounce(function() {
-                setTimeout(function() {
-                    self.triggerPostRender();
-                }, 500);
-            }, 500));
         },
         render: function (options) {
             var self = this;
@@ -36,6 +29,11 @@ define(function(require) {
                 this.filters.fetch({success: function (collection) {
                     self.addFilters(collection);
                 }});
+                this.listenTo(context, 'filter-toggled:complete', _.debounce(function() {
+                    setTimeout(function() {
+                        self.triggerResize();
+                    }, 500);
+                }, 500));
             }
             return this;
         },
@@ -64,6 +62,9 @@ define(function(require) {
         },
         triggerPostRender: function() {
             context.trigger('report post render');
+        },
+        triggerResize: function() {
+            context.trigger('report resize');
         }
     });
 });

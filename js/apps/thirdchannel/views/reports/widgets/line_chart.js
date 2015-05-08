@@ -17,37 +17,20 @@ define(function(require) {
         render: function () {
             if (_.size(this.model.results) > 0) {
                 this.setElement(this.template(this.model));
-                this.setupChart();
                 this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
+                this.listenTo(context, 'report post render', this.createChart);
+                this.listenTo(context, 'report resize',      this.resizeChart);
                 context.trigger('filter:request:queryString');
             }
             return this;
         },
-
-        setupChart: function () {
-            var self = this;
-
-            if(window.pdf === undefined) {
-                this.listenTo(context, 'report post render', _.debounce(function () {
-                    setTimeout(function() {
-                        self.createChart();
-                        self.chart.flush();
-                    }, 500);
-                }, 500));
-            } else {
-                this.listenTo(context, 'report post render', function () {
-                    self.createChart();
-                    self.chart.flush();
-                });
-            }
-        },
-        createChart: function() {
-            // Temp fix for the fact that the line chart area color does not update on flush if the original size is 0
-            var self = this,
-                y_prefix  = (this.model.config.y_prefix  !== undefined) ? this.model.config.y_prefix + " "  : '',
-                y_postfix = (this.model.config.y_postfix !== undefined) ? " " + this.model.config.y_postfix : '';
-
+        createChart: function () {
             if (this.chart === undefined) {
+                var self = this,
+                    y_prefix  = (this.model.config.y_prefix  !== undefined) ? this.model.config.y_prefix + " "  : '',
+                    y_postfix = (this.model.config.y_postfix !== undefined) ? " " + this.model.config.y_postfix : '';
+
+
                 this.chart = c3.generate($.extend(true, this.config, {
                     axis: {
                         y: {
@@ -63,6 +46,11 @@ define(function(require) {
                         pattern: context.defaultLegendColors
                     }
                 }));
+            }
+        },
+        resizeChart: function() {
+            if (this.chart !== undefined) {
+                this.chart.flush();
             }
         },
         updateViewBreakDownLink : function (qs) {

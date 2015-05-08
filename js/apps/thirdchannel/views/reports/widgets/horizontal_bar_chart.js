@@ -18,56 +18,52 @@ define(function(require) {
         render: function () {
             if (_.size(this.model.results) > 0) {
                 this.setElement(this.template(this.model));
-                this.setupChart();
                 this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
+                this.listenTo(context, 'report post render', this.createChart);
+                this.listenTo(context, 'report resize',      this.resizeChart);
                 context.trigger('filter:request:queryString');
             }
             return this;
         },
-        setupChart: function () {
-            var self = this,
-                bar_prefix  = (this.model.config.bar_prefix  !== undefined) ? this.model.config.bar_prefix + " "  : '',
-                bar_postfix = (this.model.config.bar_postfix !== undefined) ? " " + this.model.config.bar_postfix : '',
-                y_prefix  = (this.model.config.y_prefix  !== undefined) ? this.model.config.y_prefix + " "  : '',
-                y_postfix = (this.model.config.y_postfix !== undefined) ? " " + this.model.config.y_postfix : '',
-                colors = this.model.config.colors || defaultLegendColors;
+        createChart: function () {
+            if (this.chart === undefined) {
+                var self = this,
+                    bar_prefix  = (this.model.config.bar_prefix  !== undefined) ? this.model.config.bar_prefix + " "  : '',
+                    bar_postfix = (this.model.config.bar_postfix !== undefined) ? " " + this.model.config.bar_postfix : '',
+                    y_prefix  = (this.model.config.y_prefix  !== undefined) ? this.model.config.y_prefix + " "  : '',
+                    y_postfix = (this.model.config.y_postfix !== undefined) ? " " + this.model.config.y_postfix : '',
+                    colors = this.model.config.colors || defaultLegendColors;
 
-            this.chart = c3.generate($.extend( true, this.config, {
-                axis: {
-                    rotated: true,
-                    y: {
-                        tick: {
-                            format: function (x) {
-                                return y_prefix + x + y_postfix;
-                            }
-                        }
-                    }
-                },
-                bindto: self.$('.chart.horizontal-bar')[0],
-                data: {
-                    labels: {
-                        format: function (v, id, i, j) {
-                            if (i !== undefined && id !== undefined) {
-                                return bar_prefix + self.config.tooltip.values[i] + bar_postfix;
+                this.chart = c3.generate($.extend( true, this.config, {
+                    axis: {
+                        rotated: true,
+                        y: {
+                            tick: {
+                                format: function (x) {
+                                    return y_prefix + x + y_postfix;
+                                }
                             }
                         }
                     },
-                    color: function (color, d) {
-                        return colors[d.index % colors.length];
+                    bindto: self.$('.chart.horizontal-bar')[0],
+                    data: {
+                        labels: {
+                            format: function (v, id, i, j) {
+                                if (i !== undefined && id !== undefined) {
+                                    return bar_prefix + self.config.tooltip.values[i] + bar_postfix;
+                                }
+                            }
+                        },
+                        color: function (color, d) {
+                            return colors[d.index % colors.length];
+                        }
                     }
-                }
-            }));
-
-            if(window.pdf === undefined) {
-                this.listenTo(context, 'report post render', _.debounce(function () {
-                    setTimeout(function() {
-                        self.chart.flush();
-                    }, 500);
-                }, 500));
-            } else {
-                this.listenTo(context, 'report post render', function () {
-                    self.chart.flush();
-                }, 500);
+                }));
+            }
+        },
+        resizeChart: function() {
+            if (this.chart !== undefined) {
+                this.chart.flush();
             }
         },
         updateViewBreakDownLink : function (qs) {
