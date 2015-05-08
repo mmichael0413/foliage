@@ -56,9 +56,15 @@
 
   .answer {
     margin: 1.5em 5em 1.5em 1em;
-     &.show {
-       color: $medium-blue;
-     }
+    &.show {
+      color: $medium-blue;
+    }
+
+    span {
+      color: $dark-slate;
+      font-style: italic;
+      font-size: 0.9em;
+    }
   }
 
   .answer-controls {

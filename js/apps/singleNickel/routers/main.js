@@ -3,9 +3,10 @@ define(function(require){
         _ = require('underscore'),
         Backbone = require('backbone'),
         Handlebars = require('handlebars'),
+        Noty = require('noty'),
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
-        MainLayout = require('singleNickel/views/layout/main'),
+        MainLayout = require('shared/views/layout/main'),
         ListView = require('singleNickel/views/survey/list'),
         ShowView = require('singleNickel/views/survey/show'),
         BuilderView = require('singleNickel/views/survey/build/builder'),
@@ -32,6 +33,7 @@ define(function(require){
 
         initialize: function() {
             window.bootstrap.navigation = _.clone(this.navigation);
+            this.listenTo(context, 'error', this.displayError);
         },
 
         before: function (parameters, route, name) {
@@ -76,10 +78,26 @@ define(function(require){
         },
         deleteSurvey: function(surveyId) {
             $('#survey-container').html(new DeleteView({surveyId: surveyId}).render().el);
+        },
+
+        displayError: function() {
+            noty({
+                layout: 'topRight',
+                theme: 'relax',
+                text: 'Whoops, something went wrong... Contact tech support.',
+                type: 'error',
+                animation: {
+                    open: {height: 'toggle'},
+                    close: {height: 'toggle'},
+                    easing: 'swing',
+                    speed: 500
+                },
+                timeout: 2500
+            });
         }
     });
 
-    var initialize = function(){
+    var initialize = function() {
         namespacer('bootstrap');
         context.router = new AppRouter();
         namespacer('context.instances');
@@ -132,6 +150,13 @@ define(function(require){
 
         Handlebars.registerHelper('displaySurveyType', function(survey) {
             return survey.surveyType();
+        });
+
+        // cause choice trigger is saved as a string initially...
+        Handlebars.registerHelper('isChoiceTrigger', function(trigger, options) {
+            if((typeof trigger === 'string' && trigger === 'true') || (typeof trigger === 'boolean' && trigger)) {
+                return options.fn(this);
+            }
         });
 
         Backbone.history.start({pushState: true, hashChange: false});

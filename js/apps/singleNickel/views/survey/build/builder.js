@@ -2,7 +2,8 @@ define(function(require) {
     var Backbone = require('backbone'),
         BackboneValidator = require('backboneValidator'),
         context = require('context'),
-        HandlebarsTemplates = require('handlebarsTemplates');
+        HandlebarsTemplates = require('handlebarsTemplates'),
+        Noty = require('noty');
 
     var Builder =  Backbone.View.extend({
         editTemplate: HandlebarsTemplates['singleNickel/survey/build/edit'],
@@ -133,14 +134,14 @@ define(function(require) {
                 this.model.save().success(function(){
                     self.render(self.showTemplate);
 
-                    if(isNew) {
+                    if(isNew && self.model.collection !== undefined) {
                         self.model.collection.trigger('created');
                     }
 
                     if (self.model.redirect !== undefined) {
                         Backbone.history.navigate(self.model.redirect());
                     }
-                }).fail(function () {
+                }).fail(function() {
                     context.trigger('error');
                 });
             }

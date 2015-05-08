@@ -12,7 +12,12 @@
         </div>
     {{/unless}}
     <div class="answer show">
-        <p>{{attributes.choice}}</p>
+        <p>
+            {{attributes.choice}}
+            {{#isChoiceTrigger attributes.triggers }}
+                <span> (triggers explain)</span>
+            {{/isChoiceTrigger}}
+        </p>
     </div>
 </div>
 

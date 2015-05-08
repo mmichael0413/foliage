@@ -16,7 +16,8 @@ require.config({
         'backboneValidator' : '../libs/bower_components/backbone-validator/backbone-validator',
         'backboneValidatorPatch': '../libs/backbone-validator/viewCallbackPatch',
         'chosen': "../libs/bower_components/chosen/chosen.jquery",
-        'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker"
+        'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
+        'noty': "../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged"
     },
     shim: {
         "jquery": {
@@ -59,6 +60,9 @@ require.config({
         },
         'dateTimePicker': {
             deps: ["jquery"]
+        },
+        'noty': {
+            deps: ['jquery']
         }
     }
 });
