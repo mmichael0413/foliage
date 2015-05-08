@@ -26,6 +26,8 @@ define(function(require) {
         },
         setupChart: function () {
             var self = this,
+                bar_prefix  = (this.model.config.bar_prefix  !== undefined) ? this.model.config.bar_prefix + " "  : '',
+                bar_postfix = (this.model.config.bar_postfix !== undefined) ? " " + this.model.config.bar_postfix : '',
                 y_prefix  = (this.model.config.y_prefix  !== undefined) ? this.model.config.y_prefix + " "  : '',
                 y_postfix = (this.model.config.y_postfix !== undefined) ? " " + this.model.config.y_postfix : '',
                 colors = this.model.config.colors || defaultLegendColors;
@@ -46,7 +48,7 @@ define(function(require) {
                     labels: {
                         format: function (v, id, i, j) {
                             if (i !== undefined && id !== undefined) {
-                                return self.config.tooltip.values[i] + " " + id;
+                                return bar_prefix + self.config.tooltip.values[i] + bar_postfix;
                             }
                         }
                     },
