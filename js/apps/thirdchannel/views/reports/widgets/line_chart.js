@@ -43,9 +43,21 @@ define(function(require) {
         },
         createChart: function() {
             // Temp fix for the fact that the line chart area color does not update on flush if the original size is 0
-            var self = this;
+            var self = this,
+                y_prefix  = (this.model.config.y_prefix  !== undefined) ? this.model.config.y_prefix + " "  : '',
+                y_postfix = (this.model.config.y_postfix !== undefined) ? " " + this.model.config.y_postfix : '';
+
             if (this.chart === undefined) {
-                this.chart = c3.generate(_.extend(this.config, {
+                this.chart = c3.generate($.extend(true, this.config, {
+                    axis: {
+                        y: {
+                            tick: {
+                                format: function (x) {
+                                    return y_prefix + x + y_postfix;
+                                }
+                            }
+                        }
+                    },
                     bindto: self.$el.find('.chart.line-chart')[0],
                     color: {
                         pattern: context.defaultLegendColors

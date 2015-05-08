@@ -26,7 +26,7 @@ define(function(require) {
         setupChart: function () {
             var self = this;
 
-            this.chart = c3.generate(_.extend(this.config, {
+            this.chart = c3.generate($.extend(true, this.config, {
                 bindto: self.$('.chart.donut-chart')[0],
                 color: {
                     pattern: context.defaultLegendColors
