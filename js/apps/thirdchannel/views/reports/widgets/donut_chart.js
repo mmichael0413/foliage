@@ -17,13 +17,13 @@ define(function(require) {
             if (_.size(this.model.results) > 0) {
                 this.setElement(this.template(this.model));
                 this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
-                this.listenTo(context, 'report post render', this.createChart);
+                this.listenTo(context, 'report post render', this.renderChart);
                 this.listenTo(context, 'report resize',      this.resizeChart);
                 context.trigger('filter:request:queryString');
             }
             return this;
         },
-        createChart: function () {
+        renderChart: function () {
             if (this.chart === undefined) {
                 var self = this;
                 this.chart = c3.generate($.extend(true, this.config, {
