@@ -74,7 +74,7 @@ define(function(require) {
 
                 var _rectWidth = (width - this.rowLabelMargin) / numOfCols;
 
-                var rectWidth = (_rectWidth > maxRectWidth ? maxRectWidth : _rectWidth),
+                var rectWidth = Math.max((_rectWidth > maxRectWidth ? maxRectWidth : _rectWidth), 0),
                     rectHeight = rectWidth,
                     height = rectHeight * numOfRows;
 
@@ -160,7 +160,7 @@ define(function(require) {
 
                 var _rectWidth = (width - this.rowLabelMargin) / numOfCols;
 
-                var rectWidth = (_rectWidth > maxRectWidth ? maxRectWidth : _rectWidth),
+                var rectWidth = Math.max((_rectWidth > maxRectWidth ? maxRectWidth : _rectWidth), 0),
                     rectHeight = rectWidth,
                     height = rectHeight * numOfRows;
 
