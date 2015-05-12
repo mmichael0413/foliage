@@ -19,6 +19,7 @@ define(function(require) {
         },
         render: function () {
             if (_.size(this.model.results) > 0) {
+                this.buildLegend();
                 this.setElement(this.template(this.model));
                 _.bindAll(this, 'renderChart', 'resizeChart', 'updateQueryString');
                 this.listenTo(context, 'filter:queryString', this.updateQueryString);
@@ -31,8 +32,6 @@ define(function(require) {
         },
         renderChart: function() {
             if (this.chart === undefined) {
-                this.buildLegend();
-
                 var self = this,
                     $heatMap = this.$('.heatmap'),
                     width = $heatMap.width();
