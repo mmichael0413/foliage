@@ -6,17 +6,22 @@ define(function (require) {
         context = require('context'),
         FullCalendar = require('fullcalendar'),
         ScheduleCollection = require('procrastination/collections/schedule/upcoming/create_schedules'),
-        StoreSchedule = require('procrastination/views/schedule/upcoming/show');
+        StoreSchedule = require('procrastination/views/schedule/upcoming/show'),
+        ListView = require('procrastination/views/schedule/current/main');
 
     return Backbone.View.extend({
         el: '.section',
-        template: HandlebarsTemplates['procrastination/schedule/upcoming/list'],
+        template: HandlebarsTemplates['procrastination/schedule/upcoming/visit_label'],
 
         initialize: function () {
             var self = this;
             this.scheduledCount = 0;
             this.unscheduledCount = 0;
-
+            this.listView = this.$('.list');
+            this.listButton = this.$('.list-view');
+            this.calendarButton = this.$('.calendar-view');
+            this.calendarView = this.$('.pure-g');
+            this.list = new ListView().setElement('.scheduled .schedules');
             this.listenTo(this, 'fullcalendar.date.create', this.updateSchedule);
 
             this.aggregate = context.aggregateId;
@@ -44,14 +49,15 @@ define(function (require) {
                         return dateScheduled !== undefined && dateScheduled !== null;
                     });
                     _.each(scheduledVisits, function (model) {
-                        var label = model.get('storeName') + ":<br/>" + model.get('street') + "<br/>" + model.get('city') + ", " + model.get('state');
+                        var label = self.template(model.attributes);
 
                         events.push({
                             id: model.get('id'),
                             title: model.get('storeName'),
                             store: label,
                             start: model.get('dateScheduled'),
-                            allDay: true
+                            allDay: true,
+                            className: model.get('taskColor')
                         });
                     });
 
@@ -86,7 +92,6 @@ define(function (require) {
             return this;
         },
         events: {
-
         },
         render: function () {
             var self = this;
@@ -100,28 +105,26 @@ define(function (require) {
             this.$('.schedule-container .unscheduled .schedules').html('');
             this.$('.schedule-container .scheduled .schedules').html('');
 
-            var groupedSchedules = this.collection.groupBy(function(schedule){
+            this.groupedSchedules = this.collection.groupBy(function(schedule){
                 return schedule.get('dateScheduled') !== null;
             });
 
-            if(groupedSchedules.true !== undefined) {
-                this.scheduledCount = groupedSchedules.true.length;
-                _.each(groupedSchedules.true, function (model) {
-                    self.renderModel(model);
-                });
+            if(this.groupedSchedules.true !== undefined) {
+                this.list.$el.html('');
+                this.list.fetch();
             }
-            $('.scheduled .count').html(this.scheduledCount);
 
-            if(groupedSchedules.false !== undefined) {
-                this.unscheduledCount = groupedSchedules.false.length;
+            if(this.groupedSchedules.false !== undefined) {
+                this.unscheduledCount = this.groupedSchedules.false.length;
 
-                _.each(groupedSchedules.false, function (model) {
+                _.each(this.groupedSchedules.false, function (model) {
                     self.renderModel(model);
                 });
+                $('.unscheduled .count').html(this.unscheduledCount);
             } else {
-                this.$('.schedule-container .unscheduled .schedules').html('All visits have been scheduled.');
+                $('.unscheduled .count').html('');
+                this.$('.schedule-container .unscheduled .schedules').html('All visits have been scheduled. You can still update your schedule by dragging the visits on the calendar.');
             }
-            $('.unscheduled .count').html(this.unscheduledCount);
 
             this.refreshCalendar();
 
@@ -134,7 +137,8 @@ define(function (require) {
 
         fetch: function () {
             var self = this;
-            this.collection.fetch().done(function () {
+            this.collection.fetch().done(function (collection) {
+                self.collection.generateLegend();
                 self.render();
             });
         },
@@ -153,8 +157,6 @@ define(function (require) {
         },
 
         updateSchedule: function (date, id) {
-
-
             var model = this.collection.findWhere({id:id});
             if (model) {
                 model.set('dateScheduled', date.format("MM/DD/YYYY"));
@@ -163,5 +165,6 @@ define(function (require) {
                 this.render();
             }
         }
+
     });
 });

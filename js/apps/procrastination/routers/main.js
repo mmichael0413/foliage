@@ -13,7 +13,8 @@ define(function(require) {
             routes: {
                 ':customer_slug/:program_slug/schedule/:person_id/create': 'createSchedule',
                 ':customer_slug/:program_slug/schedule/:person_id': 'showSchedule',
-                ':customer_slug/:program_slug/admin/scheduling/upcoming': 'manageSchedule'
+                ':customer_slug/:program_slug/admin/scheduling/upcoming': 'manageSchedule',
+                ':customer_slug/:program_slug/admin/scheduling/current': 'manageSchedule'
             },
 
             before: function(parameters) {

@@ -13,11 +13,9 @@ define(function (require) {
                 personId: context.personId,
                 programId: context.programId
             });
-
-
         },
 
-        fetch: function () {
+        fetch: function (reset) {
             var self = this;
             this.collection.fetch().done(function () {
                 self.render();

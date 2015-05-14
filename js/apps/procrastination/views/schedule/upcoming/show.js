@@ -21,7 +21,7 @@ define(function (require) {
             this.$el.data('event', {
                 id: this.model.get('id'),
                 title: this.model.get('storeName'),
-                color: '#336699'
+                className: this.model.get('taskColor')
             });
 
             this.$el.draggable({
@@ -35,6 +35,8 @@ define(function (require) {
                     $(event.target).removeClass('drag-active');
                 }
             });
+            this.$el.addClass(this.model.get('taskColor'));
+
             return this;
         },
         updateScheduledDate: function (e) {
