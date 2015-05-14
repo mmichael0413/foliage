@@ -29,21 +29,18 @@
                 </div>
 
                 <div class="chart">
-                {{#each config.chartOrder}}
-                    <div class="square" style="background-color: {{value_lookup @key ../config.chartColors}}">
+                {{#each results}}
+                    <div class="square" style="background-color: {{color}}">
                         <div class="l_content">
                             <div class="l_table">
                                 <div class="l_table-cell">
-                                    <h2>{{value_lookup this ../results.percentages}}%</h2>
-                                    {{#if ../config.count_text}}
-                                        <div>{{format_number_from_value_lookup ../this ../../results.counts}} {{../../config.count_text}}</div>
-                                    {{/if}}
+                                    <h2>{{value}}%</h2>
+                                    <div>{{count}} {{label}}</div>
                                 </div>
                             </div>
 
                         </div>
                     </div>
-
                 {{/each}}
                     <div class="clearfix"></div>
                 </div>

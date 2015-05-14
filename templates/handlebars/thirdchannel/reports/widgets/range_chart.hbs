@@ -3,13 +3,11 @@
         <thead>
             <th colspan="2">{{title}}</th>
         </thead>
-        {{#each config.legendOrder}}
-            {{#each this}}
-                <tr>
-                    <td>{{this}}</td>
-                    <td>{{value_lookup @key ../../results.percentages}}%</td>
-                </tr>
-            {{/each}}
+        {{#each results}}
+            <tr>
+                <td>{{this.label}}</td>
+                <td>{{../config.prefix}}{{this.value}}{{../config.postfix}}</td>
+            </tr>
         {{/each}}
     </table>
 </div>

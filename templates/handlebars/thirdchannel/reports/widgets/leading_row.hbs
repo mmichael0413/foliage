@@ -1,11 +1,6 @@
 <div class="widget small-padding {{config.widget_class}}">
     <div class="leading-dots leading-row">
-        {{#if results.count}}
-        <span class="pull-right">{{config.prepend_count}}{{results.count}}{{config.append_count}}</span>
-        {{/if}}
-        {{#if results.counts}}
-        <span class="pull-right">{{config.prepend_count}}{{format_number_from_value_lookup config.selected_key results.counts}}{{config.append_count}}</span>
-        {{/if}}
+        <span class="pull-right">{{config.prepend_count}}{{results}}{{config.append_count}}</span>
         <span>{{title}}</span>
     </div>
 </div>

@@ -31,6 +31,7 @@
     "jquery-validation": "1.13.1",
     "jquery-serialize-object": "2.4.3",
     "slick.js": "1.3.11",
+    "normalize-css": "3.0.1",
     "pikaday": "1.2.0",
     "slidebars": "~0.10.2",
     "typeahead.js": "~0.10.5",
@@ -39,6 +40,7 @@
     "backbone-validator": "0.3.3",
     "datetimepicker" : "2.4.1",
     "d3": "~3.5.5",
+    "c3": "0.4.10",
     "fullcalendar": "~2.3.1",
     "noty": "~2.3.5"
   },

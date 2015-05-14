@@ -1,4 +1,4 @@
-@import "../../lib/normalize";
+@import '../../../../js/libs/bower_components/normalize-css/normalize';
 @import "../../lib/pure.grids-core";
 @import "../../lib/pure.responsive-grid";
 @import "../../lib/chosen";
@@ -9,7 +9,8 @@
 @import '../../lib/chartist_legend';
 @import '../../lib/chartist_labels';
 @import '../../../../js/libs/bower_components/slick.js/slick/slick';
-@import "../../lib/jquery.datetimepicker";
+@import '../../../../js/libs/bower_components/datetimepicker/jquery.datetimepicker';
+@import '../../../../js/libs/bower_components/c3/c3';
 
 @import "../../base/fonts_all";
 @import "../../base/base";
@@ -22,6 +23,7 @@
 @import "../../modules/atoms/all";
 @import "../../modules/navigation";
 @import "../../modules/action_row";
+@import "../../modules/charts";
 @import "../../modules/pagination";
 @import "../../modules/site_filter";
 @import "../../modules/s3_uploader";

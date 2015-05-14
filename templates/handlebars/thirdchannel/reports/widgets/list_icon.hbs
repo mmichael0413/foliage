@@ -6,17 +6,15 @@
     </div>
     <div class="pull-left">
         <div>{{title}}</div>
-
+        {{#if show_view_list}}
+            <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
+        {{/if}}
         {{#if results.list}}
             {{#eachRange 0 3 results.list}}
                 <h4>{{this}}</h4>
             {{/eachRange}}
         {{else}}
             <h4>N/A</h4>
-        {{/if}}
-
-        {{#if show_view_list}}
-            <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
         {{/if}}
     </div>
     <div class="clearfix"></div>

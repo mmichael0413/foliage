@@ -6,6 +6,7 @@ test:
   - 'karma'
 
 build:
+  - 'rename'
   - 'sass'
   - 'handlebars'
   - 'requirejs'

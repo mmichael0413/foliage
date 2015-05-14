@@ -1,31 +1,9 @@
-<div class="widget chart donut {{config.widget_class}}">
+<div class="widget {{config.widget_class}}">
     <p>{{title}}</p>
     <div>
-        <canvas width="120" height="120"></canvas>
-        <div class="legend">
-            <table>
-                {{#each config.legendOrder}}
-                    <tr>
-                        <td>
-                            <i class="fa fa-circle" style="color: {{value_lookup this ../config.legendColors}}"></i>
-                        </td>
-                        <td>
-                            {{value_lookup this ../results.percentages}}% {{this}}
-                        </td>
-                    </tr>
-                    {{#if ../config.count_text}}
-                        <tr>
-                            <td></td>
-                            <td>
-                                {{format_number_from_value_lookup ../this ../../results.counts}} {{../../config.count_text}}
-                            </td>
-                        </tr>
-                    {{/if}}
-                {{/each}}
-            </table>
-            {{#if show_view_list}}
-                <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
-            {{/if}}
-        </div>
+        {{#if show_view_list}}
+            <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
+        {{/if}}
     </div>
+    <div class="chart donut-chart"></div>
 </div>
