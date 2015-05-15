@@ -55,15 +55,18 @@ define(function(require) {
 
 			render: function () {
 				this._renderMeta();
-				this._renderWidgets("Visual Merchandising", ["display", "moved", "currentPOP", "sharing", "otherBrands"], function ($template, report) {
-					var downstock = ((report.moved.results.count / report.display.results.count) * 100).toFixed(2);
+				this._renderWidgets("Visual Merchandising", ["display", "moved", "currentPOP", "whyNoPop", "sharing", "otherBrands"], function ($template, report) {
+					var downstock = ((Number(report.moved.results) / Number(report.display.results)) * 100).toFixed(2);
 					$template.find(".widgets").prepend("<div class='widget'>Downstock vs. Initial Display: <span class='pull-right'>" + downstock + "%</span></div>");
 				});
 				//this._renderWidgets("Physical Footprint", ["fixtures", "damage", "visibility"]);
-				this._renderWidgets("Physical Footprint", ["visibility"]);
-				this._renderWidgets("Store Associate Education", ["educated", "educatedOn"]);
+				this._renderWidgets("Physical Footprint", ["visibility", "presenceChange"]);
+				this._renderWidgets("Store Associate Education", ["educatedOn", "knowledgeable", "enthused"]);
 				this._renderWidgets("Customer Interactions", ["consumersSpoken", "sold", "retail"]);
 				this._renderWidgets("Product Categories", ["categories"]);
+				this._renderWidgets("Competitive Landscape", ["brands", "sunglassBrands", "repsCalling"]);
+				this._renderWidgets("Store Associate Product Feedback", ["agentsDiscussion", "receptiveManager"]);
+				this._renderWidgets("Field Rep Presence", ["fmrPresent"]);
 				//fire the post render event to draw the canvas charts
 				context.trigger("report post render");
 				return this;
@@ -81,10 +84,11 @@ define(function(require) {
 			},
 
 			_renderMeta: function () {
+
 				var data = {
 					totalStores: this.model.get('totalStores'),
 					states: this.model.get('report').states.results.count,
-					averageUnits: this.model.get('report').averageProduct.results.count
+					averageUnits: Math.floor(Number(this.model.get('report').averageProduct.results))
 				};
 				this.$meta.html(templates['thirdchannel/labs/sales_compare/meta'](data));
 			},
