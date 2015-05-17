@@ -9,8 +9,10 @@ define(function(require) {
             "blur input": 'updated',
             "click button": 'deleted'
         },
-        initialize: function (options) {
-            this.model = options.model;
+        initialize: function() {
+          if(this.model.get('input') === '#after_images') {
+              this.template = HandlebarsTemplates['thirdchannel/s3uploader/image_with_select']
+          }
         },
         render: function ($element) {
             if ($element !== undefined) {
@@ -18,6 +20,7 @@ define(function(require) {
             } else {
                 this.$el.html(this.template(this.model.toJSON()));
             }
+
             this.model.set({uuid:  Math.random().toString(36).substring(7), id: this.$el.data('id'), label: this.$el.find('.description input').val()});
             context.trigger('image:added', this.model);
             return this;
