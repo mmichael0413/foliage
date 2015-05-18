@@ -55,14 +55,11 @@ define(function(require) {
 
 			render: function () {
 				this._renderMeta();
-				this._renderWidgets("Visual Merchandising", ["display", "moved", "currentPOP", "whyNoPop", "sharing", "otherBrands"], function ($template, report) {
-					var downstock = ((Number(report.moved.results) / Number(report.display.results)) * 100).toFixed(2);
-					$template.find(".widgets").prepend("<div class='widget'>Downstock vs. Initial Display: <span class='pull-right'>" + downstock + "%</span></div>");
-				});
+				this._renderWidgets("Visual Merchandising", ["averageBackstock", "averageBackstockMoved", "currentPOP", "whyNoPop", "sharing", "otherBrands"]);
 				//this._renderWidgets("Physical Footprint", ["fixtures", "damage", "visibility"]);
 				this._renderWidgets("Physical Footprint", ["visibility", "presenceChange"]);
 				this._renderWidgets("Store Associate Education", ["educatedOn", "knowledgeable", "enthused"]);
-				this._renderWidgets("Customer Interactions", ["consumersSpoken", "sold", "retail"]);
+				this._renderWidgets("Customer Interactions", ["averageEducated", "averageConsumersSpoken", "averageSold"]);
 				this._renderWidgets("Product Categories", ["categories"]);
 				this._renderWidgets("Competitive Landscape", ["brands", "sunglassBrands", "repsCalling"]);
 				this._renderWidgets("Store Associate Product Feedback", ["agentsDiscussion", "receptiveManager"]);
