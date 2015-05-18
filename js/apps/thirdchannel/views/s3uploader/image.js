@@ -12,9 +12,9 @@ define(function(require) {
         },
         initialize: function() {
           if(this.model.get('input') === '#before_images') {
-            this.template = HandlebarsTemplates['thirdchannel/s3uploader/image_group']
+              this.template = HandlebarsTemplates['thirdchannel/s3uploader/image_group']
           } else if(this.model.get('input') === '#after_images') {
-            this.template = HandlebarsTemplates['thirdchannel/s3uploader/image_group_select']
+              this.template = HandlebarsTemplates['thirdchannel/s3uploader/image_group_select']
           }
         },
         render: function ($element) {
@@ -29,7 +29,7 @@ define(function(require) {
             return this;
         },
         updated: function (e) {
-            this.model.set({label: e.target.value});
+            this.model.set(e.target.name, e.target.value);
             context.trigger('image:updated', this.model);
         },
         deleted: function (e) {
