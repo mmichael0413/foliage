@@ -13,19 +13,23 @@ define(function(require) {
         events: {
             "click .checkin-form-btn" : "validateForm"
         },
-        initialize: function(options) {
-            this.options = options;
+        initialize: function() {
+            console.log(this.model);
         },
         render: function() {
+            this.isLocalStorageSupported();
+
+            /*
             this.formView = new FormView(this.options).render().$el;
             this.formValidation = new FormValidate({errorPlacementClass: '.question'}).render(this.formView);
-            this.isLocalStorageSupported();
+
             this.savedImages = JSON.parse(window.localStorage.getItem('checkinImages_' + this.options.checkinId)) || {};
 
             this.$('.body.images').each(function() {
                 new FileView().render(this);
             });
             this.setupImages();
+            */
 
             return this;
         },
