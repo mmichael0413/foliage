@@ -2,11 +2,15 @@ define(function(require) {
     var $ = require('jquery'),
         Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
+        SerializeObject = require('serializeObject'),
+        Chosen = require('chosen'),
+        Expanding = require('expanding'),
+        DateTimePicker = require('dateTimePicker'),
         context = require('context'),
-        FormView = require('thirdchannel/views/checkins/show/form'),
-        FormValidate = require('thirdchannel/views/utils/validation'),
+        //FormView = require('thirdchannel/views/checkins/show/form'),
         FileView = require('thirdchannel/views/s3uploader/checkin_file'),
-        ImageView = require('thirdchannel/views/s3uploader/image');
+        ImageView = require('thirdchannel/views/s3uploader/checkin_image'),
+        FormValidate = require('thirdchannel/views/utils/validation');
 
     return Backbone.View.extend({
         el: ".checkin",
@@ -14,10 +18,13 @@ define(function(require) {
             "click .checkin-form-btn" : "validateForm"
         },
         initialize: function() {
-            console.log(this.model);
         },
         render: function() {
             this.isLocalStorageSupported();
+
+            this.$('select').chosen({disable_search: true, width: "100%"});
+            this.$('textarea:visible').expanding();
+            this.$('.datetime').datetimepicker();
 
             /*
             this.formView = new FormView(this.options).render().$el;
