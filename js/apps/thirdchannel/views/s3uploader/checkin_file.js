@@ -20,7 +20,7 @@ define(function(require) {
             this.viewer = this.$('.viewer');
 
             this.$el.find('.holder').each(function() {
-                new ImageView({model: new Backbone.Model().set({input: self.$el.data('image-type')})}).render(this);
+                new ImageView({model: new Backbone.Model().set({image_type: self.$el.data('image-type')})}).render(this);
             });
 
             return this;

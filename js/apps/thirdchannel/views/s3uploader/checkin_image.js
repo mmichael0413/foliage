@@ -13,7 +13,13 @@ define(function(require) {
             this.model = options.model;
         },
         render: function ($element) {
+            if ($element !== undefined) {
+                this.setElement($element);
+            } else {
+                this.$el.html(this.template(this.model.toJSON()));
+            }
 
+            context.trigger('image:added', this.model);
             return this;
         },
         updated: function (e) {
