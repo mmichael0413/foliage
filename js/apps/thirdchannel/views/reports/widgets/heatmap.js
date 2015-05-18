@@ -6,22 +6,18 @@ define(function(require) {
         context = require('context'),
         LoadingView = require('thirdchannel/views/utils/loading');
 
-    var maxRectWidth = 75;
+    var maxRectWidth = 30;
 
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/heatmap'],
         initialize: function (options) {
             this.model = options;
-
-            // default row and col margins
-            this.rowLabelMargin = 125;
-            this.colLabelMargin = 130;
         },
         render: function () {
             if (_.size(this.model.results) > 0) {
                 this.buildLegend();
                 this.setElement(this.template(this.model));
-                _.bindAll(this, 'renderChart', 'resizeChart', 'updateQueryString');
+                _.bindAll(this, 'renderChart', 'resizeChart', 'updateQueryString', 'openViewBreakdown');
                 this.listenTo(context, 'filter:queryString', this.updateQueryString);
                 this.listenTo(context, 'report post render', this.renderChart);
                 this.listenTo(context, 'report resize',      this.resizeChart);
@@ -32,175 +28,107 @@ define(function(require) {
         },
         renderChart: function() {
             if (this.chart === undefined) {
-                var self = this,
-                    $heatMap = this.$('.heatmap'),
-                    width = $heatMap.width();
+                this.heatmap = this.$('.heatmap');
+                this.svg = d3.select(this.$('svg')[0]);
+                this.config = {
+                    numOfRows: this.model.results.row_labels.length,
+                    numOfCols: this.model.results.col_labels.length,
+                    padding: 15
+                };
 
-                var dataValues = this.model.results.values,
-                    rowLabels = this.model.results.row_labels,
-                    colLabels = this.model.results.col_labels,
-                    numOfRows = rowLabels.length,
-                    numOfCols = colLabels.length;
+                this.xScale = d3.scale.ordinal().domain(this.model.results.col_labels);
+                this.xAxisScale = d3.svg.axis().scale(this.xScale.rangeBands([0, 1]));
+                this.xAxis = this.svg.append('g').attr('class', 'x axis').call(this.xAxisScale);
+                this.config.colLabelMargin = this.xAxis.node().getBBox().width + this.config.padding;
 
-                var svg = d3.select(this.$('svg')[0]);
+                this.yScale = d3.scale.ordinal().domain(this.model.results.row_labels);
+                this.yAxisScale = d3.svg.axis().scale(this.yScale.rangeBands([0, 1]));
+                this.yAxis = this.svg.append('g').attr('class', 'y axis').call(this.yAxisScale);
+                this.config.rowLabelMargin = this.yAxis.node().getBBox().width + this.config.padding;
 
-                var labels = svg.selectAll('text')
-                    .data(colLabels)
+                this.svg.selectAll('g.tile-row')
+                    .data(this.model.results.values)
                     .enter()
-                    .append('text')
-                    .classed('label-text', true)
-                    .text(function (d) {
-                        return d;
-                    });
-
-                this.colLabelMargin = d3.max(labels[0], function (el) {
-                    return (el).getBBox().width;
-                });
-                labels.remove();
-
-                labels = svg.selectAll('text')
-                    .data(rowLabels)
-                    .enter()
-                    .append('text')
-                    .classed('label-text', true)
-                    .text(function (d) {
-                        return d;
-                    });
-
-                this.rowLabelMargin = d3.max(labels[0], function (el) {
-                    return (el).getBBox().width;
-                });
-                labels.remove();
-
-                var _rectWidth = (width - this.rowLabelMargin) / numOfCols;
-
-                var rectWidth = Math.max((_rectWidth > maxRectWidth ? maxRectWidth : _rectWidth), 0),
-                    rectHeight = rectWidth,
-                    height = rectHeight * numOfRows;
-
-                svg.attr('width', width + this.rowLabelMargin).attr('height', height + this.colLabelMargin);
-
-                var heatMap = svg.selectAll('g')
-                    .data(dataValues)
-                    .enter()
-                    .append('g');
-
-                heatMap.attr('class', 'tile-row')
-                    .attr('transform', function (d, i) {
-                        return 'translate(0 ' + (rectHeight * i) + ')';
-                    });
-
-                var rect = heatMap.selectAll('rect')
+                    .append('g')
+                    .attr('class', 'tile-row')
+                    .selectAll('rect')
                     .data(function (d) {
                         return d;
                     })
                     .enter()
-                    .append('rect');
-
-                rect.attr('class', 'tile')
+                    .append('rect')
+                    .attr('class', 'tile')
                     .classed('clickable', this.model.show_view_list)
-                    .attr('width', rectWidth)
-                    .attr('height', rectHeight)
+                    .on('click', this.openViewBreakdown)
                     .attr('stroke', '#cccccc')
                     .attr('stroke-width', '1px')
                     .attr('fill', function (d) {
                         return d.classification;
-                    })
-                    .attr('x', function (d, i) {
-                        return rectWidth * i;
                     });
 
-                rect.append('title').text(function (d) {
-                    return d.label + ' - ' + ((d.value !== null) ? d.value : 'N/A');
-                });
-
-                if (this.model.show_view_list) {
-                    rect.on('click', function (d, i) {
-                        var viewBreakDownLink = '/programs/Merchandising/reports/all/info/' + self.model.widget_id + '?' + this.queryString;
-
-                        if (d.info_list_filters !== undefined) {
-                            _.each(d.info_list_filters, function (val, param) {
-                                viewBreakDownLink += '&' + param + '=' + val;
-                            });
-                        }
-
-                        //context.router.navigate(viewBreakDownLink, {trigger: true});
-                        // ugh...
-                        window.location = viewBreakDownLink;
-                    });
+                this.chart = true;
+                if(window.pdf !== undefined) {
+                    this.resizeChart();
                 }
-
-                yScale = d3.scale.ordinal().domain(rowLabels).rangeBands([0, height]);
-                yAxis = d3.svg.axis().scale(yScale).orient('right');
-
-                svg.append('g').attr('class', 'y axis').attr('transform', 'translate(' + rectWidth * numOfCols + ' 0)').call(yAxis);
-
-                xScale = d3.scale.ordinal().domain(colLabels).rangeBands([0, rectWidth * numOfCols]);
-                xAxis = d3.svg.axis().scale(xScale).orient('bottom');
-
-                this.chart = svg.append('g')
-                    .attr('class', 'x axis')
-                    .attr('transform', 'translate(0 ' + height + ')')
-                    .call(xAxis)
-                    .selectAll('text')
-                    .attr('transform', 'translate(-15, 5) rotate(-90)')
-                    .attr('fill', '#434748')
-                    .style('text-anchor', 'end');
             }
         },
         resizeChart: function() {
             if (this.chart !== undefined) {
-                var $heatMap = this.$('.heatmap'),
-                    width = $heatMap.width();
 
-                var rowLabels = this.model.results.row_labels,
-                    colLabels = this.model.results.col_labels,
-                    numOfRows = rowLabels.length,
-                    numOfCols = colLabels.length;
+                var rectLength = Math.max(Math.min(((this.heatmap.width() - this.config.rowLabelMargin) / this.config.numOfCols), maxRectWidth), 0),
+                    rectsWidth = rectLength * this.config.numOfCols,
+                    rectsHeight = rectLength * this.config.numOfRows,
+                    svgWidth = rectsWidth + this.config.rowLabelMargin,
+                    svgHeight = rectsHeight + this.config.colLabelMargin;
 
-                var _rectWidth = (width - this.rowLabelMargin) / numOfCols;
-
-                var rectWidth = Math.max((_rectWidth > maxRectWidth ? maxRectWidth : _rectWidth), 0),
-                    rectHeight = rectWidth,
-                    height = rectHeight * numOfRows;
-
-                var svg = d3.select(this.$('svg')[0]);
-
-                svg.attr('width', width).attr('height', height + this.colLabelMargin);
-
-                svg.selectAll('rect.tile')
-                    .attr('width', rectWidth)
-                    .attr('height', rectHeight)
-                    .attr('x', function(d, i) {
-                        return rectWidth * (i % numOfCols);
+                this.svg.attr('width', svgWidth).attr('height', svgHeight)
+                    .selectAll('g.tile-row')
+                    .attr('transform', function (d, i) {
+                        return 'translate(0 ' + (rectLength * i) + ')';
+                    })
+                    .selectAll('rect')
+                    .attr('width', rectLength)
+                    .attr('height', rectLength)
+                    .attr('x', function (d, i) {
+                        return rectLength * i;
                     });
 
-                svg.selectAll('g.tile-row').attr('transform', function(d, i) { return 'translate(0 ' + (rectHeight * i) + ')'; });
+                this.yAxisScale = this.yAxisScale.scale(this.yScale.rangeBands([0, rectsHeight])).orient('right');
+                this.yAxis.attr('transform', 'translate(' + rectsWidth + ' 0)')
+                          .call(this.yAxisScale);
 
-                yScale.rangeBands([0, height]);
-                xScale.rangeBands([0, rectWidth * numOfCols]);
+                this.xAxisScale = this.xAxisScale.scale(this.xScale.rangeBands([0, rectsWidth])).orient('bottom');
+                this.xAxis.attr('transform', 'translate(0 ' + rectsHeight + ')')
+                          .call(this.xAxisScale)
+                          .selectAll('text')
+                          .attr('transform', 'translate(-15, 5) rotate(-90)')
+                          .style('text-anchor', 'end');
+            }
+        },
+        openViewBreakdown: function (data) {
+            if (this.model.show_view_list) {
+                var viewBreakDownLink = '/programs/Merchandising/reports/all/info/' + this.model.widget_id + '?' + this.queryString;
 
-                svg.selectAll('.x.axis')
-                    .attr('transform', 'translate(0 ' + height + ')')
-                    .call(xAxis.orient('bottom'))
-                    .selectAll('text')
-                    .attr('transform', 'translate(-15, 5) rotate(-90)')
-                    .attr('fill', '#434748')
-                    .style('text-anchor', 'end');
+                if (data.info_list_filters !== undefined) {
+                    _.each(data.info_list_filters, function (val, param) {
+                        viewBreakDownLink += '&' + param + '=' + val;
+                    });
+                }
 
-                svg.selectAll('.y.axis').attr('transform', 'translate(' + rectWidth * numOfCols + ' 0)').call(yAxis.orient('right'));
+                //context.router.navigate(viewBreakDownLink, {trigger: true});
+                // ugh...
+                window.location = viewBreakDownLink;
             }
         },
         buildLegend: function() {
-            var self = this,
-                legend = {};
+            var legend = {};
 
             // Build the legend collection (dealing with hstore -> json weirdness)
             this.model.config.legend = JSON.parse(this.model.config.legend);
 
             _.each(this.model.config.legend, function(key, i) {
-                legend[key] = self.model.config.legendColors[i];
-            });
+                legend[key] = this.model.config.legendColors[i];
+            }, this);
 
             this.model.config.legend = legend;
         },
