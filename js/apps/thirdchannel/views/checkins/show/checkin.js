@@ -5,7 +5,7 @@ define(function(require) {
         context = require('context'),
         FormView = require('thirdchannel/views/checkins/show/form'),
         FormValidate = require('thirdchannel/views/utils/validation'),
-        FileView = require('thirdchannel/views/s3uploader/file'),
+        FileView = require('thirdchannel/views/s3uploader/checkin_file'),
         ImageView = require('thirdchannel/views/s3uploader/image');
 
     return Backbone.View.extend({

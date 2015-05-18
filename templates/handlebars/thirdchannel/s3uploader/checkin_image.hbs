@@ -11,12 +11,10 @@
     <div class="delete">
         <button class="btn primary"><i class="ic ic_x"></i><span>Delete Image</span></button>
     </div>
-    <div class="group_label">
-        <label>Label:</label>
-        <input type="text" name="group_label" value="{{group_label}}">
-    </div>
     <div class="description">
         <label>Description:</label>
-        <input type="text" name="label" value="{{label}}">
+        <input type="text" name="{{image_type}}_images[][label]" value="{{label}}">
     </div>
+    <input type="hidden" name="{{image_type}}_images[][id]" value="{{id}}">
+    <input type="hidden" name="{{image_type}}_images[][temp_location" value="{{temp_location}}">
 </div>

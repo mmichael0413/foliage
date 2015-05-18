@@ -13,12 +13,14 @@
     </div>
     <div class="group_label">
         <label>Label:</label>
-        <select name="group_label">
+        <select name="{{image_type}}_images[][group_label]">
             <option value="">Select corresponding before image label...</option>
         </select>
     </div>
     <div class="description">
         <label>Description:</label>
-        <input type="text" name="label" value="{{label}}">
+        <input type="text" name="{{image_type}}_images[][label]" value="{{label}}">
     </div>
+    <input type="hidden" name="{{image_type}}_images[][id]" value="{{id}}">
+    <input type="hidden" name="{{image_type}}_images[][temp_location" value="{{temp_location}}">
 </div>
