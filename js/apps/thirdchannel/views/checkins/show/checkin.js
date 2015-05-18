@@ -24,6 +24,10 @@ define(function(require) {
             "click .question [data-show-element]" : 'showElement',
             "click .question [data-hide-element]" : 'hideElement'
         },
+        initialize: function() {
+            this.inventoryTotal = this.$('input.inventory-total');
+            this.inventories = this.$('input.inventory');
+        },
         render: function() {
             this.isLocalStorageSupported();
 
@@ -68,16 +72,30 @@ define(function(require) {
             }
         },
         saveState: function(e) {
-            alert('#saveState');
+            var $elem = this.$el.find(e.currentTarget);
+            if ($elem !== undefined) {
+                var attributes = $elem.serializeObject();
+                if ($.isEmptyObject(attributes)) {
+                    attributes[$elem.attr('name')] = $elem.val();
+                }
+                this.model.save(attributes, {patch: true});
+            }
         },
         updateTotal: function(e) {
-            alert('#updateTotal');
+            if (this.inventoryTotal !== undefined) {
+                var currentTotal = 0;
+                this.inventories.each(function() {
+                    var value = parseInt($(this).val(), 10);
+                    currentTotal += (value === -1 || isNaN(value)) ? 0 : value;
+                });
+                this.inventoryTotal.val(currentTotal).trigger('change');
+            }
         },
         showElement: function(e) {
-            alert('#showElement');
+            this.$(e.currentTarget.getAttribute('data-show-element')).show('fast', "linear");
         },
         hideElement: function(e) {
-            alert('#hideElement');
+            this.$(e.currentTarget.getAttribute('data-hide-element')).hide('fast', "linear").val('').trigger('change');
         },
         validateForm: function() {
             if (this.formValidation.valid()) {
