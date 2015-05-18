@@ -7,7 +7,6 @@ define(function(require) {
         Expanding = require('expanding'),
         DateTimePicker = require('dateTimePicker'),
         context = require('context'),
-        //FormView = require('thirdchannel/views/checkins/show/form'),
         FileView = require('thirdchannel/views/s3uploader/checkin_file'),
         ImageView = require('thirdchannel/views/s3uploader/checkin_image'),
         FormValidate = require('thirdchannel/views/utils/validation');
@@ -15,9 +14,15 @@ define(function(require) {
     return Backbone.View.extend({
         el: ".checkin",
         events: {
-            "click .checkin-form-btn" : "validateForm"
-        },
-        initialize: function() {
+            "click .checkin-form-btn" : "validateForm",
+            "blur .question input[type!=radio]": "saveState",
+            "change .question textarea": "saveState",
+            "change .question input[type=radio]": "saveState",
+            "change .question input[type=hidden]": "saveState",
+            "change .question select": "saveState",
+            'blur .question input.inventory': 'updateTotal',
+            "click .question [data-show-element]" : 'showElement',
+            "click .question [data-hide-element]" : 'hideElement'
         },
         render: function() {
             this.isLocalStorageSupported();
@@ -45,8 +50,7 @@ define(function(require) {
             try {
                 storage.setItem(testKey, '1');
                 storage.removeItem(testKey);
-            }
-            catch (error) {
+            } catch (error) {
                 alert("We currently don't support private/incognito windows.  Please reopen the checkin using a normal window for your browser.");
             }
         },
@@ -62,6 +66,18 @@ define(function(require) {
                     }
                 }
             }
+        },
+        saveState: function(e) {
+            alert('#saveState');
+        },
+        updateTotal: function(e) {
+            alert('#updateTotal');
+        },
+        showElement: function(e) {
+            alert('#showElement');
+        },
+        hideElement: function(e) {
+            alert('#hideElement');
         },
         validateForm: function() {
             if (this.formValidation.valid()) {
