@@ -2342,7 +2342,7 @@ function program4(depth0,data) {
   buffer += "<div class=\"holder\">\n    <div>\n        <div class=\"image\">\n            ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.source), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n        </div>\n        <div class=\"delete\">\n            <button class=\"btn primary\"><i class=\"ic ic_x\"></i><span>Delete Image</span></button>\n        </div>\n\n        <div class=\"description\">\n            <label>Description: </label>\n            <select name=\"description\"></select>\n        </div>\n    </div>\n</div>\n";
+  buffer += "\n\n        </div>\n        <div class=\"delete\">\n            <button class=\"btn primary\"><i class=\"ic ic_x\"></i><span>Delete Image</span></button>\n        </div>\n\n        <div class=\"description\">\n            <label>Description: </label>\n            <select name=\"description\">\n                <option value=\"\">Select corresponding before image label...</option>\n            </select>\n        </div>\n    </div>\n</div>\n";
   return buffer;
   });
 
