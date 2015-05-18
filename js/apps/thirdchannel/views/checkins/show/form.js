@@ -23,16 +23,17 @@ define(function(require) {
             this.model = new FormModel(options);
             this.checkinId = options.checkinId;
             this.images = {};
-            this.inventoryTotal = this.$el.find('input.inventory-total');
-            this.inventories = this.$el.find('input.inventory');
+            this.imageGroupLabels = [];
+            this.inventoryTotal = this.$('input.inventory-total');
+            this.inventories = this.$('input.inventory');
             this.listenTo(context, 'image:added', this.imageAdded);
             this.listenTo(context, 'image:updated', this.imageUpdated);
             this.listenTo(context, 'image:deleted', this.imageDeleted);
         },
         render :function () {
-            this.$el.find('select').chosen({disable_search: true, width: "100%"});
-            this.$el.find('textarea:visible').expanding();
-            this.$el.find('.datetime').datetimepicker();
+            this.$('select').chosen({disable_search: true, width: "100%"});
+            this.$('textarea:visible').expanding();
+            this.$('.datetime').datetimepicker();
             return this;
         },
         saveState: function (e) {
@@ -87,10 +88,10 @@ define(function(require) {
         setImageInputValue: function(model) {
             var inputSel = model.get('input');
             this.$el.find(inputSel).val(JSON.stringify(this.images[inputSel])).trigger('change:nosave');
-            this.$el.find('#remove_images').val(JSON.stringify(this.images.removed));
+            this.$('#remove_images').val(JSON.stringify(this.images.removed));
         },
         getImageParams: function(model) {
-            return {id: model.get('id'), label: model.get('label'), temp_location: model.get('temp_location')};
+            return {id: model.get('id'), label: model.get('label'), group_label: model.get('group_label'), temp_location: model.get('temp_location')};
         },
         imageAdded: function (model) {
             this.addImage(model).setImageInputValue(model);

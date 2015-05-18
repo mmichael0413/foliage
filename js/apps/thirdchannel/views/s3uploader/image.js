@@ -11,8 +11,10 @@ define(function(require) {
             "click button": 'deleted'
         },
         initialize: function() {
-          if(this.model.get('input') === '#after_images') {
-              this.template = HandlebarsTemplates['thirdchannel/s3uploader/image_with_select']
+          if(this.model.get('input') === '#before_images') {
+            this.template = HandlebarsTemplates['thirdchannel/s3uploader/image_group']
+          } else if(this.model.get('input') === '#after_images') {
+            this.template = HandlebarsTemplates['thirdchannel/s3uploader/image_group_select']
           }
         },
         render: function ($element) {
