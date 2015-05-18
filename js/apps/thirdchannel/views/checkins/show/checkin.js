@@ -43,7 +43,7 @@ define(function(require) {
         setupImages: function() {
             for (var key in this.savedImages) {
                 var imageSet = this.savedImages[key];
-                var $elem = this.$el.find('[data-input='+ key +'] .viewer');
+                var $elem = this.$('[data-input='+ key +'] .viewer');
                 if ($elem.length) {
                     for (var image in imageSet) {
                         if (!_.has(imageSet[image], 'id')) {
@@ -55,8 +55,8 @@ define(function(require) {
         },
         validateForm: function() {
             if (this.formValidation.valid()) {
-                this.$el.find(".checkin-form-btn").prop('disabled', true);
-                this.$el.find(".checkin-form-btn i").removeClass('ic ic_check').addClass("fa fa-spin fa-spinner");
+                this.$(".checkin-form-btn").prop('disabled', true);
+                this.$(".checkin-form-btn i").removeClass('ic ic_check').addClass("fa fa-spin fa-spinner");
                 window.localStorage.removeItem('checkinImages_' + this.options.checkinId);
                 this.formView.submit();
             } else {
