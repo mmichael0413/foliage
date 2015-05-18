@@ -2295,7 +2295,7 @@ function program4(depth0,data) {
   buffer += "<div class=\" holder\">\n    <div>\n        <div class=\"image\">\n            ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.source), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n        </div>\n        <div class=\"delete\">\n            <button class=\"btn primary\"><i class=\"ic ic_x\"></i><span>Delete Image</span></button>\n        </div>\n\n        <div class=\"description\">\n            <label>Description: </label>\n            <input type=\"text\" name=\"description\" value=\"";
+  buffer += "\n\n        </div>\n        <div class=\"delete\">\n            <button class=\"btn primary\"><i class=\"ic ic_x\"></i><span>Delete Image</span></button>\n        </div>\n\n        <div class=\"description\">\n            <label>Description: </label>\n            <input type=\"text\" name=\"label\" value=\"";
   if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -2346,7 +2346,7 @@ function program4(depth0,data) {
   if (helper = helpers.group_label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.group_label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n        </div>\n        <div class=\"description\">\n            <label>Description: </label>\n            <input type=\"text\" name=\"description\" value=\"";
+    + "\">\n        </div>\n        <div class=\"description\">\n            <label>Description: </label>\n            <input type=\"text\" name=\"label\" value=\"";
   if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -2393,7 +2393,7 @@ function program4(depth0,data) {
   buffer += "<div class=\"holder\">\n    <div>\n        <div class=\"image\">\n            ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.source), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n        </div>\n        <div class=\"delete\">\n            <button class=\"btn primary\"><i class=\"ic ic_x\"></i><span>Delete Image</span></button>\n        </div>\n        <div class=\"group_label\">\n            <label>Label: </label>\n            <select name=\"group_label\">\n                <option value=\"\">Select corresponding before image label...</option>\n            </select>\n        </div>\n        <div class=\"description\">\n            <label>Description: </label>\n            <input type=\"text\" name=\"description\" value=\"";
+  buffer += "\n\n        </div>\n        <div class=\"delete\">\n            <button class=\"btn primary\"><i class=\"ic ic_x\"></i><span>Delete Image</span></button>\n        </div>\n        <div class=\"group_label\">\n            <label>Label: </label>\n            <select name=\"group_label\">\n                <option value=\"\">Select corresponding before image label...</option>\n            </select>\n        </div>\n        <div class=\"description\">\n            <label>Description: </label>\n            <input type=\"text\" name=\"label\" value=\"";
   if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
