@@ -24,7 +24,12 @@ define(function(require) {
                 this.$el.html(this.template(this.model.toJSON()));
             }
 
-            this.model.set({uuid:  Math.random().toString(36).substring(7), id: this.$el.data('id'), label: this.$('.description input').val()});
+            this.model.set({
+                uuid:  Math.random().toString(36).substring(7),
+                id: this.$el.data('id'),
+                group_label: this.$('.group_label input, .group_label select').val(),
+                label: this.$('.description input').val()
+            });
             context.trigger('image:added', this.model);
             return this;
         },
