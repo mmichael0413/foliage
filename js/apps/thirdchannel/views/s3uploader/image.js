@@ -7,6 +7,7 @@ define(function(require) {
         template: HandlebarsTemplates['thirdchannel/s3uploader/image'],
         events: {
             "blur input": 'updated',
+            "change select": 'updated',
             "click button": 'deleted'
         },
         initialize: function() {
@@ -21,7 +22,7 @@ define(function(require) {
                 this.$el.html(this.template(this.model.toJSON()));
             }
 
-            this.model.set({uuid:  Math.random().toString(36).substring(7), id: this.$el.data('id'), label: this.$el.find('.description input').val()});
+            this.model.set({uuid:  Math.random().toString(36).substring(7), id: this.$el.data('id'), label: this.$('.description input').val()});
             context.trigger('image:added', this.model);
             return this;
         },
