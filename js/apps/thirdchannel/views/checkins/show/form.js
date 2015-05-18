@@ -23,7 +23,7 @@ define(function(require) {
             this.model = new FormModel(options);
             this.checkinId = options.checkinId;
             this.images = {};
-            this.imageGroupLabels = [];
+            this.imageGroupLabels = this.$el.data('group-labels');
             this.inventoryTotal = this.$('input.inventory-total');
             this.inventories = this.$('input.inventory');
             this.listenTo(context, 'image:added', this.imageAdded);
@@ -94,19 +94,25 @@ define(function(require) {
             return {id: model.get('id'), label: model.get('label'), group_label: model.get('group_label'), temp_location: model.get('temp_location')};
         },
         imageAdded: function (model) {
-            if(model.get('input') === '#before_images' && model.get('group_label') !== undefined && model.get('group_label') !== '') {
-                this.imageGroupLabels.push(model.get('group_label'));
-                this.addAfterImageGroupSelection(model.get('group_label'));
-            }
-
             this.addImage(model).setImageInputValue(model);
         },
         imageUpdated: function (model) {
             if(model.get('input') === '#before_images' && model.get('group_label') !== undefined && model.changed['group_label'] !== undefined) {
                 var oldValue = model.changed['group_label'],
                     newValue = model.get('group_label');
-                this.imageGroupLabels.splice($.inArray(oldValue, this.imageGroupLabels), 1);
-                this.imageGroupLabels.push(newValue);
+
+                console.log(model);
+                console.log(oldValue);
+                console.log(newValue);
+
+                if(oldValue !== undefined && oldValue !== '') {
+                    this.imageGroupLabels.splice($.inArray(oldValue, this.imageGroupLabels), 1);
+                }
+
+                if(newValue !== undefined && newValue !== '') {
+                    this.imageGroupLabels.push(newValue);
+                }
+
                 this.updateAfterImageGroupSelections();
             }
 
@@ -120,10 +126,6 @@ define(function(require) {
             }
 
             this.removeImage(model).setImageInputValue(model);
-        },
-        addAfterImageGroupSelection: function(value) {
-            console.log('New value to be added ' + value);
-
         },
         updateAfterImageGroupSelections: function() {
             console.log('TODO: update after image selections');
