@@ -35,6 +35,8 @@ define(function(require) {
             this.$('textarea:visible').expanding();
             this.$('.datetime').datetimepicker();
 
+            this.savedImages = JSON.parse(window.localStorage.getItem('checkinImages_' + this.model.checkinId)) || {};
+
             /*
             this.formView = new FormView(this.options).render().$el;
             this.formValidation = new FormValidate({errorPlacementClass: '.question'}).render(this.formView);
