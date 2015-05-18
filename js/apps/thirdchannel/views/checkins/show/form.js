@@ -94,13 +94,35 @@ define(function(require) {
             return {id: model.get('id'), label: model.get('label'), group_label: model.get('group_label'), temp_location: model.get('temp_location')};
         },
         imageAdded: function (model) {
+            if(model.get('input') === '#before_images' && model.get('group_label') !== undefined) {
+                this.imageGroupLabels.push(model.get('group_label'));
+                this.updateAfterImageGroupSelections();
+            }
+
             this.addImage(model).setImageInputValue(model);
         },
         imageUpdated: function (model) {
+            if(model.get('input') === '#before_images' && model.get('group_label') !== undefined && model.changed['group_label'] !== undefined) {
+                var oldValue = model.changed['group_label'],
+                    newValue = model.get('group_label');
+                this.imageGroupLabels.splice($.inArray(oldValue, this.imageGroupLabels), 1);
+                this.imageGroupLabels.push(newValue);
+                this.updateAfterImageGroupSelections();
+            }
+
             this.addImage(model).setImageInputValue(model);
         },
         imageDeleted: function (model) {
+            if(model.get('input') === '#before_images' && model.get('group_label') !== undefined) {
+                var value = model.get('group_label');
+                this.imageGroupLabels.splice($.inArray(value, this.imageGroupLabels), 1);
+                this.updateAfterImageGroupSelections();
+            }
+
             this.removeImage(model).setImageInputValue(model);
+        },
+        updateAfterImageGroupSelections: function() {
+            console.log('TODO: update after image selections');
         }
     });
 });
