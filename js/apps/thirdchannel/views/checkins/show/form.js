@@ -94,9 +94,9 @@ define(function(require) {
             return {id: model.get('id'), label: model.get('label'), group_label: model.get('group_label'), temp_location: model.get('temp_location')};
         },
         imageAdded: function (model) {
-            if(model.get('input') === '#before_images' && model.get('group_label') !== undefined) {
+            if(model.get('input') === '#before_images' && model.get('group_label') !== undefined && model.get('group_label') !== '') {
                 this.imageGroupLabels.push(model.get('group_label'));
-                this.updateAfterImageGroupSelections();
+                this.addAfterImageGroupSelection(model.get('group_label'));
             }
 
             this.addImage(model).setImageInputValue(model);
@@ -121,8 +121,13 @@ define(function(require) {
 
             this.removeImage(model).setImageInputValue(model);
         },
+        addAfterImageGroupSelection: function(value) {
+            console.log('New value to be added ' + value);
+
+        },
         updateAfterImageGroupSelections: function() {
             console.log('TODO: update after image selections');
+            console.log(this.imageGroupLabels);
         }
     });
 });

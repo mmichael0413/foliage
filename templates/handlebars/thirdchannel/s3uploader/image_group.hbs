@@ -2,23 +2,22 @@
     <div>
         <div class="image">
             {{#if source}}
-                <img src="{{source}}" alt="Image" >
+                <img src="{{source}}" alt="Image">
             {{else}}
                 {{#if temp_location}}
-                    <img src="{{temp_location}}" alt="Image" >
+                    <img src="{{temp_location}}" alt="Image">
                 {{/if}}
             {{/if}}
-
         </div>
         <div class="delete">
             <button class="btn primary"><i class="ic ic_x"></i><span>Delete Image</span></button>
         </div>
         <div class="group_label">
-            <label>Label: </label>
+            <label>Label:</label>
             <input type="text" name="group_label" value="{{group_label}}">
         </div>
         <div class="description">
-            <label>Description: </label>
+            <label>Description:</label>
             <input type="text" name="label" value="{{label}}">
         </div>
     </div>

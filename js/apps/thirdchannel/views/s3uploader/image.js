@@ -30,7 +30,11 @@ define(function(require) {
                 group_label: this.$('.group_label input, .group_label select').val(),
                 label: this.$('.description input').val()
             });
+
+            this.$el.attr('id', this.model.get('uuid'));
+
             context.trigger('image:added', this.model);
+
             return this;
         },
         updated: function (e) {

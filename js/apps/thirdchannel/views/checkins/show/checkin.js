@@ -13,17 +13,16 @@ define(function(require) {
         events: {
             "click .checkin-form-btn" : "validateForm"
         },
-        initialize: function (options) {
+        initialize: function(options) {
             this.options = options;
         },
-        render: function (options) {
-            var self = this;
+        render: function() {
             this.formView = new FormView(this.options).render().$el;
             this.formValidation = new FormValidate({errorPlacementClass: '.question'}).render(this.formView);
             this.isLocalStorageSupported();
             this.savedImages = JSON.parse(window.localStorage.getItem('checkinImages_' + this.options.checkinId)) || {};
 
-            this.$el.find('.body.images').each(function(){
+            this.$('.body.images').each(function() {
                 new FileView().render(this);
             });
             this.setupImages();
