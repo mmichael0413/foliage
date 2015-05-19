@@ -25,8 +25,9 @@ define(function(require) {
             return this;
         },
         updated: function(e) {
-            var attrs = {};
-            attrs[e.target.getAttribute('data-attribute')] = e.target.value;
+            var attrs = {},
+                attr = e.target.getAttribute('data-attribute');
+            attrs[attr] = e.target.value;
             this.model.save(attrs, {patch: true});
         },
         deleted: function(e) {
