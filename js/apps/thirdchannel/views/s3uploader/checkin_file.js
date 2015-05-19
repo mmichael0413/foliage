@@ -20,7 +20,6 @@ define(function(require) {
             this.$form = $('.s3_uploader');
             this.$viewer = this.$('.viewer');
 
-            // initialize image views for each existing image
             this.$el.find('.holder').each(function() {
                 var $holder = $(this),
                     m = new ImageModel({
@@ -39,23 +38,22 @@ define(function(require) {
         render: function() {
             return this;
         },
-        fileChanged: function (e) {
+        fileChanged: function(e) {
             var file = e.target.files[0],
                 self = this;
 
-            if (file !== undefined) {
+            if(file !== undefined) {
                 var reader = new FileReader();
-                reader.onload = (function (event) {
+                reader.onload = (function(event) {
                     var model = new FileModel({url: self.$form.attr('action'), policy: self.$form.serializeObject(), source: event.target.result});
                     self.$viewer.append(new UploadView({model: model}).render().$el);
                     model.save({file: file})
-                         .success(function () {
+                         .success(function() {
                             model.set({source: event.target.result});
                             self.fileUploaded(model);
-                         })
-                        .error(function () {
+                         }).error(function() {
                             self.fileUploadError();
-                        });
+                         });
                     self.clearFileInput();
                 });
 
