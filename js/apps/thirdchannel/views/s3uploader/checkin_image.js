@@ -30,6 +30,7 @@ define(function(require) {
             this.model.save(attrs, {patch: true});
         },
         deleted: function(e) {
+            e.preventDefault();
             var self = this;
             this.model.destroy().then(function() {
                 self.remove();
