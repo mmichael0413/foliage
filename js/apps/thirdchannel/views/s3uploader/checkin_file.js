@@ -31,7 +31,7 @@ define(function(require) {
                         programId: self.model.get('programId'),
                         checkinId: self.model.get('checkinId')
                     });
-                
+
                 new ImageView({model: m}).setElement(this);
             });
         },

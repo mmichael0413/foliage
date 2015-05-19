@@ -8,8 +8,7 @@ define(function(require) {
         DateTimePicker = require('dateTimePicker'),
         context = require('context'),
         FileView = require('thirdchannel/views/s3uploader/checkin_file'),
-        ImageView = require('thirdchannel/views/s3uploader/checkin_image'),
-        FormValidate = require('thirdchannel/views/utils/validation');
+        ImageView = require('thirdchannel/views/s3uploader/checkin_image');
 
     return Backbone.View.extend({
         el: ".checkin",
@@ -22,11 +21,16 @@ define(function(require) {
             "change .question select": "saveState",
             'blur .question input.inventory': 'updateTotal',
             "click .question [data-show-element]" : 'showElement',
-            "click .question [data-hide-element]" : 'hideElement'
+            "click .question [data-hide-element]" : 'hideElement',
+            "change .question input[type=hidden]": "validate",
+            "change:nosave .question input[type=hidden]": "validate",
+            "change .question select": "validate"
         },
         initialize: function() {
+            _.bindAll(this, 'errorPlacement', 'validateSuccess', 'highlight', 'unhighlight');
             this.inventoryTotal = this.$('input.inventory-total');
             this.inventories = this.$('input.inventory');
+            this.errorPlacementClass = '.question';
         },
         render: function() {
             var self = this;
@@ -43,7 +47,13 @@ define(function(require) {
                 });
             });
 
-            //this.formValidation = new FormValidate({errorPlacementClass: '.question'}).render(this.formView);
+            this.validator = this.$('.checkin-form').validate({
+                ignore: [],
+                errorPlacement: this.errorPlacement,
+                success: this.validateSuccess,
+                highlight: this.highlight,
+                unhighlight: this.unhighlight
+            });
 
             return this;
         },
@@ -58,7 +68,7 @@ define(function(require) {
             }
         },
         updateTotal: function(e) {
-            if (this.inventoryTotal !== undefined) {
+            if(this.inventoryTotal !== undefined) {
                 var currentTotal = 0;
                 this.inventories.each(function() {
                     var value = parseInt($(this).val(), 10);
@@ -74,16 +84,65 @@ define(function(require) {
             this.$(e.currentTarget.getAttribute('data-hide-element')).hide('fast', "linear").val('').trigger('change');
         },
         validateForm: function() {
-            if (this.formValidation.valid()) {
+            if (this.valid()) {
                 this.$(".checkin-form-btn").prop('disabled', true);
                 this.$(".checkin-form-btn i").removeClass('ic ic_check').addClass("fa fa-spin fa-spinner");
-                window.localStorage.removeItem('checkinImages_' + this.options.checkinId);
                 this.formView.submit();
             } else {
                 $('.content-holder').animate({
                     scrollTop: this.$('div.error:first')[0].offsetTop
                 }, 500);
             }
+        },
+        validate: function(e) {
+            if(this.validCalled) {
+                this.valid();
+            }
+        },
+        valid: function() {
+            this.validCalled = true;
+            return this.$el.valid();
+        },
+        errorPlacement: function(error, element) {
+            var input = this.$(element),
+                id = input.data('error-for');
+
+            if(id !== undefined) {
+                input = $(id);
+            } else {
+                input = input.closest(this.errorPlacementClass);
+            }
+
+            if(input.find("label.error").length === 0) {
+                input.append(error);
+            }
+        },
+        highlight: function(element, errorClass, validClass) {
+            var input = this.$el.find(element),
+                id = input.data('error-for');
+
+            if(id !== undefined) {
+                input = $(id);
+            } else {
+                input = input.closest(this.errorPlacementClass);
+            }
+
+            input.addClass(errorClass).removeClass(validClass);
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            var input = this.$el.find(element),
+                id = input.data('error-for');
+
+            if(id !== undefined) {
+                input = $(id);
+            } else {
+                input = input.closest(this.errorPlacementClass);
+            }
+
+            input.removeClass(errorClass).addClass(validClass);
+        },
+        validateSuccess: function(error) {
+            $("#" + error.attr("id")).remove();
         }
     });
 });
