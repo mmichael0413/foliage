@@ -28,6 +28,7 @@ define(function(require) {
         },
         initialize: function() {
             _.bindAll(this, 'errorPlacement', 'validateSuccess', 'highlight', 'unhighlight');
+            this.$form = this.$('.checkin-form');
             this.inventoryTotal = this.$('input.inventory-total');
             this.inventories = this.$('input.inventory');
             this.errorPlacementClass = '.question';
@@ -47,7 +48,7 @@ define(function(require) {
                 });
             });
 
-            this.validator = this.$('.checkin-form').validate({
+            this.validator = this.$form.validate({
                 ignore: [],
                 errorPlacement: this.errorPlacement,
                 success: this.validateSuccess,
@@ -87,7 +88,7 @@ define(function(require) {
             if (this.valid()) {
                 this.$(".checkin-form-btn").prop('disabled', true);
                 this.$(".checkin-form-btn i").removeClass('ic ic_check').addClass("fa fa-spin fa-spinner");
-                this.formView.submit();
+                this.$form.submit();
             } else {
                 $('.content-holder').animate({
                     scrollTop: this.$('div.error:first')[0].offsetTop
@@ -101,7 +102,7 @@ define(function(require) {
         },
         valid: function() {
             this.validCalled = true;
-            return this.$el.valid();
+            return this.$form.valid();
         },
         errorPlacement: function(error, element) {
             var input = this.$(element),
@@ -118,7 +119,7 @@ define(function(require) {
             }
         },
         highlight: function(element, errorClass, validClass) {
-            var input = this.$el.find(element),
+            var input = this.$(element),
                 id = input.data('error-for');
 
             if(id !== undefined) {
@@ -130,7 +131,7 @@ define(function(require) {
             input.addClass(errorClass).removeClass(validClass);
         },
         unhighlight: function(element, errorClass, validClass) {
-            var input = this.$el.find(element),
+            var input = this.$(element),
                 id = input.data('error-for');
 
             if(id !== undefined) {
