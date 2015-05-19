@@ -13,16 +13,30 @@ define(function(require) {
             "change input[type=file]" : "fileChanged",
             "click .error-close" : "errorRemove"
         },
-        render: function (element) {
+        initialize: function(options) {
             var self = this;
-            this.setElement(element);
-            this.form = $('.s3_uploader');
-            this.viewer = this.$('.viewer');
 
+            this.savedImages = options.savedImages;
+
+            this.$form = $('.s3_uploader');
+            this.$viewer = this.$('.viewer');
+
+            // initialize image views for each existing image
             this.$el.find('.holder').each(function() {
-                new ImageView({model: new Backbone.Model().set({image_type: self.$el.data('image-type')})}).render(this);
-            });
+                var $holder = $(this),
+                    m = new Backbone.Model({
+                        id: $holder.find('.image_id').val(),
+                        image_type: self.$el.data('image-type'),
+                        group_label: $holder.find('.image_group_label').val(),
+                        label: $holder.find('.image_label').val(),
+                        temp_location: $holder.find('.image_temp_location').val()
+                    });
 
+                new ImageView({model: m}).setElement(this);
+            });
+        },
+        render: function() {
+            // render saved localstorage images
             return this;
         },
         fileChanged: function (e) {
@@ -32,8 +46,8 @@ define(function(require) {
             if (file !== undefined) {
                 var reader = new FileReader();
                 reader.onload = (function (event) {
-                    var model = new FileModel({url: self.form.attr('action'), policy: self.form.serializeObject(), source: event.target.result, input: self.$el.data('input')});
-                    self.viewer.append(new UploadView({model: model}).render().$el);
+                    var model = new FileModel({url: self.$form.attr('action'), policy: self.$form.serializeObject(), source: event.target.result, input: self.$el.data('input')});
+                    self.$viewer.append(new UploadView({model: model}).render().$el);
                     model.save({file: file})
                          .success(function () {
                             model.set({source: event.target.result});
@@ -53,17 +67,21 @@ define(function(require) {
             if ($error.length > 0) {
                 $error.html(HandlebarsTemplates['thirdchannel/s3uploader/error']());
             } else {
-                this.$('.viewer').prepend(HandlebarsTemplates['thirdchannel/s3uploader/error']());
+                this.$viewer.prepend(HandlebarsTemplates['thirdchannel/s3uploader/error']());
             }
         },
         errorRemove: function(e) {
             this.$('.error').remove();
         },
-        fileUploaded: function (model) {
-            this.viewer.append(new ImageView({model: model}).render().$el);
+        fileUploaded: function(model) {
+            var image = new Backbone.Model({
+                image_type: this.$el.data('image-type'),
+                temp_location: model.get('temp_location')
+            });
+            this.$viewer.append(new ImageView({model: image}).render().$el);
         },
-        clearFileInput: function () {
-            var input = this.$("input:file");
+        clearFileInput: function() {
+            var input = this.$form.find("input:file");
             input.replaceWith(input.val('').clone(true));
         }
     });

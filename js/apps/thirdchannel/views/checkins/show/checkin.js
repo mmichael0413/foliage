@@ -29,6 +29,8 @@ define(function(require) {
             this.inventories = this.$('input.inventory');
         },
         render: function() {
+            var self = this;
+
             this.isLocalStorageSupported();
 
             this.$('select').chosen({disable_search: true, width: "100%"});
@@ -37,15 +39,15 @@ define(function(require) {
 
             this.savedImages = JSON.parse(window.localStorage.getItem('checkinImages_' + this.model.checkinId)) || {};
 
+            // create a image file view to manage each image set
+            this.$('.body.images').each(function() {
+                var fileView = new FileView({el: this, savedImages: self.savedImages});
+                fileView.render();
+            });
+
             /*
-            this.formView = new FormView(this.options).render().$el;
             this.formValidation = new FormValidate({errorPlacementClass: '.question'}).render(this.formView);
 
-            this.savedImages = JSON.parse(window.localStorage.getItem('checkinImages_' + this.options.checkinId)) || {};
-
-            this.$('.body.images').each(function() {
-                new FileView().render(this);
-            });
             this.setupImages();
             */
 
