@@ -20,7 +20,7 @@ define(function(require) {
             this.$form = $('.s3_uploader');
             this.$viewer = this.$('.viewer');
 
-            this.$el.find('.holder').each(function() {
+            this.$('.holder').each(function() {
                 var $holder = $(this),
                     m = new ImageModel({
                         id: $holder.find('.image_id').val(),
@@ -31,7 +31,7 @@ define(function(require) {
                         programId: self.model.get('programId'),
                         checkinId: self.model.get('checkinId')
                     });
-
+                
                 new ImageView({model: m}).setElement(this);
             });
         },
