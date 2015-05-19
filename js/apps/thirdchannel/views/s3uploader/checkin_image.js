@@ -7,6 +7,7 @@ define(function(require) {
         template: HandlebarsTemplates['thirdchannel/s3uploader/checkin_image'],
         events: {
             "blur input": 'updated',
+            'change select': 'updated',
             "click button": 'deleted'
         },
         initialize: function() {

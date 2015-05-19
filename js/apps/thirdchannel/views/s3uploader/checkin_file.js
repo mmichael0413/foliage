@@ -4,6 +4,7 @@ define(function(require) {
         context = require('context'),
         SerializeObject = require("serializeObject"),
         FileModel = require('thirdchannel/models/s3uploader/file'),
+        ImageModel = require('thirdchannel/models/checkins/show/image'),
         ImageView = require('thirdchannel/views/s3uploader/checkin_image'),
         UploadView = require('thirdchannel/views/s3uploader/upload');
 
@@ -13,10 +14,8 @@ define(function(require) {
             "change input[type=file]" : "fileChanged",
             "click .error-close" : "errorRemove"
         },
-        initialize: function(options) {
+        initialize: function() {
             var self = this;
-
-            this.savedImages = options.savedImages;
 
             this.$form = $('.s3_uploader');
             this.$viewer = this.$('.viewer');
@@ -24,19 +23,20 @@ define(function(require) {
             // initialize image views for each existing image
             this.$el.find('.holder').each(function() {
                 var $holder = $(this),
-                    m = new Backbone.Model({
+                    m = new ImageModel({
                         id: $holder.find('.image_id').val(),
                         image_type: self.$el.data('image-type'),
                         group_label: $holder.find('.image_group_label').val(),
                         label: $holder.find('.image_label').val(),
-                        temp_location: $holder.find('.image_temp_location').val()
+                        temp_location: $holder.find('.image_temp_location').val(),
+                        programId: self.model.get('programId'),
+                        checkinId: self.model.get('checkinId')
                     });
 
                 new ImageView({model: m}).setElement(this);
             });
         },
         render: function() {
-            // render saved localstorage images
             return this;
         },
         fileChanged: function (e) {
@@ -73,12 +73,20 @@ define(function(require) {
         errorRemove: function(e) {
             this.$('.error').remove();
         },
-        fileUploaded: function(model) {
-            var image = new Backbone.Model({
-                image_type: this.$el.data('image-type'),
-                temp_location: model.get('temp_location')
+        fileUploaded: function(file) {
+            var self = this,
+                image = new ImageModel({
+                    image_type: this.$el.data('image-type'),
+                    temp_location: file.get('temp_location'),
+                    programId: this.model.get('programId'),
+                    checkinId: this.model.get('checkinId')
+                });
+
+            image.save().then(function() {
+                self.$viewer.append(new ImageView({model: image}).render().$el);
+            }).fail(function() {
+                self.fileUploadError();
             });
-            this.$viewer.append(new ImageView({model: image}).render().$el);
         },
         clearFileInput: function() {
             var input = this.$("input:file");

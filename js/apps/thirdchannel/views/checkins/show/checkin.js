@@ -31,18 +31,16 @@ define(function(require) {
         render: function() {
             var self = this;
 
-            this.isLocalStorageSupported();
-
             this.$('select').chosen({disable_search: true, width: "100%"});
             this.$('textarea:visible').expanding();
             this.$('.datetime').datetimepicker();
 
-            this.savedImages = JSON.parse(window.localStorage.getItem('checkinImages_' + this.model.checkinId)) || {};
-
             // create a image file view to manage each image set
             this.$('.body.images').each(function() {
-                var fileView = new FileView({el: this, savedImages: self.savedImages});
-                fileView.render();
+                var fileView = new FileView({
+                    el: this,
+                    model: self.model
+                });
             });
 
             /*
@@ -52,28 +50,6 @@ define(function(require) {
             */
 
             return this;
-        },
-        isLocalStorageSupported: function () {
-            var testKey = 'test', storage = window.sessionStorage;
-            try {
-                storage.setItem(testKey, '1');
-                storage.removeItem(testKey);
-            } catch (error) {
-                alert("We currently don't support private/incognito windows.  Please reopen the checkin using a normal window for your browser.");
-            }
-        },
-        setupImages: function() {
-            for (var key in this.savedImages) {
-                var imageSet = this.savedImages[key];
-                var $elem = this.$('[data-input='+ key +'] .viewer');
-                if ($elem.length) {
-                    for (var image in imageSet) {
-                        if (!_.has(imageSet[image], 'id')) {
-                            $elem.append(new ImageView({model: new Backbone.Model($.extend(imageSet[image], {input: key}))}).render().$el);
-                        }
-                    }
-                }
-            }
         },
         saveState: function(e) {
             var $elem = this.$el.find(e.currentTarget);
