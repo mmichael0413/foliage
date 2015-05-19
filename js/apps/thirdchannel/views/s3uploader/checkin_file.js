@@ -46,7 +46,7 @@ define(function(require) {
             if (file !== undefined) {
                 var reader = new FileReader();
                 reader.onload = (function (event) {
-                    var model = new FileModel({url: self.$form.attr('action'), policy: self.$form.serializeObject(), source: event.target.result, input: self.$el.data('input')});
+                    var model = new FileModel({url: self.$form.attr('action'), policy: self.$form.serializeObject(), source: event.target.result});
                     self.$viewer.append(new UploadView({model: model}).render().$el);
                     model.save({file: file})
                          .success(function () {
@@ -63,7 +63,7 @@ define(function(require) {
             }
         },
         fileUploadError: function() {
-            var $error = this.$el.find('.error');
+            var $error = this.$('.error');
             if ($error.length > 0) {
                 $error.html(HandlebarsTemplates['thirdchannel/s3uploader/error']());
             } else {
