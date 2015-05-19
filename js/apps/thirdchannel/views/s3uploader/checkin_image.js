@@ -25,14 +25,15 @@ define(function(require) {
             return this;
         },
         updated: function(e) {
-            /*
-            this.model.set({label: e.target.value});
-            context.trigger('image:updated', this.model);
-            */
+            var attrs = {};
+            attrs[e.target.getAttribute('data-attribute')] = e.target.value;
+            this.model.save(attrs, {patch: true});
         },
         deleted: function(e) {
-            context.trigger('image:deleted', this.model);
-            this.remove();
+            var self = this;
+            this.model.destroy().then(function() {
+                self.remove();
+            });
         }
     });
 });

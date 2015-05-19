@@ -43,11 +43,7 @@ define(function(require) {
                 });
             });
 
-            /*
-            this.formValidation = new FormValidate({errorPlacementClass: '.question'}).render(this.formView);
-
-            this.setupImages();
-            */
+            //this.formValidation = new FormValidate({errorPlacementClass: '.question'}).render(this.formView);
 
             return this;
         },
