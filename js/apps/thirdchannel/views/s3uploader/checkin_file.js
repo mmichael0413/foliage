@@ -81,7 +81,7 @@ define(function(require) {
             this.$viewer.append(new ImageView({model: image}).render().$el);
         },
         clearFileInput: function() {
-            var input = this.$form.find("input:file");
+            var input = this.$("input:file");
             input.replaceWith(input.val('').clone(true));
         }
     });
