@@ -28,7 +28,7 @@ define(function(require) {
         submit: function(e, data) {
             this.$el.find(".checkin-form-btn").prop('disabled', true);
             this.$el.find(".checkin-form-btn i").removeClass('ic ic_check').addClass("fa fa-spin fa-spinner");
-            this.$el.find('form').submit();
+            this.$el.find('form')[0].submit();
         }
     });
 });
