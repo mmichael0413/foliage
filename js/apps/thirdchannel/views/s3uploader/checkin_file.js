@@ -95,11 +95,17 @@ define(function(require) {
 
                 // ...
                 image.beforeImages = self.model.beforeImages;
+
+                var view = new ImageView({model: image});
+
+                view.render();
+
+                // ...
                 if(self.imageType === 'after') {
-                    image.renderOptions();
+                    view.renderOptions();
                 }
 
-                self.$viewer.append(new ImageView({model: image}).render().$el);
+                self.$viewer.append(view.$el);
             }).fail(function() {
                 self.fileUploadError();
             });
