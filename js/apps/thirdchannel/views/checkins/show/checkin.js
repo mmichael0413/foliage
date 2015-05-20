@@ -7,8 +7,7 @@ define(function(require) {
         Expanding = require('expanding'),
         DateTimePicker = require('dateTimePicker'),
         context = require('context'),
-        FileView = require('thirdchannel/views/s3uploader/checkin_file'),
-        ImageView = require('thirdchannel/views/s3uploader/checkin_image');
+        FileView = require('thirdchannel/views/s3uploader/checkin_file');
 
     return Backbone.View.extend({
         el: ".checkin",
@@ -32,6 +31,8 @@ define(function(require) {
             this.inventoryTotal = this.$('input.inventory-total');
             this.inventories = this.$('input.inventory');
             this.errorPlacementClass = '.question';
+            this.model.set('groupLabels', this.$form.data('group-labels'));
+            //this.listenTo(this.model, 'groupLabels', function() { alert('changed'); });
         },
         render: function() {
             var self = this;
@@ -84,7 +85,8 @@ define(function(require) {
         hideElement: function(e) {
             this.$(e.currentTarget.getAttribute('data-hide-element')).hide('fast', "linear").val('').trigger('change');
         },
-        validateForm: function() {
+        validateForm: function(e) {
+            e.preventDefault();
             if (this.valid()) {
                 this.$(".checkin-form-btn").prop('disabled', true);
                 this.$(".checkin-form-btn i").removeClass('ic ic_check').addClass("fa fa-spin fa-spinner");
@@ -102,7 +104,35 @@ define(function(require) {
         },
         valid: function() {
             this.validCalled = true;
-            return this.$form.valid();
+
+            var questionsValid = this.$form.valid(),
+                imagesValid = true;
+
+            var $beforeImages = this.$('.images.before'),
+                $afterImages = this.$('.images.after');
+
+            // TODO: jquery validator doesn't play nice with input arrays...
+            $beforeImages.removeClass('error');
+            $beforeImages.find('label.error').remove();
+
+            $afterImages.removeClass('error');
+            $afterImages.find('label.error').remove();
+
+            if($beforeImages.find('.holder').length === 0) {
+                $beforeImages.addClass('error');
+                $('<label class="error">This field is required.</label>').insertAfter(this.$('#before_file'));
+
+                imagesValid = false;
+            } // else verify that group labels are present
+
+            if($afterImages.find('.holder').length === 0) {
+                $afterImages.addClass('error');
+                $('<label class="error">This field is required.</label>').insertAfter(this.$('#after_file'));
+
+                imagesValid = false;
+            } // else verify that group labels are present
+
+            return questionsValid && imagesValid;
         },
         errorPlacement: function(error, element) {
             var input = this.$(element),

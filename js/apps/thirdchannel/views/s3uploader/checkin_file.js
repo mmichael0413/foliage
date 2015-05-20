@@ -17,6 +17,7 @@ define(function(require) {
         initialize: function() {
             var self = this;
 
+            this.imageType = self.$el.data('image-type');
             this.$form = $('.s3_uploader');
             this.$viewer = this.$('.viewer');
 
@@ -24,7 +25,7 @@ define(function(require) {
                 var $holder = $(this),
                     m = new ImageModel({
                         id: $holder.find('.image_id').val(),
-                        image_type: self.$el.data('image-type'),
+                        image_type: self.imageType,
                         group_label: $holder.find('.image_group_label').val(),
                         label: $holder.find('.image_label').val(),
                         temp_location: $holder.find('.image_temp_location').val(),
@@ -74,7 +75,7 @@ define(function(require) {
         fileUploaded: function(file) {
             var self = this,
                 image = new ImageModel({
-                    image_type: this.$el.data('image-type'),
+                    image_type: this.imageType,
                     temp_location: file.get('temp_location'),
                     programId: this.model.get('programId'),
                     checkinId: this.model.get('checkinId')
