@@ -111,7 +111,10 @@ define(function(require) {
             var $beforeImages = this.$('.images.before'),
                 $afterImages = this.$('.images.after');
 
+            var $requiredLabel = $('<label class="error">This field is required.</label>');
+
             // TODO: jquery validator doesn't play nice with input arrays...
+            // This should get updated once we re-arch the checkin system
             $beforeImages.removeClass('error');
             $beforeImages.find('label.error').remove();
 
@@ -120,17 +123,22 @@ define(function(require) {
 
             if($beforeImages.find('.holder').length === 0) {
                 $beforeImages.addClass('error');
-                $('<label class="error">This field is required.</label>').insertAfter(this.$('#before_file'));
+                $requiredLabel.insertAfter(this.$('#before_file'));
 
                 imagesValid = false;
-            } // else verify that group labels are present
+            } else {
+                // verify that each image has a group label
+                
+            }
 
             if($afterImages.find('.holder').length === 0) {
                 $afterImages.addClass('error');
-                $('<label class="error">This field is required.</label>').insertAfter(this.$('#after_file'));
+                $requiredLabel.insertAfter(this.$('#after_file'));
 
                 imagesValid = false;
-            } // else verify that group labels are present
+            } else {
+                // verify that each image has a group label
+            }
 
             return questionsValid && imagesValid;
         },
