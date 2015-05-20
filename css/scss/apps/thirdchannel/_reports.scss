@@ -227,19 +227,23 @@ ul.heatmap-legend {
   margin: 0;
 
   &::after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
     content: ' ';
     clear: both;
+    height: 0;
   }
 
   li {
     float: left;
     position: relative;
-    padding-left: 1.25em;
+    padding-right: 1.25em;
     margin-bottom: 0.3em;
     list-style-type: none;
 
-    &:first-child {
-      padding-left: 0;
+    &:last-child {
+      padding-right: 0;
     }
 
     i {
@@ -261,8 +265,7 @@ ul.heatmap-legend {
   }
 
   g.tick text {
-    font-family: 'Open Sans', 'sans-serif';
-    font-size: 0.9em;
+    font: 0.9em 'Open Sans', 'sans-serif';
   }
 }
 
