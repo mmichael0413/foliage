@@ -19,10 +19,31 @@ define(function(require) {
                     this.template = HandlebarsTemplates['thirdchannel/s3uploader/checkin_image_group_select'];
                     break;
             }
+
+            // We want to update the available group label selections for after images based on the before images
+            // ... not the best of solutions, but should change with checkin re-arch!...
+            if(this.model.get('image_type') === 'after') {
+                this.listenTo(this.model.beforeImages, 'change:group_label', this.renderOptions);
+            }
         },
         render: function() {
             this.$el.html(this.template(this.model.toJSON()));
             return this;
+        },
+        renderOptions: function() {
+            console.log('#renderOptions');
+            if(this.model.get('image_type') === 'after') {
+                var $groupLabel = this.$('.image_group_label');
+
+                var attrs = {
+                    group_labels: this.model.beforeImages.map(function(i) { return i.get('group_label'); })
+                };
+
+                $groupLabel.html(HandlebarsTemplates['thirdchannel/s3uploader/checkin_group_label_options'](attrs));
+                $groupLabel.find('[value="' + this.model.get('group_label') + '"]').attr({'selected': 'selected'});
+
+                $groupLabel.trigger('chosen:updated');
+            }
         },
         updated: function(e) {
             var attrs = {},

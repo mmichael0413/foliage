@@ -2247,6 +2247,31 @@ function program2(depth0,data) {
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/s3uploader/checkin_group_label_options"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    <option value=\"";
+  stack1 = (typeof depth0 === functionType ? depth0.apply(depth0) : depth0);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\">";
+  stack1 = (typeof depth0 === functionType ? depth0.apply(depth0) : depth0);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</option>\n";
+  return buffer;
+  }
+
+  buffer += "<option value=\"\">Select corresponding before image label...</option>\n";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.group_labels), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/s3uploader/checkin_image"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};

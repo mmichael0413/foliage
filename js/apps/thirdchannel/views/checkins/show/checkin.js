@@ -30,7 +30,7 @@ define(function(require) {
             this.inventoryTotal = this.$('input.inventory-total');
             this.inventories = this.$('input.inventory');
             this.errorPlacementClass = '.question';
-            //this.model.set('groupLabels', this.$form.data('group-labels'));
+            this.model.beforeImages = new Backbone.Collection();
         },
         render: function() {
             var self = this;

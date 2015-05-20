@@ -33,6 +33,13 @@ define(function(require) {
                         checkinId: self.model.get('checkinId')
                     });
 
+                if(self.imageType === 'before') {
+                    self.model.beforeImages.add(m);
+                }
+
+                // ...
+                m.beforeImages = self.model.beforeImages;
+
                 new ImageView({model: m}).setElement(this);
             });
         },
@@ -82,6 +89,16 @@ define(function(require) {
                 });
 
             image.save().then(function() {
+                if(self.imageType === 'before') {
+                    self.model.beforeImages.add(image);
+                }
+
+                // ...
+                image.beforeImages = self.model.beforeImages;
+                if(self.imageType === 'after') {
+                    image.renderOptions();
+                }
+
                 self.$viewer.append(new ImageView({model: image}).render().$el);
             }).fail(function() {
                 self.fileUploadError();
