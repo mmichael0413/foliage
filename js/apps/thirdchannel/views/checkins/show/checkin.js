@@ -41,7 +41,7 @@ define(function(require) {
 
             // create a image file view to manage each image set
             this.$('.body.images').each(function() {
-                var fileView = new FileView({
+                new FileView({
                     el: this,
                     model: self.model
                 });
