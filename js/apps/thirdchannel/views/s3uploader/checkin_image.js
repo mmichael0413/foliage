@@ -41,6 +41,7 @@ define(function(require) {
                 $groupLabel.html(HandlebarsTemplates['thirdchannel/s3uploader/checkin_group_label_options'](attrs));
                 $groupLabel.find('[value="' + this.model.get('group_label') + '"]').attr({'selected': 'selected'});
 
+                this.$('select').chosen({disable_search: true, width: "100%"});
                 $groupLabel.trigger('chosen:updated');
             }
         },
