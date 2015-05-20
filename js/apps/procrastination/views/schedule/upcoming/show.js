@@ -1,5 +1,6 @@
 define(function (require) {
     var Backbone = require('backbone'),
+        context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
     ScheduleView = Backbone.View.extend({
@@ -13,7 +14,8 @@ define(function (require) {
 
         },
         events: {
-            "change input": "updateScheduledDate"
+            "change input": "updateScheduledDate",
+            "click .unassign" : "unassign"
         },
         render: function () {
             this.$el.html(this.template(this.model.attributes));
@@ -49,6 +51,13 @@ define(function (require) {
                 if (this.model.hasChanged('dateScheduled')) {
                     this.model.save(this.model.attributes);
                 }
+            }
+        },
+        unassign: function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            if(confirm('This operation cannot be undone. Are you sure you want to remove this visit?')) {
+                this.model.destroy({wait: true, data: {id: this.model.id, aggregateId: context.aggregateId}});
             }
         }
     });
