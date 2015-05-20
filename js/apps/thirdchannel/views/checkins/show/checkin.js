@@ -159,7 +159,7 @@ define(function(require) {
                         imagesValid = false;
 
                         $labelField.parent().addClass('error');
-                        $labelField.after(requiredLabel);
+                        $labelField.parent().append(requiredLabel);
                     }
                 });
             }
