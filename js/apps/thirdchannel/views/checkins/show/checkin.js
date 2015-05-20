@@ -123,7 +123,7 @@ define(function(require) {
             this.$('.image_group_label').parent().removeClass('error');
 
             var $groupLabels = null;
-            
+
             if($beforeImages.find('.holder').length === 0) {
                 $beforeImages.addClass('error');
                 this.$('#before_file').after(requiredLabel);
