@@ -111,15 +111,18 @@ define(function(require) {
             var $beforeImages = this.$('.images.before'),
                 $afterImages = this.$('.images.after');
 
+            // TODO: move to template?
             var requiredLabel = '<label class="error">This field is required.</label>';
 
-            // TODO: jquery validator doesn't play nice with input arrays...
-            // This should get updated once we re-arch the checkin system
+            // TODO: jquery validator doesn't play nice with input arrays... This should get updated once we re-arch the checkin system
+            // clean up existing errors before re-validating
             $beforeImages.removeClass('error');
             $beforeImages.find('label.error').remove();
 
             $afterImages.removeClass('error');
             $afterImages.find('label.error').remove();
+
+            this.$('.image_group_label').parent().removeClass('error');
 
             if($beforeImages.find('.holder').length === 0) {
                 $beforeImages.addClass('error');
@@ -128,7 +131,17 @@ define(function(require) {
                 imagesValid = false;
             } else {
                 // verify that each image has a group label
+                var $groupLabels = $beforeImages.find('input.image_group_label');
 
+                _.each($groupLabels, function(labelField) {
+                   var $labelField = $(labelField);
+                   if($labelField.val() === '') {
+                       imagesValid = false;
+
+                       $labelField.parent().addClass('error');
+                       $labelField.after(requiredLabel);
+                   }
+                });
             }
 
             if($afterImages.find('.holder').length === 0) {
@@ -138,6 +151,17 @@ define(function(require) {
                 imagesValid = false;
             } else {
                 // verify that each image has a group label
+                var $groupLabels = $afterImages.find('select.image_group_label');
+
+                _.each($groupLabels, function(labelField) {
+                    var $labelField = $(labelField);
+                    if($labelField.val() === '') {
+                        imagesValid = false;
+
+                        $labelField.parent().addClass('error');
+                        $labelField.after(requiredLabel);
+                    }
+                });
             }
 
             return questionsValid && imagesValid;
