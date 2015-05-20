@@ -19,7 +19,8 @@ require.config({
         'pikaday'       : '../libs/bower_components/pikaday/pikaday',
         'context'       : 'shared/utils/context',
         'fullcalendar'  : '../libs/bower_components/fullcalendar/dist/fullcalendar',
-        'moment'        : '../libs/bower_components/moment/moment'
+        'moment'        : '../libs/bower_components/moment/moment',
+        'syncOverride'  : 'shared/utils/syncOverride'
         
 
     },
@@ -62,6 +63,9 @@ require.config({
         },
         'fullcalendar' : {
             deps: ["moment", "jquery"]
+        },
+        'syncOverride' : {
+            deps: ["backbone"]
         }
     }
 });

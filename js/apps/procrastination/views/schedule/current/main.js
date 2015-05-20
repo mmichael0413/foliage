@@ -13,6 +13,8 @@ define(function (require) {
                 personId: context.personId,
                 programId: context.programId
             });
+
+            this.listenTo(this.collection, 'destroy', this.destroy);
         },
 
         fetch: function (reset) {
@@ -24,7 +26,7 @@ define(function (require) {
 
         render: function () {
             var self = this;
-
+            this.$el.html("");
             if (this.collection.models.length === 0) {
                 this.$el.append('No visits have been scheduled for this month.');
                 return this;
@@ -41,6 +43,9 @@ define(function (require) {
                 var group = new ScheduleRowGroup({date: date, visits: groupedVisits[date]});
                 self.$el.append(group.render().el);
             });
+        },
+        destroy: function() {
+            this.render();
         }
     });
 });
