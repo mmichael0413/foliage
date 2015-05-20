@@ -24,6 +24,9 @@ define(function(require) {
             // ... not the best of solutions, but should change with checkin re-arch!...
             if(this.model.get('image_type') === 'after') {
                 this.listenTo(this.model.beforeImages, 'change:group_label', this.renderOptions);
+                this.listenTo(this.model.beforeImages, 'change:group_label', this.maybeUpdateGroupLabel);
+                this.listenTo(this.model.beforeImages, 'remove', this.renderOptions);
+                this.listenTo(this.model.beforeImages, 'remove', this.maybeUpdateGroupLabel);
             }
         },
         render: function() {
@@ -45,6 +48,14 @@ define(function(require) {
                 $groupLabel.trigger('chosen:updated');
             }
         },
+        maybeUpdateGroupLabel: function() {
+            var labels = this.model.beforeImages.map(function(i) { return i.get('group_label'); });
+
+            // clear the group label if the before image group label doesn't exist anymore...
+            if(!_.contains(labels, this.model.get('group_label'))) {
+                this.model.save({group_label: ''}, {patch: true});
+            }
+        },
         updated: function(e) {
             var attrs = {},
                 attr = e.target.getAttribute('data-attribute');
@@ -54,7 +65,12 @@ define(function(require) {
         deleted: function(e) {
             e.preventDefault();
             var self = this;
+
             this.model.destroy().then(function() {
+                // ...
+                if(self.model.get('group_label') === 'before') {
+                    self.model.beforeImages.remove(self.model);
+                }
                 self.remove();
             });
         }
