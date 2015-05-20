@@ -9,7 +9,11 @@ define(function(require) {
         /**
          * SalesCompare View is the main driver on the Sales Compare page.
          * Responsible for fetching sales information from the server, and rendering the individual widget views.
+         * 
          *
+         * Delete?
+         *
+         * 
          * events triggered:
          * topStores:received
          * 
@@ -20,7 +24,8 @@ define(function(require) {
             el: ".content",
             loadingHTML: "<i class='fa fa-spin fa-spinner fa-4x'></i>",
             initialize: function () {
-                this.model = new QueryStringAwareModel({baseURL: context.links.salesCompare.self});
+                console.log("Will use the url " + context.links.salesCompare.side);
+                this.model = new QueryStringAwareModel({baseURL: context.links.salesCompare.side});
                 this.$leftRetail = this.$el.find('.left .retail-sales .body');
                 this.$rightRetail = this.$el.find('.right .retail-sales .body');
                 

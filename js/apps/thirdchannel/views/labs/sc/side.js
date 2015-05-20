@@ -21,34 +21,40 @@ define(function(require) {
 		 */
 		SalesCompareSideView = Backbone.View.extend({
 			initialize: function (opts) {
-				if (opts.el === undefined) {
-					throw "No 'el' parameter set in constructor for the SalesCompareSideView";
+				if (opts.groupSelect === undefined) {
+					throw "No 'groupSelect' parameter set in constructor for the SalesCompareSideView";
 				}
-				this.setElement($(opts.el));
-				this.global = opts.global;
-				this.$meta = this.$el.find('.meta');
-				this.$widgetContainer = this.$el.find('.widget-container');
-				this.loadingHTML = this.$meta.html();
-
+				this.$groupSelect = opts.groupSelect;
+				// this.setElement($(opts.el));
+				// this.global = opts.global;
+				// this.$meta = this.$el.find('.meta');
+				// this.$widgetContainer = this.$el.find('.widget-container');
+				this.loadingHTML = this.$el.find(".loader")[0];
 				this.model = new SalesCompareModel();
 
-				this.listenTo(context, "topStores:received", this.loadData);
+				//this.listenTo(context, "topStores:received", this.loadData);
+				this.listenTo(context, 'filter:query', this.applyFilter);
 				this.listenTo(this.model, "sync", this.render);
+				console.log("ready");
+				return this;
 			},
 
-			loadData: function (eventData) {
-				this.$meta.html(this.loadingHTML);
-				this.$widgetContainer.html("");
-				var qs = eventData.queryString;
-				if (this.global !== true) {
-					qs = qs+"&uuids=" + eventData.uuids;
-				} else {
-					qs = qs+"&totalStores=" + eventData.totalStores;
-				}
+
+
+			applyFilter: function (qs) {
+				//this.$meta.html(this.loadingHTML);
+				//this.$widgetContainer.html("");
+				this.$el.html(this.loadingHTML);
+				// if (this.global !== true) {
+				// 	qs = qs+"&uuids=" + eventData.uuids;
+				// } else {
+				// 	qs = qs+"&totalStores=" + eventData.totalStores;
+				// }
+				qs = qs + "&group=" + encodeURIComponent(this.$groupSelect.val());
 				this.model.setQueryString(qs);
 				this.model.fetch()
 					.fail(function () {
-						console.log("ahhhh");
+						
 					});
 
 			},
@@ -56,7 +62,6 @@ define(function(require) {
 			render: function () {
 				this._renderMeta();
 				this._renderWidgets("Visual Merchandising", ["averageBackstock", "averageBackstockMoved", "currentPOP", "whyNoPop", "sharing", "otherBrands"]);
-				//this._renderWidgets("Physical Footprint", ["fixtures", "damage", "visibility"]);
 				this._renderWidgets("Physical Footprint", ["visibility", "presenceChange"]);
 				this._renderWidgets("Store Associate Education", ["educatedOn", "knowledgeable", "enthused"]);
 				this._renderWidgets("Customer Interactions", ["averageEducated", "averageConsumersSpoken", "averageSold"]);
