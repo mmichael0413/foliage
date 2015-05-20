@@ -21,9 +21,8 @@ define(function(require) {
             'blur .question input.inventory': 'updateTotal',
             "click .question [data-show-element]" : 'showElement',
             "click .question [data-hide-element]" : 'hideElement',
-            "change .question input[type=hidden]": "validate",
-            "change:nosave .question input[type=hidden]": "validate",
-            "change .question select": "validate"
+            "change .question input[type=hidden], change .question select": "validate",
+            "change:nosave .question input[type=hidden]": "validate"
         },
         initialize: function() {
             _.bindAll(this, 'errorPlacement', 'validateSuccess', 'highlight', 'unhighlight');
@@ -31,8 +30,7 @@ define(function(require) {
             this.inventoryTotal = this.$('input.inventory-total');
             this.inventories = this.$('input.inventory');
             this.errorPlacementClass = '.question';
-            this.model.set('groupLabels', this.$form.data('group-labels'));
-            //this.listenTo(this.model, 'groupLabels', function() { alert('changed'); });
+            //this.model.set('groupLabels', this.$form.data('group-labels'));
         },
         render: function() {
             var self = this;
@@ -124,6 +122,8 @@ define(function(require) {
 
             this.$('.image_group_label').parent().removeClass('error');
 
+            var $groupLabels = null;
+            
             if($beforeImages.find('.holder').length === 0) {
                 $beforeImages.addClass('error');
                 this.$('#before_file').after(requiredLabel);
@@ -131,7 +131,7 @@ define(function(require) {
                 imagesValid = false;
             } else {
                 // verify that each image has a group label
-                var $groupLabels = $beforeImages.find('input.image_group_label');
+                $groupLabels = $beforeImages.find('input.image_group_label');
 
                 _.each($groupLabels, function(labelField) {
                    var $labelField = $(labelField);
@@ -151,7 +151,7 @@ define(function(require) {
                 imagesValid = false;
             } else {
                 // verify that each image has a group label
-                var $groupLabels = $afterImages.find('select.image_group_label');
+                $groupLabels = $afterImages.find('select.image_group_label');
 
                 _.each($groupLabels, function(labelField) {
                     var $labelField = $(labelField);
