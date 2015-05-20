@@ -31,7 +31,6 @@ define(function(require) {
             return this;
         },
         renderOptions: function() {
-            console.log('#renderOptions');
             if(this.model.get('image_type') === 'after') {
                 var $groupLabel = this.$('.image_group_label');
 
