@@ -59,13 +59,13 @@ define(function(require) {
                 
                 return false;
             }
-            
+
             shouldTrigger = this.renderFilterCollection(data.collection, qsHash);
 
             var self = this;
 
             if (data.url) {
-                
+
                 var $spinner = $(spinnerTemplate()),
                     asyncFilters = new (Backbone.Collection.extend({
                         url: data.url
@@ -79,11 +79,12 @@ define(function(require) {
                 .done(function () {
                     //console.log(arguments);
                     self.renderFilterCollection(asyncFilters, qsHash);
+                    self.broadCastQueryString();
                 });
             }
-            
 
             this._applyQSGlobal(qsHash);
+            this.broadCastQueryString();
 
             this.listenTo(context, 'filter:request', this.handleFilterRequest);
             this.listenTo(context, 'filter:request:queryString', _.debounce(function () {
@@ -132,8 +133,6 @@ define(function(require) {
                     }
                 }
             });
-
-            this.broadCastQueryString();
 
             return shouldTrigger;
         },

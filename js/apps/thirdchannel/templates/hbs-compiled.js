@@ -1753,7 +1753,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n        <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">View Breakdown</a>\n    ";
+  return "\n        <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\" target=\"_blank\">View Breakdown</a>\n    ";
   }
 
   buffer += "<div class=\"widget "
@@ -1789,7 +1789,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n            <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">View Breakdown</a>\n        ";
+  return "\n            <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\" target=\"_blank\">View Breakdown</a>\n        ";
   }
 
   buffer += "<div class=\"widget "
@@ -2035,7 +2035,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n            <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">\n        ";
+  return "\n            <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\" target=\"_blank\">\n        ";
   }
 
 function program3(depth0,data) {
@@ -2178,7 +2178,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "<a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">";
+  return "<a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\" target=\"_blank\">";
   }
 
 function program3(depth0,data) {

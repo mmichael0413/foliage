@@ -122,9 +122,7 @@ define(function(require) {
                     });
                 }
 
-                //context.router.navigate(viewBreakDownLink, {trigger: true});
-                // ugh...
-                window.location = viewBreakDownLink;
+                window.open(viewBreakDownLink);
             }
         },
         buildLegend: function() {
