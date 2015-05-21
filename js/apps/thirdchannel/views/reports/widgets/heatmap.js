@@ -111,7 +111,14 @@ define(function(require) {
 
                 if (data.info_list_filters !== undefined) {
                     _.each(data.info_list_filters, function (val, param) {
-                        viewBreakDownLink += '&' + param + '=' + val;
+                        if ($.isArray(val)) {
+                            _.each(val, function (arrayVal) {
+                                viewBreakDownLink += '&' + param + '=' + arrayVal;
+                            });
+                        } else {
+                            viewBreakDownLink += '&' + param + '=' + val;
+                        }
+
                     });
                 }
 
