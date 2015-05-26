@@ -1234,19 +1234,19 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"col-1-6\">\n	<p class=\"statistic\">";
+  buffer += "<section class=\"section labs pure-g\">\n	<div class=\"col-1-6\">\n		<p class=\"statistic\">";
   if (helper = helpers.totalStores) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.totalStores); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n	<p>Stores</p>\n</div>\n\n<div class=\"col-1-3\">\n	<p class=\"statistic\">";
+    + "</p>\n		<p>Stores</p>\n	</div>\n\n	<div class=\"col-1-3\">\n		<p class=\"statistic\">";
   if (helper = helpers.states) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.states); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n	<p>States Covered</p>\n</div>\n\n<div class=\"col-1-2\">\n	<p class=\"statistic\">";
+    + "</p>\n		<p>States Covered</p>\n	</div>\n\n	<div class=\"col-1-2\">\n		<p class=\"statistic\">";
   if (helper = helpers.averageUnits) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.averageUnits); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n	<p>Avg. Units on Display</p>\n</div>";
+    + "</p>\n		<p>Avg. Units on Display</p>\n	</div>	\n</section>\n";
   return buffer;
   });
 
@@ -1258,22 +1258,22 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n";
+  return "\n	";
   }
 
 function program3(depth0,data) {
   
   
-  return "\n<p class=\"col-1-1\">No Sales numbers found for this date range</p>\n";
+  return "\n	<p class=\"col-1-1\">No Sales numbers found for this date range</p>\n	";
   }
 
-  buffer += "<canvas width=\"400\" height=\"400\" class=\"retail-sales\"></canvas>\n";
+  buffer += "<section class=\"section labs\">\n	<h2 class=\"header\">Average Retail Sales ($USD)</h2>\n	<canvas width=\"450\" height=\"450\" class=\"retail-sales\">	</canvas>\n	";
   options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
   if (helper = helpers.sales) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.sales); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.sales) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n\n";
+  buffer += "\n	\n</section>\n\n\n";
   return buffer;
   });
 
@@ -1753,7 +1753,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n        <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">View Breakdown</a>\n    ";
+  return "\n        <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\" target=\"_blank\">View Breakdown</a>\n    ";
   }
 
   buffer += "<div class=\"widget "
@@ -1789,7 +1789,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n            <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">View Breakdown</a>\n        ";
+  return "\n            <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\" target=\"_blank\">View Breakdown</a>\n        ";
   }
 
   buffer += "<div class=\"widget "
@@ -2035,7 +2035,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n            <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">\n        ";
+  return "\n            <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\" target=\"_blank\">\n        ";
   }
 
 function program3(depth0,data) {
@@ -2178,7 +2178,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "<a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">";
+  return "<a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\" target=\"_blank\">";
   }
 
 function program3(depth0,data) {
