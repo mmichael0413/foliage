@@ -56,8 +56,17 @@ define(function(require) {
             this.$el.empty();
             this.$el.append(this.loadingView.render().$el);
             this.model.queryString = qs;
-            this.model.fetch({success: function (model) {
+
+            // Aborts the currently executed queried report so that we don't display it
+            if (this.xhr !== undefined) {
+                this.xhr.abort();
+            }
+
+            this.xhr = this.model.fetch({success: function (model) {
+                // Clear out the view just incase it wasn't before.
+                that.$el.empty();
                 that.constructView(model);
+                that.xhr = undefined;
             }});
         },
         triggerPostRender: function() {
