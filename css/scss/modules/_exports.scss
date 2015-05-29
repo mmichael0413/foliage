@@ -1,0 +1,19 @@
+.export-modal {
+    padding: 5rem;
+    text-align: center;
+
+    &.progress {
+        div:first-child {
+            font-size: 0.75rem;
+        }
+        div:last-child {
+            padding-top: 1rem;
+            font-size: 3rem;
+            color: $red;
+        }
+    }
+
+    &.success {
+        font-size: 1.5rem;
+    }
+}
