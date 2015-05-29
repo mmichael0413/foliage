@@ -8,6 +8,7 @@ define(function(require){
         templates: {
             progress: 'thirdchannel/modals/export/progress',
             error: 'thirdchannel/modals/export/error',
+            timeout: 'thirdchannel/modals/export/timeout',
             success: 'thirdchannel/modals/export/success'
         },
         cancelEl: '.bbm-button',
@@ -15,6 +16,7 @@ define(function(require){
             _.bindAll(this, 'fetchCSV', 'updateView');
             this.model = options.model;
             this.templateName = this.templates.progress;
+            this.retries = 0;
         },
         template: function () {
             return HandlebarsTemplates[this.templateName](this.getTemplateData());
@@ -33,8 +35,10 @@ define(function(require){
             var self = this;
             this.xhr = this.model.fetch({
                 success: function (model, response, options) {
-                    if (options.xhr.status == 202) {
-                        setTimeout(self.fetchCSV, 500000);
+                    if (self.retries++ > 60) {
+                        self.updateView(self.templates.timeout);
+                    } else if (options.xhr.status == 202) {
+                        setTimeout(self.fetchCSV, 5000);
                     } else {
                         self.updateView(self.templates.success);
                     }

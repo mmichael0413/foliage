@@ -1382,6 +1382,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/modals/export/timeout"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"export-modal error\">\n    The requested CSV has timed out.  Please contact <a href=\"mailto:techsupport@thirdchannel.com\">techsupport@thirdchannel.com</a> for further assistance.\n</div>";
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/new-comment"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
