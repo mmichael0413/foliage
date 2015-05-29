@@ -230,7 +230,7 @@ function program1(depth0,data) {
     + "\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.canUnassign), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>\n\n";
+  buffer += "\n</div>";
   return buffer;
   });
 
@@ -309,7 +309,7 @@ function program3(depth0,data) {
   if (helper = helpers.dateScheduled) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.dateScheduled); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" style=\"display: none;\"/>\n";
+    + "\" style=\"display: none;\"/>\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.canUnassign), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer;

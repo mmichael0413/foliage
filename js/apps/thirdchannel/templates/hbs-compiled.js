@@ -1350,6 +1350,38 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return "<div class=\"section loading-section\">\n    <div class=\"loading\">\n        <div class=\"fa fa-spin fa-spinner\"></div> Loading...\n    </div>\n</div>\n\n";
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/modals/export/error"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"export-modal error\">\n    We have encountered an error.  Please contact <a href=\"mailto:techsupport@thirdchannel.com\">techsupport@thirdchannel.com</a>\n</div>";
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/modals/export/progress"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"export-modal progress\">Please wait while we generate the requested CSV.\n    <div>(Please be aware this could take up to 5 minutes.)</div>\n    <div><i class=\"ic ic_processing fa-spin\"></i></div>\n</div>";
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/modals/export/success"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"export-modal success\">\n    Export Successful!\n    <div><a href=\"";
+  if (helper = helpers.href) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.href); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">Download CSV</a></div>\n</div>";
+  return buffer;
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/new-comment"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
