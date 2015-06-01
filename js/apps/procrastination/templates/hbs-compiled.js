@@ -199,8 +199,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["procrastination"]["templates"]["procrastination/schedule/schedule_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  
+  return "<a href=\"#\" class='unassign'>Unassign Visit</a>";
+  }
 
   buffer += "<div class=\"schedule-row\">\n    <strong>";
   if (helper = helpers.taskDetail) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -222,7 +227,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.state) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.state); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\n</div>";
+    + "\n    ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.canUnassign), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</div>";
   return buffer;
   });
 
@@ -265,6 +273,12 @@ function program1(depth0,data) {
   return buffer;
   }
 
+function program3(depth0,data) {
+  
+  
+  return "<a href=\"#\" class='unassign'>Unassign Visit</a>";
+  }
+
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.taskDetail), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n<div>";
@@ -295,7 +309,9 @@ function program1(depth0,data) {
   if (helper = helpers.dateScheduled) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.dateScheduled); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" style=\"display: none;\"/>\n";
+    + "\" style=\"display: none;\"/>\n    ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.canUnassign), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer;
   });
 
