@@ -9,7 +9,7 @@ require.config({
         'underscore': '../libs/bower_components/underscore/underscore',
         'backbone': '../libs/bower_components/backbone/backbone',
         'handlebars': '../libs/bower_components/handlebars/handlebars.min',
-        'handlebarsTemplates': 'thirdchannel/templates/hbs-compiled',
+        'handlebarsTemplates': 'bigTastysBackDoor/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
         'context': 'shared/utils/context',
         'jquery_ujs' : '../libs/bower_components/jquery-ujs/src/rails',
