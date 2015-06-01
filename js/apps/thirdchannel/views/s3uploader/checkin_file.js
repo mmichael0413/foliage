@@ -26,7 +26,6 @@ define(function(require) {
                     m = new ImageModel({
                         id: $holder.find('.image_id').val(),
                         image_type: self.imageType,
-                        group_label: $holder.find('.image_group_label').val(),
                         label: $holder.find('.image_label').val(),
                         temp_location: $holder.find('.image_temp_location').val(),
                         programId: self.model.get('programId'),

@@ -11,20 +11,13 @@ define(function(require) {
             "click button": 'deleted'
         },
         initialize: function() {
-            switch(this.model.get('image_type')) {
-                case 'before':
-                    this.template = HandlebarsTemplates['thirdchannel/s3uploader/checkin_image_group'];
-                    break;
-                case 'after':
-                    this.template = HandlebarsTemplates['thirdchannel/s3uploader/checkin_image_group_select'];
-                    break;
-            }
-
-            // We want to update the available group label selections for after images based on the before images
-            // ... not the best of solutions, but should change with checkin re-arch!...
             if(this.model.get('image_type') === 'after') {
-                this.listenTo(this.model.beforeImages, 'change:group_label', this.renderOptions);
-                this.listenTo(this.model.beforeImages, 'change:group_label', this.maybeUpdateGroupLabel);
+                this.template = HandlebarsTemplates['thirdchannel/s3uploader/checkin_image_group_select'];
+
+                // We want to update the available group label selections for after images based on the before images
+                // ... not the best of solutions, but should change with checkin re-arch!...
+                this.listenTo(this.model.beforeImages, 'change:label', this.renderOptions);
+                this.listenTo(this.model.beforeImages, 'change:label', this.maybeUpdateGroupLabel);
                 this.listenTo(this.model.beforeImages, 'remove', this.renderOptions);
                 this.listenTo(this.model.beforeImages, 'remove', this.maybeUpdateGroupLabel);
             }
@@ -35,25 +28,25 @@ define(function(require) {
         },
         renderOptions: function() {
             if(this.model.get('image_type') === 'after') {
-                var $groupLabel = this.$('.image_group_label');
+                var $groupLabel = this.$('.image_label');
 
                 var attrs = {
-                    group_labels: this.model.beforeImages.map(function(i) { return i.get('group_label'); })
+                    labels: this.model.beforeImages.map(function(i) { return i.get('label'); })
                 };
 
                 $groupLabel.html(HandlebarsTemplates['thirdchannel/s3uploader/checkin_group_label_options'](attrs));
-                $groupLabel.find('[value="' + this.model.get('group_label') + '"]').attr({'selected': 'selected'});
+                $groupLabel.find('[value="' + this.model.get('label') + '"]').attr({'selected': 'selected'});
 
                 this.$('select').chosen({disable_search: true, width: "100%"});
                 $groupLabel.trigger('chosen:updated');
             }
         },
         maybeUpdateGroupLabel: function() {
-            var labels = this.model.beforeImages.map(function(i) { return i.get('group_label'); });
+            var labels = this.model.beforeImages.map(function(i) { return i.get('label'); });
 
             // clear the group label if the before image group label doesn't exist anymore...
-            if(!_.contains(labels, this.model.get('group_label'))) {
-                this.model.save({group_label: ''}, {patch: true});
+            if(!_.contains(labels, this.model.get('label'))) {
+                this.model.save({label: ''}, {patch: true});
             }
         },
         updated: function(e) {
@@ -68,7 +61,7 @@ define(function(require) {
 
             this.model.destroy().then(function() {
                 // ...
-                if(self.model.get('group_label') === 'before') {
+                if(self.model.get('image_type') === 'before') {
                     self.model.beforeImages.remove(self.model);
                 }
                 self.remove();

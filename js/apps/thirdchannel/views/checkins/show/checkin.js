@@ -120,49 +120,32 @@ define(function(require) {
             $afterImages.removeClass('error');
             $afterImages.find('label.error').remove();
 
-            this.$('.image_group_label').parent().removeClass('error');
-
-            var $groupLabels = null;
+            this.$('.image_label').parent().removeClass('error');
 
             if($beforeImages.find('.holder').length === 0) {
                 $beforeImages.addClass('error');
                 this.$('#before_file').after(requiredLabel);
-
                 imagesValid = false;
-            } else {
-                // verify that each image has a group label
-                $groupLabels = $beforeImages.find('input.image_group_label');
-
-                _.each($groupLabels, function(labelField) {
-                   var $labelField = $(labelField);
-                   if($labelField.val() === '') {
-                       imagesValid = false;
-
-                       $labelField.parent().addClass('error');
-                       $labelField.after(requiredLabel);
-                   }
-                });
             }
 
             if($afterImages.find('.holder').length === 0) {
                 $afterImages.addClass('error');
                 this.$('#after_file').after(requiredLabel);
-
                 imagesValid = false;
-            } else {
-                // verify that each image has a group label
-                $groupLabels = $afterImages.find('select.image_group_label');
-
-                _.each($groupLabels, function(labelField) {
-                    var $labelField = $(labelField);
-                    if($labelField.val() === '') {
-                        imagesValid = false;
-
-                        $labelField.parent().addClass('error');
-                        $labelField.parent().append(requiredLabel);
-                    }
-                });
             }
+
+            // verify labels are present for all images
+            var $labels = this.$('.body.images .image_label');
+
+            _.each($labels, function(labelField) {
+                var $labelField = $(labelField);
+                if($labelField.val() === '') {
+                    imagesValid = false;
+
+                    $labelField.parent().addClass('error');
+                    $labelField.parent().append(requiredLabel);
+                }
+            });
 
             return questionsValid && imagesValid;
         },
