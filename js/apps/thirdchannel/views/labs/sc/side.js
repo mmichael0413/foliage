@@ -1,7 +1,9 @@
+/*globals Chart */
 define(function(require) {
 	var Backbone = require('backbone'),
 		context = require('context'),
 		$ = require('jquery'),
+		_ = require('underscore'),
 		templates = require('handlebarsTemplates'),
 		WidgetView = require('thirdchannel/views/reports/index/widget'),
 
@@ -21,49 +23,49 @@ define(function(require) {
 		 */
 		SalesCompareSideView = Backbone.View.extend({
 			initialize: function (opts) {
-				if (opts.el === undefined) {
-					throw "No 'el' parameter set in constructor for the SalesCompareSideView";
+				if (opts.groupSelect === undefined) {
+					throw "No 'groupSelect' parameter set in constructor for the SalesCompareSideView";
 				}
-				this.setElement($(opts.el));
-				this.global = opts.global;
-				this.$meta = this.$el.find('.meta');
-				this.$widgetContainer = this.$el.find('.widget-container');
-				this.loadingHTML = this.$meta.html();
-
+				this.$groupSelect = opts.groupSelect;
+				this.loadingHTML = this.$el.find(".loader")[0];
 				this.model = new SalesCompareModel();
-
-				this.listenTo(context, "topStores:received", this.loadData);
+				
+				//this.listenTo(this.$groupSelect, "change", this.changeGroup);
+				this.$groupSelect.on('change', function () {
+					//context.trigger('filter:request');
+					this.applyFilter(this.currentQS);
+				}.bind(this));
+				this.listenTo(context, 'filter:query', this.applyFilter);
 				this.listenTo(this.model, "sync", this.render);
+				return this;
 			},
 
-			loadData: function (eventData) {
-				this.$meta.html(this.loadingHTML);
-				this.$widgetContainer.html("");
-				var qs = eventData.queryString;
-				if (this.global !== true) {
-					qs = qs+"&uuids=" + eventData.uuids;
-				} else {
-					qs = qs+"&totalStores=" + eventData.totalStores;
-				}
+
+
+			applyFilter: function (qs) {
+				this.$el.html(this.loadingHTML);
+				this.currentQS = qs;
+				qs = qs + "&group=" + encodeURIComponent(this.$groupSelect.val());
 				this.model.setQueryString(qs);
 				this.model.fetch()
 					.fail(function () {
-						console.log("ahhhh");
+						
 					});
 
 			},
 
 			render: function () {
+				this.$el.html("");
 				this._renderMeta();
-				this._renderWidgets("Visual Merchandising", ["display", "moved", "currentPOP", "sharing", "otherBrands"], function ($template, report) {
-					var downstock = ((report.moved.results.count / report.display.results.count) * 100).toFixed(2);
-					$template.find(".widgets").prepend("<div class='widget'>Downstock vs. Initial Display: <span class='pull-right'>" + downstock + "%</span></div>");
-				});
-				//this._renderWidgets("Physical Footprint", ["fixtures", "damage", "visibility"]);
-				this._renderWidgets("Physical Footprint", ["visibility"]);
-				this._renderWidgets("Store Associate Education", ["educated", "educatedOn"]);
-				this._renderWidgets("Customer Interactions", ["consumersSpoken", "sold", "retail"]);
+				this._renderSales();
+				this._renderWidgets("Visual Merchandising", ["averageBackstock", "averageBackstockMoved", "currentPOP", "whyNoPop", "sharing", "otherBrands"]);
+				this._renderWidgets("Physical Footprint", ["visibility", "presenceChange"]);
+				this._renderWidgets("Store Associate Education", ["educatedOn", "knowledgeable", "enthused"]);
+				this._renderWidgets("Customer Interactions", ["averageEducated", "averageConsumersSpoken", "averageSold"]);
 				this._renderWidgets("Product Categories", ["categories"]);
+				this._renderWidgets("Competitive Landscape", ["brands", "sunglassBrands", "repsCalling"]);
+				this._renderWidgets("Store Associate Product Feedback", ["agentsDiscussion", "receptiveManager"]);
+				this._renderWidgets("Field Rep Presence", ["fmrPresent"]);
 				//fire the post render event to draw the canvas charts
 				context.trigger("report post render");
 				return this;
@@ -81,15 +83,51 @@ define(function(require) {
 			},
 
 			_renderMeta: function () {
+				
 				var data = {
-					totalStores: this.model.get('totalStores'),
+					totalStores: this.model.get('report').totalStores,
 					states: this.model.get('report').states.results.count,
-					averageUnits: this.model.get('report').averageProduct.results.count
+					averageUnits: Math.floor(Number(this.model.get('report').averageProduct.results))
 				};
-				this.$meta.html(templates['thirdchannel/labs/sales_compare/meta'](data));
+				this.$el.append(templates['thirdchannel/labs/sales_compare/meta'](data));
 			},
 
-			
+			_renderSales: function () {
+				this.$el.append(templates['thirdchannel/labs/sales_compare/retail_sales']({sales: this.model.get('report').sales}));
+				var ctx = this.$el.find('.retail-sales')[0].getContext("2d");
+				this._buildChart(ctx, this.model.get('report').sales);
+
+			},
+
+			_buildChart: function (ctx, list) {
+                this._formatCents(list);
+                var labels = _.map(list, function (item) { return item.date; }),
+                    points = _.map(list, function (item) { return item.rawUSD; }),
+                    data = {
+                        labels: labels,
+                        datasets: [
+                        {
+                            label: "Test",
+                            fillColor: "rgba(241,95,81,0.2)",
+                            strokeColor: "rgba(241,95,81,1)",
+                            pointColor: "rgba(241,95,81,1)",
+                            pointStrokeColor: "#fff",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(220,220,220,1)",
+                            data: points
+                        }]
+                    };
+                new Chart(ctx).Line(data, {});
+            },
+
+            _formatCents: function (list) {
+                var i = 0,
+                    max = list.length;
+                for (i; i < max; i++) {
+                    list[i].rawUSD = Math.round(list[i].cents/100);
+                }
+            },
+
 			_renderWidgets: function (title, keys, fn) {
 				var $template = $(templates['thirdchannel/labs/sales_compare/widget_section']({title: title})),
 					report = this.model.get('report'),
@@ -103,8 +141,8 @@ define(function(require) {
 					fn($template, report);
 				}
 				
-				this.$widgetContainer.append($template);
-				this.$widgetContainer.find(".breakdown-link").on("click", function (e) {
+				this.$el.append($template);
+				this.$el.find(".breakdown-link").on("click", function (e) {
 					this.updateLinks(e);
 				}.bind(this));
 			}
