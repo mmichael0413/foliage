@@ -89,6 +89,9 @@ define(function (require) {
                 aspectRatio: 1
             });
 
+            this.listenTo(this.collection, 'destroy', this.destroy);
+            this.listenTo(this.list.collection, 'destroy', this.destroy);
+
             return this;
         },
         events: {
@@ -164,6 +167,16 @@ define(function (require) {
                 this.refreshCalendar();
                 this.render();
             }
+        },
+
+        destroy: function(model) {
+            console.log(arguments);
+            var m = this.collection.get(model.id);
+            if(m) {
+                console.log("found the model");
+                this.collection.remove(m);
+            }
+            this.fetch();
         }
 
     });

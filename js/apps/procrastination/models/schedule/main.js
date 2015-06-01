@@ -1,5 +1,6 @@
 define(function(require){
 	var Backbone = require('backbone'),
+    syncOverride = require('syncOverride'),
 	context = require('context'),
 
 	Schedule = Backbone.Model.extend({
@@ -8,6 +9,7 @@ define(function(require){
 				this.set('taskDetail', 'Standard Visit');
 			}
 
+            this.set({canUnassign:  context.canUnassign});
 		},
 		url: function(){
 			return context.base_url + '/schedule/create';
