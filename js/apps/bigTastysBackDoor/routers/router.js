@@ -30,7 +30,7 @@ define(function(require){
             context.trigger("monitor:update");
             setInterval(function () {
                 context.trigger("monitor:update");
-            }, 10000);
+            }, 30000);
         }
     });
 

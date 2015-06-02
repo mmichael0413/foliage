@@ -39,8 +39,8 @@ define(function (require) {
 				} else {
 					data.status = "FAILING";
 				}
-				data.successPercentage = (data.successCount / data.count) * 100;
-				data.failurePercentage = (data.failureCount / data.count) * 100;
+				data.successPercentage = Math.round((data.successCount / data.count) * 10000)/100;
+				data.failurePercentage = Math.round((data.failureCount / data.count) * 10000)/100;
 				this.$el.find('.type').html(" (" +data.type +")");
 				this.$checkContainer.append(Templates['bigTastysBackDoor/serviceDetails'](data));
 			}.bind(this));

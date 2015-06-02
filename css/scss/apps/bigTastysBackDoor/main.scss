@@ -27,14 +27,19 @@
 		.up-true {
 			color: green;
 		}
-		.up-false {
+		.up-false, .up- {
 			color: $red;
 		}
+
 	}
 	
 	.data-label {
 		font-weight: bold;
 		margin-right: 0.25em;
+	}
+
+	.health-check {
+		margin-bottom: 2em;
 	}
 
 }
