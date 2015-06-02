@@ -21,7 +21,7 @@ define(function (require) {
 			this.spinnerHTML = this.$checkContainer.html();
 
 			this.collection = new DetailsCollection();
-			this.collection.serviceId = this.$el.data('service-id');
+			this.collection.serviceId = this.$el.data('health-check-id');
 			this.listenTo(this.collection, 'sync', this.render);
 			this.listenTo(context, "monitor:update", function () {
 				this.$checkContainer.html(this.spinnerHTML);
