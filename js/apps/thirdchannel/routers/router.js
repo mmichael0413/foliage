@@ -14,6 +14,7 @@ define(function(require){
         StoresIntelEdit = require('thirdchannel/views/stores/intel/edit'),
         StoreProfileProductsEdit = require('thirdchannel/views/store_profile/products/edit'),
         CheckinView = require('thirdchannel/views/checkins/show/checkin'),
+        CheckinModel = require('thirdchannel/models/checkins/show/form'),
         CheckinChooseView = require('thirdchannel/views/checkins/choose/show/main'),
         DashboardsAlertsSectionsView = require('thirdchannel/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('thirdchannel/views/dashboards/alerts/show/stores'),
@@ -163,7 +164,7 @@ define(function(require){
         },
 
         checkin : function(programId, id) {
-            new CheckinView({programId: programId, checkinId: id}).render();
+            new CheckinView({model: new CheckinModel({programId: programId, checkinId: id})}).render();
         },
 
         selectCheckin : function(programId, id) {

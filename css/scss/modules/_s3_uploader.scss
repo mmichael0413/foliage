@@ -1,7 +1,7 @@
 .viewer {
   position: relative;
 
-  .error {
+  .uploader-error {
     padding: 0.5em 1em;
     border-radius: $border-radius-base;
     margin-top: 0.5em;
@@ -17,15 +17,19 @@
   }
 
   .holder {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    overflow: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
     width: 100%;
+
+    select {
+      margin-bottom: 0;
+    }
   }
 
   .image {
     max-width: 5em;
     float: left;
+    padding-top: 0.4em;
 
     img {
       display: block;
