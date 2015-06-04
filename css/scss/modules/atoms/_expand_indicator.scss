@@ -1,7 +1,14 @@
 .expand-indicator {
+  	text-align: center;
     cursor: pointer;
 	@extend .ic_down;
 	&.open {
 		@extend .ic_up;
 	}
+}
+
+.contract-indicator {
+  text-align: center;
+  cursor: pointer;
+  @extend .ic_up;
 }

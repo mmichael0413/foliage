@@ -15,6 +15,20 @@ define(function (require) {
         },
 
         render: function() {
+            var attrs = {
+                city: this.model.get('city'),
+                customerStoreUUID: this.model.get('customerStoreUUID'),
+                dateCompleted: this.model.get('dateCompleted'),
+                dateScheduled: this.model.get('dateScheduled'),
+                state: this.model.get('state'),
+                storeName: this.model.get('storeName'),
+                street: this.model.get('street'),
+                taskDetail: this.model.get('taskDetail'),
+                visitUUID: this.model.get('visitUUID'),
+                zip: this.model.get('zip')
+            };
+
+
             this.$el.html(this.template(this.model.attributes));
 
             return this;

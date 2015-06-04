@@ -1,31 +1,28 @@
-<div class="pure-g">
-    <h3 class="col-1-2 col-md-1">YOUR STORES</h3>
-    <h3 class="col-1-2 minor-m">LAST CHECKIN</h3>
-</div>
 
-{{#rows}}
-<div class="pure-g">
-    <div class="col-1-2 col-md-1">
-        <a href="/programs/{{program}}/stores/{{id}}">{{name}}</a>, {{address}} {{city}}, {{state}}
-    </div>
-    <div class="col-1-4 minor-m">{{last_checkin}}</div>
-    <div class="col-1-4 col-md-1 general-actions">
-        {{#if special_project}}
-            <div class="action-spacer"></div>
-            <a href="/programs/{{program}}/checkins/choose/{{id}}" class="btn primary"><i class="ic fa ic_report-16"></i><span>Checkin Here</span></a>
-        {{else}}
-            <form accept-charset="UTF-8" action="/programs/{{program}}/checkins" method="post">
-                <input id="id" name="customer_store_id" type="hidden" value="{{id}}">
-                <input name="authenticity_token" value="{{authenticity_token}}" type="hidden">
 
-                {{#if last_checkin}}
-                    <a href="/programs/{{program}}/reports/checkin/{{last_checkin_id}}" class="btn primary report-link"><i class="ic fa ic_report-16"></i><span class="visible-md">View Report</span></a>
-                {{else}}
-                    <div class="action-spacer"></div>
-                {{/if}}
-                <button class="btn primary expand resolve-link" name="commit"><i class="ic fa ic_location"></i><span>Checkin Here</span></button>
-            </form>
-        {{/if}}
+<div class="pure-g">
+    <div class="col-4-5">
+        <a href="/programs/{{program}}/stores/{{id}}">{{name}}</a><br/>
+        {{address}}<br/>{{city}}, {{state}}
     </div>
+    <div class="col-1-5 expand-indicator"></div>
+    <!--<div class="col-1-4 minor-m">{{last_checkin}}</div>-->
+    <!--<div class="col-1-4 col-md-1 general-actions">-->
+        <!--{{#if special_project}}-->
+            <!--<div class="action-spacer"></div>-->
+            <!--<a href="/programs/{{program}}/checkins/choose/{{id}}" class="btn primary"><i class="ic fa ic_report-16"></i><span>Checkin Here</span></a>-->
+        <!--{{else}}-->
+            <!--<form accept-charset="UTF-8" action="/programs/{{program}}/checkins" method="post">-->
+                <!--<input id="id" name="customer_store_id" type="hidden" value="{{id}}">-->
+                <!--<input name="authenticity_token" value="{{authenticity_token}}" type="hidden">-->
+
+                <!--{{#if last_checkin}}-->
+                    <!--<a href="/programs/{{program}}/reports/checkin/{{last_checkin_id}}" class="btn primary report-link"><i class="ic fa ic_report-16"></i><span class="visible-md">View Report</span></a>-->
+                <!--{{else}}-->
+                    <!--<div class="action-spacer"></div>-->
+                <!--{{/if}}-->
+                <!--<button class="btn primary expand resolve-link" name="commit"><i class="ic fa ic_location"></i><span>Checkin Here</span></button>-->
+            <!--</form>-->
+        <!--{{/if}}-->
+    <!--</div>-->
 </div>
-{{/rows}}

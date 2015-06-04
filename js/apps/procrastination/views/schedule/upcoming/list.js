@@ -55,7 +55,7 @@ define(function (require) {
                             id: model.get('id'),
                             title: model.get('storeName'),
                             store: label,
-                            start: model.get('dateScheduled'),
+                            start: moment(model.get('dateScheduled')).format("YYYY-MM-DD"),
                             allDay: true,
                             className: model.get('taskColor')
                         });
