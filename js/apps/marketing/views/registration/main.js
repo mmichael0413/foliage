@@ -30,11 +30,13 @@ define(function (require) {
                 this.$('input, button').prop('disabled', true);
                 this.model.save().then(function() {
                     window.location.href = self.$el.data('base-url') + "/agents/opportunities";
-                }).fail(function() {
-                    console.log('Errors From Server');
-
+                }).fail(function(model) {
                     self.$('input, button').prop('disabled', false);
-                    // display errors
+                    self.displayErrors(model, model.responseJSON);
+                    //{
+                    //for (var input in model.responseJSON.errors) {
+                    //    self.$('input[name='+input+']').append('<div>' + model.responseJSON.errors[input][0] + '</div>');
+                    //}
                 });
             }
         },
@@ -44,6 +46,9 @@ define(function (require) {
             _.each(errors, function(error) {
                 var attrName = Object.keys(error)[0];
                 var message = error[attrName];
+                if($.isArray(message)) {
+                    message = message[0];
+                }
                 var $input = self.$('[name="' + attrName + '"]');
                 var $errorMessage = $input.next();
                 $input.addClass('error');

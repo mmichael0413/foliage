@@ -12,6 +12,7 @@ define(function(require) {
 
             routes: {
                 ':customer_slug/:program_slug/schedule/:person_id/create': 'createSchedule',
+                ':customer_slug/:program_slug/schedule/:aggregate_id/edit': 'createSchedule',
                 ':customer_slug/:program_slug/schedule/:person_id': 'showSchedule',
                 ':customer_slug/:program_slug/admin/scheduling/upcoming': 'manageSchedule',
                 ':customer_slug/:program_slug/admin/scheduling/current': 'manageSchedule'
@@ -27,6 +28,10 @@ define(function(require) {
             },
 
             createSchedule: function() {
+                new SetSchedule().fetch();
+            },
+
+            editSchedule: function(){
                 new SetSchedule().fetch();
             },
 
