@@ -13,6 +13,10 @@
     </div>
     <div class="description">
         <label>Description:</label>
-        <input type="text" name="label" value="{{label}}">
+        <select class="image_label" data-attribute="label" name="{{image_type}}[][label]">
+            <option value="">Select corresponding before image label...</option>
+        </select>
     </div>
+    <input type="hidden" class="image_id" name="{{image_type}}[][id]" value="{{id}}">
+    <input type="hidden" class="image_temp_location" name="{{image_type}}[][temp_location]" value="{{temp_location}}">
 </div>

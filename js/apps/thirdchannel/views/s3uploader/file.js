@@ -13,13 +13,11 @@ define(function(require) {
             "change input[type=file]" : "fileChanged",
             "click .error-close" : "errorRemove"
         },
-        initialize: function (options) {
-        },
         render: function (element) {
             var self = this;
             this.setElement(element);
-            this.form = this.$el.find('form.s3_uploader');
-            this.viewer = this.$el.find('.viewer');
+            this.form = this.$('form.s3_uploader');
+            this.viewer = this.$('.viewer');
 
             this.$el.find('.holder').each(function(){
                 new ImageView({model: new Backbone.Model().set({input: self.$el.data('input')})}).render(this);
@@ -55,17 +53,17 @@ define(function(require) {
             if ($error.length > 0) {
                 $error.html(HandlebarsTemplates['thirdchannel/s3uploader/error']());
             } else {
-                this.$el.find('.viewer').prepend(HandlebarsTemplates['thirdchannel/s3uploader/error']());
+                this.$('.viewer').prepend(HandlebarsTemplates['thirdchannel/s3uploader/error']());
             }
         },
         errorRemove: function(e) {
-            this.$el.find('.error').remove();
+            this.$('.error').remove();
         },
         fileUploaded: function (model) {
             this.viewer.append(new ImageView({model: model}).render().$el);
         },
         clearFileInput: function () {
-            var input = this.$el.find("input:file");
+            var input = this.$("input:file");
             input.replaceWith(input.val('').clone(true));
         }
     });
