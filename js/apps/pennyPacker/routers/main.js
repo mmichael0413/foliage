@@ -29,10 +29,9 @@ define(function(require) {
         },
 
         entryList: function (programId) {
-
             window.c = context;
             Filter.init();
-            new ActionsView().render();
+            new ActionsView();
             var view = new EntriesListView(),
             invalidView = new InvalidEntriesListView();
             if (context.content.items) {
