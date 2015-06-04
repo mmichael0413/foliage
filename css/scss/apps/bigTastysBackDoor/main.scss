@@ -1,0 +1,46 @@
+@import '../../../../js/libs/bower_components/normalize-css/normalize';
+@import "../../lib/pure.grids-core";
+@import "../../lib/pure.responsive-grid";
+@import "../../lib/chosen";
+@import '../../../../js/libs/bower_components/slick.js/slick/slick';
+
+@import "../../base/fonts_all";
+@import "../../base/base";
+@import "../../base/text";
+@import "../../base/forms";
+@import "../../base/buttons";
+@import "../../layout/layout_utils";
+@import "../../layout/base_layout";
+
+@import "../../modules/atoms/all";
+@import "../../modules/navigation";
+@import "../../modules/action_row";
+@import "../../modules/pagination";
+@import "../../modules/site_filter";
+@import "../../modules/pure_grid";
+
+
+.section {
+
+	.service-detail {
+
+		.up-true {
+			color: green;
+		}
+		.up-false, .up- {
+			color: $red;
+		}
+
+	}
+	
+	.data-label {
+		font-weight: bold;
+		margin-right: 0.25em;
+	}
+
+	.health-check {
+		margin-bottom: 2em;
+	}
+
+}
+
