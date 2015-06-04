@@ -429,9 +429,9 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.units) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.units); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " mi</p>\n<p class=\"col-3-12\">"
+    + " mi</p>\n<p class=\"col-2-12\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n\n<div class=\"col-3-12 entry-actions\">\n    ";
+    + "</p>\n<div class=\"col-2-12\"></div>\n<div class=\"col-2-12 entry-actions\">\n    ";
   stack1 = self.invokePartial(partials.expand_action, 'expand_action', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    ";
