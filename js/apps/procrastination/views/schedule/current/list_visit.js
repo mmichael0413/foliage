@@ -6,9 +6,6 @@ define(function (require) {
     return Backbone.View.extend({
         className: 'sub-section',
         template: HandlebarsTemplates['procrastination/schedule/schedule_row'],
-        initialize: function(options) {
-            this.model = options.model;
-        },
 
         events: {
             'click .unassign' : 'unassign'
@@ -16,7 +13,6 @@ define(function (require) {
 
         render: function() {
             this.$el.html(this.template(this.model.attributes));
-
             return this;
         },
 

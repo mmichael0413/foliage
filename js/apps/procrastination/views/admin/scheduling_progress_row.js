@@ -4,11 +4,11 @@ define(function (require) {
         context = require('context'),
         SchedulingProgressRow = {
             className: 'item',
-            template: 'procrastination/admin/schedule_row',
+            template: Templates['procrastination/admin/schedule_row'],
             render: function() {
                 var scheduleLink = context.base_url + '/schedule/' + this.model.get('personId') + '/create';
                 this.model.set('scheduleLink', scheduleLink);
-                this.$el.html(Templates[this.template](this.model.attributes));
+                this.$el.html(this.template(this.model.attributes));
                 return this;
             }
         };

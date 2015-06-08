@@ -6,12 +6,8 @@ define(function (require) {
     ScheduleView = Backbone.View.extend({
         className: 'store-schedule',
         template: HandlebarsTemplates['procrastination/schedule/upcoming/visit'],
-        initialize: function (options) {
-            // model is passed in by list view
-            this.model = options.model;
-
+        initialize: function() {
             this.listenTo(this.model, 'change', this.render);
-
         },
         events: {
             "change input": "updateScheduledDate",

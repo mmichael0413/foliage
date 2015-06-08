@@ -14,9 +14,7 @@ define(function (require) {
                 this.initFilterable();
             },
             rowView: function (options) {
-               return new SchedulingProgressRow(options);
-
-
+                return new SchedulingProgressRow(options);
             },
 
             collectionClass: ScheduleCollection,
