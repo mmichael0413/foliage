@@ -7,6 +7,8 @@ define(function(require) {
         SetSchedule = require('procrastination/views/schedule/upcoming/list'),
         ListSchedule = require('procrastination/views/schedule/current/main'),
         ManageSchedule = require('procrastination/views/admin/list_scheduling_progress'),
+        CostEstimateModel = require('procrastination/models/admin/cost_estimate'),
+        CostEstimateView = require('procrastination/views/admin/cost_estimate'),
 
         AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
 
@@ -43,12 +45,16 @@ define(function(require) {
             manageSchedule: function() {
                 Filter.init();
                 var view = new ManageSchedule();
+
                 if(context.content) {
                     view.bootstrapCollection(context.content);
                 } else {
                     view.fetch();
                 }
 
+                var costEstimate = new CostEstimateModel();
+                new CostEstimateView({model: costEstimate}).render();
+                costEstimate.fetch();
             }
         });
 
