@@ -1365,7 +1365,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"export-modal progress\">Please wait while we generate the requested CSV.\n    <div>(Please be aware this could take up to 5 minutes.)</div>\n    <div><i class=\"ic ic_processing fa-spin\"></i></div>\n</div>";
+  return "<div class=\"export-modal progress\">Please wait while we generate the requested file.\n    <div>(Please be aware this could take up to 5 minutes.)</div>\n    <div><i class=\"ic ic_processing fa-spin\"></i></div>\n</div>";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/modals/export/success"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -1378,7 +1378,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.href) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.href); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">Download CSV</a></div>\n</div>";
+    + "\">Download file</a></div>\n</div>";
   return buffer;
   });
 
@@ -1388,7 +1388,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"export-modal error\">\n    The requested CSV has timed out.  Please contact <a href=\"mailto:techsupport@thirdchannel.com\">techsupport@thirdchannel.com</a> for further assistance.\n</div>";
+  return "<div class=\"export-modal error\">\n    The requested file has timed out.  Please contact <a href=\"mailto:techsupport@thirdchannel.com\">techsupport@thirdchannel.com</a> for further assistance.\n</div>";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/new-comment"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
