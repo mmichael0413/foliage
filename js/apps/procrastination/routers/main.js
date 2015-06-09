@@ -52,9 +52,8 @@ define(function(require) {
                     view.fetch();
                 }
 
-                var costEstimate = new CostEstimateModel();
-                new CostEstimateView({model: costEstimate}).render();
-                costEstimate.fetch();
+                var costEstimate = new CostEstimateModel({id: context.cycleId});
+                new CostEstimateView({model: costEstimate}).fetch();
             }
         });
 

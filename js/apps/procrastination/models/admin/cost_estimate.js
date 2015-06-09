@@ -4,7 +4,7 @@ define(function(require) {
 
     return Backbone.Model.extend({
         url: function() {
-            return context.base_url + '/admin/scheduling/current/estimate'
+            return context.base_url + '/admin/scheduling/' + this.id + '/estimate'
         },
         defaults: {
             travel: 0
