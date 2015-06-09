@@ -2,10 +2,11 @@
     padding: 5rem;
     text-align: center;
 
+    .small {
+        font-size: 0.75rem;
+    }
+
     &.progress {
-        div:first-child {
-            font-size: 0.75rem;
-        }
         div:last-child {
             padding-top: 1rem;
             font-size: 3rem;
