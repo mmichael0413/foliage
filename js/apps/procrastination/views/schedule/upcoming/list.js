@@ -160,12 +160,14 @@ define(function (require) {
         },
 
         updateSchedule: function (date, id) {
+            var self = this;
             var model = this.collection.findWhere({id:id});
             if (model) {
                 model.set('dateScheduled', date.format("MM/DD/YYYY"));
-                model.save(model.attributes);
-                this.refreshCalendar();
-                this.render();
+                model.save(model.attributes).done(function() {
+                    self.refreshCalendar();
+                    self.render();
+                });
             }
         },
 

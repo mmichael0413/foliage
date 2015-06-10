@@ -33,13 +33,12 @@ define(function(require) {
                 new SetSchedule().fetch();
             },
 
-            editSchedule: function(){
+            editSchedule: function() {
                 new SetSchedule().fetch();
             },
 
             showSchedule: function() {
-                var view =  new ListSchedule();
-                view.fetch();
+                new ListSchedule().fetch();
             },
 
             manageSchedule: function() {
