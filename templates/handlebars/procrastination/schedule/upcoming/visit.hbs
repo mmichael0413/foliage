@@ -3,6 +3,6 @@
 {{/if}}
 <div>{{storeName}}: {{street}} {{city}}, {{state}}</div>
 <b>{{dateScheduled}}</b>
-    <input type="hidden" class="visit" value="{{id}}"/>
-    <input type="text" value="{{dateScheduled}}" style="display: none;"/>
-    {{#if canUnassign}}<a href="#" class='unassign'>Unassign Visit</a>{{/if}}
+<input type="hidden" class="visit" value="{{id}}"/>
+<input type="text" value="{{dateScheduled}}" style="display: none;"/>
+{{#if canUnassign}}<div><a href="#" class='unassign'>Unassign Visit</a></div>{{/if}}
