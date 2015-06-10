@@ -21,6 +21,7 @@ define(function (require) {
             var self = this;
             this.collection.fetch().done(function () {
                 self.render();
+                context.trigger('estimate:changed');
             });
         },
 
@@ -46,6 +47,7 @@ define(function (require) {
         },
         destroy: function() {
             this.render();
+            context.trigger('estimate:changed');
         }
     });
 });

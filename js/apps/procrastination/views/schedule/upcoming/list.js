@@ -177,6 +177,7 @@ define(function (require) {
             if(m) {
                 console.log("found the model");
                 this.collection.remove(m);
+                context.trigger('estimate:changed');
             }
             this.fetch();
         }

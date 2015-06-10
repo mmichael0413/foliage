@@ -7,8 +7,10 @@ define(function(require) {
         SetSchedule = require('procrastination/views/schedule/upcoming/list'),
         ListSchedule = require('procrastination/views/schedule/current/main'),
         ManageSchedule = require('procrastination/views/admin/list_scheduling_progress'),
-        CostEstimateModel = require('procrastination/models/admin/cost_estimate'),
-        CostEstimateView = require('procrastination/views/admin/cost_estimate'),
+        CostEstimate = require('procrastination/models/schedule/cost_estimate'),
+        CostEstimateView = require('procrastination/views/schedule/cost_estimate'),
+        AdminCostEstimate = require('procrastination/models/admin/cost_estimate'),
+        AdminCostEstimateView = require('procrastination/views/admin/cost_estimate'),
 
         AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
 
@@ -31,6 +33,8 @@ define(function(require) {
 
             createSchedule: function() {
                 new SetSchedule().fetch();
+                var model = new CostEstimate({id: context.aggregateId});
+                new CostEstimateView({model: model}).fetch();
             },
 
             editSchedule: function() {
@@ -39,6 +43,8 @@ define(function(require) {
 
             showSchedule: function() {
                 new ListSchedule().fetch();
+                var model = new CostEstimate({id: context.aggregateId});
+                new CostEstimateView({model: model}).fetch();
             },
 
             manageSchedule: function() {
@@ -51,8 +57,8 @@ define(function(require) {
                     view.fetch();
                 }
 
-                var costEstimate = new CostEstimateModel({id: context.cycleId});
-                new CostEstimateView({model: costEstimate}).fetch();
+                var costEstimate = new AdminCostEstimate({id: context.cycleId});
+                new AdminCostEstimateView({model: costEstimate}).fetch();
             }
         });
 
