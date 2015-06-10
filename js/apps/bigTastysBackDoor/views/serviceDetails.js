@@ -3,16 +3,22 @@ define(function (require) {
 	var context = require('context'),
 		Backbone = require('backbone'),
 		Templates = require('handlebarsTemplates'),
+		HealthCheckModel = Backbone.Model.extend({
+			url: function () {
+				return "/monitor/disable/" + this.id ;
+			}
+		}),
 
 		DetailsCollection = Backbone.Collection.extend({
 			url: function () {
 				return "/monitor/serviceDetails/" + this.serviceId;
-			}
+			},
+			model: HealthCheckModel
 		});
 
 	return Backbone.View.extend({
 		events: {
-
+			'click .delete-check': 'deleteCheck'
 		},
 
 		initialize: function () {
@@ -29,6 +35,9 @@ define(function (require) {
 			}.bind(this));
 			return this;
 		},
+		_percentize: function (numerator, denomenator) {
+			return Math.round((numerator / denomenator) * 10000)/100;
+		},
 
 		render: function () {
 			this.$checkContainer.html("");
@@ -39,12 +48,28 @@ define(function (require) {
 				} else {
 					data.status = "FAILING";
 				}
-				data.successPercentage = Math.round((data.successCount / data.count) * 10000)/100;
-				data.failurePercentage = Math.round((data.failureCount / data.count) * 10000)/100;
+				data.successPercentage = this._percentize(data.successCount, data.count);
+				data.failurePercentage = this._percentize(data.failureCount, data.count);
 				this.$el.find('.type').html(" (" +data.type +")");
 				this.$checkContainer.append(Templates['bigTastysBackDoor/serviceDetails'](data));
 			}.bind(this));
 			return this;
+		},
+
+		deleteCheck: function () {
+			console.log(arguments);
+			var data = this.collection.toJSON()[0];
+			if (confirm("Are you sure you wish to delete the " + data.type +" check for service " +data.service +" ?")) {
+
+				this.collection.models[0].destroy()
+				.then(function () {
+					this.remove();
+				}.bind(this))
+				.fail(function () {
+					alert("Could not delete for some reason...");
+				});
+			}
+			
 		}
 
 	});
