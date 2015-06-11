@@ -1,5 +1,6 @@
 @import "../base/colors";
 @import "../base/mixins";
+@import "../base/fonts/tc-icons";
 
 /* @group Base */
 .chosen-container {
@@ -91,7 +92,7 @@
       font-family: "tc-icons";
       text-align: center;
       &:before {
-        content: "\f193";
+        content: $font-tc-icons-ic_down;
         font-size: 0.5em;
         top: 0;
         bottom: 0;
