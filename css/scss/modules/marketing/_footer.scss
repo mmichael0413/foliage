@@ -17,23 +17,15 @@
       }
     }
 
-    .demo, .social {
+    .social {
       color: $palette2;
       text-align: center;
       vertical-align: middle;
       position: relative;
-      top: 40%;
-      -ms-transform: translateY(40%);
-      -webkit-transform: translateY(40%);
-      transform: translateY(40%);
 
       @include swb-medium {
         height: 100%;
         margin-top: 1.2em;
-        top: 0;
-        -ms-transform: none;
-        -webkit-transform: none;
-        transform: none;
       }
 
       .social-centered {
