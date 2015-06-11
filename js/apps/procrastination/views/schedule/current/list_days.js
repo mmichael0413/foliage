@@ -2,18 +2,21 @@ define(function (require) {
     var Backbone = require('backbone'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        ScheduledVisits = require('procrastination/views/schedule/current/list_visit');
+        ScheduledVisits = require('procrastination/views/schedule/current/list_visit'),
+        moment = require('moment');
 
     return Backbone.View.extend({
-        className: 'schedule-group',
+        className: 'section data-section',
+        tagName: 'section',
         template: HandlebarsTemplates['procrastination/schedule/schedule_row_header'],
         initialize: function(options) {
-            this.date = options.date;
+            this.date = moment(options.date).format('MM/DD/YYYY');
             this.visits = options.visits;
+            this.showCompleted = options.showCompleted;
         },
 
         render: function() {
-            this.$el.append(this.template({date: this.date}));
+            this.$el.append(this.template({date: this.date, showCompleted: this.showCompleted}));
             this.attachVisits();
 
             return this;
@@ -22,8 +25,8 @@ define(function (require) {
         attachVisits: function(){
             var self = this;
             _.each(this.visits, function(visit){
-                var visits = new ScheduledVisits({model: visit});
-                self.$el.append(visits.render().el);
+                var visits = new ScheduledVisits({model: visit, showCompleted: self.showCompleted});
+                self.$('.body').append(visits.render().el);
             });
 
         }

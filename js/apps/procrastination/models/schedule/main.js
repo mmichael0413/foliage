@@ -9,8 +9,9 @@ define(function (require) {
                 if (!this.get('taskDetail')) {
                     this.set('taskDetail', 'Standard Visit');
                 }
-
-                this.set({canUnassign: context.canUnassign});
+                if(!this.get('dateCompleted')) {
+                    this.set({canUnassign: context.canUnassign});
+                }
             },
             url: function () {
                 return context.base_url + '/schedule/create';

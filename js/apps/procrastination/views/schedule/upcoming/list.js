@@ -7,7 +7,8 @@ define(function (require) {
         FullCalendar = require('fullcalendar'),
         ScheduleCollection = require('procrastination/collections/schedule/upcoming/create_schedules'),
         StoreSchedule = require('procrastination/views/schedule/upcoming/show'),
-        ListView = require('procrastination/views/schedule/current/main');
+        ListView = require('procrastination/views/schedule/current/main'),
+        moment = require('moment');
 
     return Backbone.View.extend({
         el: '.section',
@@ -21,8 +22,9 @@ define(function (require) {
             this.listButton = this.$('.list-view');
             this.calendarButton = this.$('.calendar-view');
             this.calendarView = this.$('.pure-g');
-            this.list = new ListView().setElement('.scheduled .schedules');
+            this.list = new ListView({showComplete: false}).setElement('.scheduled .schedules');
             this.listenTo(this, 'fullcalendar.date.create', this.updateSchedule);
+            this.listenTo(this, 'fullcalendar.refresh', this.refreshCalendar);
 
             this.aggregate = context.aggregateId;
             this.collection = new ScheduleCollection(null, {
@@ -41,7 +43,7 @@ define(function (require) {
                     center: '',
                     right: ''
                 },
-                editable: true,
+               // editable: true,
                 events: function (start, end, timezone, callback) {
                     var events = [];
                     var scheduledVisits = self.collection.filter(function (model) {
@@ -57,15 +59,22 @@ define(function (require) {
                             store: label,
                             start: moment(model.get('dateScheduled')).format("YYYY-MM-DD"),
                             allDay: true,
-                            className: model.get('taskColor')
+                            className: model.get('taskColor'),
+                            editable: model.get('dateCompleted') ? false : true
                         });
                     });
 
                     callback(events);
                 },
                 drop: function (date, event, object) {
-                    var id = $(object.helper.context).find('.visit').val();
-                    self.trigger('fullcalendar.date.create', date, id);
+                    var now = moment().utc().startOf('day');
+                    if(date < now) {
+                        alert("You cannot schedule a visit in the past.");
+                        self.trigger('fullcalendar.refresh');
+                    } else {
+                        var id = $(object.helper.context).find('.visit').val();
+                        self.trigger('fullcalendar.date.create', date, id);
+                    }
                 },
                 eventMouseover: function (calEvent, jsEvent) {
                     var tooltip = '<div class="tooltipevent">' + calEvent.store + '</div>';
@@ -79,7 +88,13 @@ define(function (require) {
                         $('.tooltipevent').css('left', e.pageX + 20);
                     });
                 },
-                eventDrop: function(event) {
+                eventDrop: function(event, delta, revertFunc) {
+                    var now = moment().utc().startOf('day');
+                    if(event.start < now) {
+                        alert("You cannot schedule a visit in the past.");
+                        return revertFunc();
+                    }
+
                     self.trigger('fullcalendar.date.create', event.start, event.id);
                 },
                 eventMouseout: function (calEvent, jsEvent) {
