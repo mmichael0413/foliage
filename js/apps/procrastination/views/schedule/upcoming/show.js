@@ -4,7 +4,7 @@ define(function (require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     ScheduleView = Backbone.View.extend({
-        className: 'store-schedule',
+        className: 'item pure-g',
         template: HandlebarsTemplates['procrastination/schedule/upcoming/visit'],
         initialize: function() {
             this.listenTo(this.model, 'change', this.render);

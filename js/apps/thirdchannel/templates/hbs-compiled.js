@@ -687,12 +687,66 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["ThirdChannel"]["templates"]["thirdchannel/checkins/store"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n<div class=\"pure-g\">\n    <div class=\"col-1-2 col-md-1\">\n        <a href=\"/programs/";
+  buffer += "-->\n            <!--<div class=\"action-spacer\"></div>-->\n            <!--<a href=\"/programs/";
+  if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "/checkins/choose/";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"btn primary\"><i class=\"ic fa ic_report-16\"></i><span>Checkin Here</span></a>-->\n        <!--";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "-->\n            <!--<form accept-charset=\"UTF-8\" action=\"/programs/";
+  if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "/checkins\" method=\"post\">-->\n                <!--<input id=\"id\" name=\"customer_store_id\" type=\"hidden\" value=\"";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">-->\n                <!--<input name=\"authenticity_token\" value=\"";
+  if (helper = helpers.authenticity_token) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.authenticity_token); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" type=\"hidden\">-->\n\n                <!--";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.last_checkin), {hash:{},inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "-->\n                <!--<button class=\"btn primary expand resolve-link\" name=\"commit\"><i class=\"ic fa ic_location\"></i><span>Checkin Here</span></button>-->\n            <!--</form>-->\n        <!--";
+  return buffer;
+  }
+function program4(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "-->\n                    <!--<a href=\"/programs/";
+  if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "/reports/checkin/";
+  if (helper = helpers.last_checkin_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.last_checkin_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"btn primary report-link\"><i class=\"ic fa ic_report-16\"></i><span class=\"visible-md\">View Report</span></a>-->\n                <!--";
+  return buffer;
+  }
+
+function program6(depth0,data) {
+  
+  
+  return "-->\n                    <!--<div class=\"action-spacer\"></div>-->\n                <!--";
+  }
+
+  buffer += "\n\n<div class=\"pure-g\">\n    <div class=\"col-4-5\">\n        <a href=\"/programs/";
   if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -704,11 +758,11 @@ function program1(depth0,data) {
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</a>, ";
+    + "</a><br/>\n        ";
   if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " ";
+    + "<br/>";
   if (helper = helpers.city) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.city); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -716,79 +770,66 @@ function program1(depth0,data) {
   if (helper = helpers.state) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.state); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\n    </div>\n    <div class=\"col-1-4 minor-m\">";
+    + "\n    </div>\n    <div class=\"col-1-5 expand-indicator\"></div>\n    <!--<div class=\"col-1-4 minor-m\">";
   if (helper = helpers.last_checkin) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.last_checkin); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</div>\n    <div class=\"col-1-4 col-md-1 general-actions\">\n        ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.special_project), {hash:{},inverse:self.program(4, program4, data),fn:self.program(2, program2, data),data:data});
+    + "</div>-->\n    <!--<div class=\"col-1-4 col-md-1 general-actions\">-->\n        <!--";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.special_project), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n</div>\n";
+  buffer += "-->\n    <!--</div>-->\n</div>\n";
   return buffer;
-  }
-function program2(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n            <div class=\"action-spacer\"></div>\n            <a href=\"/programs/";
-  if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "/checkins/choose/";
-  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\" class=\"btn primary\"><i class=\"ic fa ic_report-16\"></i><span>Checkin Here</span></a>\n        ";
-  return buffer;
-  }
+  });
 
-function program4(depth0,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/checkins/stores"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"pure-g\">\n    <h3 class=\"col-1-2 col-md-1\">YOUR STORES</h3>\n    <h3 class=\"col-1-2 minor-m\">LAST CHECKIN</h3>\n</div>\n";
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/checkins/tasks"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n            <form accept-charset=\"UTF-8\" action=\"/programs/";
-  if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += "\n    <div class=\"pure-g\">\n        <div class=\"col-4-5\">\n            ";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "/checkins\" method=\"post\">\n                <input id=\"id\" name=\"customer_store_id\" type=\"hidden\" value=\"";
-  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+    + "\n        </div>\n        <div class=\"col-1-5\">\n            <form accept-charset=\"UTF-8\" action=\"";
+  if (helper = helpers.form_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.form_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" method=\"post\">\n                <input id=\"customer_store_id\" name=\"customer_store_id\" type=\"hidden\" value=\"";
+  if (helper = helpers.customer_store_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.customer_store_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n                <input id=\"survey_id\" name=\"survey_id\" type=\"hidden\" value=\"";
+  if (helper = helpers.survey_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.survey_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n                <input id=\"type\" name=\"type\" type=\"hidden\" value=\"";
+  if (helper = helpers.checkin_type) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.checkin_type); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\">\n                <input name=\"authenticity_token\" value=\"";
   if (helper = helpers.authenticity_token) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.authenticity_token); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" type=\"hidden\">\n\n                ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.last_checkin), {hash:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                <button class=\"btn primary expand resolve-link\" name=\"commit\"><i class=\"ic fa ic_location\"></i><span>Checkin Here</span></button>\n            </form>\n        ";
-  return buffer;
-  }
-function program5(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n                    <a href=\"/programs/";
-  if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "/reports/checkin/";
-  if (helper = helpers.last_checkin_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.last_checkin_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\" class=\"btn primary report-link\"><i class=\"ic fa ic_report-16\"></i><span class=\"visible-md\">View Report</span></a>\n                ";
+    + "\" type=\"hidden\">\n                <button class=\"btn primary\" name=\"commit\"><i class=\"ic fa ic_location\"></i><span>Start</span></button>\n            </form>\n        </div>\n    </div>\n\n";
   return buffer;
   }
 
-function program7(depth0,data) {
-  
-  
-  return "\n                    <div class=\"action-spacer\"></div>\n                ";
-  }
-
-  buffer += "<div class=\"pure-g\">\n    <h3 class=\"col-1-2 col-md-1\">YOUR STORES</h3>\n    <h3 class=\"col-1-2 minor-m\">LAST CHECKIN</h3>\n</div>\n\n";
-  options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}
-  if (helper = helpers.rows) { stack1 = helper.call(depth0, options); }
-  else { helper = (depth0 && depth0.rows); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
+  buffer += "<div class=\"pure-g\">\n    <h3 class=\"col-1-2 col-md-1\">Tasks</h3>\n</div>\n";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.tasks), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
   return buffer;
   });
 
@@ -1365,7 +1406,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"export-modal progress\">Please wait while we generate the requested CSV.\n    <div>(Please be aware this could take up to 5 minutes.)</div>\n    <div><i class=\"ic ic_processing fa-spin\"></i></div>\n</div>";
+  return "<div class=\"export-modal progress\">Please wait while we generate the requested file.\n    <div class=\"small\">(Please be aware this could take up to 5 minutes.)</div>\n    <div><i class=\"ic ic_processing fa-spin\"></i></div>\n</div>";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/modals/export/success"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -1374,11 +1415,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"export-modal success\">\n    Export Successful!\n    <div><a href=\"";
+  buffer += "<div class=\"export-modal success\">\n    Export Successful!\n    <div class=\"small\">(Please right-click the link below and choose \"Save Link As...\")</div>\n    <div><a href=\"";
   if (helper = helpers.href) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.href); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">Download CSV</a></div>\n</div>";
+    + "\">Download file</a></div>\n</div>";
   return buffer;
   });
 
@@ -1388,7 +1429,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"export-modal error\">\n    The requested CSV has timed out.  Please contact <a href=\"mailto:techsupport@thirdchannel.com\">techsupport@thirdchannel.com</a> for further assistance.\n</div>";
+  return "<div class=\"export-modal error\">\n    The requested file has timed out.  Please contact <a href=\"mailto:techsupport@thirdchannel.com\">techsupport@thirdchannel.com</a> for further assistance.\n</div>";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/new-comment"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {

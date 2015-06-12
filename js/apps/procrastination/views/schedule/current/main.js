@@ -5,8 +5,8 @@ define(function (require) {
         ScheduledVisitsCollection = require('procrastination/collections/schedule/current/list_schedules');
 
     return Backbone.View.extend({
-        el: '.section',
-        initialize: function () {
+        el: '.schedule-container',
+        initialize: function (options) {
             this.aggregate = context.aggregateId;
             this.collection = new ScheduledVisitsCollection(null, {
                 aggregateId: this.aggregate,
@@ -14,6 +14,7 @@ define(function (require) {
                 programId: context.programId
             });
 
+            this.showCompleted = options.showCompleted;
             this.listenTo(this.collection, 'destroy', this.destroy);
         },
 
@@ -41,7 +42,7 @@ define(function (require) {
                 return it;
             });
             _.each(keyset, function (date) {
-                var group = new ScheduleRowGroup({date: date, visits: groupedVisits[date]});
+                var group = new ScheduleRowGroup({date: date, visits: groupedVisits[date], showCompleted: self.showCompleted});
                 self.$el.append(group.render().el);
             });
         },

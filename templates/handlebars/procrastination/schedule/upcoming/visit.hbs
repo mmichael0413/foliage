@@ -1,8 +1,10 @@
-{{#if taskDetail}}
+<div class="col-5-5">
+  {{#if taskDetail}}
     <div><strong>{{taskDetail}}</strong></div>
-{{/if}}
-<div>{{storeName}}: {{street}} {{city}}, {{state}}</div>
-<b>{{dateScheduled}}</b>
-<input type="hidden" class="visit" value="{{id}}"/>
-<input type="text" value="{{dateScheduled}}" style="display: none;"/>
-{{#if canUnassign}}<div><a href="#" class='unassign'>Unassign Visit</a></div>{{/if}}
+  {{/if}}
+    <div>{{storeName}}: {{street}} {{city}}, {{state}}</div>
+    <b>{{dateScheduled}}</b>
+    <input type="hidden" class="visit" value="{{id}}"/>
+    <input type="text" value="{{dateScheduled}}" style="display: none;"/>
+    {{#if canUnassign}}<a href="#" class='unassign btn primary small solid '>Unassign Visit</a>{{/if}}
+</div>

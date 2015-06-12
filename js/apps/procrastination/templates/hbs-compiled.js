@@ -235,7 +235,18 @@ function program1(depth0,data) {
   return "<div><a href=\"#\" class='unassign'>Unassign Visit</a></div>";
   }
 
-  buffer += "<div class=\"schedule-row\">\n    <div><strong>";
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n    <div class=\"col-1-5\">";
+  if (helper = helpers.dateCompleted) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.dateCompleted); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n";
+  return buffer;
+  }
+
+  buffer += "<div class=\"col-4-5\">\n    <div><strong>";
   if (helper = helpers.taskDetail) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.taskDetail); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -258,21 +269,32 @@ function program1(depth0,data) {
     + "</div>\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.canUnassign), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>";
+  buffer += "\n</div>\n";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.showCompleted), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
   return buffer;
   });
 
 this["procrastination"]["templates"]["procrastination/schedule/schedule_row_header"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  
+  return "\n            <h3 class=\"header col-1-5\">Date Completed</h3>\n        ";
+  }
 
-  buffer += "<div class=\"group-header\"><h3>";
+  buffer += "\n\n\n    <div class=\"pure-g\">\n        <h3 class=\"header col-4-5\">";
   if (helper = helpers.date) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.date); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</h3></div>\n";
+    + "</h3>\n        ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.showCompleted), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </div>\n\n    <div class=\"body group-header\">\n\n    </div>\n";
   return buffer;
   });
 
@@ -297,19 +319,20 @@ function program1(depth0,data) {
   if (helper = helpers.taskDetail) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.taskDetail); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</strong></div>\n";
+    + "</strong></div>\n  ";
   return buffer;
   }
 
 function program3(depth0,data) {
   
   
-  return "<div><a href=\"#\" class='unassign'>Unassign Visit</a></div>";
+  return "<a href=\"#\" class='unassign btn primary small solid '>Unassign Visit</a>";
   }
 
+  buffer += "<div class=\"col-5-5\">\n  ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.taskDetail), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n<div>";
+  buffer += "\n    <div>";
   if (helper = helpers.storeName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.storeName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -325,31 +348,39 @@ function program3(depth0,data) {
   if (helper = helpers.state) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.state); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</div>\n<b>";
+    + "</div>\n    <b>";
   if (helper = helpers.dateScheduled) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.dateScheduled); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</b>\n<input type=\"hidden\" class=\"visit\" value=\"";
+    + "</b>\n    <input type=\"hidden\" class=\"visit\" value=\"";
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\"/>\n<input type=\"text\" value=\"";
+    + "\"/>\n    <input type=\"text\" value=\"";
   if (helper = helpers.dateScheduled) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.dateScheduled); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" style=\"display: none;\"/>\n";
+    + "\" style=\"display: none;\"/>\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.canUnassign), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</div>";
   return buffer;
   });
 
 this["procrastination"]["templates"]["procrastination/schedule/upcoming/visit_label"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
 
+function program1(depth0,data) {
+  
+  
+  return "\n    * Completed jobs cannot be rescheduled<br/>\n";
+  }
 
-  buffer += "<strong>";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.dateCompleted), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n<strong>";
   if (helper = helpers.taskDetail) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.taskDetail); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)

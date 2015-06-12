@@ -13,7 +13,7 @@ define(function(require){
         },
         cancelEl: '.bbm-button',
         initialize: function (options) {
-            _.bindAll(this, 'fetchCSV', 'updateView');
+            _.bindAll(this, 'fetchExport', 'updateView');
             this.model = options.model;
             this.templateName = this.templates.progress;
             this.retries = 0;
@@ -23,7 +23,7 @@ define(function(require){
         },
         onRender: function () {
             if (this.templateName == this.templates.progress) {
-                this.fetchCSV();
+                this.fetchExport();
             }
         },
         onDestroy: function () {
@@ -31,14 +31,14 @@ define(function(require){
                 this.xhr.abort();
             }
         },
-        fetchCSV: function () {
+        fetchExport: function () {
             var self = this;
             this.xhr = this.model.fetch({
                 success: function (model, response, options) {
                     if (self.retries++ > 60) {
                         self.updateView(self.templates.timeout);
                     } else if (options.xhr.status == 202) {
-                        setTimeout(self.fetchCSV, 5000);
+                        setTimeout(self.fetchExport, 5000);
                     } else {
                         self.updateView(self.templates.success);
                     }

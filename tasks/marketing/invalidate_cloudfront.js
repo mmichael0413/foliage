@@ -52,6 +52,18 @@ module.exports = function(grunt) {
         },
         {
             dest: 'dist/marketing/images/whatsthejob.png'
+        },
+        {
+            dest: 'dist/marketing/images/facebook.svg'
+        },
+        {
+            dest: 'dist/marketing/images/instagram.svg'
+        },
+        {
+            dest: 'dist/marketing/images/linkedin.svg'
+        },
+        {
+            dest: 'dist/marketing/images/twitter.svg'
         }
     ];
 

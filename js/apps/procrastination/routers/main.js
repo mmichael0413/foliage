@@ -42,7 +42,7 @@ define(function(require) {
             },
 
             showSchedule: function() {
-                new ListSchedule().fetch();
+                new ListSchedule({showCompleted: true});
                 var model = new CostEstimate({id: context.aggregateId});
                 new CostEstimateView({model: model}).fetch();
             },
