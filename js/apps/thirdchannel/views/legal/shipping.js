@@ -43,10 +43,15 @@ define(function (require) {
 
             $('#different_shipping_address').on('click', function(e) {
                 if($(this).is(':checked')) {
-                    $shippingAddressFields.show();
+                    $shippingAddressFields.removeClass('hide');
+                    $('#user_shipping_address_attributes__destroy').val(false);
                 } else {
-                    $shippingAddressFields.hide();
-                    $shippingAddressFields.find(':input').val('');
+                    $shippingAddressFields.addClass('hide');
+                    if($('#user_shipping_address_attributes_id').val().length) {
+                        $('#user_shipping_address_attributes__destroy').val(true);
+                    } else {
+                        $shippingAddressFields.find(':input').val('');
+                    }
                 }
             });
         }
