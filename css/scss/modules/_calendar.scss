@@ -4,15 +4,20 @@ $color3: #FFF5E6;
 $color4: #FAEBE6;
 $color5: #F0EBE6;
 
+@mixin hover-color {
+  &:hover {
+    color: $text-color;
+  }
+}
 
 @mixin schedules ($color){
   border-radius: $border-radius-base;
   .ui-draggable {
     background-color: $color;
-    padding: 1em .5em;
-    border-radius: $border-radius-base;
-    border: 1px solid darken($color, 20%);
-    margin-bottom: 2px;
+    padding: 1em;
+   // border-radius: $border-radius-base;
+   // border: 1px solid darken($color, 20%);
+   // margin-bottom: 2px;
     &.task {
       background-color:lighten($palette7, 20%);
     }
@@ -72,18 +77,28 @@ $color5: #F0EBE6;
   &.task-0 {
     background-color: $color1;
     border-color: darken($color1, 20%);
+    @include hover-color();
   }
   &.task-1 {
     background-color: $color2;
     border-color: darken($color2, 20%);
+    @include hover-color();
   }
   &.task-2 {
     background-color: $color3;
     border-color: darken($color3, 20%);
+    @include hover-color();
   }
   &.task-3 {
     background-color: $color4;
     border-color: darken($color4, 20%);
+    @include hover-color();
+  }
+
+  &.task-completed {
+    background-color: $palette2;
+    border-color: darken($palette2, 20%);
+    @include hover-color();
   }
 }
 

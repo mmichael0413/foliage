@@ -36,7 +36,7 @@ define(function(require) {
             },
 
             showSchedule: function() {
-                var view =  new ListSchedule();
+                var view =  new ListSchedule({showCompleted: true});
                 view.fetch();
             },
 

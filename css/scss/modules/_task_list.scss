@@ -1,0 +1,33 @@
+.store {
+  border-bottom: 1px solid $border-color;
+  margin-top: 1em;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .pure-g:first-child {
+      text-transform: none;
+      a {
+        color: $link-color;
+      }
+  }
+
+  .task-list {
+    margin: 0 1em 1em 1em;
+    @include swb-small {
+      margin: 0 0 1em 0;
+    }
+    border: 1px solid $border-color;
+    border-radius: $border-radius-base;
+
+    .pure-g:first-child {
+        padding:1em;
+    }
+
+  }
+}
