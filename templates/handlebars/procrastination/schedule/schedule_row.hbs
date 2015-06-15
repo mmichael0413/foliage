@@ -1,4 +1,7 @@
-<div class="schedule-row">
+<div class="col-4-5">
     <strong>{{taskDetail}}</strong><br/> {{storeName}}: {{street}} {{city}}, {{state}}
-    {{#if canUnassign}}<a href="#" class='unassign'>Unassign Visit</a>{{/if}}
+    {{#if canUnassign}}<br/><a href="#" class='btn primary small solid unassign'>Unassign Visit</a>{{/if}}
 </div>
+{{#if showCompleted}}
+    <div class="col-1-5">{{dateCompleted}}</div>
+{{/if}}

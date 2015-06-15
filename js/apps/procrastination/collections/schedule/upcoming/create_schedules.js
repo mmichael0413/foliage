@@ -23,7 +23,12 @@ define(function(require){
             var idx = 0;
             _.each(this.tasks, function(task){
                 _.each(task, function(visit) {
-                    var taskNum = 'task-' + idx;
+					var taskNum = 'task-' + idx;
+
+					if(visit.get('dateCompleted')){
+						taskNum = 'task-completed';
+					}
+
                     visit.set('taskColor', taskNum);
                 });
                 idx++;
