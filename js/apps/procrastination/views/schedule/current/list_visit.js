@@ -18,14 +18,14 @@ define(function (require) {
         },
 
         render: function() {
-            var dateCompleted = this.model.get('dateCompleted') ? moment(this.model.get('dateCompleted')).format('MM/DD/YYYY') : null;
+            var dateCompleted = this.model.get('dateCompleted') ? moment(this.model.get('dateCompleted')).utc().format('MM/DD/YYYY') : null;
 
 
             var attrs = {
                 city: this.model.get('city'),
                 customerStoreUUID: this.model.get('customerStoreUUID'),
                 dateCompleted: dateCompleted,
-                dateScheduled: moment(this.model.get('dateScheduled')).format('YYYY MM DD'),
+                dateScheduled: moment(this.model.get('dateScheduled')).utc().format('YYYY MM DD'),
                 state: this.model.get('state'),
                 storeName: this.model.get('storeName'),
                 street: this.model.get('street'),

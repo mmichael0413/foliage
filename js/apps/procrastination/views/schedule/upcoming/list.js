@@ -57,7 +57,7 @@ define(function (require) {
                             id: model.get('id'),
                             title: model.get('storeName'),
                             store: label,
-                            start: moment(model.get('dateScheduled')).format("YYYY-MM-DD"),
+                            start: moment(model.get('dateScheduled')).utc().format("YYYY-MM-DD"),
                             allDay: true,
                             className: model.get('taskColor'),
                             editable: model.get('dateCompleted') ? false : true
