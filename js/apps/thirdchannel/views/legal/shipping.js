@@ -19,16 +19,16 @@ define(function (require) {
                         required: true
                     },
                     'user[shipping_address_attributes][street_1]': {
-                        required: '#different_shipping_address:checked'
+                        required: '#same_shipping_address:checked'
                     },
                     'user[shipping_address_attributes][city]': {
-                        required: '#different_shipping_address:checked'
+                        required: '#same_shipping_address:checked'
                     },
                     'user[shipping_address_attributes][state]': {
-                        required: '#different_shipping_address:checked'
+                        required: '#same_shipping_address:checked'
                     },
                     'user[shipping_address_attributes][zip]': {
-                        required: '#different_shipping_address:checked'
+                        required: '#same_shipping_address:checked'
                     },
                     'user[shirt_size]': {
                         required: true
@@ -41,8 +41,8 @@ define(function (require) {
 
             var $shippingAddressFields = $('#shipping-address-fields');
 
-            $('#different_shipping_address').on('click', function(e) {
-                if($(this).is(':checked')) {
+            $('#same_shipping_address').on('click', function(e) {
+                if($(this).is(':unchecked')) {
                     $shippingAddressFields.removeClass('hide');
                     $('#user_shipping_address_attributes__destroy').val(false);
                 } else {
