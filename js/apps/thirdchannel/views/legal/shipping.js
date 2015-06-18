@@ -19,16 +19,16 @@ define(function (require) {
                         required: true
                     },
                     'user[shipping_address_attributes][street_1]': {
-                        required: '#same_shipping_address:checked'
+                        required: '#same_shipping_address:unchecked'
                     },
                     'user[shipping_address_attributes][city]': {
-                        required: '#same_shipping_address:checked'
+                        required: '#same_shipping_address:unchecked'
                     },
                     'user[shipping_address_attributes][state]': {
-                        required: '#same_shipping_address:checked'
+                        required: '#same_shipping_address:unchecked'
                     },
                     'user[shipping_address_attributes][zip]': {
-                        required: '#same_shipping_address:checked'
+                        required: '#same_shipping_address:unchecked'
                     },
                     'user[shirt_size]': {
                         required: true
