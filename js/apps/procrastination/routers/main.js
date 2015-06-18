@@ -11,6 +11,7 @@ define(function(require) {
         CostEstimateView = require('procrastination/views/schedule/cost_estimate'),
         AdminCostEstimate = require('procrastination/models/admin/cost_estimate'),
         AdminCostEstimateView = require('procrastination/views/admin/cost_estimate'),
+        buttons = require('buttons'),
 
         AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
 
