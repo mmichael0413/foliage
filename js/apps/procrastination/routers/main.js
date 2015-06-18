@@ -7,6 +7,7 @@ define(function(require) {
         SetSchedule = require('procrastination/views/schedule/upcoming/list'),
         ListSchedule = require('procrastination/views/schedule/current/main'),
         ManageSchedule = require('procrastination/views/admin/list_scheduling_progress'),
+        buttons = require('buttons'),
 
         AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
 
