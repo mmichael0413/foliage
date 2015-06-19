@@ -328,16 +328,28 @@ this["PennyPacker"]["templates"]["pennyPacker/entry/checkin_details"] = Handleba
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    <p>Payment Tier: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.tier)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</p>\n";
+  return buffer;
+  }
 
   buffer += "<h2>Details for Checkin at ";
   if (helper = helpers.locationName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.locationName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</h2>\n<p class=\"address\">";
+    + "</h2>\n<p class=\"address\"><a href=\"";
+  if (helper = helpers.customerStoreProfileUrl) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.customerStoreProfileUrl); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" target=\"_blank\">";
   if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p>Agent: "
+    + "</a></p>\n<p>Agent: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "("
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.paypalEmail)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
@@ -353,7 +365,18 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.rate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.rate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "/hr</span></p>\n\n<section class=\"payment-adjustment\">\n    <h3>Payment Adjustment</h3>\n    <p>If Checkin duration seems inappropriate, please enter a new duration - <span class=\"key-info\">in minutes</span> - as a correction.</p>\n    <input type=\"number\" value=\"0\" class=\"adjustment-input\"/><a class='btn primary adjust'>Adjust duration</a> \n</section>\n\n\n";
+    + "/hr</span></p>\n<p>";
+  if (helper = helpers.surveyName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.surveyName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " Checkin <a href=\"";
+  if (helper = helpers.checkinReportUrl) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.checkinReportUrl); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" target=\"_blank\">Click here to View</a></p>\n";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.tier), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n\n<section class=\"payment-adjustment\">\n    <h3>Payment Adjustment</h3>\n    <p>If Checkin duration seems inappropriate, please enter a new duration - <span class=\"key-info\">in minutes</span> - as a correction.</p>\n    <input type=\"number\" value=\"0\" class=\"adjustment-input\"/><a class='btn primary adjust'>Adjust duration</a> \n</section>\n\n\n";
   stack1 = self.invokePartial(partials.entry_comments, 'entry_comments', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer;

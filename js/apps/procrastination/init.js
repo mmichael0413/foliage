@@ -20,7 +20,8 @@ require.config({
         'context'       : 'shared/utils/context',
         'fullcalendar'  : '../libs/bower_components/fullcalendar/dist/fullcalendar',
         'moment'        : '../libs/bower_components/moment/moment',
-        'syncOverride'  : 'shared/utils/syncOverride'
+        'syncOverride'  : 'shared/utils/syncOverride',
+        'buttons'       : '../libs/buttons'
         
 
     },
@@ -66,6 +67,9 @@ require.config({
         },
         'syncOverride' : {
             deps: ["backbone"]
+        },
+        'buttons' : {
+            deps: ['jquery']
         }
     }
 });

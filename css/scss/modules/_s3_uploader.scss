@@ -38,7 +38,7 @@
     }
   }
 
-  .description {
+  .description, .progress-container {
     margin-left: 6rem;
     margin-right: 10rem;
   }
@@ -49,7 +49,7 @@
   }
 
   @include swb-medium{
-    .description {
+    .description, .progress-container {
       margin-right: 3rem;
     }
 
@@ -61,8 +61,8 @@
   }
 
   .progress, .percentage {
-    margin-left: 6rem;
-    margin-right: 11rem;
+    margin-right: 10rem;
+    width: 100%;
   }
 
   .progress {
@@ -70,6 +70,7 @@
     border: 1px solid $border-color;
     border-radius: 0.25rem;
     overflow: hidden;
+    width: 100%;
 
     .bar {
       width: 0%;
