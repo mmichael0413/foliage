@@ -1821,7 +1821,7 @@ function program1(depth0,data) {
   else { helper = (depth0 && depth0.column_value); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</td>\n        <td class=\"info-toggle\">\n            ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.column_value), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.checkins), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </td>\n</tr><tr class=\"checkins hide\">\n    <td colspan=\"3\"></td>\n</tr>\n";
   return buffer;
