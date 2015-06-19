@@ -1,7 +1,12 @@
 <h2>Details for Checkin at {{locationName}}</h2>
-<p class="address">{{address}}</p>
+<p class="address"><a href="{{customerStoreProfileUrl}}" target="_blank">{{address}}</a></p>
 <p>Agent: {{person.name}}({{person.paypalEmail}})</p>
 <p>Payment <span class="key-info">${{payment}}</span> for <span class="key-info">{{units}}</span> minutes at <span class="key-info">${{rate}}/hr</span></p>
+<p>{{surveyName}} Checkin <a href="{{checkinReportUrl}}" target="_blank">Click here to View</a></p>
+{{#if tier}}
+    <p>Payment Tier: {{tier.name}}</p>
+{{/if}}
+
 
 <section class="payment-adjustment">
     <h3>Payment Adjustment</h3>
