@@ -56,7 +56,7 @@ define(function(require){
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
             'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
             'programs/:program_id/notifications' : 'notificationList',
-            'programs/:program_id/legal/shipping' : 'shippingForm',
+            'programs/:program_id/profiles/:user_id/*path' : 'shippingForm', // handle /edit and / if errors
             'programs/:program_id/posts/new' : 'newPost',
             'programs/:program_id/labs/sku_sales': 'labsSkus',
             'programs/:program_id/labs(/)': 'labsSalesCompare',
