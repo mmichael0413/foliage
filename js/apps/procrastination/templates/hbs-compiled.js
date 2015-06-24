@@ -186,7 +186,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "\n<p class=\"col-3-12\"><a href=\"";
+  buffer += "\n<p class=\"col-1-5\"><a href=\"";
   if (helper = helpers.scheduleLink) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.scheduleLink); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -194,17 +194,21 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.firstName)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.lastName)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a></p>\n<p class=\"col-3-12\">";
+    + "</a></p>\n<p class=\"col-1-5\">";
   if (helper = helpers.visitsRequired) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.visitsRequired); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-3-12\">";
+    + "</p>\n<p class=\"col-1-5\">";
   if (helper = helpers.visitsScheduled) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.visitsScheduled); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-2-12\">";
+    + "</p>\n<p class=\"col-1-5\">";
   if (helper = helpers.schedulingStatus) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.schedulingStatus); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n<p class=\"col-1-5\">";
+  if (helper = helpers.workflowStatus) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.workflowStatus); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</p>";
   return buffer;
@@ -296,6 +300,53 @@ function program1(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    </div>\n\n    <div class=\"body group-header\">\n\n    </div>\n";
   return buffer;
+  });
+
+this["procrastination"]["templates"]["procrastination/schedule/upcoming/controls"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, self=this;
+
+function program1(depth0,data) {
+  
+  
+  return "\n<p>Once your schedule is locked and set you will need to contact your Program Manager if you need to reschedule a visit.</p>\n";
+  }
+
+function program3(depth0,data) {
+  
+  
+  return "\n    <a href=\"#\" class=\"set-schedule btn primary\">Set & Lock Schedule</a>\n";
+  }
+
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.showButton), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.showButton), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  return buffer;
+  });
+
+this["procrastination"]["templates"]["procrastination/schedule/upcoming/info"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, self=this;
+
+function program1(depth0,data) {
+  
+  
+  return "\n    <p>All visits have been scheduled. You can still update your schedule by dragging the visits on the calendar.</p>\n";
+  }
+
+function program3(depth0,data) {
+  
+  
+  return "\n    <p>Your schedule is locked. If you need to make changes, please contact your Program Manager.</p>\n";
+  }
+
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.isScheduleUnlocked), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
   });
 
 this["procrastination"]["templates"]["procrastination/schedule/upcoming/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
