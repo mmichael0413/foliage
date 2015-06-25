@@ -310,13 +310,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n<p>Once your schedule is locked and set you will need to contact your Program Manager if you need to reschedule a visit.</p>\n";
+  return "\n<p class=\"bottom\">Once your schedule is finalized you will need to contact your Program Manager if you need to reschedule a visit.</p>\n";
   }
 
 function program3(depth0,data) {
   
   
-  return "\n    <a href=\"#\" class=\"set-schedule btn primary\">Set & Lock Schedule</a>\n";
+  return "\n    <a href=\"#\" class=\"set-schedule btn primary\">Finalize Schedule</a>\n";
   }
 
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.showButton), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});

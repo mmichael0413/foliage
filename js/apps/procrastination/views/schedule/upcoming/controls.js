@@ -35,7 +35,7 @@ define(function (require) {
                 });
 
                 if(schedule === undefined) {
-                    if(confirm('Are you sure your visits are scheduled correctly? Confirming this dialog will lock your schedule.')) {
+                    if(confirm('Are you sure your visits are scheduled correctly? Once your schedule has been marked as final you will need to contact your Program Manager to reschedule a visit.')) {
                         $.post(context.base_url + '/schedule/lock/' + context.aggregateId).done(function () {
                             location.reload();
                         }).fail(function () {
