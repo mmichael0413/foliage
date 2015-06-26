@@ -6,6 +6,8 @@ define(function (require) {
         $ = require('jquery'),
         templates = require('handlebarsTemplates'),
         context = require('context'),
+        VisitGroups = require('pennyPacker/collections/visitGroups'),
+        VisitGroupView = require('pennyPacker/views/travel/visitGroup'),
 
         MissingTravelView = {
             el: '#travel',
@@ -13,6 +15,12 @@ define(function (require) {
 
             events: {
                 'submit form': 'findMissing'
+            },
+
+            initialize: function() {
+                this.collection = new VisitGroups({programId: context.programId});
+
+                this.listenTo(this.collection, 'reset', this.renderVisitGroups);
             },
 
             render: function() {
@@ -26,7 +34,7 @@ define(function (require) {
                 this.$(".datepicker").each(function() {
                     var $input = $(this);
 
-                    var picker = new Pikaday({
+                    new Pikaday({
                         format: 'YYYY-MM-DD',
                         bound: false,
                         field: this,
@@ -41,7 +49,19 @@ define(function (require) {
 
             findMissing: function(e) {
                 e.preventDefault();
-                console.log(this.$('.end-date').val());
+                this.collection.fetch({
+                    reset: true,
+                    type: 'post',
+                    data: {
+                        begin: this.$('input[name="begin"]').val(),
+                        end: this.$('input[name="end"]').val(),
+                        program: this.$('input[name="program"]').val()
+                    }
+                })
+            },
+
+            renderVisitGroups: function() {
+                console.log(this.collection);
             }
 
         };
