@@ -16,6 +16,7 @@ define(function (require) {
 
             initialize: function(options) {
                 this.parentView = options.parentView;
+                console.log(this.model);
             },
 
             render: function() {
@@ -27,6 +28,14 @@ define(function (require) {
                 e.preventDefault();
                 // on success remove view/model
                 // this.model.collection.remove(this.model);
+                var self = this;
+
+                this.model.createTravel().done(function(m) {
+                    console.log('travel entry created for checkin');
+                }).fail(function(resp) {
+                    console.log('something happened');
+                    console.log(resp);
+                });
             },
 
             leave: function() {
