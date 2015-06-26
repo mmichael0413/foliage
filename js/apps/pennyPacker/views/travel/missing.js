@@ -6,12 +6,14 @@ define(function (require) {
         $ = require('jquery'),
         templates = require('handlebarsTemplates'),
         context = require('context'),
-        VisitGroups = require('pennyPacker/collections/visitGroups'),
+        VisitGroups = require('pennyPacker/collections/missingTravelVisitGroups'),
         VisitGroupView = require('pennyPacker/views/travel/visitGroup'),
 
         MissingTravelView = {
             el: '#travel',
             template: templates['pennyPacker/travel/missing'],
+            spinnerHTML: "<div class='status'><i class='fa fa-spin fa-spinner fa-2x'></div>",
+            childViews: [],
 
             events: {
                 'submit form': 'findMissing'
@@ -49,19 +51,33 @@ define(function (require) {
 
             findMissing: function(e) {
                 e.preventDefault();
+
+                _.each(this.childViews, function(v) {
+                    v.remove();
+                });
+                this.childViews = [];
+
+                this.$('.body').html(this.spinnerHTML);
                 this.collection.fetch({
                     reset: true,
-                    type: 'post',
+                    type: 'POST',
                     data: {
                         begin: this.$('input[name="begin"]').val(),
-                        end: this.$('input[name="end"]').val(),
-                        program: this.$('input[name="program"]').val()
+                        end: this.$('input[name="end"]').val()
                     }
-                })
+                });
             },
 
             renderVisitGroups: function() {
-                console.log(this.collection);
+                var self = this,
+                    $body = this.$('.body');
+
+                $body.html('');
+                this.collection.each(function(visitGroup) {
+                    var v = new VisitGroupView({model: visitGroup});
+                    $body.append(v.render().el)
+                    self.childViews.push(v);
+                });
             }
 
         };

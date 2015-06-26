@@ -1,7 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
         context = require('context'),
-        VisitGroup = require('pennyPacker/models/visitGroup'),
+        VisitGroup = require('pennyPacker/models/missingTravelVisitGroup'),
 
         VisitGroupsCollection = Backbone.Collection.extend({
             model: VisitGroup,
@@ -9,7 +9,7 @@ define(function(require) {
                 this.programId = options.programId;
             },
             url: function() {
-                return '/program/' + this.programId + '/travel/missingTravel';
+                return '/program/' + this.programId + '/travel/missing';
             }
         });
 

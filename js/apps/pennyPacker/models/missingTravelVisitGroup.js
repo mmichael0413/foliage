@@ -4,6 +4,7 @@ define(function (require) {
         VisitGroupModel = Backbone.Model.extend({
             parse: function(data) {
 
+                return data;
             }
         });
     return VisitGroupModel;
