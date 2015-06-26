@@ -43,7 +43,7 @@ define(function (require) {
                         onSelect: function() {
                             $input.val(this.toString());
                         }
-                    })
+                    });
                 });
 
                 this.$('.pika-single').addClass('col-1-1');
@@ -53,7 +53,7 @@ define(function (require) {
                 e.preventDefault();
 
                 _.each(this.childViews, function(v) {
-                    v.remove();
+                    v.leave();
                 });
                 this.childViews = [];
 
