@@ -148,16 +148,6 @@
         width: inherit;
     }
 
-    .datepicker {
-        display: none;
-    }
-    .pika-single {
-        z-index: 10;
-        margin: 0 0 2em 0;
-        padding: initial;
-        width: 25em;
-    }
-
     .comment {
         height: 5em;
     }
@@ -171,6 +161,19 @@
         border: 1px solid $text-color;
     }
 
+}
+
+#directPayment, #travel {
+  .datepicker {
+    display: none;
+  }
+
+  .pika-single {
+    z-index: 10;
+    margin: 0 0 2em 0;
+    padding: initial;
+    width: 25em;
+  }
 }
 
 #invalidEntries {

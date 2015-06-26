@@ -6,8 +6,8 @@ define(function(require) {
         Filter = require('thirdchannel/views/filter/main'),
         DirectPaymentView = require('pennyPacker/views/programs/directPayment'),
         ActionsView = require('pennyPacker/views/entries/actions'),
+        MissingTravelView = require('pennyPacker/views/travel/missing'),
         InvalidEntriesListView = require('pennyPacker/views/entries/invalid'),
-        MissingTravelListView = require('pennyPacker/views/travel/missingList'),
         EntriesListView = require('pennyPacker/views/entries/list');
         
     /**
@@ -48,7 +48,9 @@ define(function(require) {
         },
 
         travel: function(programId) {
-            console.log(programId);
+            context.programId = programId;
+            var view = new MissingTravelView();
+            view.render();
         },
 
         direct: function (programId) {
