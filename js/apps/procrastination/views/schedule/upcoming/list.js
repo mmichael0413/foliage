@@ -8,20 +8,16 @@ define(function (require) {
         ScheduleCollection = require('procrastination/collections/schedule/upcoming/create_schedules'),
         StoreSchedule = require('procrastination/views/schedule/upcoming/show'),
         ListView = require('procrastination/views/schedule/current/main'),
+        ControlsView = require('procrastination/views/schedule/upcoming/controls'),
         moment = require('moment');
 
     return Backbone.View.extend({
-        el: '.section',
+        el: '.main-content',
         template: HandlebarsTemplates['procrastination/schedule/upcoming/visit_label'],
 
         initialize: function () {
             var self = this;
-            this.scheduledCount = 0;
             this.unscheduledCount = 0;
-            this.listView = this.$('.list');
-            this.listButton = this.$('.list-view');
-            this.calendarButton = this.$('.calendar-view');
-            this.calendarView = this.$('.pure-g');
             this.list = new ListView({showComplete: false}).setElement('.scheduled .schedules');
             this.listenTo(this, 'fullcalendar.date.create', this.updateSchedule);
             this.listenTo(this, 'fullcalendar.refresh', this.refreshCalendar);
@@ -34,8 +30,7 @@ define(function (require) {
             });
 
             this.calendar = this.$('#calendar').fullCalendar({
-                // put your options and callbacks here
-                droppable: true,
+                droppable: context.isScheduleUnlocked,
                 eventLimit: 2,
                 defaultDate: context.startDate,
                 header: {
@@ -43,7 +38,6 @@ define(function (require) {
                     center: '',
                     right: ''
                 },
-               // editable: true,
                 events: function (start, end, timezone, callback) {
                     var events = [];
                     var scheduledVisits = self.collection.filter(function (model) {
@@ -89,6 +83,11 @@ define(function (require) {
                     });
                 },
                 eventDrop: function(event, delta, revertFunc) {
+
+                    if(!context.isScheduleUnlocked) {
+                        alert("Your schedule is locked. Please contact your Program Manager if you need to reschedule a visit.");
+                        return revertFunc();
+                    }
                     var now = moment().utc().startOf('day');
                     if(event.start < now) {
                         alert("You cannot schedule a visit in the past.");
@@ -106,7 +105,7 @@ define(function (require) {
 
             this.listenTo(this.collection, 'destroy', this.destroy);
             this.listenTo(this.list.collection, 'destroy', this.destroy);
-
+            this.renderControls();
             return this;
         },
         events: {
@@ -141,12 +140,18 @@ define(function (require) {
                 $('.unscheduled .count').html(this.unscheduledCount);
             } else {
                 $('.unscheduled .count').html('');
-                this.$('.schedule-container .unscheduled .schedules').html('All visits have been scheduled. You can still update your schedule by dragging the visits on the calendar.');
+                this.$('.schedule-container .unscheduled .schedules').html(HandlebarsTemplates['procrastination/schedule/upcoming/info']({isScheduleUnlocked: context.isScheduleUnlocked}));
             }
 
             this.refreshCalendar();
 
             return this;
+        },
+
+        renderControls: function() {
+            var controls = new ControlsView({collection: this.collection});
+
+            this.$el.append(controls.render().el);
         },
 
         refreshCalendar: function () {

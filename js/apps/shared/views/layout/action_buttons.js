@@ -18,6 +18,11 @@ define(function (require) {
 
             this.render();
         },
+
+        events: {
+            "click button.action" : "fireEvent"
+        },
+
         render: function () {
             this.$('.actions').append(this.template({buttons: this.buttons}));
 
@@ -28,6 +33,13 @@ define(function (require) {
             if(data.count > 0) {
                 $('#actionNotification').text(data.count);
             }
+        },
+
+        fireEvent: function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            context.trigger('action.button.event', e);
         }
     });
 });
