@@ -75,7 +75,7 @@ define(function (require) {
                 $body.html('');
                 this.collection.each(function(visitGroup) {
                     var v = new VisitGroupView({model: visitGroup});
-                    $body.append(v.render().el)
+                    $body.append(v.render().el);
                     self.childViews.push(v);
                 });
             }
