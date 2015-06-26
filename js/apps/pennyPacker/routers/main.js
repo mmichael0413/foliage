@@ -16,9 +16,9 @@ define(function(require) {
      */
     var Router = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
-            'entries/:programId/mileage/missing/list': 'missingTravelList',
             'entries/:programId(/)' : 'entryList',
-            'program/:programId/direct(/)': 'direct'
+            'program/:programId/direct(/)': 'direct',
+            'program/:programId/travel(/)': 'travel'
         },
 
         before: function (parameters) {
@@ -47,10 +47,8 @@ define(function(require) {
             context.trigger("configure:deepLinks",true);
         },
 
-        missingTravelList: function (programId) {
-            var view = new MissingTravelListView();
-            view.collection.reset(context.content.items);
-            view.render();
+        travel: function(programId) {
+            console.log(programId);
         },
 
         direct: function (programId) {

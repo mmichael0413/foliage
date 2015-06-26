@@ -529,6 +529,20 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
+this["PennyPacker"]["templates"]["pennyPacker/travel/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"travel-form\">\n    <div class=\"pure-g section\">\n        <div class=\"col-1-1\">\n            <p>Please select a date range, and verify whether the visits should have travel entries created for them.</p>\n        </div>\n        <form action=\"/program/${program.id}/travel/listMissing\" method=\"post\">\n            <input type=\"hidden\" name=\"program\" value=\"";
+  if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n\n\n            <label class=\"col-1-1\">Begin Date</label>\n            <input type=\"text\" name=\"begin\" class=\"datepicker col-1-1\"/>\n\n            <label class=\"col-1-1\">End Date</label>\n            <input type=\"text\" name=\"end\" class=\"datepicker col-1-1\"/>\n\n            <button class=\"btn primary submit\">Find Missing Travel</button>\n        </form>\n    </div>\n</div>\n<div class=\"body\"></div>";
+  return buffer;
+  });
+
 this["PennyPacker"]["templates"]["pennyPacker/travel/row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
