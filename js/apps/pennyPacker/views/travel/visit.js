@@ -13,7 +13,7 @@ define(function (require) {
             childViews: [],
 
             initialize: function() {
-                this.collection = new Entries(this.model.get('entries'));
+                this.collection = new Entries(this.model.get('entries'), {parse: true});
             },
 
             render: function() {
