@@ -41,7 +41,7 @@ define(function (require) {
                         noty({
                             layout: 'topCenter',
                             theme: 'relax',
-                            text: message,
+                            text: 'Successfully created travel entry for ' + message,
                             type: 'success',
                             animation: {
                                 open: {height: 'toggle'},

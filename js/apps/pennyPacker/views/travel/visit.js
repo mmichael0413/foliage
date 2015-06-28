@@ -10,10 +10,12 @@ define(function (require) {
         VisitView = {
             template: templates['pennyPacker/travel/visit'],
 
+            parentView: null,
             childViews: [],
 
-            initialize: function() {
+            initialize: function(options) {
                 _.bindAll(this, 'removeChildView');
+                this.parentView = options.parentView;
                 this.collection = new Entries(this.model.get('entries'), {parse: true});
             },
 
