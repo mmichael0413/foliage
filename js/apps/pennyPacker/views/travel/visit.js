@@ -13,6 +13,7 @@ define(function (require) {
             childViews: [],
 
             initialize: function() {
+                _.bindAll(this, 'removeChildView');
                 this.collection = new Entries(this.model.get('entries'), {parse: true});
             },
 
@@ -39,6 +40,12 @@ define(function (require) {
                 });
                 this.unbind();
                 this.remove();
+            },
+
+            removeChildView: function(entryView) {
+                var indexOf = _.indexOf(this.childViews, entryView);
+                this.childViews[indexOf].remove();
+                this.childViews.splice(indexOf, 1);
             }
         };
 

@@ -19,13 +19,11 @@ define(function (require) {
 			},
             createTravel: function(opts) {
                 var options = {
-                    url: "/program/" + this.get('program').id + "/travel/create/" + this.id,
+                    url: "/program/" + this.get('programId') + "/travel/create/" + this.id,
                     type: 'POST'
                 };
 
                 _.extend(options, opts);
-
-                console.log(options);
 
                 return Backbone.sync.call(this, null, this, options);
             }
