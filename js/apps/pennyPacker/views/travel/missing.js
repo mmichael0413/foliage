@@ -2,6 +2,7 @@ define(function (require) {
 
     var Backbone = require('backbone'),
         Pikaday = require('pikaday'),
+        Noty = require('noty'),
         validator = require('jquery-validate'),
         $ = require('jquery'),
         templates = require('handlebarsTemplates'),
@@ -65,6 +66,20 @@ define(function (require) {
                         begin: this.$('input[name="begin"]').val(),
                         end: this.$('input[name="end"]').val()
                     }
+                }).fail(function(response, textStatus, errorThrown) {
+                    noty({
+                        layout: 'topCenter',
+                        theme: 'relax',
+                        text: 'Please select a begin and end date',
+                        type: 'error',
+                        animation: {
+                            open: {height: 'toggle'},
+                            close: {height: 'toggle'},
+                            easing: 'swing',
+                            speed: 500
+                        },
+                        timeout: 2500
+                    });
                 });
             },
 
