@@ -91,11 +91,15 @@ define(function (require) {
                     $body = this.$('.body');
 
                 $body.html('');
-                this.collection.each(function(visitGroup) {
-                    var v = new VisitGroupView({model: visitGroup});
-                    $body.append(v.render().el);
-                    self.childViews.push(v);
-                });
+                if(this.collection.isEmpty()) {
+                    $body.html('No missing travel entries for checkins within range');
+                } else {
+                    this.collection.each(function(visitGroup) {
+                        var v = new VisitGroupView({model: visitGroup});
+                        $body.append(v.render().el);
+                        self.childViews.push(v);
+                    });
+                }
             }
 
         };
