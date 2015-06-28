@@ -28,12 +28,19 @@ define(function (require) {
                 // on success remove view/model
                 // this.model.collection.remove(this.model);
                 var self = this;
-                this.model.createTravel().done(function(m) {
-                    console.log('travel entry created for checkin');
-                }).fail(function(resp) {
-                    console.log('something happened');
-                    console.log(resp);
-                });
+                
+                var personName = this.model.get('person').name,
+                    locationName = this.model.get('locationName'),
+                    date = this.model.get('date');
+
+                if(confirm('Are you sure you want to create a travel entry for ' + personName + ', ' + locationName + ' on ' + date)) {
+                    this.model.createTravel().done(function(m) {
+                        console.log('travel entry created for checkin');
+                    }).fail(function(resp) {
+                        console.log('something happened');
+                        console.log(resp);
+                    });
+                }
             },
 
             leave: function() {
