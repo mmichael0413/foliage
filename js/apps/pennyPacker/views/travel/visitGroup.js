@@ -7,6 +7,8 @@ define(function (require) {
         VisitView = require('pennyPacker/views/travel/visit'),
 
         VisitGroupView = {
+            className: 'visit-group',
+
             template: templates['pennyPacker/travel/visitGroup'],
 
             childViews: [],

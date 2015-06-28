@@ -8,6 +8,7 @@ define(function (require) {
         EntryView = require('pennyPacker/views/travel/entry'),
 
         VisitView = {
+            className: 'visit',
             template: templates['pennyPacker/travel/visit'],
 
             parentView: null,

@@ -7,6 +7,7 @@ define(function (require) {
         context = require('context'),
 
         VisitView = {
+            className: 'entry',
             template: templates['pennyPacker/travel/entry'],
 
             parentView: null,
