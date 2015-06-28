@@ -58,7 +58,9 @@ define(function (require) {
                 });
                 this.childViews = [];
 
-                this.$('.body').html(this.spinnerHTML);
+                var $container = this.$('.body');
+
+                $container.html(this.spinnerHTML);
                 this.collection.fetch({
                     reset: true,
                     type: 'POST',
@@ -67,6 +69,7 @@ define(function (require) {
                         end: this.$('input[name="end"]').val()
                     }
                 }).fail(function(response, textStatus, errorThrown) {
+                    $container.html('');
                     noty({
                         layout: 'topCenter',
                         theme: 'relax',
