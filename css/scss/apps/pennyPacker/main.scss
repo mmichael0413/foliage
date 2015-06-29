@@ -190,6 +190,14 @@
 
   .travel-form {
     margin-bottom: 1em;
+
+    label {
+      font-weight: bold;
+    }
+
+    p, label {
+      margin: 0.75em 0;
+    }
   }
 
   .visit-group {

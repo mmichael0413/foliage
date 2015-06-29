@@ -557,7 +557,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n\n            <label class=\"col-1-1\">Begin Date</label>\n            <input type=\"text\" name=\"begin\" class=\"datepicker col-1-1\" />\n\n            <label class=\"col-1-1\">End Date</label>\n            <input type=\"text\" name=\"end\" class=\"datepicker col-1-1\" />\n\n            <button class=\"btn primary submit\">Find Missing Travel</button>\n        </form>\n    </div>\n</div>\n<div class=\"body\"></div>";
+    + "\">\n\n            <div class=\"col-1-2 col-md-1-1\">\n                <label>Begin Date</label>\n                <div>\n                    <input type=\"text\" name=\"begin\" class=\"datepicker\" />\n                </div>\n            </div>\n\n            <div class=\"col-1-2 col-md-1-1\">\n                <label>End Date</label>\n                <div>\n                    <input type=\"text\" name=\"end\" class=\"datepicker col-1-1\" />\n                </div>\n            </div>\n\n            <div class=\"col-1-1\">\n                <button class=\"btn primary submit\">Find Missing Travel</button>\n            </div>\n        </form>\n    </div>\n</div>\n<div class=\"body\"></div>";
   return buffer;
   });
 

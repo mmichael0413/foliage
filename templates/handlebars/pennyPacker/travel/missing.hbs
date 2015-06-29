@@ -6,13 +6,23 @@
         <form action="/program/{{program}}/travel/listMissing" method="post">
             <input type="hidden" name="program" value="{{program}}">
 
-            <label class="col-1-1">Begin Date</label>
-            <input type="text" name="begin" class="datepicker col-1-1" />
+            <div class="col-1-2 col-md-1-1">
+                <label>Begin Date</label>
+                <div>
+                    <input type="text" name="begin" class="datepicker" />
+                </div>
+            </div>
 
-            <label class="col-1-1">End Date</label>
-            <input type="text" name="end" class="datepicker col-1-1" />
+            <div class="col-1-2 col-md-1-1">
+                <label>End Date</label>
+                <div>
+                    <input type="text" name="end" class="datepicker col-1-1" />
+                </div>
+            </div>
 
-            <button class="btn primary submit">Find Missing Travel</button>
+            <div class="col-1-1">
+                <button class="btn primary submit">Find Missing Travel</button>
+            </div>
         </form>
     </div>
 </div>
