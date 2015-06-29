@@ -92,7 +92,7 @@ define(function (require) {
 
                 $body.html('');
                 if(this.collection.isEmpty()) {
-                    $body.html('No missing travel entries for checkins within range');
+                    $body.html('<p>No missing travel entries for checkins within range</p>');
                 } else {
                     this.collection.each(function(visitGroup) {
                         var v = new VisitGroupView({model: visitGroup});
