@@ -16,7 +16,17 @@ define(function (require) {
 			},
 			url: function () {
 				return this.get('links').self;
-			}
+			},
+            createTravel: function(opts) {
+                var options = {
+                    url: "/program/" + this.get('programId') + "/travel/create/" + this.id,
+                    type: 'POST'
+                };
+
+                _.extend(options, opts);
+
+                return Backbone.sync.call(this, null, this, options);
+            }
 		});
 	return EntryModel;
 });

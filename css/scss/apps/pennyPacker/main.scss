@@ -148,16 +148,6 @@
         width: inherit;
     }
 
-    .datepicker {
-        display: none;
-    }
-    .pika-single {
-        z-index: 10;
-        margin: 0 0 2em 0;
-        padding: initial;
-        width: 25em;
-    }
-
     .comment {
         height: 5em;
     }
@@ -171,6 +161,71 @@
         border: 1px solid $text-color;
     }
 
+}
+
+#directPayment, #travel {
+  .datepicker {
+    display: none;
+  }
+
+  .pika-single {
+    z-index: 10;
+    margin: 0 0 2em 0;
+    padding: initial;
+    width: 25em;
+  }
+}
+
+#travel {
+  /*
+    .travel-form
+    .visit-group
+      h2
+      .visits
+        .visit
+          h3
+          .entries
+            .entry
+  */
+
+  .body {
+    p {
+      margin: 1em 0;
+    }
+  }
+
+  .travel-form {
+    margin-bottom: 1em;
+
+    label {
+      font-weight: bold;
+    }
+
+    p, label {
+      margin: 0.75em 0;
+    }
+  }
+
+  .visit-group {
+    margin: 0.2em 0 0;
+    border-bottom: 1px solid $palette3;
+    padding: 1em 0;
+
+    &:first-child {
+      margin: 0;
+      padding-top: 0;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      margin: 0.5em 0;
+      color: $medium-blue;
+    }
+
+    .entry {
+      margin: 0 0 1em;
+    }
+  }
 }
 
 #invalidEntries {

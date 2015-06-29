@@ -6,8 +6,8 @@ define(function(require) {
         Filter = require('thirdchannel/views/filter/main'),
         DirectPaymentView = require('pennyPacker/views/programs/directPayment'),
         ActionsView = require('pennyPacker/views/entries/actions'),
+        MissingTravelView = require('pennyPacker/views/travel/missing'),
         InvalidEntriesListView = require('pennyPacker/views/entries/invalid'),
-        MissingTravelListView = require('pennyPacker/views/travel/missingList'),
         EntriesListView = require('pennyPacker/views/entries/list');
         
     /**
@@ -16,9 +16,9 @@ define(function(require) {
      */
     var Router = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
-            'entries/:programId/mileage/missing/list': 'missingTravelList',
             'entries/:programId(/)' : 'entryList',
-            'program/:programId/direct(/)': 'direct'
+            'program/:programId/direct(/)': 'direct',
+            'program/:programId/travel(/)': 'travel'
         },
 
         before: function (parameters) {
@@ -47,9 +47,9 @@ define(function(require) {
             context.trigger("configure:deepLinks",true);
         },
 
-        missingTravelList: function (programId) {
-            var view = new MissingTravelListView();
-            view.collection.reset(context.content.items);
+        travel: function(programId) {
+            context.programId = programId;
+            var view = new MissingTravelView();
             view.render();
         },
 
