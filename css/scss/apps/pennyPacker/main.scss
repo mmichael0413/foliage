@@ -176,6 +176,39 @@
   }
 }
 
+#travel {
+  /*
+    .travel-form
+    .visit-group
+      h2
+      .visits
+        .visit
+          h3
+          .entries
+            .entry
+  */
+
+  .travel-form {
+    margin-bottom: 1em;
+  }
+
+  .visit-group {
+    margin: 0.2em 0 0;
+    border-bottom: 1px solid $palette3;
+    padding: 1em 0;
+
+    h2 {
+      font-size: 1.5em;
+      margin: 0.5em 0;
+      color: $medium-blue;
+    }
+
+    .entry {
+      margin: 0 0 1em;
+    }
+  }
+}
+
 #invalidEntries {
     margin-bottom: 5em;
 }
