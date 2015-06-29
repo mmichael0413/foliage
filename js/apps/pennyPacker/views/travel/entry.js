@@ -25,8 +25,7 @@ define(function (require) {
 
             createTravelEntry: function(e) {
                 e.preventDefault();
-                // on success remove view/model
-                // this.model.collection.remove(this.model);
+                
                 var self = this;
 
                 var personName = this.model.get('person').name,
