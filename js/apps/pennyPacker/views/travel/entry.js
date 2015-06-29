@@ -5,19 +5,17 @@ define(function (require) {
         templates = require('handlebarsTemplates'),
         Noty = require('noty'),
         context = require('context'),
+        TravelEntryView = require('pennyPacker/views/travel/travelEntry'),
+        Entry = require('pennyPacker/models/entry'),
 
         VisitView = {
             className: 'entry',
             template: templates['pennyPacker/travel/entry'],
 
-            parentView: null,
+            childViews: [],
 
             events: {
                 'click .create-travel-entry': 'createTravelEntry'
-            },
-
-            initialize: function(options) {
-                this.parentView = options.parentView;
             },
 
             render: function() {
@@ -53,7 +51,11 @@ define(function (require) {
                             timeout: 2500
                         });
                         self.model.collection.remove(self.model);
-                        self.parentView.removeChildView(self);
+
+                        // Display the travel payout
+                        var travelEntryView = new TravelEntryView({model: new Entry(resp)});
+                        self.$el.html(travelEntryView.render().el);
+                        self.childViews.push(travelEntryView);
                     }).fail(function(resp, textStatus, errorThrown) {
                         var errorMessage = 'Whoops, something went wrong... Contact tech support.';
                         if(resp.responseJSON.error) {
@@ -77,6 +79,9 @@ define(function (require) {
             },
 
             leave: function() {
+                _.each(this.childViews, function(v) {
+                    v.remove();
+                });
                 this.unbind();
                 this.remove();
             }

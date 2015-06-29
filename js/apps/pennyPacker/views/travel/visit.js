@@ -11,12 +11,9 @@ define(function (require) {
             className: 'visit',
             template: templates['pennyPacker/travel/visit'],
 
-            parentView: null,
             childViews: [],
 
             initialize: function(options) {
-                _.bindAll(this, 'removeChildView');
-                this.parentView = options.parentView;
                 this.collection = new Entries(this.model.get('entries'), {parse: true});
             },
 
@@ -31,7 +28,7 @@ define(function (require) {
                     $container = this.$('.entries');
 
                 this.collection.each(function(entry) {
-                    var v = new EntryView({model: entry, parentView: self});
+                    var v = new EntryView({model: entry});
                     $container.append(v.render().el);
                     self.childViews.push(v);
                 });
@@ -43,12 +40,6 @@ define(function (require) {
                 });
                 this.unbind();
                 this.remove();
-            },
-
-            removeChildView: function(entryView) {
-                var indexOf = _.indexOf(this.childViews, entryView);
-                this.childViews[indexOf].remove();
-                this.childViews.splice(indexOf, 1);
             }
         };
 

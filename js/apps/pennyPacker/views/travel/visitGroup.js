@@ -28,7 +28,7 @@ define(function (require) {
                     $container = this.$('.visits');
 
                 this.collection.each(function(visit) {
-                    var v = new VisitView({model: visit, parentView: self});
+                    var v = new VisitView({model: visit});
                     $container.append(v.render().el);
                     self.childViews.push(v);
                 });
