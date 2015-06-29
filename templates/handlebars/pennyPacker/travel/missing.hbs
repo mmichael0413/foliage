@@ -1,0 +1,29 @@
+<div class="travel-form section">
+    <div class="pure-g ">
+        <div class="col-1-1">
+            <p>Please select a date range, and verify whether the visits should have travel entries created for them.</p>
+        </div>
+        <form action="/program/{{program}}/travel/listMissing" method="post">
+            <input type="hidden" name="program" value="{{program}}">
+
+            <div class="col-1-2 col-md-1-1">
+                <label>Begin Date</label>
+                <div>
+                    <input type="text" name="begin" class="datepicker" />
+                </div>
+            </div>
+
+            <div class="col-1-2 col-md-1-1">
+                <label>End Date</label>
+                <div>
+                    <input type="text" name="end" class="datepicker col-1-1" />
+                </div>
+            </div>
+
+            <div class="col-1-1">
+                <button class="btn primary submit">Find Missing Travel</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="body"></div>

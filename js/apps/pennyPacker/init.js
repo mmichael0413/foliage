@@ -18,8 +18,7 @@ require.config({
         'helpers'       : 'thirdchannel/utils/helpers',
         'pikaday'       : '../libs/bower_components/pikaday/pikaday',
         'context'       : 'shared/utils/context',
-        
-
+        'noty'          : '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged'
     },
     shim: {
         "jquery": {
@@ -58,6 +57,9 @@ require.config({
         },
         'context': {
             deps: ["underscore"]
+        },
+        'noty': {
+            deps: ['jquery']
         }
     }
 });

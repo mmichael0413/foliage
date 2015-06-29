@@ -529,6 +529,38 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
+this["PennyPacker"]["templates"]["pennyPacker/travel/entry"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div>";
+  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n<div><button class=\"btn primary create-travel-entry\">Create Travel Entry</button></div>";
+  return buffer;
+  });
+
+this["PennyPacker"]["templates"]["pennyPacker/travel/missing"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"travel-form section\">\n    <div class=\"pure-g \">\n        <div class=\"col-1-1\">\n            <p>Please select a date range, and verify whether the visits should have travel entries created for them.</p>\n        </div>\n        <form action=\"/program/";
+  if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "/travel/listMissing\" method=\"post\">\n            <input type=\"hidden\" name=\"program\" value=\"";
+  if (helper = helpers.program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n\n            <div class=\"col-1-2 col-md-1-1\">\n                <label>Begin Date</label>\n                <div>\n                    <input type=\"text\" name=\"begin\" class=\"datepicker\" />\n                </div>\n            </div>\n\n            <div class=\"col-1-2 col-md-1-1\">\n                <label>End Date</label>\n                <div>\n                    <input type=\"text\" name=\"end\" class=\"datepicker col-1-1\" />\n                </div>\n            </div>\n\n            <div class=\"col-1-1\">\n                <button class=\"btn primary submit\">Find Missing Travel</button>\n            </div>\n        </form>\n    </div>\n</div>\n<div class=\"body\"></div>";
+  return buffer;
+  });
+
 this["PennyPacker"]["templates"]["pennyPacker/travel/row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -552,6 +584,56 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   else { helper = (depth0 && depth0.date); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</p>\n</div>";
+  return buffer;
+  });
+
+this["PennyPacker"]["templates"]["pennyPacker/travel/travelEntry"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "Paid <strong>$";
+  if (helper = helpers.payment) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.payment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</strong> in travel for <strong>";
+  if (helper = helpers.units) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.units); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " miles</strong>.";
+  return buffer;
+  });
+
+this["PennyPacker"]["templates"]["pennyPacker/travel/visit"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<h3>";
+  if (helper = helpers.personName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.personName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " - ";
+  if (helper = helpers.locationName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.locationName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</h3>\n<div class=\"entries\"></div>";
+  return buffer;
+  });
+
+this["PennyPacker"]["templates"]["pennyPacker/travel/visitGroup"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<h2>";
+  if (helper = helpers.date) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.date); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</h2>\n<div class=\"visits\"></div>";
   return buffer;
   });
 
