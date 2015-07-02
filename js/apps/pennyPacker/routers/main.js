@@ -8,7 +8,8 @@ define(function(require) {
         ActionsView = require('pennyPacker/views/entries/actions'),
         MissingTravelView = require('pennyPacker/views/travel/missing'),
         InvalidEntriesListView = require('pennyPacker/views/entries/invalid'),
-        EntriesListView = require('pennyPacker/views/entries/list');
+        EntriesListView = require('pennyPacker/views/entries/list'),
+        InvalidEntriesFullListView = require('pennyPacker/views/entries/invalidFullList');
         
     /**
      * 
@@ -17,6 +18,7 @@ define(function(require) {
     var Router = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             'entries/:programId(/)' : 'entryList',
+            'entries/:programId/invalid(/)': 'invalidList',
             'program/:programId/direct(/)': 'direct',
             'program/:programId/travel(/)': 'travel'
         },
@@ -44,6 +46,22 @@ define(function(require) {
             } else {
                 invalidView.render();
             }
+            context.trigger("configure:deepLinks",true);
+        },
+
+        invalidList: function (programId) {
+
+            Filter.init();
+            new ActionsView();
+            var view = new InvalidEntriesFullListView();
+            if (context.content.items) {
+                
+                view.bootstrapCollection(context.content);
+                
+            } else {
+                view.render();
+            }
+            
             context.trigger("configure:deepLinks",true);
         },
 

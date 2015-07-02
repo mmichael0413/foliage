@@ -5,7 +5,7 @@ define(function(require) {
 		InvalidEntriesCollection = {
 			url: function () {
 				if (this.queryString) {
-					return context.content.links.invalid + "?" + this.queryString;
+					return context.content.links.invalid + "?page=0&" + this.queryString;
 				} else {
 					return context.content.links.invalid;
 				}
