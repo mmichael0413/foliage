@@ -14,6 +14,9 @@ define(function(require) {
 				this.queryString = qs + "&format=json";
 			},
 			parse: function (data) {
+				if (data.count) {
+					this.count = data.count;
+				}
 				if (data.items) {
 					this.pages = data.pages;
 					return data.items;

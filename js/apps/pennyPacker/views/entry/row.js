@@ -28,8 +28,6 @@ define(function (require) {
             },
 
             render: function () {
-                console.log("Template: " + this.template);
-                console.log(Templates);
                 this.$el.html(Templates[this.template](this.model.toJSON()));
                 this.decorate();
                 return this;

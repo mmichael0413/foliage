@@ -45,6 +45,9 @@ var _ = require('underscore'),
             },
 
             afterRender: function () {
+                if (this.collection.count) {
+                    this.$el.find("#invalidCount").text(this.collection.count);    
+                } 
             },
             
             collectionClass: EntriesCollection,
