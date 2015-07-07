@@ -6,6 +6,7 @@ require.config({
 
     paths: {
         'jquery'        : "../libs/bower_components/jquery/jquery.min",
+        'jquery-ui'     : "../libs/bower_components/jquery-ui/jquery-ui",
         'jquery_ujs'    : '../libs/bower_components/jquery-ujs/src/rails',
         'jquery-validate' : '../libs/bower_components/jquery-validation/dist/jquery.validate',
         'pikaday'       : '../libs/bower_components/pikaday/pikaday',
@@ -13,7 +14,7 @@ require.config({
         'underscore'    : '../libs/bower_components/underscore/underscore',
         'backbone'      : '../libs/bower_components/backbone/backbone',
         'handlebars'    : '../libs/bower_components/handlebars/handlebars.min',
-        'handlebarsTemplates': 'pennyPacker/templates/hbs-compiled',
+        'handlebarsTemplates': 'oddjob/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
         'helpers'       : 'thirdchannel/utils/helpers',
         'context'       : 'shared/utils/context',
@@ -23,6 +24,9 @@ require.config({
         "jquery": {
             deps: [],
             exports: "$"
+        },
+        "jquery-ui": {
+            deps: ['jquery']
         },
         "jquery_ujs": {
             deps: ["jquery"]
