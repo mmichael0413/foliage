@@ -29,3 +29,26 @@
 @import "../../modules/store_profile_section";
 @import "../../modules/visit_report";
 
+
+.clearfix {
+  overflow: auto;
+  zoom: 1;
+}
+
+.group {
+	
+}
+.job {
+	@extend .clearfix;
+	cursor: pointer;
+	.title {
+		margin: 0;
+		width: 25%;
+		float: left; 
+	}
+	.info {
+		font-style: italic;
+		color: $slate;
+		float: left;
+	}
+}
