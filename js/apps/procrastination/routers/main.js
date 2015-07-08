@@ -11,6 +11,8 @@ define(function(require) {
         CostEstimateView = require('procrastination/views/schedule/cost_estimate'),
         AdminCostEstimate = require('procrastination/models/admin/cost_estimate'),
         AdminCostEstimateView = require('procrastination/views/admin/cost_estimate'),
+        AdminSchedulingCycles = require('procrastination/collections/admin/scheduling_cycles'),
+        AdminSchedulingCyclesView = require('procrastination/views/admin/scheduling_cycles'),
         buttons = require('buttons'),
 
         AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
@@ -19,6 +21,7 @@ define(function(require) {
                 ':customer_slug/:program_slug/schedule/:person_id/create': 'createSchedule',
                 ':customer_slug/:program_slug/schedule/:aggregate_id/edit': 'createSchedule',
                 ':customer_slug/:program_slug/schedule/:person_id': 'showSchedule',
+                ':customer_slug/:program_slug/admin/scheduling(/)': 'listSchedulingCycles',
                 ':customer_slug/:program_slug/admin/scheduling/upcoming': 'manageSchedule',
                 ':customer_slug/:program_slug/admin/scheduling/current': 'manageSchedule'
             },
@@ -46,6 +49,15 @@ define(function(require) {
                 new ListSchedule({showCompleted: true}).fetch();
                 var model = new CostEstimate({id: context.aggregateId});
                 new CostEstimateView({model: model}).fetch();
+            },
+
+            listSchedulingCycles: function() {
+                var collection = new AdminSchedulingCycles();
+                collection.add(context, {parse: true});
+
+                var view = new AdminSchedulingCyclesView({collection: collection});
+
+                view.render();
             },
 
             manageSchedule: function() {
