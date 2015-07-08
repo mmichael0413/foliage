@@ -17,7 +17,23 @@ define(function(require) {
         },
         updateViewBreakDownLink : function (qs) {
             var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
-            this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
+            var viewBreakDownLink = 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs;
+            var infoListFilters = this.model.results.info_list_filters;
+
+            if (infoListFilters !== undefined) {
+                _.each(infoListFilters, function (val, param) {
+                    if ($.isArray(val)) {
+                        _.each(val, function (arrayVal) {
+                            viewBreakDownLink += '&' + param + '=' + arrayVal;
+                        });
+                    } else {
+                        viewBreakDownLink += '&' + param + '=' + val;
+                    }
+
+                });
+            }
+
+            this.$el.find('a.breakdown-link').attr("href", viewBreakDownLink);
         }
     });
 });
