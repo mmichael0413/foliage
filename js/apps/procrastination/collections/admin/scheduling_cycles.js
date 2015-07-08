@@ -5,6 +5,7 @@ define(function(require){
         SchedulingCycle = require('procrastination/models/admin/scheduling_cycle');
 
     return Backbone.Collection.extend({
+        page: 1,
         model: SchedulingCycle,
 
         queryString: "",
@@ -23,12 +24,7 @@ define(function(require){
         },
 
         url: function() {
-            if(this.queryString){
-                return context.base_url + context.url + "?" + this.queryString;
-            } else {
-                return context.base_url + context.url;
-            }
-
+            return context.base_url + context.url;
         }
     });
 });

@@ -44,8 +44,8 @@ define(function (require) {
                 });
                 this.childViews = [];
 
-                this.collection.setQueryString("page=" + page);
-                this.collection.fetch({reset: true}).done(function() {
+                this.collection.page = page;
+                this.collection.fetch({reset: true, data: { page: page }}).done(function() {
                     self.renderPagination();
                 });
             }
