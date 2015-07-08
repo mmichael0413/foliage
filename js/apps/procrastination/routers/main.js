@@ -56,6 +56,7 @@ define(function(require) {
                 var view = new AdminSchedulingCyclesView({collection: collection});
 
                 if(context.content !== undefined) {
+                    console.log(context.content);
                     collection.add(context, {parse: true});
                     view.render();
                 } else {

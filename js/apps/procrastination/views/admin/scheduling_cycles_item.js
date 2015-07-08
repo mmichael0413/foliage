@@ -10,7 +10,11 @@ define(function (require) {
             template: Templates['procrastination/admin/scheduling_cycles_item'],
 
             render: function() {
-                this.$el.html(this.template(this.model.attributes));
+                var data = this.model.attributes;
+
+                data.links.self = context.base_url + data.links.self;
+
+                this.$el.html(this.template(data));
                 return this;
             }
         };
