@@ -10,7 +10,7 @@ define(function (require) {
 		},
 
 		edit: function () {
-			console.log("Editing ", this.model.get('id'));
+			window.location = 'jobs/' + this.model.get('id');
 		},
 
 		render: function () {

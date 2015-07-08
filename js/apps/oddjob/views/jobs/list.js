@@ -19,7 +19,6 @@ define(function (require) {
 			}.bind(this));
 		},
 		renderRows: function (collection) {
-			console.log("whatup", collection);
 			collection.each(function(group) {
 				var view = new GroupRow({model: group});
 				view.render().$el.appendTo(this.$el);
