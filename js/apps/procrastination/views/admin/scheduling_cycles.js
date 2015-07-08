@@ -6,7 +6,7 @@ define(function (require) {
         Pageable = require('shared/views/utils/pageable_component'),
         SchedulingCycleView = require('procrastination/views/admin/scheduling_cycles_item'),
 
-        SchedulingCyclesView = {
+        SchedulingCyclesView = Backbone.View.extend({
             el: '#scheduling-cycles',
 
             template: Templates['procrastination/admin/scheduling_cycles'],
@@ -14,13 +14,14 @@ define(function (require) {
             childViews: [],
 
             initialize: function() {
-                _.bindAll(this, 'renderCollection', 'reRenderCollection');
-                this.listenTo(this.collection, 'reset', this.reRenderCollection);
+                _.bindAll(this, 'renderCollection');
+                this.listenTo(this.collection, 'reset', this.renderCollection);
             },
 
             render: function() {
                 this.$el.html(this.template());
                 this.renderCollection();
+                this.renderPagination();
                 return this;
             },
 
@@ -35,14 +36,22 @@ define(function (require) {
                 });
             },
 
-            reRenderCollection: function() {
+            pageChange: function(page) {
+                var self = this;
+
                 _.each(this.childViews, function(v) {
                     v.remove();
                 });
                 this.childViews = [];
-                this.renderCollection();
-            }
-        };
 
-    return Backbone.View.extend(SchedulingCyclesView);
+                this.collection.setQueryString("page=" + page);
+                this.collection.fetch({reset: true}).done(function() {
+                    self.renderPagination();
+                });
+            }
+        });
+
+    _.extend(SchedulingCyclesView.prototype, Pageable);
+
+    return SchedulingCyclesView;
 });
