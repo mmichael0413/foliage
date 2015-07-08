@@ -53,11 +53,16 @@ define(function(require) {
 
             listSchedulingCycles: function() {
                 var collection = new AdminSchedulingCycles();
-                collection.add(context, {parse: true});
-
                 var view = new AdminSchedulingCyclesView({collection: collection});
 
-                view.render();
+                if(context.content !== undefined) {
+                    collection.add(context, {parse: true});
+                    view.render();
+                } else {
+                    collection.fetch().done(function() {
+                        view.render();
+                    });
+                }
             },
 
             manageSchedule: function() {
