@@ -23,7 +23,8 @@ define(function(require) {
                 ':customer_slug/:program_slug/schedule/:person_id': 'showSchedule',
                 ':customer_slug/:program_slug/admin/scheduling(/)': 'listSchedulingCycles',
                 ':customer_slug/:program_slug/admin/scheduling/upcoming': 'manageSchedule',
-                ':customer_slug/:program_slug/admin/scheduling/current': 'manageSchedule'
+                ':customer_slug/:program_slug/admin/scheduling/current': 'manageSchedule',
+                ':customer_slug/:program_slug/admin/scheduling/:cycle_id(/)': 'showSchedulingCycle'
             },
 
             before: function(parameters) {
@@ -56,13 +57,23 @@ define(function(require) {
                 var view = new AdminSchedulingCyclesView({collection: collection});
 
                 if(context.content !== undefined) {
-                    console.log(context.content);
                     collection.add(context, {parse: true});
                     view.render();
                 } else {
                     collection.fetch().done(function() {
                         view.render();
                     });
+                }
+            },
+
+            showSchedulingCycle: function(customerSlug, programSlug, cycleId) {
+                Filter.init();
+                var view = new ManageSchedule();
+
+                if(context.content) {
+                    view.bootstrapCollection(context.content);
+                } else {
+                    view.fetch();
                 }
             },
 

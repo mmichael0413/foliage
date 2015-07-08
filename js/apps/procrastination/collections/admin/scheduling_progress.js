@@ -4,11 +4,6 @@ define(function(require){
 		Schedule = require('procrastination/models/admin/schedule');
 
 	return Backbone.Collection.extend({
-		initialize: function() {
-
-			return this;
-		},
-
 		model: Schedule,
 
         queryString: "",
