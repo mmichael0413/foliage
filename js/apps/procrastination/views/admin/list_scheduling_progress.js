@@ -9,6 +9,7 @@ define(function (require) {
 
         SchedulingProgressView = {
             el: '#schedules',
+            emptyHTML: "<p class='item status col-1-1'>No Results Found</p>",
             initialize: function () {
                 AsyncListView.prototype.initialize.call(this, arguments);
                 this.initFilterable();
