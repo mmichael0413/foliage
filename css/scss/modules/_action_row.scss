@@ -1,12 +1,13 @@
 .actions {
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    button, a {
-    	margin-left:.5em;
-    }
-    @include swb-small(){
-      top: .6em;
-    }
+  position: absolute;
+  top: 1em;
+  right: 1em;
 
+  button, a {
+      margin-left:.5em;
+  }
+
+  @include swb-small(){
+    top: .6em;
+  }
 }
