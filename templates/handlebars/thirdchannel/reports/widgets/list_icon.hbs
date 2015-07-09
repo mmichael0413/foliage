@@ -5,16 +5,16 @@
         </div>
     </div>
     <div class="pull-left">
-        <div>{{title}}</div>
+        <h4>{{title}}</h4>
         {{#if show_view_list}}
             <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
         {{/if}}
         {{#if results.list}}
-            {{#eachRange 0 3 results.list}}
-                <h4>{{this}}</h4>
-            {{/eachRange}}
+            {{#each results.list}}
+                <p>{{index_inc @index}}. {{this}}</p>
+            {{/each}}
         {{else}}
-            <h4>N/A</h4>
+            <p>N/A</p>
         {{/if}}
     </div>
     <div class="clearfix"></div>
