@@ -25,10 +25,9 @@ define(function(require) {
             'click .active-filter': 'resetItem',
             // used by subclasses
             'change input[type="datetime"]': 'handleDateChange',
-            'blur input[type="datetime"]': 'handleDateBlur'
+            'blur input[type="datetime"]': 'handleDateBlur',
+            'keyup .items-filter, change .items-filter': 'handleFilterItems'
         },
-
-        
 
         render: function () {
             // set up listeners for things to do with the filter param type (e.g. state)

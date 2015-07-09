@@ -6,6 +6,7 @@ define(function(require) {
         SingleAnswerComponentView = require('thirdchannel/views/filter/singleAnswerComponent'),
         DateComponentView = require('thirdchannel/views/filter/dateComponent'),
         HiddenComponentView = require('thirdchannel/views/filter/hiddenComponent'),
+        FilterableComponentView = require('thirdchannel/views/filter/filterableComponent'),
         ComponentView = require('thirdchannel/views/filter/component'),
         SerializeObject = require('serializeObject'),
         helpers = require('helpers');
@@ -151,6 +152,9 @@ define(function(require) {
             }
             else if (filterModel.get('type') === 'hidden') {
                 view = HiddenComponentView;
+            }
+            else if (filterModel.get('type') === 'filterable') {
+                view = FilterableComponentView;
             }
             else if (filterModel.get('name').indexOf('[]') === -1) {
                 view = SingleAnswerComponentView;
