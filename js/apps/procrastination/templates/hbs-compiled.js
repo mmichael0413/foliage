@@ -220,7 +220,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"pagination-holder\"></div>\n<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-1-3\">Schedule</h3>\n        <h3 class=\"header col-1-3\">Range</h3>\n        <h3 class=\"header col-1-3\">Completion Date</h3>\n    </div>\n    <div class=\"body\"></div>\n</section>";
+  return "<div class=\"pagination-holder\"></div>\n<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-1-5\">Schedule</h3>\n        <h3 class=\"header col-1-5\">Date Range</h3>\n        <h3 class=\"header col-1-5\">% Complete</h3>\n        <h3 class=\"header col-1-5\">% In Progress</h3>\n        <h3 class=\"header col-1-5\">% Not Started</h3>\n    </div>\n    <div class=\"body\"></div>\n</section>";
   });
 
 this["procrastination"]["templates"]["procrastination/admin/scheduling_cycles_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -229,21 +229,29 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<p class=\"item col-1-3\"><a href=\""
+  buffer += "<p class=\"item col-1-5\"><a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.self)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">";
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</a></p>\n<p class=\"item col-1-3\">";
+    + "</a></p>\n<p class=\"item col-1-5\">";
   if (helper = helpers.dateRange) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.dateRange); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"item col-1-3\">";
-  if (helper = helpers.scheduleCompletionDate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.scheduleCompletionDate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+    + "</p>\n<p class=\"item col-1-5\">";
+  if (helper = helpers.percentComplete) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.percentComplete); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>";
+    + "%</p>\n<p class=\"item col-1-5\">";
+  if (helper = helpers.percentInProgress) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.percentInProgress); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "%</p>\n<p class=\"item col-1-5\">";
+  if (helper = helpers.percentNotStarted) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.percentNotStarted); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "%</p>";
   return buffer;
   });
 
