@@ -11,7 +11,6 @@ define(function(require) {
      * 
      */
     var component = {
-
         templateName: 'thirdchannel/filters/list_component',
 
         openClassName: 'open',
@@ -35,7 +34,7 @@ define(function(require) {
             this.activeFilters = [];
             this.filterParam = this.model.get('name');
             
-            this.$el.html( handlebarsTemplates[this.templateName]( this.model.toJSON() ) );
+            this.$el.html(handlebarsTemplates[this.templateName](this.model.toJSON()));
             this.listenTo(context, this.filterParam +':filter:clear', this.restoreFilter);
             return this;
         },
@@ -52,19 +51,20 @@ define(function(require) {
         },
 
         toggleOpen: function (e) {
-            if (e) {
+            if(e) {
                 e.preventDefault();
                 e.stopPropagation();
             }
             
-            var $icon = this.$el.find('.expand-indicator'),
-                $list = this.$el.find('.filter-list');
+            var $icon = this.$('.expand-indicator'),
+                $list = this.$('.filter-list');
+
             $icon.toggleClass(this.openClassName);
             $list.toggleClass(this.openClassName);
         },
         closeFilter: function() {
-            this.$el.find('.expand-indicator').removeClass(this.openClassName);
-            this.$el.find('.filter-list').removeClass(this.openClassName);
+            this.$('.expand-indicator').removeClass(this.openClassName);
+            this.$('.filter-list').removeClass(this.openClassName);
         },
         /**
          * Handler for the click event
