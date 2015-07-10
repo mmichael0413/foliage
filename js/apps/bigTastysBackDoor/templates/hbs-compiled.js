@@ -248,7 +248,7 @@ function program3(depth0,data) {
   if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "<span class=\"expand-indicator\"></span></div>\n    <div class=\"filter-list\">\n        <input type=\"text\" name=\"items-filter\" class=\"items-filter\">\n        ";
+    + "<span class=\"expand-indicator\"></span></div>\n    <div class=\"filter-list\"><input type=\"text\" name=\"items-filter\" class=\"items-filter\"></div>\n    <div class=\"filter-list filter-list-items\">\n        ";
   options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
   if (helper = helpers.items) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.items); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }

@@ -91,16 +91,19 @@ define(function(require) {
         _addFilterFromLink: function ($link) {
             if ($link.length > 0) {
                 this._addFilter($link.text(), $link.data('value'));
+                $link.addClass('filtered');
                 $link.hide();
             }
         },
+
         _addFilter: function (label, value) {
             var view = new ActiveFilterItemView({
                 param: this.filterParam,
                 label: label,
                 value: value
             }).render();
-            view.$el.appendTo(this.$el.find('.filter-item'));
+
+            view.$el.appendTo(this.$('.filter-item'));
             
             this.activeFilters.push(view);
         },
@@ -111,7 +114,9 @@ define(function(require) {
         },
 
         restoreFilter: function (data) {
-            this.$el.find(this._buildFilterItemLink(data.value)).show();
+            var $link = this.$el.find(this._buildFilterItemLink(data.value));
+            $link.show()
+            $link.removeClass('filtered');
         }
     };
 
