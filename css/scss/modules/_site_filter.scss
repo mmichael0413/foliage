@@ -119,14 +119,15 @@
       margin: 0 auto;
 
       input {
-        width: auto;
+        width: 80%;
       }
 
-      /*
-      input, a {
-        width: auto;
-        display: inline;
-      }*/
+      @include swb-medium {
+        a > i {
+          font-size: small;
+          line-height: 0.5;
+        }
+      }
     }
 
     a.filter-item, a.filter-item:hover {
