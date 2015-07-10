@@ -1,12 +1,10 @@
 define(function(require){
     var Backbone = require('backbone'),
         context = require('context'),
-        AsyncPagedCollection = require('thirdchannel/collections/shared/async_paged'),
-        SchedulingCycle = require('procrastination/models/admin/scheduling_cycle');
+        AsyncPagedCollection = require('thirdchannel/collections/shared/async_paged');
 
     return Backbone.Collection.extend({
         page: 1,
-        model: SchedulingCycle,
 
         queryString: "",
 
