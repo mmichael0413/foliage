@@ -18,7 +18,6 @@ define(function (require) {
 
         initialize: function() {
             this._filterItems = _.debounce(_.bind(this.filterItems, this), 250);
-            this.originalItems = this.model.get('items');
         },
 
         handleFilterItems: function(e) {
