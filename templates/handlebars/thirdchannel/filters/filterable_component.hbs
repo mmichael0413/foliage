@@ -1,7 +1,10 @@
 <div class="filter-component">
     <div class="filter-item">{{label}}<span class="expand-indicator"></span></div>
-    <div class="filter-list"><input type="text" name="items-filter" class="items-filter"></div>
     <div class="filter-list filter-list-items">
+        <div class="filter-list-search">
+            <input type="text" name="items-filter" class="items-filter">
+            <a href="#" class="btn light clear-items-filter"><i class="ic ic_x"></i></a>
+        </div>
         {{#items}}
             <div class="filter-list-item flexible" data-value="{{value}}">
                 <div class="btn default">&nbsp;</div><span>{{name}}</span>

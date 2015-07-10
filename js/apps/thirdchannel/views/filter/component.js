@@ -25,7 +25,8 @@ define(function(require) {
             // used by subclasses
             'change input[type="datetime"]': 'handleDateChange',
             'blur input[type="datetime"]': 'handleDateBlur',
-            'keyup .items-filter, change .items-filter': 'handleFilterItems'
+            'keyup .items-filter, change .items-filter': 'handleFilterItems',
+            'click .clear-items-filter': 'clearFilterItems'
         },
 
         render: function () {
@@ -115,7 +116,7 @@ define(function(require) {
 
         restoreFilter: function (data) {
             var $link = this.$el.find(this._buildFilterItemLink(data.value));
-            $link.show()
+            $link.show();
             $link.removeClass('filtered');
         }
     };

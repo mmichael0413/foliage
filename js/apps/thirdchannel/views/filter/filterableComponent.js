@@ -3,7 +3,7 @@ define(function (require) {
         Backbone = require('backbone'),
         _ = require('underscore'),
         context = require('context'),
-        templates = require('handlebarsTemplates')
+        templates = require('handlebarsTemplates'),
         Component = require('thirdchannel/views/filter/component');
 
     /**
@@ -37,7 +37,7 @@ define(function (require) {
                 // So in order to maintain the hidden filtered items, just hide any that are not filtered and match the term
                 // Ideally, it would be better to re-render the filtered list based on the search term...
                 $.each(this.$('.filter-list-item:not(.filtered)'), function() {
-                    if(this.dataset.value.match(termPattern) == null) {
+                    if(this.dataset.value.match(termPattern) === null) {
                         $(this).hide();
                     }
                 });
@@ -46,6 +46,11 @@ define(function (require) {
 
         addFilterHandler: function(e) {
             Component.prototype.addFilterHandler.call(this, e);
+            this.clearFilterItems(e);
+        },
+
+        clearFilterItems: function(e) {
+            e.preventDefault();
             this.$('.items-filter').val('');
             this.$('.filter-list-item:not(.filtered)').show();
         }

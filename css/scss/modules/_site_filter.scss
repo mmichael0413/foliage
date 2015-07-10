@@ -104,14 +104,29 @@
             }
         }
 
-      .no-results {
-        padding: 1em;
-        padding-left: 2em;
-      }
+        .no-results {
+            padding: 1em;
+            padding-left: 2em;
+        }
 
         &.open {
             max-height:20em;
         }
+    }
+
+    .filter-list-search {
+      width: 95%;
+      margin: 0 auto;
+
+      input {
+        width: auto;
+      }
+
+      /*
+      input, a {
+        width: auto;
+        display: inline;
+      }*/
     }
 
     a.filter-item, a.filter-item:hover {
