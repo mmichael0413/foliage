@@ -19,7 +19,7 @@ define(function(require) {
                 this.$el.prepend("<div class='pagination-holder'></div>");
 
             }
-            var $paginationHolder = this.$el.find('.pagination-holder');
+            var $paginationHolder = this.$('.pagination-holder');
             if ($paginationHolder.length > 0) {
                 this.pager = new PaginationView(this.collection.pages !== undefined ? this.collection.pages : this.pages).render();
                 // replace the existing pagination holder with the pager. If we simply prepended the pager into the view, there would be a 
