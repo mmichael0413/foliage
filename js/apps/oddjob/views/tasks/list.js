@@ -3,7 +3,7 @@ define(function (require) {
 		$ = require('jquery'),
 		jui = require('jquery-ui'),
 		context = require('context'),
-		GroupRow = require('oddjob/views/groups/row');
+		GroupRow = require('oddjob/views/jobs/row');
 
 
 	return Backbone.View.extend({
@@ -19,14 +19,19 @@ define(function (require) {
 			}.bind(this));
 		},
 		renderRows: function (collection) {
-			collection.each(function(group) {
+			if (collection.length === 0) {
+				this.$el.html("<p>There are currently no jobs created for this program.</p>");
+			} else {
+				collection.each(function(group) {
 				var view = new GroupRow({model: group});
 				view.render().$el.appendTo(this.$el);
 				this.rowsViews.push(view);
 			}.bind(this));
 			$('.group').sortable({
 				connectWith: ".group"
-			});
+			});	
+			}
+			
 
 		}
 	});

@@ -5,11 +5,13 @@ define(function (require) {
         Backbone = require('backbone'),
         context = require('context'),
         Filter = require('thirdchannel/views/filter/main'),
-        JobsListView = require('oddjob/views/jobs/list');
+        TasksEditView = require('oddjob/views/tasks/edit'),
+        TasksListView = require('oddjob/views/tasks/list');
 
     var Router = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
-            ':customer/:programSlug/jobs': 'jobsList'
+            ':customer/:programSlug/jobs(/)': 'jobsList',
+            ':customer/:programSlug/tasks/:taskId': 'tasksEdit'
         },
 
         before: function (parameters) {
@@ -22,9 +24,14 @@ define(function (require) {
         },
 
         jobsList: function (customer, programSlug) {
-            new JobsListView().render();
+            new TasksListView().render();
+        },
 
+        tasksEdit: function (customer, programSlug, taskId) {
+            console.log(arguments);
+            new TasksEditView();
         }
+
     });
 
     return Router;
