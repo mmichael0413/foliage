@@ -166,16 +166,33 @@ function program1(depth0,data) {
   return buffer;
   });
 
-this["oddjob"]["templates"]["oddjob/jobRow"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["oddjob"]["templates"]["oddjob/jobs/row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  return "<div></div>\n";
+  buffer += "<h3></h3>\n<div class=\"tasks-container\"></div>\n<p class=\"info\">";
+  if (helper = helpers.taskCount) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.taskCount); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " tasks(s). Total Duration: ";
+  if (helper = helpers.displayDuration) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.displayDuration); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ". Payment: $";
+  if (helper = helpers.displayTotalPayment) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.displayTotalPayment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ". <a href=\"\"> Currently assigned to ";
+  if (helper = helpers.scheduleCount) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.scheduleCount); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " stores</a></p>\n\n";
+  return buffer;
   });
 
-this["oddjob"]["templates"]["oddjob/jobs/row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["oddjob"]["templates"]["oddjob/tasks/row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
@@ -189,9 +206,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.expectedDuration) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.expectedDuration); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " / Payment Rate: ";
-  if (helper = helpers.paymentRate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.paymentRate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+    + " / Payment Rate: $";
+  if (helper = helpers.displayPaymentRate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.displayPaymentRate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " / Expected Payment: $";
+  if (helper = helpers.displayExpectedPayment) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.displayExpectedPayment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</p>";
   return buffer;

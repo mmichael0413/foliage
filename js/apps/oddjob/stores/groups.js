@@ -12,7 +12,7 @@ define(function (require) {
 				//todo: listeners?
 			},
 			url: function () {
-				return context.links.groups;
+				return context.links.jobs;
 			}
 		}))();
 	};
