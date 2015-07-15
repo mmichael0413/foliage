@@ -1,0 +1,28 @@
+	<h3>Create a Job</h3>
+	<label class="label" for="jobName">Name</label>
+    <input class="input" type="text" value="{{job.name}}" name="name" id="jobName"/>
+    <p class="info">If you leave the name blank, the group will use the name of the first Task</p>
+
+    <div class="tasks-container">
+    	<div class="task  clearfix">
+    		<label class="label">Task</label>
+	    	<select name="survey" id="survey" class="input">
+	    	{{#surveys}}
+	    		<option value="{{uuid}}" {{#selected}}selected{{/selected}}>{{title}}</option>
+	    	{{/surveys}}
+	    	</select>
+
+	    	<label for="" class="label">Expected Minutes</label>
+	    	<input type="number" class="input small" value="{{job.expectedDuration}}">
+
+	    	<label for="" class="label">Payment Rate ($)</label>
+	    	<input type="number" class="input small" value="{{job.displayPaymentRate}}">
+
+	    	<label for="" class="label">Required?</label>
+	    	<input type="checkbox" class="input small"/>	
+    	</div>
+    </div>
+
+    <button class="btn add-task">Add Task</button>
+
+    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
