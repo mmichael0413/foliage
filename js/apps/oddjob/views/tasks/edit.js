@@ -1,42 +1,40 @@
 define(function (require) {
     var Backbone = require('backbone'),
-        context = require('context');
+        Templates = require('handlebarsTemplates'),
+        context = require('context'),
+        SurveysStore = require('oddjob/stores/surveys');
 
     /**
-     * A wrapper around the edit view for Jobs in OddJob
      * 
      * @type View
      */
-    var JobEditView = {
-        el: "#jobEdit",
-        events: {
-            'click .delete': 'deleteJob'
+    var TaskEditView = {
+        
+        buildData: function () {
+            var surveys = SurveysStore.toJSON(),
+                pos = surveys.length;
+            while(pos--) {
+                if (surveys[pos].uuid == this.model.get('surveyId')) {
+                    surveys[pos].selected = true;
+                }
+            }
+            this.model.set('surveys', surveys);
+
+
+
+            if (this.model.get('index') > 0) {
+                this.model.set('removeable', true);
+            }
+
+            return this.model.toJSON();
         },
 
-        deleteJob: function (e) {
-            e.stopPropagation();
+        clear: function (e) {
             e.preventDefault();
-            var jobId = this.$el.find("#jobId").val(),
-                model;
-
-            if (confirm("Are you sure you wish to delete this job?")) {
-                model = new (Backbone.Model.extend({url: function () {
-                    console.log(context.links.delete);
-                    return context.links.delete;
-                }}))({id: jobId});
-
-                model.destroy()
-                .done(function () {
-                    this.$el.fadeOut(function () {
-                        window.location = context.links.list;    
-                    });
-                }.bind(this))
-                .fail(function () {
-                    alert("Could not delete! Please alert tech support");
-                });    
-            }
+            alert("Nope!");
         }
+
     };
 
-    return Backbone.View.extend(JobEditView);
+    return require('oddjob/views/tasks/create').extend(TaskEditView);
 });

@@ -21,6 +21,7 @@ define(function(require) {
 			var data = this.model.toJSON();
 			data.taskCount = data.tasks.length;
 			data.displayTotalPayment = data.totalPayment/100;
+			console.log(data);
 			// render my self
 			this.$el.html(Templates['oddjob/jobs/row'](data));
 			// render my rows

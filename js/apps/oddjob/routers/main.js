@@ -6,14 +6,15 @@ define(function (require) {
         context = require('context'),
         Filter = require('thirdchannel/views/filter/main'),
         JobCreateView = require('oddjob/views/jobs/create'),
-        TasksEditView = require('oddjob/views/tasks/edit'),
+        JobEditView = require('oddjob/views/jobs/edit'),
         TasksListView = require('oddjob/views/tasks/list');
 
     var Router = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             ':customer/:programSlug/jobs(/)': 'jobsList',
             ':customer/:programSlug/jobs/create(/)': 'jobsCreate',
-            ':customer/:programSlug/tasks/:taskId': 'tasksEdit'
+            ':customer/:programSlug/jobs/:jobId(/)': 'jobsEdit',
+            
         },
 
         before: function (parameters) {
@@ -31,6 +32,22 @@ define(function (require) {
 
         jobsCreate: function (customer, programSlug) {
             new JobCreateView({model: new Backbone.Model()}).render();
+        },
+
+        jobsEdit: function (customer, programSlug, jobId) {
+            var job = new (Backbone.Model.extend({
+                url: function () {
+                    return context.links.self;
+                }
+            }))();
+            
+            job.fetch()
+                .fail(function () {
+                    console.log("something went wrong");
+                })
+                .done(function () {
+                    new JobEditView({model: job}).render();
+                });
         },
 
         tasksEdit: function (customer, programSlug, taskId) {
