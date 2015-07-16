@@ -7,22 +7,20 @@ define(function(require) {
 	var JobCreateView = {
 		el: "#job",
 		templateName: "oddjob/jobs/create",
+		taskViewClass: require('oddjob/views/tasks/create'),
+		childViews: [],
 		events: {
 			'click .add-task': 'addTask'
 		},
 
 		render: function () {
+			console.log("Rendering!");
 			SurveysStore.fetch()
 			.done(function () {
-				
-				var data = {
-					job: this.model.toJSON(),
-					surveys: SurveysStore.toJSON()
-				};
-				
-				this.$el.html(Templates[this.templateName](data));
-				// cache the Task Form html in order to recreate it
-				this.taskHtml = this.$el.find('.tasks-container').first().html();
+				this.$el.html(Templates[this.templateName](this.model.toJSON()));
+				this.$tasksContainer = this.$el.find('.tasks-container');
+				// create the first view
+				this.renderChildViews();
 			}.bind(this));
 			
 			
@@ -31,11 +29,22 @@ define(function(require) {
 			return this;
 		},
 
+		renderChildViews: function () {
+			this._addTaskAtIndex(0, new Backbone.Model());
+
+		},
+
+		_addTaskAtIndex: function (index, model) {
+			var view = new this.taskViewClass({index:index, model: model});
+			this.$tasksContainer.append(view.render().$el);
+			this.childViews.push(view);
+		},
+
 		addTask: function (e) {
 			e.stopPropagation();
 			e.preventDefault();
-			console.log("Duplicating, ", this.taskHtml);
-			this.$el.find('.tasks-container').append(this.taskHtml);
+			var index = this.$tasksContainer.find('.task').length;
+			this._addTaskAtIndex(index, new Backbone.Model());
 		}
 
 	};
