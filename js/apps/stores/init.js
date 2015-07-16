@@ -9,6 +9,7 @@ require.config({
         'expanding': '../libs/expanding',
         'handlebarsTemplates': 'stores/templates/hbs-compiled',
         'handlebarsHelpers': 'shared/utils/handlebarsHelpers',
+        'context': 'shared/utils/context',
         'noty': '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged'
     },
     shim: {
