@@ -12,7 +12,8 @@ define(function (require) {
 		templateName: 'oddjob/tasks/create',
 		className: 'task  clearfix',
 		events: {
-			'click .remove': 'clear'
+			'click .remove': 'clear',
+
 		},
 
 		initialize: function (data) {

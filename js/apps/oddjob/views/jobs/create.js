@@ -10,7 +10,8 @@ define(function(require) {
 		taskViewClass: require('oddjob/views/tasks/create'),
 		childViews: [],
 		events: {
-			'click .add-task': 'addTask'
+			'click .add-task': 'addTask',
+			'click .delete': 'deleteJob'
 		},
 
 		render: function () {
@@ -45,6 +46,10 @@ define(function(require) {
 			e.preventDefault();
 			var index = this.$tasksContainer.find('.task').length;
 			this._addTaskAtIndex(index, new Backbone.Model());
+		},
+
+		deleteJob: function () {
+			// no op for create
 		}
 
 	};

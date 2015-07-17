@@ -19,6 +19,19 @@ define(function(require) {
 				this._addTaskAtIndex(i, new Backbone.Model(this.model.get('tasks')[i]));
 			}
 
+		},
+
+		deleteJob: function (e) {
+			e.preventDefault();
+			if (confirm("Are you sure you wish to delete this job?")) {
+				this.model.destroy()
+				.done(function () {
+					window.location = context.links.jobs;	
+				})
+				.fail(function () {
+					console.log("Could not delete!");
+				});	
+			}
 		}
 
 	};

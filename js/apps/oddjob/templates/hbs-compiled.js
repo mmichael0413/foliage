@@ -202,7 +202,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   buffer += "	<h3>Edit Job</h3>\n	";
   stack1 = self.invokePartial(partials.job_fields, 'job_fields', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n    <button type=\"submit\" name=\"submit\" class=\"btn btn-primary\">Submit</button>";
+  buffer += "\n\n    <button type=\"submit\" name=\"submit\" class=\"btn btn-primary\">Submit</button>\n    <button name=\"delete\" class=\"btn btn-primary delete\">Delete Job</button>";
   return buffer;
   });
 
