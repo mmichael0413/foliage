@@ -1,4 +1,17 @@
-<h2><a href="jobs/{{id}}">{{name}}</a></h2>
+<div class="header pure-g">
+	<h3 class="col-6-12"><a href="jobs/{{id}}">{{name}}</a></h3>
+	<h3 class="col-2-12">Duration<br/>({{displayDuration}})</h3>
+	<h3 class="col-2-12">Payment Rate<br/>(${{displayTotalPayment}})</h3>
+	<h3 class="col-2-12">Required?</h3>
+
+</div>
+
 <div class="tasks-container"></div>
-<p class="info">{{taskCount}} tasks(s). Total Duration: {{displayDuration}}. Payment: ${{displayTotalPayment}}. <a href=""> Currently assigned to {{scheduleCount}} stores</a></p>
+
+
+{{#frequencySummaries}}
+{{else}}
+<p class="frequency-row info">There are no frequencies or store assignments for this Job. Click 'Assign New Frequency' to get started.</p>
+{{/frequencySummaries}}
+<div class="frequency-row"><a class="btn btn-primary primary" href="{{createScheduleUrl}}">Assign New Frequency</a></div>
 

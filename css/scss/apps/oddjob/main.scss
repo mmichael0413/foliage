@@ -35,18 +35,17 @@
   zoom: 1;
 }
 
+.btn {
+	cursor: pointer;
+}
+
 .group {
 	
 }
-.job {
-	@extend .clearfix;
-	cursor: pointer;
-	.title {
-		margin: 0;
-		width: 25%;
-		float: left; 
-	}
-	
+
+.row {
+	border-top: 1px solid $light-blue;
+	padding: 0.5em 0;
 }
 .info {
 	font-style: italic;
@@ -91,4 +90,11 @@
 	.btn-primary {
 		float: right;
 	}
+}
+
+.frequency-row {
+	background-color: $light-blue;
+	padding: 0.5em 1em;
+	margin: 0em -1em;
+
 }
