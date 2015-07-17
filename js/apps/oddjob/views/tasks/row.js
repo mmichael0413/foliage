@@ -4,7 +4,7 @@ define(function (require) {
         Templates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-        className: "job",
+        className: "task pure-g row",
         // events: {
         //  'click': 'edit'
         // },

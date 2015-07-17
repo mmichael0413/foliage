@@ -1,6 +1,6 @@
-			{{#id}}
-				<input name="taskId[{{../index}}]" type="hidden" value="{{this}}"/>
-			{{/id}}
+			
+				<input name="taskId[{{index}}]" type="hidden" value="{{#id}}{{this}}{{/id}}"/>
+			
 			<label class="label">Task</label>
 	    	<select name="survey[{{index}}]" id="survey" class="input">
 	    	{{#surveys}}
