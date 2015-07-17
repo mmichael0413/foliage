@@ -96,7 +96,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" name=\"name\" id=\"jobName\" placeholder=\"Enter Optional name here\"/>\n    <p class=\"info\">If you leave the name blank, the group will use the name of the first Task</p>\n\n    <div class=\"tasks-container\">\n    </div>\n\n    <button class=\"btn add-task\">Add Task</button>";
+    + "\" name=\"name\" id=\"jobName\" placeholder=\"Enter Optional name here\"/>\n    <p class=\"info\">If you leave the name blank, the group will use the name of the first Task. Furthermore, a Job must have at least one Task (Typically, there will be only one Task per Job).</p>\n\n    <div class=\"tasks-container\">\n    </div>\n\n    <button class=\"btn add-task\">Add Task</button>";
   return buffer;
   }));
 
