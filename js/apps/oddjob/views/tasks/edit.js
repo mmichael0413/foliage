@@ -10,28 +10,21 @@ define(function (require) {
      */
     var TaskEditView = {
         
-        buildData: function () {
-            var surveys = SurveysStore.toJSON(),
-                pos = surveys.length;
-            while(pos--) {
-                if (surveys[pos].uuid == this.model.get('surveyId')) {
-                    surveys[pos].selected = true;
-                }
-            }
-            this.model.set('surveys', surveys);
-
-
-
-            if (this.model.get('index') > 0) {
-                this.model.set('removeable', true);
-            }
-
-            return this.model.toJSON();
-        },
-
+        
         clear: function (e) {
             e.preventDefault();
-            alert("Nope!");
+            this.model.url = context.links.tasks +"/" + this.model.get('id');
+            
+            if (confirm("Are you sure you wish to delete this task from the job?")) {
+
+                this.model.destroy()
+                    .done(function () {
+                        this.remove();
+                    }.bind(this))
+                    .fail(function () {
+                        console.error("Uh oh");
+                    });
+            }
         }
 
     };
