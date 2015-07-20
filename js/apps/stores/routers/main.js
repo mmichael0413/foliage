@@ -22,6 +22,7 @@ define(function(require){
 
         storeList: function(programId) {
             console.log(programId);
+
         },
 
         swap: function(view) {
