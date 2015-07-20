@@ -1,0 +1,7 @@
+<h3 class="title">{{count}} Possible Stores</h3>
+{{#programStores}}
+<p class="store-row"><input type="checkbox" name="ids" value="{{uuid}}" class="check"><span class="name">{{name}}</span> {{address}}</p>
+{{else}}
+
+<p class="info">Not stores match your query</p>
+{{/programStores}}

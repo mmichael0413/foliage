@@ -16,7 +16,7 @@
 @import "../../modules/action_row";
 @import "../../modules/pagination";
 @import "../../modules/site_filter";
-
+@import "../../modules/pikaday";
 @import "../../modules/pure_grid";
 
 @import "../../modules/data_section";
@@ -39,7 +39,12 @@
 	cursor: pointer;
 }
 
-.group {
+.btn-row {
+	&.primary {
+		.btn {
+			float:right;
+		}	
+	}
 	
 }
 
@@ -96,5 +101,28 @@
 	background-color: $light-blue;
 	padding: 0.5em 1em;
 	margin: 0em -1em;
+}
+.frequency-section {
+	select {
+		margin-top: 0em;
+	}
+}
 
+.pika-single {
+	background: white;
+	&.is-hidden {
+		z-index: -1;
+	}
+}
+
+.store-row {
+	margin: 0.5em 0em;
+	.check {
+		margin-right: 1em;
+	}
+	.name {
+		color: $palette5;
+		width:25%;
+		display: inline-block;
+	}
 }

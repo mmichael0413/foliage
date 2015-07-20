@@ -7,6 +7,8 @@ define(function (require) {
         Filter = require('thirdchannel/views/filter/main'),
         JobCreateView = require('oddjob/views/jobs/create'),
         JobEditView = require('oddjob/views/jobs/edit'),
+        FrequencyCreateView = require('oddjob/views/schedules/frequencyCreate'),
+        StoreListView = require('oddjob/views/stores/list'),
         TasksListView = require('oddjob/views/tasks/list');
 
     var Router = require('shared/routers/contextAwareBaseRouter').extend({
@@ -14,6 +16,7 @@ define(function (require) {
             ':customer/:programSlug/jobs(/)': 'jobsList',
             ':customer/:programSlug/jobs/create(/)': 'jobsCreate',
             ':customer/:programSlug/jobs/:jobId(/)': 'jobsEdit',
+            ':customer/:programSlug/jobs/:jobId/schedule': 'scheduleCreate'
             
         },
 
@@ -50,9 +53,10 @@ define(function (require) {
                 });
         },
 
-        tasksEdit: function (customer, programSlug, taskId) {
-            console.log(arguments);
-            new TasksEditView();
+        scheduleCreate: function (customer, programSlug, jobId) {
+            // instantiate two views, one for schedule and one for store view
+            new FrequencyCreateView({el: $("#frequencyForm")}).render();
+            new StoreListView();
         }
 
     });
