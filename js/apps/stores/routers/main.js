@@ -4,7 +4,7 @@ define(function(require){
         Backbone = require('backbone'),
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
-        ProgramListView = require('stores/views/program_list');
+        ProgramListView = require('stores/views/programs/list');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         container: $('#application'),
@@ -12,28 +12,28 @@ define(function(require){
 
         routes: {
             '(/)': 'programList',
-            ':programId(/)': 'storeList'
+            'programs/:programId(/)': 'storeList'
         },
 
-        before: function (parameters, route, name) {
+        programList: function() {
+            var view = new ProgramListView({collection: context.programs});
+            this.swap(view);
+        },
+
+        storeList: function(programId) {
+            console.log(programId);
+        },
+
+        swap: function(view) {
             if(this.currentView) {
                 if(this.currentView.leave) {
                     this.currentView.leave();
                 } else {
                     this.currentView.remove();
                 }
-                this.currentView = null;
             }
-        },
-
-        programList: function() {
-            var view = new ProgramListView({collection: context.programs});
-            this.container.html(view.render().el);
             this.currentView = view;
-        },
-
-        storeList: function(programId) {
-            console.log(programId);
+            this.container.html(view.render().el);
         }
     });
 

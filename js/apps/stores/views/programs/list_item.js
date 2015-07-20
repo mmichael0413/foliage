@@ -5,9 +5,7 @@ define(function(require) {
 
     var View = Backbone.View.extend({
         template: Templates['stores/programs/list_item'],
-        events: {
-            'click .view': 'navigateToProgramStores'
-        },
+        className: 'program-list-item',
         render: function() {
             this.$el.html(this.template(this.model.attributes));
             return this;

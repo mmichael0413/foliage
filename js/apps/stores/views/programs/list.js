@@ -2,7 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         context = require('context'),
         Templates = require('handlebarsTemplates'),
-        ListItemView = require('stores/views/program_list_item');
+        ListItemView = require('stores/views/programs/list_item');
 
     var View = Backbone.View.extend({
         template: Templates['stores/programs/list'],
@@ -17,7 +17,8 @@ define(function(require) {
         },
         renderProgramItem: function(program) {
             var v = new ListItemView({model: program});
-            this.childViews.push(v.render());
+            this.$('#program-list').append(v.render().el);
+            this.childViews.push(v);
         },
         leave: function() {
             _.each(this.childViews, function(v) {
