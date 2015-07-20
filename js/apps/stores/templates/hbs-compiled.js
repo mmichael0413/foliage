@@ -166,6 +166,24 @@ function program1(depth0,data) {
   return buffer;
   });
 
+this["Stores"]["templates"]["stores/programs/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<h1>Programs</h1>\n<div id=\"program-list\"></div>";
+  });
+
+this["Stores"]["templates"]["stores/programs/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "Test";
+  });
+
 return this["Stores"]["templates"];
 
 });
