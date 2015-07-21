@@ -287,7 +287,7 @@ function program3(depth0,data) {
   if (helper = helpers.count) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " Possible Stores</h3>\n";
+    + " Possible Stores</h3>\n<div class=\"pagination-holder\"></div>\n";
   options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
   if (helper = helpers.programStores) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.programStores); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
