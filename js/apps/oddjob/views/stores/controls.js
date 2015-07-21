@@ -26,7 +26,6 @@ define(function (require) {
             textSearch: function (e) {
                 //e.preventDefault();
                 if (e.which == 13) {
-                    console.log("Submitting ", $(e.currentTarget).val());
                     context.trigger('filter:set', [{name: 'text', value: $(e.currentTarget).val()}]);
                 }
             }
