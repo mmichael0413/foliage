@@ -29,6 +29,9 @@
 @import "../../modules/store_profile_section";
 @import "../../modules/visit_report";
 
+.content-holder {
+	background-color: $light-gray;
+}
 
 .clearfix {
   overflow: auto;
@@ -123,6 +126,16 @@
 	.name {
 		color: $palette5;
 		width:25%;
+		display: inline-block;
+	}
+}
+
+#storeList {
+	.title {
+		display: inline-block;
+		width: 40%;
+	}
+	.pagination-holder {
 		display: inline-block;
 	}
 }

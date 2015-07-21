@@ -9,6 +9,7 @@ define(function (require) {
         JobEditView = require('oddjob/views/jobs/edit'),
         FrequencyCreateView = require('oddjob/views/schedules/frequencyCreate'),
         StoreListView = require('oddjob/views/stores/list'),
+        StoreControlsView = require('oddjob/views/stores/controls'),
         TasksListView = require('oddjob/views/tasks/list');
 
     var Router = require('shared/routers/contextAwareBaseRouter').extend({
@@ -54,9 +55,11 @@ define(function (require) {
         },
 
         scheduleCreate: function (customer, programSlug, jobId) {
+            Filter.init();
             // instantiate two views, one for schedule and one for store view
             new FrequencyCreateView({el: $("#frequencyForm")}).render();
             new StoreListView();
+            new StoreControlsView();
         }
 
     });

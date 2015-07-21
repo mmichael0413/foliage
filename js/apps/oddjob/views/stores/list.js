@@ -1,18 +1,20 @@
 define(function (require) {
     var Backbone = require('backbone'),
+        _   = require('underscore'),
         context = require('context'),
         Templates = require('handlebarsTemplates'),
         ProgramStoresStore = require('oddjob/stores/programStores'),
+        Pageable = require('shared/views/utils/pageable_component');
 
 
         ProgramStoreListView = {
             el: "#storeList",
             initialize: function () {
+                this.collection = ProgramStoresStore;
                 this.listenTo(ProgramStoresStore, 'sync', function () {
-                    console.log("Rendering!");
                     this.render();
                 }.bind(this));
-                ProgramStoresStore.fetch();
+                // the filter will awaken the programStores fetch
             },
 
             render: function () {
@@ -21,10 +23,11 @@ define(function (require) {
                     programStores: ProgramStoresStore.toJSON()
                 };
                 this.$el.html(Templates["oddjob/stores/list"](data));
+                this.renderPagination();
                 return this;
             }
         };
 
-
+    _.extend(ProgramStoreListView, Pageable);
     return Backbone.View.extend(ProgramStoreListView);
 });
