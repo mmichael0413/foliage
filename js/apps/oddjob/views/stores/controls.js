@@ -13,14 +13,12 @@ define(function (require) {
 
             selectPage: function (e) {
                 e.preventDefault();
-                console.log("triggering");
-                context.trigger('stores:page:select');
+                context.trigger('stores:page:select:true');
             },
 
             deselectPage: function (e) {
                 e.preventDefault();
-                console.log("triggering");
-                context.trigger('stores:page:deselect');
+                context.trigger('stores:page:select:false');
             },
 
             textSearch: function (e) {
