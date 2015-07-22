@@ -260,12 +260,18 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, helper;
+  var buffer = "", stack1, helper, options;
   buffer += "\n<p class=\"store-row\"><input type=\"checkbox\" name=\"ids\" value=\"";
   if (helper = helpers.uuid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" class=\"check\"><span class=\"name\">";
+    + "\" class=\"check\" ";
+  options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
+  if (helper = helpers.selected) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.selected); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.selected) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "><span class=\"name\">";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -276,11 +282,16 @@ function program1(depth0,data) {
     + "</p>\n";
   return buffer;
   }
+function program2(depth0,data) {
+  
+  
+  return "checked";
+  }
 
-function program3(depth0,data) {
+function program4(depth0,data) {
   
   
-  return "\n\n<p class=\"info\">Not stores match your query</p>\n";
+  return "\n<p class=\"info\">No stores match your query</p>\n";
   }
 
   buffer += "<h3 class=\"title\">";
@@ -288,10 +299,10 @@ function program3(depth0,data) {
   else { helper = (depth0 && depth0.count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + " Possible Stores</h3>\n<div class=\"pagination-holder\"></div>\n";
-  options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
+  options={hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),data:data}
   if (helper = helpers.programStores) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.programStores); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.programStores) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
+  if (!helpers.programStores) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer;
   });

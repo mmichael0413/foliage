@@ -1,8 +1,7 @@
 <h3 class="title">{{count}} Possible Stores</h3>
 <div class="pagination-holder"></div>
 {{#programStores}}
-<p class="store-row"><input type="checkbox" name="ids" value="{{uuid}}" class="check"><span class="name">{{name}}</span> {{address}}</p>
+<p class="store-row"><input type="checkbox" name="ids" value="{{uuid}}" class="check" {{#selected}}checked{{/selected}}><span class="name">{{name}}</span> {{address}}</p>
 {{else}}
-
-<p class="info">Not stores match your query</p>
+<p class="info">No stores match your query</p>
 {{/programStores}}
