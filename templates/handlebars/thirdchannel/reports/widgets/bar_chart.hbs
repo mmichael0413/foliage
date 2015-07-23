@@ -1,5 +1,5 @@
 <div class="widget {{config.widget_class}}">
-    <p>{{{title}}}</p>
+    {{#if title}}<p>{{{title}}}</p>{{/if}}
     {{#if show_view_list}}
         <a href="#" class="breakdown-link" tag="View Breakdown" target="_blank">View Breakdown</a>
     {{/if}}

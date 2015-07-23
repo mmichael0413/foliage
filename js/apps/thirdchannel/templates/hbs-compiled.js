@@ -1870,9 +1870,20 @@ function program1(depth0,data) {
 this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/bar_chart"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "<p>";
+  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</p>";
+  return buffer;
+  }
+
+function program3(depth0,data) {
   
   
   return "\n        <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\" target=\"_blank\">View Breakdown</a>\n    ";
@@ -1880,12 +1891,11 @@ function program1(depth0,data) {
 
   buffer += "<div class=\"widget "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.widget_class)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n    <p>";
-  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+    + "\">\n    ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.title), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</p>\n    ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_view_list), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  buffer += "\n    ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_view_list), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    <div class=\"chart horizontal-bar\"></div>\n</div>";
   return buffer;
