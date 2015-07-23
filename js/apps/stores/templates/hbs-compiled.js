@@ -166,6 +166,45 @@ function program1(depth0,data) {
   return buffer;
   });
 
+this["Stores"]["templates"]["stores/program_stores/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<h1>Program Stores</h1>\n<table>\n    <thead>\n        <tr>\n            <th>Store Name</th>\n            <th>Address</th>\n            <th>Status</th>\n            <th>Latitude</th>\n            <th>Longitude</th>\n        </tr>\n    </thead>\n    <tbody id=\"program-store-list\"></tbody>\n</table>";
+  });
+
+this["Stores"]["templates"]["stores/program_stores/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<td>";
+  if (helper = helpers.storeName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.storeName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</td>\n<td>";
+  if (helper = helpers.fullAddress) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.fullAddress); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</td>\n<td>";
+  if (helper = helpers.status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</td>\n<td>";
+  if (helper = helpers.latitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.latitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</td>\n<td>";
+  if (helper = helpers.longitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.longitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</td>";
+  return buffer;
+  });
+
 this["Stores"]["templates"]["stores/programs/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
