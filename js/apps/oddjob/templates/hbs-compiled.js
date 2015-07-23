@@ -213,11 +213,39 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 function program1(depth0,data) {
   
+  var buffer = "", stack1, helper, options;
+  buffer += "\n<p class=\"frequency-row\">";
+  if (helper = helpers.count) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " stores with: ";
+  options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
+  if (helper = helpers.frequencies) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.frequencies); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.frequencies) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</p>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
   
-  return "\n";
+  var buffer = "", stack1, helper;
+  if (helper = helpers.monthlyVisits) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.monthlyVisits); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " monthly visits between ";
+  if (helper = helpers.begin) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.begin); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " -> ";
+  if (helper = helpers.end) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.end); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " ";
+  return buffer;
   }
 
-function program3(depth0,data) {
+function program4(depth0,data) {
   
   
   return "\n<p class=\"frequency-row info\">There are no frequencies or store assignments for this Job. Click 'Assign New Frequency' to get started.</p>\n";
@@ -240,10 +268,10 @@ function program3(depth0,data) {
   else { helper = (depth0 && depth0.displayTotalPayment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + ")</h3>\n	<h3 class=\"col-2-12\">Required?</h3>\n\n</div>\n\n<div class=\"tasks-container\"></div>\n\n\n";
-  options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
+  options={hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),data:data}
   if (helper = helpers.frequencySummaries) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.frequencySummaries); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.frequencySummaries) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
+  if (!helpers.frequencySummaries) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n<div class=\"frequency-row\"><a class=\"btn btn-primary primary\" href=\"";
   if (helper = helpers.createScheduleUrl) { stack1 = helper.call(depth0, {hash:{},data:data}); }

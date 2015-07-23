@@ -7,13 +7,6 @@ define(function(require) {
 
 		className: 'group section',
 		jobViews: [],
-		events: {
-			"sortstart": "sortstart"
-		},
-
-		sortstart: function () {
-			console.log("In group for sorting:", this.model.get('id'));
-		},
 
 		render: function () {
 			// render myself, then add in any subViews
@@ -22,7 +15,7 @@ define(function(require) {
 			data.taskCount = data.tasks.length;
 			data.displayTotalPayment = data.totalPayment/100;
 
-			data.createScheduleUrl = window.location +"/" + this.model.get('id') +"/schedule";
+			data.createScheduleUrl = context.links.base +"/" + this.model.get('id') +"/schedule";
 			
 			// render my self
 			this.$el.html(Templates['oddjob/jobs/row'](data));
