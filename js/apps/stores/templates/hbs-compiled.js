@@ -169,10 +169,15 @@ function program1(depth0,data) {
 this["Stores"]["templates"]["stores/program_stores/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  return "<h1>Program Stores</h1>\n<table>\n    <thead>\n        <tr>\n            <th>Store Name</th>\n            <th>Address</th>\n            <th>Status</th>\n            <th>Latitude</th>\n            <th>Longitude</th>\n        </tr>\n    </thead>\n    <tbody id=\"program-store-list\"></tbody>\n</table>";
+  buffer += "<h1>";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</h1>\n<table>\n    <thead>\n        <tr>\n            <th>Store Name</th>\n            <th>Address</th>\n            <th>Status</th>\n            <th>Latitude</th>\n            <th>Longitude</th>\n        </tr>\n    </thead>\n    <tbody id=\"program-store-list\"></tbody>\n</table>";
+  return buffer;
   });
 
 this["Stores"]["templates"]["stores/program_stores/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {

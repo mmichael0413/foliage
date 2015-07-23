@@ -4,7 +4,7 @@ define(function(require) {
         Templates = require('handlebarsTemplates');
 
     var View = Backbone.View.extend({
-        el: 'tr',
+        tagName: 'tr',
         template: Templates['stores/program_stores/list_item'],
         className: 'program-store-list-item',
         render: function() {

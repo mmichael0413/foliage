@@ -10,14 +10,15 @@ define(function(require) {
         initialize: function() {
             _.bindAll(this, 'renderProgramStores', 'renderProgramStore');
             this.listenTo(this.collection, 'reset', this.renderProgramStores);
-            this.listenTo(this.collection, 'add', this.renderProgramStore)
+            this.listenTo(this.collection, 'add', this.renderProgramStore);
         },
         render: function() {
-            this.$el.html(this.template());
+            this.$el.html(this.template(this.model.attributes));
             this.renderProgramStores();
             return this;
         },
         renderProgramStores: function() {
+            this.$('#program-store-list').empty();
             this.collection.each(this.renderProgramStore);
         },
         renderProgramStore: function(programStore) {

@@ -24,9 +24,10 @@ define(function(require){
 
         storeList: function(programId) {
             var program = context.programs.get(programId);
-            var programStores = new ProgramStores([{uuid: 'test'}], {program: program});
+            var programStores = new ProgramStores([], {program: program});
 
             // TODO: might be better to make this a module (module view?) that manages two views (one for the program model and one for the program stores)
+            // Then have a model to represent the state (loading? would display the loading gif)
             var view = new ProgramStoreListView({model: program, collection: programStores});
             this.swap(view);
 
