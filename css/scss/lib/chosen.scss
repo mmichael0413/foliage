@@ -196,7 +196,7 @@
 
     &:after {
       display: table;
-      content: "\f193";
+      content: $font-tc-icons-ic_down;
       font-size: 0.5em;
       font-family: tc-icons;
       margin: auto;
@@ -255,7 +255,7 @@
         font-family: "tc-icons";
 
         &:before {
-          content: "\f1a9";
+          content: $font-tc-icons-ic_x;
           font-size: 0.5em;
           line-height: 1em;
           vertical-align: middle;
