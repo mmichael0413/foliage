@@ -1,4 +1,7 @@
 @import '../../../../js/libs/bower_components/normalize-css/normalize';
+@import "../../lib/pure.grids-core";
+@import "../../lib/pure.responsive-grid";
+
 @import "../../base/fonts_all";
 @import "../../base/base";
 @import "../../base/text";
@@ -8,6 +11,8 @@
 @import "../../layout/base_layout";
 
 @import "../../modules/atoms/all";
+@import "../../modules/pure_grid";
+@import "../../modules/data_section";
 @import "../../modules/navigation";
 
 @import "../../modules/stores/all";

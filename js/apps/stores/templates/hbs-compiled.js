@@ -176,7 +176,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</h1>\n<table>\n    <thead>\n        <tr>\n            <th>Store Name</th>\n            <th>Address</th>\n            <th>Status</th>\n            <th>Latitude</th>\n            <th>Longitude</th>\n        </tr>\n    </thead>\n    <tbody id=\"program-store-list\"></tbody>\n</table>";
+    + "</h1>\n<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-3-12\">Store Name</h3>\n        <h3 class=\"header col-4-12\">Address</h3>\n        <h3 class=\"header col-1-12\">Status</h3>\n        <h3 class=\"header col-2-12\">Latitude</h3>\n        <h3 class=\"header col-2-12\">Longitude</h3>\n    </div>\n    <div class=\"body\" id=\"program-store-list\"></div>\n</section>";
   return buffer;
   });
 
@@ -186,27 +186,27 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<td>";
+  buffer += "<p class=\"col-3-12\">";
   if (helper = helpers.storeName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.storeName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n<td>";
+    + "</p>\n<p class=\"col-4-12\">";
   if (helper = helpers.fullAddress) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.fullAddress); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n<td>";
+    + "</p>\n<p class=\"col-1-12\">";
   if (helper = helpers.status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n<td>";
+    + "</p>\n<p class=\"col-2-12\">";
   if (helper = helpers.latitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.latitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n<td>";
+    + "</p>\n<p class=\"col-2-12\">";
   if (helper = helpers.longitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.longitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>";
+    + "</p>";
   return buffer;
   });
 
