@@ -7,7 +7,7 @@ define(function(require){
             this.program = options.program;
         },
         url: function() {
-            return '/programs/' + this.program.get('id') + '/program_stores';
+            return '/api/programs/' + this.program.get('id') + '/program_stores';
         }
     });
 });
