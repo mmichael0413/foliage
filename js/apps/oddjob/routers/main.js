@@ -17,7 +17,8 @@ define(function (require) {
             ':customer/:programSlug/jobs(/)': 'jobsList',
             ':customer/:programSlug/jobs/create(/)': 'jobsCreate',
             ':customer/:programSlug/jobs/:jobId(/)': 'jobsEdit',
-            ':customer/:programSlug/jobs/:jobId/schedule': 'scheduleCreate'
+            ':customer/:programSlug/jobs/:jobId/schedule(/)': 'scheduleCreate',
+            ':customer/:programSlug/jobs/:jobId/schedule/:frequencyIndex': 'scheduleCreate'
             
         },
 
@@ -56,10 +57,16 @@ define(function (require) {
 
         scheduleCreate: function (customer, programSlug, jobId) {
             Filter.init();
-            // instantiate two views, one for schedule and one for store view
             new FrequencyCreateView({el: $("#frequencyForm")}).render();
-            new StoreListView();
             new StoreControlsView();
+            new StoreListView();
+        },
+
+        scheduleEdit: function (customer, programSlug, jobId, frequencyIndex) {
+            Filter.init();
+            new FrequencyCreateView({el: $("#frequencyForm")}).render();
+            new StoreControlsView();
+            new StoreListView();
         }
 
     });

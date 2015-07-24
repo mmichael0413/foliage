@@ -1,40 +1,46 @@
 define(function (require) {
     var Backbone = require('backbone'),
-        Pikaday = require('pikaday'),
+        context = require('context'),
         SelectedStoresStore = require('oddjob/stores/selectedStores'),
-        context = require('context');
+        FrequencyRowView = require('oddjob/views/schedules/frequencyRow'),
+        
 
-    var FrequencyCreateView = {
-        events: {
-            'click .submit': 'preSubmit',
-            'submit'    : 'preSubmit'
-        },
+        FrequencyCreateView = {
+            events: {
+                'click .submit': 'preSubmit',
+                'submit'    : 'preSubmit'
+            },
 
-        initialize: function () {
-            this.listenTo(context, 'stores:selected:count', this.updateCount);
-        },
+            initialize: function () {
+                this.listenTo(context, 'stores:selected:count', this.updateCount);
+                this.subViews = [];
+            },
 
-        render: function () {
-            this.configureDatepicker($(".datepicker.begin"));
-            this.configureDatepicker($(".datepicker.end"));
-            return this;
-        },
+            render: function () {
+                if (!context.hasOwnProperty('frequencies')) {
+                    console.error("Context does not have any 'frequencies'!");
+                    return this;
+                }
+                this.renderRows(new Backbone.Collection(context.frequencies));
+                return this;
+            },
 
-        preSubmit: function (e) {
-            this.$el.find("#storeUuidInput").val(SelectedStoresStore.uuids);
-        },
+            preSubmit: function (e) {
+                this.$el.find("#storeUuidInput").val(SelectedStoresStore.uuids);
+            },
 
-
-        configureDatepicker: function ($input) {
-            var self = this,
-                datepicker = new Pikaday({field: $input[0],
-                     position: "bottom right",
-                 });
-            self.$el.find('.pika-single').addClass('col-1-1');
-        },
-        updateCount: function (count) {
-            this.$el.find('#storeCount').text(count);
-        }
+            updateCount: function (count) {
+                this.$el.find('#storeCount').text(count);
+            },
+            renderRows: function (collection) {
+                    console.log("Creating for frequencies:", collection);
+                    collection.each (function (item, index) {
+                        item.set('index', index);
+                        var view = new FrequencyRowView({model: item}).render();
+                        this.$el.find('.frequencies-container').append(view.$el);
+                        this.subViews.push(view);
+                    }.bind(this));
+            }
     };
 
     return Backbone.View.extend(FrequencyCreateView);

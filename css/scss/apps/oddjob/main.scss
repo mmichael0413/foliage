@@ -104,6 +104,10 @@
 	background-color: $light-blue;
 	padding: 0.5em 1em;
 	margin: 0em -1em;
+	&.static {
+		
+		margin-bottom: -1em;
+	}
 }
 .frequency-section {
 	select {
@@ -133,7 +137,7 @@
 .controls {
 	input {
 		margin: 0;
-		
+
 	}
 }
 
