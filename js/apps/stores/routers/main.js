@@ -6,7 +6,8 @@ define(function(require){
         namespacer = require('shared/utils/namespacer'),
         ProgramListView = require('stores/views/programs/list'),
         ProgramStores = require('stores/collections/program_stores'),
-        ProgramStoreListView = require('stores/views/program_stores/list');
+        ProgramStoreListView = require('stores/views/program_stores/list'),
+        FilterModule = require('thirdchannel/views/filter/main');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         container: $('#application'),
@@ -23,6 +24,10 @@ define(function(require){
         },
 
         storeList: function(programId) {
+            window.filterBootstrap.filters_url = '/api/programs/' + programId + '/filters/program_stores';
+
+            //FilterModule.init();
+
             var program = context.programs.get(programId);
             var programStores = new ProgramStores([], {program: program});
 
