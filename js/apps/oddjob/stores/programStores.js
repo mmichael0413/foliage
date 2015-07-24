@@ -33,7 +33,6 @@ define(function (require) {
                 },
 
                 applyFilter: function (qs) {
-                    //this.queryString = qs + "&offset=" + this._convertPageToOffset(qs);
                     this.queryString = this._convertQueryString(qs);
                     this.fetch();
 

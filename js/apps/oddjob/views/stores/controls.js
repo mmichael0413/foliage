@@ -8,6 +8,7 @@ define(function (require) {
             events: {
                 'click .select': 'selectPage',
                 'click .deselect': 'deselectPage',
+                'click .remove': 'removeStores',
                 'keypress #text': 'textSearch'
             },
 
@@ -19,6 +20,11 @@ define(function (require) {
             deselectPage: function (e) {
                 e.preventDefault();
                 context.trigger('stores:page:select:false');
+            },
+
+            removeStores: function (e) {
+                e.preventDefault();
+                context.trigger('stores:remove:selected');
             },
 
             textSearch: function (e) {

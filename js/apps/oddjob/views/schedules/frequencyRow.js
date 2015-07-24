@@ -9,9 +9,6 @@ define(function(require) {
 
             render: function () {
                 var data = this.model.toJSON();
-                console.log(data.begin);
-                console.log(new Date(data.begin));
-                console.log(new Date(data.end));
                 data.visitOptions = context.visitOptions;
                 this.$el.html(Templates['oddjob/frequencies/row'](data));
                 this.configureDatepicker(this.$el.find(".datepicker.begin"));

@@ -33,7 +33,6 @@ define(function (require) {
                 this.$el.find('#storeCount').text(count);
             },
             renderRows: function (collection) {
-                    console.log("Creating for frequencies:", collection);
                     collection.each (function (item, index) {
                         item.set('index', index);
                         var view = new FrequencyRowView({model: item}).render();

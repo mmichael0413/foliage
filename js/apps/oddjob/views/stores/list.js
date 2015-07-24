@@ -13,6 +13,7 @@ define(function (require) {
             events: {
                 'click .check': 'singleCheck',
             },
+            templateName: "oddjob/stores/list",
 
             initialize: function () {
                 this.collection = ProgramStoresStore;
@@ -36,7 +37,7 @@ define(function (require) {
                     store.selected = SelectedStoresStore.contains(store.uuid);
                 });
 
-                this.$el.html(Templates["oddjob/stores/list"](data));
+                this.$el.html(Templates[this.templateName](data));
                 this.renderPagination();
                 return this;
             },
