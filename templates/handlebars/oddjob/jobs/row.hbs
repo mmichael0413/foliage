@@ -1,5 +1,5 @@
 <div class="header pure-g">
-	<h3 class="col-6-12"><a href="jobs/{{id}}">{{name}}</a></h3>
+	<h3 class="col-6-12"><a href="{{editUrl}}">{{name}}</a></h3>
 	<h3 class="col-2-12">Duration<br/>({{displayDuration}})</h3>
 	<h3 class="col-2-12">Payment Rate<br/>(${{displayTotalPayment}})</h3>
 	<h3 class="col-2-12">Required?</h3>
@@ -10,9 +10,10 @@
 
 
 {{#frequencySummaries}}
-<p class="frequency-row">{{count}} stores with: {{#frequencies}}{{monthlyVisits}} monthly visits between {{begin}} -> {{end}} {{/frequencies}}</p>
+<p class="frequency-row"><a href="jobs/{{../id}}/schedule/{{@index}}">{{count}} stores</a> with: {{#frequencies}}{{monthlyVisits}} monthly visits between {{begin}} -> {{end}} {{/frequencies}}</p>
 {{else}}
+
 <p class="frequency-row info">There are no frequencies or store assignments for this Job. Click 'Assign New Frequency' to get started.</p>
 {{/frequencySummaries}}
-<div class="frequency-row"><a class="btn btn-primary primary" href="{{createScheduleUrl}}">Assign New Frequency</a></div>
+<div class="frequency-row static"><a class="btn btn-primary primary" href="{{createScheduleUrl}}">Assign New Frequency</a></div>
 

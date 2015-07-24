@@ -1,14 +1,15 @@
 define(function(require) {
 	var Backbone = require('backbone'),
 		Templates = require('handlebarsTemplates'),
-		JobRowView = require('oddjob/views/tasks/row');
+		TaskRowView = require('oddjob/views/tasks/row');
 	
-	var GroupsRowView = Backbone.View.extend({
+	var JobRowView = Backbone.View.extend({
 
-		className: 'group section',
+		className: 'job section',
 		jobViews: [],
 
 		render: function () {
+			console.log(context.links);
 			// render myself, then add in any subViews
 			// do I need a view for this?
 			var data = this.model.toJSON();
@@ -16,6 +17,7 @@ define(function(require) {
 			data.displayTotalPayment = data.totalPayment/100;
 
 			data.createScheduleUrl = context.links.base +"/" + this.model.get('id') +"/schedule";
+			data.editUrl = context.links.base +"/" + this.model.get('id');
 			
 			// render my self
 			this.$el.html(Templates['oddjob/jobs/row'](data));
@@ -27,12 +29,12 @@ define(function(require) {
 		renderRows: function (collection) {
 			var $tasksContainer = this.$el.find('.tasks-container');
 			collection.each(function (job) {
-				var view = new JobRowView({model: job});
+				var view = new TaskRowView({model: job});
 				view.render().$el.appendTo($tasksContainer);
 				this.jobViews.push(view);
 			}.bind(this));
 		}
 
 	});
-	return GroupsRowView;
+	return JobRowView;
 });

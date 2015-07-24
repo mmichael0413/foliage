@@ -23,13 +23,10 @@ define(function (require) {
 				this.$el.html("<p>There are currently no jobs created for this program.</p>");
 			} else {
 				collection.each(function(group) {
-				var view = new GroupRow({model: group});
-				view.render().$el.appendTo(this.$el);
-				this.rowsViews.push(view);
-			}.bind(this));
-			$('.group').sortable({
-				connectWith: ".group"
-			});	
+					var view = new GroupRow({model: group});
+					view.render().$el.appendTo(this.$el);
+					this.rowsViews.push(view);
+				}.bind(this));
 			}
 			
 
