@@ -292,7 +292,7 @@ define(function(require) {
 
                 return $.param(filteredParams);
             } else {
-                return this.$el.serialize();
+                return this.$el.serialize().replace(/\+/g,'%20');
             }
         }
     };
