@@ -31,7 +31,7 @@ define(function(require){
             var view = new ProgramStoreListView({model: program, collection: programStores});
             this.swap(view);
 
-            programStores.fetch({reset: true})
+            programStores.fetch({reset: true});
         },
 
         swap: function(view) {

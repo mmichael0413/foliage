@@ -4,7 +4,7 @@ define(function(require){
 
     return Backbone.Collection.extend({
         initialize: function(models, options) {
-            this.program = options.program
+            this.program = options.program;
         },
         url: function() {
             return '/programs/' + this.program.get('id') + '/program_stores';
