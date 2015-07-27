@@ -35,7 +35,7 @@ define(function(require){
             var view = new ProgramStoreListView({model: program, collection: programStores});
             this.swap(view);
 
-            programStores.fetch({reset: true});
+            //programStores.fetch({reset: true}); // filter control can kick off the initial one...
         },
 
         swap: function(view) {
