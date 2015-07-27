@@ -25,8 +25,7 @@ define(function(require){
 
         storeList: function(programId) {
             window.filterBootstrap.filters_url = '/api/programs/' + programId + '/filters/program_stores';
-
-            //FilterModule.init();
+            FilterModule.init();
 
             var program = context.programs.get(programId);
             var programStores = new ProgramStores([], {program: program});
