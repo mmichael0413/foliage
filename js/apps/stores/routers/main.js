@@ -4,6 +4,8 @@ define(function(require){
         Backbone = require('backbone'),
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
+        ToggleFilterTpl = require('handlebarsTemplates')['shared/layout/toggle_filter'],
+        MainLayout = require('shared/views/layout/main'),
         ProgramListView = require('stores/views/programs/list'),
         ProgramStores = require('stores/collections/program_stores'),
         ProgramStoreListView = require('stores/views/program_stores/list'),
@@ -26,6 +28,7 @@ define(function(require){
         storeList: function(programId) {
             window.filterBootstrap.filters_url = '/api/programs/' + programId + '/filters/program_stores';
             FilterModule.init();
+            $('.actions').append(ToggleFilterTpl());
 
             var program = context.programs.get(programId);
             var programStores = new ProgramStores([], {program: program});
@@ -58,6 +61,7 @@ define(function(require){
         }
         context.router = new AppRouter();
         Backbone.history.start({pushState: true, hashChange: false});
+        MainLayout.init();
     };
 
     return {

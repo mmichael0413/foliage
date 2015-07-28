@@ -3,6 +3,7 @@ require.config({
     waitSeconds: 0,
     paths: {
         'jquery': '../libs/bower_components/jquery/jquery.min',
+        'jquery_ujs' : '../libs/bower_components/jquery-ujs/src/rails',
         'underscore': '../libs/bower_components/underscore/underscore',
         'backbone': '../libs/bower_components/backbone/backbone',
         'handlebars': '../libs/bower_components/handlebars/handlebars.min',
