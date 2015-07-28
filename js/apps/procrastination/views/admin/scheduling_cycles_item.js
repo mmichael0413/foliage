@@ -13,6 +13,7 @@ define(function (require) {
                 var data = this.model.attributes;
 
                 data.links.self = context.base_url + data.links.self;
+                data.links.progress = context.base_url + data.links.progress;
 
                 this.$el.html(this.template(data));
                 return this;

@@ -112,7 +112,7 @@ define(function (require) {
             "MSTransitionEnd" : "navTransitionEnd"
         },
         render: function(){
-            this.$('#site-menu').html(this.template({navItems: window.bootstrap.navigation}));
+            this.$('#site-menu').html(this.template({navItems: window.bootstrap.navigation, homeLink: window.bootstrap.homeLink}));
         },
         toggleNav: function (e) {
             if(e) {

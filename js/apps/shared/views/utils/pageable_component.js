@@ -15,8 +15,10 @@ define(function(require) {
                 this.stopListening(this.pager);
                 this.pager.remove();
                 delete this.pager;
-                // need to re-add the target for the pager. 
-                this.$el.prepend("<div class='pagination-holder'></div>");
+                // need to re-add the target for the pager.
+                if(this.$('.pagination-holder').length === 0) {
+                    this.$el.prepend("<div class='pagination-holder'></div>");
+                }
 
             }
             var $paginationHolder = this.$('.pagination-holder');

@@ -13,6 +13,7 @@ define(function(require) {
         AdminCostEstimateView = require('procrastination/views/admin/cost_estimate'),
         AdminSchedulingCycles = require('procrastination/collections/admin/scheduling_cycles'),
         AdminSchedulingCyclesView = require('procrastination/views/admin/scheduling_cycles'),
+        VisitProgressList = require('procrastination/views/admin/visit_progress'),
         buttons = require('buttons'),
 
         AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
@@ -25,7 +26,8 @@ define(function(require) {
                 ':customer_slug/:program_slug/admin/scheduling(/)': 'listSchedulingCycles',
                 ':customer_slug/:program_slug/admin/scheduling/upcoming': 'manageSchedule',
                 ':customer_slug/:program_slug/admin/scheduling/current': 'manageSchedule',
-                ':customer_slug/:program_slug/admin/scheduling/:cycle_id(/)': 'showSchedulingCycle'
+                ':customer_slug/:program_slug/admin/scheduling/:cycle_id(/)': 'showSchedulingCycle',
+                ':customer_slug/:program_slug/admin/scheduling/:cycle_id/progress': 'showVisitProgress'
             },
 
             before: function(parameters) {
@@ -90,6 +92,18 @@ define(function(require) {
 
                 var costEstimate = new AdminCostEstimate({id: context.cycleId});
                 new AdminCostEstimateView({model: costEstimate}).fetch();
+            },
+
+            showVisitProgress: function() {
+                Filter.init();
+
+                var view = new VisitProgressList();
+
+                if(context.content) {
+                    view.bootstrapCollection(context.content);
+                } else {
+                    view.fetch();
+                }
             }
         });
 

@@ -16,6 +16,7 @@ define(function(require) {
         el: 'table.table',
         bodySelector: '.body',
         collectionClass: undefined,
+        template: undefined,
         // allows a subclass to specify either a rowTemplate or a full on View
         rowTemplate: undefined,
         rowView: undefined,
@@ -42,7 +43,9 @@ define(function(require) {
         },
 
         render: function () {
-            
+            if(this.template) {
+                this.$el.html(this.template());
+            }
             var $body = this.$el.find(this.bodySelector);
             $body.html(this.loadingHTML);
             //     data = {
