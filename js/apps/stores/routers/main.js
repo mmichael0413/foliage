@@ -38,6 +38,8 @@ define(function(require){
             var view = new ProgramStoreListView({model: program, collection: programStores});
             this.swap(view);
 
+            context.trigger('filter:toggle'); // and this doesn't work...
+
             //programStores.fetch({reset: true}); // filter control can kick off the initial one...
         },
 
