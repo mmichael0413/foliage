@@ -11,6 +11,14 @@ define(function(require) {
             this.actions = new Actions([
                 {
                     type: 'link',
+                    link: '/programs/' + this.get('program').id + '/uploads/new',
+                    className: 'primary',
+                    icon: 'ic_add',
+                    text: 'Upload Stores',
+                    bypass: true
+                },
+                {
+                    type: 'link',
                     link: '/programs/' + this.get('program').id + '/exports',
                     className: 'primary',
                     icon: 'ic_download',
