@@ -19,7 +19,6 @@ define(function(require) {
             return this;
         },
         renderProgramStores: function() {
-            this.$('#program-store-list').empty();
             this.removeChildViews();
             this.collection.each(this.renderProgramStore);
         },
@@ -37,6 +36,7 @@ define(function(require) {
             this.remove();
         },
         removeChildViews: function() {
+            this.$('#program-store-list').empty();
             _.each(this.childViews, function(v) {
                 v.remove();
             });
