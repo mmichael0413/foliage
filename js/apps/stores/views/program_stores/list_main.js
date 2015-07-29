@@ -50,6 +50,7 @@ define(function(require) {
             this.actionsView = null;
             this.filterControl.removeFilterCollection();
             context.trigger('filter:close');
+            context.trigger('nav:toggle');
             this.programStoresListView.leave();
         }
     });

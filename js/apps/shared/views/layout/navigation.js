@@ -17,6 +17,7 @@ define(function (require) {
 
             this.listenTo(context, 'filter:toggle', this.toggleFilter);
             this.listenTo(context, 'filter:close', this.closeFilter);
+            this.listenTo(context, 'nav:toggle', this.collapseNav);
             this.$siteWrapper = this.$el;
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');
