@@ -1,5 +1,6 @@
 define(function(require) {
-    var Backbone = require('backbone'),
+    var $ = require('jquery'),
+        Backbone = require('backbone'),
         context = require('context'),
         FilterControl = require('thirdchannel/views/filter/filterControl');
     
@@ -30,8 +31,7 @@ define(function(require) {
                 url = window.filterBootstrap.filters_url;
             } 
             
-            new FilterControl({collection: collection, url:url});
-
+            return new FilterControl({collection: collection, url:url});
         }
     };
 

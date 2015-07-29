@@ -41,13 +41,15 @@ define(function(require) {
             //       a filter event over context and any view should update when the collection receives a reset event
             //       It might also make more sense to build the filter collection outside of the FilterModule
             window.filterBootstrap.filters_url = '/api/programs/' + this.get('program').id + '/filters/program_stores';
-            FilterModule.init();
+            this.filterControl = FilterModule.init();
             this.actionsView.render();
             return this.programStoresListView.render();
         },
         leave: function() {
             this.actionsView.$el.empty();
             this.actionsView = null;
+            this.filterControl.removeFilterCollection();
+            context.trigger('filter:toggle');
             this.programStoresListView.leave();
         }
     });

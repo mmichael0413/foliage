@@ -118,6 +118,12 @@ define(function(require) {
             this.broadCastQueryString();
         },
 
+        removeFilterCollection: function() {
+            _.each(this.components, function(view, param) {
+               view.remove();
+            });
+        },
+
         renderFilterCollection: function(filterCollection, qsHash) {
             var self = this,
                 shouldTrigger = false,
