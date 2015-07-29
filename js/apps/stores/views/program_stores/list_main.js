@@ -49,7 +49,7 @@ define(function(require) {
             this.actionsView.$el.empty();
             this.actionsView = null;
             this.filterControl.removeFilterCollection();
-            context.trigger('filter:toggle');
+            context.trigger('filter:close');
             this.programStoresListView.leave();
         }
     });

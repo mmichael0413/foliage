@@ -16,6 +16,7 @@ define(function (require) {
             this.browserCompatibility();
 
             this.listenTo(context, 'filter:toggle', this.toggleFilter);
+            this.listenTo(context, 'filter:close', this.closeFilter);
             this.$siteWrapper = this.$el;
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');
@@ -145,9 +146,7 @@ define(function (require) {
                 e.stopPropagation();
             }
             if (this.$siteWrapper.hasClass('show-filter')) {
-                // Do things on Nav Close
-                this.$siteWrapper.removeClass('show-filter');
-                this.$toggleFilter.removeClass('enabled');
+                this.closeFilter();
             } else {
                 // Do things on Nav Open
                 this.$siteWrapper.addClass('show-filter');
@@ -159,6 +158,11 @@ define(function (require) {
             }
 
             context.trigger('filter-toggled');
+        },
+        closeFilter: function() {
+            // Do things on Nav Close
+            this.$siteWrapper.removeClass('show-filter');
+            this.$toggleFilter.removeClass('enabled');
         },
         navTransitionEnd: function (e) {
             if (e.originalEvent.propertyName == 'transform') {
