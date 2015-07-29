@@ -38,7 +38,8 @@ define(function(require) {
             return this.programStoresListView.render();
         },
         leave: function() {
-            this.actionsView.remove();
+            this.actionsView.$el.empty();
+            this.actionsView = null;
             this.programStoresListView.leave();
         }
     });
