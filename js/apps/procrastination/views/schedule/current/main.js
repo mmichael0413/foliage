@@ -7,7 +7,7 @@ define(function (require) {
     return Backbone.View.extend({
         el: '.schedule-container',
         initialize: function (options) {
-            this.aggregate = context.aggregateId;
+            this.aggregate = options.aggregateId;
             this.collection = new ScheduledVisitsCollection(null, {
                 aggregateId: this.aggregate,
                 personId: context.personId,

@@ -14,20 +14,21 @@ define(function(require) {
         AdminSchedulingCycles = require('procrastination/collections/admin/scheduling_cycles'),
         AdminSchedulingCyclesView = require('procrastination/views/admin/scheduling_cycles'),
         VisitProgressList = require('procrastination/views/admin/visit_progress'),
+        AgentScheduleList = require('procrastination/views/schedule/list/main'),
         buttons = require('buttons'),
 
         AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
 
             routes: {
-                ':customer_slug/:program_slug/schedule/:person_id/create': 'createSchedule',
-                ':customer_slug/:program_slug/schedule/:aggregate_id/edit': 'createSchedule',
                 ':customer_slug/:program_slug/schedule/:person_id': 'showSchedule',
-                ':customer_slug/:program_slug/schedule/:person_id/:cycle_id': 'showSchedule',
                 ':customer_slug/:program_slug/admin/scheduling(/)': 'listSchedulingCycles',
                 ':customer_slug/:program_slug/admin/scheduling/upcoming': 'manageSchedule',
                 ':customer_slug/:program_slug/admin/scheduling/current': 'manageSchedule',
                 ':customer_slug/:program_slug/admin/scheduling/:cycle_id(/)': 'showSchedulingCycle',
-                ':customer_slug/:program_slug/admin/scheduling/:cycle_id/progress': 'showVisitProgress'
+                ':customer_slug/:program_slug/admin/scheduling/:cycle_id/progress': 'showVisitProgress',
+                ':customer_slug/:program_slug/:person_id/list': 'listSchedules',
+                ':customer_slug/:program_slug/:person_id/show/:aggregate_id': 'showSchedule',
+                ':customer_slug/:program_slug/:person_id/edit/:aggregate_id': 'createSchedule'
             },
 
             before: function(parameters) {
@@ -39,9 +40,9 @@ define(function(require) {
                 _.extend(context, window.bootstrap);
             },
 
-            createSchedule: function() {
-                new SetSchedule().fetch();
-                var model = new CostEstimate({id: context.aggregateId});
+            createSchedule: function(customerSlug, programSlug, personId, aggregateId) {
+                new SetSchedule({aggregateId: aggregateId}).fetch();
+                var model = new CostEstimate({id: aggregateId});
                 new CostEstimateView({model: model}).fetch();
             },
 
@@ -49,9 +50,9 @@ define(function(require) {
                 new SetSchedule().fetch();
             },
 
-            showSchedule: function() {
-                new ListSchedule({showCompleted: true}).fetch();
-                var model = new CostEstimate({id: context.aggregateId});
+            showSchedule: function(customerSlug, programSlug, personId, aggregateId) {
+                new ListSchedule({aggregateId: aggregateId, showCompleted: true}).fetch();
+                var model = new CostEstimate({id: aggregateId});
                 new CostEstimateView({model: model}).fetch();
             },
 
@@ -78,6 +79,9 @@ define(function(require) {
                 } else {
                     view.fetch();
                 }
+
+                var costEstimate = new AdminCostEstimate({id: context.cycleId});
+                new AdminCostEstimateView({model: costEstimate}).fetch();
             },
 
             manageSchedule: function() {
@@ -99,6 +103,15 @@ define(function(require) {
 
                 var view = new VisitProgressList();
 
+                if(context.content) {
+                    view.bootstrapCollection(context.content);
+                } else {
+                    view.fetch();
+                }
+            },
+
+            listSchedules: function() {
+                var view = new AgentScheduleList();
                 if(context.content) {
                     view.bootstrapCollection(context.content);
                 } else {

@@ -239,9 +239,9 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   buffer += escapeExpression(stack1)
     + "</p>\n<p class=\"item col-2-4\">\n    <a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.self)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" class=\"btn primary\">Scheduling Progress</a>\n    <a href=\""
+    + "\" class=\"btn primary small\">Scheduling Progress</a>\n    <a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.progress)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" class=\"btn primary\">Visit Progress</a>\n</p>";
+    + "\" class=\"btn primary small\">Visit Progress</a>\n</p>";
   return buffer;
   });
 
@@ -329,6 +329,46 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   buffer += escapeExpression(stack1)
     + "</span>";
   return buffer;
+  });
+
+this["procrastination"]["templates"]["procrastination/schedule/list/item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n        <a class=\"btn primary small\" href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.edit)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">Edit Schedule</a>\n    ";
+  return buffer;
+  }
+
+  buffer += "<p class=\"item col-1-3\">";
+  if (helper = helpers.month) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.month); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n<p class=\"item col-1-3\">";
+  if (helper = helpers.status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n<p class=\"item col-1-3\">\n    <a class=\"btn primary small\" href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.list)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">View Schedule</a>\n    ";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.edit), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</p>";
+  return buffer;
+  });
+
+this["procrastination"]["templates"]["procrastination/schedule/list/main"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"pagination-holder\"></div>\n<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-1-3\">Month</h3>\n        <h3 class=\"header col-1-3\">Status</h3>\n        <h3 class=\"header\"></h3>\n    </div>\n    <div class=\"body\"></div>\n</section>";
   });
 
 this["procrastination"]["templates"]["procrastination/schedule/schedule_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
