@@ -3,6 +3,7 @@ require.config({
     waitSeconds: 0,
     paths: {
         'jquery': '../libs/bower_components/jquery/jquery.min',
+        'jquery_ujs' : '../libs/bower_components/jquery-ujs/src/rails',
         'underscore': '../libs/bower_components/underscore/underscore',
         'backbone': '../libs/bower_components/backbone/backbone',
         'handlebars': '../libs/bower_components/handlebars/handlebars.min',
@@ -10,7 +11,11 @@ require.config({
         'handlebarsTemplates': 'stores/templates/hbs-compiled',
         'handlebarsHelpers': 'shared/utils/handlebarsHelpers',
         'context': 'shared/utils/context',
-        'noty': '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged'
+        'serializeObject' : '../libs/bower_components/jquery-serialize-object/jquery.serialize-object',
+        'helpers' : 'thirdchannel/utils/helpers',
+        'pikaday' : '../libs/bower_components/pikaday/pikaday',
+        'noty': '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged',
+        'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker"
     },
     shim: {
         'jquery': {
@@ -41,6 +46,12 @@ require.config({
         },
         'context': {
             deps: ['underscore']
+        },
+        'serializeObject': {
+            deps: ["jquery"]
+        },
+        'dateTimePicker': {
+            deps: ["jquery"]
         },
         'noty': {
             deps: ['jquery']

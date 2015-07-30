@@ -4,9 +4,10 @@ define(function(require){
         Backbone = require('backbone'),
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
+        MainLayout = require('shared/views/layout/main'),
         ProgramListView = require('stores/views/programs/list'),
         ProgramStores = require('stores/collections/program_stores'),
-        ProgramStoreListView = require('stores/views/program_stores/list');
+        ProgramStoresModule = require('stores/views/program_stores/list_main');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         container: $('#application'),
@@ -26,12 +27,11 @@ define(function(require){
             var program = context.programs.get(programId);
             var programStores = new ProgramStores([], {program: program});
 
-            // TODO: might be better to make this a module (module view?) that manages two views (one for the program model and one for the program stores)
-            // Then have a model to represent the state (loading? would display the loading gif)
-            var view = new ProgramStoreListView({model: program, collection: programStores});
-            this.swap(view);
+            var programStoreModule = new ProgramStoresModule({program: program, programStores: programStores});
 
-            programStores.fetch({reset: true});
+            this.swap(programStoreModule);
+
+            //context.trigger('filter:toggle'); // and this doesn't work...
         },
 
         swap: function(view) {
@@ -54,6 +54,7 @@ define(function(require){
         }
         context.router = new AppRouter();
         Backbone.history.start({pushState: true, hashChange: false});
+        MainLayout.init();
     };
 
     return {
