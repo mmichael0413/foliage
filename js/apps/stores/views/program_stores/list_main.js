@@ -58,7 +58,7 @@ define(function(require) {
             this.actionsView = null;
             this.filterControl.removeFilterCollection();
             context.trigger('filter:close');
-            context.trigger('nav:toggle'); // TODO only toggle if closed
+            context.trigger('nav:expand');
             this.programStoresListView.leave();
         }
     });

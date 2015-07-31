@@ -18,6 +18,7 @@ define(function (require) {
             this.listenTo(context, 'filter:toggle', this.toggleFilter);
             this.listenTo(context, 'filter:close', this.closeFilter);
             this.listenTo(context, 'nav:toggle', this.collapseNav);
+            this.listenTo(context, 'nav:expand', this.expandNav);
             this.$siteWrapper = this.$el;
             this.$siteSubmenu = this.$('#site-submenu');
             this.$toggleFilter = $('.toggle-filter');
@@ -198,12 +199,7 @@ define(function (require) {
                 e.stopPropagation();
             }
             if (this.$siteWrapper.hasClass('collapsed-nav')) {
-                this.$siteWrapper.find('.collapse-nav .ic_right').removeClass('ic_right').addClass('ic_left');
-                this.$siteWrapper.removeClass('collapsed-nav');
-                this.$siteWrapper.addClass('expanded-nav');
-                if (!trigger) {
-                    window.localStorage.setItem('main_navigation', 'expanded-nav');
-                }
+                this.expandNav(e, trigger);
             } else {
                 this.$siteWrapper.find('.collapse-nav .ic_left').removeClass('ic_left').addClass('ic_right');
                 this.$siteWrapper.addClass('collapsed-nav');
@@ -214,6 +210,14 @@ define(function (require) {
             }
 
             context.trigger('navigation:collapsed');
+        },
+        expandNav: function(e, trigger) {
+            this.$siteWrapper.find('.collapse-nav .ic_right').removeClass('ic_right').addClass('ic_left');
+            this.$siteWrapper.removeClass('collapsed-nav');
+            this.$siteWrapper.addClass('expanded-nav');
+            if (!trigger) {
+                window.localStorage.setItem('main_navigation', 'expanded-nav');
+            }
         },
         browserCompatibility: function() {
             var isIE = /*@cc_on!@*/false || !!document.documentMode; // At least IE6
