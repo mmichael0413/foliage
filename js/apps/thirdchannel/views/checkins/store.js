@@ -13,9 +13,12 @@ define(function(require){
             return this;
         },
 
+        openBtn: "Open <i class='ic ic_down'></i>",
+        closeBtn: "Close <i class='ic ic_up'></i>",
+
         events: {
-            "click .expand-indicator": "openVisits",
-            "click .contract-indicator": "closeVisits"
+            "click .open-jobs": "openVisits",
+            "click .close-jobs": "closeVisits"
         },
 
         render: function() {
@@ -27,8 +30,9 @@ define(function(require){
             e.preventDefault();
             e.stopPropagation();
 
-            $(e.currentTarget).removeClass('expand-indicator');
-            $(e.currentTarget).addClass('contract-indicator');
+            $(e.currentTarget).removeClass('open-jobs');
+            $(e.currentTarget).html(this.closeBtn);
+            $(e.currentTarget).addClass('close-jobs');
 
             this.taskList = new TaskList({tasks: this.model.get('tasks')});
 
@@ -39,8 +43,9 @@ define(function(require){
             e.preventDefault();
             e.stopPropagation();
 
-            $(e.currentTarget).removeClass('contract-indicator');
-            $(e.currentTarget).addClass('expand-indicator');
+            $(e.currentTarget).removeClass('close-jobs');
+            $(e.currentTarget).html(this.openBtn);
+            $(e.currentTarget).addClass('open-jobs');
 
             this.taskList.remove();
 
