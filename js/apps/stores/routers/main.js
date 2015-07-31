@@ -7,7 +7,9 @@ define(function(require){
         MainLayout = require('shared/views/layout/main'),
         ProgramListView = require('stores/views/programs/list'),
         ProgramStores = require('stores/collections/program_stores'),
-        ProgramStoresModule = require('stores/views/program_stores/list_main');
+        ProgramStoresModule = require('stores/views/program_stores/list_main'),
+        Uploads = require('stores/collections/uploads'),
+        UploadListView = require('stores/views/uploads/list');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         container: $('#application'),
@@ -15,7 +17,8 @@ define(function(require){
 
         routes: {
             '(/)': 'programList',
-            'programs/:programId(/)': 'storeList'
+            'programs/:programId(/)': 'storeList',
+            'programs/:programId/uploads(/)': 'uploadList'
         },
 
         programList: function() {
@@ -32,6 +35,18 @@ define(function(require){
             this.swap(programStoreModule);
 
             //context.trigger('filter:toggle'); // and this doesn't work...
+        },
+
+        uploadList: function(programId) {
+            var program = context.programs.get(programId);
+            var uploads = new Uploads([], {program: program});
+
+            var view = new UploadListView({model: program, collection: uploads});
+
+            var self = this;
+            uploads.fetch({reset: true}).done(function() {
+                self.swap(view);
+            });
         },
 
         swap: function(view) {

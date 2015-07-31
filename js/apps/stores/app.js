@@ -8,7 +8,7 @@ define(function(require){
         initialize = function() {
             Router.initialize();
 
-            $(document).on('click', 'a:not([data-bypass])', function(evt) {
+            $('a:not([data-bypass])').on('click', function(evt) {
                 var href = $(this).attr('href'),
                     protocol = this.protocol + '//';
 

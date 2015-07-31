@@ -11,6 +11,14 @@ define(function(require) {
             this.actions = new Actions([
                 {
                     type: 'link',
+                    link: '/programs/' + this.get('program').id + '/uploads',
+                    className: 'primary',
+                    icon: 'ic_clipboard',
+                    text: 'Upload List',
+                    bypass: false
+                },
+                {
+                    type: 'link',
                     link: '/programs/' + this.get('program').id + '/uploads/new',
                     className: 'primary',
                     icon: 'ic_add',
@@ -50,7 +58,7 @@ define(function(require) {
             this.actionsView = null;
             this.filterControl.removeFilterCollection();
             context.trigger('filter:close');
-            context.trigger('nav:toggle');
+            context.trigger('nav:toggle'); // TODO only toggle if closed
             this.programStoresListView.leave();
         }
     });
