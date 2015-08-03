@@ -11,6 +11,7 @@ define(function (require) {
         StoreListView = require('oddjob/views/stores/list'),
         ScheduledStoresView = require('oddjob/views/stores/scheduled'),
         StoreControlsView = require('oddjob/views/stores/controls'),
+        AddStoresView = require('oddjob/views/schedules/addStores'),
         TasksListView = require('oddjob/views/tasks/list');
 
     var Router = require('shared/routers/contextAwareBaseRouter').extend({
@@ -19,7 +20,8 @@ define(function (require) {
             ':customer/:programSlug/jobs/create(/)': 'jobsCreate',
             ':customer/:programSlug/jobs/:jobId(/)': 'jobsEdit',
             ':customer/:programSlug/jobs/:jobId/schedule(/)': 'scheduleCreate',
-            ':customer/:programSlug/jobs/:jobId/schedule/:frequencyIndex': 'scheduleEdit'
+            ':customer/:programSlug/jobs/:jobId/schedule/:frequencyIndex': 'scheduleEdit',
+            ':customer/:programSlug/jobs/:jobId/schedule/:frequencyIndex/add': 'scheduleAddStores'
             
         },
 
@@ -67,8 +69,13 @@ define(function (require) {
             Filter.init();
             new FrequencyCreateView({el: $("#frequencyForm")}).render();
             new StoreControlsView();
-            //new StoreListView();
             new ScheduledStoresView();
+        },
+        scheduleAddStores: function (customer, programSlug, jobId, frequencyIndex) {
+            Filter.init();
+            new AddStoresView();
+            new StoreControlsView();
+            new StoreListView();
         }
 
     });
