@@ -593,7 +593,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" class=\"btn primary\"><i class=\"ic fa ic_left\"></i> Back to store list</a>\n</div>\n<br>\n<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-1-5\"></h3>\n        <h3 class=\"header col-1-5\">Number Of Rows</h3>\n        <h3 class=\"header col-1-5\">Ambiguous Accounts</h3>\n        <h3 class=\"header col-1-5\">Number Stores Added</h3>\n        <h3 class=\"header col-1-5\"></h3>\n    </div>\n    <div class=\"body\" id=\"upload-list\"></div>\n</section>";
+    + "\" class=\"btn primary\"><i class=\"ic fa ic_left\"></i> Back to store list</a>\n</div>\n<br>\n<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-1-5\"></h3>\n        <h3 class=\"header col-1-5\">Number Of Rows</h3>\n        <h3 class=\"header col-1-5\">Number Stores Added</h3>\n        <h3 class=\"header col-1-5\">Ambiguous Accounts</h3>\n        <h3 class=\"header col-1-5\"></h3>\n    </div>\n    <div class=\"body\" id=\"upload-list\"></div>\n</section>";
   return buffer;
   });
 
@@ -608,12 +608,12 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   else { helper = (depth0 && depth0.numberOfRows); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</p>\n<p class=\"col-1-5\">";
-  if (helper = helpers.numberOfAmbiguousAccounts) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.numberOfAmbiguousAccounts); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-5\">";
   if (helper = helpers.programStoresCreated) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.programStoresCreated); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n<p class=\"col-1-5\">";
+  if (helper = helpers.numberOfAmbiguousAccounts) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.numberOfAmbiguousAccounts); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</p>\n<p class=\"col-1-5\"><a href=\"/programs/";
   if (helper = helpers.programId) { stack1 = helper.call(depth0, {hash:{},data:data}); }
