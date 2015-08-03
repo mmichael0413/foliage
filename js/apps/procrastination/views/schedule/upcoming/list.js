@@ -15,14 +15,14 @@ define(function (require) {
         el: '.main-content',
         template: HandlebarsTemplates['procrastination/schedule/upcoming/visit_label'],
 
-        initialize: function () {
+        initialize: function (options) {
             var self = this;
             this.unscheduledCount = 0;
-            this.list = new ListView({showComplete: false}).setElement('.scheduled .schedules');
+            this.list = new ListView({aggregateId: options.aggregateId, showComplete: false}).setElement('.scheduled .schedules');
             this.listenTo(this, 'fullcalendar.date.create', this.updateSchedule);
             this.listenTo(this, 'fullcalendar.refresh', this.refreshCalendar);
 
-            this.aggregate = context.aggregateId;
+            this.aggregate = options.aggregateId;
             this.collection = new ScheduleCollection(null, {
                 aggregateId: this.aggregate,
                 personId: context.personId,

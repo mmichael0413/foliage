@@ -6,12 +6,7 @@ define(function (require) {
             className: 'item',
             template: Templates['procrastination/admin/schedule_row'],
             render: function() {
-                var scheduleLink = context.base_url + '/schedule/' + this.model.get('personId');
-                if(context.active === undefined) {
-                    scheduleLink += '/' + this.model.get('schedulingCycleId');
-                } else if(context.active == 'upcoming') {
-                    scheduleLink += '/create';
-                }
+                var scheduleLink = context.base_url + '/' + this.model.get('personId') + '/show/' + this.model.get('id');
                 this.model.set('scheduleLink', scheduleLink);
                 this.$el.html(this.template(this.model.attributes));
                 return this;
