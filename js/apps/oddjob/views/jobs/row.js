@@ -9,7 +9,6 @@ define(function(require) {
 		jobViews: [],
 
 		render: function () {
-			console.log(context.links);
 			// render myself, then add in any subViews
 			// do I need a view for this?
 			var data = this.model.toJSON();

@@ -11,6 +11,9 @@ define(function (require) {
                 'click .remove': 'removeStores',
                 'keypress #text': 'textSearch'
             },
+            initialize: function () {
+                this.listenTo(context, 'stores:selected:count', this.updateCount);
+            },
 
             selectPage: function (e) {
                 e.preventDefault();
@@ -28,11 +31,13 @@ define(function (require) {
             },
 
             textSearch: function (e) {
-                //e.preventDefault();
                 if (e.which == 13) {
                     context.trigger('filter:set', [{name: 'text', value: $(e.currentTarget).val()}]);
                 }
-            }
+            },
+            updateCount: function (count) {
+                this.$el.find('#storeCount').text(count);
+            },
 
         };
     return Backbone.View.extend(StoreListControlsView);     
