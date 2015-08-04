@@ -658,12 +658,33 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["Stores"]["templates"]["stores/uploads/events/ambiguous_account"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, self=this;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n        <div class=\"account-result\">\n            <ul>\n                <li><strong>Account Name:</strong> ";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</li>\n                <li><strong>Similarity:</strong> ";
+  if (helper = helpers.similarity) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.similarity); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</li>\n                <li><strong>UUID:</strong> ";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</li>\n            </ul>\n        </div>\n    ";
+  return buffer;
+  }
 
   stack1 = self.invokePartial(partials.store_data, 'store_data', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\nAbiguousAccount";
+  buffer += "\n<div>\n    <h4>Similar Accounts</h4>\n    ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.accounts), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</div>";
   return buffer;
   });
 
@@ -726,12 +747,16 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["Stores"]["templates"]["stores/uploads/events/failed_geocode"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, self=this;
+  var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
 
 
   stack1 = self.invokePartial(partials.store_data, 'store_data', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\nFailedGeocode";
+  buffer += "\n<div>\n    <div><strong>Geocode Query:</strong> ";
+  if (helper = helpers.query) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.query); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n</div>";
   return buffer;
   });
 
@@ -752,12 +777,16 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["Stores"]["templates"]["stores/uploads/events/zero_geocode"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, self=this;
+  var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
 
 
   stack1 = self.invokePartial(partials.store_data, 'store_data', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\nZeroGeocode";
+  buffer += "\n<div>\n    <div><strong>Geocode Query:</strong> ";
+  if (helper = helpers.query) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.query); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n</div>";
   return buffer;
   });
 

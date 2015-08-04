@@ -46,7 +46,7 @@ define(function(require) {
         renderFailedGeocodes: function() {
             this.failedGeocodes = new Backbone.Collection(this.model.get('failedGeocodes'));
             if(this.failedGeocodes.length) {
-                var view = new FailedGeocodeView({collection: this.failedGeocodes});
+                var view = new FailedGeocodesView({collection: this.failedGeocodes});
                 this.$el.append(view.render().el);
                 this.childViews.push(view);
             }

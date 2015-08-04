@@ -1,2 +1,13 @@
 {{>store_data}}
-AbiguousAccount
+<div>
+    <h4>Similar Accounts</h4>
+    {{#each accounts}}
+        <div class="account-result">
+            <ul>
+                <li><strong>Account Name:</strong> {{name}}</li>
+                <li><strong>Similarity:</strong> {{similarity}}</li>
+                <li><strong>UUID:</strong> {{id}}</li>
+            </ul>
+        </div>
+    {{/each}}
+</div>
