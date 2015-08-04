@@ -593,7 +593,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" class=\"btn primary\"><i class=\"ic fa ic_left\"></i> Back to store list</a>\n</div>\n<br>\n<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-3-12\"></h3>\n        <h3 class=\"header col-1-12\"># Rows</h3>\n        <h3 class=\"header col-2-12\"># Stores Added</h3>\n        <h3 class=\"header col-2-12\"># Ambiguous Accounts</h3>\n        <h3 class=\"header col-2-12\"># Ambiguous Geocodes</h3>\n        <h3 class=\"header col-2-12\"># Failed Geocodes</h3>\n    </div>\n    <div class=\"body\" id=\"upload-list\"></div>\n</section>";
+    + "\" class=\"btn primary\"><i class=\"ic fa ic_left\"></i> Back to store list</a>\n</div>\n<br>\n<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-2-12\"></h3>\n        <h3 class=\"header col-1-12\"># Rows</h3>\n        <h3 class=\"header col-1-12\"># Stores Added</h3>\n        <h3 class=\"header col-2-12\"># Ambiguous Accounts</h3>\n        <h3 class=\"header col-2-12\"># Ambiguous Geocodes</h3>\n        <h3 class=\"header col-1-12\"># Zero Geocodes</h3>\n        <h3 class=\"header col-1-12\"># Failed Geocodes</h3>\n    </div>\n    <div class=\"body\" id=\"upload-list\"></div>\n</section>";
   return buffer;
   });
 
@@ -603,7 +603,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<p class=\"col-3-12\">\n    <a href=\"#\">Review Errors</a>\n    <a href=\"/programs/";
+  buffer += "<p class=\"col-2-12\">\n    <a href=\"#\">Review Issues</a>\n    <a href=\"/programs/";
   if (helper = helpers.programId) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.programId); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -615,7 +615,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.numberOfRows) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.numberOfRows); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-2-12\">";
+    + "</p>\n<p class=\"col-1-12\">";
   if (helper = helpers.programStoresCreated) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.programStoresCreated); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -627,7 +627,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.numberOfAmbiguousGeocodes) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.numberOfAmbiguousGeocodes); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-2-12\">";
+    + "</p>\n<p class=\"col-1-12\">";
+  if (helper = helpers.numberOfZeroGeocodes) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.numberOfZeroGeocodes); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n<p class=\"col-1-12\">";
   if (helper = helpers.numberOfFailedGeocodes) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.numberOfFailedGeocodes); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
