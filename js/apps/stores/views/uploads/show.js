@@ -12,7 +12,6 @@ define(function(require) {
         childViews: [],
         render: function() {
             this.$el.html(this.template(this.model.attributes));
-            console.log(this.model);
             this.renderAmbiguousAccounts();
             this.renderAmbiguousGeocodes();
             this.renderZeroGeocodes();
