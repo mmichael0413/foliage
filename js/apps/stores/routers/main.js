@@ -9,7 +9,9 @@ define(function(require){
         ProgramStores = require('stores/collections/program_stores'),
         ProgramStoresModule = require('stores/views/program_stores/list_main'),
         Uploads = require('stores/collections/uploads'),
-        UploadListView = require('stores/views/uploads/list');
+        UploadListView = require('stores/views/uploads/list'),
+        Upload = require('stores/models/upload'),
+        UploadView = require('stores/views/uploads/show');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         container: $('#application'),
@@ -18,7 +20,8 @@ define(function(require){
         routes: {
             '(/)': 'programList',
             'programs/:programId(/)': 'storeList',
-            'programs/:programId/uploads(/)': 'uploadList'
+            'programs/:programId/uploads(/)': 'uploadList',
+            'programs/:programId/uploads/:uploadId': 'uploadResults'
         },
 
         programList: function() {
@@ -45,6 +48,19 @@ define(function(require){
 
             var self = this;
             uploads.fetch({reset: true}).done(function() {
+                self.swap(view);
+            });
+        },
+
+        uploadResults: function(programId, uploadId) {
+            var program = context.programs.get(programId);
+            var upload = new Upload({id: uploadId, programId: program.get('id')});
+
+            var self = this,
+                view = new UploadView({model: upload});
+
+            upload.fetch().done(function(data) {
+                upload.set(data);
                 self.swap(view);
             });
         },

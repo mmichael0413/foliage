@@ -121,6 +121,82 @@ function program3(depth0,data) {
   return buffer;
   }));
 
+Handlebars.registerPartial("geocode_result", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"geocode-result\">\n    <ul>\n        <li><strong>Formatted Address:</strong> ";
+  if (helper = helpers.formattedAddress) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.formattedAddress); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</li>\n        <li><strong>Lat/Lon:</strong> (";
+  if (helper = helpers.latitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.latitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ", ";
+  if (helper = helpers.longitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.longitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ")</li>\n        <li><strong>Types:</strong> ";
+  if (helper = helpers.types) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.types); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</li>\n    </ul>\n</div>";
+  return buffer;
+  }));
+
+Handlebars.registerPartial("store_data", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    <div class=\"store-data\">\n        <h4>Uploaded Data:</h4>\n        <ul>\n            <li><strong>Account:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.account)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</li>\n            <li><strong>Store Tag:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.store_tag)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</li>\n            ";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.address), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            ";
+  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.address), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </ul>\n    </div>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                <li><strong>Address:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.address)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</li>\n            ";
+  return buffer;
+  }
+
+function program4(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                <li><strong>Street:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.street_1)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</li>\n                <li><strong>City:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.city)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</li>\n                <li><strong>State:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.state)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</li>\n                <li><strong>Zip:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.zip)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</li>\n            ";
+  return buffer;
+  }
+
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.store), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  }));
+
 this["Stores"]["templates"]["shared/layout/action_buttons"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
@@ -579,6 +655,70 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
+this["Stores"]["templates"]["stores/uploads/events/ambiguous_account"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, self=this;
+
+
+  stack1 = self.invokePartial(partials.store_data, 'store_data', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\nAbiguousAccount";
+  return buffer;
+  });
+
+this["Stores"]["templates"]["stores/uploads/events/ambiguous_geocode"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n        ";
+  stack1 = self.invokePartial(partials.geocode_result, 'geocode_result', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    ";
+  return buffer;
+  }
+
+  stack1 = self.invokePartial(partials.store_data, 'store_data', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n<div>\n    <div><strong>Geocode Query:</strong> ";
+  if (helper = helpers.query) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.query); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n    <h4>Geocode Results:</h4>\n    ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.geocodes), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</div>";
+  return buffer;
+  });
+
+this["Stores"]["templates"]["stores/uploads/events/failed_geocode"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, self=this;
+
+
+  stack1 = self.invokePartial(partials.store_data, 'store_data', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\nFailedGeocode";
+  return buffer;
+  });
+
+this["Stores"]["templates"]["stores/uploads/events/zero_geocode"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, self=this;
+
+
+  stack1 = self.invokePartial(partials.store_data, 'store_data', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\nZeroGeocode";
+  return buffer;
+  });
+
 this["Stores"]["templates"]["stores/uploads/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -603,7 +743,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<p class=\"col-2-12\">\n    <a href=\"#\">Review Issues</a>\n    <a href=\"/programs/";
+  buffer += "<p class=\"col-2-12\">\n    <a href=\"/programs/";
+  if (helper = helpers.programId) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.programId); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "/uploads/";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">Review Issues</a>\n    <a href=\"/programs/";
   if (helper = helpers.programId) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.programId); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -636,6 +784,75 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   else { helper = (depth0 && depth0.numberOfFailedGeocodes); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</p>";
+  return buffer;
+  });
+
+this["Stores"]["templates"]["stores/uploads/show"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n    <h2>";
+  if (helper = helpers.numberOfAmbiguousAccounts) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.numberOfAmbiguousAccounts); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " ambiguous accounts</h2>\n    <div id=\"ambiguous-accounts\"></div>\n";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n    <h2>";
+  if (helper = helpers.numberOfAmbiguousGeocodes) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.numberOfAmbiguousGeocodes); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " ambiguous geocodes</h2>\n    <div id=\"ambiguous-geocodes\"></div>\n";
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n    <h2>";
+  if (helper = helpers.numberOfZeroGeocodes) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.numberOfZeroGeocodes); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " zero geocodes</h2>\n    <div id=\"zero-geocodes\"></div>\n";
+  return buffer;
+  }
+
+function program7(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n    <h2>";
+  if (helper = helpers.numberOfFailedGeocodes) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.numberOfFailedGeocodes); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " failed geocodes</h2>\n    <div id=\"failed-geocodes\"></div>\n";
+  return buffer;
+  }
+
+  buffer += "<div>\n    <a href=\"/programs/";
+  if (helper = helpers.programId) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.programId); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "/uploads\" class=\"btn primary\"><i class=\"ic fa ic_left\"></i> Back to upload history</a>\n</div>\n<br>\n";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.numberOfAmbiguousAccounts), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.numberOfAmbiguousGeocodes), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.numberOfZeroGeocodes), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.numberOfFailedGeocodes), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
   return buffer;
   });
 
