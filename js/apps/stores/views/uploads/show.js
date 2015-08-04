@@ -19,6 +19,7 @@ define(function(require) {
             this.renderFailedGeocodes();
             return this;
         },
+        // TODO: might be better to create list views for these, but currently don't see any reason to do so.
         renderAmbiguousAccounts: function() {
             var self = this;
             this.ambiguousAccounts = new Backbone.Collection(this.model.get('ambiguousAccounts'));
