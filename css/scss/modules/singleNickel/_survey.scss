@@ -91,4 +91,14 @@
       text-transform: Capitalize;
     }
   }
+
+  .question-show {
+
+    &:not(.required) {
+      p {
+        font-style: italic;
+        color: $medium-blue;
+      }
+    }
+  }
 }
