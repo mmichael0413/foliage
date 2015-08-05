@@ -464,11 +464,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.fileName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.fileName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</span></p>\n<p>Reason: ";
+    + "</span></p>\n<p>Reason: <span class=\"info\">";
   if (helper = helpers.message) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.message); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n\n<p class=\"reminder\">Reminder, a valid store upload file must meet the following criteria:\n    <ul>\n        <li>Be a Microsoft .xls file.</li>\n        <li>Contain at least two rows, and the very first row must be headers.</li>\n        <li>Contain a column with the header <span class=\"important\">'uuid'</span>.</li>\n        <li>The <span class=\"important\">uuid</span> column must contain valid store UUIDs.</li>\n    </ul>\n</p>";
+    + "</span></p>\n\n<p class=\"reminder\">Reminder, a valid store upload file must meet the following criteria:\n    <ul>\n        <li>Be a Microsoft .xls or .xlsx file.</li>\n        <li>Contain at least two rows, and the very first row must be headers.</li>\n        <li>Contain a column with the header <span class=\"important\">'uuid'</span>.</li>\n        <li>The <span class=\"important\">uuid</span> column must contain valid store UUIDs.</li>\n    </ul>\n</p>";
   return buffer;
   });
 
