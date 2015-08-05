@@ -2,6 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         context = require('context'),
         Templates = require('handlebarsTemplates'),
+        InvalidRowsView = require('stores/views/uploads/events/invalid_rows'),
         AmbiguousAccountsView = require('stores/views/uploads/events/ambiguous_accounts'),
         AmbiguousGeocodesView = require('stores/views/uploads/events/ambiguous_geocodes'),
         ZeroGeocodesView = require('stores/views/uploads/events/zero_geocodes'),
@@ -12,11 +13,20 @@ define(function(require) {
         childViews: [],
         render: function() {
             this.$el.html(this.template(this.model.attributes));
+            this.renderInvalidRows();
             this.renderAmbiguousAccounts();
             this.renderAmbiguousGeocodes();
             this.renderZeroGeocodes();
             this.renderFailedGeocodes();
             return this;
+        },
+        renderInvalidRows: function() {
+            this.invalidRows = new Backbone.Collection(this.model.get('invalidRows'));
+            if(this.invalidRows.length) {
+                var view = new InvalidRowsView({collection: this.invalidRows});
+                this.$el.append(view.render().el);
+                this.childViews.push(view);
+            }
         },
         renderAmbiguousAccounts: function() {
             this.ambiguousAccounts = new Backbone.Collection(this.model.get('ambiguousAccounts'));
