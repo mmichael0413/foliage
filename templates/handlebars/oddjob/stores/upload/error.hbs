@@ -1,0 +1,11 @@
+<p class="error">Could not process file <span class="important">{{fileName}}</span></p>
+<p>Reason: {{message}}</p>
+
+<p class="reminder">Reminder, a valid store upload file must meet the following criteria:
+    <ul>
+        <li>Be a Microsoft .xls file.</li>
+        <li>Contain at least two rows, and the very first row must be headers.</li>
+        <li>Contain a column with the header <span class="important">'uuid'</span>.</li>
+        <li>The <span class="important">uuid</span> column must contain valid store UUIDs.</li>
+    </ul>
+</p>

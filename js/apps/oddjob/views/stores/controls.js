@@ -9,10 +9,18 @@ define(function (require) {
                 'click .select': 'selectPage',
                 'click .deselect': 'deselectPage',
                 'click .remove': 'removeStores',
+                'change .file-upload': 'broadcastFileChoice',
                 'keypress #text': 'textSearch'
             },
             initialize: function () {
                 this.listenTo(context, 'stores:selected:count', this.updateCount);
+
+            },
+
+            broadcastFileChoice: function(e) {
+                e.preventDefault();
+                context.trigger("stores:file:selected", e.target.files);
+
             },
 
             selectPage: function (e) {
