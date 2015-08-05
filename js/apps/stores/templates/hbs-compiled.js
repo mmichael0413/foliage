@@ -158,7 +158,7 @@ function program1(depth0,data) {
   buffer += "\n    <div class=\"store-data\">\n        <h4>Uploaded Data:</h4>\n        <ul>\n            <li><strong>Account:</strong> "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.account)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</li>\n            <li><strong>Store Tag:</strong> "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.store_tag)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.storeTag)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</li>\n            ";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.address), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -180,14 +180,18 @@ function program2(depth0,data) {
 function program4(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                <li><strong>Street:</strong> "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.street_1)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+  buffer += "\n                <li><strong>Street 1:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.street1)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</li>\n                <li><strong>Street 2:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.street2)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</li>\n                <li><strong>City:</strong> "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.city)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</li>\n                <li><strong>State:</strong> "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.state)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</li>\n                <li><strong>Zip:</strong> "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.zip)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</li>\n                <li><strong>Country:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.country)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</li>\n            ";
   return buffer;
   }
@@ -818,7 +822,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" class=\"btn primary\"><i class=\"ic fa ic_left\"></i> Back to store list</a>\n</div>\n<br>\n<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-2-12\"></h3>\n        <h3 class=\"header col-1-12\"># Rows</h3>\n        <h3 class=\"header col-1-12\"># Stores Added</h3>\n        <h3 class=\"header col-2-12\"># Ambiguous Accounts</h3>\n        <h3 class=\"header col-2-12\"># Ambiguous Geocodes</h3>\n        <h3 class=\"header col-1-12\"># Zero Geocodes</h3>\n        <h3 class=\"header col-1-12\"># Failed Geocodes</h3>\n    </div>\n    <div class=\"body\" id=\"upload-list\"></div>\n</section>";
+    + "\" class=\"btn primary\"><i class=\"ic fa ic_left\"></i> Back to store list</a>\n</div>\n<br>\n<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-2-12\"></h3>\n        <h3 class=\"header col-1-12\"># Rows</h3>\n        <h3 class=\"header col-1-12\"># Stores Added</h3>\n        <h3 class=\"header col-2-12\"># Invalid Row Data</h3>\n        <h3 class=\"header col-2-12\"># Ambiguous Accounts</h3>\n        <h3 class=\"header col-2-12\"># Ambiguous Geocodes</h3>\n        <h3 class=\"header col-1-12\"># Zero Geocodes</h3>\n        <h3 class=\"header col-1-12\"># Failed Geocodes</h3>\n    </div>\n    <div class=\"body\" id=\"upload-list\"></div>\n</section>";
   return buffer;
   });
 
@@ -851,6 +855,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "</p>\n<p class=\"col-1-12\">";
   if (helper = helpers.programStoresCreated) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.programStoresCreated); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n<p class=\"col-2-12\">";
+  if (helper = helpers.numberOfInvalidRows) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.numberOfInvalidRows); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</p>\n<p class=\"col-2-12\">";
   if (helper = helpers.numberOfAmbiguousAccounts) { stack1 = helper.call(depth0, {hash:{},data:data}); }
