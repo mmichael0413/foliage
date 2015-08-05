@@ -16,7 +16,6 @@ define(function (require) {
                 this.show(files);
                 this.sendFile(files[0])
                     .done(function (data) {
-
                         this.$el.html(Templates["oddjob/stores/upload/confirm"](data));
                         context.trigger('stores:uuids:true', data.uuids);
                     }.bind(this))

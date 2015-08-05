@@ -165,4 +165,9 @@
 	}
 }
 
+.important {
+	color: $dark-slate;
+	font-weight: bold;
+}
+
 @import "upload";
