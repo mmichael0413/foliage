@@ -5,10 +5,12 @@ define(function (require) {
         Backbone = require('backbone'),
         context = require('context'),
         Filter = require('thirdchannel/views/filter/main'),
+        MessagesView = require('oddjob/views/misc/messages'),
         JobCreateView = require('oddjob/views/jobs/create'),
         JobEditView = require('oddjob/views/jobs/edit'),
         FrequencyCreateView = require('oddjob/views/schedules/frequencyCreate'),
         StoreListView = require('oddjob/views/stores/list'),
+        StoreUploadView = require('oddjob/views/stores/upload'),
         ScheduledStoresView = require('oddjob/views/stores/scheduled'),
         StoreControlsView = require('oddjob/views/stores/controls'),
         AddStoresView = require('oddjob/views/schedules/addStores'),
@@ -35,6 +37,7 @@ define(function (require) {
         },
 
         jobsList: function (customer, programSlug) {
+            new MessagesView();
             new TasksListView().render();
         },
 
@@ -62,6 +65,7 @@ define(function (require) {
             Filter.init();
             new FrequencyCreateView({el: $("#frequencyForm")}).render();
             new StoreControlsView();
+            new StoreUploadView();
             new StoreListView();
         },
 
@@ -75,6 +79,7 @@ define(function (require) {
             Filter.init();
             new AddStoresView();
             new StoreControlsView();
+            new StoreUploadView();
             new StoreListView();
         }
 

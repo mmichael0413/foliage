@@ -82,9 +82,6 @@
 		}
 	}
 	
-
-
-
 	.task {
 		width: 80%;
 		margin: 2em 0 2em 0;
@@ -135,9 +132,26 @@
 }
 
 .controls {
+	margin-bottom: 1em;
+    padding-left: 0;
+    list-style: none;
+	
+	li {
+		float: left;
+    	margin-bottom: -1px;
+
+	}
 	input {
 		margin: 0;
 
+	}
+	.btn {
+		margin-right: 1em;
+	}
+	.address-search {
+		width: 25%;
+		position:absolute;
+		right: 1em;
 	}
 }
 
@@ -150,3 +164,5 @@
 		display: inline-block;
 	}
 }
+
+@import "upload";
