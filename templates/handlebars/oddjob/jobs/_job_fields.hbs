@@ -1,6 +1,15 @@
-	<label class="label" for="jobName">Name</label>
+	<p class="info">If you leave the name blank, the group will use the name of the first Task. Furthermore, a Job must have at least one Task (Typically, there will be only one Task per Job).</p>
+
+    <label class="label" for="jobName">Name</label>
     <input class="input" type="text" value="{{name}}" name="name" id="jobName" placeholder="Enter Optional name here"/>
-    <p class="info">If you leave the name blank, the group will use the name of the first Task. Furthermore, a Job must have at least one Task (Typically, there will be only one Task per Job).</p>
+    
+    <label for="role" class="label">Limit Job to Role: </label>
+    <select name="role" id="role" class="input">
+        <option value="">--No Limit on Role--</option>
+        {{#roles}}
+        <option value="{{id}}" {{#selected}}selected="selected"{{/selected}}>{{key}}</option>
+        {{/roles}}
+    </select>
 
     <div class="tasks-container">
     </div>
