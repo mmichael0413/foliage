@@ -1,5 +1,6 @@
 define(function(require) {
 	var Backbone = require('backbone'),
+		_ 		= require('underscore'),
 		Templates = require('handlebarsTemplates'),
 		context = require('context'),
 		SurveysStore = require('oddjob/stores/surveys');
@@ -15,10 +16,16 @@ define(function(require) {
 		},
 
 		render: function () {
-			console.log("Rendering!");
 			SurveysStore.fetch()
 			.done(function () {
-				this.$el.html(Templates[this.templateName](this.model.toJSON()));
+				var data = this.model.toJSON();
+				data.roles = context.roles;
+				_.each(data.roles, function (role) {
+					if (role.id === data.role) {
+						role.selected = true;
+					}
+				});
+				this.$el.html(Templates[this.templateName](data));
 				this.$tasksContainer = this.$el.find('.tasks-container');
 				// create the first view
 				this.renderChildViews();

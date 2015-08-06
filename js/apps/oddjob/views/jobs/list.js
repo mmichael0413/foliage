@@ -19,6 +19,7 @@ define(function (require) {
 			}.bind(this));
 		},
 		renderRows: function (collection) {
+			// I don't think this is actually used.
 			if (collection.length === 0) {
 				this.$el.html("<p>There are currently no jobs created for this program.</p>");
 			} else {

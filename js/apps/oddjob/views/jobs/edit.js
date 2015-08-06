@@ -12,7 +12,6 @@ define(function(require) {
 
 
 		renderChildViews: function () {
-			console.log(this.model.get('tasks'));
 			var i = 0,
 				max = this.model.get('tasks').length;
 			for(i; i < max; i++) {

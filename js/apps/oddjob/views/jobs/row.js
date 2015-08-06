@@ -17,6 +17,9 @@ define(function(require) {
 
 			data.createScheduleUrl = context.links.base +"/" + this.model.get('id') +"/schedule";
 			data.editUrl = context.links.base +"/" + this.model.get('id');
+			if (data.role === "") {
+				data.role = undefined;
+			}
 			
 			// render my self
 			this.$el.html(Templates['oddjob/jobs/row'](data));

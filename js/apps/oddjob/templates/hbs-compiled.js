@@ -89,14 +89,45 @@ function program3(depth0,data) {
 Handlebars.registerPartial("job_fields", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n        <option value=\"";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" ";
+  options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
+  if (helper = helpers.selected) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.selected); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.selected) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ">";
+  if (helper = helpers.key) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.key); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</option>\n        ";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  
+  return "selected=\"selected\"";
+  }
 
-  buffer += "	<label class=\"label\" for=\"jobName\">Name</label>\n    <input class=\"input\" type=\"text\" value=\"";
+  buffer += "	<p class=\"info\">If you leave the name blank, the group will use the name of the first Task. Furthermore, a Job must have at least one Task (Typically, there will be only one Task per Job).</p>\n\n    <label class=\"label\" for=\"jobName\">Name</label>\n    <input class=\"input\" type=\"text\" value=\"";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" name=\"name\" id=\"jobName\" placeholder=\"Enter Optional name here\"/>\n    <p class=\"info\">If you leave the name blank, the group will use the name of the first Task. Furthermore, a Job must have at least one Task (Typically, there will be only one Task per Job).</p>\n\n    <div class=\"tasks-container\">\n    </div>\n\n    <button class=\"btn add-task\">Add Task</button>";
+    + "\" name=\"name\" id=\"jobName\" placeholder=\"Enter Optional name here\"/>\n    \n    <label for=\"role\" class=\"label\">Limit Job to Role: </label>\n    <select name=\"role\" id=\"role\" class=\"input\">\n        <option value=\"\">--No Limit on Role--</option>\n        ";
+  options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}
+  if (helper = helpers.roles) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.roles); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.roles) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </select>\n\n    <div class=\"tasks-container\">\n    </div>\n\n    <button class=\"btn add-task\">Add Task</button>";
   return buffer;
   }));
 
@@ -266,7 +297,16 @@ this["oddjob"]["templates"]["oddjob/jobs/row"] = Handlebars.template(function (H
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
-function program1(depth0,data,depth1) {
+function program1(depth0,data) {
+  
+  var buffer = "";
+  buffer += " ("
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + " only)";
+  return buffer;
+  }
+
+function program3(depth0,data,depth1) {
   
   var buffer = "", stack1, helper, options;
   buffer += "\n<p class=\"frequency-row\"><a href=\"jobs/"
@@ -278,15 +318,15 @@ function program1(depth0,data,depth1) {
   else { helper = (depth0 && depth0.count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + " stores</a> with: ";
-  options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
+  options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}
   if (helper = helpers.frequencies) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.frequencies); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.frequencies) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
+  if (!helpers.frequencies) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "</p>\n";
   return buffer;
   }
-function program2(depth0,data) {
+function program4(depth0,data) {
   
   var buffer = "", stack1, helper;
   if (helper = helpers.monthlyVisits) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -304,7 +344,7 @@ function program2(depth0,data) {
   return buffer;
   }
 
-function program4(depth0,data) {
+function program6(depth0,data) {
   
   
   return "\n\n<p class=\"frequency-row info\">There are no frequencies or store assignments for this Job. Click 'Assign New Frequency' to get started.</p>\n";
@@ -318,7 +358,13 @@ function program4(depth0,data) {
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</a></h3>\n	<h3 class=\"col-2-12\">Duration<br/>(";
+    + "</a>";
+  options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}
+  if (helper = helpers.role) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.role); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.role) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</h3>\n	<h3 class=\"col-2-12\">Duration<br/>(";
   if (helper = helpers.displayDuration) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.displayDuration); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -327,10 +373,10 @@ function program4(depth0,data) {
   else { helper = (depth0 && depth0.displayTotalPayment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + ")</h3>\n	<h3 class=\"col-2-12\">Required?</h3>\n\n</div>\n\n<div class=\"tasks-container\"></div>\n\n\n";
-  options={hash:{},inverse:self.program(4, program4, data),fn:self.programWithDepth(1, program1, data, depth0),data:data}
+  options={hash:{},inverse:self.program(6, program6, data),fn:self.programWithDepth(3, program3, data, depth0),data:data}
   if (helper = helpers.frequencySummaries) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.frequencySummaries); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.frequencySummaries) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(4, program4, data),fn:self.programWithDepth(1, program1, data, depth0),data:data}); }
+  if (!helpers.frequencySummaries) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(6, program6, data),fn:self.programWithDepth(3, program3, data, depth0),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n<div class=\"frequency-row static\"><a class=\"btn btn-primary primary\" href=\"";
   if (helper = helpers.createScheduleUrl) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -450,7 +496,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
   buffer += "<p>Success! File appears to contain <span class=\"important\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.uuids)),stack1 == null || stack1 === false ? stack1 : stack1.length)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</span>, which should be added to the checked off items below.</p>";
+    + " stores</span>, which should be added to the checked off items below.</p>";
   return buffer;
   });
 
@@ -541,7 +587,7 @@ function program10(depth0,data) {
   return "\n				<a class='btn remove'>Remove</a>\n	    	";
   }
 
-  buffer += "			\n				<input name=\"taskId[";
+  buffer += "			\n			<input name=\"taskId[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -555,7 +601,7 @@ function program10(depth0,data) {
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "]\" id=\"survey\" class=\"input\">\n	    	";
+    + "]\" id=\"survey\" class=\"input\">\n	    	<option value=\"\">--Select a Survey--</option>\n	    	";
   options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}
   if (helper = helpers.surveys) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.surveys); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
