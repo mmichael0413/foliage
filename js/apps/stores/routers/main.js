@@ -21,6 +21,7 @@ define(function(require){
             '(/)': 'programList',
             'programs/:programId(/)': 'storeList',
             'programs/:programId/uploads(/)': 'uploadList',
+            'programs/:programId/uploads/new': 'uploadNew',
             'programs/:programId/uploads/:uploadId': 'uploadResults'
         },
 
@@ -39,6 +40,8 @@ define(function(require){
 
             //context.trigger('filter:toggle'); // and this doesn't work...
         },
+
+        uploadNew: function(programId) { /* NOOP */ },
 
         uploadList: function(programId) {
             var program = context.programs.get(programId);
