@@ -117,7 +117,7 @@ function program2(depth0,data) {
   return "selected=\"selected\"";
   }
 
-  buffer += "	<p class=\"info\">If you leave the name blank, the group will use the name of the first Task. Furthermore, a Job must have at least one Task (Typically, there will be only one Task per Job).</p>\n\n    <label class=\"label\" for=\"jobName\">Name</label>\n    <input class=\"input\" type=\"text\" value=\"";
+  buffer += "	<p class=\"info\">If you leave the name blank, the group will use the name of the first Task (for now, this is a Survey). Furthermore, a Job must have at least one Task (Typically, there will be only one Task per Job).</p>\n\n    <label class=\"label\" for=\"jobName\">Name</label>\n    <input class=\"input\" type=\"text\" value=\"";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -597,7 +597,7 @@ function program10(depth0,data) {
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.id) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\"/>\n			\n			<label class=\"label\">Task</label>\n	    	<select name=\"survey[";
+  buffer += "\"/>\n			\n			<label class=\"label\">Task (Survey)</label>\n	    	<select name=\"survey[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
