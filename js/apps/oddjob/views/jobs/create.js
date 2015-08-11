@@ -1,14 +1,15 @@
 define(function(require) {
 	var Backbone = require('backbone'),
-		_ 		= require('underscore'),
+		_ = require('underscore'),
 		Templates = require('handlebarsTemplates'),
 		context = require('context'),
+		TaskCreateView = require('oddjob/views/tasks/create'),
 		SurveysStore = require('oddjob/stores/surveys');
 
 	var JobCreateView = {
 		el: "#job",
 		templateName: "oddjob/jobs/create",
-		taskViewClass: require('oddjob/views/tasks/create'),
+		taskViewClass: TaskCreateView, // the class to use when instantiate existing tasks from the server
 		childViews: [],
 		events: {
 			'click .add-task': 'addTask',
@@ -38,12 +39,12 @@ define(function(require) {
 		},
 
 		renderChildViews: function () {
-			this._addTaskAtIndex(0, new Backbone.Model());
+			this._addTaskAtIndex(0, this.taskViewClass, new Backbone.Model());
 
 		},
 
-		_addTaskAtIndex: function (index, model) {
-			var view = new this.taskViewClass({index:index, model: model});
+		_addTaskAtIndex: function (index, taskClass, model) {
+			var view = new taskClass({index:index, model: model});
 			this.$tasksContainer.append(view.render().$el);
 			this.childViews.push(view);
 		},
@@ -52,7 +53,7 @@ define(function(require) {
 			e.stopPropagation();
 			e.preventDefault();
 			var index = this.$tasksContainer.find('.task').length;
-			this._addTaskAtIndex(index, new Backbone.Model());
+			this._addTaskAtIndex(index, TaskCreateView, new Backbone.Model());
 		},
 
 		deleteJob: function () {
