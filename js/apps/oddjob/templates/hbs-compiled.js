@@ -250,19 +250,19 @@ function program1(depth0,data) {
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "]\" class=\"col-2-12 datepicker begin\" value=\"";
+    + "]\" class=\"col-3-12 datepicker begin\" value=\"";
   if (helper = helpers.begin) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.begin); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\"/>\n\n<p class=\"col-1-12\"></p>\n\n<p class=\"col-2-12\">End Date</p>\n<input  name=\"end[";
+    + "\" readonly=\"readonly\"/>\n\n<p class=\"col-1-12\"></p>\n\n<p class=\"col-2-12\">End Date</p>\n<input  name=\"end[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "]\" class=\"col-2-12 datepicker end\" value=\"";
+    + "]\" class=\"col-3-12 datepicker end\" value=\"";
   if (helper = helpers.end) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.end); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\"/>\n";
+    + "\" readonly=\"readonly\"/>\n";
   return buffer;
   });
 
