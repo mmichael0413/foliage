@@ -8,6 +8,8 @@ define(function(require){
         ProgramListView = require('stores/views/programs/list'),
         ProgramStores = require('stores/collections/program_stores'),
         ProgramStoresModule = require('stores/views/program_stores/list_main'),
+        Accounts = require('stores/collections/accounts'),
+        AccountListView = require('stores/views/accounts/list'),
         Uploads = require('stores/collections/uploads'),
         UploadListView = require('stores/views/uploads/list'),
         Upload = require('stores/models/upload'),
@@ -19,6 +21,7 @@ define(function(require){
 
         routes: {
             '(/)': 'programList',
+            'accounts(/)': 'accountList',
             'programs/:programId(/)': 'storeList',
             'programs/:programId/uploads(/)': 'uploadList',
             'programs/:programId/uploads/new': 'uploadNew',
@@ -28,6 +31,15 @@ define(function(require){
         programList: function() {
             var view = new ProgramListView({collection: context.programs});
             this.swap(view);
+        },
+
+        accountList: function() {
+            var self = this,
+                accounts = new Accounts();
+            accounts.fetch().done(function() {
+                var view = new AccountListView({collection: accounts});
+                self.swap(view);
+            });
         },
 
         storeList: function(programId) {
