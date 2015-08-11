@@ -1,1 +1,16 @@
-<p class="col-1-1">{{name}}</p>
+<p class="col-1-1">
+    {{#if isEditing}}
+        <span class="pull-left">
+            <input type="text" data-attr="name" class="name" value="{{name}}" />
+        </span>
+        <span class="pull-right">
+            <button class="save btn primary"><i class="ic fa ic_check"></i></button>
+            <button class="cancel btn default">Cancel</button>
+        </span>
+    {{else}}
+        {{name}}
+        <span class="pull-right">
+            <button class="edit btn default"><i class="ic fa ic_edit"></i></button>
+        </span>
+    {{/if}}
+</p>
