@@ -28,8 +28,9 @@ define(function(require) {
                 return v.model.id === account.id;
             });
 
+            var index = null;
             if(view) {
-                var index = _.indexOf(this.childViews, view);
+                index = _.indexOf(this.childViews, view);
             }
 
             if(index && index >= 0) {
