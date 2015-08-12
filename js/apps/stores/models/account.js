@@ -1,6 +1,7 @@
 define(function(require){
     var _ = require('underscore'),
-        Backbone = require('backbone');
+        Backbone = require('backbone'),
+        BackboneValidator = require('backboneValidator');
 
     return Backbone.Model.extend({
         url: function() {
@@ -9,6 +10,13 @@ define(function(require){
                 base += '/' + this.get('id');
             }
             return base;
+        },
+        validation: {
+            name: {
+                required: true,
+                blank: false,
+                message: 'is required'
+            }
         }
     });
 });

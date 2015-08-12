@@ -575,6 +575,15 @@ function program3(depth0,data) {
   return buffer;
   });
 
+this["Stores"]["templates"]["stores/accounts/new"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<h1>Add Account</h1>\n<div class=\"section\">\n    <form>\n        <div class=\"form-group\">\n            <label>Name:</label>\n            <input type=\"text\" name=\"name\" data-attr=\"name\" class=\"form-control\">\n            <label class=\"errors\"></label>\n        </div>\n        <div class=\"form-group\">\n            <button class=\"btn primary\">Save</button>\n            <a href=\"/accounts\" class=\"btn default\">Cancel</a>\n        </div>\n    </form>\n</div>";
+  });
+
 this["Stores"]["templates"]["stores/action"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
