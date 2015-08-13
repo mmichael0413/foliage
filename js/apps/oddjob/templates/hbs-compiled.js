@@ -323,7 +323,11 @@ function program3(depth0,data,depth1) {
   else { helper = (depth0 && depth0.frequencies); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.frequencies) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</p>\n";
+  buffer += " <a class=\"btn primary delete-frequency\" href=\"jobs/"
+    + escapeExpression(((stack1 = (depth1 && depth1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "/schedule/"
+    + escapeExpression(((stack1 = (data == null || data === false ? data : data.index)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">Delete</a></p>\n";
   return buffer;
   }
 function program4(depth0,data) {

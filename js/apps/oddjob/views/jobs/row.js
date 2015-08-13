@@ -1,5 +1,6 @@
 define(function(require) {
-	var Backbone = require('backbone'),
+	var $ = require('jquery'),
+		Backbone = require('backbone'),
 		Templates = require('handlebarsTemplates'),
 		TaskRowView = require('oddjob/views/tasks/row');
 	
@@ -7,6 +8,10 @@ define(function(require) {
 
 		className: 'job section',
 		jobViews: [],
+
+		events: {
+			'click .delete-frequency': 'deleteFrequency'
+		},
 
 		render: function () {
 			// render myself, then add in any subViews
@@ -35,6 +40,33 @@ define(function(require) {
 				view.render().$el.appendTo($tasksContainer);
 				this.jobViews.push(view);
 			}.bind(this));
+		},
+
+		deleteFrequency: function (e) {
+			e.preventDefault();
+			e.stopPropagation();
+			
+			var href = e.currentTarget.href,
+				$row = $(e.currentTarget).parents('.frequency-row');
+			if (confirm("Are you sure you wish to delete this frequency?")) {
+				this.$el.promise()
+				.then(function () {
+					$(e.currentTarget).replaceWith("<i class='fa fa-spin fa-spinner'></i>");
+				})
+				.then(function () {
+					return $.ajax({
+						url: href,
+						type: 'DELETE'
+					});
+				})
+				.done(function () {
+					$row.fadeOut();
+				})
+				.fail(function () {
+					alert("Could not delete the Frequency!");
+				})
+				;
+			}
 		}
 
 	});
