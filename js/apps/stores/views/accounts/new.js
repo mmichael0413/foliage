@@ -21,7 +21,10 @@ define(function(require) {
             this.$('.errors').empty();
             this.$('.form-control').removeClass('error');
 
-            this.model.set('name', this.$('[data-attr="name"]').val());
+            var data = {};
+            this.$('[data-attr]').each(function(i, el) { data[el.dataset.attr] = el.value; });
+
+            this.model.set(data);
 
             if(this.model.isValid()) {
                 this.model.save().done(function() {
