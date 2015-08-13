@@ -10,7 +10,7 @@
 
 
 {{#frequencySummaries}}
-<p class="frequency-row"><a href="jobs/{{../id}}/schedule/{{@index}}">{{count}} stores</a> with: {{#frequencies}}{{monthlyVisits}} monthly visits between {{begin}} -> {{end}} {{/frequencies}}</p>
+<p class="frequency-row"><a href="jobs/{{../id}}/schedule/{{@index}}">{{count}} stores</a> with: {{#frequencies}}{{monthlyVisits}} monthly visits between {{begin}} -> {{end}} {{/frequencies}} <a class="btn primary delete-frequency" href="jobs/{{../id}}/schedule/{{@index}}">Delete</a></p>
 {{else}}
 
 <p class="frequency-row info">There are no frequencies or store assignments for this Job. Click 'Assign New Frequency' to get started.</p>
