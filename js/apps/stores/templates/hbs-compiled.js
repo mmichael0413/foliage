@@ -687,7 +687,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<h1>Programs</h1>\n<div id=\"program-list\"></div>";
+  return "<h1>Programs</h1>\n<div class=\"pure-g\">\n    <div class=\"col-1-3\">\n        <input type=\"text\" class=\"search\" id=\"program-search\" placeholder=\"Search by program name...\" /><button class=\"reset-search btn default\">Reset</button>\n    </div>\n</div>\n<div id=\"program-list\"></div>";
   });
 
 this["Stores"]["templates"]["stores/programs/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
