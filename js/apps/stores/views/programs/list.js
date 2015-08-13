@@ -41,11 +41,14 @@ define(function(require) {
             this.collection.reset(results);
         },
         resetFilter: function(e) {
-            e.preventDefault();
+            if(e) {
+                e.preventDefault();
+            }
             this.$('.search').val('');
             this.collection.reset(this.searchCollection.models);
         },
         leave: function() {
+            this.resetFilter();
             _.each(this.childViews, function(v) {
                 v.remove();
             });
