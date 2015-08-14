@@ -9,7 +9,13 @@ define(function(require) {
 
             render: function () {
                 var data = this.model.toJSON();
-                data.visitOptions = context.visitOptions;
+                data.visitOptions = [];
+                //data.visitOptions = context.visitOptions;
+                context.visitOptions.forEach(function (option) {
+                    data.visitOptions.push({selected: option == data.monthlyVisits, key: option});
+                });
+                
+                
                 this.$el.html(Templates['oddjob/frequencies/row'](data));
                 this.configureDatepicker(this.$el.find(".datepicker.begin"));
                 this.configureDatepicker(this.$el.find(".datepicker.end"));
