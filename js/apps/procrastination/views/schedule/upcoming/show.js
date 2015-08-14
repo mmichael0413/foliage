@@ -19,7 +19,7 @@ define(function (require) {
             this.$el.data('event', {
                 id: this.model.get('id'),
                 title: this.model.get('storeName'),
-                className: this.model.get('taskColor')
+                className: this.model.get('jobColor')
             });
 
             this.$el.draggable({
@@ -33,7 +33,7 @@ define(function (require) {
                     $(event.target).removeClass('drag-active');
                 }
             });
-            this.$el.addClass(this.model.get('taskColor'));
+            this.$el.addClass(this.model.get('jobColor'));
 
             return this;
         },

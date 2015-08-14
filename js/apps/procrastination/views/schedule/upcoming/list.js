@@ -53,7 +53,7 @@ define(function (require) {
                             store: label,
                             start: moment(model.get('dateScheduled')).utc().format("YYYY-MM-DD"),
                             allDay: true,
-                            className: model.get('taskColor'),
+                            className: model.get('jobColor'),
                             editable: model.get('dateCompleted') ? false : true
                         });
                     });

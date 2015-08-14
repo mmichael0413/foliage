@@ -29,7 +29,7 @@ define(function (require) {
                 state: this.model.get('state'),
                 storeName: this.model.get('storeName'),
                 street: this.model.get('street'),
-                taskDetail: this.model.get('taskDetail'),
+                jobDetail: this.model.get('jobDetail'),
                 visitUUID: this.model.get('visitUUID'),
                 zip: this.model.get('zip'),
                 canUnassign: this.model.get('canUnassign'),
