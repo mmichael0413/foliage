@@ -3,7 +3,7 @@
 
 <select class="col-1-4" name="monthlyVisits[{{index}}]" id="monthlyVisits">
     {{#visitOptions}}
-    <option value="{{this}}">{{this}}x</option>
+    <option value="{{key}}" {{#selected}}selected="selected"{{/selected}}>{{key}}x</option>
     {{/visitOptions}}
 </select>
 <p class="col-4-12"></p>
