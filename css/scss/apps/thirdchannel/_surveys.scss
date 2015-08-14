@@ -67,6 +67,14 @@
     margin-bottom: 2em;
   }
 
+  .checkin-form, .loading-section {
+    display: none;
+
+    &.open {
+      display: block;
+    }
+  }
+
   .expanding-wrapper {
     width: 100%;
   }
