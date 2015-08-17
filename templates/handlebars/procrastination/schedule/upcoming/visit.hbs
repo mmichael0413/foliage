@@ -1,10 +1,8 @@
 <div class="col-5-5">
-  {{#if jobDetail}}
-    <div><strong>{{jobDetail}}</strong></div>
-  {{/if}}
-    <div>{{storeName}}: {{street}} {{city}}, {{state}}</div>
-    <b>{{dateScheduled}}</b>
+    <p class="bold">{{storeName}}</p>
+    <p>{{street}} {{city}}, {{state}}</p>
     <input type="hidden" class="visit" value="{{id}}"/>
     <input type="text" value="{{dateScheduled}}" style="display: none;"/>
+    {{> 'tasks'}}
     {{#if canUnassign}}<a href="#" class='unassign btn primary small solid '>Unassign Visit</a>{{/if}}
 </div>

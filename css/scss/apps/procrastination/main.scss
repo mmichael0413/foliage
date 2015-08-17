@@ -63,3 +63,29 @@ div.schedule-layout {
 .save-schedule, .set-schedule {
   margin-top: 1em;
 }
+
+.additional-content {
+  &.hidden {
+    display: none;
+  }
+  margin-bottom: 1em;
+  padding: 1em;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
+}
+
+.expand {
+  text-align: center;
+  cursor: pointer;
+  @extend .ic_down;
+}
+
+.collapse {
+  text-align: center;
+  cursor: pointer;
+  @extend .ic_up
+}
+
+.center {
+  text-align: center;
+}

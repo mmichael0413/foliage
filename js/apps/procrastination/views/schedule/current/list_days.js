@@ -26,7 +26,7 @@ define(function (require) {
             var self = this;
             _.each(this.visits, function(visit){
                 var visits = new ScheduledVisits({model: visit, showCompleted: self.showCompleted});
-                self.$('.body').append(visits.render().el);
+                self.$('.body.main').append(visits.render().el);
             });
 
         }

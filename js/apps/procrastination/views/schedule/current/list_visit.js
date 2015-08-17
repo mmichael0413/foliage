@@ -14,7 +14,9 @@ define(function (require) {
         },
 
         events: {
-            'click .unassign' : 'unassign'
+            'click .unassign' : 'unassign',
+            'click .expand' : 'expand',
+            'click .collapse' : 'collapse'
         },
 
         render: function() {
@@ -33,7 +35,10 @@ define(function (require) {
                 visitUUID: this.model.get('visitUUID'),
                 zip: this.model.get('zip'),
                 canUnassign: this.model.get('canUnassign'),
-                showCompleted: this.showCompleted
+                showCompleted: this.showCompleted,
+                totalDuration: this.model.get('totalDuration'),
+                tasks: this.model.get('tasks'),
+                hidden: 'hidden'
             };
 
 
@@ -49,6 +54,27 @@ define(function (require) {
             if(confirm('This operation cannot be undone. Are you sure you want to remove this visit?')) {
                 this.model.destroy({wait:true, data: {id: this.model.id, aggregateId: context.aggregateId}});
             }
+        },
+
+        expand: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            console.log(this.model);
+
+            this.$('.additional-content').show('fast');
+            $(e.target).addClass('collapse').removeClass('expand');
+
+
+        },
+
+        collapse: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            this.$('.additional-content').hide('fast');
+            //$(e.target).removeClass('open');
+            $(e.target).removeClass('collapse').addClass('expand');
         }
 
     });
