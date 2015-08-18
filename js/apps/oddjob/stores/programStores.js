@@ -4,6 +4,7 @@ define(function (require) {
 
         ProgramStoresStore = function () {
             return new (Backbone.Collection.extend({
+                defaultLimit: 25,
                 initialize: function () {
                     this.listenTo(context, 'filter:query', this.applyFilter);
                     this.queryString = "";
@@ -47,6 +48,9 @@ define(function (require) {
                 },
                 // given a query string, looks for the page parameter, then uses that and the limit to add an offset parameter
                 _convertPageToOffset: function (params, qs) {
+                    if (!params.limit) {
+                        params.limit = this.defaultLimit;
+                    }
                     qs += "&offset=" + (params.limit * (params.page-1));
                     return qs;
                 },
