@@ -93,16 +93,22 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 function program1(depth0,data) {
   
+  
+  return "checked";
+  }
+
+function program3(depth0,data) {
+  
   var buffer = "", stack1, helper, options;
   buffer += "\n        <option value=\"";
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\" ";
-  options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
+  options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}
   if (helper = helpers.selected) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.selected); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.selected) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
+  if (!helpers.selected) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += ">";
   if (helper = helpers.key) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -111,7 +117,7 @@ function program1(depth0,data) {
     + "</option>\n        ";
   return buffer;
   }
-function program2(depth0,data) {
+function program4(depth0,data) {
   
   
   return "selected=\"selected\"";
@@ -121,11 +127,17 @@ function program2(depth0,data) {
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" name=\"name\" id=\"jobName\" placeholder=\"Enter Optional name here\"/>\n    \n    <label for=\"role\" class=\"label\">Limit Job to Role: </label>\n    <select name=\"role\" id=\"role\" class=\"input\">\n        <option value=\"\">--No Limit on Role--</option>\n        ";
+    + "\" name=\"name\" id=\"jobName\" placeholder=\"Enter Optional name here\"/>\n\n    <label for=\"jobTracked\" class=\"\">Enable Job Tracking (Special Project Tracking)?</label>\n    <input type=\"checkbox\" class=\"input-checkbox job-tracking\" name=\"tracked\" id=\"jobTracked\" ";
   options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}
+  if (helper = helpers.tracked) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.tracked); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.tracked) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "/>\n\n    <p id=\"jobTrackingText\"><span class=\"important\">Note:</span> For now, any jobs we wish to track must have only one task assigned to them. Or rather, the first task's survey will be tracked. We hope to change this in the future.</p>\n    \n    <label for=\"role\" class=\"label\">Limit Job to Role: </label>\n    <select name=\"role\" id=\"role\" class=\"input\">\n        <option value=\"\">--No Limit on Role--</option>\n        ";
+  options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}
   if (helper = helpers.roles) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.roles); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.roles) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
+  if (!helpers.roles) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    </select>\n\n    <div class=\"tasks-container\">\n    </div>\n\n    <button class=\"btn add-task\">Add Task</button>";
   return buffer;
@@ -321,7 +333,13 @@ function program1(depth0,data) {
   return buffer;
   }
 
-function program3(depth0,data,depth1) {
+function program3(depth0,data) {
+  
+  
+  return "( Tracked )";
+  }
+
+function program5(depth0,data,depth1) {
   
   var buffer = "", stack1, helper, options;
   buffer += "\n        <p class=\"frequency-row col-10-12\"><a href=\"jobs/"
@@ -333,10 +351,10 @@ function program3(depth0,data,depth1) {
   else { helper = (depth0 && depth0.count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + " stores</a> with: ";
-  options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}
+  options={hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data}
   if (helper = helpers.frequencies) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.frequencies); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.frequencies) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
+  if (!helpers.frequencies) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "</p>\n        <a class=\"btn primary delete-frequency col-1-12\" href=\"jobs/"
     + escapeExpression(((stack1 = (depth1 && depth1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
@@ -345,7 +363,7 @@ function program3(depth0,data,depth1) {
     + "\">Delete</a>\n    ";
   return buffer;
   }
-function program4(depth0,data) {
+function program6(depth0,data) {
   
   var buffer = "", stack1, helper;
   if (helper = helpers.monthlyVisits) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -363,10 +381,10 @@ function program4(depth0,data) {
   return buffer;
   }
 
-function program6(depth0,data) {
+function program8(depth0,data) {
   
   
-  return "\n        <p class=\"frequency-row info\">There are no frequencies or store assignments for this Job. Click 'Assign New Frequency' to get started.</p>\n    ";
+  return "\n        <p class=\"frequency-row info col-1-1\">There are no frequencies or store assignments for this Job. Click 'Assign New Frequency' to get started.</p>\n    ";
   }
 
   buffer += "<div class=\"header pure-g\">\n	<h3 class=\"col-6-12\"><a href=\"";
@@ -383,6 +401,12 @@ function program6(depth0,data) {
   else { helper = (depth0 && depth0.role); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.role) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " ";
+  options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}
+  if (helper = helpers.tracked) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.tracked); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.tracked) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "</h3>\n	<h3 class=\"col-2-12\">Duration<br/>(";
   if (helper = helpers.displayDuration) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.displayDuration); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -392,10 +416,10 @@ function program6(depth0,data) {
   else { helper = (depth0 && depth0.displayTotalPayment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + ")</h3>\n	<h3 class=\"col-2-12\">Required?</h3>\n\n</div>\n\n<div class=\"tasks-container\"></div>\n\n<div class=\"frequencies-container pure-g\">\n   ";
-  options={hash:{},inverse:self.program(6, program6, data),fn:self.programWithDepth(3, program3, data, depth0),data:data}
+  options={hash:{},inverse:self.program(8, program8, data),fn:self.programWithDepth(5, program5, data, depth0),data:data}
   if (helper = helpers.frequencySummaries) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.frequencySummaries); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.frequencySummaries) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(6, program6, data),fn:self.programWithDepth(3, program3, data, depth0),data:data}); }
+  if (!helpers.frequencySummaries) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(8, program8, data),fn:self.programWithDepth(5, program5, data, depth0),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    <div class=\"frequency-row col-1-1 static\"><a class=\"btn btn-primary primary\" href=\"";
   if (helper = helpers.createScheduleUrl) { stack1 = helper.call(depth0, {hash:{},data:data}); }

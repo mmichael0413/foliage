@@ -2,6 +2,11 @@
 
     <label class="label" for="jobName">Name</label>
     <input class="input" type="text" value="{{name}}" name="name" id="jobName" placeholder="Enter Optional name here"/>
+
+    <label for="jobTracked" class="">Enable Job Tracking (Special Project Tracking)?</label>
+    <input type="checkbox" class="input-checkbox job-tracking" name="tracked" id="jobTracked" {{#tracked}}checked{{/tracked}}/>
+
+    <p id="jobTrackingText"><span class="important">Note:</span> For now, any jobs we wish to track must have only one task assigned to them. Or rather, the first task's survey will be tracked. We hope to change this in the future.</p>
     
     <label for="role" class="label">Limit Job to Role: </label>
     <select name="role" id="role" class="input">
