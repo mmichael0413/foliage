@@ -7,9 +7,6 @@ define(function(require) {
 	var JobEditView = {
 		templateName: "oddjob/jobs/edit",
 		taskViewClass: require('oddjob/views/tasks/edit'),
-		
-		
-
 
 		renderChildViews: function () {
 			var i = 0,
@@ -17,7 +14,6 @@ define(function(require) {
 			for(i; i < max; i++) {
 				this._addTaskAtIndex(i, this.taskViewClass, new Backbone.Model(this.model.get('tasks')[i]));
 			}
-
 		},
 
 		deleteJob: function (e) {
@@ -32,7 +28,6 @@ define(function(require) {
 				});	
 			}
 		}
-
 	};
 
 	return require('oddjob/views/jobs/create').extend(JobEditView);

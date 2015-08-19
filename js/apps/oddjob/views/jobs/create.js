@@ -13,7 +13,8 @@ define(function(require) {
 		childViews: [],
 		events: {
 			'click .add-task': 'addTask',
-			'click .delete': 'deleteJob'
+			'click .delete': 'deleteJob',
+			'click .job-tracking': 'jobTrackingHandler'
 		},
 
 		render: function () {
@@ -27,15 +28,25 @@ define(function(require) {
 					}
 				});
 				this.$el.html(Templates[this.templateName](data));
+				this._toggleJobTrackingText(data.tracked);
 				this.$tasksContainer = this.$el.find('.tasks-container');
 				// create the first view
 				this.renderChildViews();
 			}.bind(this));
 			
-			
-			
-			
 			return this;
+		},
+
+		jobTrackingHandler: function (e) {
+			this._toggleJobTrackingText($(e.currentTarget).is(':checked'));
+		},
+		_toggleJobTrackingText: function (value) {
+			var $text = this.$el.find("#jobTrackingText");
+			if (value) {
+				$text.fadeIn();
+			} else {
+				$text.fadeOut();
+			}
 		},
 
 		renderChildViews: function () {
