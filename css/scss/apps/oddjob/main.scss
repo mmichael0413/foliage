@@ -1,6 +1,7 @@
 @import '../../../../js/libs/bower_components/normalize-css/normalize';
 @import "../../lib/pure.grids-core";
 @import "../../lib/pure.responsive-grid";
+@import "../../lib/quill.snow";
 
 @import "../../base/fonts_all";
 @import "../../base/base";
@@ -10,6 +11,7 @@
 @import "../../base/dropdowns";
 @import "../../layout/layout_utils";
 @import "../../layout/base_layout";
+
 
 @import "../../modules/atoms/all";
 @import "../../modules/navigation";
@@ -184,6 +186,12 @@
 #jobTrackingText {
 	display: none;
 	margin-bottom: 2em;
+	.instruction {
+		margin-bottom: 2em;
+	}
+	.ql-container {
+		box-shadow: inset 1px 1px 8px 1px;
+	}
 }
 
 #message {
