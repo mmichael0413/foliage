@@ -12,6 +12,7 @@ require.config({
         'handlebarsHelpers': 'shared/utils/handlebarsHelpers',
         'context': 'shared/utils/context',
         'serializeObject' : '../libs/bower_components/jquery-serialize-object/jquery.serialize-object',
+        'backboneValidator' : '../libs/bower_components/backbone-validator/backbone-validator',
         'helpers' : 'thirdchannel/utils/helpers',
         'pikaday' : '../libs/bower_components/pikaday/pikaday',
         'noty': '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged',
@@ -32,6 +33,9 @@ require.config({
         'backbone': {
             deps: ['underscore'],
             exports: 'Backbone'
+        },
+        "backboneValidator": {
+            deps: ["backbone"]
         },
         'handlebars': {
             deps: ['jquery'],

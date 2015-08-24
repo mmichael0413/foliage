@@ -907,7 +907,7 @@ function program5(depth0,data) {
   else { helper = (depth0 && depth0.issue_length); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + " "
-    + escapeExpression((helper = helpers.pluralize || (depth0 && depth0.pluralize),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.issue_length), "Issue Found", "Issues Found", options) : helperMissing.call(depth0, "pluralize", (depth0 && depth0.issue_length), "Issue Found", "Issues Found", options)))
+    + escapeExpression((helper = helpers.pluralize || (depth0 && depth0.pluralize),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.issue_length), "New Issue Found", "New Issues Found", options) : helperMissing.call(depth0, "pluralize", (depth0 && depth0.issue_length), "New Issue Found", "New Issues Found", options)))
     + "</h3>\n                <ul class=\"unstyled\">\n                    ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.issues), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }

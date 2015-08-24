@@ -63,7 +63,9 @@ define(function(require) {
             var that = this;
             this.$el.empty();
             this.$el.append(this.loadingView.render().$el);
-            this.model.queryString = qs;
+            if (qs !== undefined) {
+                this.model.queryString = qs;
+            }
             this.model.fetch({success: function (model) {
                 that.constructView(model);
             }});

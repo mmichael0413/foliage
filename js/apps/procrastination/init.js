@@ -8,6 +8,7 @@ require.config({
         'jquery'        : "../libs/bower_components/jquery/jquery.min",
         'jquery-ui'     : "../libs/bower_components/jquery-ui/jquery-ui",
         'jquery_ujs'    : '../libs/bower_components/jquery-ujs/src/rails',
+        'jquery.ui.touch-punch' : '../libs/jquery.ui.touch-punch.min',
         'jquery-validate' : '../libs/bower_components/jquery-validation/dist/jquery.validate',
         'serializeObject' : "../libs/bower_components/jquery-serialize-object/jquery.serialize-object",
         'underscore'    : '../libs/bower_components/underscore/underscore',
@@ -35,6 +36,9 @@ require.config({
         },
         "jquery_ujs": {
             deps: ["jquery"]
+        },
+        "jquery.ui.touch-punch": {
+          deps: ["jquery-ui"]
         },
         "jquery-validate": {
             deps: ["jquery"],

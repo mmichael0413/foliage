@@ -1418,7 +1418,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"export-modal progress\">Please wait while we generate the requested file.\n    <div class=\"small\">(Please be aware this could take up to 5 minutes.)</div>\n    <div><i class=\"ic ic_processing fa-spin\"></i></div>\n</div>";
+  return "<div class=\"export-modal progress\">Generating the requested file...\n    <div class=\"small\">(This may take a while, please wait.)</div>\n    <div><i class=\"ic ic_processing fa-spin\"></i></div>\n</div>";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/modals/export/success"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {

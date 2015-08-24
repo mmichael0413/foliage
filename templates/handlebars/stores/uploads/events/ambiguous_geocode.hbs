@@ -1,0 +1,8 @@
+{{>store_data}}
+<div>
+    <div><strong>Geocode Query:</strong> {{query}}</div>
+    <h4>Geocode Results:</h4>
+    {{#each geocodes}}
+        {{>geocode_result}}
+    {{/each}}
+</div>

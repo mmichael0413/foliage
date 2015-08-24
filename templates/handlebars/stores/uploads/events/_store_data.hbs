@@ -1,0 +1,20 @@
+{{#if store}}
+    <div class="store-data">
+        <h4>Uploaded Data:</h4>
+        <ul>
+            <li><strong>Account:</strong> {{store.account}}</li>
+            <li><strong>Store Tag:</strong> {{store.storeTag}}</li>
+            {{#if store.address}}
+                <li><strong>Address:</strong> {{store.address}}</li>
+            {{/if}}
+            {{#unless store.address}}
+                <li><strong>Street 1:</strong> {{store.street1}}</li>
+                <li><strong>Street 2:</strong> {{store.street2}}</li>
+                <li><strong>City:</strong> {{store.city}}</li>
+                <li><strong>State:</strong> {{store.state}}</li>
+                <li><strong>Zip:</strong> {{store.zip}}</li>
+                <li><strong>Country:</strong> {{store.country}}</li>
+            {{/unless}}
+        </ul>
+    </div>
+{{/if}}
