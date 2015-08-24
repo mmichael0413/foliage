@@ -1,7 +1,8 @@
 define(function (require) {
     var Backbone = require('backbone'),
         context = require('context'),
-        HandlebarsTemplates = require('handlebarsTemplates');
+        HandlebarsTemplates = require('handlebarsTemplates'),
+        TouchPunch = require('jquery.ui.touch-punch');
 
     ScheduleView = Backbone.View.extend({
         className: 'item pure-g',
