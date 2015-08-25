@@ -54,7 +54,7 @@ define(function(require) {
             if (this.model.get('editable') || this.model.get('hideable')) {
                 this.model.set('show-moderation', true);
             }
-            console.log(this.model.toJSON());
+
             this.$el.html(this.template(this.model.attributes));
 
             // render the comments view
