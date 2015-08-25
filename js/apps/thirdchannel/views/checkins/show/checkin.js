@@ -55,6 +55,9 @@ define(function(require) {
                 unhighlight: this.unhighlight
             });
 
+            this.$(".checkin-form").addClass('open');
+            this.$(".loading-section").removeClass('open');
+
             return this;
         },
         saveState: function(e) {

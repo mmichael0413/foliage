@@ -18,6 +18,7 @@ require.config({
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
         'helpers'       : 'thirdchannel/utils/helpers',
         'context'       : 'shared/utils/context',
+        'quill'         : '../libs/quill/custom',
         'noty'          : '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged'
     },
     shim: {
@@ -58,6 +59,9 @@ require.config({
         },
         'context': {
             deps: ["underscore"]
+        },
+        'quill': {
+            deps: ["jquery"]
         },
         'noty': {
             deps: ['jquery']
