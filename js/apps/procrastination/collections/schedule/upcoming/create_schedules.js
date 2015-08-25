@@ -8,8 +8,6 @@ define(function(require){
 			this.aggregateId = options.aggregateId;
 			this.personId = options.personId;
 			this.programId = options.programId;
-
-			console.log(this.aggregateId);
 		},
 		model: Schedule,
 		comparator: 'jobDetail',
