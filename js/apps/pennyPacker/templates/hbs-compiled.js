@@ -498,7 +498,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.units) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.units); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " miles</span> travelled at a rate of <span class=\"key-info\">$0.42</span>. </p>\n\n<section class=\"payment-adjustment\">\n	<h3>Payment Adjustment</h3>\n	<p>If Travel distance seems inappropriate, please enter a new mileage as a correction.</p>\n	<input type=\"number\" value=\"0\" class=\"adjustment-input\"/><a class='btn primary adjust'>Adjust Mileage</a>	\n</section>\n\n";
+    + " miles</span>.</p>\n\n<section class=\"payment-adjustment\">\n	<h3>Payment Adjustment</h3>\n	<p>If Travel distance seems inappropriate, please enter a new mileage as a correction.</p>\n	<input type=\"number\" value=\"0\" class=\"adjustment-input\"/><a class='btn primary adjust'>Adjust Mileage</a>	\n</section>\n\n";
   stack1 = self.invokePartial(partials.entry_comments, 'entry_comments', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer;
