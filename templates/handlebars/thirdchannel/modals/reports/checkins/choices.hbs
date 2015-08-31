@@ -1,0 +1,16 @@
+<div class="bbm-button pull-right"><i class="ic ic_x"></i></div>
+<h2>{{{section}}}</h2>
+<div>{{{question}}}</div>
+<div class="choices">
+{{#each choices}}
+    {{#contains this ../answers}}
+    <div class="selected choice all">
+        <div class="pdf-hide ic_check"></div>
+    {{else}}
+    <div class="choice all">
+        <div class="pdf-hide ic_blank"></div>
+    {{/contains}}
+        <div>{{this}}</div>
+    </div>
+    {{/each}}
+</div>
