@@ -1,5 +1,6 @@
 define(function(require){
     var Backbone = require('backbone'),
+        $ = require('jquery'),
         context = require('context'),
         HandleBarsTemplates = require('handlebarsTemplates'),
         TaskList = require('thirdchannel/views/checkins/task_list');
@@ -27,12 +28,13 @@ define(function(require){
         },
 
         openVisits: function(e){
+            var $target = $(e.currentTarget);
             e.preventDefault();
             e.stopPropagation();
 
-            $(e.currentTarget).removeClass('open-jobs');
-            $(e.currentTarget).html(this.closeBtn);
-            $(e.currentTarget).addClass('close-jobs');
+            $target.removeClass('open-jobs');
+            $target.html(this.closeBtn);
+            $target.addClass('close-jobs');
 
             this.taskList = new TaskList({tasks: this.model.get('tasks')});
 
@@ -40,12 +42,13 @@ define(function(require){
         },
 
         closeVisits: function(e){
+            var $target = $(e.currentTarget);
             e.preventDefault();
             e.stopPropagation();
 
-            $(e.currentTarget).removeClass('close-jobs');
-            $(e.currentTarget).html(this.openBtn);
-            $(e.currentTarget).addClass('open-jobs');
+            $target.removeClass('close-jobs');
+            $target.html(this.openBtn);
+            $target.addClass('open-jobs');
 
             this.taskList.remove();
 
