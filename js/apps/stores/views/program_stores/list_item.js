@@ -1,5 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        Noty = require('noty'),
         context = require('context'),
         Templates = require('handlebarsTemplates');
 
@@ -17,8 +18,40 @@ define(function(require) {
         },
         update: function(e) {
             e.preventDefault();
-            console.log(this.model.url());
-            console.log(this.model.attributes);
+
+            var data = {
+                status: e.target.value
+            };
+
+            this.model.save(data, {patch: true}).then(function() {
+                noty({
+                    layout: 'top',
+                    theme: 'relax',
+                    text: 'Successfully updated ' + this.model.get('name'),
+                    type: 'success',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing',
+                        speed: 500
+                    },
+                    timeout: 2500
+                });
+            }.bind(this)).fail(function() {
+                noty({
+                    layout: 'top',
+                    theme: 'relax',
+                    text: 'Failed to update ' + this.model.get('name'),
+                    type: 'error',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing',
+                        speed: 500
+                    },
+                    timeout: 2500
+                });
+            }.bind(this));
         }
     });
 
