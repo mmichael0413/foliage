@@ -6,9 +6,19 @@ define(function(require) {
     var View = Backbone.View.extend({
         template: Templates['stores/program_stores/list_item'],
         className: 'pure-g item program-store-list-item',
+        events: {
+            'change .status': 'update'
+        },
         render: function() {
-            this.$el.html(this.template(this.model.attributes));
+            var data = this.model.attributes;
+            data.programStoreStatuses = context.programStoreStatuses;
+            this.$el.html(this.template(data));
             return this;
+        },
+        update: function(e) {
+            e.preventDefault();
+            console.log(this.model.url());
+            console.log(this.model.attributes);
         }
     });
 
