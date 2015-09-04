@@ -61,6 +61,7 @@ define(function(require){
             'programs/:program_id/labs/sku_sales': 'labsSkus',
             'programs/:program_id/labs(/)': 'labsSalesCompare',
             'programs/:program_id/labs/sales_comparison': 'labsSalesCompare',
+            'programs/:program_id/labs/roi': 'roi',
 
             'programs/:program_id/*path' : 'defaultPath',
             '*path': 'notFound'
@@ -199,6 +200,9 @@ define(function(require){
 
         labsSalesCompare: function () {
             Labs.salesCompare();
+        },
+        roi: function () {
+            Labs.roi();
         },
 
         defaultPath: function(program_id) {
