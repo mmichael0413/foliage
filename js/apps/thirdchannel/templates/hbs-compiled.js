@@ -1418,6 +1418,49 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return "<div class=\"export-modal error\">\n    The requested file has timed out.  Please contact <a href=\"mailto:techsupport@thirdchannel.com\">techsupport@thirdchannel.com</a> for further assistance.\n</div>";
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/modals/reports/checkins/choices"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, self=this, helperMissing=helpers.helperMissing, functionType="function", escapeExpression=this.escapeExpression;
+
+function program1(depth0,data,depth1) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n    ";
+  stack1 = (helper = helpers.contains || (depth0 && depth0.contains),options={hash:{},inverse:self.program(4, program4, data),fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, depth0, (depth1 && depth1.answers), options) : helperMissing.call(depth0, "contains", depth0, (depth1 && depth1.answers), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        <div>"
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + "</div>\n    </div>\n    ";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  
+  return "\n    <div class=\"selected choice all\">\n        <div class=\"pdf-hide ic_check\"></div>\n    ";
+  }
+
+function program4(depth0,data) {
+  
+  
+  return "\n    <div class=\"choice all\">\n        <div class=\"pdf-hide ic_blank\"></div>\n    ";
+  }
+
+  buffer += "<div class=\"bbm-button pull-right\"><i class=\"ic ic_x\"></i></div>\n<h2>";
+  if (helper = helpers.section) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.section); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</h2>\n<div>";
+  if (helper = helpers.question) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.question); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</div>\n<div class=\"choices\">\n";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.choices), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</div>\n";
+  return buffer;
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/new-comment"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};

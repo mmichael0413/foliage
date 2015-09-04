@@ -22,6 +22,13 @@ define(function (require) {
             return opts.inverse(this);
     });
 
+    Handlebars.registerHelper('contains', function (value, array, opts) {
+        if ($.inArray(value, array) >= 0)
+            return opts.fn(this);
+        else
+            return opts.inverse(this);
+    });
+
     Handlebars.registerHelper('if_activity', function (a, opts) {
         if (_.contains(['message', 'checkin'], a))
             return opts.fn(this);
