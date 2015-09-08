@@ -109,8 +109,8 @@ define(function(require) {
             var questionsValid = this.$form.valid(),
                 imagesValid = true;
 
-            var $beforeImages = this.$('.images.before'),
-                $afterImages = this.$('.images.after');
+            var $beforeImages = this.$('.images.before[required]'),
+                $afterImages = this.$('.images.after[required]');
 
             if ($beforeImages.length > 0 || $afterImages.length > 0) {
                 // TODO: move to template?
