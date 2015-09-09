@@ -18,6 +18,7 @@ define(function(require) {
 			Filter.init();
 			new TopSkusView();
 		},
+		
 		salesCompare: function () {
 			this.init();
 			Filter.init();

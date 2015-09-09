@@ -38,7 +38,7 @@ define(function(require) {
                 }
 
                 this.carousel = $carousel.slick({
-                    slidesToShow: 3,
+                    slidesToShow: 1,
                     slidesToScroll: 1,
                     focusOnSelect: true,
                     variableWidth: true,
