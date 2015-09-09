@@ -6,7 +6,7 @@ define(function(require) {
             this.options = options;
         },
         url: function () {
-            return '/programs/' + this.options.programId + "/reports/checkin/" + this.options.checkinId + "/question/" + this.options.questionId + "?format=json";
+            return '/programs/' + this.options.programId + "/reports/" + this.options.surveyType + "/" + this.options.typeId + "/question/" + this.options.questionId + "?format=json";
         }
     });
 });

@@ -13,7 +13,8 @@ define(function (require) {
         OpenAlertsView = require('thirdchannel/views/store_profile/open_alerts'),
         GalleryView = require('thirdchannel/views/store_profile/gallery'),
         ProductView = require('thirdchannel/views/store_profile/products/show'),
-        ResolvedAlertsView = require('thirdchannel/views/store_profile/resolved_alerts');
+        ResolvedAlertsView = require('thirdchannel/views/store_profile/resolved_alerts'),
+        ChoicesView = require('thirdchannel/views/reports/checkins/show/choices');
 
     /**
      * The main entry point for loading the JS needed for the store profile page
@@ -27,6 +28,7 @@ define(function (require) {
             new PersonnelSectionView().fetch();
             new OpenAlertsView().fetch();
             new CarouselView({collection: new Backbone.Collection(context.images)}).render();
+            new ChoicesView({surveyType: 'stores', typeId: context.requestParameters[1]});
             var wrapper = new ExpandWrapperView();
             
             wrapper.setElement('#site-canvas').render();
