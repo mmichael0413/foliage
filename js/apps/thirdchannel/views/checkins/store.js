@@ -36,7 +36,8 @@ define(function(require){
             $target.html(this.closeBtn);
             $target.addClass('close-jobs');
 
-            this.taskList = new TaskList({tasks: this.model.get('tasks')});
+            this.taskList = new TaskList({tasks: this.model.get('tasks'), 
+                customerStoreId: this.model.get('id'), authenticityToken: this.model.get('authenticity_token')});
 
             this.$el.append(this.taskList.render().el);
         },

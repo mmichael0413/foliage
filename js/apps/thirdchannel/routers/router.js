@@ -13,8 +13,8 @@ define(function(require){
         StoreProfileMain = require('thirdchannel/views/store_profile/main'),
         StoresIntelEdit = require('thirdchannel/views/stores/intel/edit'),
         StoreProfileProductsEdit = require('thirdchannel/views/store_profile/products/edit'),
-        CheckinView = require('thirdchannel/views/checkins/show/checkin'),
-        CheckinModel = require('thirdchannel/models/checkins/show/form'),
+        SurveyView = require('thirdchannel/views/checkins/show/survey'),
+        SurveyModel = require('thirdchannel/models/checkins/show/form'),
         CheckinChooseView = require('thirdchannel/views/checkins/choose/show/main'),
         DashboardsAlertsSectionsView = require('thirdchannel/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('thirdchannel/views/dashboards/alerts/show/stores'),
@@ -46,7 +46,8 @@ define(function(require){
             'programs/:program_id/stores/:store_id/product/edit': 'editStoreProfileProduct',
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
             'programs/:program_id/stores/:store_id/schedule' : 'storeProfileSchedule',
-            'programs/:program_id/checkins/:id': 'checkin',
+            
+            'programs/:program_id/checkins/:checkin_id/submissions/:id': 'submission',
             'programs/:program_id/checkins/choose/:id': 'selectCheckin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
@@ -163,8 +164,8 @@ define(function(require){
             ReportMain.init({programId: programId});
         },
 
-        checkin : function(programId, id) {
-            new CheckinView({model: new CheckinModel({programId: programId, checkinId: id})}).render();
+        submission: function(programId, checkinId, submissionId) {
+            new SurveyView({model: new SurveyModel({programId: programId, checkinId: checkinId})}).render();
         },
 
         selectCheckin : function(programId, id) {

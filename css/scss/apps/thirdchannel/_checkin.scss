@@ -1,0 +1,13 @@
+.subtle-instruction {
+    color: $medium-blue;
+    font-style: italic;
+}
+.task-item {
+    margin-top: 1em;
+    &.name {
+        line-height: 2em;
+    }
+    &.btn {
+        text-align: center;
+    }
+}
