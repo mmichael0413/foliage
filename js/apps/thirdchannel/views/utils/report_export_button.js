@@ -1,16 +1,11 @@
 define(function(require) {
     var Backbone = require('backbone'),
         context = require('context'),
-        ExportModal = require('thirdchannel/modals/export'),
-        ExportModel = require('thirdchannel/models/reports/export');
+        ExportModal = require('thirdchannel/modals/export');
 
     return Backbone.View.extend({
         events: {
             "click": "stopClick"
-        },
-        initialize: function (options) {
-            this.options = options;
-            this.model = new ExportModel(options);
         },
         render: function ($element) {
             this.setElement($element);
