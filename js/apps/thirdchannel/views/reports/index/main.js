@@ -12,11 +12,6 @@ define(function(require) {
                 var model = new ReportExportModel(_.extend(data, options));
                 new ExportView({model: model}).render(this);
             });
-            $(".actions .answers-export").each(function() {
-                var data = {baseUrl: "/programs/" + options.programId + "/reports/exports/answers"};
-                var model = new ReportExportModel(_.extend(data, options));
-                new ExportView({model: model}).render(this);
-            });
             new ReportView(options).render();
         }
     };
