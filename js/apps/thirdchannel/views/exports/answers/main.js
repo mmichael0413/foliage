@@ -11,7 +11,8 @@ define(function(require) {
         render: function() {
             this.$('#start_date, #end_date').datetimepicker({
                 timepicker:false,
-                format:'m/d/Y'
+                format:'m/d/Y',
+                closeOnDateSelect: true
             });
 
             return this;
