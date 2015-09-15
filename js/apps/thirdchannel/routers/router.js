@@ -165,7 +165,7 @@ define(function(require){
         },
 
         submission: function(programId, checkinId, submissionId) {
-            new SurveyView({model: new SurveyModel({programId: programId, checkinId: checkinId})}).render();
+            new SurveyView({model: new SurveyModel({programId: programId, checkinId: checkinId, submissionId: submissionId})}).render();
         },
 
         selectCheckin : function(programId, id) {
