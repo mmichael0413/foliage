@@ -1,12 +1,19 @@
 define(function(require) {
-    var Backbone = require('backbone'),
+    var _ = require('underscore'),
+        Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         DateTimePicker = require('dateTimePicker'),
-        context = require('context');
+        Serialize = require('serializeObject'),
+        context = require('context'),
+        ExportModel = require('thirdchannel/models/exports/answers');
 
     return Backbone.View.extend({
         el: '#answers-export-form',
+
+        events: {
+            'submit': 'initiateExport'
+        },
 
         render: function() {
             this.$('#start_date, #end_date').datetimepicker({
@@ -16,6 +23,12 @@ define(function(require) {
             });
 
             return this;
+        },
+
+        initiateExport: function(e) {
+            e.preventDefault();
+            var model = new ExportModel(_.extend(this.$el.serializeObject(), {programId: context.programId}));
+
         }
     });
 });
