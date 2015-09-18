@@ -6,7 +6,8 @@ define(function(require) {
         DateTimePicker = require('dateTimePicker'),
         Serialize = require('serializeObject'),
         context = require('context'),
-        ExportModel = require('thirdchannel/models/exports/answers');
+        ExportModel = require('thirdchannel/models/exports/answers'),
+        ExportModal = require('thirdchannel/modals/export');
 
     return Backbone.View.extend({
         el: '#answers-export-form',
@@ -18,7 +19,7 @@ define(function(require) {
         render: function() {
             this.$('#start_date, #end_date').datetimepicker({
                 timepicker:false,
-                format:'m/d/Y',
+                format:'Y-m-d',
                 closeOnDateSelect: true
             });
 
@@ -28,7 +29,9 @@ define(function(require) {
         initiateExport: function(e) {
             e.preventDefault();
             var model = new ExportModel(_.extend(this.$el.serializeObject(), {programId: context.programId}));
-
+            console.log(model);
+            var modal = new ExportModal({model: model});
+            $("body").append(modal.render().el);
         }
     });
 });
