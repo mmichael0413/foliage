@@ -28,13 +28,22 @@ define(function(require) {
 
         initiateExport: function(e) {
             e.preventDefault();
+            this.$('.error').removeClass('error');
             var model = new ExportModel(_.extend(this.$el.serializeObject(), {programId: context.programId}));
             model.save().then(function() {
                 var modal = new ExportModal({model: model});
                 $("body").append(modal.render().el);
-            }).fail(function() {
-                alert('Something went wrong.');
-            });
+            }).fail(function(response) {
+                if(response.status === 422) {
+                    var error = response.responseJSON;
+                    alert(error.error);
+                    _.each(error.errors, function(v, k) {
+                        this.$('#' + k).addClass('error');
+                    }.bind(this));
+                } else {
+                    alert('Something went wrong.');
+                }
+            }.bind(this));
         }
     });
 });
