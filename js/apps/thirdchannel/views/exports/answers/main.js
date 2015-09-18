@@ -29,9 +29,12 @@ define(function(require) {
         initiateExport: function(e) {
             e.preventDefault();
             var model = new ExportModel(_.extend(this.$el.serializeObject(), {programId: context.programId}));
-            console.log(model);
-            var modal = new ExportModal({model: model});
-            $("body").append(modal.render().el);
+            model.save().then(function() {
+                var modal = new ExportModal({model: model});
+                $("body").append(modal.render().el);
+            }).fail(function() {
+                alert('Something went wrong.');
+            });
         }
     });
 });
