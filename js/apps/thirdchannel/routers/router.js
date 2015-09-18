@@ -62,7 +62,7 @@ define(function(require){
             'programs/:program_id/labs/sku_sales': 'labsSkus',
             'programs/:program_id/labs(/)': 'labsSalesCompare',
             'programs/:program_id/labs/sales_comparison': 'labsSalesCompare',
-            'programs/:program_id/exports/answers': 'answerExports',
+            'programs/:program_id/exports/survey_answers': 'answerExports',
 
             'programs/:program_id/*path' : 'defaultPath',
             '*path': 'notFound'
