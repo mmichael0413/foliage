@@ -35,7 +35,7 @@ define(function(require){
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
-            'programs/:program_id/checkins' : 'checkin_list',
+            'programs/:program_id/checkins(/)' : 'checkin_list',
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
             'programs/:program_id/stores/:store_id(/)': 'storeProfile',
