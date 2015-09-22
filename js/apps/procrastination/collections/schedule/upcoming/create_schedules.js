@@ -17,7 +17,6 @@ define(function(require){
         generateLegend: function(){
             var self = this;
             this.jobs = this.groupBy(function(job){
-				console.log(job.get('jobDetail'));
                 return job.get('jobDetail');
             });
 
