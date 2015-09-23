@@ -9,6 +9,13 @@ define(function(require) {
         ExportModel = require('thirdchannel/models/exports/answers'),
         ExportModal = require('thirdchannel/modals/export');
 
+    var dtPickerOptions = {
+        timepicker: false,
+        format: 'Y-m-d',
+        closeOnDateSelect: true,
+        scrollInput: false
+    };
+
     return Backbone.View.extend({
         el: '#answers-export-form',
 
@@ -17,12 +24,8 @@ define(function(require) {
         },
 
         render: function() {
-            this.$('#start_date, #end_date').datetimepicker({
-                timepicker:false,
-                format:'Y-m-d',
-                closeOnDateSelect: true
-            });
-
+            this.$('#start_date').datetimepicker(dtPickerOptions);
+            this.$('#end_date').datetimepicker(dtPickerOptions);
             return this;
         },
 
