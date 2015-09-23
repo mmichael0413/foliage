@@ -1,6 +1,6 @@
 define(function(require) {
     var $ = require('jquery'),
-        ExportView = require('thirdchannel/views/utils/csv_export_button'),
+        ExportView = require('thirdchannel/views/utils/report_export_button'),
         ExportModel = require('thirdchannel/models/reports/export'),
         ReportInfoView = require('thirdchannel/views/reports/info/show/info_list');
 
