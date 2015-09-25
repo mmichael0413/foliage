@@ -28,7 +28,8 @@ define(function(require){
         PostView = require('thirdchannel/views/posts/main'),
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge'),
         StoreProfileSchedule = require('thirdchannel/views/store_profile/schedule'),
-        Labs = require('thirdchannel/views/labs/main');
+        Labs = require('thirdchannel/views/labs/main'),
+        AnswersExportView = require('thirdchannel/views/exports/answers/main');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
@@ -61,6 +62,7 @@ define(function(require){
             'programs/:program_id/labs/sku_sales': 'labsSkus',
             'programs/:program_id/labs(/)': 'labsSalesCompare',
             'programs/:program_id/labs/sales_comparison': 'labsSalesCompare',
+            'programs/:program_id/exports/survey_answers': 'answerExports',
 
             'programs/:program_id/*path' : 'defaultPath',
             '*path': 'notFound'
@@ -199,6 +201,10 @@ define(function(require){
 
         labsSalesCompare: function () {
             Labs.salesCompare();
+        },
+
+        answerExports: function() {
+            new AnswersExportView().render();
         },
 
         defaultPath: function(program_id) {
