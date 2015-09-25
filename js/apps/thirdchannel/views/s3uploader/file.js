@@ -22,7 +22,6 @@ define(function(require) {
             this.$el.find('.holder').each(function(){
                 new ImageView({model: new Backbone.Model().set({input: self.$el.data('input')})}).render(this);
             });
-
             return this;
         },
         fileChanged: function (e) {
