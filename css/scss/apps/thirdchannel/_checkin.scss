@@ -2,11 +2,15 @@
     color: $medium-blue;
     font-style: italic;
 }
-.task-item {
-    &.name {
-        line-height: 2em;
-    }
-    &.btn {
-        text-align: center;
-    }
+#taskContainer {
+    .task-item {
+        margin-bottom:1.25em;
+        &.name {
+            
+            line-height: 2em;
+        }
+        &.btn {
+            text-align: center;
+        }
+    }    
 }

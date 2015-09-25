@@ -765,16 +765,21 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["ThirdChannel"]["templates"]["thirdchannel/checkins/tasks"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data,depth1) {
   
-  var buffer = "", stack1, helper;
+  var buffer = "", stack1, helper, options;
   buffer += "\n    <div class=\"pure-g\">\n        <div class=\"col-4-5\">\n            ";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\n        </div>\n        <div class=\"col-1-5\">\n            <form accept-charset=\"UTF-8\" action=\"";
+  buffer += escapeExpression(stack1);
+  options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
+  if (helper = helpers.required) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.required); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.required) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </div>\n        <div class=\"col-1-5\">\n            <form accept-charset=\"UTF-8\" action=\"";
   if (helper = helpers.form_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.form_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -801,8 +806,13 @@ function program1(depth0,data,depth1) {
     + "\" type=\"hidden\">\n                <button class=\"btn primary\" name=\"commit\"><i class=\"ic fa ic_location\"></i><span>Start</span></button>\n            </form>\n        </div>\n    </div>\n\n";
   return buffer;
   }
+function program2(depth0,data) {
+  
+  
+  return "<span class=\"subtle-instruction\">*</span>";
+  }
 
-  buffer += "<div class=\"pure-g\">\n    <h3 class=\"col-1-2 col-md-1\">Jobs</h3>\n</div>\n";
+  buffer += "<div class=\"pure-g\">\n    <h3 class=\"col-8-12 col-md-1-2 task-item\">Tasks</h3>\n  <span class=\"subtle-instruction col-4-12 col-md-1-2\">* Required During Visit</span>\n</div>\n";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.tasks), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n";

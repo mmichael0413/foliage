@@ -1,10 +1,11 @@
 <div class="pure-g">
-    <h3 class="col-1-2 col-md-1">Jobs</h3>
+    <h3 class="col-8-12 col-md-1-2 task-item">Tasks</h3>
+  <span class="subtle-instruction col-4-12 col-md-1-2">* Required During Visit</span>
 </div>
 {{#each tasks}}
     <div class="pure-g">
         <div class="col-4-5">
-            {{name}}
+            {{name}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}
         </div>
         <div class="col-1-5">
             <form accept-charset="UTF-8" action="{{form_url}}" method="post">
