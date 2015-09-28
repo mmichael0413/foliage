@@ -60,7 +60,7 @@ define(function(require) {
 				this._renderSales();
 				this._renderWidgets("Visual Merchandising", ["averageBackstock", "averageBackstockMoved", "currentPOP", "whyNoPop", "sharing", "otherBrands"]);
 				this._renderWidgets("Physical Footprint", ["visibility", "presenceChange"]);
-				this._renderWidgets("Store Associate Education", ["averageEducated", "educatedOn", "knowledgeable", "enthused"]);
+				this._renderWidgets("Store Associate Education", ["totalEducated", "averageEducated", "educatedOn", "knowledgeable", "enthused"]);
 				this._renderWidgets("Customer Interactions", ["averageConsumersSpoken", "averageSold"]);
 				this._renderWidgets("Product Categories", ["categories"]);
 				this._renderWidgets("Competitive Landscape", ["brands", "sunglassBrands", "repsCalling"]);
