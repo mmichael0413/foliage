@@ -12,9 +12,8 @@ define(function(require){
             success: 'thirdchannel/modals/export/success'
         },
         cancelEl: '.bbm-button',
-        initialize: function (options) {
+        initialize: function () {
             _.bindAll(this, 'fetchExport', 'updateView');
-            this.model = options.model;
             this.templateName = this.templates.progress;
             this.retries = 0;
         },

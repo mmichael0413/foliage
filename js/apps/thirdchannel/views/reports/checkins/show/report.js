@@ -22,15 +22,11 @@ define(function(require) {
                 }
             })
         }),
-        choicesModal = require('thirdchannel/modals/reports/checkins/choices'),
-        choicesModel = require('thirdchannel/models/reports/checkins/choices');
+        ChoicesView = require('thirdchannel/views/reports/checkins/show/choices');
 
 
     return Backbone.View.extend({
         el: ".checkin-report",
-        events: {
-            'click .choices' : 'showChoices'
-        },
         initialize: function (options) {
             _.extend(context, window.bootstrap);
             this.programId = options.programId;
@@ -39,6 +35,7 @@ define(function(require) {
             this.activityModel = new ActivityModel(window.checkinReportData.activity, {});
 
             new CarouselView({collection: new Backbone.Collection(context.images)}).render();
+            new ChoicesView({surveyType: 'checkin', typeId: this.checkinId});
         },
         render: function (options) {
             new AllOpenAlertsView().fetch();
@@ -50,20 +47,6 @@ define(function(require) {
             this.newComment = new NewCommentView({el: this.$('.new-comment'), activity: this.activityModel, collection: this.comments.collection}).render();
 
             return this;
-        },
-        showChoices: function (e) {
-            e.preventDefault();
-            var self = this,
-                choices = this.$(e.target),
-                model = new choicesModel({
-                    programId: this.programId,
-                    checkinId: this.checkinId,
-                    questionId: choices.data('question')
-                });
-
-            model.fetch({success: function(model) {
-                self.$el.append(new choicesModal({model: model}).render().el);
-            }});
         }
     });
 });

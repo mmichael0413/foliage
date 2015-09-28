@@ -31,7 +31,6 @@ define(function(require) {
                 changeEvent.preventDefault();
                 changeEvent.stopPropagation();
                 context.trigger("group:change:" + key, value);
-                console.log("transmitted", value);
             }
             
         };

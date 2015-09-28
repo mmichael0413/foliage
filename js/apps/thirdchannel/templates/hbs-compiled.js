@@ -664,7 +664,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.checkin_choose_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.checkin_choose_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" method=\"post\">\n            <input id=\"customer_store_id\" name=\"customer_store_id\" type=\"hidden\" value=\"";
+    + "\" method=\"post\">\n            <input id=\"customer_store_uuid\" name=\"customer_store_uuid\" type=\"hidden\" value=\"";
   if (helper = helpers.customer_store_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.customer_store_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -752,7 +752,7 @@ function program1(depth0,data) {
   if (helper = helpers.form_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.form_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" method=\"post\">\n                <input id=\"customer_store_id\" name=\"customer_store_id\" type=\"hidden\" value=\"";
+    + "\" method=\"post\">\n                <input id=\"customer_store_uuid\" name=\"customer_store_uuid\" type=\"hidden\" value=\"";
   if (helper = helpers.customer_store_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.customer_store_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1091,6 +1091,10 @@ function program1(depth0,data) {
   buffer += "\n            <div class=\"filter-list-item flexible\" data-value=\"";
   if (helper = helpers.value) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.value); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" data-filter=\"";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\">\n                <div class=\"btn default\">&nbsp;</div><span>";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
