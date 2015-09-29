@@ -19,8 +19,8 @@ define(function(require){
                 required: true,
                 message: "Required"
             },{
-                minLength: 2,
-                message: "The name is too short, please enter at name with at least 2 characters"
+                minLength: 1,
+                message: "The name is too short, please enter at name with at least 1 characters"
             },{
                 maxLength: 255,
                 message: "The name is too long, please enter at name with at most 255 characters"

@@ -30,6 +30,11 @@ define(function(require){
                     text: "Fill in some text",
                     hideSiblings: "#questionMultiple,#questionExplain,#questionPlaceholder"
                 },
+                "QuestionSummary": {
+                    text: "Describing their overall visit",
+                    hideSiblings: "#questionMultiple,#questionExplain",
+                    showSiblings: "#questionPlaceholder"
+                },
                 "QuestionDatetime": {
                     text: "Select a date and time",
                     hideSiblings: "#questionMultiple,#questionExplain,#questionPlaceholder"

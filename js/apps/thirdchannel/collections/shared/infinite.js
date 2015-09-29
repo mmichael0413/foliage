@@ -19,8 +19,13 @@ define(function (require) {
             },
             currentPage: 1,
             queryString: "",
-            url: function(){
-                return this.option_url + '?' + this.queryString;
+            url: function() {
+                var queryStringConn = '?';
+                // ... sometimes we supply a url that already contains the start of the query string...
+                if(this.option_url.indexOf('?') != -1) {
+                    queryStringConn = '&';
+                }
+                return this.option_url + queryStringConn + this.queryString;
             },
 
             getNextPage: function() {

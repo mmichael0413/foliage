@@ -9,7 +9,10 @@
         </div>
         <div class="col-1-5">
             <form accept-charset="UTF-8" action="{{form_url}}" method="post">
+
                 <input id="customer_store_id" name="customer_store_id" type="hidden" value="{{../customerStoreId}}">
+
+                <input id="customer_store_uuid" name="customer_store_uuid" type="hidden" value="{{customer_store_id}}">
                 <input id="survey_id" name="survey_id" type="hidden" value="{{survey_id}}">
                 <input id="task_uuid" name="task_uuid" type="hidden" value="{{uuid}}">
                 <input id="job_uuid" name="job_uuid" type="hidden" value="{{jobUUID}}">
