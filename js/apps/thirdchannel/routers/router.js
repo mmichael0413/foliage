@@ -68,7 +68,7 @@ define(function(require){
             'programs/:program_id/exports/survey_answers': 'answerExports',
 
             'programs/:program_id/*path' : 'defaultPath',
-            '*path': 'notFound'
+           // '*path': 'notFound'
         },
         // Small hack to add a before and after function to the Router
         /**
@@ -232,7 +232,6 @@ define(function(require){
         MainLayout.init();
         context.router = new AppRouter();
         context.instances = {};
-        Backbone.history.start({pushState: true, hashChange: false});
     };
     return {
         initialize: initialize

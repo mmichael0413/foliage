@@ -2,6 +2,10 @@ h1 {
   font-size: 1.4em;
   margin: .9em 0 1.5em 0;
   max-width: 60%;
+  &.full-width {
+    max-width: 100%;
+    margin: 0 0 1em 0;
+  }
   &.subheader {
     margin-bottom: .25em;
   }

@@ -22,9 +22,14 @@ input[type=text], input[type=password], input[type=number], textarea, select, in
   }
 }
 
+textarea.double {
+  height: 4em;
+  margin-bottom: 2em;
+}
+
 .compressed {
   input[type=text], input[type=password], input[type=number], textarea, select {
-    margin-bottom: 1.5em;
+    margin-bottom: 0;
   }
 }
 
