@@ -27,8 +27,11 @@ define(function(require) {
             context.trigger('image:updated', this.model);
         },
         deleted: function (e) {
-            context.trigger('image:deleted', this.model);
-            this.remove();
+            var confirmDelete = confirm("Are you sure you want to delete this file?");
+            if(confirmDelete) {
+                context.trigger('image:deleted', this.model);
+                this.remove();
+            }
         }
     });
 });
