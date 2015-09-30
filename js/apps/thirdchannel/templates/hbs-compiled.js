@@ -755,6 +755,20 @@ function program48(depth0,data) {
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/applications/thumbnail"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"thumbnail\" style=\"background: url('";
+  if (helper = helpers.dataURL) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.dataURL); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "') no-repeat\"></div>\n\n";
+  return buffer;
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/checkins/choose"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -2778,7 +2792,7 @@ function program4(depth0,data) {
   if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n    </div>\n</div>\n";
+    + "\">\n    </div>\n</div>\n<div class=\"clear\"></div>\n";
   return buffer;
   });
 
