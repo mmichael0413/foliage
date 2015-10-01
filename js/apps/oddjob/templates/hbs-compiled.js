@@ -357,7 +357,7 @@ function program5(depth0,data) {
 function program7(depth0,data,depth1) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n                <tr>\n                    <td><a href=\""
+  buffer += "\n                <tr class=\"schedule-row\">\n                    <td><a href=\""
     + escapeExpression(((stack1 = (depth1 && depth1.createScheduleUrl)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "/";
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -500,11 +500,11 @@ function program3(depth0,data) {
   if (helper = helpers.begin) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.begin); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" readonly=\"readonly\"/>\n\n<p class=\"col-1-12\"></p>\n\n<p class=\"col-2-12\">End Date</p>\n<input  name=\"end\" class=\"col-3-12 datepicker end\" value=\"";
+    + "\"/>\n\n<p class=\"col-1-12\"></p>\n\n<p class=\"col-2-12\">End Date</p>\n<input  name=\"end\" class=\"col-3-12 datepicker end\" value=\"";
   if (helper = helpers.end) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.end); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" readonly=\"readonly\"/>\n\n";
+    + "\"/>\n\n";
   return buffer;
   });
 

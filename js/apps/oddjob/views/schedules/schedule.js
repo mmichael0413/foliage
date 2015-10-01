@@ -10,7 +10,8 @@ define(function (require) {
             el: "#scheduleForm",
             events: {
                 'click .submit': 'preSubmit',
-                'submit'    : 'preSubmit'
+                'submit'    : 'preSubmit',
+                'click .delete': 'deleteSchedule'
             },
 
             initialize: function () {
@@ -51,7 +52,8 @@ define(function (require) {
                     }
                     date.visitOptions = this._selectFrequency(context.visitOptions, visits);
                 }.bind(this));
-
+                data.begin = context.schedule.begin;
+                data.end = context.schedule.end;
                 return data;
             },
             _selectFrequency: function (visitOptions, visits) {
@@ -68,6 +70,31 @@ define(function (require) {
                          position: "bottom right",
                      });
                 self.$el.find('.pika-single').addClass('col-1-1');
+            },
+            deleteSchedule: function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                var href = e.currentTarget.href;
+                if (confirm("Are you sure you wish to delete this Schedule?")) {
+                    
+                    this.$el.promise()
+                    .then(function () {
+                        $(e.currentTarget).replaceWith("<i class='fa fa-spin fa-spinner fa-2x delete'></i>");
+                    })
+                    .then(function () {
+                        return $.ajax({
+                            url: href,
+                            type: 'DELETE'
+                        });
+                    })
+                    .done(function () {
+                        window.location = context.links.jobs;
+                    })
+                    .fail(function () {
+                        alert("Could not delete the Frequency!");
+                    });
+                }
             }
     };
 
