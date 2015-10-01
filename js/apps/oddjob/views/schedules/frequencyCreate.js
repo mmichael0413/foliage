@@ -17,11 +17,13 @@ define(function (require) {
             },
 
             render: function () {
-                if (!context.hasOwnProperty('frequencies')) {
-                    console.error("Context does not have any 'frequencies'!");
+                console.log(context);
+                if (!context.hasOwnProperty('visits')) {
+                    console.error("Context does not have any 'visits'!");
                     return this;
                 }
-                this.renderRows(new Backbone.Collection(context.frequencies));
+                //this.renderRows(new Backbone.Collection(context.visits));
+                this.renderSchedule();
                 return this;
             },
 
@@ -32,6 +34,12 @@ define(function (require) {
             updateCount: function (count) {
                 this.$el.find('#storeCount').text(count);
             },
+
+            renderSchedule: function () {
+                console.log("Based on ", context.visits, context.meta.scheduleDates);
+
+            },
+
             renderRows: function (collection) {
                     collection.each (function (item, index) {
                         item.set('index', index);

@@ -119,7 +119,22 @@
 			&.static {
 				margin-bottom: -1em;
 			}
-		}	
+
+		}
+		th, td {
+			text-align: center;
+			width: 8%;
+			padding: 0;
+		}
+	}
+}
+
+.schedule-section {
+	.schedule {
+		margin-bottom: 1em;
+		.visits {
+			width: 75%;
+		}
 	}
 }
 

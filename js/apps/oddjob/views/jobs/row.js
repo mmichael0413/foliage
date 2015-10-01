@@ -27,6 +27,7 @@ define(function(require) {
 			}
 			
 			// render my self
+			data.scheduleDates = context.meta.scheduleDates;
 			this.$el.html(Templates['oddjob/jobs/row'](data));
 			// render my rows
 			this.renderRows(new Backbone.Collection(this.model.get('tasks')));

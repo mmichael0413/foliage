@@ -8,7 +8,7 @@ define(function (require) {
         MessagesView = require('oddjob/views/misc/messages'),
         JobCreateView = require('oddjob/views/jobs/create'),
         JobEditView = require('oddjob/views/jobs/edit'),
-        FrequencyCreateView = require('oddjob/views/schedules/frequencyCreate'),
+        ScheduleEditView = require('oddjob/views/schedules/schedule'),
         StoreListView = require('oddjob/views/stores/list'),
         StoreUploadView = require('oddjob/views/stores/upload'),
         ScheduledStoresView = require('oddjob/views/stores/scheduled'),
@@ -63,7 +63,8 @@ define(function (require) {
 
         scheduleCreate: function (customer, programSlug, jobId) {
             Filter.init();
-            new FrequencyCreateView({el: $("#frequencyForm")}).render();
+            //new FrequencyCreateView({el: $("#frequencyForm")}).render();
+            new ScheduleEditView().render();
             new StoreControlsView();
             new StoreUploadView();
             new StoreListView();
@@ -71,7 +72,8 @@ define(function (require) {
 
         scheduleEdit: function (customer, programSlug, jobId, frequencyIndex) {
             Filter.init();
-            new FrequencyCreateView({el: $("#frequencyForm")}).render();
+            //new FrequencyCreateView({el: $("#frequencyForm")}).render();
+            new ScheduleEditView().render();
             new StoreControlsView();
             new ScheduledStoresView();
         },

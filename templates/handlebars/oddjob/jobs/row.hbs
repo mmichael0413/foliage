@@ -9,13 +9,33 @@
 <div class="tasks-container"></div>
 
 <div class="frequencies-container pure-g">
-   {{#frequencySummaries}}
-        <p class="frequency-row col-10-12"><a href="jobs/{{../id}}/schedule/{{@index}}">{{count}} stores</a> with: {{#frequencies}}{{monthlyVisits}} monthly visits between {{begin}} -> {{end}} {{/frequencies}}</p>
-        <a class="btn primary delete-frequency col-1-12" href="jobs/{{../id}}/schedule/{{@index}}">Delete</a>
-    {{else}}
-        <p class="frequency-row info col-1-1">There are no frequencies or store assignments for this Job. Click 'Assign New Frequency' to get started.</p>
-    {{/frequencySummaries}}
-    <div class="frequency-row col-1-1 static"><a class="btn btn-primary primary" href="{{createScheduleUrl}}">Assign New Frequency</a></div> 
+    <h3 class="col-1-1 frequency-row">Schedules:</h3>
+    <table class="col-1-1">
+        <colgroup>
+            
+        </colgroup>
+        
+        <thead>
+            <th>Stores</th>
+            {{#scheduleDates}}
+                <th>{{short}}</th>
+            {{/scheduleDates}}
+        </thead>
+        <tbody>
+            {{#scheduleSummaries}}
+                <tr>
+                    <td><a href="{{../createScheduleUrl}}/{{id}}">{{programStoreCount}}</a></td>
+                    {{#monthlyVisits}}
+                        <td>{{visits}}</td>
+                    {{/monthlyVisits}}
+                </tr>
+                
+            {{else}}
+                <tr><td colspan="13" class="info">There are no Schedules or store assignments for this Job. Click 'Create New Schedule' to get started.</td></tr>
+            {{/scheduleSummaries}}
+        </tbody>
+    </table>
+    <div class="frequency-row col-1-1 static"><a class="btn btn-primary primary" href="{{createScheduleUrl}}">Create New Schedule</a></div> 
 </div>
 
 

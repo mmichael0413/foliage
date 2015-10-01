@@ -1,0 +1,18 @@
+{{#scheduleDates}}
+    <div class="col-1-12 col-md-2-12 col-sm-4-12"><p>{{short}}</p>
+    <select class="visits" name="visits[{{@index}}]">
+        {{#visitOptions}}
+        <option value="{{../input}}{{key}}" {{#selected}}selected="selected"{{/selected}}>{{key}}x</option>
+        {{/visitOptions}}
+    </select>
+    </div>
+{{/scheduleDates}}
+
+<p class="col-2-12">Start Date</p>
+<input  name="begin" class="col-3-12 datepicker begin" value="{{begin}}" readonly="readonly"/>
+
+<p class="col-1-12"></p>
+
+<p class="col-2-12">End Date</p>
+<input  name="end" class="col-3-12 datepicker end" value="{{end}}" readonly="readonly"/>
+

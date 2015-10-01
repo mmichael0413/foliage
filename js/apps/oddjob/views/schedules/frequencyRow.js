@@ -5,18 +5,17 @@ define(function(require) {
         context = require('context'),
 
         FrequencyRowView = {
-            className: 'frequency',
+            className: 'frequency pure-g',
 
             render: function () {
                 var data = this.model.toJSON();
                 data.visitOptions = [];
-                //data.visitOptions = context.visitOptions;
                 context.visitOptions.forEach(function (option) {
                     data.visitOptions.push({selected: option == data.monthlyVisits, key: option});
                 });
                 
-                
-                this.$el.html(Templates['oddjob/frequencies/row'](data));
+                data.scheduleDates = context.meta.scheduleDates;
+                this.$el.html(Templates['oddjob/schedule/row'](data));
                 this.configureDatepicker(this.$el.find(".datepicker.begin"));
                 this.configureDatepicker(this.$el.find(".datepicker.end"));
                 return this;
