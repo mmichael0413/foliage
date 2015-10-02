@@ -3,11 +3,11 @@
   TODO: break this up into form base and form layout
 */
 
-input[type=text], input[type=password], input[type=number], textarea, select, input[type="file"] {
+input[type=text], input[type=password], input[type=number], textarea, select, input[type="file"], input[type="email"] {
   width: 100%;
 }
 
-input[type=text], input[type=password], input[type=number], textarea, select, input[type=date], input[type=datetime] {
+input[type=text], input[type=password], input[type=number], textarea, select, input[type=date], input[type=datetime], input[type="email"] {
   border: .1em solid $border-color;
   border-radius: $border-radius-base;
   height: 2em;
@@ -19,6 +19,16 @@ input[type=text], input[type=password], input[type=number], textarea, select, in
     border-color: $link-color;
     color: $link-color;
     font-weight: bold;
+  }
+  &.large {
+    height: 2.5em;
+  }
+  &.low-margin {
+    margin-bottom: .5em;
+  }
+  &.dark {
+    background-color: $border-color;
+    color: $medium-blue;
   }
 }
 

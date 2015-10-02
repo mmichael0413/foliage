@@ -3,13 +3,13 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
         SerializeObject = require("serializeObject"),
-        FileModel = require('thirdchannel/models/s3uploader/file'),
+        FileModel = require('shared/models/s3uploader/file'),
         ImageModel = require('thirdchannel/models/checkins/show/image'),
-        ImageView = require('thirdchannel/views/s3uploader/checkin_image'),
-        UploadView = require('thirdchannel/views/s3uploader/upload');
+        ImageView = require('shared/views/s3uploader/checkin_image'),
+        UploadView = require('shared/views/s3uploader/upload');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['thirdchannel/s3uploader/checkin_image'],
+        template: HandlebarsTemplates['shared/s3uploader/checkin_image'],
         events: {
             "change input[type=file]" : "fileChanged",
             "click .error-close" : "errorRemove"
@@ -70,9 +70,9 @@ define(function(require) {
         fileUploadError: function() {
             var $error = this.$('.error');
             if ($error.length > 0) {
-                $error.html(HandlebarsTemplates['thirdchannel/s3uploader/error']());
+                $error.html(HandlebarsTemplates['shared/s3uploader/error']());
             } else {
-                this.$viewer.prepend(HandlebarsTemplates['thirdchannel/s3uploader/error']());
+                this.$viewer.prepend(HandlebarsTemplates['shared/s3uploader/error']());
             }
         },
         errorRemove: function(e) {
