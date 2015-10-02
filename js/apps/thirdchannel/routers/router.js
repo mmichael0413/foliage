@@ -29,13 +29,15 @@ define(function(require){
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge'),
         StoreProfileSchedule = require('thirdchannel/views/store_profile/schedule'),
         Labs = require('thirdchannel/views/labs/main'),
-        AnswersExportView = require('thirdchannel/views/exports/answers/main');
+        AnswersExportView = require('thirdchannel/views/exports/answers/main'),
+        ProfileStoreListView = require('thirdchannel/views/profiles/stores/list');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
+            'programs/:program_id/profiles/:user_id/stores': 'programProfileStores',
             'programs/:program_id/checkins' : 'checkin_list',
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
@@ -147,6 +149,10 @@ define(function(require){
         programProfile: function(program_id, user_id) {
             var url = '/programs/' + program_id + '/activities/' + user_id + '/for';
             ActivitiesMain.init(url, null, false);
+        },
+
+        programProfileStores: function(program_id, user_id) {
+            new ProfileStoreListView().bootstrapCollection(window.bootstrap);
         },
 
         dashboardAlerts: function(programId){
