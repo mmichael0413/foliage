@@ -4,7 +4,7 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['thirdchannel/s3uploader/checkin_image'],
+        template: HandlebarsTemplates['shared/s3uploader/checkin_image'],
         events: {
             "blur input": 'updated',
             'change select': 'updated',
@@ -12,7 +12,7 @@ define(function(require) {
         },
         initialize: function() {
             if(this.model.get('image_type') === 'after') {
-                this.template = HandlebarsTemplates['thirdchannel/s3uploader/checkin_image_group_select'];
+                this.template = HandlebarsTemplates['shared/s3uploader/checkin_image_group_select'];
 
                 // We want to update the available group label selections for after images based on the before images
                 // ... not the best of solutions, but should change with checkin re-arch!...
@@ -34,7 +34,7 @@ define(function(require) {
                     labels: this.model.beforeImages.map(function(i) { return i.get('label'); })
                 };
 
-                $groupLabel.html(HandlebarsTemplates['thirdchannel/s3uploader/checkin_group_label_options'](attrs));
+                $groupLabel.html(HandlebarsTemplates['shared/s3uploader/checkin_group_label_options'](attrs));
                 $groupLabel.find('[value="' + this.model.get('label') + '"]').attr({'selected': 'selected'});
 
                 this.$('select').chosen({disable_search: true, width: "100%"});

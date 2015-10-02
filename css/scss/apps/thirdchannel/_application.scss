@@ -3,7 +3,6 @@ form.application-form {
   @include swa-medium {
     input[type=text], input[type=password], input[type=number], textarea, select, input[type=date], input[type=datetime] {
       width: 50%;
-      border-radius: 0;
     }
   }
 
@@ -11,10 +10,8 @@ form.application-form {
     margin-bottom: 1.5em;
   }
 
-  .btn {
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
+  .form-group {
+    margin-bottom: 1.5em;
   }
 }
 
@@ -40,4 +37,9 @@ form.application-form {
   p {
     margin-bottom: 1em;
   }
+}
+
+.brand-logo {
+  display:inline-block;
+  float:right;
 }

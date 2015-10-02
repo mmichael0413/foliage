@@ -5,7 +5,7 @@ define(function (require) {
     var Backbone = require('backbone'),
         context = require('context'),
         template = require('handlebarsTemplates'),
-        FileView = require('thirdchannel/views/s3uploader/file');
+        FileView = require('shared/views/s3uploader/file');
 
     return Backbone.View.extend({
         el: '.content',
@@ -98,7 +98,7 @@ define(function (require) {
         disableUploadButton: function () {
             this.$('.fileupload-button').prop('disabled', true);
             this.$('#file').prop('disabled', true);
-            this.$('.fileupload-button').after("<p class='upload-message'>* You've reached the maximum number of images</p>")
+            this.$('.fileupload-button').after("<p class='upload-message'>* You've reached the maximum number of images</p>");
         },
 
         enableUploadButton: function () {
@@ -106,7 +106,5 @@ define(function (require) {
             this.$('#file').prop('disabled', false);
             this.$('.upload-message').remove();
         }
-
-
-    })
+    });
 });
