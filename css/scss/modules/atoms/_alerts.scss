@@ -34,8 +34,11 @@
     border-radius: $border-radius-base;
     margin-bottom: 1em;
   }
-  &.error {
+  &.error, &.alert {
     background-color: lighten($link-color, 20%);
+  }
+  &.notice {
+    background-color: $palette7;
   }
 
 }
