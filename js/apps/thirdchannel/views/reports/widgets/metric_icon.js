@@ -9,7 +9,13 @@ define(function(require) {
             this.model = options;
         },
         render: function () {
-            this.setElement(this.template(this.model));
+            var data = _.clone(this.model);
+            if(data.results === data.config.no_data_state) {
+              data.results = "No Data";
+              data.config.append_count = "";
+              data.config.prepend_count = "";
+            }
+            this.setElement(this.template(data));
             return this;
         }
     });
