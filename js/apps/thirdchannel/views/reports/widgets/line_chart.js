@@ -28,9 +28,8 @@ define(function(require) {
             if (this.chart === undefined) {
                 var self = this,
                     y_prefix  = (this.model.config.y_prefix  !== undefined) ? this.model.config.y_prefix + " "  : '',
-                    y_postfix = (this.model.config.y_postfix !== undefined) ? " " + this.model.config.y_postfix : '';
-
-
+                    y_postfix = (this.model.config.y_postfix !== undefined) ? " " + this.model.config.y_postfix : '',
+                    max_y_tick = parseInt(this.model.config, 10);
                 this.chart = c3.generate($.extend(true, this.config, {
                     axis: {
                         y: {
@@ -38,7 +37,9 @@ define(function(require) {
                                 format: function (x) {
                                     return y_prefix + x + y_postfix;
                                 }
-                            }
+                            },
+                            max: max_y_tick,
+                            padding: { top: 0, bottom: 0 },
                         }
                     },
                     bindto: self.$el.find('.chart.line-chart')[0],
