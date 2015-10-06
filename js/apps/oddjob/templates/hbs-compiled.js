@@ -390,7 +390,7 @@ function program8(depth0,data) {
 function program10(depth0,data) {
   
   
-  return "\n                <tr><td colspan=\"13\" class=\"info\">There are no Schedules or store assignments for this Job. Click 'Create New Schedule' to get started.</td></tr>\n            ";
+  return "\n                <tr><td colspan=\"14\" class=\"info\">There are no Schedules or store assignments for this Job. Click 'Create New Schedule' to get started.</td></tr>\n            ";
   }
 
   buffer += "<div class=\"header pure-g\">\n	<h3 class=\"col-6-12\"><a href=\"";
