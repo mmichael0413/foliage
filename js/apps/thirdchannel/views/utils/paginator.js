@@ -18,7 +18,7 @@ define(function(require) {
 
         render: function (qs) {
             var self = this;
-            self.$el.html("<i class='fa fa-spin fa-spinner'></i>");
+            self.$el.html("<i class='fa fa-spin ic_processing'></i>");
             $.ajax({
                 url: self.url + "?" + qs
             })

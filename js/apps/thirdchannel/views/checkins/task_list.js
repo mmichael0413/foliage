@@ -1,13 +1,13 @@
 define(function(require){
     var Backbone = require('backbone'),
         context = require('context'),
-        HandleBarsTemplates = require('handlebarsTemplates');
+        HandlebarsTemplates = require('handlebarsTemplates');
 
 
     return Backbone.View.extend({
         className: 'task-list',
-        loadingHTML: "<tr><td><i class='fa fa-spin fa-spinner'></i></td></tr>",
-        template: HandleBarsTemplates['thirdchannel/checkins/tasks'],
+        loadingHTML: HandlebarsTemplates['thirdchannel/loading_icon'],
+        template: HandlebarsTemplates['thirdchannel/checkins/tasks'],
         initialize: function(options) {
             this.tasks = options.tasks;
             console.log(options.tasks);
