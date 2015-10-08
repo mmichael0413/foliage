@@ -22,7 +22,6 @@ define(function (require) {
         render: function() {
             var dateCompleted = this.model.get('dateCompleted') ? moment(this.model.get('dateCompleted')).utc().format('MM/DD/YYYY') : null;
 
-
             var attrs = {
                 city: this.model.get('city'),
                 customerStoreUUID: this.model.get('customerStoreUUID'),
@@ -38,6 +37,7 @@ define(function (require) {
                 showCompleted: this.showCompleted,
                 totalDuration: this.model.get('totalDuration'),
                 tasks: this.model.get('tasks'),
+                taskCount: this.model.get('tasks').length,
                 hidden: 'hidden'
             };
 
@@ -59,8 +59,6 @@ define(function (require) {
         expand: function(e) {
             e.preventDefault();
             e.stopPropagation();
-
-            console.log(this.model);
 
             this.$('.additional-content').show('fast');
             $(e.target).addClass('collapse').removeClass('expand');

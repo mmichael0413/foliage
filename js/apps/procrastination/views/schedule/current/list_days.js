@@ -18,7 +18,6 @@ define(function (require) {
         render: function() {
             this.$el.append(this.template({date: this.date, showCompleted: this.showCompleted}));
             this.attachVisits();
-
             return this;
         },
 
