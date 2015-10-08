@@ -5,6 +5,7 @@ define(function(require) {
         InfiniteScrollView = require('thirdchannel/views/shared/infinite_scroll'),
         InfiniteCollection = require('thirdchannel/collections/shared/infinite'),
         GalleryImageModal = require('thirdchannel/modals/gallery_image_modal'),
+        HandlebarsTemplates = require('handlebarsTemplates');
 
         /**
          *
@@ -14,7 +15,7 @@ define(function(require) {
             el: "#gallery",
             infiniteCollectionClass: InfiniteCollection,
             per: 10,
-
+            loadingTemplate: HandlebarsTemplates['thirdchannel/loading_icon'],
             initialize: function () {
                 this.infiniteURL = context.links.feed;
                 GalleryView.__super__.initialize.apply(this, {url: context.links.feed});
