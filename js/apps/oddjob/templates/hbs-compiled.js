@@ -739,7 +739,7 @@ function program10(depth0,data) {
   else { helper = (depth0 && depth0.expectedDuration); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.expectedDuration) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(6, program6, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\">\n\n	    	<label for=\"\" class=\"label\">Payment Rate ($)</label>\n	    	<input name=\"paymentRate[";
+  buffer += "\">\n\n	    	<label for=\"\" class=\"label\">Payment Rate ($/hr)</label>\n	    	<input name=\"paymentRate[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
