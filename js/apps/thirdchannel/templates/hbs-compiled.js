@@ -1757,6 +1757,55 @@ function program2(depth0,data,depth1) {
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/profiles/stores/rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n      <tr>\n        <td>\n          <a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.profile)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</a>\n          ";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.schedule), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </td>\n        <td>";
+  if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</td>\n      </tr>\n    ";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n            &nbsp;\n            <a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.schedule)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" target=\"_blank\" title=\"View Store Schedule\"><i class=\"ic ic_calendar\"></i></a>\n          ";
+  return buffer;
+  }
+
+function program4(depth0,data) {
+  
+  
+  return "\n      <tr>\n        <td colspan=\"2\">No stores are assigned.</td>\n      </tr>\n    ";
+  }
+
+  buffer += "<table class=\"table\">\n  <thead>\n   <tr>\n     <th>Store Name</th>\n     <th>Address</th>\n   </tr>\n  </thead>\n  <tbody>\n    ";
+  options={hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),data:data}
+  if (helper = helpers.rows) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.rows); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n  </tbody>\n</table>";
+  return buffer;
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/reports/index/section"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
