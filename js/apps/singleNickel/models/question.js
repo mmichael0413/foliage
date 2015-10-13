@@ -42,6 +42,10 @@ define(function(require){
                 "QuestionHidden": {
                     text: "Don't show agent",
                     hideSiblings: "#questionMultiple,#questionExplain,#questionPlaceholder"
+                },
+                "QuestionDisabled": {
+                    text: "Disable Question (ENGINEERING ONLY)",
+                    hideSiblings: "#questionMultiple,#questionExplain,#questionPlaceholder"
                 }
             },
             explain: {

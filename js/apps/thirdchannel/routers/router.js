@@ -28,13 +28,16 @@ define(function(require){
         PostView = require('thirdchannel/views/posts/main'),
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge'),
         StoreProfileSchedule = require('thirdchannel/views/store_profile/schedule'),
-        Labs = require('thirdchannel/views/labs/main');
+        Labs = require('thirdchannel/views/labs/main'),
+        AnswersExportView = require('thirdchannel/views/exports/answers/main'),
+        ProfileStoreListView = require('thirdchannel/views/profiles/stores/list');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
+            'programs/:program_id/profiles/:user_id/stores': 'programProfileStores',
             'programs/:program_id/checkins' : 'checkin_list',
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
@@ -61,6 +64,7 @@ define(function(require){
             'programs/:program_id/labs/sku_sales': 'labsSkus',
             'programs/:program_id/labs(/)': 'labsSalesCompare',
             'programs/:program_id/labs/sales_comparison': 'labsSalesCompare',
+            'programs/:program_id/exports/survey_answers': 'answerExports',
 
             'programs/:program_id/*path' : 'defaultPath',
             '*path': 'notFound'
@@ -147,6 +151,10 @@ define(function(require){
             ActivitiesMain.init(url, null, false);
         },
 
+        programProfileStores: function(program_id, user_id) {
+            new ProfileStoreListView().bootstrapCollection(window.bootstrap);
+        },
+
         dashboardAlerts: function(programId){
             $('#alerts-dashboard').append(new DashboardsAlertsSectionsView({programId: programId}).render().$el);
         },
@@ -199,6 +207,10 @@ define(function(require){
 
         labsSalesCompare: function () {
             Labs.salesCompare();
+        },
+
+        answerExports: function() {
+            new AnswersExportView().render();
         },
 
         defaultPath: function(program_id) {

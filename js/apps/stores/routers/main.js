@@ -107,6 +107,9 @@ define(function(require){
         if(window.bootstrap && window.bootstrap.programs) {
             context.programs = new Backbone.Collection(window.bootstrap.programs);
         }
+        if(window.bootstrap && window.bootstrap.programStoreStatuses) {
+            context.programStoreStatuses = window.bootstrap.programStoreStatuses;
+        }
         context.router = new AppRouter();
         Backbone.history.start({pushState: true, hashChange: false});
         MainLayout.init();

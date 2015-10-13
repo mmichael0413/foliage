@@ -1,5 +1,13 @@
 <p class="col-3-12">{{name}}</p>
 <p class="col-4-12">{{address}}</p>
-<p class="col-1-12">{{status}}</p>
+<p class="col-1-12">
+  <select class="status">
+    {{#select status}}
+      {{#each programStoreStatuses}}
+          <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    {{/select}}
+  </select>
+</p>
 <p class="col-2-12">{{latitude}}</p>
 <p class="col-2-12">{{longitude}}</p>
