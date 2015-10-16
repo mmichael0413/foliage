@@ -39,8 +39,11 @@ define(function (require) {
             },
 
             textSearch: function (e) {
+
                 if (e.which == 13) {
                     context.trigger('filter:set', [{name: 'text', value: $(e.currentTarget).val()}]);
+                    e.preventDefault();
+                    e.stopPropagation();
                 }
             },
             updateCount: function (count) {
