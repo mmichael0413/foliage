@@ -4,6 +4,7 @@ define(function (require) {
         $ = require('jquery'),
         _ = require('underscore'),
         Templates = require('handlebarsTemplates'),
+        BulkCheck = require('oddjob/views/misc/bulk_check'),
         SelectedStoresStore = require('oddjob/stores/selectedStores'),
         ProgramStoresStore = require('oddjob/stores/programStores');
 
@@ -12,16 +13,18 @@ define(function (require) {
          * 
          * @return View
          */
-    return require('oddjob/views/stores/list').extend({
+    var ScheduledStoresView = require('oddjob/views/stores/list').extend({
         templateName: "oddjob/stores/scheduled",
         initialize: function () {
             this.collection = ProgramStoresStore;
             // the filter will awaken the programStores fetch
             this.listenTo(ProgramStoresStore, 'sync', function () {
-                this.render();
+                this.render(); 
             }.bind(this));
 
             this.listenTo(context, 'stores:remove:selected', this.removeSelected);
+            this.listenTo(context, 'stores:page:select:true', this.selectAll);
+            this.listenTo(context, 'stores:page:select:false', this.deselectAll);
             
         },
 
@@ -57,5 +60,7 @@ define(function (require) {
             context.trigger('filter:request');
         }
     });
+    ScheduledStoresView = ScheduledStoresView.extend(BulkCheck);
+    return ScheduledStoresView;
     
 });

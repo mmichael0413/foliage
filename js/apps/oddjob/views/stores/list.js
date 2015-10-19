@@ -3,6 +3,7 @@ define(function (require) {
         _   = require('underscore'),
         context = require('context'),
         Templates = require('handlebarsTemplates'),
+        BulkCheck = require('oddjob/views/misc/bulk_check'),
         ProgramStoresStore = require('oddjob/stores/programStores'),
         SelectedStoresStore = require('oddjob/stores/selectedStores'),
         Pageable = require('shared/views/utils/pageable_component');
@@ -46,28 +47,12 @@ define(function (require) {
                 var $check = $(e.currentTarget);
                 context.trigger('stores:uuids:' + $check.prop('checked'), [$check.val()]);
 
-            },
-
-            selectAll: function () {
-                this._check(true);
-            },
-
-            deselectAll: function () {
-                this._check(false);
-            },
-
-            _check: function (value) {
-                var $checkboxes = this.$el.find("input[type='checkbox']"),
-                    uuids = _.map($checkboxes, function(checkbox) {
-                      return checkbox.value;  
-                    });
-                $checkboxes.prop('checked', value);
-                // the store uuids store should listen for this
-                context.trigger('stores:uuids:' + value, uuids);
             }
 
         };
 
     _.extend(ProgramStoreListView, Pageable);
+    _.extend(ProgramStoreListView, BulkCheck);
+    
     return Backbone.View.extend(ProgramStoreListView);
 });
