@@ -9,7 +9,6 @@ define(function(require){
         template: HandleBarsTemplates['thirdchannel/checkins/tasks'],
         initialize: function(options) {
             this.tasks = options.tasks;
-            console.log(options.tasks);
         },
 
         render: function() {

@@ -14,7 +14,7 @@ define(function(require) {
             });
 
            this.afterRender();
-            
+
            return this;
         }
     });
