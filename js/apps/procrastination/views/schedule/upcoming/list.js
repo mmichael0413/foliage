@@ -18,7 +18,7 @@ define(function (require) {
         initialize: function (options) {
             var self = this;
             this.unscheduledCount = 0;
-            this.list = new ListView({aggregateId: options.aggregateId, showComplete: false}).setElement('.scheduled .schedules');
+            //this.list = new ListView({aggregateId: options.aggregateId, showComplete: false}).setElement('.scheduled .schedules');
             this.listenTo(this, 'fullcalendar.date.create', this.updateSchedule);
             this.listenTo(this, 'fullcalendar.refresh', this.refreshCalendar);
 
@@ -53,7 +53,7 @@ define(function (require) {
                             store: label,
                             start: moment(model.get('dateScheduled')).utc().format("YYYY-MM-DD"),
                             allDay: true,
-                            className: model.get('taskColor'),
+                            className: model.get('jobColor'),
                             editable: model.get('dateCompleted') ? false : true
                         });
                     });
@@ -104,7 +104,7 @@ define(function (require) {
             });
 
             this.listenTo(this.collection, 'destroy', this.destroy);
-            this.listenTo(this.list.collection, 'destroy', this.destroy);
+           // this.listenTo(this.list.collection, 'destroy', this.destroy);
             this.renderControls();
             return this;
         },
@@ -120,16 +120,16 @@ define(function (require) {
 
             // if collection has models, render them
             this.$('.schedule-container .unscheduled .schedules').html('');
-            this.$('.schedule-container .scheduled .schedules').html('');
+           // this.$('.schedule-container .scheduled .schedules').html('');
 
             this.groupedSchedules = this.collection.groupBy(function(schedule){
                 return schedule.get('dateScheduled') !== null;
             });
 
-            if(this.groupedSchedules.true !== undefined) {
-                this.list.$el.html('');
-                this.list.fetch();
-            }
+            // if(this.groupedSchedules.true !== undefined) {
+            //     this.list.$el.html('');
+            //     this.list.fetch();
+            // }
 
             if(this.groupedSchedules.false !== undefined) {
                 this.unscheduledCount = this.groupedSchedules.false.length;

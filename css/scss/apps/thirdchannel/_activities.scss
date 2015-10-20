@@ -1,5 +1,4 @@
 @import '../../lib/backbone.modal/modal';
-//@import '../../modules/modal';
 
 $padding: 1.5em;
 @include swb-small {
@@ -11,10 +10,31 @@ $padding: 1.5em;
   border-radius: $border-radius-base;
   border: 1px solid $border-color;
 }
+.tasks {
+  @include clearfix();
+  padding: $padding;
+  vertical-align: middle;
+  border-bottom: 1px solid $border-color;
 
-.activity, .comment-holder {
-  //  padding:1.5em;
+  .task-item {
+    display: inline-block;
+    margin-right: 1em;
+  }
+  .badge {
+    background-color: $main-background;
+    padding: 0.5em;
+    &.inverse {
+      background-color: $red;
+      color: $main-background;
+    }
+  }
+
+  
 }
+
+// .activity, .comment-holder {
+//   //  padding:1.5em;
+// }
 
 .activity {
   background: white;

@@ -14,12 +14,13 @@ define(function (require) {
         },
 
         events: {
-            'click .unassign' : 'unassign'
+            'click .unassign' : 'unassign',
+            'click .expand' : 'expand',
+            'click .collapse' : 'collapse'
         },
 
         render: function() {
             var dateCompleted = this.model.get('dateCompleted') ? moment(this.model.get('dateCompleted')).utc().format('MM/DD/YYYY') : null;
-
 
             var attrs = {
                 city: this.model.get('city'),
@@ -29,11 +30,15 @@ define(function (require) {
                 state: this.model.get('state'),
                 storeName: this.model.get('storeName'),
                 street: this.model.get('street'),
-                taskDetail: this.model.get('taskDetail'),
+                jobDetail: this.model.get('jobDetail'),
                 visitUUID: this.model.get('visitUUID'),
                 zip: this.model.get('zip'),
                 canUnassign: this.model.get('canUnassign'),
-                showCompleted: this.showCompleted
+                showCompleted: this.showCompleted,
+                totalDuration: this.model.get('totalDuration'),
+                tasks: this.model.get('tasks'),
+                taskCount: this.model.get('tasks').length,
+                hidden: 'hidden'
             };
 
 
@@ -49,6 +54,25 @@ define(function (require) {
             if(confirm('This operation cannot be undone. Are you sure you want to remove this visit?')) {
                 this.model.destroy({wait:true, data: {id: this.model.id, aggregateId: context.aggregateId}});
             }
+        },
+
+        expand: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            this.$('.additional-content').show('fast');
+            $(e.target).addClass('collapse').removeClass('expand');
+
+
+        },
+
+        collapse: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            this.$('.additional-content').hide('fast');
+            //$(e.target).removeClass('open');
+            $(e.target).removeClass('collapse').addClass('expand');
         }
 
     });

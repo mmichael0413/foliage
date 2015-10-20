@@ -1,8 +1,19 @@
-<div class="col-4-5">
-    <div><strong>{{taskDetail}}</strong></div>
-    <div>{{storeName}}: {{street}} {{city}}, {{state}}</div>
-    {{#if canUnassign}}<div><a href="#" class='unassign'>Unassign Visit</a></div>{{/if}}
+<div class="col-6-12 col-sm-7-12">
+    <p class="bold">{{storeName}}</p>
+    <p>{{street}}</p><p>{{city}}, {{state}}</p>
+    {{#if canUnassign}}
+        <div><a href="#" class='unassign'>Unassign Visit</a></div>
+    {{/if}}
 </div>
+
 {{#if showCompleted}}
-    <div class="col-1-5">{{dateCompleted}}</div>
+    <div class="col-2-12">{{totalDuration}} mins</div>
+    <div class="col-3-12 hidden-xs">{{dateCompleted}}</div>
+    <div class="col-1-12 col-sm-3-12 center">{{taskCount}} <span class="expand"></span></div>
+{{else}}
+    <div class="col-4-12">{{totalDuration}} mins</div>
+    <div class="col-2-12 col-sm-3-12 center">{{taskCount}} <span class="expand"></span></div>
 {{/if}}
+
+
+{{> 'tasks'}}

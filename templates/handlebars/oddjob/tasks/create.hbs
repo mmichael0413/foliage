@@ -1,0 +1,29 @@
+			
+			<input name="taskId[{{index}}]" type="hidden" value="{{#id}}{{this}}{{/id}}"/>
+			
+			<label class="label">Task (Survey)</label>
+	    	<select name="survey[{{index}}]" id="survey" class="input">
+	    	<option value="">--Select a Survey--</option>
+	    	{{#surveys}}
+	    		<option value="{{uuid}}" {{#selected}}selected{{/selected}}>{{title}}</option>
+	    	{{/surveys}}
+	    	</select>
+
+	    	<label for="" class="label">Expected Minutes</label>
+
+	    	<input name="expectedDuration[{{index}}]" type="number" class="input small" value="{{#expectedDuration}}{{this}}{{else}}0{{/expectedDuration}}">
+
+
+	    	<label for="" class="label">Payment Rate ($/hr)</label>
+	    	<input name="paymentRate[{{index}}]" type="number" class="input small" value="{{#displayPaymentRate}}{{this}}{{else}}0{{/displayPaymentRate}}">
+
+	    	<label for="" class="label">Required?</label>
+	    	<select name="required[{{index}}]" id="" class="input small">
+	    		<option value="true" {{#required}}selected{{/required}}>Yes</option>
+	    		<option value="false"{{#required}}{{else}}selected{{/required}}>No</option>
+	    	</select>
+
+	    	{{#removeable}}
+				<a class='btn remove'>Remove</a>
+	    	{{/removeable}}
+	    	

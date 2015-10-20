@@ -18,16 +18,16 @@ $color5: #F0EBE6;
    // border-radius: $border-radius-base;
    // border: 1px solid darken($color, 20%);
    // margin-bottom: 2px;
-    &.task {
+    &.job {
       background-color:lighten($palette7, 20%);
     }
-    &.task-0 {  background-color: $color1;  }
-    &.task-1 {  background-color: $color2;  }
-    &.task-2 {  background-color: $color3;  }
-    &.task-3 {  background-color: $color4;  }
-    &.task-4 {  background-color: $color5;  }
-    &.task-5 {  background-color: $palette6;  }
-    &.task-6 {  background-color: $palette7;  }
+    &.job-0 {  background-color: $color1;  }
+    &.job-1 {  background-color: $color2;  }
+    &.job-2 {  background-color: $color3;  }
+    &.job-3 {  background-color: $color4;  }
+    &.job-4 {  background-color: $color5;  }
+    &.job-5 {  background-color: $palette6;  }
+    &.job-6 {  background-color: $palette7;  }
     &.ui-draggable-dragging {
       border-radius: $border-radius-base;
       background-color: $color;
@@ -74,28 +74,28 @@ $color5: #F0EBE6;
 }
 .fc-event {
   color: $palette3;
-  &.task-0 {
+  &.job-0 {
     background-color: $color1;
     border-color: darken($color1, 20%);
     @include hover-color();
   }
-  &.task-1 {
+  &.job-1 {
     background-color: $color2;
     border-color: darken($color2, 20%);
     @include hover-color();
   }
-  &.task-2 {
+  &.job-2 {
     background-color: $color3;
     border-color: darken($color3, 20%);
     @include hover-color();
   }
-  &.task-3 {
+  &.job-3 {
     background-color: $color4;
     border-color: darken($color4, 20%);
     @include hover-color();
   }
 
-  &.task-completed {
+  &.job-completed {
     background-color: $palette2;
     border-color: darken($palette2, 20%);
     @include hover-color();

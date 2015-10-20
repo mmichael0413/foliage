@@ -9,10 +9,12 @@ define(function(require){
         template: HandleBarsTemplates['thirdchannel/checkins/tasks'],
         initialize: function(options) {
             this.tasks = options.tasks;
+            this.customerStoreId = options.customerStoreId;
+            this.authenticityToken = options.authenticityToken;
         },
 
         render: function() {
-            this.$el.html(this.template({tasks: this.tasks}));
+            this.$el.html(this.template({tasks: this.tasks, customerStoreId: this.customerStoreId, authenticityToken: this.authenticityToken}));
 
             return this;
         }

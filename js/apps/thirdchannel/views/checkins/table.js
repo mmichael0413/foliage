@@ -14,9 +14,9 @@ define(function(require) {
                 $body.append(new StoreView({model: model}).render().el);
             });
 
-           this.afterRender();
+            this.afterRender();
 
-           return this;
+            return this;
         }
     });
 });
