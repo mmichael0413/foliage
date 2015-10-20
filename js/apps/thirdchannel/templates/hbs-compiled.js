@@ -715,14 +715,6 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "<br/>";
-  if (helper = helpers.city) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.city); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + ", ";
-  if (helper = helpers.state) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.state); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
     + "\n    </div>\n    <div class=\"col-1-5\"><a href=\"#\" class=\"open-jobs\">Open <i class=\"ic ic_down\"></i> </a> </div>\n</div>\n";
   return buffer;
   });
