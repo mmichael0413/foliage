@@ -3,7 +3,8 @@ define(function(require) {
         StoreView = require('thirdchannel/views/checkins/store');
 
     return PageableListView.extend({
-        el: "#stores",
+        el: ".section",
+        bodySelector: '.table',
 
         render: function () {
             var $body = this.$el.find(this.bodySelector);
