@@ -8,10 +8,6 @@ define(function(require){
     return Backbone.View.extend({
         className: 'store',
         template: HandleBarsTemplates['thirdchannel/checkins/store'],
-        initialize: function(options) {
-            this.model = options.model;
-            return this;
-        },
 
         openBtn: "Open <i class='ic ic_down'></i>",
         closeBtn: "Close <i class='ic ic_up'></i>",
