@@ -70,3 +70,18 @@
     }
 }
 
+
+@include swa-medium() {
+  .checkin-report {
+    .item {
+      > div:first-child {
+        padding-right: 2em;
+      }
+
+      > div:last-child {
+        padding-left: 2em;
+      }
+    }
+  }
+}
+
