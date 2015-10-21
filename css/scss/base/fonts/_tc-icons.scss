@@ -4,11 +4,11 @@
 
 @font-face {
   font-family: "tc-icons";
-  src: url("./tc-icons_61db9b98579e512befaaf4849a3934a1.eot");
-  src: url("./tc-icons_61db9b98579e512befaaf4849a3934a1.eot?#iefix") format("embedded-opentype"),
-       url("./tc-icons_61db9b98579e512befaaf4849a3934a1.woff") format("woff"),
-       url("./tc-icons_61db9b98579e512befaaf4849a3934a1.ttf") format("truetype"),
-       url("./tc-icons_61db9b98579e512befaaf4849a3934a1.svg#tc-icons") format("svg");
+  src: url("../../shared/fonts/tc-icons_61db9b98579e512befaaf4849a3934a1.eot");
+  src: url("../../shared/fonts/tc-icons_61db9b98579e512befaaf4849a3934a1.eot?#iefix") format("embedded-opentype"),
+       url("../../shared/fonts/tc-icons_61db9b98579e512befaaf4849a3934a1.woff") format("woff"),
+       url("../../shared/fonts/tc-icons_61db9b98579e512befaaf4849a3934a1.ttf") format("truetype"),
+       url("../../shared/fonts/tc-icons_61db9b98579e512befaaf4849a3934a1.svg#tc-icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -16,7 +16,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: "tc-icons";
-    src: url("./tc-icons_61db9b98579e512befaaf4849a3934a1.svg#tc-icons") format("svg");
+    src: url("../../shared/fonts/tc-icons_61db9b98579e512befaaf4849a3934a1.svg#tc-icons") format("svg");
   }
 }
 

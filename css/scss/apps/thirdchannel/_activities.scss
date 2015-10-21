@@ -23,9 +23,9 @@ $padding: 1.5em;
   .badge {
     background-color: $main-background;
     padding: 0.5em;
-    &.inverse {
-      background-color: $red;
-      color: $main-background;
+    color: $text-color;
+    &.active {
+      background-color: $border-color;
     }
   }
 

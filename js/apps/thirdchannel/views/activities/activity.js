@@ -24,29 +24,36 @@ define(function(require) {
             'click .carousel img': 'openModal',
             "click .arrow-left" : "prevSlide",
             "click .arrow-right" : "nextSlide",
-            "click .hide-post" : "hidePost"
+            "click .hide-post" : "hidePost",
+            "click .task-item" : "loadTask"
         },
         initialize: function (options) {
             var self = this;
             this.programId = options.programId;
+            this.options = options;
             if (options.model === undefined) {
                 this.model = new Activity();
             } else {
                 this.model = options.model;
-                if(options.model.get('images')) {
-                    this.model.set('imageCount', options.model.get('images').length);
-                } else {
-                    this.model.set('imageCount', 0);
-                }
             }
-            this.model.set('singleActivity', options.singleActivity);
-            this.model.set('isMobile', helpers.isMobile.any());
+            
             this.objId = this.model.get('activity_id');
             this.carousel = null;
 
             this.listenTo(context, 'navigation:collapsed', this.fixCollapsedCarousel);
         },
         render: function () {
+            //var options = this.options;
+            
+            if(this.model.get('images')) {
+                    this.model.set('imageCount', this.model.get('images').length);
+            } else {
+                this.model.set('imageCount', 0);
+            }
+            
+            this.model.set('singleActivity', this.options.singleActivity);
+            this.model.set('isMobile', helpers.isMobile.any());
+
             if (this.model.get('comments_count') > 3) {
                 this.model.set('additional_comments', this.model.get('comments_count') - 3);
             }
@@ -54,7 +61,7 @@ define(function(require) {
             if (this.model.get('editable') || this.model.get('hideable')) {
                 this.model.set('show-moderation', true);
             }
-
+            
             this.$el.html(this.template(this.model.attributes));
 
             // render the comments view
@@ -63,13 +70,25 @@ define(function(require) {
             this.newComment = new NewCommentView({el: this.$('.new-comment'), activity: this.model, collection: this.comments.collection});
 
             if(!this.model.get('isMobile') || (this.model.get('isMobile') && this.model.get('singleActivity'))) {
-
                 this.comments.render();
-
                 this.newComment.render();
             }
 
             return this;
+        },
+
+        loadTask: function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var model = new Backbone.Model(),
+                self = this;
+            model.url = e.currentTarget.href;
+            model.fetch()
+            .done(function () {
+                self.model = model;
+                self.render();
+                self.initializeCarousel();
+            });
         },
         likeActivity: function (e) {
             e.stopPropagation();
