@@ -11,15 +11,19 @@ define(function (require) {
         },
         events: {
             "change input": "updateScheduledDate",
-            "click .unassign" : "unassign"
+            "click .unassign" : "unassign",
+            "click .task-count": "toggleTaskList"
         },
         render: function () {
-            this.$el.html(this.template(this.model.attributes));
+            var data = this.model.toJSON();
+            data.taskCount = data.tasks.length;
+            data.hidden = 'hidden';
+            this.$el.html(this.template(data));
 
             this.$el.data('event', {
                 id: this.model.get('id'),
                 title: this.model.get('storeName'),
-                className: this.model.get('taskColor')
+                className: this.model.get('jobColor')
             });
 
             this.$el.draggable({
@@ -33,7 +37,7 @@ define(function (require) {
                     $(event.target).removeClass('drag-active');
                 }
             });
-            this.$el.addClass(this.model.get('taskColor'));
+            this.$el.addClass(this.model.get('jobColor'));
 
             return this;
         },
@@ -54,6 +58,18 @@ define(function (require) {
             e.stopPropagation();
             if(confirm('This operation cannot be undone. Are you sure you want to remove this visit?')) {
                 this.model.destroy({wait: true, data: {id: this.model.id, aggregateId: context.aggregateId}});
+            }
+        },
+
+        toggleTaskList: function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var $taskList = this.$el.find(".additional-content"),
+                visible = $taskList.is(':visible');
+            if (visible) {
+                $taskList.hide();
+            } else {
+                $taskList.show();
             }
         }
     });

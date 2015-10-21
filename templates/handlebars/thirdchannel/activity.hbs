@@ -1,4 +1,13 @@
 <div class="activity-holder">
+
+    {{#if tasks}}
+        <div class="tasks clearfix">
+            <h3 class="task-item">Tasks:</h3>
+            {{#tasks}}
+            <p class="task-item badge">{{title}}</p>
+            {{/tasks}}
+        </div>
+    {{/if}}
     <div class="activity">
         <div class="activity-meta">
             <img src="{{user_image}}" alt="Images That Describes Me" class="user-image img-circle" onerror="this.src='{{user_image_error_url}}'"/>

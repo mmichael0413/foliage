@@ -13,8 +13,8 @@ define(function(require){
         StoreProfileMain = require('thirdchannel/views/store_profile/main'),
         StoresIntelEdit = require('thirdchannel/views/stores/intel/edit'),
         StoreProfileProductsEdit = require('thirdchannel/views/store_profile/products/edit'),
-        CheckinView = require('thirdchannel/views/checkins/show/checkin'),
-        CheckinModel = require('thirdchannel/models/checkins/show/form'),
+        SurveyView = require('thirdchannel/views/checkins/show/survey'),
+        SurveyModel = require('thirdchannel/models/checkins/show/form'),
         CheckinChooseView = require('thirdchannel/views/checkins/choose/show/main'),
         DashboardsAlertsSectionsView = require('thirdchannel/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('thirdchannel/views/dashboards/alerts/show/stores'),
@@ -29,14 +29,16 @@ define(function(require){
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge'),
         StoreProfileSchedule = require('thirdchannel/views/store_profile/schedule'),
         Labs = require('thirdchannel/views/labs/main'),
-        AnswersExportView = require('thirdchannel/views/exports/answers/main');
+        AnswersExportView = require('thirdchannel/views/exports/answers/main'),
+        ProfileStoreListView = require('thirdchannel/views/profiles/stores/list');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
-            'programs/:program_id/checkins' : 'checkin_list',
+            'programs/:program_id/profiles/:user_id/stores': 'programProfileStores',
+            'programs/:program_id/checkins(/)' : 'checkin_list',
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
             'programs/:program_id/stores/:store_id(/)': 'storeProfile',
@@ -47,7 +49,8 @@ define(function(require){
             'programs/:program_id/stores/:store_id/product/edit': 'editStoreProfileProduct',
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
             'programs/:program_id/stores/:store_id/schedule' : 'storeProfileSchedule',
-            'programs/:program_id/checkins/:id': 'checkin',
+            
+            'programs/:program_id/checkins/:checkin_id/submissions/:id': 'submission',
             'programs/:program_id/checkins/choose/:id': 'selectCheckin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
@@ -149,6 +152,10 @@ define(function(require){
             ActivitiesMain.init(url, null, false);
         },
 
+        programProfileStores: function(program_id, user_id) {
+            new ProfileStoreListView().bootstrapCollection(window.bootstrap);
+        },
+
         dashboardAlerts: function(programId){
             $('#alerts-dashboard').append(new DashboardsAlertsSectionsView({programId: programId}).render().$el);
         },
@@ -165,8 +172,8 @@ define(function(require){
             ReportMain.init({programId: programId});
         },
 
-        checkin : function(programId, id) {
-            new CheckinView({model: new CheckinModel({programId: programId, checkinId: id})}).render();
+        submission: function(programId, checkinId, submissionId) {
+            new SurveyView({model: new SurveyModel({programId: programId, checkinId: checkinId, submissionId: submissionId})}).render();
         },
 
         selectCheckin : function(programId, id) {

@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+   <tr>
+     <th>Store Name</th>
+     <th>Address</th>
+   </tr>
+  </thead>
+  <tbody>
+    {{#rows}}
+      <tr>
+        <td>
+          <a href="{{ links.profile }}">{{name}}</a>
+          {{#if links.schedule}}
+            &nbsp;
+            <a href="{{links.schedule}}" target="_blank" title="View Store Schedule"><i class="ic ic_calendar"></i></a>
+          {{/if}}
+        </td>
+        <td>{{address}}</td>
+      </tr>
+    {{else}}
+      <tr>
+        <td colspan="2">No stores are assigned.</td>
+      </tr>
+    {{/rows}}
+  </tbody>
+</table>

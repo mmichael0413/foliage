@@ -18,7 +18,6 @@ define(function (require) {
         render: function() {
             this.$el.append(this.template({date: this.date, showCompleted: this.showCompleted}));
             this.attachVisits();
-
             return this;
         },
 
@@ -26,7 +25,7 @@ define(function (require) {
             var self = this;
             _.each(this.visits, function(visit){
                 var visits = new ScheduledVisits({model: visit, showCompleted: self.showCompleted});
-                self.$('.body').append(visits.render().el);
+                self.$('.body.main').append(visits.render().el);
             });
 
         }

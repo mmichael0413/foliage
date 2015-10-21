@@ -1,0 +1,19 @@
+.subtle-instruction {
+    color: $medium-blue;
+    font-style: italic;
+}
+#taskContainer {
+    .task-item {
+        margin-bottom:1.25em;
+        &.name {
+            
+            line-height: 2em;
+        }
+        &.btn {
+            text-align: center;
+        }
+        &.error {
+            color: $red;
+        }
+    }    
+}
