@@ -44,7 +44,7 @@ define(function(require) {
         },
         render: function () {
             //var options = this.options;
-            
+            console.log(this.model.attributes);
             if(this.model.get('images')) {
                     this.model.set('imageCount', this.model.get('images').length);
             } else {
@@ -61,7 +61,7 @@ define(function(require) {
             if (this.model.get('editable') || this.model.get('hideable')) {
                 this.model.set('show-moderation', true);
             }
-            
+
             this.$el.html(this.template(this.model.attributes));
 
             // render the comments view

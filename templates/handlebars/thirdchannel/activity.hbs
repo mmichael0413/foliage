@@ -37,22 +37,28 @@
         </div>
         <div class="activity-content">
             {{#if_eq type "Checkin"}}
-            <div class="issues-found">
-                <h3>{{issue_length}} {{pluralize issue_length 'New Issue Found' 'New Issues Found'}}</h3>
-                <ul class="unstyled">
-                    {{#each issues}}
-                    <li>- {{label}}</li>
-                    {{/each}}
-                </ul>
-                {{#if_gt issue_length 3}}
-                <a href="{{report_url}}" target="_blank"><span class="indicator">showing 3 of {{issue_length}}</span></a>
-                {{/if_gt}}
-            </div>
+            {{#if_gt issue_length 0}}
+                <div class="issues-found">
+                    <h3>{{issue_length}} {{pluralize issue_length 'New Issue Found' 'New Issues Found'}}</h3>
+                    <ul class="unstyled">
+                        {{#each issues}}
+                        <li>- {{label}}</li>
+                        {{/each}}
+                    </ul>
+                    {{#if_gt issue_length 3}}
+                    <a href="{{report_url}}" target="_blank"><span class="indicator">showing 3 of {{issue_length}}</span></a>
+                    {{/if_gt}}
+                </div>
+            {{/if_gt}}
             {{/if_eq}}
-            {{#content}}
-            <h3>{{../subject}}</h3>
-            {{{this}}}
-            {{/content}}
+            <div class="summary">
+            {{#show_summary}}                
+                <h3>{{../subject}}</h3>
+                <p>{{{../content}}}</p>    
+            {{else}}
+                <h3>There is no Summary for this {{../name}}.</h3>
+            {{/show_summary}}
+            </div>
             
         </div>
         {{#if images}}

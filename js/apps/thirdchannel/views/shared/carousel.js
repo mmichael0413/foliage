@@ -34,7 +34,7 @@ define(function(require) {
                         $carousel.append(new HoverableImageView({model: image}).render().$el);
                     });
                 } else {
-                    $carousel.append("<p>There are no images for this store.</p>");
+                    $carousel.append("<p>There are no images for this task.</p>");
                 }
 
                 this.carousel = $carousel.slick({
