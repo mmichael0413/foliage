@@ -49,9 +49,11 @@
                 {{/if_gt}}
             </div>
             {{/if_eq}}
-
-            <h3>{{subject}}</h3>
-            {{{content}}}
+            {{#content}}
+            <h3>{{../subject}}</h3>
+            {{{this}}}
+            {{/content}}
+            
         </div>
         {{#if images}}
         <div class="activity-photos">
