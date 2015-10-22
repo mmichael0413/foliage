@@ -3,7 +3,12 @@
         <div class="tasks clearfix">
             <h3 class="task-item">Tasks:</h3>
             {{#tasks}}
-            <a class="task-item badge {{#active}}active{{/active}}" href="{{href}}">{{title}}</a>
+                <a class="task-item {{#active}}active{{/active}}" href="{{href}}">
+                    <div class="badge">{{title}}</div>
+                    {{#has_summary}}<div class="task-info badge"><i class="ic ic_feed-summary"/></div>{{/has_summary}}
+                    {{#has_photos}}<div class="task-info badge"><i class="ic ic_feed-photos"/></div>{{/has_photos}}
+                    {{#has_alerts}}<div class="task-info badge"><i class="ic ic_feed-alerts"/></div>{{/has_alerts}}
+                </a>
             {{/tasks}}
         </div>
     {{/if}}

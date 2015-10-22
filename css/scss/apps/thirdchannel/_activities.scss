@@ -12,22 +12,34 @@ $padding: 1.5em;
 }
 .tasks {
   @include clearfix();
-  padding: $padding;
+  padding: $padding $padding 0 $padding;
   vertical-align: middle;
   border-bottom: 1px solid $border-color;
 
   .task-item {
     display: inline-block;
     margin-right: 1em;
+    padding-bottom: $padding;
+    &.active .badge {
+      background-color: $border-color;
+    }
   }
   .badge {
     background-color: $main-background;
+    display: inline-block;
     padding: 0.5em;
     color: $text-color;
     &.active {
       background-color: $border-color;
     }
   }
+  .task-info {
+      margin-left: -1px;
+      color: $medium-blue;
+      .ic {
+        padding: 0em 0.25em;
+      }
+    }
 
   
 }
