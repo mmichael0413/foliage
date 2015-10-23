@@ -1,15 +1,17 @@
 <div class="activity-holder">
     {{#if tasks}}
         <div class="tasks clearfix">
-            <h3 class="task-item">Tasks:</h3>
-            {{#tasks}}
+            <h3 class="tasks-label">Tasks:</h3>
+            <div class="task-container">
+                {{#tasks}}
                 <a class="task-item {{#active}}active{{/active}}" href="{{href}}">
-                    <div class="badge">{{title}}</div>
+                    <div class="badge task-label">{{title}}</div>
                     {{#has_summary}}<div class="task-info badge"><i class="ic ic_feed-summary"/></div>{{/has_summary}}
                     {{#has_photos}}<div class="task-info badge"><i class="ic ic_feed-photos"/></div>{{/has_photos}}
                     {{#has_alerts}}<div class="task-info badge"><i class="ic ic_feed-alerts"/></div>{{/has_alerts}}
                 </a>
-            {{/tasks}}
+                {{/tasks}}
+            </div>
         </div>
     {{/if}}
     <div class="activity">

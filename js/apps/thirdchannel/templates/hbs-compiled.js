@@ -345,13 +345,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n        <div class=\"tasks clearfix\">\n            <h3 class=\"task-item\">Tasks:</h3>\n            ";
+  buffer += "\n        <div class=\"tasks clearfix\">\n            <h3 class=\"tasks-label\">Tasks:</h3>\n            <div class=\"task-container\">\n                ";
   options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
   if (helper = helpers.tasks) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.tasks); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.tasks) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </div>\n    ";
+  buffer += "\n            </div>\n        </div>\n    ";
   return buffer;
   }
 function program2(depth0,data) {
@@ -367,7 +367,7 @@ function program2(depth0,data) {
   if (helper = helpers.href) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.href); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n                    <div class=\"badge\">";
+    + "\">\n                    <div class=\"badge task-label\">";
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -389,7 +389,7 @@ function program2(depth0,data) {
   else { helper = (depth0 && depth0.has_alerts); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.has_alerts) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                </a>\n            ";
+  buffer += "\n                </a>\n                ";
   return buffer;
   }
 function program3(depth0,data) {
