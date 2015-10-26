@@ -9,10 +9,6 @@ define(function(require){
     return Backbone.View.extend({
         className: 'store',
         template: HandleBarsTemplates['thirdchannel/checkins/store'],
-        initialize: function(options) {
-            this.model = options.model;
-            return this;
-        },
 
         openBtn: "Open <i class='ic ic_down'></i>",
         closeBtn: "Close <i class='ic ic_up'></i>",
@@ -36,8 +32,11 @@ define(function(require){
             $target.html(this.closeBtn);
             $target.addClass('close-jobs');
 
-            this.taskList = new TaskList({tasks: this.model.get('tasks'), 
-                customerStoreId: this.model.get('id'), authenticityToken: this.model.get('authenticity_token')});
+            this.taskList = new TaskList({
+                tasks: this.model.get('tasks'),
+                customerStoreId: this.model.get('id'),
+                authenticityToken: this.model.get('authenticity_token')
+            });
 
             this.$el.append(this.taskList.render().el);
         },
