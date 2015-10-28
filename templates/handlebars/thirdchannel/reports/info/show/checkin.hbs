@@ -8,7 +8,12 @@
     </h3>
 
     {{#each info}}
-        <div class="info">{{this}}</div>
+        <div class="info">
+            {{#if ../task}}
+                <div class="task">{{value_lookup @index ../../task}}</div>
+            {{/if}}
+            {{this}}
+        </div>
     {{/each}}
 </div>
 
