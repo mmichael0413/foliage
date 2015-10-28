@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="body">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" value="{{person.firstName}}" placeholder="First Name"
+               data-rule-required="true"/>
+
+        <label for="lastName">Last Name</label>
+        <input id="lastName" type="text" name="lastName" value="{{person.lastName}}" placeholder="Last name"
+               data-rule-required="true"/>
+
+        <label>Gender</label>
+        <div class='input-group bottom'>
+            <label class='radio'><input type='radio' name='gender' value='Male' {{#if_eq person.gender 'Male'}}checked{{/if_eq}}  data-rule-required="true"/> Male</label>
+            <label class='radio'><input type='radio' name='gender' value='Female' {{#if_eq person.gender 'Femle'}}checked{{/if_eq}}  data-rule-required="true"/> Female</label>
+        </div>
+
+        <div class="clear"></div>
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="text" value="{{person.phone}}" placeholder="Phone number"
+               data-rule-required="true"/>
+    </div>
+</div>

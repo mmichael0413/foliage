@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="body">
+        <div class="input-group">
+            <div class="pure-g">
+                <label class="col-1-1">How do you spend your time?</label>
+                {{#each interests}}
+                    <div class="col-1-7"><input type="checkbox" name="interests" value="{{this}}"
+                                                {{#contains this ../person.interests}}checked{{/contains}}
+                                                data-rule-required="true"/> {{this}}</div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+</div>

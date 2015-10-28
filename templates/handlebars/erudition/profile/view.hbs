@@ -1,0 +1,78 @@
+<div class="action-row">
+    <a href="/profile/edit/{{person.id}}" class="light"><i class="ic ic_edit"></i> Edit Info</a>
+</div>
+
+
+<div class="profile-badge">
+    <div class="profile-image" style="background-image: url({{person.profilePhoto.small}})"></div>
+    <h2 class="subheader">{{person.fullName}}</h2>
+    {{person.residentialAddress.city}}, {{person.residentialAddress.state}}
+</div>
+
+
+<div class="card">
+    <div class="header">
+        General Information
+    </div>
+    <div class="body pure-g">
+        <div class="col-1-4">Gender:</div>
+        <div class="col-3-4">{{person.gender}}</div>
+        {{#if_eq 'Yes' person.attendedCollege}}
+            <div class="col-1-4">University:</div>
+            <div class="col-3-4">{{person.university.name}}</div>
+            <div class="col-1-4">Year of Graduation:</div>
+            <div class="col-3-4">{{person.graduationYear}}</div>
+        {{/if_eq}}
+    </div>
+</div>
+
+<div class="card">
+    <div class="header">Contact Information</div>
+    <div class="body pure-g">
+        <div class="col-1-4">Email:</div>
+        <div class="col-3-4">{{person.email}}</div>
+    </div>
+    <div class="divider"></div>
+    <div class="body pure-g">
+        <div class="col-1-4">Phone Number:</div>
+        <div class="col-3-4">{{person.phone}}</div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="header">Interests</div>
+    <div class="body">
+        {{person.interests}}
+    </div>
+    <div class="divider"></div>
+    <div class="body pure-g">
+        <div class="col-1-4">Trends Noticed:</div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="header">Address</div>
+    <div class="body pure-g">
+        <div class="col-1-4">Shipping Address:</div>
+        <div class="col-3-4">{{> address person.shippingAddress}}</div>
+    </div>
+    <div class="divider"></div>
+    <div class="body pure-g">
+        <div class="col-1-4">Residential Address:</div>
+        <div class="col-3-4">{{> address person.residentialAddress}}</div>
+
+    </div>
+</div>
+
+<div class="card">
+    <div class="header">Additional Information</div>
+    <div class="body pure-g">
+        <div class="col-1-4">Shirt Size</div>
+        <div class="col-3-4">{{person.shirtSize}}</div>
+    </div>
+    <div class="divider"></div>
+    <div class="body pure-g">
+        <div class="col-1-4">Shoe Size</div>
+        <div class="col-3-4">{{person.shoeSize}}</div>
+    </div>
+</div>

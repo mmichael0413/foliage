@@ -9,7 +9,7 @@ define(function(require){
         MainRouter = require('erudition/routers/router');
 
     var initialize = function(){
-       // MainLayout.init();
+        MainLayout.init();
         context.mainRouter = new MainRouter();
         context.instances = {};
         Backbone.history.start({pushState: true, hashChange: false});
