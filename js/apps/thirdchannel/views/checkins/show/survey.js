@@ -8,7 +8,7 @@ define(function(require) {
         Expanding = require('expanding'),
         DateTimePicker = require('dateTimePicker'),
         //context = require('context'),
-        FileView = require('thirdchannel/views/s3uploader/checkin_file');
+        FileView = require('shared/views/s3uploader/checkin_file');
 
     /**
      * 
