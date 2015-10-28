@@ -9,9 +9,15 @@ require.config({
         'underscore': '../libs/bower_components/underscore/underscore',
         'context': 'shared/utils/context',
         'handlebars'    : '../libs/bower_components/handlebars/handlebars.min',
-        'handlebarsTemplates': 'procrastination/templates/hbs-compiled',
+        'handlebarsTemplates': 'erudition/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
-        'helpers'       : 'thirdchannel/utils/helpers'
+        'helpers'       : 'thirdchannel/utils/helpers',
+        'serializeObject' : "../libs/bower_components/jquery-serialize-object/jquery.serialize-object",
+        'jquery-validate' : '../libs/bower_components/jquery-validation/dist/jquery.validate',
+        'jquery.mask' : '../libs/bower_components/jquery-mask-plugin/dist/jquery.mask',
+        'chosen': "../libs/bower_components/chosen/chosen.jquery",
+        'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min'
+
     },
 
     shim: {
@@ -46,6 +52,17 @@ require.config({
         },
         'handlebarsHelpers': {
             deps: ["handlebars"]
+        },
+        "jquery-validate": {
+            deps: ["jquery"],
+            exports: "jquery.validation"
+        },
+        'chosen': {
+            deps: ["jquery"]
+        },
+        "typeahead": {
+            deps:["jquery"],
+            exports: "$.fn"
         }
     }
 });

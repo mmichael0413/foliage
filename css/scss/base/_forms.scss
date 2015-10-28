@@ -5,6 +5,9 @@
 
 input[type=text], input[type=password], input[type=number], textarea, select, input[type="file"], input[type="email"] {
   width: 100%;
+  &.inline {
+    width: inherit;
+  }
 }
 
 input[type=text], input[type=password], input[type=number], textarea, select, input[type=date], input[type=datetime], input[type="email"] {
@@ -28,7 +31,6 @@ input[type=text], input[type=password], input[type=number], textarea, select, in
   }
   &.dark {
     background-color: $border-color;
-    color: $medium-blue;
   }
 }
 
@@ -136,6 +138,7 @@ input[type="file"]::-webkit-file-upload-button {
 
 .input-group {
   display: flex;
+  margin-bottom: 1.5em;
   input {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;   
@@ -152,5 +155,14 @@ input[type="file"]::-webkit-file-upload-button {
     font-size: 1em;
     cursor: pointer;
   }
+
+  label.radio {
+    margin: 0 1em;
+    &:first-of-type {
+      margin-left: 0;
+    }
+  }
+
+
 }
 

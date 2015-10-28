@@ -15,17 +15,7 @@ form.application-form {
   }
 }
 
-.fileupload-button {
-  position: relative;
-  overflow:hidden;
 
-  input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    opacity: 0;
-  }
-}
 
 .button-row {
   text-align: right;
