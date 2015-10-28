@@ -1,0 +1,17 @@
+
+    <form accept-charset="UTF-8" action="{{s3.action}}" class="s3_uploader" enctype="multipart/form-data" method="post">
+        <div style="display:none">
+            <input name="utf8" type="hidden" value="✓">
+        </div>
+        <input id="key" name="key" type="hidden" value="{{s3.key}}">
+        <input id="acl" name="acl" type="hidden" value="{{s3.acl}}">
+        <input id="AWSAccessKeyId" name="AWSAccessKeyId" type="hidden" value="{{s3.AWSAccessKeyId}}">
+        <input id="policy" name="policy" type="hidden" value="{{s3.policy}}">
+        <input id="signature" name="signature" type="hidden" value="{{s3.signature}}">
+        <input id="success_action_status" name="success_action_status" type="hidden"
+               value="{{s3.success_action_status}}">
+        <input id="X-Requested-With" name="X-Requested-With" type="hidden" value="{{s3.X-Requested-With}}">
+
+
+    </form>
+

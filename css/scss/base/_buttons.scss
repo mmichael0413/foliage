@@ -125,3 +125,23 @@
 .btn-container {
   margin-top: 1rem;
 }
+
+.button-row {
+  text-align: right;
+}
+
+.fileupload-button {
+  position: relative;
+  overflow:hidden;
+
+  input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+  }
+}
+
+a.light {
+  color: $medium-blue;
+}

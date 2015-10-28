@@ -18,6 +18,9 @@ h1 {
 h2 {
   font-size: 1.2em;
   margin: 0 0 1em 0;
+  &.subheader {
+    margin-bottom: .25em;
+  }
 }
 
 h3 {

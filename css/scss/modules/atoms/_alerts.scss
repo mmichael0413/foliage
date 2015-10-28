@@ -1,6 +1,7 @@
 .alert {
   padding: 1em;
   margin-bottom: 1.5em;
+  padding-right: 2.5em;
   border-radius: $border-radius-base;
   .alert {
     $dark-link-color: darken($link-color, 10%);
@@ -36,6 +37,15 @@
   }
   &.error, &.alert {
     background-color: lighten($link-color, 20%);
+  }
+  &.success {
+    background-color: lighten($palette7, 20%);
+  }
+
+  .close {
+    position: absolute;
+    right: 2em;
+    cursor: pointer;
   }
   &.notice {
     background-color: $palette7;
