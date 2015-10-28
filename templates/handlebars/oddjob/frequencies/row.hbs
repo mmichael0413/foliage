@@ -1,0 +1,17 @@
+<p class="col-2-12">Frequency</p>
+<p class="col-2-12 info">Monthly</p>
+
+<select class="col-1-4" name="monthlyVisits[{{index}}]" id="monthlyVisits">
+    {{#visitOptions}}
+    <option value="{{key}}" {{#selected}}selected="selected"{{/selected}}>{{key}}x</option>
+    {{/visitOptions}}
+</select>
+<p class="col-4-12"></p>
+
+<p class="col-2-12">Start Date</p>
+<input  name="begin[{{index}}]" class="col-3-12 datepicker begin" value="{{begin}}" readonly="readonly"/>
+
+<p class="col-1-12"></p>
+
+<p class="col-2-12">End Date</p>
+<input  name="end[{{index}}]" class="col-3-12 datepicker end" value="{{end}}" readonly="readonly"/>

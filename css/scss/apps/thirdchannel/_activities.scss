@@ -1,5 +1,4 @@
 @import '../../lib/backbone.modal/modal';
-//@import '../../modules/modal';
 
 $padding: 1.5em;
 @include swb-small {
@@ -11,10 +10,66 @@ $padding: 1.5em;
   border-radius: $border-radius-base;
   border: 1px solid $border-color;
 }
+.tasks {
+  @include clearfix();
+  padding: $padding $padding 0 $padding;
+  vertical-align: middle;
+  border-bottom: 1px solid $border-color;
 
-.activity, .comment-holder {
-  //  padding:1.5em;
+  .task-container {
+    display: inline-block;
+    width: 90%;
+    
+
+    @media only screen and (max-width: 35.5em) {
+      // max-height: 5em;
+      // overflow: hidden;
+      position: relative;
+    }
+  }
+  .tasks-label {
+    display: inline-block;
+    float: left;
+    margin-right: $padding;
+    line-height: 2.25em;
+  }
+
+  .task-item {
+    display: inline-block;
+    margin-right: 1em;
+    padding-bottom: $padding;
+    &.active .badge {
+      background-color: $border-color;
+    }
+    @media only screen and (max-width: 35.5em) {
+      width: 100%;
+      margin: 0em;
+    }
+  }
+  .badge {
+    background-color: $main-background;
+    display: inline-block;
+    padding: 0.5em;
+    color: $text-color;
+    &.active {
+      background-color: $border-color;
+    }
+
+  }
+  .task-info {
+      margin-left: -1px;
+      color: $medium-blue;
+      .ic {
+        padding: 0em 0.25em;
+      }
+    }
+
+  
 }
+
+// .activity, .comment-holder {
+//   //  padding:1.5em;
+// }
 
 .activity {
   background: white;
@@ -56,7 +111,6 @@ $padding: 1.5em;
   }
   .bar-body {
     vertical-align: top;
-    //    padding-left: 1em;
     width: 80%;
 
     .activity-special-project {
@@ -81,13 +135,16 @@ $padding: 1.5em;
   display: inline-block;
   vertical-align: top;
   width: 70%;
-  padding: $padding;
+  /*width: 100%;*/
+  padding: 0 $padding 0 $padding;
   .issues-found {
-    margin-bottom: 1em;
     .indicator {
       font-size:.8em;
       font-weight: bold;
     }
+  }
+  .summary, .issues-found {
+    margin: $padding 0 $padding 0;
   }
   .activity-actions {
     margin-top: 1em;
@@ -104,7 +161,7 @@ $padding: 1.5em;
 }
 
 .activity-photos {
-  padding: $padding;
+  padding: 0 $padding $padding $padding;
   display: inline-block;
   width: 29%;
 }

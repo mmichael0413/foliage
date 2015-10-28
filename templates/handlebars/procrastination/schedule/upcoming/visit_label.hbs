@@ -1,7 +1,11 @@
 {{#if dateCompleted}}
     * Completed jobs cannot be rescheduled<br/>
 {{/if}}
-<strong>{{taskDetail}}</strong><br/>
-{{storeName}}<br/>
-{{street}}<br/>
-{{city}}, {{state}}
+<p class="bold">{{storeName}}</p>
+<p>{{street}}</p>
+<p>{{city}}, {{state}}</p>
+<ul class="unstyled">
+    {{#each tasks}}
+        <li>- {{name}}</li>
+    {{/each}}
+</ul>

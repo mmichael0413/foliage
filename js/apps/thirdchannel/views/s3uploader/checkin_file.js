@@ -43,12 +43,12 @@ define(function(require) {
             });
         },
         render: function() {
+
             return this;
         },
         fileChanged: function(e) {
             var file = e.target.files[0],
                 self = this;
-
             if(file !== undefined) {
                 var reader = new FileReader();
                 reader.onload = (function(event) {
@@ -84,7 +84,8 @@ define(function(require) {
                     image_type: this.imageType,
                     temp_location: file.get('temp_location'),
                     programId: this.model.get('programId'),
-                    checkinId: this.model.get('checkinId')
+                    checkinId: this.model.get('checkinId'),
+                    submissionId: this.model.get('submissionId')
                 });
 
             image.save().then(function() {

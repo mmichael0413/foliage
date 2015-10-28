@@ -1,0 +1,18 @@
+.subtle-instruction {
+  color: $medium-blue;
+  font-style: italic;
+}
+#taskContainer {
+  .task-item, .complete-checkin-tasks {
+    padding-bottom: 1em;
+    padding-top: 1em;
+  }
+
+  .task-item {
+    border-bottom: 1px solid $light-blue;
+  }
+
+  .error {
+    color: $red;
+  }
+}

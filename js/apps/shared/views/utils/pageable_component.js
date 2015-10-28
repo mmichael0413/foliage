@@ -12,14 +12,13 @@ define(function(require) {
 		renderPagination: function () {
 			if (this.pager) {
 
-                this.stopListening(this.pager);
-                this.pager.remove();
-                delete this.pager;
-                // need to re-add the target for the pager.
                 if(this.$('.pagination-holder').length === 0) {
                     this.$el.prepend("<div class='pagination-holder'></div>");
+                } else {
+                    $("<div class='pagination-holder'></div>").insertAfter(this.pager.$el);    
                 }
-
+                // need to re-add the target for the pager. 
+                this.clearPager();
             }
             var $paginationHolder = this.$('.pagination-holder');
             if ($paginationHolder.length > 0) {
@@ -40,6 +39,11 @@ define(function(require) {
             this.pages = data.pages;
             this.collection.reset(data.items);
         },
+        clearPager: function () {
+            this.stopListening(this.pager);
+            this.pager.remove();
+            delete this.pager;            
+        }
         
 	};
 

@@ -1,0 +1,225 @@
+@import '../../../../js/libs/bower_components/normalize-css/normalize';
+@import "../../lib/pure.grids-core";
+@import "../../lib/pure.responsive-grid";
+@import "../../lib/quill.snow";
+
+@import "../../base/fonts_all";
+@import "../../base/base";
+@import "../../base/text";
+@import "../../base/forms";
+@import "../../base/buttons";
+@import "../../base/dropdowns";
+@import "../../layout/layout_utils";
+@import "../../layout/base_layout";
+
+
+@import "../../modules/atoms/all";
+@import "../../modules/navigation";
+@import "../../modules/action_row";
+@import "../../modules/pagination";
+@import "../../modules/site_filter";
+@import "../../modules/pikaday";
+@import "../../modules/pure_grid";
+
+@import "../../modules/data_section";
+@import "../../modules/expanding_table_row";
+@import "../../modules/address_title";
+@import "../../modules/atoms/alerts";
+
+@import "../../modules/alert_row";
+@import "../../modules/checkin_report";
+@import "../../modules/store_profile_section";
+@import "../../modules/visit_report";
+
+.content-holder {
+	background-color: $light-gray;
+}
+
+.clearfix {
+  overflow: auto;
+  zoom: 1;
+}
+
+.btn {
+	cursor: pointer;
+}
+
+.btn-row {
+	&.primary {
+		.btn {
+			float:right;
+		}	
+	}
+	
+}
+
+.row {
+	border-top: 1px solid $light-blue;
+	padding: 0.5em 0;
+}
+.info {
+	font-style: italic;
+	color: $slate;
+	
+}
+
+.delete {
+	float:right;
+}
+
+.odd-form {
+	.label {
+		float: left;
+		width: 20%;
+		line-height: 2em;
+	}
+	.input {
+		float: left;
+		width: 80%;
+		margin-top: 0;
+		&.small {
+			width: 10%;
+			margin-right: 2%;
+			height: 2em;
+		}
+	}
+
+	.input-checkbox {
+		margin: 0em 0em 2em 1em;
+	}
+	
+	.task {
+		width: 80%;
+		margin: 2em 0 2em 0;
+		border-left: 1px solid $medium-blue;
+		padding-left: 1em;
+	}
+	.remove {
+		position: absolute;
+		right: 10%;
+	}
+	.btn-primary {
+		float: right;
+	}
+}
+
+.job {
+	.frequencies-container {
+		background-color: $light-blue;
+		margin: 0em -1em -1em -1em;
+	    padding: 1em 0em;
+
+		.btn {
+				text-align:center;
+				line-height: 2em;
+				margin-bottom: 0.5em;
+			}
+		.frequency-row {
+			padding: 0.5em 0em 0.5em 0.5em;
+			&.static {
+				margin-bottom: -1em;
+			}
+
+		}
+		th, td {
+			text-align: center;
+			width: 8%;
+			padding: 0;
+		}
+	}
+}
+
+.schedule-section {
+	.schedule {
+		margin-bottom: 1em;
+		.visits {
+			width: 75%;
+		}
+	}
+}
+
+
+.frequency-section {
+	select {
+		margin-top: 0em;
+	}
+}
+
+.pika-single {
+	background: white;
+	&.is-hidden {
+		z-index: -1;
+	}
+}
+
+.store-row {
+	margin: 0.5em 0em;
+	.check {
+		margin-right: 1em;
+	}
+	.name {
+		color: $palette5;
+		width:25%;
+		display: inline-block;
+	}
+}
+
+.controls {
+	margin-bottom: 1em;
+    padding-left: 0;
+    list-style: none;
+	
+	li {
+		float: left;
+    	margin-bottom: -1px;
+
+	}
+	input {
+		margin: 0;
+
+	}
+	.btn {
+		margin-right: 1em;
+	}
+	.address-search {
+		width: 25%;
+		position:absolute;
+		right: 1em;
+	}
+}
+
+#storeList {
+	.title {
+		display: inline-block;
+		width: 40%;
+	}
+	.pagination-holder {
+		display: inline-block;
+	}
+}
+
+#jobTrackingText {
+	display: none;
+	margin-bottom: 2em;
+	.instruction {
+		margin-bottom: 2em;
+	}
+	.ql-container {
+		box-shadow: inset 1px 1px 8px 1px;
+	}
+}
+
+#message {
+	display:none;
+}
+
+.important {
+	color: $dark-slate;
+	font-weight: bold;
+}
+
+.error {
+	color: $red;
+}
+
+@import "upload";

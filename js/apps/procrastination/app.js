@@ -5,7 +5,7 @@ define(function(require){
         Backbone = require('backbone'),
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
-        MainLayout = require('shared/views/layout/main');
+        MainLayout = require('shared/views/layout/main'),
         MainRouter = require('procrastination/routers/main');
 
     var initialize = function(){

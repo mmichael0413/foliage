@@ -8,30 +8,28 @@ define(function(require){
 			this.aggregateId = options.aggregateId;
 			this.personId = options.personId;
 			this.programId = options.programId;
-
-			console.log(this.aggregateId);
 		},
 		model: Schedule,
-		comparator: 'taskDetail',
+		comparator: 'jobDetail',
 		url: function(){
 			return context.base_url + '/schedule/list/upcoming/' + this.aggregateId;
 		},
         generateLegend: function(){
             var self = this;
-            this.tasks = this.groupBy(function(task){
-                return task.get('taskDetail');
+            this.jobs = this.groupBy(function(job){
+                return job.get('jobDetail');
             });
 
             var idx = 0;
-            _.each(this.tasks, function(task){
-                _.each(task, function(visit) {
-					var taskNum = 'task-' + idx;
+            _.each(this.jobs, function(job){
+                _.each(job, function(visit) {
+					var jobNum = 'job-' + idx;
 
 					if(visit.get('dateCompleted')){
-						taskNum = 'task-completed';
+						jobNum = 'job-completed';
 					}
 
-                    visit.set('taskColor', taskNum);
+                    visit.set('jobColor', jobNum);
                 });
                 idx++;
             });

@@ -1,14 +1,20 @@
 define(function(require) {
     var $ = require('jquery'),
+        _ = require('underscore'),
         Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         SerializeObject = require('serializeObject'),
         Chosen = require('chosen'),
         Expanding = require('expanding'),
         DateTimePicker = require('dateTimePicker'),
-        context = require('context'),
+        //context = require('context'),
         FileView = require('thirdchannel/views/s3uploader/checkin_file');
 
+    /**
+     * 
+     * 
+     * @return {View}   SurveyView
+     */
     return Backbone.View.extend({
         el: ".checkin",
         events: {
@@ -70,7 +76,7 @@ define(function(require) {
                 this.model.save(attributes, {patch: true});
             }
         },
-        updateTotal: function(e) {
+        updateTotal: function() {
             if(this.inventoryTotal !== undefined) {
                 var currentTotal = 0;
                 this.inventories.each(function() {
@@ -98,7 +104,7 @@ define(function(require) {
                 }, 500);
             }
         },
-        validate: function(e) {
+        validate: function() {
             if(this.validCalled) {
                 this.valid();
             }

@@ -1,0 +1,40 @@
+	<p class="info">If you leave the name blank, the group will use the name of the first Task (for now, this is a Survey). Furthermore, a Job must have at least one Task (Typically, there will be only one Task per Job).</p>
+
+    <label class="label" for="jobName">Name</label>
+    <input class="input" type="text" value="{{name}}" name="name" id="jobName" placeholder="Enter Optional name here"/>
+
+    <label for="jobTracked" class="">Enable Job Tracking (Special Project Tracking)?</label>
+    <input type="checkbox" class="input-checkbox job-tracking" name="tracked" id="jobTracked" {{#tracked}}checked{{/tracked}}/>
+    
+    <section id="jobTrackingText">
+        <p class="instruction"><span class="important">Note:</span> For now, any jobs we wish to track must have only one task and one frequency assigned to them. Or rather, only the first task's survey will be tracked, and the first frequency will be used for the start and end date of the tracking. We hope to change this in the future.</p>
+        <label for="editor">Completion Instructions</label>
+        <input type="hidden" name="completionInstructions" id="completionInstructions" value="{{completionInstructions}}"/>
+        <div class="editor-container message-content">
+            <div id="full-toolbar" class="toolbar ql-toolbar-container">
+              <span title="Bold" class="ql-format-button ql-bold"></span>
+              <span title="Italic" class="ql-format-button ql-italic"></span>
+              <span title="Italic" class="ql-format-button ql-underline"></span>
+              <span class="ql-format-separator"></span>
+              <span title="Italic" class="ql-format-button ql-bullet"></span>
+              <span title="Italic" class="ql-format-button ql-list"></span>
+            </div>
+            <div id="editor">
+              <div></div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <label for="role" class="label">Limit Job to Role: </label>
+    <select name="role" id="role" class="input">
+        <option value="">--No Limit on Role--</option>
+        {{#roles}}
+        <option value="{{id}}" {{#selected}}selected="selected"{{/selected}}>{{key}}</option>
+        {{/roles}}
+    </select>
+
+    <div class="tasks-container">
+    </div>
+
+    <button class="btn add-task">Add Task</button>
