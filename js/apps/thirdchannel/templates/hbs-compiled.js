@@ -1925,7 +1925,7 @@ function program1(depth0,data) {
 this["ThirdChannel"]["templates"]["thirdchannel/reports/info/show/checkin"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function";
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
@@ -1933,22 +1933,22 @@ function program1(depth0,data) {
   return "\n            by\n        ";
   }
 
-function program3(depth0,data,depth1) {
+function program3(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n        <div class=\"info\">\n            ";
-  stack1 = helpers['if'].call(depth0, (depth1 && depth1.task), {hash:{},inverse:self.noop,fn:self.programWithDepth(4, program4, data, depth1),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.title), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            "
-    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + escapeExpression(((stack1 = (depth0 && depth0.content)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\n        </div>\n    ";
   return buffer;
   }
-function program4(depth0,data,depth2) {
+function program4(depth0,data) {
   
-  var buffer = "", helper, options;
+  var buffer = "", stack1;
   buffer += "\n                <div class=\"task\">"
-    + escapeExpression((helper = helpers.value_lookup || (depth2 && depth2.value_lookup),options={hash:{},data:data},helper ? helper.call(depth0, (data == null || data === false ? data : data.index), (depth2 && depth2.task), options) : helperMissing.call(depth0, "value_lookup", (data == null || data === false ? data : data.index), (depth2 && depth2.task), options)))
+    + escapeExpression(((stack1 = (depth0 && depth0.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</div>\n            ";
   return buffer;
   }
@@ -1973,7 +1973,7 @@ function program4(depth0,data,depth2) {
   else { helper = (depth0 && depth0.user); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</a>\n    </h3>\n\n    ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.info), {hash:{},inverse:self.noop,fn:self.programWithDepth(3, program3, data, depth0),data:data});
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.info), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n</div>\n\n\n";
   return buffer;

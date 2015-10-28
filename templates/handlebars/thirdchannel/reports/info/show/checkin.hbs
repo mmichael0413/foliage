@@ -9,10 +9,10 @@
 
     {{#each info}}
         <div class="info">
-            {{#if ../task}}
-                <div class="task">{{value_lookup @index ../../task}}</div>
+            {{#if this.title}}
+                <div class="task">{{ this.title }}</div>
             {{/if}}
-            {{this}}
+            {{this.content}}
         </div>
     {{/each}}
 </div>
