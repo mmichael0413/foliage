@@ -95,9 +95,9 @@ define(function(require) {
         },
         displayQuestionExtraIfTriggered: function(e) {
           if(this.$(e.currentTarget).find(":selected[data-trigger=true]").length > 0){
-            this.$(e.currentTarget.getAttribute('data-show-element')).show('fast', "linear");
+            this.$(e.currentTarget.getAttribute('data-trigger-element')).show('fast', "linear");
           } else {
-            this.$(e.currentTarget.getAttribute('data-hide-element')).hide('fast', "linear").val('').trigger('change');
+            this.$(e.currentTarget.getAttribute('data-trigger-element')).hide('fast', "linear").val('').trigger('change');
           }
         },
         validateForm: function(e) {
