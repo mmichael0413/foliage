@@ -28,7 +28,7 @@ define(function(require) {
             "click .question [data-show-element]" : 'showElement',
             "click .question [data-hide-element]" : 'hideElement',
             "change .question input[type=hidden], change .question select": "validate",
-            "change .question select": "displayQuestionExtraIfTriggered",
+            "change .question select[class*=question-]": "displayQuestionExtraIfTriggered",
             "change:nosave .question input[type=hidden]": "validate"
         },
         initialize: function() {
