@@ -20,7 +20,8 @@ define(function(require) {
         GenericHorizontalBarChartView = require('thirdchannel/views/reports/widgets/generic_horizontal_bar_chart'),
         StackedBarChartView = require('thirdchannel/views/reports/widgets/stacked_bar_chart'),
         HeatmapView = require('thirdchannel/views/reports/widgets/heatmap'),
-        TotalsAveragesTableView = require('thirdchannel/views/reports/widgets/totals_averages_table');
+        TotalsAveragesTableView = require('thirdchannel/views/reports/widgets/totals_averages_table'),
+        LegendView = require('thirdchannel/views/reports/widgets/legend');
 
     return Backbone.View.extend({
         tagName: "span",
@@ -67,6 +68,8 @@ define(function(require) {
                 widget = this.createHeatmap();
             } else if (this.model.display_type == 18) {
                 widget = this.createTotalsAveragesTable();
+            } else if (this.model.display_type == 19) {
+                widget = this.createLegend();
             }
 
             this.setElement(widget);
@@ -125,6 +128,9 @@ define(function(require) {
         },
         createTotalsAveragesTable: function() {
             return new TotalsAveragesTableView(this.model).render().$el;
+        },
+        createLegend: function() {
+            return new LegendView(this.model).render().$el;
         }
     });
 });
