@@ -23,13 +23,13 @@ define(function (require) {
             var dateCompleted = this.model.get('dateCompleted') ? moment(this.model.get('dateCompleted')).utc().format('MM/DD/YYYY') : null;
 
             var attrs = {
+                address: this.model.get('address'),
                 city: this.model.get('city'),
-                customerStoreUUID: this.model.get('customerStoreUUID'),
+                customerStoreUUID: this.model.get('programStoreUUID'),
                 dateCompleted: dateCompleted,
                 dateScheduled: moment(this.model.get('dateScheduled')).utc().format('YYYY MM DD'),
                 state: this.model.get('state'),
                 storeName: this.model.get('storeName'),
-                street: this.model.get('street'),
                 jobDetail: this.model.get('jobDetail'),
                 visitUUID: this.model.get('visitUUID'),
                 zip: this.model.get('zip'),
@@ -40,7 +40,6 @@ define(function (require) {
                 taskCount: this.model.get('tasks').length,
                 hidden: 'hidden'
             };
-
 
             this.$el.html(this.template(attrs));
 
