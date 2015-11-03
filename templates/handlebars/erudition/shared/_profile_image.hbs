@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="header">Upload Profile Photo</div>
+    <div class="body images profileImageInput" required="" data-image-type="profileImage">
+        <input accept="image/*" data-input="false" id="profileImageInput" name="profileImageInput" data-rule-required="true" type="file" {{#if person.profileImage.medium}}disabled="disabled"{{/if}}>
+
+        <div class="image-viewer pure-g">
+            {{#if person.profileImage.medium}}
+                <div class="image col-1-5">
+                    <input type="hidden" id="profileImage" name="profileImage.temp" value="{{person.profileImage.temp}}"/>
+                    <img src="{{person.profileImage.medium}}" alt="Image">
+
+                    <div class="delete">
+                        <a class="btn primary removeImage"><i class="ic ic_x"></i><span>Delete Image</span></a>
+                    </div>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

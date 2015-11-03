@@ -15,7 +15,6 @@ define(function(require){
         },
 
         routes: {
-            'home' : 'homePage',
             'program/:programUUID/profile' : 'completeProfile',
             'profile/view/:personId' : 'viewProfile',
             'profile/view' : 'viewProfile',
@@ -28,10 +27,6 @@ define(function(require){
 
         createApplication: function (programId) {
             new CreateApplicationView({programId: programId, template: 'erudition/application/create'}).render();
-        },
-
-        homePage: function() {
-            console.info('home page');
         },
 
         completeProfile: function(){

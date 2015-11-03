@@ -110,13 +110,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   }));
 
-Handlebars.registerPartial("about_photo_input", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+Handlebars.registerPartial("about_image_input", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<input type=\"hidden\" id=\"aboutPhoto\" name=\"aboutPhotos[";
+  buffer += "<input type=\"hidden\" id=\"aboutImage\" name=\"aboutImages[";
   if (helper = helpers.number) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.number); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -128,13 +128,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   }));
 
-Handlebars.registerPartial("profile_photo_input", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+Handlebars.registerPartial("profile_image_input", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<input type=\"hidden\" id=\"profilePhoto\" name=\"profilePhoto.temp\" value=\"";
+  buffer += "<input type=\"hidden\" id=\"profileImage\" name=\"profileImage.temp\" value=\"";
   if (helper = helpers.temp_location) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.temp_location); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -168,7 +168,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   }));
 
-Handlebars.registerPartial("about_photos", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+Handlebars.registerPartial("about_images", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
@@ -182,7 +182,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                <div class=\"image col-1-5\">\n                    <input type=\"hidden\" id=\"profilePhoto\" name=\"aboutPhotos["
+  buffer += "\n                <div class=\"image col-1-5\">\n                    <input type=\"hidden\" id=\"profileImage\" name=\"aboutImages["
     + escapeExpression(((stack1 = (data == null || data === false ? data : data.index)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "].temp\" value=\""
     + escapeExpression(((stack1 = (depth0 && depth0.temp)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
@@ -192,15 +192,11 @@ function program3(depth0,data) {
   return buffer;
   }
 
-  buffer += "<div class=\"card\">\n    <div class=\"header\">Show us who you are</div>\n    <div class=\"body images aboutPhotoInput\" required=\"\" data-image-type=\"aboutPhoto\">\n\n        <label>Upload up to 5 pictures to give us a glimpse into who you are and what you like. ";
-  if (helper = helpers.aboutPhotoCount) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.aboutPhotoCount); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</label>\n\n        <input accept=\"image/*\" data-input=\"false\" id=\"aboutPhotoInput\" name=\"aboutPhotoInput\" type=\"file\" ";
-  stack1 = (helper = helpers.if_gt || (depth0 && depth0.if_gt),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.aboutPhotoCount), 3, options) : helperMissing.call(depth0, "if_gt", (depth0 && depth0.aboutPhotoCount), 3, options));
+  buffer += "<div class=\"card\">\n    <div class=\"header\">Show us who you are</div>\n    <div class=\"body images aboutImageInput\" required=\"\" data-image-type=\"aboutImage\">\n\n        <label>Upload up to 5 pictures to give us a glimpse into who you are and what you like.</label>\n\n        <input accept=\"image/*\" data-input=\"false\" id=\"aboutImageInput\" name=\"aboutImageInput\" type=\"file\" ";
+  stack1 = (helper = helpers.if_gt || (depth0 && depth0.if_gt),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.aboutImageCount), 3, options) : helperMissing.call(depth0, "if_gt", (depth0 && depth0.aboutImageCount), 3, options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += ">\n\n        <div class=\"image-viewer pure-g\">\n            ";
-  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.aboutPhotos), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.aboutImages), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </div>\n    </div>\n</div>";
   return buffer;
@@ -267,6 +263,29 @@ function program1(depth0,data) {
   return buffer;
   }));
 
+Handlebars.registerPartial("interest_view", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                <div class=\"col-1-7\">\n                    <i class=\"ic "
+    + escapeExpression(((stack1 = (depth0 && depth0.icon)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\"></i><br/>\n                    <span>"
+    + escapeExpression(((stack1 = (depth0 && depth0.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</span>\n                </div>\n            ";
+  return buffer;
+  }
+
+  buffer += "<div class=\"card\">\n    <div class=\"header\">How do you spend your time?</div>\n    <div class=\"body interests\">\n        <div class=\"pure-g\">\n            ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.interests), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </div>\n\n    </div>\n\n</div>";
+  return buffer;
+  }));
+
 Handlebars.registerPartial("interests_input", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -275,14 +294,22 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data,depth1) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n                    <div class=\"col-1-7\"><input type=\"checkbox\" name=\"interests\" value=\""
-    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
-    + "\"\n                                                ";
-  stack1 = (helper = helpers.contains || (depth0 && depth0.contains),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, depth0, ((stack1 = (depth1 && depth1.person)),stack1 == null || stack1 === false ? stack1 : stack1.interests), options) : helperMissing.call(depth0, "contains", depth0, ((stack1 = (depth1 && depth1.person)),stack1 == null || stack1 === false ? stack1 : stack1.interests), options));
+  buffer += "\n                    <div class=\"col-1-7\">\n                        <input type=\"checkbox\" id=\""
+    + escapeExpression(((stack1 = (depth0 && depth0.icon)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" name=\"interests\" class=\"interest\" value=\""
+    + escapeExpression(((stack1 = (depth0 && depth0.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" ";
+  stack1 = (helper = helpers.contains || (depth0 && depth0.contains),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.name), ((stack1 = (depth1 && depth1.person)),stack1 == null || stack1 === false ? stack1 : stack1.interests), options) : helperMissing.call(depth0, "contains", (depth0 && depth0.name), ((stack1 = (depth1 && depth1.person)),stack1 == null || stack1 === false ? stack1 : stack1.interests), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                                                data-rule-required=\"true\"/> "
-    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
-    + "</div>\n                ";
+  buffer += " data-rule-required=\"true\"/>\n                        <label for=\""
+    + escapeExpression(((stack1 = (depth0 && depth0.icon)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" class=\"ic "
+    + escapeExpression(((stack1 = (depth0 && depth0.icon)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\"></label><br/>\n                        <label for=\""
+    + escapeExpression(((stack1 = (depth0 && depth0.icon)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" >"
+    + escapeExpression(((stack1 = (depth0 && depth0.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</label>\n                    </div>\n                ";
   return buffer;
   }
 function program2(depth0,data) {
@@ -291,10 +318,10 @@ function program2(depth0,data) {
   return "checked";
   }
 
-  buffer += "<div class=\"card\">\n    <div class=\"body\">\n        <div class=\"input-group\">\n            <div class=\"pure-g\">\n                <label class=\"col-1-1\">How do you spend your time?</label>\n                ";
+  buffer += "<div class=\"card\">\n    <div class=\"header\">How do you spend your time?</div>\n    <div class=\"body\">\n        <div class=\"input-group interests\">\n            <div class=\"pure-g\">\n\n                ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.interests), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            </div>\n        </div>\n    </div>\n\n</div>";
+  buffer += "\n\n            </div>\n        </div>\n    </div>\n\n</div>";
   return buffer;
   }));
 
@@ -331,7 +358,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   }));
 
-Handlebars.registerPartial("profile_photo", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+Handlebars.registerPartial("profile_image", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -345,19 +372,19 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                <div class=\"image col-1-5\">\n                    <input type=\"hidden\" id=\"profilePhoto\" name=\"profilePhoto.temp\" value=\""
-    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.profilePhoto)),stack1 == null || stack1 === false ? stack1 : stack1.temp)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+  buffer += "\n                <div class=\"image col-1-5\">\n                    <input type=\"hidden\" id=\"profileImage\" name=\"profileImage.temp\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.profileImage)),stack1 == null || stack1 === false ? stack1 : stack1.temp)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\"/>\n                    <img src=\""
-    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.profilePhoto)),stack1 == null || stack1 === false ? stack1 : stack1.medium)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.profileImage)),stack1 == null || stack1 === false ? stack1 : stack1.medium)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" alt=\"Image\">\n\n                    <div class=\"delete\">\n                        <a class=\"btn primary removeImage\"><i class=\"ic ic_x\"></i><span>Delete Image</span></a>\n                    </div>\n                </div>\n            ";
   return buffer;
   }
 
-  buffer += "<div class=\"card\">\n    <div class=\"header\">Upload Profile Photo</div>\n    <div class=\"body images profilePhotoInput\" required=\"\" data-image-type=\"profilePhoto\">\n        <input accept=\"image/*\" data-input=\"false\" id=\"profilePhotoInput\" name=\"profilePhotoInput\" data-rule-required=\"true\" type=\"file\" ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.profilePhoto)),stack1 == null || stack1 === false ? stack1 : stack1.medium), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  buffer += "<div class=\"card\">\n    <div class=\"header\">Upload Profile Photo</div>\n    <div class=\"body images profileImageInput\" required=\"\" data-image-type=\"profileImage\">\n        <input accept=\"image/*\" data-input=\"false\" id=\"profileImageInput\" name=\"profileImageInput\" data-rule-required=\"true\" type=\"file\" ";
+  stack1 = helpers['if'].call(depth0, ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.profileImage)),stack1 == null || stack1 === false ? stack1 : stack1.medium), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += ">\n\n        <div class=\"image-viewer pure-g\">\n            ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.profilePhoto)),stack1 == null || stack1 === false ? stack1 : stack1.medium), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  stack1 = helpers['if'].call(depth0, ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.profileImage)),stack1 == null || stack1 === false ? stack1 : stack1.medium), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </div>\n    </div>\n</div>";
   return buffer;
@@ -925,7 +952,7 @@ function program5(depth0,data) {
   else { helper = (depth0 && depth0.programId); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "/application/save\" class=\"profile-form\" method=\"post\">\n    ";
-  stack1 = self.invokePartial(partials.profile_photo, 'profile_photo', depth0, helpers, partials, data);
+  stack1 = self.invokePartial(partials.profile_image, 'profile_image', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n    ";
   stack1 = self.invokePartial(partials.basic_information, 'basic_information', depth0, helpers, partials, data);
@@ -939,7 +966,7 @@ function program5(depth0,data) {
   stack1 = helpers.each.call(depth0, (depth0 && depth0.states), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </select>\n        </div>\n    </div>\n    ";
-  stack1 = self.invokePartial(partials.about_photos, 'about_photos', depth0, helpers, partials, data);
+  stack1 = self.invokePartial(partials.about_imagess, 'about_imagess', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n    ";
   stack1 = self.invokePartial(partials.interests_input, 'interests_input', depth0, helpers, partials, data);
@@ -999,7 +1026,7 @@ function program1(depth0,data) {
   }
 
   buffer += "<div class=\"stupidImages\">\n    <div class=\"about-images\">\n        ";
-  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.aboutPhotos), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.aboutImages), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    </div>\n    <div class=\"clear\"></div>\n</div>";
   return buffer;
@@ -1017,7 +1044,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   stack1 = self.invokePartial(partials.upload_form, 'upload_form', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n<form action=\"/profile/save\" class=\"profile-form\" method=\"post\">\n    ";
-  stack1 = self.invokePartial(partials.profile_photo, 'profile_photo', depth0, helpers, partials, data);
+  stack1 = self.invokePartial(partials.profile_image, 'profile_image', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    ";
   stack1 = self.invokePartial(partials.basic_information, 'basic_information', depth0, helpers, partials, data);
@@ -1038,7 +1065,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   stack1 = self.invokePartial(partials.interests_input, 'interests_input', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    ";
-  stack1 = self.invokePartial(partials.about_photos, 'about_photos', depth0, helpers, partials, data);
+  stack1 = self.invokePartial(partials.about_images, 'about_images', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    ";
   stack1 = self.invokePartial(partials.shirt_shoe_form, 'shirt_shoe_form', depth0, helpers, partials, data);
@@ -1062,6 +1089,15 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 function program1(depth0,data) {
   
   var buffer = "", stack1;
+  buffer += "\n<div class=\"action-row\">\n    <a href=\"/profile/edit/"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" class=\"light\"><i class=\"ic ic_edit\"></i> Edit Info</a>\n</div>\n";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "", stack1;
   buffer += "\n            <div class=\"col-1-4\">University:</div>\n            <div class=\"col-3-4\">"
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.university)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</div>\n            <div class=\"col-1-4\">Year of Graduation:</div>\n            <div class=\"col-3-4\">"
@@ -1070,10 +1106,19 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  buffer += "<div class=\"action-row\">\n    <a href=\"/profile/edit/"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" class=\"light\"><i class=\"ic ic_edit\"></i> Edit Info</a>\n</div>\n\n\n<div class=\"profile-badge\">\n    <div class=\"profile-image\" style=\"background-image: url("
-    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.profilePhoto)),stack1 == null || stack1 === false ? stack1 : stack1.small)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+function program5(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                <img src=\""
+    + escapeExpression(((stack1 = (depth0 && depth0.large)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" alt=\"ljkl\"/>\n            ";
+  return buffer;
+  }
+
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.canEdit), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n<div class=\"profile-badge\">\n    <div class=\"profile-image\" style=\"background-image: url("
+    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.profileImage)),stack1 == null || stack1 === false ? stack1 : stack1.small)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + ")\"></div>\n    <h2 class=\"subheader\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.fullName)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</h2>\n    "
@@ -1083,15 +1128,16 @@ function program1(depth0,data) {
     + "\n</div>\n\n\n<div class=\"card\">\n    <div class=\"header\">\n        General Information\n    </div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Gender:</div>\n        <div class=\"col-3-4\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.gender)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</div>\n        ";
-  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, "Yes", ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.attendedCollege), options) : helperMissing.call(depth0, "if_eq", "Yes", ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.attendedCollege), options));
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data},helper ? helper.call(depth0, "Yes", ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.attendedCollege), options) : helperMissing.call(depth0, "if_eq", "Yes", ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.attendedCollege), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    </div>\n</div>\n\n<div class=\"card\">\n    <div class=\"header\">Contact Information</div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Email:</div>\n        <div class=\"col-3-4\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.email)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Phone Number:</div>\n        <div class=\"col-3-4\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.phone)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n    </div>\n</div>\n\n<div class=\"card\">\n    <div class=\"header\">Interests</div>\n    <div class=\"body\">\n        "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.interests)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Trends Noticed:</div>\n    </div>\n</div>\n\n<div class=\"card\">\n    <div class=\"header\">Address</div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Shipping Address:</div>\n        <div class=\"col-3-4\">";
+    + "</div>\n    </div>\n</div>\n\n";
+  stack1 = self.invokePartial(partials.interest_view, 'interest_view', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n<div class=\"card\">\n    <div class=\"header\">Address</div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Shipping Address:</div>\n        <div class=\"col-3-4\">";
   stack1 = self.invokePartial(partials.address, 'address', ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.shippingAddress), helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "</div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Residential Address:</div>\n        <div class=\"col-3-4\">";
@@ -1101,7 +1147,10 @@ function program1(depth0,data) {
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.shirtSize)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Shoe Size</div>\n        <div class=\"col-3-4\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.shoeSize)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n    </div>\n</div>";
+    + "</div>\n    </div>\n</div>\n\n<div class=\"card\">\n    <div class=\"body pure-g\">\n        <div class=\"col-1-5 col-sm-1-1 about-images\">\n            ";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.aboutImages), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </div>\n    </div>\n</div>";
   return buffer;
   });
 
