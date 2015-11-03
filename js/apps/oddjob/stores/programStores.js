@@ -59,7 +59,7 @@ define(function (require) {
                     return this._convertIndividualParam("states", "state[]", params, qs);
                 },
                 _convertAccounts: function(params, qs) {
-                    return this._convertIndividualParam("accountIds", 'customer_account[]', params, qs);
+                    return this._convertIndividualParam("accountUUIDs", 'accounts[]', params, qs);
                 },
 
                 _convertQS: function (qs) {
