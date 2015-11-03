@@ -14,15 +14,15 @@ define(function (require) {
     return Backbone.View.extend({
         el: '.content',
 
-        photoTemplate: templates['shared/s3uploader/uploaderForm'],
-        aboutPhotoInputTemplate: templates['erudition/s3Uploader/about_photo_input'],
+        imageTemplate: templates['shared/s3uploader/uploaderForm'],
+        aboutImageInputTemplate: templates['erudition/s3Uploader/about_image_input'],
         initialize: function (options) {
             // this view is extended by the /application/create.js and uses a different template
             var templateString = (options && options.template) ? options.template : 'erudition/profile/edit';
             this.template = templates[templateString];
 
             this.person = context.content.person;
-            this.aboutPhotoCount = this.person.aboutPhotos ? this.person.aboutPhotos.length - 1 : 0;
+            this.aboutImageCount = this.person.aboutImages ? this.person.aboutImages.length - 1 : 0;
 
             $('#phone').mask('(000) 000-0000');
 
@@ -42,34 +42,35 @@ define(function (require) {
                 states: context.content.states,
                 s3: context.content.uploader,
                 referer: context.content.referer,
-                aboutPhotoCount: this.aboutPhotoCount
+                aboutImageCount: this.aboutImageCount
             };
 
             this.$el.append(this.template(model));
             this.beginValidation();
             this.configureAutocomplete();
-            this.initializePhotoUpload();
+            this.initializeImageUpload();
 
             return this;
         },
 
         beginValidation: function () {
             var self = this;
-            $.validator.addMethod("validateAboutPhotos", function (value, element) {
-                return self.$('div.aboutPhotoInput').find('img').length > 0;
-            }, "Please upload at least one photo");
+            $.validator.addMethod("validateAboutImages", function (value, element) {
+                return self.$('div.aboutImageInput').find('img').length > 0;
+            }, "Please upload at least one image");
 
             $.validator.addMethod("attendedCollege", function(value, element){
-                return true;
                 var valid = false;
                 // get the value of input[name='attendedCollege']
-                var attendedCollege = self.$('#attendedCollege').val();
+                var attendedCollege = self.$('input[name=attendedCollege]:checked').val();
 
                 // if attendedCollege is null or yes then check if the field value exists;
-                if(attendedCollege === undefined || attendedCollege === 'yes') {
+                if(attendedCollege === undefined || attendedCollege === 'Yes') {
                     if(value) {
                         valid = true;
                     }
+                } else {
+                    valid = true;
                 }
 
 
@@ -78,8 +79,8 @@ define(function (require) {
 
             $('.profile-form').validate({
                 rules: {
-                    aboutPhotoInput: {
-                        validateAboutPhotos: true
+                    aboutImageInput: {
+                        validateAboutImages: true
                     },
                     graduationYear: {
                         attendedCollege: true
@@ -130,33 +131,32 @@ define(function (require) {
             this.$el.find(".twitter-typeahead").addClass("col-1-1");
         },
 
-        initializePhotoUpload: function () {
-            new FileView({el: this.$('.profilePhotoInput'), inputTemplate: 'profile_photo_input'});
-            new FileView({el: this.$('.aboutPhotoInput'), inputTemplate: 'about_photo_input'});
+        initializeImageUpload: function () {
+            new FileView({el: this.$('.profileImageInput'), inputTemplate: 'profile_image_input'});
+            new FileView({el: this.$('.aboutImageInput'), inputTemplate: 'about_image_input'});
         },
 
         imageAdded: function (model) {
             var type = model.get('image_type');
             var file = model.get('temp_location');
-            if (type === 'profilePhoto') {
+            if (type === 'profileImage') {
                 this.$('#' + type).val(file);
-                this.$('#profilePhotoInput').prop('disabled', 'disabled');
+                this.$('#profileImageInput').prop('disabled', 'disabled');
             } else {
-                this.aboutPhotoCount += 1;
-                if (this.aboutPhotoCount > 3) {
-                    this.$('#aboutPhotoInput').prop('disabled', 'disabled');
+                this.aboutImageCount += 1;
+                if (this.aboutImageCount > 3) {
+                    this.$('#aboutImageInput').prop('disabled', 'disabled');
                 }
             }
         },
 
-        handleDeletedImage: function (photo) {
+        handleDeletedImage: function (image) {
 
-            if (photo.get('image_type') === 'profilePhoto') {
-                $('#profilePhotoInput').prop('disabled', '');
+            if (image.get('image_type') === 'profileImage') {
+                $('#profileImageInput').prop('disabled', '');
             } else {
-                this.aboutPhotoCount -= 1;
-                console.log(this.aboutPhotoCount);
-                $('#aboutPhotoInput').removeAttr('disabled');
+                this.aboutImageCount -= 1;
+                $('#aboutImageInput').removeAttr('disabled');
             }
         }
     });

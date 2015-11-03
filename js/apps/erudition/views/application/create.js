@@ -12,7 +12,7 @@ define(function (require) {
             var templateString = options.template ? options.template : 'erudition/profile/edit';
             this.template = templates[templateString];
             this.person = context.content.person;
-            this.aboutPhotoCount = this.person.aboutPhotos ? this.person.aboutPhotos.length - 1 : 0;
+            this.aboutImageCount = this.person.aboutImages ? this.person.aboutImages.length - 1 : 0;
             $('#phone').mask('(000) 000-0000');
             this.listenTo(context, 'image:added', this.imageAdded);
             this.listenTo(context, 'image:deleted', this.handleDeletedImage);
@@ -43,7 +43,7 @@ define(function (require) {
             this.$el.append(this.template(model));
             this.beginValidation();
             this.configureAutocomplete();
-            this.initializePhotoUpload();
+            this.initializeImageUpload();
             return this;
         }
     });

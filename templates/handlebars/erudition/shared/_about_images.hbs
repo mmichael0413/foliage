@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="header">Show us who you are</div>
+    <div class="body images aboutImageInput" required="" data-image-type="aboutImage">
+
+        <label>Upload up to 5 pictures to give us a glimpse into who you are and what you like.</label>
+
+        <input accept="image/*" data-input="false" id="aboutImageInput" name="aboutImageInput" type="file" {{#if_gt aboutImageCount 3}}disabled="disabled"{{/if_gt}}>
+
+        <div class="image-viewer pure-g">
+            {{#each person.aboutImages}}
+                <div class="image col-1-5">
+                    <input type="hidden" id="profileImage" name="aboutImages[{{@index}}].temp" value="{{this.temp}}"/>
+
+                    <img src="{{this.medium}}" alt="Image">
+                    <div class="delete">
+                        <a class="btn primary removeImage"><i class="ic ic_x"></i><span>Delete Image</span></a>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

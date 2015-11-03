@@ -1,10 +1,11 @@
+{{#if canEdit}}
 <div class="action-row">
     <a href="/profile/edit/{{person.id}}" class="light"><i class="ic ic_edit"></i> Edit Info</a>
 </div>
-
+{{/if}}
 
 <div class="profile-badge">
-    <div class="profile-image" style="background-image: url({{person.profilePhoto.small}})"></div>
+    <div class="profile-image" style="background-image: url({{person.profileImage.small}})"></div>
     <h2 class="subheader">{{person.fullName}}</h2>
     {{person.residentialAddress.city}}, {{person.residentialAddress.state}}
 </div>
@@ -39,16 +40,7 @@
     </div>
 </div>
 
-<div class="card">
-    <div class="header">Interests</div>
-    <div class="body">
-        {{person.interests}}
-    </div>
-    <div class="divider"></div>
-    <div class="body pure-g">
-        <div class="col-1-4">Trends Noticed:</div>
-    </div>
-</div>
+{{> interest_view}}
 
 <div class="card">
     <div class="header">Address</div>
@@ -74,5 +66,15 @@
     <div class="body pure-g">
         <div class="col-1-4">Shoe Size</div>
         <div class="col-3-4">{{person.shoeSize}}</div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="body pure-g">
+        <div class="col-1-5 col-sm-1-1 about-images">
+            {{#each person.aboutImages}}
+                <img src="{{this.large}}" alt="ljkl"/>
+            {{/each}}
+        </div>
     </div>
 </div>

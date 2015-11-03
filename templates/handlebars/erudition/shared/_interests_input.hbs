@@ -1,13 +1,17 @@
 <div class="card">
+    <div class="header">How do you spend your time?</div>
     <div class="body">
-        <div class="input-group">
+        <div class="input-group interests">
             <div class="pure-g">
-                <label class="col-1-1">How do you spend your time?</label>
+
                 {{#each interests}}
-                    <div class="col-1-7"><input type="checkbox" name="interests" value="{{this}}"
-                                                {{#contains this ../person.interests}}checked{{/contains}}
-                                                data-rule-required="true"/> {{this}}</div>
+                    <div class="col-1-7">
+                        <input type="checkbox" id="{{this.icon}}" name="interests" class="interest" value="{{this.name}}" {{#contains this.name ../person.interests}}checked{{/contains}} data-rule-required="true"/>
+                        <label for="{{this.icon}}" class="ic {{this.icon}}"></label><br/>
+                        <label for="{{this.icon}}" >{{this.name}}</label>
+                    </div>
                 {{/each}}
+
             </div>
         </div>
     </div>
