@@ -142,10 +142,12 @@ define(function (require) {
             if (type === 'profileImage') {
                 this.$('#' + type).val(file);
                 this.$('#profileImageInput').prop('disabled', 'disabled');
+                this.$('#profileImageInput').parent().addClass('disabled');
             } else {
                 this.aboutImageCount += 1;
                 if (this.aboutImageCount > 3) {
                     this.$('#aboutImageInput').prop('disabled', 'disabled');
+                    this.$('#aboutImageInput').parent().addClass('disabled');
                 }
             }
         },
@@ -154,9 +156,11 @@ define(function (require) {
 
             if (image.get('image_type') === 'profileImage') {
                 $('#profileImageInput').prop('disabled', '');
+                this.$('#profileImageInput').parent().removeClass('disabled');
             } else {
                 this.aboutImageCount -= 1;
-                $('#aboutImageInput').removeAttr('disabled');
+                this.$('#aboutImageInput').removeAttr('disabled');
+                this.$('#aboutImageInput').parent().removeClass('disabled');
             }
         }
     });

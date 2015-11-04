@@ -1,8 +1,9 @@
 <div class="card">
     <div class="body">
         <label>Do/Did you attend college?</label>
-        <div class='input-group spacer'>
+        <div class='radio-input-group spacer'>
             <label class='radio'><input type='radio' name='attendedCollege' value='Yes' {{#if_eq person.attendedCollege 'Yes'}}checked{{/if_eq}}  data-rule-required="true"/> Yes</label>
+            <div class="clear visible-xs"></div>
             <label class='radio'><input type='radio' name='attendedCollege' value='No' {{#if_eq person.attendedCollege 'No'}}checked{{/if_eq}}  data-rule-required="true"/> No, college would have slowed me down, went straight to work</label>
         </div>
         <div class="pure-g">

@@ -3,9 +3,11 @@
     <div class="body images aboutImageInput" required="" data-image-type="aboutImage">
 
         <label>Upload up to 5 pictures to give us a glimpse into who you are and what you like.</label>
-
+        <div class="clear"></div>
+        <div class="fileUpload btn primary {{#if person.aboutImages}}disabled{{/if}}">
+            Upload
         <input accept="image/*" data-input="false" id="aboutImageInput" name="aboutImageInput" type="file" {{#if_gt aboutImageCount 3}}disabled="disabled"{{/if_gt}}>
-
+        </div>
         <div class="image-viewer pure-g">
             {{#each person.aboutImages}}
                 <div class="image col-1-5">
