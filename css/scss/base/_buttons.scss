@@ -13,20 +13,22 @@
     
     @include swb-medium {
         text-align: center;
-      //  padding:6px 10px;
-       // font-size: 15pt;
     }
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled), &:hover:not(.disabled) {
         background-color: $color;
         color: white;
     }
-    &:disabled {
+    &:disabled, &.disabled {
       border-color: lighten($color, 20%);
       color: lighten($color, 20%);
+      &:hover {
+        background-color: inherit;
+        border-color: lighten($color, 20%);
+        color: lighten($color, 20%);
+      }
     }
 
     &.solid {
-        /*font-size: inherit;*/
         background-color: $color;
         color: white;
 
@@ -37,11 +39,6 @@
         &:hover:not(:disabled) {
             background: darken($color, 4%);
             border-color: darken($color, 4%);
-        }
-
-        @include swb-medium {
-            /*min-width: 2.2em;*/
-            /*padding: 2px 6px;*/
         }
     }
     &:focus {
@@ -71,7 +68,6 @@
             display: initial;
         }
     }
-    
 }
 
 .btn {
@@ -82,7 +78,6 @@
     padding: 2px 6px;
     font-size: 1.0em;
     vertical-align: middle;
-
     &.default {
         @include btn-details($text-color);
     }
