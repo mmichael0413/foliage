@@ -735,7 +735,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n                <li><strong>No assigned to any programs</strong></li>\n            ";
+  return "\n                <li><strong>Not assigned to any programs</strong></li>\n            ";
   }
 
   buffer += "<div class=\"pure-g section store-details\">\n    <div class=\"col-1-2\">\n        <dl>\n            <dt>Account:</dt>\n            <dd>";
