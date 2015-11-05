@@ -651,55 +651,33 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</h1>\n<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <div class=\"col-1-3\">\n            <input type=\"text\" class=\"search\" placeholder=\"Search by address...\" /><button class=\"reset-search btn default\">Reset</button>\n        </div>\n    </div>\n    <div class=\"pure-g\">\n        <h3 class=\"header col-3-12\">Store Name</h3>\n        <h3 class=\"header col-4-12\">Address</h3>\n        <h3 class=\"header col-1-12\">Status</h3>\n        <h3 class=\"header col-2-12\">Latitude</h3>\n        <h3 class=\"header col-2-12\">Longitude</h3>\n    </div>\n    <div class=\"body\" id=\"program-store-list\">\n        <div class=\"loading-section\">\n            <div class=\"loading\">\n                <div class=\"fa fa-spin fa-spinner\"></div> Loading...\n            </div>\n        </div>\n    </div>\n</section>";
+    + "</h1>\n<section class=\"section\">\n    <table class=\"table\">\n        <thead>\n            <tr>\n                <th>Store Name</th>\n                <th>Address</th>\n                <th>Latitude</th>\n                <th>Longitude</th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody id=\"program-store-list\">\n            <tr>\n                <td colspan=\"5\">\n                    <div class=\"loading-section\">\n                        <div class=\"loading\">\n                            <div class=\"fa fa-spin fa-spinner\"></div> Loading...\n                        </div>\n                    </div>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</section>";
   return buffer;
   });
 
 this["Stores"]["templates"]["stores/program_stores/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
-function program1(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n      ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.programStoreStatuses), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    ";
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  var buffer = "";
-  buffer += "\n          <option value=\""
-    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
-    + "\">"
-    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
-    + "</option>\n      ";
-  return buffer;
-  }
 
-  buffer += "<p class=\"col-3-12\">";
+  buffer += "<td>";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-4-12\">";
+    + "</td>\n<td>";
   if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-12\">\n  <select class=\"status\">\n    ";
-  stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.status), options) : helperMissing.call(depth0, "select", (depth0 && depth0.status), options));
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n  </select>\n</p>\n<p class=\"col-2-12\">";
+    + "</td>\n<td>";
   if (helper = helpers.latitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.latitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-2-12\">";
+    + "</td>\n<td>";
   if (helper = helpers.longitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.longitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>";
+    + "</td>\n<td></td>";
   return buffer;
   });
 
