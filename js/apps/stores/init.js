@@ -7,6 +7,7 @@ require.config({
         'underscore': '../libs/bower_components/underscore/underscore',
         'backbone': '../libs/bower_components/backbone/backbone',
         'handlebars': '../libs/bower_components/handlebars/handlebars.min',
+        'backbone.modal' : '../libs/bower_components/backbone-modal/backbone.modal',
         'expanding': '../libs/expanding',
         'handlebarsTemplates': 'stores/templates/hbs-compiled',
         'handlebarsHelpers': 'shared/utils/handlebarsHelpers',
@@ -47,6 +48,9 @@ require.config({
         },
         'handlebarsHelpers': {
             deps: ['handlebars']
+        },
+        'backbone.modal' : {
+            deps: ['backbone']
         },
         'context': {
             deps: ['underscore']
