@@ -677,7 +677,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.longitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.longitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n<td></td>";
+    + "</td>\n<td><a href=\"/stores/";
+  if (helper = helpers.storeUUID) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.storeUUID); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">View Store</a></td>";
   return buffer;
   });
 
@@ -709,6 +713,36 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   else { helper = (depth0 && depth0.uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "/uploads/new\" class=\"btn default pull-right\" data-bypass=\"true\">Upload Stores</a>";
+  return buffer;
+  });
+
+this["Stores"]["templates"]["stores/stores/show"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"pure-g section store-details\">\n    <div class=\"col-1-2\">\n        <dl>\n            <dt>Account:</dt>\n            <dd>";
+  if (helper = helpers.accountName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.accountName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</dd>\n\n            <dt>Store Tag:</dt>\n            <dd>";
+  if (helper = helpers.storeTag) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.storeTag); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</dd>\n\n            <dt>Address:</dt>\n            <dd>";
+  if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</dd>\n\n            <dt>Latitude:</dt>\n            <dd>";
+  if (helper = helpers.latitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.latitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</dd>\n\n            <dt>Longitude:</dt>\n            <dd>";
+  if (helper = helpers.longitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.longitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</dd>\n        </dl>\n    </div>\n    <div class=\"col-1-2\">\n        Belongs to the following programs:\n        <ul>\n            <li>Program 1</li>\n            <li>...</li>\n            <li>Program n</li>\n        </ul>\n    </div>\n</div>\n\n<div>\n    <button class=\"btn primary geocode\">Re Process Geocode</button>\n    <div id=\"geocode-choices\"></div>\n</div>\n\n";
   return buffer;
   });
 
