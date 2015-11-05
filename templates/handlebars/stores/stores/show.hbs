@@ -18,11 +18,13 @@
         </dl>
     </div>
     <div class="col-1-2">
-        Belongs to the following programs:
+        <p>Belongs to the following programs:</p>
         <ul>
-            <li>Program 1</li>
-            <li>...</li>
-            <li>Program n</li>
+            {{#each programs}}
+                <li><a href="/programs/{{this.id}}">{{this.name}}</a></li>
+            {{else}}
+                <li><strong>No assigned to any programs</strong></li>
+            {{/each}}
         </ul>
     </div>
 </div>

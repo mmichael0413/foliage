@@ -719,8 +719,24 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["Stores"]["templates"]["stores/stores/show"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                <li><a href=\"/programs/"
+    + escapeExpression(((stack1 = (depth0 && depth0.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">"
+    + escapeExpression(((stack1 = (depth0 && depth0.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a></li>\n            ";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  
+  return "\n                <li><strong>No assigned to any programs</strong></li>\n            ";
+  }
 
   buffer += "<div class=\"pure-g section store-details\">\n    <div class=\"col-1-2\">\n        <dl>\n            <dt>Account:</dt>\n            <dd>";
   if (helper = helpers.accountName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -742,7 +758,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.longitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.longitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</dd>\n        </dl>\n    </div>\n    <div class=\"col-1-2\">\n        Belongs to the following programs:\n        <ul>\n            <li>Program 1</li>\n            <li>...</li>\n            <li>Program n</li>\n        </ul>\n    </div>\n</div>\n\n<div>\n    <button class=\"btn primary geocode\">Re Process Geocode</button>\n    <div id=\"geocode-choices\"></div>\n</div>\n\n";
+    + "</dd>\n        </dl>\n    </div>\n    <div class=\"col-1-2\">\n        <p>Belongs to the following programs:</p>\n        <ul>\n            ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.programs), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </ul>\n    </div>\n</div>\n\n<div>\n    <button class=\"btn primary geocode\">Re Process Geocode</button>\n    <div id=\"geocode-choices\"></div>\n</div>\n\n";
   return buffer;
   });
 
