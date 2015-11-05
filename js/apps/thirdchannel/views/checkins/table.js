@@ -10,6 +10,9 @@ define(function(require) {
             var $body = this.$el.find(this.bodySelector);
 
             $body.html('');
+            if(this.collection.models.length === 0){
+                $body.append("No stores available for checkin");
+            }
             _.each(this.collection.models, function(model) {
                 $body.append(new StoreView({model: model}).render().el);
             });
