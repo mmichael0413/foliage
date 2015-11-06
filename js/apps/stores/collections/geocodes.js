@@ -4,10 +4,10 @@ define(function(require){
 
     return Backbone.Collection.extend({
         initialize: function(models, options) {
-            this.model = options.model;
+            this.store = options.store;
         },
         url: function() {
-            return '/api/stores/' + this.model.get('id') + '/geocodes';
+            return '/api/stores/' + this.store.get('id') + '/geocodes';
         }
     });
 });
