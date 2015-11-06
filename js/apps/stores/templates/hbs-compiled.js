@@ -716,6 +716,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
+this["Stores"]["templates"]["stores/stores/geocode_list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "";
+
+
+  return buffer;
+  });
+
 this["Stores"]["templates"]["stores/stores/show"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -758,10 +767,10 @@ function program3(depth0,data) {
   if (helper = helpers.longitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.longitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</dd>\n        </dl>\n    </div>\n    <div class=\"col-1-2\">\n        <p>Belongs to the following programs:</p>\n        <ul>\n            ";
+    + "</dd>\n        </dl>\n    </div>\n    <div class=\"col-1-2\">\n        <div id=\"map\"></div>\n    </div>\n    <div class=\"col-1-2\">\n        <p>Belongs to the following programs:</p>\n        <ul>\n            ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.programs), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </ul>\n    </div>\n</div>\n\n<div>\n    <button class=\"btn primary geocode\">Re Process Geocode</button>\n    <div id=\"geocode-choices\"></div>\n</div>\n\n";
+  buffer += "\n        </ul>\n    </div>\n</div>\n\n<div>\n    <button class=\"btn primary geocode\">Re Process Geocode</button>\n    <div id=\"geocode-list\"></div>\n</div>\n\n";
   return buffer;
   });
 

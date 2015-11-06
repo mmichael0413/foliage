@@ -17,7 +17,8 @@ require.config({
         'helpers' : 'thirdchannel/utils/helpers',
         'pikaday' : '../libs/bower_components/pikaday/pikaday',
         'noty': '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged',
-        'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker"
+        'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
+        'async': '../libs/bower_components/requirejs-plugins/src/async'
     },
     shim: {
         'jquery': {
