@@ -28,7 +28,7 @@ define(function(require) {
             var placeId = $btn.attr('data-place-id');
 
             var geocode = this.collection.findWhere({placeId: placeId});
-            
+
             if(confirm("Are you sure you want to update the store's address to " + geocode.get('formattedAddress') + "?")) {
                 this.collection.store.updateGeocoding(geocode)
                     .done(function(response) {
