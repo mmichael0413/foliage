@@ -28,12 +28,11 @@ define(function(require) {
             var placeId = $btn.attr('data-place-id');
 
             var geocode = this.collection.findWhere({placeId: placeId});
-
-            var self = this;
+            
             if(confirm("Are you sure you want to update the store's address to " + geocode.get('formattedAddress') + "?")) {
                 this.collection.store.updateGeocoding(geocode)
                     .done(function(response) {
-                        self.collection.store.set(response);
+                        this.collection.store.set(response);
                         noty({
                             layout: 'top',
                             theme: 'relax',
@@ -47,8 +46,13 @@ define(function(require) {
                             },
                             timeout: 2500
                         });
-                        self.remove();
-                    })
+
+                        $('.content-holder').animate({
+                            scrollTop: 0
+                        }, 500);
+
+                        this.$el.html('');
+                    }.bind(this))
                     .fail(function() {
                         noty({
                             layout: 'top',
