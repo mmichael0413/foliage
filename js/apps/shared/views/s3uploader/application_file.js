@@ -22,7 +22,7 @@ define(function(require) {
             this.$form = $('.s3_uploader');
             this.$viewer = this.$('.image-viewer');
 
-            this.collection = new Backbone.Collection();
+            this.collection = options.collection;
             _.each(this.$('.image'), function(image){
                 var model = new ImageModel({
                     image_type: self.imageType,
@@ -34,7 +34,7 @@ define(function(require) {
                 var f= new ImageView({model: model}).setElement(image);
             });
 
-            this.listenTo(this.collection, 'destroy', this.renderImages, 'foo');
+            this.listenTo(this.collection, 'destroy', this.renderImages);
         },
         render: function() {
             return this;
@@ -90,8 +90,11 @@ define(function(require) {
             input.replaceWith(input.val('').clone(true));
         },
 
-        renderImages: function () {
-            console.log(arguments);
+        renderImages: function (model) {
+            if(model.get('image_type') == 'profileImage'){
+                return;
+            }
+
             var self = this;
 
             this.$el.html();

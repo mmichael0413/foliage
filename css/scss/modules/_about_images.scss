@@ -1,0 +1,20 @@
+.about-images {
+  width: 100%;
+  text-align: center;
+  @include swa-small() {
+    img {
+      display: inline-block;
+      width: 20%;
+      margin: 0;
+      padding: 0;
+      float: left;
+    }
+  }
+}
+
+.image-viewer {
+  margin-top: 1em;
+  .image img {
+    max-width: 100%;
+  }
+}

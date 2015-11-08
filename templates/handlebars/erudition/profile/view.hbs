@@ -1,31 +1,57 @@
 {{#if canEdit}}
-<div class="action-row">
-    <a href="/profile/edit/{{person.id}}" class="light"><i class="ic ic_edit"></i> Edit Info</a>
-</div>
+    <div class="action-row">
+        <a href="{{#if editUrl}}{{editUrl}}{{else}}/profile/edit/{{person.id}}{{/if}}" class="light"><i
+                class="ic ic_edit"></i> Edit Info</a>
+    </div>
 {{/if}}
 
-<div class="profile-badge">
-    <div class="profile-image" style="background-image: url({{person.profileImage.small}})"></div>
-    <h2 class="subheader">{{person.fullName}}</h2>
-    {{person.residentialAddress.city}}, {{person.residentialAddress.state}}
+<div class="page-heading">
+    <div>
+        <img class="user-image img-circle" onerror="this.src='/assets/user/missing.jpg'"
+             src="{{person.profileImage.small}}">
+    </div>
+    <div>
+        <h1>{{person.fullName}}</h1>
+        {{universityLabel}}
+
+        {{#if displayResidential}}
+            {{person.residentialAddress.city}}, {{person.residentialAddress.state}}
+        {{/if}}
+
+        {{userLabel}}
+
+
+    </div>
 </div>
 
 
-<div class="card">
-    <div class="header">
-        General Information
-    </div>
-    <div class="body pure-g">
-        <div class="col-1-4">Gender:</div>
-        <div class="col-3-4">{{person.gender}}</div>
-        {{#if_eq 'Yes' person.attendedCollege}}
-            <div class="col-1-4">University:</div>
-            <div class="col-3-4">{{person.university.name}}</div>
-            <div class="col-1-4">Year of Graduation:</div>
-            <div class="col-3-4">{{person.graduationYear}}</div>
-        {{/if_eq}}
-    </div>
-</div>
+{{#if activityUrl}}
+    <ul class="nav tabbed-nav">
+        <li class="tab active"><a href="#">Profile</a></li>
+        <li class="tab"><a href="{{activityUrl}}" class="">Activities</a></li>
+        <li class="tab"><a href="{{storeUrl}}">Stores</a></li>
+    </ul>
+{{/if}}
+
+<!--{{#if showGeneralInfo}}-->
+    <!--<div class="card">-->
+        <!--<div class="header">-->
+            <!--General Information-->
+        <!--</div>-->
+        <!--<div class="body pure-g">-->
+        <!--&lt;!&ndash;{{#if person.gender}}&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="col-1-4">Gender:</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="col-3-4">{{person.gender}}</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;{{/if}}&ndash;&gt;-->
+            <!--{{#if_eq 'Yes' person.attendedCollege}}-->
+                <!--<div class="col-1-4">University:</div>-->
+                <!--<div class="col-3-4">{{universityLabel}}</div>-->
+                <!--<div class="col-1-4">Year of Graduation:</div>-->
+                <!--<div class="col-3-4">{{person.graduationYear}}</div>-->
+            <!--{{/if_eq}}-->
+        <!--</div>-->
+    <!--</div>-->
+<!--{{/if}}-->
 
 <div class="card">
     <div class="header">Contact Information</div>
@@ -40,41 +66,74 @@
     </div>
 </div>
 
-{{> interest_view}}
 
-<div class="card">
-    <div class="header">Address</div>
-    <div class="body pure-g">
-        <div class="col-1-4">Shipping Address:</div>
-        <div class="col-3-4">{{> address person.shippingAddress}}</div>
-    </div>
-    <div class="divider"></div>
-    <div class="body pure-g">
-        <div class="col-1-4">Residential Address:</div>
-        <div class="col-3-4">{{> address person.residentialAddress}}</div>
+{{#if showAllFields}}
+    <div class="card">
+        <div class="header">Address</div>
+        <div class="body pure-g">
+            <div class="col-1-4">Shipping Address:</div>
+            <div class="col-3-4">
+                {{#if displayShipping}}
+                    {{> address person.shippingAddress}}
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
+        <div class="divider"></div>
 
+        <div class="body pure-g">
+            <div class="col-1-4">Residential Address:</div>
+            <div class="col-3-4">
+                {{#if displayResidential}}
+                    {{> address person.residentialAddress}}
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+
+        </div>
     </div>
-</div>
+{{/if}}
+
+{{#if person.interests}}
+    {{> interest_view}}
+{{/if}}
 
 <div class="card">
     <div class="header">Additional Information</div>
     <div class="body pure-g">
         <div class="col-1-4">Shirt Size</div>
-        <div class="col-3-4">{{person.shirtSize}}</div>
+        <div class="col-3-4">
+            {{#if person.shirtSize}}
+                {{person.shirtSize}}
+            {{else}}
+                Not Available
+            {{/if}}
+        </div>
     </div>
     <div class="divider"></div>
     <div class="body pure-g">
         <div class="col-1-4">Shoe Size</div>
-        <div class="col-3-4">{{person.shoeSize}}</div>
-    </div>
-</div>
-
-<div class="card">
-    <div class="body pure-g">
-        <div class="col-1-5 col-sm-1-1 about-images">
-            {{#each person.aboutImages}}
-                <img src="{{this.large}}" alt="ljkl"/>
-            {{/each}}
+        <div class="col-3-4">
+            {{#if person.shoeSize}}
+                {{person.shoeSize}}
+            {{else}}
+                Not Available
+            {{/if}}
         </div>
     </div>
 </div>
+
+{{#if_gt aboutImageCount 0}}
+    <div class="card">
+        <div class="body pure-g">
+            <div class="col-1-5 col-sm-1-1 about-images">
+
+                {{#each person.aboutImages}}
+                    <img src="{{this.large}}" alt="ljkl"/>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+{{/if_gt}}

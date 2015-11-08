@@ -20,7 +20,8 @@ module.exports = function(grunt) {
             files: {
                 "js/apps/thirdchannel/templates/hbs-compiled.js": [
                     "templates/handlebars/shared/**/*.hbs",
-                    "templates/handlebars/thirdchannel/**/*.hbs"
+                    "templates/handlebars/thirdchannel/**/*.hbs",
+                    "templates/handlebars/erudition/**/*.hbs"
                 ]
             }
         }

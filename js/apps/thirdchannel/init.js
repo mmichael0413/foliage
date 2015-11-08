@@ -6,6 +6,7 @@ require.config({
     waitSeconds: 0,
     paths: {
         'jquery': "../libs/bower_components/jquery/jquery.min",
+        'jquery-ui'     : "../libs/bower_components/jquery-ui/jquery-ui",
         'underscore': '../libs/bower_components/underscore/underscore',
         'backbone': '../libs/bower_components/backbone/backbone',
         'handlebars': '../libs/bower_components/handlebars/handlebars.min',
@@ -31,12 +32,17 @@ require.config({
         'chartist' : '../libs/bower_components/chartist/dist/chartist',
         'd3': '../libs/bower_components/d3/d3',
         'c3': '../libs/bower_components/c3/c3',
-        'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker"
+        'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
+        'jquery.mask' : '../libs/bower_components/jquery-mask-plugin/dist/jquery.mask',
+        'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min'
     },
     shim: {
         "jquery": {
             deps: [],
             exports: "$"
+        },
+        "jquery-ui": {
+            deps: ['jquery']
         },
         "jquery_ujs": {
             deps: ["jquery"]
@@ -100,6 +106,10 @@ require.config({
         },
         'c3': {
             deps: ["d3"]
+        },
+        "typeahead": {
+            deps:["jquery"],
+            exports: "$.fn"
         }
     }
 });

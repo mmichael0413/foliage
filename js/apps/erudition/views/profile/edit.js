@@ -17,6 +17,7 @@ define(function (require) {
         imageTemplate: templates['shared/s3uploader/uploaderForm'],
         aboutImageInputTemplate: templates['erudition/s3Uploader/about_image_input'],
         initialize: function (options) {
+            console.log(context.content);
             // this view is extended by the /application/create.js and uses a different template
             var templateString = (options && options.template) ? options.template : 'erudition/profile/edit';
             this.template = templates[templateString];
@@ -42,11 +43,16 @@ define(function (require) {
                 states: context.content.states,
                 s3: context.content.uploader,
                 referer: context.content.referer,
-                aboutImageCount: this.aboutImageCount
+                aboutImageCount: this.aboutImageCount,
+                saveUrl: context.content.saveUrl,
+                programUUID: context.content.programUUID
             };
 
             this.$el.append(this.template(model));
-            this.beginValidation();
+
+            if(context.content.requireValidation) {
+                this.beginValidation();
+            }
             this.configureAutocomplete();
             this.initializeImageUpload();
 
@@ -132,8 +138,8 @@ define(function (require) {
         },
 
         initializeImageUpload: function () {
-            new FileView({el: this.$('.profileImageInput'), inputTemplate: 'profile_image_input'});
-            new FileView({el: this.$('.aboutImageInput'), inputTemplate: 'about_image_input'});
+            new FileView({el: this.$('.profileImageInput'), inputTemplate: 'profile_image_input', collection: new Backbone.Collection()});
+            new FileView({el: this.$('.aboutImageInput'), inputTemplate: 'about_image_input', collection: new Backbone.Collection()});
         },
 
         imageAdded: function (model) {

@@ -3,7 +3,7 @@
 
 {{>upload_form}}
 
-<form action="/profile/save" class="profile-form" method="post">
+<form action="{{saveUrl}}" class="profile-form" method="post">
     {{> profile_image}}
     {{> basic_information}}
     {{> university}}
@@ -16,9 +16,10 @@
     {{> owns_car}}
 
     <input type="hidden" name="referer" value="{{referer}}"/>
+    <input type="hidden" name="programUUID" value="{{programUUID}}"/>
 
     <div class="button-row">
-        <a href="#" class="btn inverse">Cancel</a>
+        <a href="{{referer}}" class="btn inverse">Cancel</a>
         <input type="submit" class="btn primary submit" value="Save" data-input="false"/>
     </div>
 </form>
