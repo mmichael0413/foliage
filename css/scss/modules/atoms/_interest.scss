@@ -1,0 +1,26 @@
+
+
+.interests {
+  .pure-g > div {
+    text-align: center;
+    margin-bottom: 1em;
+    height: 6em;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+  }
+  .ic:before {
+    font-size: 3em;
+
+  }
+
+  .interest {
+    position: absolute;
+    left: -1000px;
+    &:checked + label:before, &:checked ~ label {
+      color: $link-color;
+    }
+  }
+}

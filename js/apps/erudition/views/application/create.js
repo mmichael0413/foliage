@@ -2,7 +2,8 @@ define(function (require) {
     var Backbone = require('backbone'),
         EditProfileView = require('erudition/views/profile/edit'),
         context = require('context'),
-        templates = require('handlebarsTemplates');
+        templates = require('handlebarsTemplates'),
+        Expanding = require('expanding');
 
 
     return EditProfileView.extend({
@@ -44,6 +45,8 @@ define(function (require) {
             this.beginValidation();
             this.configureAutocomplete();
             this.initializeImageUpload();
+
+            this.$("textarea").expanding();
             return this;
         }
     });

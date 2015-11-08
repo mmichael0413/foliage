@@ -16,7 +16,8 @@ require.config({
         'jquery-validate' : '../libs/bower_components/jquery-validation/dist/jquery.validate',
         'jquery.mask' : '../libs/bower_components/jquery-mask-plugin/dist/jquery.mask',
         'chosen': "../libs/bower_components/chosen/chosen.jquery",
-        'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min'
+        'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min',
+        'expanding': '../libs/expanding'
 
     },
 

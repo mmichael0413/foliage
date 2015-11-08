@@ -24,12 +24,14 @@ define(function(require){
         ReportInfoMain = require('thirdchannel/views/reports/info/show/main'),
         ContentView = require('thirdchannel/views/global/content_view'),
         NotificationSectionView = require('thirdchannel/views/notifications/notification_section'),
-        ShippingView = require('thirdchannel/views/legal/shipping'),
+        //ShippingView = require('thirdchannel/views/legal/shipping'),
         PostView = require('thirdchannel/views/posts/main'),
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge'),
         StoreProfileSchedule = require('thirdchannel/views/store_profile/schedule'),
         Labs = require('thirdchannel/views/labs/main'),
         AnswersExportView = require('thirdchannel/views/exports/answers/main'),
+        ProgramProfileView = require('erudition/views/profile/view_profile'),
+        ProgramProfileEditView = require('erudition/views/profile/edit'),
         ProfileStoreListView = require('thirdchannel/views/profiles/stores/list');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
@@ -37,7 +39,9 @@ define(function(require){
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
+            'programs/:program_id/profiles/:user_id/activities' : 'programProfileActivity',
             'programs/:program_id/profiles/:user_id/stores': 'programProfileStores',
+            'programs/:program_id/profiles/:user_id/edit': 'programProfileEdit',
             'programs/:program_id/checkins(/)' : 'checkin_list',
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
@@ -60,7 +64,7 @@ define(function(require){
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
             'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
             'programs/:program_id/notifications' : 'notificationList',
-            'programs/:program_id/profiles/:user_id/*path' : 'shippingForm', // handle /edit and / if errors
+           // 'programs/:program_id/profiles/:user_id/*path' : 'shippingForm', // handle /edit and / if errors
             'programs/:program_id/posts/new' : 'newPost',
             'programs/:program_id/labs/sku_sales': 'labsSkus',
             'programs/:program_id/labs(/)': 'labsSalesCompare',
@@ -148,6 +152,14 @@ define(function(require){
         },
 
         programProfile: function(program_id, user_id) {
+            new ProgramProfileView().render();
+        },
+
+        programProfileEdit: function () {
+            new ProgramProfileEditView().render();
+        },
+
+        programProfileActivity: function(program_id, user_id) {
             var url = '/programs/' + program_id + '/activities/' + user_id + '/for';
             ActivitiesMain.init(url, null, false);
         },
@@ -194,9 +206,9 @@ define(function(require){
             var readView = new NotificationSectionView({el: '.past-notifications', url_action: 'read', bootstrap: window.read}).start();
         },
 
-        shippingForm: function(){
-            ShippingView.init();
-        },
+        //shippingForm: function(){
+        //    ShippingView.init();
+        //},
 
         newPost: function(){
             new PostView();

@@ -171,3 +171,16 @@ input[type="file"]::-webkit-file-upload-button {
 
 }
 
+
+.radio-input-group {
+
+  label {
+    @include swb-small() {
+      display: block;
+      margin-bottom: 1em;
+    }
+    @include swa-small() {
+      padding-right: 1em;
+    }
+  }
+}

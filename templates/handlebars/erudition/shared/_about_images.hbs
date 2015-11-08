@@ -4,14 +4,14 @@
 
         <label>Upload up to 5 pictures to give us a glimpse into who you are and what you like.</label>
         <div class="clear"></div>
-        <div class="fileUpload btn primary {{#if person.aboutImages}}disabled{{/if}}">
+        <div class="fileUpload btn primary {{#if_eq aboutImageCount 3}}disabled{{/if_eq}}">
             Upload
         <input accept="image/*" data-input="false" id="aboutImageInput" name="aboutImageInput" type="file" {{#if_gt aboutImageCount 3}}disabled="disabled"{{/if_gt}}>
         </div>
         <div class="image-viewer pure-g">
             {{#each person.aboutImages}}
                 <div class="image col-1-5">
-                    <input type="hidden" id="profileImage" name="aboutImages[{{@index}}].temp" value="{{this.temp}}"/>
+                    <input type="hidden" id="aboutImage" name="aboutImages[{{@index}}].temp" value="{{this.temp}}"/>
 
                     <img src="{{this.medium}}" alt="Image">
                     <div class="delete">

@@ -1,0 +1,23 @@
+.profile-badge {
+  @include swa-small() {
+    margin: 1em 0;
+    width: 50%;
+  }
+
+  @include swb-small() {
+    margin-top: .5em;
+  }
+
+
+  .profile-image {
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    border: 1px solid $main-background;
+    width: 75px;
+    height: 75px;
+    margin-bottom: .5em;
+    margin-left: 1em;
+
+  }
+}
