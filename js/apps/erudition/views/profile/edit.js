@@ -27,6 +27,8 @@ define(function (require) {
 
             $('#phone').mask('(000) 000-0000');
 
+            $('.scroll-top').remove();
+
             this.listenTo(context, 'image:added', this.imageAdded);
             this.listenTo(context, 'image:deleted', this.handleDeletedImage);
         },
