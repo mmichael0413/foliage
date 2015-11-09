@@ -44,6 +44,10 @@ define(function(require){
                 showGeneralInfo = true;
             }
 
+            var aboutImageCount = null;
+            if (this.person.aboutImages) {
+                aboutImageCount = this.person.aboutImages.length;
+            }
 
 			//new BannerView({person: this.person}).render();
 			this.$el.append(this.template({
@@ -55,7 +59,7 @@ define(function(require){
                 displayResidential: this.displayResidential,
                 displayShipping: this.displayshipping,
                 userLabel: context.content.userLabel,
-                aboutImageCount: this.person.aboutImages.length,
+                aboutImageCount: aboutImageCount,
                 universityLabel:universityLabel,
                 showGeneralInfo:showGeneralInfo,
                 showAllFields: context.content.showAllFields
