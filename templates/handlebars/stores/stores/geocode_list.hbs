@@ -1,0 +1,20 @@
+<section class="section data-section">
+    <h3 class="header">Select Geocode</h3>
+    <div class="body">
+        {{#each geocodes}}
+            <div class="pure-g item">
+                <div class="col-1-4">
+                    <button data-place-id="{{this.placeId}}" class="btn primary select-geocode pull-left">Select</button>
+                </div>
+                <div class="col-1-2">
+                    {{this.formattedAddress}}
+                </div>
+                <div class="col-1-4">({{this.latitude}}, {{this.longitude}})</div>
+            </div>
+        {{else}}
+            <div class="pure-g item">
+                <div class="col-1-1"><strong>Unable to find a geocoded address for store.</strong></div>
+            </div>
+        {{/each}}
+    </div>
+</section>

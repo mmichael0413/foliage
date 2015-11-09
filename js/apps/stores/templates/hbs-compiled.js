@@ -651,56 +651,47 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</h1>\n<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <div class=\"col-1-3\">\n            <input type=\"text\" class=\"search\" placeholder=\"Search by address...\" /><button class=\"reset-search btn default\">Reset</button>\n        </div>\n    </div>\n    <div class=\"pure-g\">\n        <h3 class=\"header col-3-12\">Store Name</h3>\n        <h3 class=\"header col-4-12\">Address</h3>\n        <h3 class=\"header col-1-12\">Status</h3>\n        <h3 class=\"header col-2-12\">Latitude</h3>\n        <h3 class=\"header col-2-12\">Longitude</h3>\n    </div>\n    <div class=\"body\" id=\"program-store-list\">\n        <div class=\"loading-section\">\n            <div class=\"loading\">\n                <div class=\"fa fa-spin fa-spinner\"></div> Loading...\n            </div>\n        </div>\n    </div>\n</section>";
+    + "</h1>\n<section class=\"section\">\n    <table class=\"table\">\n        <thead>\n            <tr>\n                <th>Store Name</th>\n                <th>Address</th>\n                <th>Latitude</th>\n                <th>Longitude</th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody id=\"program-store-list\">\n            <tr>\n                <td colspan=\"5\">\n                    <div class=\"loading-section\">\n                        <div class=\"loading\">\n                            <div class=\"fa fa-spin fa-spinner\"></div> Loading...\n                        </div>\n                    </div>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</section>";
   return buffer;
   });
 
 this["Stores"]["templates"]["stores/program_stores/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
-function program1(depth0,data) {
-  
-  var buffer = "", stack1;
-  buffer += "\n      ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.programStoreStatuses), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    ";
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  var buffer = "";
-  buffer += "\n          <option value=\""
-    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
-    + "\">"
-    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
-    + "</option>\n      ";
-  return buffer;
-  }
 
-  buffer += "<p class=\"col-3-12\">";
+  buffer += "<td>";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-4-12\">";
+    + "</td>\n<td>";
   if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-12\">\n  <select class=\"status\">\n    ";
-  stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.status), options) : helperMissing.call(depth0, "select", (depth0 && depth0.status), options));
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n  </select>\n</p>\n<p class=\"col-2-12\">";
+    + "</td>\n<td>";
   if (helper = helpers.latitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.latitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-2-12\">";
+    + "</td>\n<td>";
   if (helper = helpers.longitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.longitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>";
+    + "</td>\n<td><a href=\"/stores/";
+  if (helper = helpers.storeUUID) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.storeUUID); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">View Store</a></td>";
   return buffer;
+  });
+
+this["Stores"]["templates"]["stores/program_stores/zero_entry_list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<tr><td colspan=\"5\">No stores found for program</td></tr>";
   });
 
 this["Stores"]["templates"]["stores/programs/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -731,6 +722,109 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   else { helper = (depth0 && depth0.uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "/uploads/new\" class=\"btn default pull-right\" data-bypass=\"true\">Upload Stores</a>";
+  return buffer;
+  });
+
+this["Stores"]["templates"]["stores/stores/geocode_list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n            <div class=\"pure-g item\">\n                <div class=\"col-1-4\">\n                    <button data-place-id=\""
+    + escapeExpression(((stack1 = (depth0 && depth0.placeId)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" class=\"btn primary select-geocode pull-left\">Select</button>\n                </div>\n                <div class=\"col-1-2\">\n                    "
+    + escapeExpression(((stack1 = (depth0 && depth0.formattedAddress)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\n                </div>\n                <div class=\"col-1-4\">("
+    + escapeExpression(((stack1 = (depth0 && depth0.latitude)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + ", "
+    + escapeExpression(((stack1 = (depth0 && depth0.longitude)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + ")</div>\n            </div>\n        ";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  
+  return "\n            <div class=\"pure-g item\">\n                <div class=\"col-1-1\"><strong>Unable to find a geocoded address for store.</strong></div>\n            </div>\n        ";
+  }
+
+  buffer += "<section class=\"section data-section\">\n    <h3 class=\"header\">Select Geocode</h3>\n    <div class=\"body\">\n        ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.geocodes), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </div>\n</section>\n";
+  return buffer;
+  });
+
+this["Stores"]["templates"]["stores/stores/show"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n                <input type=\"text\" data-model=\"address\" name=\"address\" value=\"";
+  if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n                <button class=\"save-address btn primary\"><i class=\"ic fa ic_check\"></i></button>\n                <button class=\"cancel-edit-address btn default\"><i class=\"ic fa ic_x\"></i></button>\n            ";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n                ";
+  if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " <button class=\"edit-address btn default\"><i class=\"ic fa ic_edit\"></i></button>\n            ";
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                    <li><a href=\"/programs/"
+    + escapeExpression(((stack1 = (depth0 && depth0.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">"
+    + escapeExpression(((stack1 = (depth0 && depth0.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a></li>\n                ";
+  return buffer;
+  }
+
+function program7(depth0,data) {
+  
+  
+  return "\n                    <li><strong>Not assigned to any programs</strong></li>\n                ";
+  }
+
+  buffer += "<div class=\"pure-g section store-details\">\n    <div class=\"col-1-2\">\n        <dl>\n            <dt>Account:</dt>\n            <dd>";
+  if (helper = helpers.accountName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.accountName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</dd>\n\n            <dt>Store Tag:</dt>\n            <dd>";
+  if (helper = helpers.storeTag) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.storeTag); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</dd>\n\n            <dt>Address:</dt>\n            <dd>\n            ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.isEditingAddress), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </dd>\n\n            <dt>Latitude:</dt>\n            <dd>";
+  if (helper = helpers.latitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.latitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</dd>\n\n            <dt>Longitude:</dt>\n            <dd>";
+  if (helper = helpers.longitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.longitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</dd>\n        </dl>\n        <div>\n            <p>Belongs to the following programs:</p>\n            <ul>\n                ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.programs), {hash:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </ul>\n        </div>\n    </div>\n    <div class=\"col-1-2\">\n        <div id=\"map\"></div>\n    </div>\n</div>\n\n<div>\n    <button class=\"btn primary geocode\">Re-Process Geocode</button>\n    <div id=\"geocode-list\"></div>\n</div>\n\n";
   return buffer;
   });
 

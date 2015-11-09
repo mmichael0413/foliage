@@ -1,0 +1,22 @@
+.store-details {
+
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    margin-left: 0;
+    margin-bottom: 0.2em;
+
+    input {
+      width: 80%;
+      margin-bottom: 0;
+    }
+  }
+
+  #map {
+    width: 500px;
+    height: 400px;
+  }
+
+}

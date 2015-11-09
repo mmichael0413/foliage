@@ -7,6 +7,7 @@ require.config({
         'underscore': '../libs/bower_components/underscore/underscore',
         'backbone': '../libs/bower_components/backbone/backbone',
         'handlebars': '../libs/bower_components/handlebars/handlebars.min',
+        'backbone.modal' : '../libs/bower_components/backbone-modal/backbone.modal',
         'expanding': '../libs/expanding',
         'handlebarsTemplates': 'stores/templates/hbs-compiled',
         'handlebarsHelpers': 'shared/utils/handlebarsHelpers',
@@ -16,7 +17,8 @@ require.config({
         'helpers' : 'thirdchannel/utils/helpers',
         'pikaday' : '../libs/bower_components/pikaday/pikaday',
         'noty': '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged',
-        'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker"
+        'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
+        'async': '../libs/bower_components/requirejs-plugins/src/async'
     },
     shim: {
         'jquery': {
@@ -47,6 +49,9 @@ require.config({
         },
         'handlebarsHelpers': {
             deps: ['handlebars']
+        },
+        'backbone.modal' : {
+            deps: ['backbone']
         },
         'context': {
             deps: ['underscore']

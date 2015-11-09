@@ -7,6 +7,7 @@ define(function(require) {
 
     var View = Backbone.View.extend({
         template: Templates['stores/program_stores/list'],
+        noStoreTemplate: Templates['stores/program_stores/zero_entry_list'],
         childViews: [],
         events: {
             'keyup .search': 'search',
@@ -28,7 +29,11 @@ define(function(require) {
         },
         renderProgramStores: function() {
             this.removeChildViews();
-            this.collection.each(this.renderProgramStore);
+            if(this.collection.length > 0) {
+                this.collection.each(this.renderProgramStore);
+            } else {
+                this.$('#program-store-list').html(this.noStoreTemplate());
+            }
         },
         renderProgramStore: function(programStore) {
             var v = new ListItemView({model: programStore});
