@@ -15,11 +15,13 @@ define(function(require) {
 
         events: {
             'click .geocode': 'reprocessGeocode',
-            'click .edit-address': 'editAddress'
+            'click .edit-address': 'editAddress',
+            'click .save-address': 'saveAddress',
+            'click .cancel-edit-address': 'cancelEditAddress'
         },
 
         initialize: function() {
-            _.bindAll(this, 'render', 'renderDetails', 'renderMap');
+            _.bindAll(this, 'render');
 
             this.isEditingAddress = false;
 
@@ -30,16 +32,9 @@ define(function(require) {
         },
 
         render: function() {
-            this.renderDetails();
-            this.renderMap();
-            return this;
-        },
-
-        renderDetails: function() {
-            this.$el.html(this.template(this.model.attributes));
-        },
-
-        renderMap: function() {
+            var data = _.clone(this.model.attributes);
+            data.isEditingAddress = this.isEditingAddress;
+            this.$el.html(this.template(data));
             var latLng = new google.maps.LatLng(this.model.get('latitude'), this.model.get('longitude'));
             var map = new google.maps.Map(this.$('#map')[0], {
                 center: latLng,
@@ -50,19 +45,63 @@ define(function(require) {
                 position: latLng,
                 map: map
             });
+            return this;
         },
 
         editAddress: function(e) {
             e.preventDefault();
-            this.isEditingAddress = false;
+            this.isEditingAddress = true;
+            this.render();
+        },
 
-            this.cancelEditAddress(e);
+        saveAddress: function(e) {
+            e.preventDefault();
+
+            var address = this.$('input[data-model="address"]').val();
+
+            if(address !== undefined || address !== '') {
+                this.model.set('address', address);
+                this.model.save()
+                    .done(function() {
+                        noty({
+                            layout: 'top',
+                            theme: 'relax',
+                            text: "Successfully updated store's address",
+                            type: 'success',
+                            animation: {
+                                open: {height: 'toggle'},
+                                close: {height: 'toggle'},
+                                easing: 'swing',
+                                speed: 500
+                            },
+                            timeout: 2500
+                        });
+                        this.cancelEditAddress();
+                    }.bind(this))
+                    .fail(function(response) {
+                        noty({
+                            layout: 'top',
+                            theme: 'relax',
+                            text: 'Failed to update address',
+                            type: 'error',
+                            animation: {
+                                open: {height: 'toggle'},
+                                close: {height: 'toggle'},
+                                easing: 'swing',
+                                speed: 500
+                            },
+                            timeout: 2500
+                        });
+                    }.bind(this));
+            }
         },
 
         cancelEditAddress: function(e) {
-            e.preventDefault();
+            if(e !== undefined) {
+                e.preventDefault();
+            }
             this.isEditingAddress = false;
-            this.renderDetails();
+            this.render();
         },
 
         reprocessGeocode: function(e) {
