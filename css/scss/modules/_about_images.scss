@@ -14,7 +14,15 @@
 
 .image-viewer {
   margin-top: 1em;
-  .image img {
-    max-width: 100%;
+  .image {
+    padding:.5em;
+    img {
+      max-width: 100%;
+    }
+    .delete {
+      @include swb-small() {
+        padding-bottom: 1em;
+      }
+    }
   }
 }

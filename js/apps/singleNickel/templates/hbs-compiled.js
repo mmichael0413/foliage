@@ -976,7 +976,7 @@ function program4(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n"
     + escapeExpression((helper = helpers.partial || (depth0 && depth0.partial),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.inputTemplate), depth0, options) : helperMissing.call(depth0, "partial", (depth0 && depth0.inputTemplate), depth0, options)))
-    + "\n<div class=\"delete\">\n    <a class=\"btn primary removeImage\"><i class=\"ic ic_x\"></i><span>Delete Image</span></a>\n</div>";
+    + "\n<div class=\"delete\">\n    <a class=\"btn primary removeImage\"><i class=\"ic ic_x\"></i>Delete</a>\n</div>";
   return buffer;
   });
 

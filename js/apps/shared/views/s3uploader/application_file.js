@@ -81,7 +81,10 @@ define(function(require) {
                 });
             this.collection.add(image);
             var view = new ImageView({model: image, inputTemplate: this.inputTemplate, number: this.collection.models.length - 1});
-
+            if(this.imageType == 'profileImage') {
+                view.$el.removeClass('col-1-5');
+                view.$el.addClass('col-2-5');
+            }
             view.render();
             this.$viewer.append(view.$el);
         },

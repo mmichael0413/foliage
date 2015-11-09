@@ -33,25 +33,6 @@
     </ul>
 {{/if}}
 
-<!--{{#if showGeneralInfo}}-->
-    <!--<div class="card">-->
-        <!--<div class="header">-->
-            <!--General Information-->
-        <!--</div>-->
-        <!--<div class="body pure-g">-->
-        <!--&lt;!&ndash;{{#if person.gender}}&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="col-1-4">Gender:</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="col-3-4">{{person.gender}}</div>&ndash;&gt;-->
-                <!--&lt;!&ndash;{{/if}}&ndash;&gt;-->
-            <!--{{#if_eq 'Yes' person.attendedCollege}}-->
-                <!--<div class="col-1-4">University:</div>-->
-                <!--<div class="col-3-4">{{universityLabel}}</div>-->
-                <!--<div class="col-1-4">Year of Graduation:</div>-->
-                <!--<div class="col-3-4">{{person.graduationYear}}</div>-->
-            <!--{{/if_eq}}-->
-        <!--</div>-->
-    <!--</div>-->
-<!--{{/if}}-->
 
 <div class="card">
     <div class="header">Contact Information</div>
@@ -67,43 +48,41 @@
 </div>
 
 
-{{#if showAllFields}}
-    <div class="card">
-        <div class="header">Address</div>
-        <div class="body pure-g">
-            <div class="col-1-4">Shipping Address:</div>
-            <div class="col-3-4">
-                {{#if displayShipping}}
-                    {{> address person.shippingAddress}}
-                {{else}}
-                    Not Available
-                {{/if}}
-            </div>
-        </div>
-        <div class="divider"></div>
+<div class="card">
+    <div class="header">Address</div>
 
-        <div class="body pure-g">
-            <div class="col-1-4">Residential Address:</div>
-            <div class="col-3-4">
-                {{#if displayResidential}}
-                    {{> address person.residentialAddress}}
-                {{else}}
-                    Not Available
-                {{/if}}
-            </div>
-
+    <div class="body pure-g">
+        <div class="col-sm-1-1 col-1-4">Residential Address:</div>
+        <div class="col-sm-1-1 col-3-4">
+            {{#if displayResidential}}
+                {{> address person.residentialAddress}}
+            {{else}}
+                Not Available
+            {{/if}}
         </div>
     </div>
-{{/if}}
+    <div class="divider"></div>
+    <div class="body pure-g">
+        <div class="col-sm-1-1 col-1-4">Shipping Address:</div>
+        <div class="col-sm-1-1 col-3-4">
+            {{#if displayShipping}}
+                {{> address person.shippingAddress}}
+            {{else}}
+                Not Available
+            {{/if}}
+        </div>
+    </div>
+</div>
 
 {{#if person.interests}}
     {{> interest_view}}
 {{/if}}
 
+{{#if showAllFields}}
 <div class="card">
     <div class="header">Additional Information</div>
     <div class="body pure-g">
-        <div class="col-1-4">Shirt Size</div>
+        <div class="col-1-4">Shirt Size:</div>
         <div class="col-3-4">
             {{#if person.shirtSize}}
                 {{person.shirtSize}}
@@ -114,7 +93,7 @@
     </div>
     <div class="divider"></div>
     <div class="body pure-g">
-        <div class="col-1-4">Shoe Size</div>
+        <div class="col-1-4">Shoe Size:</div>
         <div class="col-3-4">
             {{#if person.shoeSize}}
                 {{person.shoeSize}}
@@ -124,6 +103,7 @@
         </div>
     </div>
 </div>
+{{/if}}
 
 {{#if_gt aboutImageCount 0}}
     <div class="card">
