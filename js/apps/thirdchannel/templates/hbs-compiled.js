@@ -290,6 +290,24 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   }));
 
+Handlebars.registerPartial("about_photo_input", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<input type=\"hidden\" id=\"aboutPhoto\" name=\"aboutPhotos[";
+  if (helper = helpers.number) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.number); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "].temp\" value=\"";
+  if (helper = helpers.temp_location) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.temp_location); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" />";
+  return buffer;
+  }));
+
 Handlebars.registerPartial("profile_image_input", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -297,6 +315,20 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 
   buffer += "<input type=\"hidden\" id=\"profileImage\" name=\"profileImage.temp\" value=\"";
+  if (helper = helpers.temp_location) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.temp_location); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"/>";
+  return buffer;
+  }));
+
+Handlebars.registerPartial("profile_photo_input", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<input type=\"hidden\" id=\"profilePhoto\" name=\"profilePhoto.temp\" value=\"";
   if (helper = helpers.temp_location) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.temp_location); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -361,13 +393,51 @@ function program5(depth0,data) {
   }
 
   buffer += "<div class=\"card\">\n    <div class=\"header\">Show us who you are</div>\n    <div class=\"body images aboutImageInput\" required=\"\" data-image-type=\"aboutImage\">\n\n        <label>Upload up to 5 pictures to give us a glimpse into who you are and what you like.</label>\n        <div class=\"clear\"></div>\n        <div class=\"fileUpload btn primary ";
-  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.aboutImageCount), 3, options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.aboutImageCount), 3, options));
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.aboutImageCount), 4, options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.aboutImageCount), 4, options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\">\n            Upload\n        <input accept=\"image/*\" data-input=\"false\" id=\"aboutImageInput\" name=\"aboutImageInput\" type=\"file\" ";
   stack1 = (helper = helpers.if_gt || (depth0 && depth0.if_gt),options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.aboutImageCount), 3, options) : helperMissing.call(depth0, "if_gt", (depth0 && depth0.aboutImageCount), 3, options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += ">\n        </div>\n        <div class=\"image-viewer pure-g\">\n            ";
   stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.aboutImages), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </div>\n    </div>\n</div>";
+  return buffer;
+  }));
+
+Handlebars.registerPartial("about_photos", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  
+  return "disabled=\"disabled\"";
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                <div class=\"image col-1-5\">\n                    <input type=\"hidden\" id=\"profilePhoto\" name=\"aboutPhotos["
+    + escapeExpression(((stack1 = (data == null || data === false ? data : data.index)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "].temp\" value=\""
+    + escapeExpression(((stack1 = (depth0 && depth0.temp)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\"/>\n\n                    <img src=\""
+    + escapeExpression(((stack1 = (depth0 && depth0.medium)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" alt=\"Image\">\n                    <div class=\"delete\">\n                        <a class=\"btn primary removeImage\"><i class=\"ic ic_x\"></i><span>Delete Image</span></a>\n                    </div>\n                </div>\n            ";
+  return buffer;
+  }
+
+  buffer += "<div class=\"card\">\n    <div class=\"header\">Show us who you are</div>\n    <div class=\"body images aboutPhotoInput\" required=\"\" data-image-type=\"aboutPhoto\">\n\n        <label>Upload up to 5 pictures to give us a glimpse into who you are and what you like. ";
+  if (helper = helpers.aboutPhotoCount) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.aboutPhotoCount); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</label>\n\n        <input accept=\"image/*\" data-input=\"false\" id=\"aboutPhotoInput\" name=\"aboutPhotoInput\" type=\"file\" ";
+  stack1 = (helper = helpers.if_gt || (depth0 && depth0.if_gt),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.aboutPhotoCount), 3, options) : helperMissing.call(depth0, "if_gt", (depth0 && depth0.aboutPhotoCount), 3, options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ">\n\n        <div class=\"image-viewer pure-g\">\n            ";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.aboutPhotos), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </div>\n    </div>\n</div>";
   return buffer;
@@ -549,7 +619,7 @@ function program3(depth0,data) {
 function program5(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                <div class=\"image col-sm-2-5 col-1-5\">\n                    <input type=\"hidden\" id=\"profileImage\" name=\"profileImage.temp\" value=\""
+  buffer += "\n                <div class=\"image col-sm-2-5 col-1-5\">\n                    <!-- migrated users do not have temp image locations -->\n                    <input type=\"hidden\" id=\"profileImage\" name=\"profileImage.temp\" value=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.profileImage)),stack1 == null || stack1 === false ? stack1 : stack1.temp)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\"/>\n                    <img src=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.profileImage)),stack1 == null || stack1 === false ? stack1 : stack1.medium)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
@@ -4103,7 +4173,7 @@ function program31(depth0,data) {
   var buffer = "", stack1;
   buffer += "\n                    <img src=\""
     + escapeExpression(((stack1 = (depth0 && depth0.large)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" alt=\"ljkl\"/>\n                ";
+    + "\" onerror=\"this.src='/assets/missing.jpg'\"/>\n                ";
   return buffer;
   }
 

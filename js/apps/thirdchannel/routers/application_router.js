@@ -5,11 +5,11 @@ define(function (require) {
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
 
         routes: {
-            'agents/opportunities/:program_id/applications/:step' : 'viewApplication'
+            'agents/opportunities/:program_id/applications/:id' : 'viewApplication'
         },
 
-        viewApplication: function() {
-            new ApplicationView();
+        viewApplication: function(program_id, id) {
+            new ApplicationView({applicationId: id});
         }
     });
 

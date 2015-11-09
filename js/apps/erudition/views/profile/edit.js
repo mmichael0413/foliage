@@ -38,6 +38,7 @@ define(function (require) {
         },
 
         render: function () {
+            console.log(this.aboutImageCount);
             var model = {
                 person: this.person,
                 interests: context.content.interests,

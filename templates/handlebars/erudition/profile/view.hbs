@@ -131,7 +131,7 @@
             <div class="col-1-5 col-sm-1-1 about-images">
 
                 {{#each person.aboutImages}}
-                    <img src="{{this.large}}" alt="ljkl"/>
+                    <img src="{{this.large}}" onerror="this.src='/assets/missing.jpg'"/>
                 {{/each}}
             </div>
         </div>

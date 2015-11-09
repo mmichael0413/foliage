@@ -9,6 +9,7 @@
         <div class="image-viewer pure-g">
             {{#if person.profileImage.medium}}
                 <div class="image col-sm-2-5 col-1-5">
+                    <!-- migrated users do not have temp image locations -->
                     <input type="hidden" id="profileImage" name="profileImage.temp" value="{{person.profileImage.temp}}"/>
                     <img src="{{person.profileImage.medium}}" alt="Image">
 
