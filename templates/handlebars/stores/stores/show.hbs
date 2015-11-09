@@ -8,7 +8,16 @@
             <dd>{{storeTag}}</dd>
 
             <dt>Address:</dt>
-            <dd>{{address}}</dd>
+            <dd>
+            {{#if isEditingAddress}}
+                <input type="text" data-model="address" name="address" value="{{address}}">
+                <button class="save-edit-address btn primary"><i class="ic fa ic_check"></i></button>
+                <button class="cancel-edit-address btn default"><i class="ic fa ic_x"></i></button>
+            {{else}}
+                {{address}} <button class="edit-address btn default"><i class="ic fa ic_edit"></i></button>
+            {{/if}}
+            </dd>
+
 
             <dt>Latitude:</dt>
             <dd>{{latitude}}</dd>

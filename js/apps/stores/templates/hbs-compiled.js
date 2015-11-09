@@ -756,6 +756,28 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 function program1(depth0,data) {
   
+  var buffer = "", stack1, helper;
+  buffer += "\n                <input type=\"text\" data-model=\"address\" name=\"address\" value=\"";
+  if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n                <button class=\"save-edit-address btn primary\"><i class=\"ic fa ic_check\"></i></button>\n                <button class=\"cancel-edit-address btn default\"><i class=\"ic fa ic_x\"></i></button>\n            ";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n                ";
+  if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " <button class=\"edit-address btn default\"><i class=\"ic fa ic_edit\"></i></button>\n            ";
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
   var buffer = "", stack1;
   buffer += "\n                    <li><a href=\"/programs/"
     + escapeExpression(((stack1 = (depth0 && depth0.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
@@ -765,7 +787,7 @@ function program1(depth0,data) {
   return buffer;
   }
 
-function program3(depth0,data) {
+function program7(depth0,data) {
   
   
   return "\n                    <li><strong>Not assigned to any programs</strong></li>\n                ";
@@ -779,11 +801,10 @@ function program3(depth0,data) {
   if (helper = helpers.storeTag) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.storeTag); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</dd>\n\n            <dt>Address:</dt>\n            <dd>";
-  if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</dd>\n\n            <dt>Latitude:</dt>\n            <dd>";
+    + "</dd>\n\n            <dt>Address:</dt>\n            <dd>\n            ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.isEditingAddress), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </dd>\n\n\n            <dt>Latitude:</dt>\n            <dd>";
   if (helper = helpers.latitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.latitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -792,7 +813,7 @@ function program3(depth0,data) {
   else { helper = (depth0 && depth0.longitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</dd>\n        </dl>\n        <div>\n            <p>Belongs to the following programs:</p>\n            <ul>\n                ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.programs), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.programs), {hash:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </ul>\n        </div>\n    </div>\n    <div class=\"col-1-2\">\n        <div id=\"map\"></div>\n    </div>\n</div>\n\n<div>\n    <button class=\"btn primary geocode\">Re-Process Geocode</button>\n    <div id=\"geocode-list\"></div>\n</div>\n\n";
   return buffer;

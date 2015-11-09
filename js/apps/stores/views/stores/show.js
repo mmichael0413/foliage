@@ -14,11 +14,14 @@ define(function(require) {
         loadingHTML: "<tr><td><i class='fa fa-spin fa-spinner'></i></td></tr>",
 
         events: {
-            'click .geocode': 'reprocessGeocode'
+            'click .geocode': 'reprocessGeocode',
+            'click .edit-address': 'editAddress'
         },
 
         initialize: function() {
-            _.bindAll(this, 'render');
+            _.bindAll(this, 'render', 'renderDetails', 'renderMap');
+
+            this.isEditingAddress = false;
 
             this.geocodes = new GeocodeCollection([], {store: this.model});
             this.geocodeListView = new GeocodeListView({collection: this.geocodes});
@@ -27,7 +30,16 @@ define(function(require) {
         },
 
         render: function() {
+            this.renderDetails();
+            this.renderMap();
+            return this;
+        },
+
+        renderDetails: function() {
             this.$el.html(this.template(this.model.attributes));
+        },
+
+        renderMap: function() {
             var latLng = new google.maps.LatLng(this.model.get('latitude'), this.model.get('longitude'));
             var map = new google.maps.Map(this.$('#map')[0], {
                 center: latLng,
@@ -38,7 +50,19 @@ define(function(require) {
                 position: latLng,
                 map: map
             });
-            return this;
+        },
+
+        editAddress: function(e) {
+            e.preventDefault();
+            this.isEditingAddress = false;
+
+            this.cancelEditAddress(e);
+        },
+
+        cancelEditAddress: function(e) {
+            e.preventDefault();
+            this.isEditingAddress = false;
+            this.renderDetails();
         },
 
         reprocessGeocode: function(e) {
