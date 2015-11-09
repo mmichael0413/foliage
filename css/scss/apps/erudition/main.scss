@@ -19,6 +19,7 @@
 @import "../../modules/about_images";
 @import "../../modules/action_row";
 @import "../../modules/typeahead";
+@import "../../modules/tooltip";
 
 
 .bannerImages {
@@ -29,7 +30,12 @@
 }
 
 
-
+.nav-item.user.disabled {
+  cursor: default;
+  &:hover {
+    background-color: inherit;
+  }
+}
 
 
 

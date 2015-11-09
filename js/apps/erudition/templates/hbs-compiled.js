@@ -326,7 +326,7 @@ function program1(depth0,data) {
   return "checked";
   }
 
-  buffer += "<div class=\"card\">\n    <div class=\"body\">\n        <label for=\"firstName\">First Name</label>\n        <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\""
+  buffer += "<div class=\"card\">\n    <div class=\"header\">General Info</div>\n    <div class=\"body\">\n        <label for=\"firstName\">First Name</label>\n        <input type=\"text\" id=\"firstName\" name=\"firstName\" value=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.firstName)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" placeholder=\"First Name\"\n               data-rule-required=\"true\"/>\n\n        <label for=\"lastName\">Last Name</label>\n        <input id=\"lastName\" type=\"text\" name=\"lastName\" value=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.lastName)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
@@ -415,7 +415,7 @@ function program1(depth0,data) {
   return "checked";
   }
 
-  buffer += "<div class=\"card\">\n    <div class=\"body\">\n        <label>Do you have a car you'd be willing to use for this job?</label>\n\n        <div class='radio-input-group bottom'>\n            <label class='radio'><input type='radio' name='ownsCar' value='Yes'\n                                        ";
+  buffer += "<div class=\"card\">\n    <div class=\"body\">\n        <label>Do you own a reliable car that you would be willing to drive to and from stores (if compensated)?</label>\n\n        <div class='radio-input-group bottom'>\n            <label class='radio'><input type='radio' name='ownsCar' value='Yes'\n                                        ";
   stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.ownsCar), "Yes", options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.ownsCar), "Yes", options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "  data-rule-required=\"true\"/> Yes</label>\n            <label class='radio'><input type='radio' name='ownsCar' value='No'\n                                        ";
@@ -1048,7 +1048,7 @@ function program5(depth0,data) {
   buffer += "\n\n    ";
   stack1 = self.invokePartial(partials.university, 'university', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n    <div class=\"card\">\n        <div class=\"header\">Residential Address</div>\n        <div class=\"body compressed\">\n            <label>Where you currently live?</label>\n            <input type=\"text\" class=\"low-margin\" name=\"residentialAddress.city\" placeholder=\"City\"\n                   value=\""
+  buffer += "\n\n    <div class=\"card\">\n        <div class=\"header\">Where you currently live?\n\n        <span class=\"tooltip\">\n            <span class=\"visible-xs\"><i class=\"fa fa-info-circle\"></i></span> <span class=\"hidden-xs\">Why are we asking this?</span>\n        </span>\n\n            <div class=\"tip\">\n                This allows us to match you with current opportunities in your geographic location.\n            </div>\n        </div>\n\n\n        <div class=\"body compressed\">\n            <label></label>\n            <input type=\"text\" class=\"low-margin\" name=\"residentialAddress.city\" placeholder=\"City\"\n                   value=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.residentialAddress)),stack1 == null || stack1 === false ? stack1 : stack1.city)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" data-rule-required=\"true\"/>\n            <select name=\"residentialAddress.state\" data-rule-required=\"true\">\n                <option value=\"\">Select State/Province</option>\n                ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.states), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
@@ -1065,9 +1065,9 @@ function program5(depth0,data) {
   buffer += "\n\n    <div class=\"card\">\n        <div class=\"body\">\n            <label for=\"heardAboutUs\">How did you hear about us?</label>\n\n            <select name=\"heardAboutUs\" id=\"heardAboutUs\" data-rule-required=\"true\">\n                <option value=\"\">Select</option>\n                ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.choices), {hash:{},inverse:self.noop,fn:self.programWithDepth(4, program4, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n            </select>\n        </div>\n    </div>\n\n    <div class=\"card\">\n        <div class=\"body\">\n            <label for=\"brandAmbassador\">Have you been a brand ambassador or represented a brand before?</label>\n            <textarea name=\"brandAmbassador\" id=\"brandAmbassador\" cols=\"30\" rows=\"10\" class=\"expanding-wrapper double\">"
+  buffer += "\n\n            </select>\n        </div>\n    </div>\n\n    <div class=\"card\">\n        <div class=\"body\">\n            <label for=\"brandAmbassador\">Have you been a brand ambassador or represented a brand before?</label>\n            <textarea name=\"brandAmbassador\" id=\"brandAmbassador\" cols=\"30\" rows=\"10\"\n                      class=\"expanding-wrapper double\" data-rule-required=\"true\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.brandAmbassador)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</textarea>\n        </div>\n    </div>\n\n    <div class=\"card\">\n\n        <div class=\"body\">\n            <label for=\"retailExperience\">Do you have any experience working in retail?</label>\n            <textarea name=\"retailExperience\" id=\"retailExperience\" cols=\"30\" rows=\"10\" class=\"expanding-wrapper double\">"
+    + "</textarea>\n        </div>\n    </div>\n\n    <div class=\"card\">\n\n        <div class=\"body\">\n            <label for=\"retailExperience\">Do you have any experience working in retail?</label>\n            <textarea name=\"retailExperience\" id=\"retailExperience\" cols=\"30\" rows=\"10\"\n                      class=\"expanding-wrapper double\" data-rule-required=\"true\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.retailExperience)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</textarea>\n        </div>\n    </div>\n\n    <div class=\"button-row\">\n        <a href=\"#\" class=\"btn inverse\">Cancel</a>\n        <input type=\"submit\" class=\"btn primary submit\" value=\"Save\" data-input=\"false\"/>\n    </div>\n</form>\n\n";
   return buffer;

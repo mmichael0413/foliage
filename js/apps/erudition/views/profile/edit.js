@@ -96,9 +96,18 @@ define(function (require) {
                     }
                 },
                 errorPlacement: function (error, element) {
+
                     if ($(element).attr('type') == 'checkbox' || $(element).attr('type') == 'radio') {
-                        $(element).closest('.input-group').after(error);
-                    } else {
+                        $(element).closest('.radio-input-group').after(error);
+                    } else if ($(element).is("textarea")){
+                        $(error).addClass('clear');
+                        $(element).closest('div.expanding-wrapper').after(error);
+                    } else if ($(element).attr('type') == 'file'){
+                        $(error).addClass('clear');
+                        $(element).parent().after(error);
+                    }
+
+                    else {
                         $(element).after(error);
                     }
                 }
