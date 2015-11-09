@@ -3,7 +3,6 @@ define(function(require){
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
-
     return Backbone.View.extend({
         className: 'task-list',
         loadingHTML: HandlebarsTemplates['thirdchannel/loading_icon'],
@@ -18,10 +17,6 @@ define(function(require){
             this.$el.html(this.template({tasks: this.tasks, customerStoreId: this.customerStoreId, authenticityToken: this.authenticityToken}));
 
             return this;
-        },
-
-        fetch: function() {
-
         }
     });
 });

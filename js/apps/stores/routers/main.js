@@ -4,7 +4,10 @@ define(function(require){
         Backbone = require('backbone'),
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
+        Noty = require('noty'),
         MainLayout = require('shared/views/layout/main'),
+        Store = require('stores/models/store'),
+        StoreView = require('stores/views/stores/show'),
         ProgramListView = require('stores/views/programs/list'),
         ProgramStores = require('stores/collections/program_stores'),
         ProgramStoresModule = require('stores/views/program_stores/list_main'),
@@ -25,7 +28,8 @@ define(function(require){
             '(/)': 'programList',
             'accounts(/)': 'accountList',
             'accounts/new(/)': 'accountNew',
-            'programs/:programId(/)': 'storeList',
+            'stores/:storeId(/)': 'storeShow',
+            'programs/:programId(/)': 'programStoreList',
             'programs/:programId/uploads(/)': 'uploadList',
             'programs/:programId/uploads/new': 'uploadNew',
             'programs/:programId/uploads/:uploadId': 'uploadResults'
@@ -51,7 +55,31 @@ define(function(require){
             this.swap(view);
         },
 
-        storeList: function(programId) {
+        storeShow: function(storeId) {
+            var store = new Store({id: storeId});
+            var view = new StoreView({model: store});
+
+            store.fetch().done(function() {
+                this.swap(view);
+            }.bind(this)).fail(function() {
+                noty({
+                    layout: 'top',
+                    theme: 'relax',
+                    text: 'Store does not exist',
+                    type: 'error',
+                    animation: {
+                        open: {height: 'toggle'},
+                        close: {height: 'toggle'},
+                        easing: 'swing',
+                        speed: 500
+                    },
+                    timeout: 2500
+                });
+                this.navigate('/', {trigger: true});
+            }.bind(this));
+        },
+
+        programStoreList: function(programId) {
             var program = context.programs.get(programId);
             var programStores = new ProgramStores([], {program: program});
 

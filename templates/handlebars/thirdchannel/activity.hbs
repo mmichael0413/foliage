@@ -1,11 +1,17 @@
 <div class="activity-holder">
-
     {{#if tasks}}
         <div class="tasks clearfix">
-            <h3 class="task-item">Tasks:</h3>
-            {{#tasks}}
-            <p class="task-item badge">{{title}}</p>
-            {{/tasks}}
+            <h3 class="tasks-label">Tasks:</h3>
+            <div class="task-container">
+                {{#tasks}}
+                <a class="task-item {{#active}}active{{/active}}" href="{{href}}">
+                    <div class="badge task-label">{{title}}</div>
+                    {{#has_summary}}<div class="task-info badge"><i class="ic ic_feed-summary"/></div>{{/has_summary}}
+                    {{#has_photos}}<div class="task-info badge"><i class="ic ic_feed-photos"/></div>{{/has_photos}}
+                    {{#has_alerts}}<div class="task-info badge"><i class="ic ic_feed-alerts"/></div>{{/has_alerts}}
+                </a>
+                {{/tasks}}
+            </div>
         </div>
     {{/if}}
     <div class="activity">
@@ -33,21 +39,29 @@
         </div>
         <div class="activity-content">
             {{#if_eq type "Checkin"}}
-            <div class="issues-found">
-                <h3>{{issue_length}} {{pluralize issue_length 'New Issue Found' 'New Issues Found'}}</h3>
-                <ul class="unstyled">
-                    {{#each issues}}
-                    <li>- {{label}}</li>
-                    {{/each}}
-                </ul>
-                {{#if_gt issue_length 3}}
-                <a href="{{report_url}}" target="_blank"><span class="indicator">showing 3 of {{issue_length}}</span></a>
-                {{/if_gt}}
-            </div>
+            {{#if_gt issue_length 0}}
+                <div class="issues-found">
+                    <h3>{{issue_length}} {{pluralize issue_length 'New Issue Found' 'New Issues Found'}}</h3>
+                    <ul class="unstyled">
+                        {{#each issues}}
+                        <li>- {{label}}</li>
+                        {{/each}}
+                    </ul>
+                    {{#if_gt issue_length 3}}
+                    <a href="{{report_url}}" target="_blank"><span class="indicator">showing 3 of {{issue_length}}</span></a>
+                    {{/if_gt}}
+                </div>
+            {{/if_gt}}
             {{/if_eq}}
-
-            <h3>{{subject}}</h3>
-            {{{content}}}
+            <div class="summary">
+            {{#show_summary}}                
+                <h3>{{../subject}}</h3>
+                <p>{{{../content}}}</p>    
+            {{else}}
+                <h3>There is no Summary for this {{../name}}.</h3>
+            {{/show_summary}}
+            </div>
+            
         </div>
         {{#if images}}
         <div class="activity-photos">

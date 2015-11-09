@@ -6,7 +6,8 @@ define(function(require) {
 
     var View = Backbone.View.extend({
         template: Templates['stores/program_stores/list_item'],
-        className: 'pure-g item program-store-list-item',
+        tagName: 'tr',
+        className: 'program-store-list-item',
         events: {
             'change .status': 'update'
         },

@@ -30,7 +30,7 @@ var _ = require('underscore'),
                 var type = options.model.get('type'),
                     view = CheckinView;
 
-                if (type == "CHECKIN") {
+                if (type == "TASK") {
                 }
                 else if (type == "TRAVEL") {
                     view = TravelView;

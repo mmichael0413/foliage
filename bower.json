@@ -22,7 +22,7 @@
     "backbone": "1.1.2",
     "jquery": "~2.0.3",
     "jquery-ui": "1.11.4",
-    "jquery-ui-touch-punch-improved" : "0.3.1",
+    "jquery-ui-touch-punch-improved": "0.3.1",
     "requirejs": "~2.1.10",
     "handlebars": "~1.3.0",
     "imagesloaded": "3.1.8",
@@ -34,16 +34,17 @@
     "slick.js": "1.3.11",
     "normalize-css": "3.0.1",
     "pikaday": "1.2.0",
-    "slidebars": "~0.10.2",
+    "slidebars": "0.10.2",
     "typeahead.js": "~0.10.5",
     "Chart.StackedBar.js": "~1.0.1",
     "chartist": "0.7.2",
     "backbone-validator": "0.3.3",
-    "datetimepicker" : "2.4.1",
+    "datetimepicker": "2.4.1",
     "d3": "~3.5.5",
     "c3": "0.4.10",
     "fullcalendar": "~2.3.1",
-    "noty": "~2.3.5"
+    "noty": "~2.3.5",
+    "requirejs-plugins": "~1.0.3"
   },
   "resolutions": {
     "jquery": "~2.0.3"
