@@ -28,6 +28,7 @@ define(function(require) {
             "click .question [data-show-element]" : 'showElement',
             "click .question [data-hide-element]" : 'hideElement',
             "change .question input[type=hidden], change .question select": "validate",
+            "change .question select[class*=question-]": "displayQuestionExtraIfTriggered",
             "change:nosave .question input[type=hidden]": "validate"
         },
         initialize: function() {
@@ -91,6 +92,13 @@ define(function(require) {
         },
         hideElement: function(e) {
             this.$(e.currentTarget.getAttribute('data-hide-element')).hide('fast', "linear").val('').trigger('change');
+        },
+        displayQuestionExtraIfTriggered: function(e) {
+          if(this.$(e.currentTarget).find(":selected[data-trigger=true]").length > 0){
+            this.$(e.currentTarget.getAttribute('data-trigger-element')).show('fast', "linear");
+          } else {
+            this.$(e.currentTarget.getAttribute('data-trigger-element')).hide('fast', "linear").val('').trigger('change');
+          }
         },
         validateForm: function(e) {
             e.preventDefault();

@@ -1,0 +1,39 @@
+<div class="pure-g section store-details">
+    <div class="col-1-2">
+        <dl>
+            <dt>Account:</dt>
+            <dd>{{accountName}}</dd>
+
+            <dt>Store Tag:</dt>
+            <dd>{{storeTag}}</dd>
+
+            <dt>Address:</dt>
+            <dd>{{address}}</dd>
+
+            <dt>Latitude:</dt>
+            <dd>{{latitude}}</dd>
+
+            <dt>Longitude:</dt>
+            <dd>{{longitude}}</dd>
+        </dl>
+        <div>
+            <p>Belongs to the following programs:</p>
+            <ul>
+                {{#each programs}}
+                    <li><a href="/programs/{{this.id}}">{{this.name}}</a></li>
+                {{else}}
+                    <li><strong>Not assigned to any programs</strong></li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <div class="col-1-2">
+        <div id="map"></div>
+    </div>
+</div>
+
+<div>
+    <button class="btn primary geocode">Re-Process Geocode</button>
+    <div id="geocode-list"></div>
+</div>
+

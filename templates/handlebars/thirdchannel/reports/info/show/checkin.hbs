@@ -8,7 +8,12 @@
     </h3>
 
     {{#each info}}
-        <div class="info">{{this}}</div>
+        <div class="info">
+            {{#if this.title}}
+                <div class="task">{{ this.title }}</div>
+            {{/if}}
+            {{this.content}}
+        </div>
     {{/each}}
 </div>
 
