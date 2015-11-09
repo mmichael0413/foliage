@@ -17,7 +17,6 @@ define(function (require) {
         imageTemplate: templates['shared/s3uploader/uploaderForm'],
         aboutImageInputTemplate: templates['erudition/s3Uploader/about_image_input'],
         initialize: function (options) {
-            console.log(context.content);
             // this view is extended by the /application/create.js and uses a different template
             var templateString = (options && options.template) ? options.template : 'erudition/profile/edit';
             this.template = templates[templateString];
@@ -38,7 +37,6 @@ define(function (require) {
         },
 
         render: function () {
-            console.log(this.aboutImageCount);
             var model = {
                 person: this.person,
                 interests: context.content.interests,
