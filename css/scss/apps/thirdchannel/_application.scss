@@ -1,0 +1,35 @@
+form.application-form {
+
+  @include swa-medium {
+    input[type=text], input[type=password], input[type=number], textarea, select, input[type=date], input[type=datetime] {
+      width: 50%;
+    }
+  }
+
+  .bottom {
+    margin-bottom: 1.5em;
+  }
+
+  .form-group {
+    margin-bottom: 1.5em;
+  }
+}
+
+
+
+.button-row {
+  text-align: right;
+  margin: 2em 0;
+}
+
+.images.application {
+  margin-bottom: 1.5em;
+  p {
+    margin-bottom: 1em;
+  }
+}
+
+.brand-logo {
+  display:inline-block;
+  float:right;
+}

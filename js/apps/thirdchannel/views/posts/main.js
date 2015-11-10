@@ -8,7 +8,7 @@ define(function (require) {
         Chosen = require('chosen'),
         Quill = require('quill'),
         QuillYouTube = require('quill-youtube'),
-        UploaderView = require('thirdchannel/views/s3uploader/file');
+        UploaderView = require('shared/views/s3uploader/file');
 
 
     return Backbone.View.extend({

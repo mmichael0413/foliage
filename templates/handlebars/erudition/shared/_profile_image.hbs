@@ -1,0 +1,23 @@
+<div class="card">
+    <div class="header">Upload Profile Photo</div>
+    <div class="body images profileImageInput" required="" data-image-type="profileImage">
+        <div class="fileUpload btn primary {{#if person.profileImage}}disabled{{/if}}">
+            Upload
+            <input accept="image/*" data-input="false" id="profileImageInput" name="profileImageInput" data-rule-required="true" type="file" {{#if person.profileImage.medium}}disabled="disabled"{{/if}}>
+        </div>
+
+        <div class="image-viewer pure-g">
+            {{#if person.profileImage.medium}}
+                <div class="image col-sm-1-1 col-2-5">
+                    <!-- migrated users do not have temp image locations -->
+                    <input type="hidden" id="profileImage" name="profileImage.temp" value="{{person.profileImage.temp}}"/>
+                    <img src="{{person.profileImage.medium}}" alt="Image">
+
+                    <div class="delete">
+                        <a class="btn primary removeImage"><i class="ic ic_x"></i>Delete</a>
+                    </div>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

@@ -22,7 +22,9 @@ define(function(require) {
         },
         render: function() {
             this.$el.html(this.template(this.model.attributes));
-            this.renderProgramStores();
+            if(this.collection.length) {
+                this.renderProgramStores();
+            }
             return this;
         },
         renderProgramStores: function() {

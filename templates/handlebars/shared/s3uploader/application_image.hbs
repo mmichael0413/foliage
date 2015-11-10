@@ -1,0 +1,11 @@
+{{#if source}}
+    <img src="{{source}}" alt="Image">
+{{else}}
+    {{#if image_src}}
+        <img src="{{image_src}}" alt="Image">
+    {{/if}}
+{{/if}}
+{{partial inputTemplate this}}
+<div class="delete">
+    <a class="btn primary removeImage"><i class="ic ic_x"></i>Delete</a>
+</div>

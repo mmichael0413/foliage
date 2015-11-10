@@ -1,0 +1,58 @@
+@import '../../../../js/libs/bower_components/normalize-css/normalize';
+@import "../../lib/pure.grids-core";
+@import "../../lib/pure.responsive-grid";
+@import "../../base/fonts_all";
+@import "../../base/base";
+@import "../../base/text";
+@import "../../base/forms";
+@import "../../base/buttons";
+@import "../../base/dropdowns";
+@import "../../layout/layout_utils";
+@import "../../layout/base_layout";
+@import "../../modules/atoms/all";
+@import "../../modules/atoms/alerts";
+@import "../../modules/navigation";
+@import "../../modules/action_row";
+@import "../../modules/s3_uploader";
+@import "../../modules/atoms/interest";
+@import "../../modules/profile_badge";
+@import "../../modules/about_images";
+@import "../../modules/action_row";
+@import "../../modules/typeahead";
+@import "../../modules/tooltip";
+
+
+.bannerImages {
+  position: relative;
+  background-color: $medium-blue;
+  max-height: 200px;
+  min-height: 100px;
+}
+
+
+.nav-item.user.disabled {
+  cursor: default;
+  &:hover {
+    background-color: inherit;
+  }
+}
+
+
+
+
+input.error, select.error {
+  margin-bottom: 0;
+}
+
+label.error {
+  margin-bottom: 1.5em;
+  font-size: .9em;
+  color: $link-color;
+}
+
+
+
+
+
+
+

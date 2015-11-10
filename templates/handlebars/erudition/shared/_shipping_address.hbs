@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="header">Shipping Address</div>
+    <div class="body">
+        Reliable address we can mail program materials to
+        <input type="text" class="low-margin" name="shippingAddress.street1" placeholder="Street" value="{{person.shippingAddress.street1}}" data-rule-required="true" />
+        <input type="text" class="low-margin" name="shippingAddress.city" placeholder="City" value="{{person.shippingAddress.city}}" data-rule-required="true"/>
+        <select name="shippingAddress.state" data-rule-required="true">
+            <option value="">Select State/Province</option>
+            {{#each states}}
+                {{#select ../person.shippingAddress.state}}
+                    <option value="{{this.abbr}}">{{this.name}}</option>
+                {{/select}}
+            {{/each}}
+        </select>
+        <input type="text" name="shippingAddress.zip" placeholder="Zip Code" value="{{person.shippingAddress.zip}}" data-rule-required="true"/>
+    </div>
+</div>
