@@ -3847,7 +3847,11 @@ function program5(depth0,data) {
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.brandAmbassador)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</textarea>\n        </div>\n    </div>\n\n    <div class=\"card\">\n\n        <div class=\"body\">\n            <label for=\"retailExperience\">Do you have any experience working in retail?</label>\n            <textarea name=\"retailExperience\" id=\"retailExperience\" cols=\"30\" rows=\"10\"\n                      class=\"expanding-wrapper double\" data-rule-required=\"true\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.retailExperience)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</textarea>\n        </div>\n    </div>\n\n    <div class=\"button-row\">\n        <a href=\"#\" class=\"btn inverse\">Cancel</a>\n        <input type=\"submit\" class=\"btn primary submit\" value=\"Save\" data-input=\"false\"/>\n    </div>\n</form>\n\n";
+    + "</textarea>\n        </div>\n    </div>\n\n    <div class=\"button-row\">\n        <a href=\"";
+  if (helper = helpers.cancelUrl) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.cancelUrl); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"btn inverse\">Cancel</a>\n        <input type=\"submit\" class=\"btn primary submit\" value=\"Continue\" data-input=\"false\"/>\n    </div>\n\n    <br/>\n</form>\n\n";
   return buffer;
   });
 

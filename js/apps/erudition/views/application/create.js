@@ -38,7 +38,8 @@ define(function (require) {
                 states: states,
                 s3: uploader,
                 programId: this.programId,
-                choices: choices
+                choices: choices,
+                cancelUrl: context.content.cancelUrl
             };
 
             this.$el.append(this.template(model));

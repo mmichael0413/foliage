@@ -42,7 +42,6 @@ define(function(require){
                 } else {
                     universityLabel += ", ";
                 }
-
             }
 
             var showGeneralInfo = false;
