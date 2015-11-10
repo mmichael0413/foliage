@@ -62,7 +62,8 @@ define(function(require){
                 aboutImageCount: aboutImageCount,
                 universityLabel:universityLabel,
                 showGeneralInfo:showGeneralInfo,
-                showAllFields: context.content.showAllFields
+                showAllFields: context.content.showAllFields,
+                storeUrl: context.content.storeUrl
             }));
 			return this;
 		}
