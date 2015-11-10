@@ -39,7 +39,7 @@ define(function(require){
                 universityLabel = this.person.university;
                 if(this.person.graduationYear) {
                     universityLabel += " '" + this.person.graduationYear.substring(2, 4) + ", ";
-                }, else {
+                } else {
                     universityLabel += ", ";
                 }
 
