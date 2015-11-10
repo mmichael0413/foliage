@@ -786,8 +786,8 @@ function program1(depth0,data) {
   
   var buffer = "", stack1, helper, options;
   buffer += "\n<p class=\"store-row\"><input type=\"checkbox\" name=\"ids\" value=\"";
-  if (helper = helpers.uuid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\" class=\"check\" ";
   options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
@@ -840,8 +840,8 @@ function program1(depth0,data) {
   
   var buffer = "", stack1, helper, options;
   buffer += "\n<p class=\"store-row\"><input type=\"checkbox\" name=\"ids\" value=\"";
-  if (helper = helpers.uuid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\" class=\"check\" ";
   options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
