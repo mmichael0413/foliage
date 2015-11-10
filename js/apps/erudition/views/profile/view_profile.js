@@ -36,7 +36,10 @@ define(function(require){
 		render: function() {
             var universityLabel = "";
             if(this.person.attendedCollege == 'Yes') {
-                universityLabel = this.person.university + " '" + this.person.graduationYear.substring(2,4) + ", ";
+                universityLabel = this.person.university;
+                if(this.person.graduationYear) {
+                    universityLabel += " '" + this.person.graduationYear.substring(2, 4) + ", ";
+                }
             }
 
             var showGeneralInfo = false;
