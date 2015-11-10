@@ -4,11 +4,11 @@
 
 @font-face {
   font-family: "tc-icons";
-  src: url("../../shared/fonts/tc-icons_61db9b98579e512befaaf4849a3934a1.eot");
-  src: url("../../shared/fonts/tc-icons_61db9b98579e512befaaf4849a3934a1.eot?#iefix") format("embedded-opentype"),
-       url("../../shared/fonts/tc-icons_61db9b98579e512befaaf4849a3934a1.woff") format("woff"),
-       url("../../shared/fonts/tc-icons_61db9b98579e512befaaf4849a3934a1.ttf") format("truetype"),
-       url("../../shared/fonts/tc-icons_61db9b98579e512befaaf4849a3934a1.svg#tc-icons") format("svg");
+  src: url("../../shared/fonts/tc-icons_2b4647bb8b63c2b0a9dfba7c96cba350.eot");
+  src: url("../../shared/fonts/tc-icons_2b4647bb8b63c2b0a9dfba7c96cba350.eot?#iefix") format("embedded-opentype"),
+  url("../../shared/fonts/tc-icons_2b4647bb8b63c2b0a9dfba7c96cba350.woff") format("woff"),
+  url("../../shared/fonts/tc-icons_2b4647bb8b63c2b0a9dfba7c96cba350.ttf") format("truetype"),
+  url("../../shared/fonts/tc-icons_2b4647bb8b63c2b0a9dfba7c96cba350.svg#tc-icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -16,7 +16,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: "tc-icons";
-    src: url("../../shared/fonts/tc-icons_61db9b98579e512befaaf4849a3934a1.svg#tc-icons") format("svg");
+    src: url("../../shared/fonts/tc-icons_2b4647bb8b63c2b0a9dfba7c96cba350.svg#tc-icons") format("svg");
   }
 }
 
@@ -31,8 +31,10 @@
 .ic_avatar:before,
 .ic_barsclubs:before,
 .ic_barsclubs-o:before,
+.ic_barsrestaurants-o:before,
 .ic_beauty:before,
 .ic_beauty-o:before,
+.ic_beautyfashion-o:before,
 .ic_blank:before,
 .ic_calendar:before,
 .ic_check:before,
@@ -137,8 +139,10 @@
 .ic_avatar:before { content: "\f101"; }
 .ic_barsclubs:before { content: "\f127"; }
 .ic_barsclubs-o:before { content: "\f128"; }
+.ic_barsrestaurants-o:before { content: "\f15d"; }
 .ic_beauty:before { content: "\f129"; }
 .ic_beauty-o:before { content: "\f12a"; }
+.ic_beautyfashion-o:before { content: "\f15e"; }
 .ic_blank:before { content: "\f102"; }
 .ic_calendar:before { content: "\f103"; }
 .ic_check:before { content: "\f104"; }
@@ -230,8 +234,10 @@ $font-tc-icons-ic_artdesign-o: "\f126";
 $font-tc-icons-ic_avatar: "\f101";
 $font-tc-icons-ic_barsclubs: "\f127";
 $font-tc-icons-ic_barsclubs-o: "\f128";
+$font-tc-icons-ic_barsrestaurants-o: "\f15d";
 $font-tc-icons-ic_beauty: "\f129";
 $font-tc-icons-ic_beauty-o: "\f12a";
+$font-tc-icons-ic_beautyfashion-o: "\f15e";
 $font-tc-icons-ic_blank: "\f102";
 $font-tc-icons-ic_calendar: "\f103";
 $font-tc-icons-ic_check: "\f104";
