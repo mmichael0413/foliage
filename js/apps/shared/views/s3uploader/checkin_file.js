@@ -29,7 +29,8 @@ define(function(require) {
                         label: $holder.find('.image_label').val(),
                         temp_location: $holder.find('.image_temp_location').val(),
                         programId: self.model.get('programId'),
-                        checkinId: self.model.get('checkinId')
+                        checkinId: self.model.get('checkinId'),
+                        submissionId: self.model.get('submissionId')
                     });
 
                 if(self.imageType === 'before') {
