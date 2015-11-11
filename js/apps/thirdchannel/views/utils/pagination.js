@@ -18,7 +18,9 @@ define(function(require) {
             this.setupText();
         },
         render: function () {
-            this.setElement(this.template(this.model));
+            if(this.model.totalPages > 0){
+              this.setElement(this.template(this.model));
+            }
             return this;
         },
         setupPages: function () {

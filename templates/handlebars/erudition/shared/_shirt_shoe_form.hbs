@@ -1,0 +1,44 @@
+<div class="card">
+    <div class="header">Additional Information</div>
+    <div class="body">
+        <label for="shirtSize">Shirt Size:</label>
+        <select name="shirtSize" id="shirtSize" data-rule-required="true">
+            <option value="">Select Size</option>
+            {{#select person.shirtSize}}
+            <option value="Men - S">Men - S</option>
+            <option value="Men - M">Men - M</option>
+            <option value="Men - L">Men - L</option>
+            <option value="Men - XL">Men - XL</option>
+            <option value="Men - XXL">Men - XXL</option>
+            <option value="Women - XS">Women - XS</option>
+            <option value="Women - S">Women - S</option>
+            <option value="Women - M">Women - M</option>
+            <option value="Women - L">Women - L</option>
+            <option value="Women - XL">Women - XL</option>
+            {{/select}}
+        </select>
+
+        <label for="shoeSize">Shoe Size</label>
+        <select name="shoeSize" id="shoeSize" data-rule-required="true">
+            <option value="">Select Size</option>
+            {{#select person.shoeSize}}
+            <option value="Men - 7">Men - 7</option>
+            <option value="Men - 8">Men - 8</option>
+            <option value="Men - 9">Men - 9</option>
+            <option value="Men - 10">Men - 10</option>
+            <option value="Men - 11">Men - 11</option>
+            <option value="Men - 12">Men - 12</option>
+            <option value="Men - 13">Men - 13</option>
+            <option value="Men - 14">Men - 14</option>
+            <option value="Women - 5">Women - 5</option>
+            <option value="Women - 6">Women - 6</option>
+            <option value="Women - 7">Women - 7</option>
+            <option value="Women - 8">Women - 8</option>
+            <option value="Women - 9">Women - 9</option>
+            <option value="Women - 10">Women - 10</option>
+            <option value="Women - 11">Women - 11</option>
+            <option value="Women - 12">Women - 12</option>
+            {{/select}}
+        </select>
+    </div>
+</div>

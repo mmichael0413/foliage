@@ -1,0 +1,55 @@
+.page-header {
+  height: 12em;
+  text-align: center;
+  background-color: $link-color;
+  color: white;
+  @include swb-medium {
+    height: 6em;
+  }
+}
+
+.vertically-centered {
+  position: relative;
+  top: 50%;
+  vertical-align: middle;
+  transform: translateY(-50%);
+}
+
+h1.headline {
+  max-width: 100%;
+  font-size: 2.6em;
+  margin: 0 0 .5em 0;
+  color: $main-background;
+  text-align: center;
+  font-weight: bolder;
+  text-transform: uppercase;
+  line-height: 1.2em;
+  @include swb-medium {
+   font-size: 1.5em;
+  }
+}
+
+.login-container {
+  @include swa-medium {
+    width: 60%;
+  }
+  @include swb-medium {
+    width: 100%;
+  }
+
+  margin: 4em auto;
+
+  .checkbox {
+    margin-bottom: .5em;
+    display:inline-block;
+  }
+
+  .help-block {
+    display: inline-block;
+    float: right;
+  }
+
+  form{
+    margin-bottom: 2em;
+  }
+}

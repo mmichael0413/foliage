@@ -1,0 +1,12 @@
+<div class="card">
+    <div class="body">
+        <label>Do you own a reliable car that you would be willing to drive to and from stores (if compensated)?</label>
+
+        <div class='radio-input-group bottom'>
+            <label class='radio'><input type='radio' name='ownsCar' value='Yes'
+                                        {{#if_eq person.ownsCar 'Yes'}}checked{{/if_eq}}  data-rule-required="true"/> Yes</label>
+            <label class='radio'><input type='radio' name='ownsCar' value='No'
+                                        {{#if_eq person.ownsCar 'No'}}checked{{/if_eq}}  data-rule-required="true"/> No</label>
+        </div>
+    </div>
+</div>

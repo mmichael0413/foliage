@@ -1,0 +1,26 @@
+<h1 class="subheader">{{person.fullName}}</h1>
+<h2>Edit Profile</h2>
+
+{{>upload_form}}
+
+<form action="{{saveUrl}}" class="profile-form" method="post">
+    {{> profile_image}}
+    {{> basic_information}}
+    {{> university}}
+    {{> paypal}}
+    {{> residential_address}}
+    {{> shipping_address}}
+    {{> interests_input}}
+    {{> about_images}}
+    {{> shirt_shoe_form}}
+    {{> owns_car}}
+
+    <input type="hidden" name="referer" value="{{referer}}"/>
+    <input type="hidden" name="programUUID" value="{{programUUID}}"/>
+
+    <div class="button-row">
+        <a href="{{referer}}" class="btn inverse">Cancel</a>
+        <input type="submit" class="btn primary submit" value="Save" data-input="false"/>
+    </div>
+</form>
+

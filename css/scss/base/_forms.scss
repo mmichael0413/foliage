@@ -3,11 +3,14 @@
   TODO: break this up into form base and form layout
 */
 
-input[type=text], input[type=password], input[type=number], textarea, select, input[type="file"] {
+input[type=text], input[type=password], input[type=number], textarea, select, input[type="file"], input[type="email"] {
   width: 100%;
+  &.inline {
+    width: inherit;
+  }
 }
 
-input[type=text], input[type=password], input[type=number], textarea, select, input[type=date], input[type=datetime] {
+input[type=text], input[type=password], input[type=number], textarea, select, input[type=date], input[type=datetime], input[type="email"] {
   border: .1em solid $border-color;
   border-radius: $border-radius-base;
   height: 2em;
@@ -20,11 +23,25 @@ input[type=text], input[type=password], input[type=number], textarea, select, in
     color: $link-color;
     font-weight: bold;
   }
+  &.large {
+    height: 2.5em;
+  }
+  &.low-margin {
+    margin-bottom: .5em;
+  }
+  &.dark {
+    background-color: $border-color;
+  }
+}
+
+textarea.double {
+  height: 4em;
+  margin-bottom: 2em;
 }
 
 .compressed {
   input[type=text], input[type=password], input[type=number], textarea, select {
-    margin-bottom: 1.5em;
+    margin-bottom: 0;
   }
 }
 
@@ -121,6 +138,7 @@ input[type="file"]::-webkit-file-upload-button {
 
 .input-group {
   display: flex;
+  margin-bottom: 1.5em;
   input {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;   
@@ -137,9 +155,30 @@ input[type="file"]::-webkit-file-upload-button {
     font-size: 1em;
     cursor: pointer;
   }
+
+  label.radio {
+    margin: 0 1em;
+    &:first-of-type {
+      margin-left: 0;
+    }
+  }
+
+
 }
 
-.form-actions {
+
+.radio-input-group {
+
+  label {
+    @include swb-small() {
+      display: block;
+      margin-bottom: 1em;
+    }
+    @include swa-small() {
+      padding-right: 1em;
+    }
+  }
+}.form-actions {
   margin: 1rem auto;
 }
 

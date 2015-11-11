@@ -1,0 +1,15 @@
+<h1>Program Setup</h1>
+<div class="card">
+    <div class="header">*All fields must be completed.</div>
+</div>
+
+<form action="/profile/save/ftue/program/{{programUUID}}" class="profile-form" method="post">
+    {{> paypal }}
+    {{> residential_address}}
+    {{> shipping_address}}
+    {{> shirt_shoe_form}}
+
+    <div class="button-row">
+        <input type="submit" class="btn primary submit" value="Save" data-input="false"/>
+    </div>
+</form>
