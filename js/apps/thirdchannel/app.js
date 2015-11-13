@@ -8,7 +8,6 @@ define(function(require){
 
         var initialize = function(){
             Router.initialize();
-            ApplicationRouter.initialize();
             Backbone.history.start({pushState: true, hashChange: false});
         };
 
