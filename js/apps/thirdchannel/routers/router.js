@@ -153,7 +153,7 @@ define(function(require){
         },
 
         storeProfileSales: function() {
-            new StoreProfileSalesMain().init();
+            StoreProfileSalesMain.init();
         },
 
         programProfile: function(program_id, user_id) {

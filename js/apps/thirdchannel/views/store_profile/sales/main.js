@@ -12,7 +12,7 @@ define(function (require) {
 
             wrapper.setElement('#site-canvas').render();
 
-            console.log('SALES');
+
         }
     };
     return main;
