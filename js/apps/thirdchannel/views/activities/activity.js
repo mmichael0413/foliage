@@ -28,6 +28,7 @@ define(function(require) {
             "click .task-item" : "loadTask"
         },
         initialize: function (options) {
+
             var self = this;
             this.programId = options.programId;
             this.options = options;
@@ -36,15 +37,15 @@ define(function(require) {
             } else {
                 this.model = options.model;
             }
-            
             this.objId = this.model.get('activity_id');
             this.carousel = null;
-
             this.listenTo(context, 'navigation:collapsed', this.fixCollapsedCarousel);
+            // setup registry listener
+            console.log("Emitting ", this.model.get('location').id);
+            context.trigger("store.sales.register", this.model.get('location').id);
         },
         render: function () {
-            //var options = this.options;
-            console.log(this.model.attributes);
+            
             if(this.model.get('images')) {
                     this.model.set('imageCount', this.model.get('images').length);
             } else {
