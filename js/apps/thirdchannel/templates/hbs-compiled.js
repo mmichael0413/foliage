@@ -3660,46 +3660,36 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["ThirdChannel"]["templates"]["thirdchannel/store_profile/sales/breakdown_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 
   buffer += "<div class=\"col-2-12 breakdown-label\">";
   if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</div>\n<div class=\"col-1-12\">";
-  if (helper = helpers.salesInCents) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.salesInCents); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</div>\n<div class=\"col-1-12\">";
-  if (helper = helpers.salesInCentsLY) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.salesInCentsLY); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</div>\n<div class=\"col-1-12\">";
-  if (helper = helpers.salesChange) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.salesChange); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</div>\n<div class=\"col-1-12\"></div>\n<div class=\"col-1-12\">";
-  if (helper = helpers.unitsSold) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.unitsSold); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</div>\n<div class=\"col-1-12\">";
-  if (helper = helpers.unitsSoleLY) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.unitsSoleLY); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</div>\n<div class=\"col-1-12\">";
-  if (helper = helpers.unitsOnHand) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.unitsOnHand); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</div>\n<div class=\"col-1-12\">";
-  if (helper = helpers.unitsOnHandLY) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.unitsOnHandLY); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</div>\n<div class=\"col-1-12\">";
-  if (helper = helpers.unitsOnHandChange) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.unitsOnHandChange); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</div>";
+    + "</div>\n<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.formatSalesDollarValue || (depth0 && depth0.formatSalesDollarValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesInCents), options) : helperMissing.call(depth0, "formatSalesDollarValue", (depth0 && depth0.salesInCents), options)))
+    + "</div>\n<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.formatSalesDollarValue || (depth0 && depth0.formatSalesDollarValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesInCentsLY), options) : helperMissing.call(depth0, "formatSalesDollarValue", (depth0 && depth0.salesInCentsLY), options)))
+    + "</div>\n<div class=\"col-1-12\">\n    <span class=\"percentage-change "
+    + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.salesChange), options)))
+    + "\">\n        <i class=\"ic "
+    + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.salesChange), options)))
+    + "\"></i> "
+    + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.salesChange), options)))
+    + "\n    </span>\n</div>\n<div class=\"col-1-12\"></div>\n<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSold), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsSold), options)))
+    + "</div>\n<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSoldLY), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsSoldLY), options)))
+    + "</div>\n<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHand), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsOnHand), options)))
+    + "</div>\n<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHandLY), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsOnHandLY), options)))
+    + "</div>\n<div class=\"col-1-12\">\n    <span class=\"percentage-change "
+    + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHandChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.unitsOnHandChange), options)))
+    + "\">\n        "
+    + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHandChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.unitsOnHandChange), options)))
+    + "\n    </span>\n</div>";
   return buffer;
   });
 

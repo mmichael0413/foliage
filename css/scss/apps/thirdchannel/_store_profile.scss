@@ -1,8 +1,17 @@
 .breakdown-group {
-
   .item:first-of-type {
     .breakdown-label {
       font-weight: bold;
     }
+  }
+}
+
+.percentage-change {
+  &.positive {
+    color: $palette7;
+  }
+
+  &.negative {
+    color: $palette5;
   }
 }
