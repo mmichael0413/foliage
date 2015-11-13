@@ -3654,7 +3654,53 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "Test";
+  return "<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header alternate col-2-12\">Brands</h3>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">$ Sales</h3>\n            <span class=\"sub-header\">This Period, TY</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">$ Sales</h3>\n            <span class=\"sub-header\">This Period, LY</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">% Change</h3>\n            <span class=\"sub-header\">$ Store Sales</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">% Change</h3>\n            <span class=\"sub-header\">$ Account Sales</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">Units Sold</h3>\n            <span class=\"sub-header\">This Period</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">Units Sold</h3>\n            <span class=\"sub-header\">This Period, LY</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">UoH</h3>\n            <span class=\"sub-header\">TP, TY</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">UoH</h3>\n            <span class=\"sub-header\">TP, LY</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">% Change</h3>\n            <span class=\"sub-header\">UoH</span>\n        </div>\n    </div>\n    <div class=\"body\"></div>\n</section>";
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/store_profile/sales/breakdown_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"col-2-12 breakdown-label\">";
+  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n<div class=\"col-1-12\">";
+  if (helper = helpers.salesInCents) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.salesInCents); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n<div class=\"col-1-12\">";
+  if (helper = helpers.salesInCentsLY) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.salesInCentsLY); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n<div class=\"col-1-12\">";
+  if (helper = helpers.salesChange) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.salesChange); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n<div class=\"col-1-12\"></div>\n<div class=\"col-1-12\">";
+  if (helper = helpers.unitsSold) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.unitsSold); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n<div class=\"col-1-12\">";
+  if (helper = helpers.unitsSoleLY) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.unitsSoleLY); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n<div class=\"col-1-12\">";
+  if (helper = helpers.unitsOnHand) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.unitsOnHand); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n<div class=\"col-1-12\">";
+  if (helper = helpers.unitsOnHandLY) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.unitsOnHandLY); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n<div class=\"col-1-12\">";
+  if (helper = helpers.unitsOnHandChange) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.unitsOnHandChange); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>";
+  return buffer;
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/store_profile/schedule/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
