@@ -3648,6 +3648,15 @@ function program3(depth0,data) {
   else { return ''; }
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/store_profile/sales/brands_breakdown"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "Test";
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/store_profile/schedule/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
