@@ -3,15 +3,28 @@ define(function(require) {
         _ = require('underscore'),
         Backbone = require('backbone'),
         context = require('context'),
+        OverviewView = require('thirdchannel/views/store_profile/sales/overview'),
         BrandsBreakdownView = require('thirdchannel/views/store_profile/sales/brands_breakdown');
 
     var View = Backbone.View.extend({
 
-        // TODO: setup events for QTD changes
+        // TODO: setup events for Quarter changes
 
         render: function() {
+            this.renderOverview();
             this.renderBrandsBreakdown();
             return this;
+        },
+
+        renderOverview: function() {
+            var accountData = this.model.get('account');
+            var storeData = _.omit(this.model.get('store'), 'brands');
+
+            storeData.accountSalesInCents = accountData.salesInCents;
+            storeData.accountSalesChange = accountData.salesChange;
+
+            var model = new Backbone.Model(storeData);
+            new OverviewView({el: this.$('#overview'), model: model}).render();
         },
 
         renderBrandsBreakdown: function() {
