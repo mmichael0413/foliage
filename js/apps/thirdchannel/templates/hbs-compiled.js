@@ -3677,7 +3677,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.salesChange), options)))
     + "\"></i> "
     + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.salesChange), options)))
-    + "\n    </span>\n</div>\n<div class=\"col-1-12\"></div>\n<div class=\"col-1-12\">"
+    + "\n    </span>\n</div>\n<div class=\"col-1-12\">\n    <span class=\"percentage-change "
+    + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.accountSalesChange), options)))
+    + "\">\n        <i class=\"ic "
+    + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.accountSalesChange), options)))
+    + "\"></i> "
+    + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.accountSalesChange), options)))
+    + "\n    </span>\n</div>\n<div class=\"col-1-12\">"
     + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSold), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsSold), options)))
     + "</div>\n<div class=\"col-1-12\">"
     + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSoldLY), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsSoldLY), options)))
