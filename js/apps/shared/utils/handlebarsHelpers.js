@@ -149,7 +149,7 @@ define(function (require) {
     });
 
     Handlebars.registerHelper('formatSalesDollarValue', function(val) {
-        if(val === undefined || val == null) {
+        if(val === undefined || val === null) {
             return 'N/A';
         } else {
             var c = parseFloat(val === 0 ? 0 : val / 100).toFixed(2);

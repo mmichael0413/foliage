@@ -38,10 +38,10 @@ define(function(require) {
 
             var brands = _.map(storeData.brands, function(data, brand) {
                 var accountSalesChange = null,
-                    accountBrandData = accountData['brands'][brand];
+                    accountBrandData = accountData.brands[brand];
 
                 if(accountBrandData !== undefined) {
-                    accountSalesChange = accountBrandData['salesChange'];
+                    accountSalesChange = accountBrandData.salesChange;
                 }
 
                 var model = new Backbone.Model({brand: brand});
@@ -54,7 +54,7 @@ define(function(require) {
                     var genderAccountSalesChange = null;
 
                     if(accountBrandData !== undefined && accountBrandData[g] !== undefined) {
-                        genderAccountSalesChange = accountBrandData[g]['salesChange'];
+                        genderAccountSalesChange = accountBrandData[g].salesChange;
                     }
 
                     var genderData = data[g];
