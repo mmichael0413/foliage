@@ -12,6 +12,7 @@ define(function(require) {
 
         render: function() {
             this.renderOverview();
+            this.renderOverviewBreakdown();
             this.renderBrandsBreakdown();
             return this;
         },
@@ -25,6 +26,10 @@ define(function(require) {
 
             var model = new Backbone.Model(storeData);
             new OverviewView({el: this.$('#overview'), model: model}).render();
+        },
+
+        renderOverviewBreakdown: function() {
+
         },
 
         renderBrandsBreakdown: function() {
