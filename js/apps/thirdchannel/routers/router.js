@@ -33,10 +33,13 @@ define(function(require){
         AnswersExportView = require('thirdchannel/views/exports/answers/main'),
         ProgramProfileView = require('erudition/views/profile/view_profile'),
         ProgramProfileEditView = require('erudition/views/profile/edit'),
-        ProfileStoreListView = require('thirdchannel/views/profiles/stores/list');
+        ProfileStoreListView = require('thirdchannel/views/profiles/stores/list'),
+        ApplicationView = require('thirdchannel/views/application/main');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
+            'agents/opportunities/:program_id/applications/:id' : 'viewApplication',
+
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
@@ -73,7 +76,7 @@ define(function(require){
             'programs/:program_id/exports/survey_answers': 'answerExports',
 
             'programs/:program_id/*path' : 'defaultPath',
-           // '*path': 'notFound'
+            '*path': 'notFound'
         },
         // Small hack to add a before and after function to the Router
         /**
@@ -229,6 +232,11 @@ define(function(require){
 
         answerExports: function() {
             new AnswersExportView().render();
+        },
+
+        viewApplication: function(program_id, id) {
+            context.programId = program_id;
+            new ApplicationView({applicationId: id});
         },
 
         defaultPath: function(program_id) {
