@@ -16,9 +16,14 @@ define(function(require) {
 
             initialize: function () {
                 var self = this;
-                
+                if (!context.links || !context.links.sales) {
+                    // don't run unless the sales link is provided
+                    return false;
+                }
                 this.feedUrl = context.links.sales;
-                // watch the context event emitter, register each uuid, buffer them in groups by time, then query for 
+                
+                // watch the context event emitter, register each uuid, buffer them in groups by time, 
+                // then query for sales data 
                 rx.Observable.fromEvent(context, "store.sales.register")
                 .map(function(uuid) { return self.register(uuid); })
                 .buffer(function () { return Rx.Observable.timer(self.bufferFrequency); })
@@ -43,12 +48,14 @@ define(function(require) {
                         uuids: uuids
                     }
                 }).promise();
+
+
                 rx.Observable.fromPromise(promise)
                 .subscribe(function (response) {
                     if (!response.hasOwnProperty('sales')) {
                         console.error("No sales found. Emitting nothing");
                     } else {
-                        console.log("Complete.  Will emit ", response.sales.length );
+                        console.log("Complete.  Will emit ", arguments );
                     }
                 }, function () {
                     console.error("Oh no!", arguments);
