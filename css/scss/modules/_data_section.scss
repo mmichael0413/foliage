@@ -1,9 +1,19 @@
 .data-section {
 	.header {
-		padding: 0;
-		font-size: 1rem;
-		text-transform: uppercase;
+      padding: 0;
+      font-size: 1rem;
+      text-transform: uppercase;
+      &.alternate {
+        margin: 0;
+        text-transform: none;
+      }
 	}
+
+    .sub-header {
+      padding: 0;
+      font-size: 0.75em;
+      font-weight: normal;
+    }
 
 	.body {
 		margin-top: 1em;

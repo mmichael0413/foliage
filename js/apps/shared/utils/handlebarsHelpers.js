@@ -147,5 +147,50 @@ define(function (require) {
             accum += block.fn(i);
         return accum;
     });
+
+    Handlebars.registerHelper('formatSalesDollarValue', function(val) {
+        if(val === undefined || val == null) {
+            return 'N/A';
+        } else {
+            var c = parseFloat(val === 0 ? 0 : val / 100).toFixed(2);
+            return '$' + c.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+        }
+    });
+
+    Handlebars.registerHelper('formatSalesValue', function(val) {
+        if(val === undefined || val === null) {
+            return 'N/A';
+        } else {
+            return val;
+        }
+    });
+
+    Handlebars.registerHelper('formatPercentageChange', function(change) {
+        if(change === undefined || change === null) {
+            return 'N/A';
+        } else {
+            return Math.abs(parseFloat(change)).toFixed(2) + '%';
+        }
+    });
+
+    Handlebars.registerHelper('percentageChangeClass', function(change) {
+        if(change !== undefined && change !== null) {
+            if(change > 0) {
+                return 'positive';
+            } else {
+                return 'negative';
+            }
+        }
+    });
+
+    Handlebars.registerHelper('percentageChangeIcon', function(change) {
+        if(change !== undefined && change !== null) {
+            if(change > 0) {
+                return 'ic_up';
+            } else if(change < 0) {
+                return 'ic_down';
+            }
+        }
+    });
 });
 

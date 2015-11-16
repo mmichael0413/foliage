@@ -3648,6 +3648,99 @@ function program3(depth0,data) {
   else { return ''; }
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/store_profile/sales/brands_breakdown"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header alternate col-2-12\">Brands</h3>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">$ Sales</h3>\n            <span class=\"sub-header\">This Period, TY</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">$ Sales</h3>\n            <span class=\"sub-header\">This Period, LY</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">% Change</h3>\n            <span class=\"sub-header\">$ Store Sales</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">% Change</h3>\n            <span class=\"sub-header\">$ Account Sales</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">Units Sold</h3>\n            <span class=\"sub-header\">This Period</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">Units Sold</h3>\n            <span class=\"sub-header\">This Period, LY</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">UoH</h3>\n            <span class=\"sub-header\">TP, TY</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">UoH</h3>\n            <span class=\"sub-header\">TP, LY</span>\n        </div>\n        <div class=\"col-1-12\">\n            <h3 class=\"header alternate\">% Change</h3>\n            <span class=\"sub-header\">UoH</span>\n        </div>\n    </div>\n    <div class=\"body\"></div>\n</section>";
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/store_profile/sales/breakdown_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
+
+
+  buffer += "<div class=\"col-2-12 breakdown-label\">";
+  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.formatSalesDollarValue || (depth0 && depth0.formatSalesDollarValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesInCents), options) : helperMissing.call(depth0, "formatSalesDollarValue", (depth0 && depth0.salesInCents), options)))
+    + "</div>\n<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.formatSalesDollarValue || (depth0 && depth0.formatSalesDollarValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesInCentsLY), options) : helperMissing.call(depth0, "formatSalesDollarValue", (depth0 && depth0.salesInCentsLY), options)))
+    + "</div>\n<div class=\"col-1-12\">\n    <span class=\"percentage-change "
+    + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.salesChange), options)))
+    + "\">\n        <i class=\"ic "
+    + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.salesChange), options)))
+    + "\"></i> "
+    + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.salesChange), options)))
+    + "\n    </span>\n</div>\n<div class=\"col-1-12\">\n    <span class=\"percentage-change "
+    + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.accountSalesChange), options)))
+    + "\">\n        <i class=\"ic "
+    + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.accountSalesChange), options)))
+    + "\"></i> "
+    + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.accountSalesChange), options)))
+    + "\n    </span>\n</div>\n<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSold), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsSold), options)))
+    + "</div>\n<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSoldLY), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsSoldLY), options)))
+    + "</div>\n<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHand), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsOnHand), options)))
+    + "</div>\n<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHandLY), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsOnHandLY), options)))
+    + "</div>\n<div class=\"col-1-12\">\n    <span class=\"percentage-change "
+    + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHandChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.unitsOnHandChange), options)))
+    + "\">\n        "
+    + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHandChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.unitsOnHandChange), options)))
+    + "\n    </span>\n</div>";
+  return buffer;
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/store_profile/sales/overview"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+
+  buffer += "<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <div class=\"col-1-1\">\n            <h2>Overview</h2>\n        </div>\n        <div class=\"col-1-4\">\n            <h2>"
+    + escapeExpression((helper = helpers.formatSalesDollarValue || (depth0 && depth0.formatSalesDollarValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesInCents), options) : helperMissing.call(depth0, "formatSalesDollarValue", (depth0 && depth0.accountSalesInCents), options)))
+    + "</h2>\n            <p>Total $ Account Sales</p>\n        </div>\n        <div class=\"col-1-4\">\n            <h2>"
+    + escapeExpression((helper = helpers.formatSalesDollarValue || (depth0 && depth0.formatSalesDollarValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesInCents), options) : helperMissing.call(depth0, "formatSalesDollarValue", (depth0 && depth0.salesInCents), options)))
+    + "</h2>\n            <p>Total $ Store Sales</p>\n        </div>\n        <div class=\"col-1-4\">\n            <h2>"
+    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSold), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsSold), options)))
+    + "</h2>\n            <p>Units Sold</p>\n        </div>\n        <div class=\"col-1-4\">\n            <h2>"
+    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHand), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsOnHand), options)))
+    + "</h2>\n            <p>Units OH</p>\n        </div>\n\n        <div class=\"col-1-4\">\n            <h2 class=\"percentage-change "
+    + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.accountSalesChange), options)))
+    + "\">\n                <i class=\"ic "
+    + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.accountSalesChange), options)))
+    + "\"></i> "
+    + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.accountSalesChange), options)))
+    + "\n            </h2>\n            <p>Compared to this period last year</p>\n        </div>\n        <div class=\"col-1-4\">\n            <h2 class=\"percentage-change "
+    + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.salesChange), options)))
+    + "\">\n                <i class=\"ic "
+    + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.salesChange), options)))
+    + "\"></i> "
+    + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.salesChange), options)))
+    + "\n            </h2>\n            <p>Compared to this period last year</p>\n        </div>\n        <div class=\"col-1-4\">\n            <h2 class=\"percentage-change "
+    + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSoldChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.unitsSoldChange), options)))
+    + "\">\n                <i class=\"ic "
+    + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSoldChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.unitsSoldChange), options)))
+    + "\"></i> "
+    + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSoldChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.unitsSoldChange), options)))
+    + "\n            </h2>\n            <p>Compared to this period last year</p>\n        </div>\n        <div class=\"col-1-4\">\n            <h2 class=\"percentage-change "
+    + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHandChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.unitsOnHandChange), options)))
+    + "\">\n                <i class=\"ic "
+    + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHandChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.unitsOnHandChange), options)))
+    + "\"></i> "
+    + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHandChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.unitsOnHandChange), options)))
+    + "\n            </h2>\n            <p>Compared to this period last year</p>\n        </div>\n    </div>\n</section>";
+  return buffer;
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/store_profile/schedule/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
