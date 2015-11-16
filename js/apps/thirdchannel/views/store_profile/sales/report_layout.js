@@ -39,7 +39,8 @@ define(function(require) {
 
             model.breakdowns.add(new Backbone.Model(_.extend(_.omit(this.storeData, 'brands', 'genders'), {label: 'Total Sales', accountSalesChange: accountSalesChange})));
 
-            _.each(this.storeData.genders, function(data, gender) {
+            _.each(['man', 'woman', 'none'], function(gender) {
+                var data = this.storeData.genders[gender];
                 var genderAccountSalesChange = null;
 
                 if(this.accountData.genders[gender] !== undefined && this.accountData.genders[gender] !== undefined) {
