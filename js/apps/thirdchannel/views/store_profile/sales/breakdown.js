@@ -10,7 +10,7 @@ define(function(require) {
         template: HandlebarsTemplates['thirdchannel/store_profile/sales/breakdown'],
 
         initialize: function(options) {
-            this.title = options.title
+            this.title = options.title;
         },
 
         render: function() {

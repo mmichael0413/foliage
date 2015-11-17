@@ -3735,10 +3735,18 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["ThirdChannel"]["templates"]["thirdchannel/store_profile/sales/overview"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 
-  buffer += "<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <div class=\"col-1-1\">\n            <h2>Overview</h2>\n        </div>\n        <div class=\"col-1-4\">\n            <h2>"
+  buffer += "<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <div class=\"col-1-1\">\n            <div class=\"pull-left\">\n                <h2>Overview</h2>\n            </div>\n            <div class=\"pull-right\">\n                <a href=\"#\" class=\"prev-quarter\">Previous Quarter</a>\n                Q";
+  if (helper = helpers.current_quarter) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.current_quarter); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " - ";
+  if (helper = helpers.current_year) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.current_year); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\n                <a href=\"#\" class=\"next-quarter\">Next Quarter</a>\n            </div>\n        </div>\n        <div class=\"col-1-4\">\n            <h2>"
     + escapeExpression((helper = helpers.formatSalesDollarValue || (depth0 && depth0.formatSalesDollarValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesInCents), options) : helperMissing.call(depth0, "formatSalesDollarValue", (depth0 && depth0.accountSalesInCents), options)))
     + "</h2>\n            <p>Total $ Account Sales</p>\n        </div>\n        <div class=\"col-1-4\">\n            <h2>"
     + escapeExpression((helper = helpers.formatSalesDollarValue || (depth0 && depth0.formatSalesDollarValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesInCents), options) : helperMissing.call(depth0, "formatSalesDollarValue", (depth0 && depth0.salesInCents), options)))
