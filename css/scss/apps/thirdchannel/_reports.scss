@@ -209,6 +209,10 @@
       }
 
       .info {
+        &.pure-g {
+          border-top: 0;
+          padding: 0.5rem;
+        }
         .task {
           font-weight: bold;
         }
