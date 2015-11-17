@@ -1111,6 +1111,30 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/activities/sales_widget"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  
+  return " From LY";
+  }
+
+  buffer += "<section class=\"sales-widget\">\n    <p class=\"text\">QTD $ Sales: <span class=\"percentage-change "
+    + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.salesChange), options)))
+    + "\"><i class=\"ic "
+    + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.salesChange), options)))
+    + "\"></i> "
+    + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.salesChange), options)))
+    + "</span> ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.showLabel), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</p>\n    <a class=\"details\" href=\"\">DETAILS</a>\n</section>    ";
+  return buffer;
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/activity"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};

@@ -40,8 +40,8 @@ define(function(require) {
             this.objId = this.model.get('activity_id');
             this.carousel = null;
             this.listenTo(context, 'navigation:collapsed', this.fixCollapsedCarousel);
+            this.listenTo(context, 'store.sales.update', this.updateSalesWidget);
             // setup registry listener
-            console.log("Emitting ", this.model.get('location').id);
             context.trigger("store.sales.register", this.model.get('location').id);
         },
         render: function () {
@@ -185,11 +185,20 @@ define(function(require) {
             });
         },
         fixCollapsedCarousel: function() {
-        var self = this;
-        setTimeout(function(){
-            self.carousel.unslick();
-            self.initializeCarousel();
-        }, 400);
-    }
+            var self = this;
+            setTimeout(function(){
+                self.carousel.unslick();
+                self.initializeCarousel();
+            }, 400);
+        },
+        updateSalesWidget: function (data) {
+            if (this.model.get('location').hasOwnProperty('id') && this.model.get('location').id === data.uuid) {
+                // only show values with 0 or greater?
+                var data = {salesChange: data.value, showLabel: data.value ? true : false};
+                this.$el.find('.activity-meta').append(HandlebarsTemplates['thirdchannel/activities/sales_widget'](data));
+                this.$el.find('.sales-widget').fadeIn(500).css("display","inline-block");
+            }
+            
+        }
     });
 });
