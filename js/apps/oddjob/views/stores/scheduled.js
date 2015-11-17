@@ -35,7 +35,7 @@ define(function (require) {
                 });
 
             if (confirm("Are you sure you wish to unassign " + uuids.length + " store(s) from this schedule?")) {
-                
+
                 $.ajax({
                     method: "POST",
                     url: context.links.unassign,

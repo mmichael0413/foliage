@@ -62,7 +62,7 @@ define(function(require){
                 editUrl: context.content.editUrl,
                 activityUrl: context.content.activityUrl,
                 displayResidential: this.displayResidential,
-                displayShipping: this.displayshipping,
+                displayShipping: this.displayShipping,
                 userLabel: context.content.userLabel,
                 aboutImageCount: aboutImageCount,
                 universityLabel:universityLabel,

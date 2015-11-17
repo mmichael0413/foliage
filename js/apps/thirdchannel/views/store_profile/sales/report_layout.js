@@ -4,39 +4,63 @@ define(function(require) {
         Backbone = require('backbone'),
         context = require('context'),
         OverviewView = require('thirdchannel/views/store_profile/sales/overview'),
-        BrandsBreakdownView = require('thirdchannel/views/store_profile/sales/brands_breakdown');
+        BreakdownView = require('thirdchannel/views/store_profile/sales/breakdown');
 
     var View = Backbone.View.extend({
 
         // TODO: setup events for Quarter changes
 
+        initialize: function() {
+            this.accountData = this.model.get('account');
+            this.storeData = this.model.get('store');
+        },
+
         render: function() {
             this.renderOverview();
+            this.renderOverviewBreakdown();
             this.renderBrandsBreakdown();
             return this;
         },
 
         renderOverview: function() {
-            var accountData = this.model.get('account');
-            var storeData = _.omit(this.model.get('store'), 'brands');
+            var data = _.omit(this.storeData, 'brands');
 
-            storeData.accountSalesInCents = accountData.salesInCents;
-            storeData.accountSalesChange = accountData.salesChange;
+            data.accountSalesInCents = this.accountData.salesInCents;
+            data.accountSalesChange = this.accountData.salesChange;
 
-            var model = new Backbone.Model(storeData);
-            new OverviewView({el: this.$('#overview'), model: model}).render();
+            new OverviewView({el: this.$('#overview'), model: new Backbone.Model(data)}).render();
+        },
+
+        renderOverviewBreakdown: function() {
+            var accountSalesChange = this.accountData.salesChange;
+
+            var model = new Backbone.Model({brand: 'Total Sales'});
+            model.breakdowns = new Backbone.Collection();
+
+            model.breakdowns.add(new Backbone.Model(_.extend(_.omit(this.storeData, 'brands', 'genders'), {label: 'Total Sales', accountSalesChange: accountSalesChange})));
+
+            _.each(['man', 'woman', 'none'], function(gender) {
+                var data = this.storeData.genders[gender];
+                var genderAccountSalesChange = null;
+
+                if(this.accountData.genders[gender] !== undefined && this.accountData.genders[gender] !== undefined) {
+                    genderAccountSalesChange = this.accountData.genders[gender].salesChange;
+                }
+
+                model.breakdowns.add(_.extend(data, {label: gender, accountSalesChange: genderAccountSalesChange}));
+            }.bind(this));
+
+            var view = new BreakdownView({title: 'Breakdown', el: this.$('#overview-breakdown'), collection: new Backbone.Collection([model])});
+            view.render();
         },
 
         renderBrandsBreakdown: function() {
-            var storeData = this.model.get('store');
-            var accountData = this.model.get('account');
-
-            var brands = _.map(storeData.brands, function(data, brand) {
+            var brands = _.map(this.storeData.brands, function(data, brand) {
                 var accountSalesChange = null,
-                    accountBrandData = accountData['brands'][brand];
+                    accountBrandData = this.accountData.brands[brand];
 
                 if(accountBrandData !== undefined) {
-                    accountSalesChange = accountBrandData['salesChange'];
+                    accountSalesChange = accountBrandData.salesChange;
                 }
 
                 var model = new Backbone.Model({brand: brand});
@@ -49,7 +73,7 @@ define(function(require) {
                     var genderAccountSalesChange = null;
 
                     if(accountBrandData !== undefined && accountBrandData[g] !== undefined) {
-                        genderAccountSalesChange = accountBrandData[g]['salesChange'];
+                        genderAccountSalesChange = accountBrandData[g].salesChange;
                     }
 
                     var genderData = data[g];
@@ -57,9 +81,9 @@ define(function(require) {
                 });
 
                 return model;
-            });
+            }.bind(this));
 
-            var view = new BrandsBreakdownView({el: this.$('#brands-breakdown'), collection: new Backbone.Collection(brands)});
+            var view = new BreakdownView({title: 'Brands', el: this.$('#brands-breakdown'), collection: new Backbone.Collection(brands)});
             view.render();
         }
     });
