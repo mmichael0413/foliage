@@ -63,7 +63,9 @@ define(function(require) {
                     return rx.Observable.from(data);
                 })
                 .subscribe(function (response) {
-                    self[response.uuid] = response.value;
+                    self.registry[response.uuid] = response.value;
+                    response.salesUrl = context.links.stores +"/" + response.uuid+"/sales";
+
                     context.trigger("store.sales.update", response);
                 }, function () {
                     console.error("Could not fetch Sales data", arguments);
