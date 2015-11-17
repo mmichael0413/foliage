@@ -7,8 +7,6 @@ define(function(require) {
         BreakdownView = require('thirdchannel/views/store_profile/sales/breakdown');
 
     var View = Backbone.View.extend({
-
-        // TODO: setup events for Quarter changes
         events: {
             'click .prev-quarter': 'prevQuarter',
             'click .next-quarter': 'nextQuarter'
