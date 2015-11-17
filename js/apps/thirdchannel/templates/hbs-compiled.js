@@ -1114,7 +1114,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["ThirdChannel"]["templates"]["thirdchannel/activities/sales_widget"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function";
 
 function program1(depth0,data) {
   
@@ -1131,7 +1131,11 @@ function program1(depth0,data) {
     + "</span> ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.showLabel), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</p>\n    <a class=\"details\" href=\"\">DETAILS</a>\n</section>    ";
+  buffer += "</p>\n    <a class=\"details\" href=\"";
+  if (helper = helpers.salesUrl) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.salesUrl); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">DETAILS</a>\n</section>    ";
   return buffer;
   });
 

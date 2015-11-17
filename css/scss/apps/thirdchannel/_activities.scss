@@ -136,6 +136,10 @@ $padding: 1.5em;
     display: none;
     border: 1px solid $light-blue;
     line-height: 3em;
+    @include swb-small {
+      width: 100%;
+      display: block;
+    }
     .text, .details {
       display: inline-block;
       text-align: center;
@@ -153,6 +157,9 @@ $padding: 1.5em;
 
   .bar-body {
     width: 60%;
+    @include swb-small {
+      width: 100%;
+    }
   }
 }
 
