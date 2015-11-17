@@ -72,6 +72,9 @@ $padding: 1.5em;
 // }
 
 .activity {
+  p {
+    margin: 0 0 0 0;
+  }
   background: white;
   //border-top-left-radius: $border-radius-base;
   //border-top-right-radius: $border-radius-base;
@@ -126,6 +129,34 @@ $padding: 1.5em;
     }
   }
 }
+.activity-meta{
+  .sales-widget {
+    width: 33%;
+    vertical-align: top;
+    display: none;
+    border: 1px solid $light-blue;
+    line-height: 3em;
+    .text, .details {
+      display: inline-block;
+      text-align: center;
+      font-weight: bold;
+    }
+    .text {
+      width: 70%
+
+    }
+    .details {
+      width: 28%;
+      border-left: 1px solid $light-blue;
+    }
+  }
+
+  .bar-body {
+    width: 60%;
+  }
+}
+
+
 
 .comment.new-comment {
   padding-bottom: $padding;

@@ -24,8 +24,9 @@ define(function(require) {
                 
                 // watch the context event emitter, register each uuid, buffer them in groups by time, 
                 // then query for sales data 
+                
                 rx.Observable.fromEvent(context, "store.sales.register")
-                .map(function(uuid) { return self.register(uuid); })
+                .map(function(uuid) {return self.register(uuid); })
                 .buffer(function () { return Rx.Observable.timer(self.bufferFrequency); })
                 .filter(function (data) { return data.length > 0; })
                 .subscribe(function (data) { self.queryForSales(data); });
@@ -39,9 +40,9 @@ define(function(require) {
             },
 
             queryForSales: function(uuids) {
-                console.log("Received ", uuids);
                 //todo: add unknown numbers from registery
-                var promise = $.ajax({
+                var self = this,
+                    promise = $.ajax({
                     url: this.feedUrl,
                     dataType: 'json',
                     data: {
@@ -51,14 +52,21 @@ define(function(require) {
 
 
                 rx.Observable.fromPromise(promise)
-                .subscribe(function (response) {
-                    if (!response.hasOwnProperty('sales')) {
-                        console.error("No sales found. Emitting nothing");
-                    } else {
-                        console.log("Complete.  Will emit ", arguments );
+                .map(function (data) {
+                    var arr = [];
+                    for (var uuid in data.sales) {
+                        arr.push({uuid: uuid, value: data.sales[uuid]});
                     }
+                    return arr;
+                })
+                .flatMap(function (data) {
+                    return rx.Observable.from(data);
+                })
+                .subscribe(function (response) {
+                    self[response.uuid] = response.value;
+                    context.trigger("store.sales.update", response);
                 }, function () {
-                    console.error("Oh no!", arguments);
+                    console.error("Could not fetch Sales data", arguments);
                 }, function () {});
             }
 
