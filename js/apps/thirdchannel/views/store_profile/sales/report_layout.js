@@ -9,6 +9,10 @@ define(function(require) {
     var View = Backbone.View.extend({
 
         // TODO: setup events for Quarter changes
+        events: {
+            'click .prev-quarter': 'prevQuarter',
+            'click .next-quarter': 'nextQuarter'
+        },
 
         initialize: function() {
             this.accountData = this.model.get('account');
@@ -23,8 +27,9 @@ define(function(require) {
         },
 
         renderOverview: function() {
-            var data = _.omit(this.storeData, 'brands');
-
+            var data = _.omit(this.storeData, 'brands', 'genders');
+            data.current_year = this.model.get('current_year');
+            data.current_quarter = this.model.get('current_quarter');
             data.accountSalesInCents = this.accountData.salesInCents;
             data.accountSalesChange = this.accountData.salesChange;
 
@@ -85,6 +90,27 @@ define(function(require) {
 
             var view = new BreakdownView({title: 'Brands', el: this.$('#brands-breakdown'), collection: new Backbone.Collection(brands)});
             view.render();
+        },
+
+        prevQuarter: function(e) {
+            e.preventDefault();
+            this._updateSalesData(this.model.get('prev_quarter').begin);
+        },
+
+        nextQuarter: function(e) {
+            e.preventDefault();
+            this._updateSalesData(this.model.get('next_quarter').begin);
+        },
+
+        _updateSalesData: function(date) {
+            console.log(date);
+            this.model.set('date', date);
+            this.model.fetch().then(function(resp) {
+                // update navigation
+                this.accountData = this.model.get('account');
+                this.storeData = this.model.get('store');
+                this.render();
+            }.bind(this));
         }
     });
 

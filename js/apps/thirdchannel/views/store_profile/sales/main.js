@@ -3,6 +3,7 @@ define(function (require) {
         $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
+        SalesReport = require('thirdchannel/models/stores/sales_report'),
         ReportLayout = require('thirdchannel/views/store_profile/sales/report_layout');
 
     var main = {
@@ -11,7 +12,7 @@ define(function (require) {
 
             context.trigger('nav:toggle');
 
-            var model = new Backbone.Model(window.bootstrap);
+            var model = new SalesReport(window.bootstrap);
             new ReportLayout({el: '.content-holder', model: model}).render();
         }
     };
