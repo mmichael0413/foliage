@@ -25,27 +25,24 @@ define(function(require) {
             });
             brands = _.filter(brands, function(data) { return data.salesChange !== null });
             brands = _.sortBy(brands, 'salesChange');
-
-            var data = _.map(brands, function(brand) {
-                return [brand.label, brand.salesChange];
-            });
             
-            var colors = {};
-            _.each(brands, function(brand, i) {
-               colors[brand.label] = defaultLegendColors[i % defaultLegendColors.length]
-            });
-
             c3.generate({
                 bindto: this.$('.chart')[0],
                 data: {
-                    columns: data,
-                    colors: colors,
+                    json: brands,
+                    keys: {
+                        x: 'label',
+                        value: ['salesChange']
+                    },
+                    color: function(color, d) {
+                        return defaultLegendColors[d.index % defaultLegendColors.length];
+                    },
                     type: 'bar'
                 },
                 axis: {
                     rotated: true,
                     x: {
-                        show: false
+                        type: 'category'
                     },
                     y: {
                         padding: {
@@ -60,6 +57,9 @@ define(function(require) {
                     y: {
                         show: true
                     }
+                },
+                legend: {
+                    show: false
                 }
             });
         }
