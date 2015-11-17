@@ -106,7 +106,7 @@ define(function(require) {
             console.log(date);
             this.model.set('date', date);
             this.model.fetch().then(function(resp) {
-                // update navigation
+                context.router.navigate(this.model.url());
                 this.accountData = this.model.get('account');
                 this.storeData = this.model.get('store');
                 this.render();
