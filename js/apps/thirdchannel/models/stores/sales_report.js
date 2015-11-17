@@ -6,7 +6,7 @@ define(function (require) {
 
     return Backbone.Model.extend({
         url: function () {
-            var date = this.get('date')
+            var date = this.get('date');
             if(date === undefined) {
                 date = this.get('begin');
             }

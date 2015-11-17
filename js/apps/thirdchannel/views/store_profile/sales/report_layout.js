@@ -4,7 +4,8 @@ define(function(require) {
         Backbone = require('backbone'),
         context = require('context'),
         OverviewView = require('thirdchannel/views/store_profile/sales/overview'),
-        BreakdownView = require('thirdchannel/views/store_profile/sales/breakdown');
+        BreakdownView = require('thirdchannel/views/store_profile/sales/breakdown'),
+        ChartBreakdowns = require('thirdchannel/views/store_profile/sales/chart_breakdowns');
 
     var View = Backbone.View.extend({
         events: {
@@ -19,6 +20,7 @@ define(function(require) {
 
         render: function() {
             this.renderOverview();
+            this.renderCharts();
             this.renderOverviewBreakdown();
             this.renderBrandsBreakdown();
             return this;
@@ -32,6 +34,11 @@ define(function(require) {
             data.accountSalesChange = this.accountData.salesChange;
 
             new OverviewView({el: this.$('#overview'), model: new Backbone.Model(data)}).render();
+        },
+
+        renderCharts: function() {
+            var view = new ChartBreakdowns({el: this.$('#chart-breakdowns'), model: this.model});
+            view.render();
         },
 
         renderOverviewBreakdown: function() {
