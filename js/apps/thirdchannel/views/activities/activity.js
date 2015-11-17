@@ -194,7 +194,7 @@ define(function(require) {
         updateSalesWidget: function (data) {
             if (this.model.get('location').hasOwnProperty('id') && this.model.get('location').id === data.uuid) {
                 // only show values with 0 or greater?
-                var data = {salesChange: data.value, showLabel: data.value ? true : false};
+                data = {salesChange: data.value, showLabel: data.value ? true : false};
                 this.$el.find('.activity-meta').append(HandlebarsTemplates['thirdchannel/activities/sales_widget'](data));
                 this.$el.find('.sales-widget').fadeIn(500).css("display","inline-block");
             }
