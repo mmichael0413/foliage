@@ -11,10 +11,6 @@ define(function(require) {
     var View = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/store_profile/sales/chart_breakdowns'],
 
-        initialize: function(options) {
-            this.brandLookup = options.brandLookup;
-        },
-
         render: function() {
             this.$el.html(this.template());
             this.renderSalesPerBrand();
@@ -23,8 +19,6 @@ define(function(require) {
         },
 
         renderSalesPerBrand: function() {
-            var self = this;
-
             var store = this.model.get('store');
             var brands = store.brands;
 
@@ -33,7 +27,7 @@ define(function(require) {
                 data.percentageOfSales = (data.salesInCents / store.salesInCents) * 100;
                 return data;
             });
-            brands = _.filter(brands, function(data) { return data.percentageOfSales !== null });
+            brands = _.filter(brands, function(data) { return data.percentageOfSales !== null; });
             brands = _.sortBy(brands, 'percentageOfSales').reverse();
 
             this.salesPerBrandChart = c3.generate({
@@ -48,7 +42,7 @@ define(function(require) {
                         format: function(value, key, i, j) {
                             var sales = 'N/A';
                             if(brands[i] !== undefined && brands[i].salesInCents) {
-                                sales = '$' + (brands[i].salesInCents / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                                sales = '$' + (brands[i].salesInCents / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                             }
                             return parseFloat(value).toFixed(2) + '% (' + sales + ')';
                         }
@@ -79,7 +73,7 @@ define(function(require) {
                                 if(brands[i] === undefined) {
                                     return;
                                 }
-                                return self.brandLookup.translate(brands[i].label);
+                                return brands[i].label;
                             }
                         }
                     },
@@ -107,13 +101,12 @@ define(function(require) {
         },
 
         renderChangeInSales: function() {
-            var self = this;
             var brands = this.model.get('store').brands;
             brands = _.map(brands, function(data, key) {
                 data.label = key;
                 return data;
             });
-            brands = _.filter(brands, function(data) { return data.salesChange !== null });
+            brands = _.filter(brands, function(data) { return data.salesChange !== null; });
             brands = _.sortBy(brands, 'salesChange');
 
             this.changeInSalesChart = c3.generate({
@@ -128,7 +121,7 @@ define(function(require) {
                         format: function (value, key, i, j) {
                             var salesDiff = 'N/A';
                             if(brands[i] !== undefined && brands[i].salesDiff) {
-                                salesDiff = '$' + (brands[i].salesDiff / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                                salesDiff = '$' + (brands[i].salesDiff / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                             }
                             return parseFloat(value).toFixed(2) + '% (' + salesDiff + ')';
                         }
@@ -144,7 +137,7 @@ define(function(require) {
                         value: function (value, ratio, id, i) {
                             var salesDiff = 'N/A';
                             if(brands[i] !== undefined && brands[i].salesDiff !== undefined && brands[i].salesDiff !== null) {
-                                salesDiff = '$' + (brands[i].salesDiff / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                                salesDiff = '$' + (brands[i].salesDiff / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                             }
                             return parseFloat(value).toFixed(2) + '% (' + salesDiff + ')';
                         }
@@ -159,7 +152,7 @@ define(function(require) {
                                 if(brands[i] === undefined) {
                                     return;
                                 }
-                                return self.brandLookup.translate(brands[i].label);
+                                return brands[i].label;
                             }
                         }
                     },
