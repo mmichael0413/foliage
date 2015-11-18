@@ -8,25 +8,37 @@ define(function(require) {
         ChartBreakdowns = require('thirdchannel/views/store_profile/sales/chart_breakdowns');
 
     // TODO: should make sure these are correct
-    var brandLookups = {
-        AX: 'Armani Exchange',
-        BB: 'Burberry',
-        BV: 'Bvlgari',
-        CH: 'Chanel',
-        C3: 'Coach', // not sure about this one
-        DG: 'Dolce & Gabanna',
-        EA: 'Emporio Armani',
-        // giorgio armani, nothing looks correct
-        MK: 'Michael Kors',
-        MU: 'Miu Miu',
-        PS: 'Persol',
-        PO: 'Polo Ralph Lauren',
-        PR: 'Prada/Linea Rossa',
-        RA: 'Ralph',
-        RB: 'Ray Ban',
-        TY: 'Tory Burch',
-        VE: 'Versace'
-    };
+    var brandLookup = (function() {
+        var brandLookups = {
+            AX: 'Armani Exchange',
+            BB: 'Burberry',
+            BV: 'Bvlgari',
+            CH: 'Chanel',
+            C3: 'Coach', // not sure about this one
+            DG: 'Dolce & Gabanna',
+            EA: 'Emporio Armani',
+            // giorgio armani, nothing looks correct
+            MK: 'Michael Kors',
+            MU: 'Miu Miu',
+            PS: 'Persol',
+            PO: 'Polo Ralph Lauren',
+            PR: 'Prada/Linea Rossa',
+            RA: 'Ralph',
+            RB: 'Ray Ban',
+            TY: 'Tory Burch',
+            VE: 'Versace'
+        };
+
+        return {
+            translate: function(label) {
+                var lookup = brandLookups[label];
+                if(lookup !== undefined) {
+                    label = lookup;
+                }
+                return label;
+            }
+        };
+    })();
 
     var View = Backbone.View.extend({
         events: {
@@ -58,7 +70,7 @@ define(function(require) {
         },
 
         renderCharts: function() {
-            var view = new ChartBreakdowns({el: this.$('#chart-breakdowns'), model: this.model});
+            var view = new ChartBreakdowns({el: this.$('#chart-breakdowns'), model: this.model, brandLookup: brandLookup});
             view.render();
         },
 
@@ -99,7 +111,7 @@ define(function(require) {
                 var model = new Backbone.Model({brand: brand});
                 model.breakdowns = new Backbone.Collection();
 
-                var breakdownData = _.extend(_.omit(data, 'man', 'woman', 'none'), {label: self._brandLabelLookup(brand), accountSalesChange: accountSalesChange});
+                var breakdownData = _.extend(_.omit(data, 'man', 'woman', 'none'), {label: brandLookup.translate(brand), accountSalesChange: accountSalesChange});
                 model.breakdowns.add(new Backbone.Model(breakdownData));
 
                 _.each(['man', 'woman', 'none'], function(g) {
@@ -138,15 +150,6 @@ define(function(require) {
                 this.storeData = this.model.get('store');
                 this.render();
             }.bind(this));
-        },
-
-        // we're getting abbreviations from the SPS data for Lux. just providing a simple lookup for the moment
-        _brandLabelLookup: function(label) {
-            var lookup = brandLookups[label];
-            if(lookup !== undefined) {
-                label = lookup;
-            }
-            return label;
         },
 
         _tranlateGenderLabel: function(label) {

@@ -11,6 +11,10 @@ define(function(require) {
     var View = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/store_profile/sales/chart_breakdowns'],
 
+        initialize: function(options) {
+            this.brandLookup = options.brandLookup;
+        },
+
         render: function() {
             this.$el.html(this.template());
             this.renderSalesPerBrand();
@@ -19,6 +23,8 @@ define(function(require) {
         },
 
         renderSalesPerBrand: function() {
+            var self = this;
+
             var store = this.model.get('store');
             var brands = store.brands;
 
@@ -67,7 +73,15 @@ define(function(require) {
                 axis: {
                     rotated: true,
                     x: {
-                        type: 'category'
+                        type: 'category',
+                        tick: {
+                            format: function(i) {
+                                if(brands[i] === undefined) {
+                                    return;
+                                }
+                                return self.brandLookup.translate(brands[i].label);
+                            }
+                        }
                     },
                     y: {
                         padding: {
@@ -93,6 +107,7 @@ define(function(require) {
         },
 
         renderChangeInSales: function() {
+            var self = this;
             var brands = this.model.get('store').brands;
             brands = _.map(brands, function(data, key) {
                 data.label = key;
@@ -138,7 +153,15 @@ define(function(require) {
                 axis: {
                     rotated: true,
                     x: {
-                        type: 'category'
+                        type: 'category',
+                        tick: {
+                            format: function(i) {
+                                if(brands[i] === undefined) {
+                                    return;
+                                }
+                                return self.brandLookup.translate(brands[i].label);
+                            }
+                        }
                     },
                     y: {
                         padding: {
