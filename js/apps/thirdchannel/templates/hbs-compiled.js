@@ -3748,8 +3748,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 
   buffer += "<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <div class=\"col-1-1\">\n            <div class=\"pull-left\">\n                <h2>Overview</h2>\n            </div>\n            <div class=\"pull-right\">\n                <a href=\"#\" class=\"prev-quarter\">Previous Quarter</a>\n                Q";
-  if (helper = helpers.current_quarter) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.current_quarter); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if (helper = helpers.current_time_period) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.current_time_period); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + " - ";
   if (helper = helpers.current_year) { stack1 = helper.call(depth0, {hash:{},data:data}); }

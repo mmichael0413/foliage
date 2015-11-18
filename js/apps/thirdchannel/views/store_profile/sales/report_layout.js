@@ -29,7 +29,7 @@ define(function(require) {
         renderOverview: function() {
             var data = _.omit(this.storeData, 'brands', 'genders');
             data.current_year = this.model.get('current_year');
-            data.current_quarter = this.model.get('current_quarter');
+            data.current_time_period = this.model.get('current_time_period');
             data.accountSalesInCents = this.accountData.salesInCents;
             data.accountSalesChange = this.accountData.salesChange;
 
