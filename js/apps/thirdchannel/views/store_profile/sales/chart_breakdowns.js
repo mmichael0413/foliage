@@ -36,13 +36,23 @@ define(function(require) {
                     },
                     labels: {
                         format: function (value, key, i, j) {
-                            return parseFloat(value).toFixed(2) + '%';
+                            var salesDiff = 'N/A';
+                            if(brands[i] !== undefined && brands[i].salesDiff !== undefined && brands[i].salesDiff !== null) {
+                                salesDiff = '$' + brands[i].salesDiff.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                            }
+                            return parseFloat(value).toFixed(2) + '% (' + salesDiff + ')';
                         }
                     },
                     color: function(color, d) {
                         return defaultLegendColors[d.index % defaultLegendColors.length];
                     },
                     type: 'bar'
+                },
+                tooltip: {
+                    format: {
+                        name: function (name, ratio, id, index) { return 'Sales Change'; },
+                        value: function (value, ratio, id, index) { return parseFloat(value).toFixed(2) + '%'; }
+                    }
                 },
                 axis: {
                     rotated: true,
