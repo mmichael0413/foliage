@@ -42,7 +42,7 @@ define(function(require) {
                         format: function(value, key, i, j) {
                             var sales = 'N/A';
                             if(brands[i] !== undefined && brands[i].salesInCents) {
-                                sales = '$' + brands[i].salesInCents.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                                sales = '$' + (brands[i].salesInCents / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
                             }
                             return parseFloat(value).toFixed(2) + '% (' + sales + ')';
                         }
@@ -58,7 +58,7 @@ define(function(require) {
                         value: function(value, ratio, id, i) {
                             var sales = 'N/A';
                             if(brands[i] !== undefined && brands[i].salesInCents) {
-                                sales = '$' + brands[i].salesInCents.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                                sales = '$' + (brands[i].salesInCents / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                             }
                             return parseFloat(value).toFixed(2) + '% (' + sales + ')';
                         }
