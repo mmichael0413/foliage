@@ -108,7 +108,6 @@ define(function(require) {
         },
 
         _updateSalesData: function(date) {
-            console.log(date);
             this.model.set('date', date);
             this.model.fetch().then(function(resp) {
                 context.router.navigate(this.model.url());
