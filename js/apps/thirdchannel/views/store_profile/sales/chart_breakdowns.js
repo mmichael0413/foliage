@@ -112,8 +112,8 @@ define(function(require) {
                     labels: {
                         format: function (value, key, i, j) {
                             var salesDiff = 'N/A';
-                            if(brands[i] !== undefined && brands[i].salesDiff !== undefined && brands[i].salesDiff !== null) {
-                                salesDiff = '$' + brands[i].salesDiff.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                            if(brands[i] !== undefined && brands[i].salesDiff) {
+                                salesDiff = '$' + (brands[i].salesDiff / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
                             }
                             return parseFloat(value).toFixed(2) + '% (' + salesDiff + ')';
                         }
@@ -129,7 +129,7 @@ define(function(require) {
                         value: function (value, ratio, id, i) {
                             var salesDiff = 'N/A';
                             if(brands[i] !== undefined && brands[i].salesDiff !== undefined && brands[i].salesDiff !== null) {
-                                salesDiff = '$' + brands[i].salesDiff.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                                salesDiff = '$' + (brands[i].salesDiff / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
                             }
                             return parseFloat(value).toFixed(2) + '% (' + salesDiff + ')';
                         }
