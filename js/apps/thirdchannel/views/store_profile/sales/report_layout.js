@@ -42,6 +42,7 @@ define(function(require) {
         },
 
         renderOverviewBreakdown: function() {
+            var self = this;
             var accountSalesChange = this.accountData.salesChange;
 
             var model = new Backbone.Model({brand: 'Total Sales'});
@@ -57,7 +58,7 @@ define(function(require) {
                     genderAccountSalesChange = this.accountData.genders[gender].salesChange;
                 }
 
-                model.breakdowns.add(_.extend(data, {label: gender, accountSalesChange: genderAccountSalesChange}));
+                model.breakdowns.add(_.extend(data, {label: self._tranlateGenderLabel(gender), accountSalesChange: genderAccountSalesChange}));
             }.bind(this));
 
             var view = new BreakdownView({title: 'Breakdown', el: this.$('#overview-breakdown'), collection: new Backbone.Collection([model])});
@@ -65,6 +66,7 @@ define(function(require) {
         },
 
         renderBrandsBreakdown: function() {
+            var self = this;
             var brands = _.map(this.storeData.brands, function(data, brand) {
                 var accountSalesChange = null,
                     accountBrandData = this.accountData.brands[brand];
@@ -87,7 +89,7 @@ define(function(require) {
                     }
 
                     var genderData = data[g];
-                    model.breakdowns.add(_.extend(genderData, {label: g, accountSalesChange: genderAccountSalesChange}));
+                    model.breakdowns.add(_.extend(genderData, {label: self._tranlateGenderLabel(g), accountSalesChange: genderAccountSalesChange}));
                 });
 
                 return model;
@@ -115,6 +117,15 @@ define(function(require) {
                 this.storeData = this.model.get('store');
                 this.render();
             }.bind(this));
+        },
+
+        _tranlateGenderLabel: function(label) {
+            if(label === 'man') {
+                label = "Men's";
+            } else if(label === 'woman') {
+                label = "Women's";
+            }
+            return label;
         }
     });
 
