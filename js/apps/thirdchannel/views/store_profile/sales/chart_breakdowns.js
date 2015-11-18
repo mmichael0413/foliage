@@ -13,8 +13,80 @@ define(function(require) {
 
         render: function() {
             this.$el.html(this.template());
+            this.renderSalesPerBrand();
             this.renderChangeInSales();
             return this;
+        },
+
+        renderSalesPerBrand: function() {
+            var store = this.model.get('store');
+            var brands = store.brands;
+
+            brands = _.map(brands, function(data, key) {
+                data.label = key;
+                data.percentageOfSales = (data.salesInCents / store.salesInCents) * 100;
+                return data;
+            });
+            brands = _.filter(brands, function(data) { return data.percentageOfSales !== null });
+            brands = _.sortBy(brands, 'percentageOfSales').reverse();
+
+            this.salesPerBrandChart = c3.generate({
+                bindto: this.$('#brand-percent-of-sales > .chart')[0],
+                data: {
+                    json: brands,
+                    keys: {
+                        x: 'label',
+                        value: ['percentageOfSales']
+                    },
+                    labels: {
+                        format: function(value, key, i, j) {
+                            var sales = 'N/A';
+                            if(brands[i] !== undefined && brands[i].salesInCents) {
+                                sales = '$' + brands[i].salesInCents.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                            }
+                            return parseFloat(value).toFixed(2) + '% (' + sales + ')';
+                        }
+                    },
+                    color: function(color, d) {
+                        return defaultLegendColors[d.index % defaultLegendColors.length];
+                    },
+                    type: 'bar'
+                },
+                tooltip: {
+                    format: {
+                        name: function(name, ratio, id, index) { return '% of Sales'; },
+                        value: function(value, ratio, id, i) {
+                            var sales = 'N/A';
+                            if(brands[i] !== undefined && brands[i].salesInCents) {
+                                sales = '$' + brands[i].salesInCents.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                            }
+                            return parseFloat(value).toFixed(2) + '% (' + sales + ')';
+                        }
+                    }
+                },
+                axis: {
+                    rotated: true,
+                    x: {
+                        type: 'category'
+                    },
+                    y: {
+                        padding: {
+                            top: 75
+                        }
+                    }
+                },
+                bar: {
+                    width: 30
+                },
+                grid: {
+                    y: {
+                        show: true
+                    }
+                },
+                legend: {
+                    show: false
+                }
+            });
         },
 
         renderChangeInSales: function() {
@@ -26,8 +98,8 @@ define(function(require) {
             brands = _.filter(brands, function(data) { return data.salesChange !== null });
             brands = _.sortBy(brands, 'salesChange');
 
-            c3.generate({
-                bindto: this.$('.chart')[0],
+            this.changeInSalesChart = c3.generate({
+                bindto: this.$('#brand-change-in-sales > .chart')[0],
                 data: {
                     json: brands,
                     keys: {
