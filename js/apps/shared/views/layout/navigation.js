@@ -18,7 +18,6 @@ define(function (require) {
             this.listenTo(context, 'filter:toggle', this.toggleFilter);
             this.listenTo(context, 'filter:close', this.closeFilter);
             this.listenTo(context, 'nav:toggle', this.collapseNav);
-            this.listenTo(context, 'nav:collapse', this._collapseNav);
             this.listenTo(context, 'nav:expand', this.expandNav);
             this.$siteWrapper = this.$el;
             this.$siteSubmenu = this.$('#site-submenu');
@@ -202,18 +201,15 @@ define(function (require) {
             if (this.$siteWrapper.hasClass('collapsed-nav')) {
                 this.expandNav(e, trigger);
             } else {
-                this._collapseNav(e, trigger);
+                this.$siteWrapper.find('.collapse-nav .ic_left').removeClass('ic_left').addClass('ic_right');
+                this.$siteWrapper.addClass('collapsed-nav');
+                this.$siteWrapper.removeClass('expanded-nav');
+                if (!trigger) {
+                    window.localStorage.setItem('main_navigation', 'collapsed-nav');
+                }
             }
 
             context.trigger('navigation:collapsed');
-        },
-        _collapseNav: function(e, trigger) {
-            this.$siteWrapper.find('.collapse-nav .ic_left').removeClass('ic_left').addClass('ic_right');
-            this.$siteWrapper.addClass('collapsed-nav');
-            this.$siteWrapper.removeClass('expanded-nav');
-            if (!trigger) {
-                window.localStorage.setItem('main_navigation', 'collapsed-nav');
-            }
         },
         expandNav: function(e, trigger) {
             this.$siteWrapper.find('.collapse-nav .ic_right').removeClass('ic_right').addClass('ic_left');
