@@ -25,7 +25,7 @@ define(function(require) {
             });
             brands = _.filter(brands, function(data) { return data.salesChange !== null });
             brands = _.sortBy(brands, 'salesChange');
-            
+
             c3.generate({
                 bindto: this.$('.chart')[0],
                 data: {
@@ -33,6 +33,11 @@ define(function(require) {
                     keys: {
                         x: 'label',
                         value: ['salesChange']
+                    },
+                    labels: {
+                        format: function (value, key, i, j) {
+                            return parseFloat(value).toFixed(2) + '%';
+                        }
                     },
                     color: function(color, d) {
                         return defaultLegendColors[d.index % defaultLegendColors.length];
