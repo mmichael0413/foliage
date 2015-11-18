@@ -85,6 +85,9 @@ define(function(require) {
                 },
                 legend: {
                     show: false
+                },
+                size: {
+                    height: 360
                 }
             });
         },
@@ -153,6 +156,9 @@ define(function(require) {
                 },
                 legend: {
                     show: false
+                },
+                size: {
+                    height: 360
                 }
             });
         }
