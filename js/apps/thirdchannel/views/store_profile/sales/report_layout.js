@@ -92,7 +92,6 @@ define(function(require) {
                     if (genderData) {
                         model.breakdowns.add(_.extend(genderData, {label: self._tranlateGenderLabel(g), accountSalesChange: genderAccountSalesChange}));    
                     }
-                    
                 });
 
                 return model;
@@ -122,7 +121,7 @@ define(function(require) {
             }.bind(this));
         },
 
-        _tranlateGenderLabel: function(label) {
+        _translateGenderLabel: function(label) {
             if(label === 'man') {
                 label = "Men's";
             } else if(label === 'woman') {
