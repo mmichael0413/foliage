@@ -57,7 +57,7 @@ define(function(require) {
                     if(this.accountData.genders[gender] !== undefined && this.accountData.genders[gender] !== undefined) {
                         genderAccountSalesChange = this.accountData.genders[gender].salesChange;
                     }
-                    model.breakdowns.add(_.extend(data, {label: self._tranlateGenderLabel(gender), accountSalesChange: genderAccountSalesChange}));    
+                    model.breakdowns.add(_.extend(data, {label: self._translateGenderLabel(gender), accountSalesChange: genderAccountSalesChange}));
                 }
             }.bind(this));
 
@@ -90,7 +90,7 @@ define(function(require) {
 
                     var genderData = data[g];
                     if (genderData) {
-                        model.breakdowns.add(_.extend(genderData, {label: self._tranlateGenderLabel(g), accountSalesChange: genderAccountSalesChange}));    
+                        model.breakdowns.add(_.extend(genderData, {label: self._translateGenderLabel(g), accountSalesChange: genderAccountSalesChange}));
                     }
                 });
 
