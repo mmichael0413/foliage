@@ -1304,10 +1304,12 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["Stores"]["templates"]["stores/uploads/list_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function";
 
 
-  buffer += "<td>\n  <a href=\"/programs/";
+  buffer += "<td>\n  "
+    + escapeExpression((helper = helpers.formatTimestamp || (depth0 && depth0.formatTimestamp),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.createdAt), options) : helperMissing.call(depth0, "formatTimestamp", (depth0 && depth0.createdAt), options)))
+    + "<br>\n  <a href=\"/programs/";
   if (helper = helpers.programId) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.programId); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
