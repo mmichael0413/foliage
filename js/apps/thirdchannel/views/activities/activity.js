@@ -42,7 +42,9 @@ define(function(require) {
             this.listenTo(context, 'navigation:collapsed', this.fixCollapsedCarousel);
             this.listenTo(context, 'store.sales.update', this.updateSalesWidget);
             // setup registry listener
-            context.trigger("store.sales.register", this.model.get('location').id);
+            if (this.model.get('location')) {
+                context.trigger("store.sales.register", this.model.get('location').id);    
+            }
         },
         render: function () {
             
@@ -192,13 +194,14 @@ define(function(require) {
             }, 400);
         },
         updateSalesWidget: function (event) {
-            if (this.model.get('location').hasOwnProperty('id') && this.model.get('location').id === event.uuid) {
+            var location = this.model.get('location');
+            if (location && location.hasOwnProperty('id') && location.id === event.uuid) {
                 // only show values with 0 or greater?
-                var data = {salesChange: event.value, showLabel: event.value ? true : false, salesUrl: event.salesUrl};
+                var data = {salesChange: event.salesChange, showLabel: event.value ? true : false,
+                    salesUrl: event.salesUrl, message: event.message};
                 this.$el.find('.activity-meta').append(HandlebarsTemplates['thirdchannel/activities/sales_widget'](data));
                 this.$el.find('.sales-widget').fadeIn(500).css("display","inline-block");
             }
-            
         }
     });
 });
