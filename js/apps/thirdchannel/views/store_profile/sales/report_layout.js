@@ -53,12 +53,12 @@ define(function(require) {
             _.each(['man', 'woman', 'none'], function(gender) {
                 var data = this.storeData.genders[gender];
                 var genderAccountSalesChange = null;
-
-                if(this.accountData.genders[gender] !== undefined && this.accountData.genders[gender] !== undefined) {
-                    genderAccountSalesChange = this.accountData.genders[gender].salesChange;
+                if (data) {
+                    if(this.accountData.genders[gender] !== undefined && this.accountData.genders[gender] !== undefined) {
+                        genderAccountSalesChange = this.accountData.genders[gender].salesChange;
+                    }
+                    model.breakdowns.add(_.extend(data, {label: self._tranlateGenderLabel(gender), accountSalesChange: genderAccountSalesChange}));    
                 }
-
-                model.breakdowns.add(_.extend(data, {label: self._tranlateGenderLabel(gender), accountSalesChange: genderAccountSalesChange}));
             }.bind(this));
 
             var view = new BreakdownView({title: 'Breakdown', el: this.$('#overview-breakdown'), collection: new Backbone.Collection([model])});
@@ -89,7 +89,10 @@ define(function(require) {
                     }
 
                     var genderData = data[g];
-                    model.breakdowns.add(_.extend(genderData, {label: self._tranlateGenderLabel(g), accountSalesChange: genderAccountSalesChange}));
+                    if (genderData) {
+                        model.breakdowns.add(_.extend(genderData, {label: self._tranlateGenderLabel(g), accountSalesChange: genderAccountSalesChange}));    
+                    }
+                    
                 });
 
                 return model;
