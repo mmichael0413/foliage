@@ -2467,6 +2467,34 @@ function program8(depth0,data) {
   else { return ''; }
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/opportunities/display_zip"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "Zip Code: ";
+  if (helper = helpers.zip) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.zip); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\n\n<div class=\"pull-right normal\">\n    <a href=\"#\" class=\"change-zip\">Change</a>\n</div>";
+  return buffer;
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/opportunities/update_zip"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<label class=\"normal\">Update Zip: <input type=\"text\" id=\"zip-change\" name=\"zip\" value=\"";
+  if (helper = helpers.zip) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.zip); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"/></label>\n<a href=\"#\" class=\"btn inverse white cancel-zip\">Cancel</a>\n<a href=\"#\" class=\"save-zip btn primary solid normal\">Update</a>";
+  return buffer;
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/pagination"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};

@@ -15,8 +15,6 @@ form.application-form {
   }
 }
 
-
-
 .button-row {
   text-align: right;
   margin: 2em 0;
@@ -32,4 +30,23 @@ form.application-form {
 .brand-logo {
   display:inline-block;
   float:right;
+}
+
+.opportunity-content {
+  .opportunity-header {
+    margin-bottom: 1em;
+  }
+
+  text-align: justify;
+  @include swb-small() {
+    text-align: left;
+  }
+}
+
+.opportunity-header {
+  .opportunity-logo, .program {
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
 }

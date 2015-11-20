@@ -96,8 +96,11 @@ define(function(require){
             _.extend(context, window.bootstrap);
         },
 
-        after: function() {
-            new NotificationBadge().render();
+        after: function(args) {
+            // this check is used now because there are some routes that do not contain the program_id in the url
+            if(args.length > 0 && args[0] !== null) {
+                new NotificationBadge().render();
+            }
         },
 
         activitiesFeed: function(){
