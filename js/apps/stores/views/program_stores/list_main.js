@@ -14,7 +14,7 @@ define(function(require) {
                     link: '/programs/' + this.get('program').id + '/uploads',
                     className: 'primary',
                     icon: 'ic_clipboard',
-                    text: 'Upload List',
+                    text: 'Review Uploads',
                     bypass: false
                 },
                 {
