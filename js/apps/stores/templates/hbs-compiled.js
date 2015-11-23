@@ -155,7 +155,9 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n    <div class=\"store-data\">\n        <h4>Uploaded Data:</h4>\n        <ul>\n            <li><strong>Account:</strong> "
+  buffer += "\n    <div class=\"store-data\">\n        <h4>Uploaded Data:</h4>\n        <ul>\n            <li><strong>Row Number:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.row)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</li>\n            <li><strong>Account:</strong> "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.account)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</li>\n            <li><strong>Store Tag:</strong> "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.storeTag)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
