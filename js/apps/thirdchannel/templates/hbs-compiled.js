@@ -1529,6 +1529,29 @@ function program48(depth0,data) {
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/authentication/login"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<h2>Login</h2>\n<form accept-charset=\"UTF-8\" action=\"/login\" class=\"new_user\" id=\"new_user\" method=\"post\">\n    <div style=\"display:none\">\n        <input name=\"utf8\" type=\"hidden\" value=\"✓\">\n        <input name=\"authenticity_token\" type=\"hidden\" value=\"";
+  if (helper = helpers.authToken) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.authToken); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n    </div>\n    <div class=\"form-group\">\n        <input autofocus=\"autofocus\" class=\"large low-margin dark\" id=\"user_email\" name=\"user[email]\" placeholder=\"Email\" type=\"email\">\n    </div>\n\n    <div class=\"form-group\">\n        <input class=\"large low-margin dark\" id=\"user_password\" name=\"user[password]\" placeholder=\"Password\" type=\"password\">\n    </div>\n\n    <div class=\"checkbox\">\n        <input name=\"user[remember_me]\" type=\"hidden\" value=\"0\"><input id=\"user_remember_me\" name=\"user[remember_me]\" type=\"checkbox\" value=\"1\">\n        <label for=\"user_remember_me\">Keep me logged in</label></div>\n\n    <div class=\"help-block\">\n        <a href=\"/secret/new\">Forgot your password?</a><br>\n    </div>\n    <div class=\"clear\"></div>\n    <input class=\"btn primary solid\" name=\"commit\" type=\"submit\" value=\"Login\">\n</form>\n\n<div>\n    Don't have an account? <a href=\"#\" class=\"sign-up\">Sign up!</a>\n</div>";
+  return buffer;
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/authentication/register"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<h2>Create your account</h2>\n<form action=\"/register\" id=\"registration-form\" method=\"post\">\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"first_name\" class=\"large dark low-margin\" placeholder=\"First Name\" name=\"user[first_name\"]>\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"last_name\" class=\"large dark low-margin\" placeholder=\"Last Name\" name=\"user[last_name]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"email\" class=\"large dark low-margin\" placeholder=\"Email\" name=\"user[email]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"password\" id=\"password\" class=\"large dark low-margin\" placeholder=\"Password (8 Character Minimum)\" name=\"user[password]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"password\" id=\"password_confirmation\" class=\"large dark low-margin\" placeholder=\"Confirm Password\" name=\"user[password_confirmation]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"zip\" class=\"large dark low-margin\" placeholder=\"Zip Code\" name=\"user[zip]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n\n\n    <span class=\"tooltip\">\n            <span class=\"visible-xs\"><i class=\"fa fa-info-circle\"></i></span> <span class=\"hidden-xs\">Why are we asking for your zip code?</span>\n        </span>\n\n    <div class=\"tip\">\n        This allows us to match you with current opportunities in your geographic location.\n    </div>\n\n\n    <div class=\"clear\"></div>\n    <div class=\"form-group\">\n        <button class=\"btn primary solid\">Create Account</button>\n    </div>\n</form>\n\n<div>Already have an account? <a href=\"#\" class=\"login\">Login here.</a></div>\n";
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/checkins/choose"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
