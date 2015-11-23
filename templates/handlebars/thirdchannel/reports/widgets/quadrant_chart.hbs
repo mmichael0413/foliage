@@ -1,6 +1,9 @@
 <div class="widget {{config.widget_class}}">
     <div class="chart quadrant">
         <p>{{title}}</p>
+        {{#if show_view_list}}
+            <a href="#" class="breakdown-link" tag="View Breakdown" target="_blank">View Breakdown</a>
+        {{/if}}
         <div>
             <div class="y-axis-label-top">{{config.chartLabels.top}}</div>
             <div>

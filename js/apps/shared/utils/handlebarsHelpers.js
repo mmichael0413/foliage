@@ -184,13 +184,27 @@ define(function (require) {
     });
 
     Handlebars.registerHelper('percentageChangeIcon', function(change) {
-        if(change !== undefined && change !== null) {
-            if(change > 0) {
+        if (change !== undefined && change !== null) {
+            if (change > 0) {
                 return 'ic_up';
-            } else if(change < 0) {
+            } else if (change < 0) {
                 return 'ic_down';
             }
         }
+    });
+
+    Handlebars.registerHelper('formatTimestamp', function(timestamp, locale) {
+        if(locale === undefined) {
+            locale = 'en-US';
+        }
+        var date = new Date(timestamp);
+        return date.toLocaleTimeString(locale, {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
     });
 });
 
