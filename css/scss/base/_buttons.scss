@@ -57,6 +57,10 @@
       padding: 0 0.45em;
       font-size: 0.75em;
     }
+    &.large {
+      font-size: $base-font-size + .2rem;
+      padding: .5em 2em;
+    }
 
     i+span {
         padding-left: .5em;

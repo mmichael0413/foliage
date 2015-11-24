@@ -11,6 +11,10 @@ define(function (require) {
         template: HandlebarsTemplates['thirdchannel/notifications/badge'],
         render: function () {
             var _this = this;
+
+            if(context.programId !== 'Merchandising') {
+                return this;
+            }
             $.ajax({
                 url: '/programs/' + context.programId + '/notifications.json'
             })

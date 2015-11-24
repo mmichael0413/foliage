@@ -112,7 +112,8 @@ define(function (require) {
             "transitionend" : "navTransitionEnd",
             "webkitTransitionEnd" : "navTransitionEnd",
             "oTransitionEnd" : "navTransitionEnd",
-            "MSTransitionEnd" : "navTransitionEnd"
+            "MSTransitionEnd" : "navTransitionEnd",
+            "click .close-alert" : "closeAlertBox"
         },
         render: function(){
             this.$('#site-menu').html(this.template({navItems: window.bootstrap.navigation, homeLink: window.bootstrap.homeLink}));
@@ -268,6 +269,13 @@ define(function (require) {
             catch (error) {
                 return false;
             }
+        },
+
+        closeAlertBox: function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            $(e.target).parent().remove();
         }
     });
 });
