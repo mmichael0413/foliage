@@ -24,7 +24,7 @@
 }
 
 
-.v2 {
+
   @include swb-small() {
     form button {
       margin-bottom: 1em;
@@ -134,4 +134,3 @@
   #reg-form {
     height: 92vh;
   }
-}
