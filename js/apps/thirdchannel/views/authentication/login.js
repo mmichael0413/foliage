@@ -43,7 +43,7 @@ define(function (require) {
 
                 }).done(function(response){
                     if(response.status === 'OK') {
-                        valid = true
+                        valid = true;
                     }
                 });
 
@@ -60,7 +60,7 @@ define(function (require) {
 
                 }).done(function(response){
                     if(response.success === true) {
-                        valid = true
+                        valid = true;
                     }
                 });
 
