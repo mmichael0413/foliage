@@ -201,6 +201,7 @@ define(function(require) {
                     salesUrl: event.salesUrl, message: event.message};
                 this.$el.find('.activity-meta').append(HandlebarsTemplates['thirdchannel/activities/sales_widget'](data));
                 this.$el.find('.sales-widget').fadeIn(500).css("display","inline-block");
+                this.stopListening(context, 'store.sales.update');
             }
         }
     });
