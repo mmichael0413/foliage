@@ -44,6 +44,14 @@ form.application-form {
 }
 
 .opportunity-header {
+  .opportunity-logo {
+    float: right;
+    img {
+
+      max-height: $img-height;
+      margin-right: 1em;
+    }
+  }
   .opportunity-logo, .program {
     display: inline-block;
     vertical-align: bottom;
