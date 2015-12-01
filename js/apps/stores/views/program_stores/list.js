@@ -8,13 +8,13 @@ define(function(require) {
     var View = Backbone.View.extend({
         template: Templates['stores/program_stores/list'],
         noStoreTemplate: Templates['stores/program_stores/zero_entry_list'],
-        childViews: [],
+        childViews: {},
         events: {
             'keyup .search': 'search',
             'click .reset-search': 'resetSearch'
         },
         initialize: function() {
-            _.bindAll(this, 'renderProgramStores', 'renderProgramStore', 'handleFilter', 'removeChildViews', 'search');
+            _.bindAll(this, 'renderProgramStores', 'renderProgramStore', 'removeProgramStore', 'handleFilter', 'removeChildViews', 'search');
             this.listenTo(this.collection, 'reset', this.renderProgramStores);
             this.listenToOnce(this.collection, 'reset', this.setSearchCollection);
             this.listenTo(this.collection, 'add', this.renderProgramStore);
@@ -39,12 +39,11 @@ define(function(require) {
         renderProgramStore: function(programStore) {
             var v = new ListItemView({model: programStore});
             this.$('#program-store-list').append(v.render().el);
-            this.childViews.push(v);
+            this.childViews[programStore.id] = v;
         },
         removeProgramStore: function(programStore) {
-            // TODO (may need to change how child views are stored)
-            console.log('remove program store');
-            console.log(programStore);
+            this.childViews[programStore.id].remove();
+            delete this.childViews[programStore.id];
         },
         setSearchCollection: function() {
             this.searchCollection = new ProgramStores(this.collection.models, {program: this.collection.program});
@@ -82,7 +81,7 @@ define(function(require) {
             _.each(this.childViews, function(v) {
                 v.remove();
             });
-            this.childViews = [];
+            this.childViews = {};
         }
     });
 

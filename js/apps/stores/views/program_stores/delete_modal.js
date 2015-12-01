@@ -34,7 +34,7 @@ define(function(require){
         confirm: function(e) {
             e.preventDefault();
 
-            this.model.destroy().then(function() {
+            this.model.destroy({wait: true}).then(function() {
                 noty({
                     layout: 'top',
                     theme: 'relax',
