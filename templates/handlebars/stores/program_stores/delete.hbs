@@ -1,1 +1,15 @@
-<h2>Hello</h2>
+<div class="bbm-button cancel-button pull-right"><i class="ic ic_x"></i></div>
+<div class="delete-confirmation-modal">
+    <h2>Remove {{name}}?</h2>
+    <p class="danger">
+        Danger: Removing a store from a program is a dangerous operation. Stores can be used in multiple locations in the system. Please understand this can potentially cause issues.
+    </p>
+    <div>
+        <label for="name-confirmation">Please enter the name of the store to confirm the delete:</label>
+        <div><input type="text" id="name-confirmation"></div>
+    </div>
+    <div>
+        <button class="btn primary remove-button" disabled="disabled">Remove</button>
+        <button class="btn cancel-button">Cancel</button>
+    </div>
+</div>

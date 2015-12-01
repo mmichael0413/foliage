@@ -915,10 +915,15 @@ function program4(depth0,data) {
 this["Stores"]["templates"]["stores/program_stores/delete"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  return "<h2>Hello</h2>";
+  buffer += "<div class=\"bbm-button cancel-button pull-right\"><i class=\"ic ic_x\"></i></div>\n<div class=\"delete-confirmation-modal\">\n    <h2>Remove ";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "?</h2>\n    <p class=\"danger\">\n        Danger: Removing a store from a program is a dangerous operation. Stores can be used in multiple locations in the system. Please understand this can potentially cause issues.\n    </p>\n    <div>\n        <label for=\"name-confirmation\">Please enter the name of the store to confirm the delete:</label>\n        <div><input type=\"text\" id=\"name-confirmation\"></div>\n    </div>\n    <div>\n        <button class=\"btn primary remove-button\" disabled=\"disabled\">Remove</button>\n        <button class=\"btn cancel-button\">Cancel</button>\n    </div>\n</div>";
+  return buffer;
   });
 
 this["Stores"]["templates"]["stores/program_stores/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
