@@ -1,0 +1,55 @@
+<section class="section data-section">
+    <div class="pure-g">
+        <div class="col-1-1">
+            <div class="pull-left">
+                <h2>Overview</h2>
+            </div>
+            <div class="pull-right">
+                <a href="#" class="prev-quarter">Previous Quarter</a>
+                Q{{current_time_period}} - {{current_year}}
+                <a href="#" class="next-quarter">Next Quarter</a>
+            </div>
+        </div>
+        <div class="col-1-4">
+            <h2>{{formatSalesDollarValue accountSalesInCents}}</h2>
+            <p>Total $ Account Sales</p>
+        </div>
+        <div class="col-1-4">
+            <h2>{{formatSalesDollarValue salesInCents}}</h2>
+            <p>Total $ Store Sales</p>
+        </div>
+        <div class="col-1-4">
+            <h2>{{formatSalesValue unitsSold}}</h2>
+            <p>Units Sold</p>
+        </div>
+        <div class="col-1-4">
+            <h2>{{formatSalesValue unitsOnHand}}</h2>
+            <p>Units OH</p>
+        </div>
+
+        <div class="col-1-4">
+            <h2 class="percentage-change {{ percentageChangeClass accountSalesChange }}">
+                <i class="ic {{ percentageChangeIcon accountSalesChange }}"></i> {{formatPercentageChange accountSalesChange}}
+            </h2>
+            <p>Compared to this period last year</p>
+        </div>
+        <div class="col-1-4">
+            <h2 class="percentage-change {{ percentageChangeClass salesChange }}">
+                <i class="ic {{ percentageChangeIcon salesChange }}"></i> {{formatPercentageChange salesChange}}
+            </h2>
+            <p>Compared to this period last year</p>
+        </div>
+        <div class="col-1-4">
+            <h2 class="percentage-change {{ percentageChangeClass unitsSoldChange }}">
+                <i class="ic {{ percentageChangeIcon unitsSoldChange }}"></i> {{formatPercentageChange unitsSoldChange}}
+            </h2>
+            <p>Compared to this period last year</p>
+        </div>
+        <div class="col-1-4">
+            <h2 class="percentage-change {{ percentageChangeClass unitsOnHandChange }}">
+                <i class="ic {{ percentageChangeIcon unitsOnHandChange }}"></i> {{formatPercentageChange unitsOnHandChange}}
+            </h2>
+            <p>Compared to this period last year</p>
+        </div>
+    </div>
+</section>

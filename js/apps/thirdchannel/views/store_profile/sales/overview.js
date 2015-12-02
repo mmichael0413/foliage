@@ -1,13 +1,12 @@
 define(function(require) {
-    var Backbone = require('backbone'),
+    var $ = require('jquery'),
+        Backbone = require('backbone'),
         context = require('context'),
-        Templates = require('handlebarsTemplates');
+        Handlebars = require('handlebars'),
+        HandlebarsTemplates = require('handlebarsTemplates');
 
     var View = Backbone.View.extend({
-        tagName: 'tr',
-
-        template: Templates['stores/uploads/list_item'],
-
+        template: HandlebarsTemplates['thirdchannel/store_profile/sales/overview'],
         render: function() {
             this.$el.html(this.template(this.model.attributes));
             return this;
