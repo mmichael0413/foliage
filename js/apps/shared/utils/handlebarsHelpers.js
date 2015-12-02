@@ -147,5 +147,19 @@ define(function (require) {
             accum += block.fn(i);
         return accum;
     });
+
+    Handlebars.registerHelper('formatTimestamp', function(timestamp, locale) {
+        if(locale === undefined) {
+            locale = 'en-US';
+        }
+        var date = new Date(timestamp);
+        return date.toLocaleTimeString(locale, {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    });
 });
 

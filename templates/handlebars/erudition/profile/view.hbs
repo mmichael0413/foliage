@@ -45,6 +45,13 @@
         <div class="col-1-4">Phone Number:</div>
         <div class="col-3-4">{{person.phone}}</div>
     </div>
+    {{#if showAllFields}}
+    <div class="divider"></div>
+    <div class="body pure-g">
+        <div class="col-1-4">Paypal Email:</div>
+        <div class="col-3-4">{{person.paypalEmail}}</div>
+    </div>
+    {{/if}}
 </div>
 
 
