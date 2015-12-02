@@ -13,6 +13,7 @@ define(function(require){
         StoreProfileMain = require('thirdchannel/views/store_profile/main'),
         StoresIntelEdit = require('thirdchannel/views/stores/intel/edit'),
         StoreProfileProductsEdit = require('thirdchannel/views/store_profile/products/edit'),
+        StoreProfileSalesMain = require('thirdchannel/views/store_profile/sales/main'),
         SurveyView = require('thirdchannel/views/checkins/show/survey'),
         SurveyModel = require('thirdchannel/models/checkins/show/form'),
         CheckinChooseView = require('thirdchannel/views/checkins/choose/show/main'),
@@ -56,7 +57,7 @@ define(function(require){
             'programs/:program_id/stores/:store_id/product/edit': 'editStoreProfileProduct',
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
             'programs/:program_id/stores/:store_id/schedule' : 'storeProfileSchedule',
-            
+            'programs/:program_id/stores/:store_id/sales': 'storeProfileSales',
             'programs/:program_id/checkins/:checkin_id/submissions/:id': 'submission',
             'programs/:program_id/checkins/choose/:id': 'selectCheckin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
@@ -152,6 +153,10 @@ define(function(require){
 
         storeProfileSchedule: function() {
             new StoreProfileSchedule().init();
+        },
+
+        storeProfileSales: function() {
+            StoreProfileSalesMain.init();
         },
 
         programProfile: function(program_id, user_id) {
