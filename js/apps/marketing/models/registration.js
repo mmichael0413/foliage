@@ -36,6 +36,20 @@ define(function (require) {
                 }
             }
 
+            var data = {address: attrs.zip};
+
+            $.ajax({
+                url: "http://maps.googleapis.com/maps/api/geocode/json",
+                data: data,
+                async: false
+
+            }).done(function(response){
+                if(response.status !== 'OK') {
+                    errors.push({zip: 'Please enter a valid zip code.'});
+                }
+            });
+
+
             if (errors.length > 0) {
                 return errors;
             }

@@ -23,42 +23,114 @@
   }
 }
 
-#applicants-1 {
-  height: 92vh;
 
-  @include swb-medium {
-    height: 100%;
 
-    #applicants-1-content {
-      margin-bottom: 3.5em;
+  @include swb-small() {
+    form button {
+      margin-bottom: 1em;
     }
   }
-}
 
-#applicants-2 {
-  height: 93vh;
-  background-color: $palette4;
-  background-image: url("../images/agents.png");
-  background-position: center top;
-  background-size: cover;
-
-  @include swb-medium {
-    background-color: $palette4 !important;
-    background-image: none !important;
+  .headline {
+    font-size: 36px;
+    text-transform: capitalize;
+    @include swb-small() {
+      line-height:1.2em;
+    }
   }
 
-  #applicants-2-content {
-    margin: 0 auto;
-    width: 75%;
+  .data-section {
+    text-align: left;
+    padding: 1.5em;
+    @include swb-medium() {
+      h2 {
+        font-size: $base-font-size + .2rem;
+      }
+    }
+  }
+
+  .agents {
+    text-align: center;
+    .agent-quote {
+      text-align: left;
+    }
+  }
+
+  @include swb-small() {
+    .client-images {
+      text-align: center;
+    }
+  }
+  .client {
+    img {
+      max-height: 60px;
+      padding: 1em;
+      @include swb-small(){
+        max-height: 55px;
+      }
+    }
+  }
+
+  #dream-job {
+    height: 92vh;
+    background-color: $palette4;
+    background-image: url("../images/dream-job.jpg");
+    background-position: center;
+    background-size: cover;
 
     @include swb-medium {
-      width: 100%;
-      padding-top: 1.5em;
-      padding-bottom: 2.5em;
+      margin-top: -3.8em;
+      height: 100vh;
+      background-color: $palette4 !important;
+      background-image: none !important;
     }
   }
-}
 
-#applicants-3 {
-  padding-top: 2em;
-}
+  #about-position {
+    height: 92vh;
+    background-color: $palette4;
+    background-image: url("../images/about-position.jpg");
+    background-position: center;
+    background-size: cover;
+
+    @include swb-medium {
+     // margin-top: -3.8em;
+      height: 100vh;
+      background-color: $palette4 !important;
+      background-image: none !important;
+    }
+  }
+
+  #brands {
+    height: 92vh;
+    background-color: $palette4;
+    background-image: url("../images/brands.jpg");
+    background-position: center;
+    background-size: cover;
+
+    @include swb-medium {
+     // margin-top: -3.8em;
+      height: 100vh;
+      background-color: $palette4 !important;
+      background-image: none !important;
+    }
+  }
+
+  #map {
+    height: 92vh;
+    background-color: $palette4;
+    background-image: url("../images/map.jpg");
+    background-position: center;
+    background-size: cover;
+
+    @include swb-medium {
+    //  margin-top: -3.8em;
+      height: 100vh;
+      background-color: $palette4 !important;
+      background-image: none !important;
+    }
+  }
+
+  #reg-form {
+    height: 92vh;
+  }

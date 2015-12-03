@@ -25,7 +25,6 @@ define(function(require){
         ReportInfoMain = require('thirdchannel/views/reports/info/show/main'),
         ContentView = require('thirdchannel/views/global/content_view'),
         NotificationSectionView = require('thirdchannel/views/notifications/notification_section'),
-        //ShippingView = require('thirdchannel/views/legal/shipping'),
         PostView = require('thirdchannel/views/posts/main'),
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge'),
         StoreProfileSchedule = require('thirdchannel/views/store_profile/schedule'),
@@ -34,12 +33,13 @@ define(function(require){
         ProgramProfileView = require('erudition/views/profile/view_profile'),
         ProgramProfileEditView = require('erudition/views/profile/edit'),
         ProfileStoreListView = require('thirdchannel/views/profiles/stores/list'),
-        ApplicationView = require('thirdchannel/views/application/main');
+        ApplicationView = require('thirdchannel/views/application/main'),
+        LoginView = require('thirdchannel/views/authentication/login');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             'agents/opportunities/:program_id/applications/:id' : 'viewApplication',
-
+            'login' : 'login',
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
@@ -97,8 +97,15 @@ define(function(require){
             _.extend(context, window.bootstrap);
         },
 
-        after: function() {
-            new NotificationBadge().render();
+        after: function(args) {
+            // this check is used now because there are some routes that do not contain the program_id in the url
+            if(args.length > 0 && args[0] !== null) {
+                new NotificationBadge().render();
+            }
+        },
+
+        login: function () {
+            new LoginView();
         },
 
         activitiesFeed: function(){

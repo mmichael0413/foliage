@@ -3,6 +3,9 @@
   margin-bottom: 1.5em;
   padding-right: 2.5em;
   border-radius: $border-radius-base;
+  &.top {
+    margin-top: 1em;
+  }
   .alert {
     $dark-link-color: darken($link-color, 10%);
     color: $dark-link-color;
@@ -39,7 +42,7 @@
     background-color: lighten($link-color, 20%);
   }
   &.success {
-    background-color: lighten($palette7, 20%);
+    background-color: #c9dd9b;
   }
 
   .close {
@@ -48,7 +51,7 @@
     cursor: pointer;
   }
   &.notice {
-    background-color: $palette7;
+    background-color: #c9dd9b;
   }
 
 }

@@ -15,8 +15,6 @@ form.application-form {
   }
 }
 
-
-
 .button-row {
   text-align: right;
   margin: 2em 0;
@@ -32,4 +30,60 @@ form.application-form {
 .brand-logo {
   display:inline-block;
   float:right;
+}
+
+.opportunity-content {
+  .opportunity-header {
+    margin-bottom: 1em;
+  }
+
+  text-align: justify;
+  @include swb-small() {
+    text-align: left;
+  }
+}
+
+.opportunity-header {
+  .opportunity-logo {
+    float: right;
+    img {
+
+      max-height: $img-height;
+      margin-right: 1em;
+    }
+  }
+  .opportunity-logo, .program {
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
+}
+
+.about3c {
+  text-align: center;
+  img {
+    max-width: 100%;
+    max-height: 230px;
+
+  }
+  p {
+    text-align: left;
+    padding: 0 1em;
+  }
+}
+
+.happens-next {
+  text-align: center;
+  .ic {
+
+    color: $medium-blue;
+    font-size: 7em;
+  }
+  p {
+    text-align: left;
+    padding: 0 1em;
+  }
+  a {
+    margin-top: 2em;
+  }
 }

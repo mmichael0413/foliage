@@ -23,7 +23,8 @@ input[type=text], input[type=password], input[type=number], textarea, select, in
     color: $link-color;
     font-weight: bold;
   }
-  &.large {
+  &.large, &.large.error {
+    font-size: $base-font-size;
     height: 2.5em;
   }
   &.low-margin {
