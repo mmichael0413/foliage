@@ -6,6 +6,7 @@ define(function(require) {
 		_ = require('underscore'),
 		templates = require('handlebarsTemplates'),
 		WidgetView = require('thirdchannel/views/reports/index/widget'),
+		AsyncReportLoader = require('thirdchannel/views/reports/async_report'),
 
 		SalesCompareModel = Backbone.Model.extend({
 			setQueryString: function (qs) {
@@ -29,6 +30,9 @@ define(function(require) {
 				this.$groupSelect = opts.groupSelect;
 				this.loadingHTML = this.$el.find(".loader")[0];
 				this.model = new SalesCompareModel();
+				this._attachAsyncLoader();
+
+
 				
 				//this.listenTo(this.$groupSelect, "change", this.changeGroup);
 				this.$groupSelect.on('change', function () {
@@ -40,6 +44,10 @@ define(function(require) {
 				return this;
 			},
 
+			_attachAsyncLoader: function () {
+				this.reportLoader = new AsyncReportLoader(context.current_report);
+				this.reportLoader.setElement(this.$el);
+			},
 
 
 			applyFilter: function (qs) {
@@ -55,19 +63,21 @@ define(function(require) {
 			},
 
 			render: function () {
-				this.$el.html("");
-				this._renderMeta();
-				this._renderSales();
-				this._renderWidgets("Visual Merchandising", ["averageBackstock", "averageBackstockMoved", "currentPOP", "whyNoPop", "sharing", "otherBrands"]);
-				this._renderWidgets("Physical Footprint", ["visibility", "presenceChange"]);
-				this._renderWidgets("Store Associate Education", ["totalEducated", "averageEducated", "educatedOn", "knowledgeable", "enthused"]);
-				this._renderWidgets("Customer Interactions", ["averageConsumersSpoken", "averageSold"]);
-				this._renderWidgets("Product Categories", ["categories"]);
-				this._renderWidgets("Competitive Landscape", ["brands", "sunglassBrands", "repsCalling"]);
-				this._renderWidgets("Store Associate Product Feedback", ["agentsDiscussion", "receptiveManager"]);
-				this._renderWidgets("Field Rep Presence", ["fmrPresent"]);
-				//fire the post render event to draw the canvas charts
-				context.trigger("report post render");
+				console.log("hi");
+				this.$el.html("Test");
+				// this.$el.html("");
+				// this._renderMeta();
+				// this._renderSales();
+				// this._renderWidgets("Visual Merchandising", ["averageBackstock", "averageBackstockMoved", "currentPOP", "whyNoPop", "sharing", "otherBrands"]);
+				// this._renderWidgets("Physical Footprint", ["visibility", "presenceChange"]);
+				// this._renderWidgets("Store Associate Education", ["totalEducated", "averageEducated", "educatedOn", "knowledgeable", "enthused"]);
+				// this._renderWidgets("Customer Interactions", ["averageConsumersSpoken", "averageSold"]);
+				// this._renderWidgets("Product Categories", ["categories"]);
+				// this._renderWidgets("Competitive Landscape", ["brands", "sunglassBrands", "repsCalling"]);
+				// this._renderWidgets("Store Associate Product Feedback", ["agentsDiscussion", "receptiveManager"]);
+				// this._renderWidgets("Field Rep Presence", ["fmrPresent"]);
+				// //fire the post render event to draw the canvas charts
+				// context.trigger("report post render");
 				return this;
 			},
 
