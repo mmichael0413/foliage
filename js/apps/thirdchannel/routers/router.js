@@ -13,6 +13,7 @@ define(function(require){
         StoreProfileMain = require('thirdchannel/views/store_profile/main'),
         StoresIntelEdit = require('thirdchannel/views/stores/intel/edit'),
         StoreProfileProductsEdit = require('thirdchannel/views/store_profile/products/edit'),
+        StoreProfileSalesMain = require('thirdchannel/views/store_profile/sales/main'),
         SurveyView = require('thirdchannel/views/checkins/show/survey'),
         SurveyModel = require('thirdchannel/models/checkins/show/form'),
         CheckinChooseView = require('thirdchannel/views/checkins/choose/show/main'),
@@ -24,7 +25,6 @@ define(function(require){
         ReportInfoMain = require('thirdchannel/views/reports/info/show/main'),
         ContentView = require('thirdchannel/views/global/content_view'),
         NotificationSectionView = require('thirdchannel/views/notifications/notification_section'),
-        //ShippingView = require('thirdchannel/views/legal/shipping'),
         PostView = require('thirdchannel/views/posts/main'),
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge'),
         StoreProfileSchedule = require('thirdchannel/views/store_profile/schedule'),
@@ -33,12 +33,13 @@ define(function(require){
         ProgramProfileView = require('erudition/views/profile/view_profile'),
         ProgramProfileEditView = require('erudition/views/profile/edit'),
         ProfileStoreListView = require('thirdchannel/views/profiles/stores/list'),
-        ApplicationView = require('thirdchannel/views/application/main');
+        ApplicationView = require('thirdchannel/views/application/main'),
+        LoginView = require('thirdchannel/views/authentication/login');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             'agents/opportunities/:program_id/applications/:id' : 'viewApplication',
-
+            'login' : 'login',
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
@@ -56,7 +57,7 @@ define(function(require){
             'programs/:program_id/stores/:store_id/product/edit': 'editStoreProfileProduct',
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
             'programs/:program_id/stores/:store_id/schedule' : 'storeProfileSchedule',
-            
+            'programs/:program_id/stores/:store_id/sales': 'storeProfileSales',
             'programs/:program_id/checkins/:checkin_id/submissions/:id': 'submission',
             'programs/:program_id/checkins/choose/:id': 'selectCheckin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
@@ -96,8 +97,15 @@ define(function(require){
             _.extend(context, window.bootstrap);
         },
 
-        after: function() {
-            new NotificationBadge().render();
+        after: function(args) {
+            // this check is used now because there are some routes that do not contain the program_id in the url
+            if(args.length > 0 && args[0] !== null) {
+                new NotificationBadge().render();
+            }
+        },
+
+        login: function () {
+            new LoginView();
         },
 
         activitiesFeed: function(){
@@ -152,6 +160,10 @@ define(function(require){
 
         storeProfileSchedule: function() {
             new StoreProfileSchedule().init();
+        },
+
+        storeProfileSales: function() {
+            StoreProfileSalesMain.init();
         },
 
         programProfile: function(program_id, user_id) {

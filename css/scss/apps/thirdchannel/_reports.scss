@@ -20,6 +20,7 @@
   }
 
   .widget {
+    page-break-inside: avoid;
     padding: 1em;
 
     &.small-padding {

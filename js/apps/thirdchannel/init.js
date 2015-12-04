@@ -34,7 +34,8 @@ require.config({
         'c3': '../libs/bower_components/c3/c3',
         'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
         'jquery.mask' : '../libs/bower_components/jquery-mask-plugin/dist/jquery.mask',
-        'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min'
+        'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min',
+        'rxjs'          : '../libs/bower_components/rxjs/dist/rx.all.min'
     },
     shim: {
         "jquery": {
@@ -110,6 +111,9 @@ require.config({
         "typeahead": {
             deps:["jquery"],
             exports: "$.fn"
+        },
+        "rxjs": {
+            deps: ["jquery"]
         }
     }
 });
