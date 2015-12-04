@@ -7,7 +7,8 @@ define(function(require){
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
         MainLayout = require('shared/views/layout/main'),
-        ListView = require('singleNickel/views/survey/list'),
+        CustomerListView = require('singleNickel/views/customer/list'),
+        SurveyListView = require('singleNickel/views/survey/list'),
         ShowView = require('singleNickel/views/survey/show'),
         BuilderView = require('singleNickel/views/survey/build/builder'),
         DeleteView = require('singleNickel/views/survey/delete'),
@@ -18,17 +19,16 @@ define(function(require){
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
-            '(/)': 'listSurveys',
-            'surveys(/)': 'listSurveys',
-            'new(/)': 'buildSurvey',
+            '(/)': 'listCustomers',
+            ':customer/surveys(/)': 'listSurveys',
+            ':customer/new(/)': 'buildSurvey',
             'surveys/:id(/)': 'showSurvey',
             'surveys/:id/edit(/)': 'editSurvey',
             'surveys/:id/delete(/)': 'deleteSurvey'
         },
 
         navigation:  [
-            {title: 'View Surveys', link: '/', route:'(/)', icon: 'ic_clipboard', active: false},
-            {title: 'Create New Survey',  link: '/new', route:'new(/)', icon: 'ic_add', active: false}
+            {title: 'View Customers', link: '/', route: '(/)', icon: 'ic_star', active: false},
         ],
 
         initialize: function() {
@@ -49,16 +49,24 @@ define(function(require){
             context.trigger('navigation:changed');
         },
 
-        listSurveys: function() {
-            var surveys = new SurveyCollection();
-            surveys.fetch().then(function(response) {
-                $('#survey-container').html(new ListView({collection: surveys}).render().el);
+        listCustomers: function() {
+            var customers = new Customers();
+            customers.fetch().then(function(response) {
+                $('#survey-container').html(new CustomerListView({collection: customers}).render().el);
             }).fail(function() {
                 context.trigger('error');
             });
         },
-        buildSurvey: function() {
-            $('#survey-container').html(new BuilderView({model: new SurveyModel({})}).render().el);
+        listSurveys: function(customer) {
+            var surveys = new SurveyCollection(null, {customer: customer});
+            surveys.fetch().then(function(response) {
+                $('#survey-container').html(new SurveyListView({collection: surveys}).render().el);
+            }).fail(function() {
+                context.trigger('error');
+            });
+        },
+        buildSurvey: function(customer) {
+            $('#survey-container').html(new BuilderView({model: new SurveyModel({customer: customer})}).render().el);
         },
         showSurvey: function(surveyId) {
             var survey = new SurveyModel({id: surveyId});
