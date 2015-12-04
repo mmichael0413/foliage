@@ -14,5 +14,5 @@ define(function (require) {
            // $(e.currentTarget).removeAttr('href');
             $(e.currentTarget).parent().html("<i class='fa fa-spin fa-spinner'></i> The agent list is being prepared and will download shortly.");
         }
-    })
+    });
 });
