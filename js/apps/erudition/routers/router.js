@@ -3,7 +3,8 @@ define(function(require){
         ProfileView = require('erudition/views/profile/view_profile'),
         ProfileEdit = require('erudition/views/profile/edit'),
         CreateApplicationView = require('erudition/views/application/create'),
-        EditFTUEView = require('erudition/views/ftue/edit');
+        EditFTUEView = require('erudition/views/ftue/edit'),
+        RecruitingToolsView = require('erudition/views/recruiting/tools');
 
 
 
@@ -22,7 +23,9 @@ define(function(require){
             'profile/edit/:personId' : 'editProfile',
             'profile/edit/program/:programUUID' : 'editProfile',
             'program/:programId/application/step/1' : 'createApplication',
-            'profile/edit/ftue/program/:programUUID' : 'editFTUE'
+            'profile/edit/ftue/program/:programUUID' : 'editFTUE',
+            
+            'recruiting/tools' : 'recruitingTools'
         },
 
         createApplication: function (programId) {
@@ -43,6 +46,10 @@ define(function(require){
 
         editFTUE: function (programUUID) {
             new EditFTUEView({programUUID: programUUID}).render();
+        },
+        
+        recruitingTools: function () {
+            new RecruitingToolsView();
         }
     });
 
