@@ -21,12 +21,12 @@ define(function(require){
                 special_project: "Special Project"
             },
             show_images: {
-                true: "Yes",
-                false: "No"
+                "true": "Yes",
+                "false": "No"
             },
             require_images: {
-                true: "Yes",
-                false: "No"
+                "true": "Yes",
+                "false": "No"
             }
         },
         events: {
