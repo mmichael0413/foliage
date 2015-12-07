@@ -47,11 +47,12 @@
 
 	.sales-summary {
 		// todo: replace this with custom widgets; these are all override hacks
-		.widget {
+		.widget, .overview {
 			display: inline-block;
 			width: 33%;
-			border: 0;
+			padding: 0;
 		}
+		
 		.overview {
 			width:33%;
 
@@ -61,7 +62,7 @@
 			&>div {
 				padding: 0;
 				border: 0;
-				text-aign: initial;
+				text-align: initial;
 			}
 		}
 	}

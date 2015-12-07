@@ -56,12 +56,13 @@ define(function(require) {
                 }, function(err) {
                     console.error("Error loading widgets: ", err);
                 }, function () {
-                    console.info("Finished loading");
+                    //console.info("Finished loading");
                     self.$el.find(".widget-spinner").remove();
+                    self.trigger("reports:async:complete");
                 });
             },
 
-            _extractWidgetMetaInfo(report) {
+            _extractWidgetMetaInfo: function(report) {
                 var widgetMetaData = [];
                 _.each(report.get('sections'), function (section) {
                     _.each(section.subsections, function(subsection){
@@ -74,13 +75,38 @@ define(function(require) {
                 });
                 return widgetMetaData;
             },
-            
-            _renderWidget(meta_data, widget_data) {
-                if (!(meta_data.report_widget_uuid === widget_data.uuid)) {
+
+            _renderWidget: function(meta_data, widget_data) {
+                // look at each rendered widget. if zero, render right away. other wise, step through each widget
+                // if target.idx < current.idx, proceed
+                // if target.idx > current.idx, preppend to target
+
+                if (meta_data.report_widget_uuid !== widget_data.uuid) {
                     console.error("Meta data report_widget uuid and the response uuid are not equal!");
                 }
+                var $widget = new WidgetView(widget_data).render().$el,
+                    $widgetsContainer = this.$el.find("[data-id='" + meta_data.report_subsection_uuid +"'] .widgets"),
+                    $widgets = $widgetsContainer.find('.widget'),
+                    max = $widgets.length,
+                    rendered = false,
+                    i = 0,
+                    existingIdx = 0;
+                // set the index on the main widget
+                $widget.attr('data-idx', meta_data.idx);
 
-                this.$el.find("[data-id='" + meta_data.report_subsection_uuid +"'] .widgets").append(new WidgetView(widget_data).render().$el);
+                for (i = 0; i < max; i++) {
+                    existingIdx = parseInt($($widgets[i]).attr('data-idx'), 10);
+                    if (existingIdx && existingIdx > meta_data.idx) {
+                        $widget.insertBefore($($widgets[i]));
+                        rendered = true;
+                        break;
+                    }
+                }
+                if (!rendered) {
+                    $widgetsContainer.append($widget);    
+                }
+                
+                //trigger the drawing of the d3 widgets
                 context.trigger("report post render");
             },
 
@@ -95,11 +121,10 @@ define(function(require) {
                     $subsectionsContainer.append("<i class='fa fa-spin fa-spinner fa-2x widget-spinner'></i>");
                 });
                 this.$el.append($section);
-
             }
         };
 
 
-
+    _.extend(AsyncReportLoader, Backbone.Events);
     return Backbone.View.extend(AsyncReportLoader);
 });

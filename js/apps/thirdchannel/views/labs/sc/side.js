@@ -23,7 +23,7 @@ define(function(require) {
          *  
          * @type View
          */
-        SalesCompareSideView = Backbone.View.extend({
+        SalesCompareSideView = {
             initialize: function (opts) {
                 if (opts.groupSelect === undefined) {
                     throw "No 'groupSelect' parameter set in constructor for the SalesCompareSideView";
@@ -36,17 +36,24 @@ define(function(require) {
 
                 
                 this.$groupSelect.on('change', function () {
-                    //context.trigger('filter:request');
                     this.applyFilter(this.currentQS);
                 }.bind(this));
                 this.listenTo(context, 'filter:query', this.applyFilter);
                 this.listenTo(this.model, "sync", this.render);
+                // the breakdown links uses a relative path, which is incompatible with us. this function 
+                // updates the breakdown links on the fly to use the correct path
+                this.listenTo(this.reportLoader, "reports:async:complete", function () {
+                    this.$el.find(".breakdown-link").on("click", function (e) {
+                        this.updateLinks(e);
+                    }.bind(this));
+                }.bind(this));
                 return this;
             },
 
             _attachAsyncLoader: function () {
                 this.reportLoader = new AsyncReportLoader(context.current_report);
                 this.reportLoader.setElement(this.$el);
+
             },
 
 
@@ -55,7 +62,6 @@ define(function(require) {
                 this.currentQS = qs;
                 qs = qs + "&group=" + encodeURIComponent(this.$groupSelect.val());
                 this.model.setQueryString(qs);
-                //this.render(qs);
                 this.model.fetch()
                  .fail(function () {
                         
@@ -68,6 +74,7 @@ define(function(require) {
                 this._renderMeta();
                 this._renderSales();
                 this.reportLoader.loadWidgets(this.model.queryString);
+                
                 return this;
             },
 
@@ -83,23 +90,18 @@ define(function(require) {
             },
 
             _renderMeta: function () {
-                console.log(this.model.attributes);
                 var data = {
                     config: {},
 
                     results: this.model.get('report').totalStores,
                     title: "Stores"
-                    //states: this.model.get('report').states.results.count,
-                    //averageUnits: Math.floor(Number(this.model.get('report').averageProduct.results))
                 };
                 this.$el.find('.subsection').first().find('.widgets').append(templates['thirdchannel/reports/widgets/metric_icon'](data));
             },
 
             _renderSales: function () {
                 this.$el.find('.sales-graph .widgets').append(templates['thirdchannel/labs/sales_compare/retail_sales']({sales: this.model.get('report').sales}));
-                //console.log(this.$el.find('.sales-graph')[0]);
                 var ctx = this.$el.find('.retail-sales')[0].getContext("2d");
-
                 this._buildChart(ctx, this.model.get('report').sales);
 
             },
@@ -131,27 +133,7 @@ define(function(require) {
                 for (i; i < max; i++) {
                     list[i].rawUSD = Math.round(list[i].cents/100);
                 }
-            },
-
-            _renderWidgets: function (title, keys, fn) {
-                var $template = $(templates['thirdchannel/labs/sales_compare/widget_section']({title: title})),
-                    report = this.model.get('report'),
-                    i = 0,
-                    max = keys.length;
-                for (i; i < max; i++) {
-                    $template.find('.widgets').append(new WidgetView(report[keys[i]]).render().$el);
-                }
-                // execute the optional callback
-                if (fn !== undefined) {
-                    fn($template, report);
-                }
-                
-                this.$el.append($template);
-                this.$el.find(".breakdown-link").on("click", function (e) {
-                    this.updateLinks(e);
-                }.bind(this));
             }
-        });
-
-    return SalesCompareSideView;
+        };
+    return Backbone.View.extend(SalesCompareSideView);
 });
