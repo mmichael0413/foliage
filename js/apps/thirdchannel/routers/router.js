@@ -30,6 +30,7 @@ define(function(require){
         StoreProfileSchedule = require('thirdchannel/views/store_profile/schedule'),
         Labs = require('thirdchannel/views/labs/main'),
         AnswersExportView = require('thirdchannel/views/exports/answers/main'),
+        SalesStoresExportView = require('thirdchannel/views/exports/sales_stores/main'),
         ProgramProfileView = require('erudition/views/profile/view_profile'),
         ProgramProfileEditView = require('erudition/views/profile/edit'),
         ProfileStoreListView = require('thirdchannel/views/profiles/stores/list'),
@@ -74,6 +75,7 @@ define(function(require){
             'programs/:program_id/labs/sales_comparison': 'labsSalesCompare',
             'programs/:program_id/labs/roi': 'labsRoi',
             'programs/:program_id/exports/survey_answers': 'answerExports',
+            'programs/:program_id/exports/sales_stores': 'salesStoresExports',
 
             'programs/:program_id/*path' : 'defaultPath',
             '*path': 'notFound'
@@ -239,6 +241,10 @@ define(function(require){
 
         answerExports: function() {
             new AnswersExportView().render();
+        },
+
+        salesStoresExports: function() {
+            new SalesStoresExportView().render();
         },
 
         viewApplication: function(program_id, id) {
