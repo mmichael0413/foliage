@@ -692,7 +692,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n            <option value=\"Men - 7\">Men - 7</option>\n            <option value=\"Men - 8\">Men - 8</option>\n            <option value=\"Men - 9\">Men - 9</option>\n            <option value=\"Men - 10\">Men - 10</option>\n            <option value=\"Men - 11\">Men - 11</option>\n            <option value=\"Men - 12\">Men - 12</option>\n            <option value=\"Men - 13\">Men - 13</option>\n            <option value=\"Men - 14\">Men - 14</option>\n            <option value=\"Women - 5\">Women - 5</option>\n            <option value=\"Women - 6\">Women - 6</option>\n            <option value=\"Women - 7\">Women - 7</option>\n            <option value=\"Women - 8\">Women - 8</option>\n            <option value=\"Women - 9\">Women - 9</option>\n            <option value=\"Women - 10\">Women - 10</option>\n            <option value=\"Women - 11\">Women - 11</option>\n            <option value=\"Women - 12\">Women - 12</option>\n            ";
+  return "\n            <option value=\"Men - 7\">Men - 7</option>\n            <option value=\"Men - 7.5\">Men - 7.5</option>\n            <option value=\"Men - 8\">Men - 8</option>\n            <option value=\"Men - 8.5\">Men - 8.5</option>\n            <option value=\"Men - 9\">Men - 9</option>\n            <option value=\"Men - 9.5\">Men - 9.5</option>\n            <option value=\"Men - 10\">Men - 10</option>\n            <option value=\"Men - 10.5\">Men - 10.5</option>\n            <option value=\"Men - 11\">Men - 11</option>\n            <option value=\"Men - 11.5\">Men - 11.5</option>\n            <option value=\"Men - 12\">Men - 12</option>\n            <option value=\"Men - 12.5\">Men - 12.5</option>\n            <option value=\"Men - 13\">Men - 13</option>\n            <option value=\"Men - 13.5\">Men - 13.5</option>\n            <option value=\"Men - 14\">Men - 14</option>\n            <option value=\"Men - 14.5\">Men - 14.5</option>\n            <option value=\"Men - 15\">Men - 15</option>\n            <option value=\"Men - 15.5\">Men - 15.5</option>\n            <option value=\"Women - 5\">Women - 5</option>\n            <option value=\"Women - 5.5\">Women - 5.5</option>\n            <option value=\"Women - 6\">Women - 6</option>\n            <option value=\"Women - 6.5\">Women - 6.5</option>\n            <option value=\"Women - 7\">Women - 7</option>\n            <option value=\"Women - 7.5\">Women - 7.5</option>\n            <option value=\"Women - 8\">Women - 8</option>\n            <option value=\"Women - 8.5\">Women - 8.5</option>\n            <option value=\"Women - 9\">Women - 9</option>\n            <option value=\"Women - 9.5\">Women - 9.5</option>\n            <option value=\"Women - 10\">Women - 10</option>\n            <option value=\"Women - 10.5\">Women - 10.5</option>\n            <option value=\"Women - 11\">Women - 11</option>\n            <option value=\"Women - 11.5\">Women - 11.5</option>\n            <option value=\"Women - 12\">Women - 12</option>\n            <option value=\"Women - 12.5\">Women - 12.5</option>\n            ";
   }
 
   buffer += "<div class=\"card\">\n    <div class=\"header\">Additional Information</div>\n    <div class=\"body\">\n        <label for=\"shirtSize\">Shirt Size:</label>\n        <select name=\"shirtSize\" id=\"shirtSize\" data-rule-required=\"true\">\n            <option value=\"\">Select Size</option>\n            ";
@@ -1577,6 +1577,29 @@ function program48(depth0,data) {
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/authentication/login"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<h2>Login</h2>\n<form accept-charset=\"UTF-8\" action=\"/login\" class=\"new_user\" id=\"new_user\" method=\"post\">\n    <div style=\"display:none\">\n        <input name=\"utf8\" type=\"hidden\" value=\"✓\">\n        <input name=\"authenticity_token\" type=\"hidden\" value=\"";
+  if (helper = helpers.authToken) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.authToken); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n    </div>\n    <div class=\"form-group\">\n        <input autofocus=\"autofocus\" class=\"large low-margin dark\" id=\"user_email\" name=\"user[email]\" placeholder=\"Email\" type=\"email\">\n    </div>\n\n    <div class=\"form-group\">\n        <input class=\"large low-margin dark\" id=\"user_password\" name=\"user[password]\" placeholder=\"Password\" type=\"password\">\n    </div>\n\n    <div class=\"checkbox\">\n        <input name=\"user[remember_me]\" type=\"hidden\" value=\"0\"><input id=\"user_remember_me\" name=\"user[remember_me]\" type=\"checkbox\" value=\"1\">\n        <label for=\"user_remember_me\">Keep me logged in</label></div>\n\n    <div class=\"help-block\">\n        <a href=\"/secret/new\">Forgot your password?</a><br>\n    </div>\n    <div class=\"clear\"></div>\n    <input class=\"btn primary solid\" name=\"commit\" type=\"submit\" value=\"Login\">\n</form>\n\n<div>\n    Don't have an account? <a href=\"#\" class=\"sign-up\">Sign up!</a>\n</div>";
+  return buffer;
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/authentication/register"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<h2>Create your account</h2>\n<form action=\"/register\" id=\"registration-form\" method=\"post\">\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"first_name\" class=\"large dark low-margin\" placeholder=\"First Name\" name=\"user[first_name\"]>\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"last_name\" class=\"large dark low-margin\" placeholder=\"Last Name\" name=\"user[last_name]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"email\" class=\"large dark low-margin\" placeholder=\"Email\" name=\"user[email]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"password\" id=\"password\" class=\"large dark low-margin\" placeholder=\"Password (8 Character Minimum)\" name=\"user[password]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"password\" id=\"password_confirmation\" class=\"large dark low-margin\" placeholder=\"Confirm Password\" name=\"user[password_confirmation]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"zip\" class=\"large dark low-margin\" placeholder=\"Zip Code\" name=\"user[zip]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n\n\n    <span class=\"tooltip\">\n            <span class=\"visible-xs\"><i class=\"fa fa-info-circle\"></i></span> <span class=\"hidden-xs\">Why are we asking for your zip code?</span>\n        </span>\n\n    <div class=\"tip\">\n        This allows us to match you with current opportunities in your geographic location.\n    </div>\n\n\n    <div class=\"clear\"></div>\n    <div class=\"form-group\">\n        <button class=\"btn primary solid\">Create Account</button>\n    </div>\n</form>\n\n<div>Already have an account? <a href=\"#\" class=\"login\">Login here.</a></div>\n";
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/checkins/choose"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -1795,7 +1818,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\"><span class=\"alert-count\"><i class=\"fa fa-spinner fa-spin\"></i></span></a></td>\n    <td></td>\n</tr>\n";
+    + "\"><span class=\"alert-count\"><i class=\"fa fa-spin ic_processing\"></i></span></a></td>\n    <td></td>\n</tr>\n";
   return buffer;
   });
 
@@ -1818,7 +1841,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n<td><span class=\"alert-count\"><i class=\"fa fa-spinner fa-spin\"></i></span></td>\n<td class=\"expand-indicator open\"></td>\n";
+    + "</td>\n<td><span class=\"alert-count\"><i class=\"fa fa-spin ic_processing\"></i></span></td>\n<td class=\"expand-indicator open\"></td>\n";
   return buffer;
   });
 
@@ -2311,7 +2334,16 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"section loading-section\">\n    <div class=\"loading\">\n        <div class=\"fa fa-spin fa-spinner\"></div> Loading...\n    </div>\n</div>\n\n";
+  return "<div class=\"section loading-section\">\n    <div class=\"loading\">\n        <div class=\"fa fa-spin ic_processing\"></div> Loading...\n    </div>\n</div>\n\n";
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/loading_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"loading\">\n    <div class=\"fa fa-spin ic_processing\"></div> Loading...\n</div>\n\n";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/modals/export/error"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -4019,12 +4051,14 @@ function program5(depth0,data) {
   buffer += "\n\n    ";
   stack1 = self.invokePartial(partials.university, 'university', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n    <div class=\"card\">\n        <div class=\"header\">Where you currently live?\n\n        <span class=\"tooltip\">\n            <span class=\"visible-xs\"><i class=\"fa fa-info-circle\"></i></span> <span class=\"hidden-xs\">Why are we asking this?</span>\n        </span>\n\n            <div class=\"tip\">\n                This allows us to match you with current opportunities in your geographic location.\n            </div>\n        </div>\n\n\n        <div class=\"body compressed\">\n            <label></label>\n            <input type=\"text\" class=\"low-margin\" name=\"residentialAddress.city\" placeholder=\"City\"\n                   value=\""
+  buffer += "\n\n    <div class=\"card\">\n        <div class=\"header\">Where you currently live?\n\n        <span class=\"tooltip\">\n            <span class=\"visible-xs\"><i class=\"fa fa-info-circle\"></i></span> <span class=\"hidden-xs\">Why are we asking this?</span>\n        </span>\n\n            <div class=\"tip\">\n                This allows us to match you with current opportunities in your geographic location.\n            </div>\n        </div>\n\n\n        <div class=\"body compressed\">\n            <label></label>\n            <input type=\"text\" class=\"low-margin\" name=\"residentialAddress.city\" placeholder=\"City\" value=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.residentialAddress)),stack1 == null || stack1 === false ? stack1 : stack1.city)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" data-rule-required=\"true\"/>\n            <select name=\"residentialAddress.state\" data-rule-required=\"true\">\n                <option value=\"\">Select State/Province</option>\n                ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.states), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            </select>\n        </div>\n    </div>\n    ";
+  buffer += "\n            </select>\n            <input type=\"text\" class=\"low-margin\" name=\"residentialAddress.zip\" placeholder=\"Zip\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.residentialAddress)),stack1 == null || stack1 === false ? stack1 : stack1.zip)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" data-rule-required=\"true\"/>\n\n        </div>\n    </div>\n    ";
   stack1 = self.invokePartial(partials.about_images, 'about_images', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n    ";
