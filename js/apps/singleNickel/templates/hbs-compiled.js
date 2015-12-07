@@ -913,9 +913,18 @@ function program1(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n        ";
-  stack1 = self.invokePartial(partials.nav_item, 'nav_item', depth0, helpers, partials, data);
+  stack1 = helpers.unless.call(depth0, (depth0 && depth0.hidden), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    ";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n            ";
+  stack1 = self.invokePartial(partials.nav_item, 'nav_item', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        ";
   return buffer;
   }
 
