@@ -2222,22 +2222,22 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n	";
+  return "\n";
   }
 
 function program3(depth0,data) {
   
   
-  return "\n	<p class=\"col-1-1\">No Sales numbers found for this date range</p>\n	";
+  return "\n<p class=\"col-1-1\">No Sales numbers found for this date range</p>\n";
   }
 
-  buffer += "<section class=\"section labs\">\n	<h2 class=\"header\">Average Retail Sales ($USD)</h2>\n	<canvas width=\"450\" height=\"450\" class=\"retail-sales\">	</canvas>\n	";
+  buffer += "<canvas width=\"450\" height=\"450\" class=\"retail-sales\">	</canvas>\n";
   options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
   if (helper = helpers.sales) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.sales); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.sales) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n	\n</section>\n\n\n";
+  buffer += "\n\n\n";
   return buffer;
   });
 
@@ -2729,7 +2729,7 @@ function program1(depth0,data) {
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</h3>\n        ";
+  buffer += "</h3>\n    ";
   return buffer;
   }
 
@@ -2737,10 +2737,14 @@ function program1(depth0,data) {
   if (helper = helpers.css_class) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.css_class); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n    <div>\n        ";
+    + "\" data-id=";
+  if (helper = helpers.uuid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ">\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.title), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        <div class=\"widgets\"></div>\n    </div>\n</div>";
+  buffer += "\n    <div class=\"widgets\"></div>\n</div>";
   return buffer;
   });
 
