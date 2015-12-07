@@ -4,6 +4,7 @@ define(function(require) {
         $ = require('jquery'),
         _ = require('underscore'),
         LoadingView = require('thirdchannel/views/activities/loading'),
+        HandlebarsTemplates = require('handlebarsTemplates');
 
         /**
          * A base class for dealing with infinite scrolling of some items
@@ -13,7 +14,7 @@ define(function(require) {
         InfiniteScrollView = Backbone.View.extend({
             el: '.infinite-container',
             singleActivity: false,
-
+            loadingTemplate: HandlebarsTemplates['thirdchannel/loading'],
             infiniteCollectionClass: undefined,
             per: 5,
             endOfFeedHTML: "<div class='alert info'>You have reached the end of the feed!</div>",
@@ -33,6 +34,7 @@ define(function(require) {
                 this.listenTo(this.collection, 'error', this.stopOnError);
 
                 this.loadIndicator = new LoadingView();
+                this.loadIndicator.template = this.loadingTemplate;
                 this.getContentElement().append(this.loadIndicator.render().el);
                 this.allModelsLoaded = false;
 

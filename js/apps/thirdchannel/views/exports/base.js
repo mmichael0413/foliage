@@ -3,42 +3,31 @@ define(function(require) {
         Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        DateTimePicker = require('dateTimePicker'),
         Serialize = require('serializeObject'),
         context = require('context'),
-        Chosen = require('chosen'),
-        ExportModel = require('thirdchannel/models/exports/answers'),
         ExportModal = require('thirdchannel/modals/export');
 
-    var dtPickerOptions = {
-        timepicker: false,
-        format: 'Y-m-d',
-        closeOnDateSelect: true,
-        scrollInput: false
-    };
-
     return Backbone.View.extend({
-        el: '#answers-export-form',
+        el: 'form',
+        model: Backbone.Model,
 
         events: {
             'submit': 'initiateExport'
         },
 
         render: function() {
-            this.$('select').chosen({disable_search: true, width: "100%"});
-            this.$('#start_date').datetimepicker(dtPickerOptions);
-            this.$('#end_date').datetimepicker(dtPickerOptions);
             return this;
         },
 
         initiateExport: function(e) {
             e.preventDefault();
             this.$('.error').removeClass('error');
-            var model = new ExportModel(_.extend(this.$el.serializeObject(), {programId: context.programId}));
-            model.save().then(function() {
-                var modal = new ExportModal({model: model});
+            this.model.set(_.extend(this.$el.serializeObject(), {programId: context.programId}));
+            this.model.save().then(function () {
+                var modal = new ExportModal({model: this.model});
                 $("body").append(modal.render().el);
-            }).fail(function(response) {
+            }.bind(this)
+            ).fail(function(response) {
                 if(response.status === 422) {
                     var error = response.responseJSON;
                     alert(error.error);

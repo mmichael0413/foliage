@@ -68,11 +68,11 @@ define(function(require){
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
             'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
             'programs/:program_id/notifications' : 'notificationList',
-           // 'programs/:program_id/profiles/:user_id/*path' : 'shippingForm', // handle /edit and / if errors
             'programs/:program_id/posts/new' : 'newPost',
             'programs/:program_id/labs/sku_sales': 'labsSkus',
             'programs/:program_id/labs(/)': 'labsSalesCompare',
             'programs/:program_id/labs/sales_comparison': 'labsSalesCompare',
+            'programs/:program_id/labs/roi': 'labsRoi',
             'programs/:program_id/exports/survey_answers': 'answerExports',
 
             'programs/:program_id/*path' : 'defaultPath',
@@ -221,10 +221,6 @@ define(function(require){
             var readView = new NotificationSectionView({el: '.past-notifications', url_action: 'read', bootstrap: window.read}).start();
         },
 
-        //shippingForm: function(){
-        //    ShippingView.init();
-        //},
-
         newPost: function(){
             new PostView();
         },
@@ -235,6 +231,10 @@ define(function(require){
 
         labsSalesCompare: function () {
             Labs.salesCompare();
+        },
+
+        labsRoi: function () {
+            Labs.roi();
         },
 
         answerExports: function() {

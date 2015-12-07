@@ -1818,7 +1818,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\"><span class=\"alert-count\"><i class=\"fa fa-spinner fa-spin\"></i></span></a></td>\n    <td></td>\n</tr>\n";
+    + "\"><span class=\"alert-count\"><i class=\"fa fa-spin ic_processing\"></i></span></a></td>\n    <td></td>\n</tr>\n";
   return buffer;
   });
 
@@ -1841,7 +1841,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n<td><span class=\"alert-count\"><i class=\"fa fa-spinner fa-spin\"></i></span></td>\n<td class=\"expand-indicator open\"></td>\n";
+    + "</td>\n<td><span class=\"alert-count\"><i class=\"fa fa-spin ic_processing\"></i></span></td>\n<td class=\"expand-indicator open\"></td>\n";
   return buffer;
   });
 
@@ -2334,7 +2334,16 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"section loading-section\">\n    <div class=\"loading\">\n        <div class=\"fa fa-spin fa-spinner\"></div> Loading...\n    </div>\n</div>\n\n";
+  return "<div class=\"section loading-section\">\n    <div class=\"loading\">\n        <div class=\"fa fa-spin ic_processing\"></div> Loading...\n    </div>\n</div>\n\n";
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/loading_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"loading\">\n    <div class=\"fa fa-spin ic_processing\"></div> Loading...\n</div>\n\n";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/modals/export/error"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
