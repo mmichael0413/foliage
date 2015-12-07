@@ -52,4 +52,9 @@ h1.headline {
   form{
     margin-bottom: 2em;
   }
+
+  .error-message, .error {
+    color: $link-color;
+    font-size: 0.8em;
+  }
 }

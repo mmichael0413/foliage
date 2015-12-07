@@ -17,7 +17,7 @@ define(function(require) {
 
         collectionClass: undefined,
         template: '',
-        loadingHTML: "<tr><td><i class='fa fa-spin fa-spinner'></i></td></tr>",
+        loadingHTML: HandlebarsTemplates['thirdchannel/loading_icon'],
         failHTML: "Unable to load data. Please contact Tech Support",
         bodySelector: 'tbody',
 

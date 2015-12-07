@@ -3,6 +3,7 @@ define(function(require) {
         FilterableTableView = require('thirdchannel/views/shared/filterable_table'),
         AsyncPagedCollection = require('thirdchannel/collections/shared/async_paged'),
         Pageable = require('shared/views/utils/pageable_component'),
+        HandlebarsTemplates = require('handlebarsTemplates');
     
         /**
          * A Base View that supports async Paging and renders out in a non-table based
@@ -13,7 +14,7 @@ define(function(require) {
          * @exports thirdchannel/views/shared/pageable_list
          */
         PageableListView = {
-            loadingHTML: "<div class='item'><i class='fa fa-spin fa-spinner'></i></div>",
+            loadingHTML: HandlebarsTemplates['thirdchannel/loading_icon'],
             collectionClass: AsyncPagedCollection,
             bodySelector: '.body',
             template: '',

@@ -59,6 +59,11 @@
 
 .right-aligned {
   text-align: right;
+  @include swb-small() {
+    &.xs-left {
+      text-align: left;
+    }
+  }
 }
 .show-filter {
   .scroll-top {

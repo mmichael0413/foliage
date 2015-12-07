@@ -31,7 +31,10 @@
     &.solid {
         background-color: $color;
         color: white;
-
+      @include swa-small() {
+        min-width: 5em;
+        text-align: center;
+      }
         &:disabled {
           background-color: lighten($color, 20%);
         }
@@ -53,6 +56,10 @@
       margin-left: 0;
       padding: 0 0.45em;
       font-size: 0.75em;
+    }
+    &.large {
+      font-size: $base-font-size + .2rem;
+      padding: .5em 2em;
     }
 
     i+span {
@@ -103,6 +110,9 @@
         &:hover:not(:disabled) {
           color: $red;
         }
+      }
+      &.light {
+        color: $medium-blue;
       }
       &.white {
         border-color: white;

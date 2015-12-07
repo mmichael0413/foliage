@@ -6,6 +6,7 @@ define(function(require) {
         DateTimePicker = require('dateTimePicker'),
         Serialize = require('serializeObject'),
         context = require('context'),
+        Chosen = require('chosen'),
         ExportModel = require('thirdchannel/models/exports/answers'),
         ExportModal = require('thirdchannel/modals/export');
 
@@ -24,6 +25,7 @@ define(function(require) {
         },
 
         render: function() {
+            this.$('select').chosen({disable_search: true, width: "100%"});
             this.$('#start_date').datetimepicker(dtPickerOptions);
             this.$('#end_date').datetimepicker(dtPickerOptions);
             return this;

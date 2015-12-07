@@ -22,5 +22,8 @@
     &:checked + label:before, &:checked ~ label {
       color: $link-color;
     }
+    &+label:hover {
+        color: $link-color;
+    }
   }
 }
