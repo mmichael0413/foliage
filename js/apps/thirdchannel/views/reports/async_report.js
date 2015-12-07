@@ -41,22 +41,16 @@ define(function(require) {
 
             loadWidgets: function (filter) {
                 var self = this,
-                    lookup = {};
-                rx.Observable.from(self._extractWidgetMetaInfo(this.report))
-                .map(function(widget) {
-                    // cache the widget meta_info by uuid for later extraction
-                    lookup[widget.report_widget_uuid] = widget;
-                    return widget;
-                })
-                .flatMap(function(widget) {
-                    return rx.Observable.fromPromise($.getJSON(context.links.reports.widgets +"?uuid=" + widget.report_widget_uuid + "&" + filter));
-                })
-                .subscribe(function (payload) {
-                    self._renderWidget.call(self, lookup[payload.uuid], payload);
-                }, function(err) {
-                    console.error("Error loading widgets: ", err);
-                }, function () {
-                    //console.info("Finished loading");
+                    promise = $().promise();
+                _.each(self._extractWidgetMetaInfo(this.report), function(widget) {
+                    promise = promise.then(function() {
+                        return $.getJSON(context.links.reports.widgets +"?uuid=" + widget.report_widget_uuid + "&" + filter)
+                            .done(function(data) {
+                                self._renderWidget.call(self, widget, data);
+                            });
+                    });
+                });
+                promise.done(function () {
                     self.$el.find(".widget-spinner").remove();
                     self.trigger("reports:async:complete");
                 });
@@ -84,6 +78,7 @@ define(function(require) {
                 if (meta_data.report_widget_uuid !== widget_data.uuid) {
                     console.error("Meta data report_widget uuid and the response uuid are not equal!");
                 }
+                // I am not a fan of this.
                 var $widget = new WidgetView(widget_data).render().$el,
                     $widgetsContainer = this.$el.find("[data-id='" + meta_data.report_subsection_uuid +"'] .widgets"),
                     $widgets = $widgetsContainer.find('.widget'),
