@@ -2,14 +2,16 @@ define(function(require) {
     var Backbone = require('backbone'),
         Noty = require('noty'),
         context = require('context'),
-        Templates = require('handlebarsTemplates');
+        Templates = require('handlebarsTemplates'),
+        DeleteModal = require('stores/views/program_stores/delete_modal');
 
     var View = Backbone.View.extend({
         template: Templates['stores/program_stores/list_item'],
         tagName: 'tr',
         className: 'program-store-list-item',
         events: {
-            'change .status': 'update'
+            'change .status': 'update',
+            'click .remove': 'displayRemoveDialog'
         },
         render: function() {
             var data = this.model.attributes;
@@ -53,6 +55,11 @@ define(function(require) {
                     timeout: 2500
                 });
             }.bind(this));
+        },
+        displayRemoveDialog: function(e) {
+            e.preventDefault();
+            var modal = new DeleteModal({model: this.model});
+            $("body").append(modal.render().el);
         }
     });
 

@@ -8,16 +8,17 @@ define(function(require) {
     var View = Backbone.View.extend({
         template: Templates['stores/program_stores/list'],
         noStoreTemplate: Templates['stores/program_stores/zero_entry_list'],
-        childViews: [],
+        childViews: {},
         events: {
             'keyup .search': 'search',
             'click .reset-search': 'resetSearch'
         },
         initialize: function() {
-            _.bindAll(this, 'renderProgramStores', 'renderProgramStore', 'handleFilter', 'removeChildViews', 'search');
+            _.bindAll(this, 'renderProgramStores', 'renderProgramStore', 'removeProgramStore', 'handleFilter', 'removeChildViews', 'search');
             this.listenTo(this.collection, 'reset', this.renderProgramStores);
             this.listenToOnce(this.collection, 'reset', this.setSearchCollection);
             this.listenTo(this.collection, 'add', this.renderProgramStore);
+            this.listenTo(this.collection, 'remove', this.removeProgramStore);
             this.listenTo(context, 'filter:query', this.handleFilter);
         },
         render: function() {
@@ -38,7 +39,11 @@ define(function(require) {
         renderProgramStore: function(programStore) {
             var v = new ListItemView({model: programStore});
             this.$('#program-store-list').append(v.render().el);
-            this.childViews.push(v);
+            this.childViews[programStore.id] = v;
+        },
+        removeProgramStore: function(programStore) {
+            this.childViews[programStore.id].remove();
+            delete this.childViews[programStore.id];
         },
         setSearchCollection: function() {
             this.searchCollection = new ProgramStores(this.collection.models, {program: this.collection.program});
@@ -50,7 +55,7 @@ define(function(require) {
                 var matcher = new RegExp(e.target.value, "i");
 
                 var results = this.searchCollection.filter(function(store) {
-                    return matcher.test(store.get('fullAddress'));
+                    return matcher.test(store.get('address'));
                 });
 
                 this.collection.reset(results);
@@ -76,7 +81,7 @@ define(function(require) {
             _.each(this.childViews, function(v) {
                 v.remove();
             });
-            this.childViews = [];
+            this.childViews = {};
         }
     });
 
