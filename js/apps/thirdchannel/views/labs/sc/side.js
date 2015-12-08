@@ -29,7 +29,7 @@ define(function(require) {
                     throw "No 'groupSelect' parameter set in constructor for the SalesCompareSideView";
                 }
                 this.$groupSelect = opts.groupSelect;
-                this.loadingHTML = this.$el.find(".loader")[0];
+                this.loadingHTML = this.$el.html();
                 this.model = new SalesCompareModel();
                 this._attachAsyncLoader();
 
@@ -43,6 +43,7 @@ define(function(require) {
                 // the breakdown links uses a relative path, which is incompatible with us. this function 
                 // updates the breakdown links on the fly to use the correct path
                 this.listenTo(this.reportLoader, "reports:async:complete", function () {
+                    this.$el.find(".loading").remove();
                     this.$el.find(".breakdown-link").on("click", function (e) {
                         this.updateLinks(e);
                     }.bind(this));
@@ -69,7 +70,8 @@ define(function(require) {
             },
 
             render: function () {
-                this.$el.html("");
+                //this.$el.empty();
+                this.$el.html(this.loadingHTML);
                 this.reportLoader.layout();
                 this._renderMeta();
                 this._renderSales();
