@@ -10,7 +10,9 @@
     </div>
 
     {{#each navItems}}
-        {{> 'nav_item'}}
+        {{#unless hidden}}
+            {{> 'nav_item'}}
+        {{/unless}}
     {{/each}}
 
     <a href="javascript:void(0)" class="collapse-nav nav-item minor-s">

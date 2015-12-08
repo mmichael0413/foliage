@@ -266,9 +266,18 @@ function program1(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n        ";
-  stack1 = self.invokePartial(partials.nav_item, 'nav_item', depth0, helpers, partials, data);
+  stack1 = helpers.unless.call(depth0, (depth0 && depth0.hidden), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    ";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n            ";
+  stack1 = self.invokePartial(partials.nav_item, 'nav_item', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        ";
   return buffer;
   }
 
@@ -912,6 +921,20 @@ function program4(depth0,data) {
   return buffer;
   });
 
+this["Stores"]["templates"]["stores/program_stores/delete"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"bbm-button cancel-button pull-right\"><i class=\"ic ic_x\"></i></div>\n<div class=\"delete-confirmation-modal\">\n    <h2>Remove ";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "?</h2>\n    <p class=\"danger\">\n        Danger: Removing a store from a program is a dangerous operation. Stores can be used in multiple locations in the system. Please understand this can potentially cause issues.\n    </p>\n    <div>\n        <label for=\"name-confirmation\">Please enter the name of the store to confirm the delete:</label>\n        <div><input type=\"text\" id=\"name-confirmation\"></div>\n    </div>\n    <div>\n        <button class=\"btn primary remove-button\" disabled=\"disabled\">Remove</button>\n        <button class=\"btn cancel-button\">Cancel</button>\n    </div>\n</div>";
+  return buffer;
+  });
+
 this["Stores"]["templates"]["stores/program_stores/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -932,11 +955,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<td>";
+  buffer += "<td><a href=\"/stores/";
+  if (helper = helpers.storeUUID) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.storeUUID); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" title=\"View Store\">";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n<td>";
+    + "</a></td>\n<td>";
   if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -948,11 +975,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.longitude) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.longitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</td>\n<td><a href=\"/stores/";
-  if (helper = helpers.storeUUID) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.storeUUID); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\">View Store</a></td>";
+    + "</td>\n<td><button class=\"remove btn primary\"><i class=\"fa ic ic_x\"></i></button></td>";
   return buffer;
   });
 

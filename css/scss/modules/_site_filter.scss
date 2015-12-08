@@ -11,10 +11,6 @@
         text-align: center;
     }
 
-    .action {
-
-    }
-
     .flexible {
         display: flex;
         .btn {
@@ -86,6 +82,7 @@
         @include transition(max-height, 0.8s);
         
         .filter-list-item {
+            overflow-x: hidden;
             padding: 1em;
             padding-left: 2em;
             cursor: pointer;
