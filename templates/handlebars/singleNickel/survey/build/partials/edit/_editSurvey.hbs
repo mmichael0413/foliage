@@ -19,12 +19,21 @@
                 {{/each}}
             {{/select}}
         </select>
-        <label>Customer</label>
-        <select name="customer" required data-placeholder="Choose a customer">
+        <label>Show Before/After Images?</label>
+        <select name="show_images" required data-placeholder="Choose an option">
             <option></option>
-            {{#select attributes.customer}}
-                {{#each customers.models}}
-                    <option value="{{attributes.name}}">{{attributes.name}}</option>
+            {{#select attributes.show_images}}
+                {{#each lookUps.show_images}}
+                    <option value="{{@key}}">{{this}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+        <label>Require Before/After Images to be submitted with survey?</label>
+        <select name="require_images" required data-placeholder="Choose an option">
+            <option></option>
+            {{#select attributes.require_images}}
+                {{#each lookUps.require_images}}
+                    <option value="{{@key}}">{{this}}</option>
                 {{/each}}
             {{/select}}
         </select>

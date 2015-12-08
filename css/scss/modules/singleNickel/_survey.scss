@@ -101,4 +101,16 @@
       }
     }
   }
+
+  #survey-list-items {
+    tr {
+      background: white;
+
+      &.ui-sortable-helper {
+        td {
+          border-bottom: 1px solid $light-blue;
+        }
+      }
+    }
+  }
 }
