@@ -19,6 +19,14 @@ define(function(require){
                 store_visit: "Checkin",
                 store_profile: "Store Intel",
                 special_project: "Special Project"
+            },
+            show_images: {
+                "true": "Yes",
+                "false": "No"
+            },
+            require_images: {
+                "true": "Yes",
+                "false": "No"
             }
         },
         events: {
@@ -46,7 +54,7 @@ define(function(require){
         },
         reindex: function(opts) {
             var options = {
-                url: this.url() + '/reindex',
+                url: this.url() + '/reindex/',
                 type: 'PUT'
             };
 
@@ -82,7 +90,11 @@ define(function(require){
                 required: true,
                 message: "Required"
             },
-            customer: {
+            require_images: {
+                required: true,
+                message: "Required"
+            },
+            show_images: {
                 required: true,
                 message: "Required"
             }

@@ -7,6 +7,7 @@ require.config({
     paths: {
         'jquery': "../libs/bower_components/jquery/jquery",
         'jquery_ujs' : '../libs/bower_components/jquery-ujs/src/rails',
+        'jquery-ui'     : "../libs/bower_components/jquery-ui/jquery-ui",
         'underscore': '../libs/bower_components/underscore/underscore',
         'backbone': '../libs/bower_components/backbone/backbone',
         'handlebars': '../libs/bower_components/handlebars/handlebars',
@@ -26,6 +27,9 @@ require.config({
         },
         "jquery_ujs": {
             deps: ["jquery"]
+        },
+        "jquery-ui": {
+            deps: ['jquery']
         },
         "underscore": {
             deps: ["jquery"],

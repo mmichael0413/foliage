@@ -23,11 +23,12 @@ define(function(require) {
             return this;
         },
         delete: function (e) {
-            this.model.destroy().success(function() {
-                window.location.href = '/';
-            }).fail(function() {
-                context.trigger('error');
-            });
+            //var customer = this.model.get('customer');
+            //this.model.destroy().success(function() {
+            //    window.location.href = '/' + customer + '/surveys';
+            //}).fail(function() {
+            //    context.trigger('error');
+            //});
         }
     });
 });

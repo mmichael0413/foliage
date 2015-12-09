@@ -131,7 +131,7 @@ define(function(require) {
 
             this.model.set(this.editsToJSON());
             if (this.model.isValid()) {
-                this.model.save().success(function(){
+                this.model.save({wait: true}).success(function(){
                     self.render(self.showTemplate);
 
                     if(isNew && self.model.collection !== undefined) {

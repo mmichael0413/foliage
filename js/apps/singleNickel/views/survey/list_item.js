@@ -3,7 +3,7 @@ define(function(require) {
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
-    var View = Backbone.View.extend({
+    return Backbone.View.extend({
         tagName: 'tr',
         template: HandlebarsTemplates['singleNickel/survey/list_item'],
         events: {
@@ -19,6 +19,7 @@ define(function(require) {
         render: function() {
             var attributes = _.extend({survey: this.model}, this.model.toJSON());
             this.$el.html(this.template(attributes));
+            this.$el.attr("data-survey", this.model.get("id"));
             return this;
         },
         removeSurvey: function(e) {
@@ -63,6 +64,4 @@ define(function(require) {
             });
         }
     });
-
-    return View;
 });
