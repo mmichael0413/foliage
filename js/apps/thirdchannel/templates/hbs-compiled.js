@@ -4008,16 +4008,25 @@ this["ThirdChannel"]["templates"]["erudition/application/create"] = Handlebars.t
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
-function program1(depth0,data,depth1) {
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                <input type=\"text\" class=\"low-margin\" name=\"residentialAddress.street1\" placeholder=\"Street\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.residentialAddress)),stack1 == null || stack1 === false ? stack1 : stack1.street1)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" data-rule-required=\"true\"/>\n            ";
+  return buffer;
+  }
+
+function program3(depth0,data,depth1) {
   
   var buffer = "", stack1, helper, options;
   buffer += "\n                    ";
-  stack1 = (helper = helpers.select || (depth1 && depth1.select),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, ((stack1 = ((stack1 = (depth1 && depth1.person)),stack1 == null || stack1 === false ? stack1 : stack1.residentialAddress)),stack1 == null || stack1 === false ? stack1 : stack1.state), options) : helperMissing.call(depth0, "select", ((stack1 = ((stack1 = (depth1 && depth1.person)),stack1 == null || stack1 === false ? stack1 : stack1.residentialAddress)),stack1 == null || stack1 === false ? stack1 : stack1.state), options));
+  stack1 = (helper = helpers.select || (depth1 && depth1.select),options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data},helper ? helper.call(depth0, ((stack1 = ((stack1 = (depth1 && depth1.person)),stack1 == null || stack1 === false ? stack1 : stack1.residentialAddress)),stack1 == null || stack1 === false ? stack1 : stack1.state), options) : helperMissing.call(depth0, "select", ((stack1 = ((stack1 = (depth1 && depth1.person)),stack1 == null || stack1 === false ? stack1 : stack1.residentialAddress)),stack1 == null || stack1 === false ? stack1 : stack1.state), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                ";
   return buffer;
   }
-function program2(depth0,data) {
+function program4(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                        <option value=\""
@@ -4028,16 +4037,16 @@ function program2(depth0,data) {
   return buffer;
   }
 
-function program4(depth0,data,depth1) {
+function program6(depth0,data,depth1) {
   
   var buffer = "", stack1, helper, options;
   buffer += "\n                    ";
-  stack1 = (helper = helpers.select || (depth1 && depth1.select),options={hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth1 && depth1.person)),stack1 == null || stack1 === false ? stack1 : stack1.heardAboutUs), options) : helperMissing.call(depth0, "select", ((stack1 = (depth1 && depth1.person)),stack1 == null || stack1 === false ? stack1 : stack1.heardAboutUs), options));
+  stack1 = (helper = helpers.select || (depth1 && depth1.select),options={hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth1 && depth1.person)),stack1 == null || stack1 === false ? stack1 : stack1.heardAboutUs), options) : helperMissing.call(depth0, "select", ((stack1 = (depth1 && depth1.person)),stack1 == null || stack1 === false ? stack1 : stack1.heardAboutUs), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                ";
   return buffer;
   }
-function program5(depth0,data) {
+function program7(depth0,data) {
   
   var buffer = "";
   buffer += "\n                        <option value=\""
@@ -4064,10 +4073,13 @@ function program5(depth0,data) {
   buffer += "\n\n    ";
   stack1 = self.invokePartial(partials.university, 'university', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n    <div class=\"card\">\n        <div class=\"header\">Where you currently live?\n\n        <span class=\"tooltip\">\n            <span class=\"visible-xs\"><i class=\"fa fa-info-circle\"></i></span> <span class=\"hidden-xs\">Why are we asking this?</span>\n        </span>\n\n            <div class=\"tip\">\n                This allows us to match you with current opportunities in your geographic location.\n            </div>\n        </div>\n\n\n        <div class=\"body compressed\">\n            <label></label>\n            <input type=\"text\" class=\"low-margin\" name=\"residentialAddress.city\" placeholder=\"City\" value=\""
+  buffer += "\n\n    <div class=\"card\">\n        <div class=\"header\">Where you currently live?\n\n        <span class=\"tooltip\">\n            <span class=\"visible-xs\"><i class=\"fa fa-info-circle\"></i></span> <span class=\"hidden-xs\">Why are we asking this?</span>\n        </span>\n\n            <div class=\"tip\">\n                This allows us to match you with current opportunities in your geographic location.\n            </div>\n        </div>\n\n\n        <div class=\"body compressed\">\n            <label></label>\n\n            ";
+  stack1 = helpers['if'].call(depth0, ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.residentialAddress)),stack1 == null || stack1 === false ? stack1 : stack1.street1), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            <input type=\"text\" class=\"low-margin\" name=\"residentialAddress.city\" placeholder=\"City\" value=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.residentialAddress)),stack1 == null || stack1 === false ? stack1 : stack1.city)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" data-rule-required=\"true\"/>\n            <select name=\"residentialAddress.state\" data-rule-required=\"true\">\n                <option value=\"\">Select State/Province</option>\n                ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.states), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.states), {hash:{},inverse:self.noop,fn:self.programWithDepth(3, program3, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </select>\n            <input type=\"text\" class=\"low-margin\" name=\"residentialAddress.zip\" placeholder=\"Zip\" value=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.residentialAddress)),stack1 == null || stack1 === false ? stack1 : stack1.zip)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
@@ -4081,7 +4093,7 @@ function program5(depth0,data) {
   stack1 = self.invokePartial(partials.owns_car, 'owns_car', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n    <div class=\"card\">\n        <div class=\"body\">\n            <label for=\"heardAboutUs\">How did you hear about us?</label>\n\n            <select name=\"heardAboutUs\" id=\"heardAboutUs\" data-rule-required=\"true\">\n                <option value=\"\">Select</option>\n                ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.choices), {hash:{},inverse:self.noop,fn:self.programWithDepth(4, program4, data, depth0),data:data});
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.choices), {hash:{},inverse:self.noop,fn:self.programWithDepth(6, program6, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n            </select>\n        </div>\n    </div>\n\n    <div class=\"card\">\n        <div class=\"body\">\n            <label for=\"brandAmbassador\">Have you been a brand ambassador or represented a brand before?</label>\n            <textarea name=\"brandAmbassador\" id=\"brandAmbassador\" cols=\"30\" rows=\"10\"\n                      class=\"expanding-wrapper double\" data-rule-required=\"true\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.brandAmbassador)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
