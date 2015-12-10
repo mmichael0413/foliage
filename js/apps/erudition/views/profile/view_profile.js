@@ -68,7 +68,8 @@ define(function(require){
                 universityLabel:universityLabel,
                 showGeneralInfo:showGeneralInfo,
                 showAllFields: context.content.showAllFields,
-                storeUrl: context.content.storeUrl
+                storeUrl: context.content.storeUrl,
+                notificationUrl: context.content.notificationUrl
             }));
 			return this;
 		}
