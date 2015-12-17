@@ -82,7 +82,11 @@ define(function(require) {
                         request.abort();
                     });
                     // finally, alert any listeners that we're done (e.g. time to disable spinners)
-                    if (trigger) { self.trigger("reports:async:complete"); }
+                    if (trigger) {
+                      self.trigger("reports:async:complete");
+                    } else {
+                      self.trigger("reports:async:incomplete");
+                    }
                     
 
                 });
