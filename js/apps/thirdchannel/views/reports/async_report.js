@@ -135,7 +135,9 @@ define(function(require) {
                     }
                 }
                 if (!rendered) {
-                    $widgetsContainer.append($widget);    
+                    $widget.hide();
+                    $widgetsContainer.append($widget);
+                    $widget.fadeIn(500);
                 }
                 
                 //trigger the drawing of the d3 widgets
