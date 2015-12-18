@@ -60,7 +60,7 @@ define(function(require) {
                 .delay(function (x) { return Rx.Observable.timer(x * 250); })
                 .flatMap(function(widget_meta_data) {
                     // generate ajax promises
-                    var promise = $.getJSON(context.links.reports.widgets +"?uuid=" + widget_meta_data.report_widget_uuid + "&" + filter);
+                    var promise = $.getJSON(context.links.reports.widgets +"?report_widget_uuid=" + widget_meta_data.report_widget_uuid + "&report_report_uuid=" + widget_meta_data.report_report_uuid + "&" + filter);
                     // cache them... why? see below
                     activeRequests.push(promise);
                     return rx.Observable.fromPromise(promise);
