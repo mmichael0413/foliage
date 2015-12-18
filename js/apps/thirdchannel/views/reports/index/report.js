@@ -10,7 +10,7 @@ define(function(require) {
             this.loadingView = new LoadingView();
             this._attachAsyncLoader();
             this.listenTo(this.reportLoader, "reports:async:complete", function() {
-                this.$el.find(".loading-section").remove();
+                this.$el.find(".loading-section").slideUp(500);
                 this.listenToOnce(context, "filter:query", this.render);
             }.bind(this));
             this.listenTo(this.reportLoader, "reports:async:incomplete", this.render);
