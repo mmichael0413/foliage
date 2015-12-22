@@ -37,17 +37,20 @@ $padding: 1.5em;
   .task-item {
     display: inline-block;
     margin-right: 1em;
-    padding-bottom: $padding;
-    &.active .badge {
+    margin-bottom: $padding;
+    background-color: $main-background;
+    border: 1px solid $border-color;
+
+    &.active {
       background-color: $border-color;
     }
+
     @media only screen and (max-width: 35.5em) {
       width: 100%;
       margin: 0em;
     }
   }
   .badge {
-    background-color: $main-background;
     display: inline-block;
     padding: 0.5em;
     color: $text-color;
