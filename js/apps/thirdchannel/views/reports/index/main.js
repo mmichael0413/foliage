@@ -3,6 +3,7 @@ define(function(require) {
         _ = require('underscore'),
         ExportView = require('thirdchannel/views/utils/report_export_button'),
         ReportView = require('thirdchannel/views/reports/index/report'),
+        Filter = require('thirdchannel/views/filter/main'),
         ReportExportModel = require('thirdchannel/models/reports/export');
 
     return {
@@ -12,6 +13,7 @@ define(function(require) {
                 var model = new ReportExportModel(_.extend(data, options));
                 new ExportView({model: model}).render(this);
             });
+            Filter.init();
             new ReportView(options).render();
         }
     };
