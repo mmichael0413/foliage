@@ -1233,8 +1233,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 
   buffer += "<td><a href=\"/";
-  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if (helper = helpers.uuid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "/surveys\">";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -1294,12 +1294,12 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 
   buffer += "<a class=\"btn light round pull-right\" href=\"/";
-  if (helper = helpers.customer) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.customer); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if (helper = helpers.uuid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "/new\" alt=\"Create Survey\"><i class=\"ic ic_add\"></i></a>\n<h1>";
-  if (helper = helpers.customer) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.customer); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + " Surveys</h1>\n<div class=\"section\">\n    <table>\n        <thead>\n        <tr>\n            <th>Name</th>\n            <th>Type</th>\n            <th>Actions</th>\n            <th></th>\n        </tr>\n        </thead>\n        <tbody id=\"survey-list-items\"></tbody>\n    </table>\n</div>\n\n\n\n\n\n\n\n";
   return buffer;
@@ -1324,8 +1324,8 @@ function program3(depth0,data) {
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "/edit\"><i class=\"ic fa ic_edit\"></i></a>\n        <a class=\"btn primary delete round\" href=\"/";
-  if (helper = helpers.customer) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.customer); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if (helper = helpers.customer_uuid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.customer_uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "/surveys\" alt=\"Remove Survey\"><i class=\"ic fa ic_x\"></i></a>\n        ";
   options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}
@@ -1340,8 +1340,8 @@ function program4(depth0,data) {
   
   var buffer = "", stack1, helper;
   buffer += "\n            <a href=\"/";
-  if (helper = helpers.customer) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.customer); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if (helper = helpers.customer_uuid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.customer_uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "/surveys\" class=\"btn light round reindex\" alt=\"Re-Index\"><i class=\"ic fa ic_check\"></i></a>\n        ";
   return buffer;
@@ -1351,8 +1351,8 @@ function program6(depth0,data) {
   
   var buffer = "", stack1, helper, options;
   buffer += "\n        <a class=\"btn light round lock\" href=\"/";
-  if (helper = helpers.customer) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.customer); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if (helper = helpers.customer_uuid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.customer_uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "/surveys\" alt=\"Toggle Locked\"><i class=\"ic fa "
     + escapeExpression((helper = helpers.lockActionIconClass || (depth0 && depth0.lockActionIconClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.locked), options) : helperMissing.call(depth0, "lockActionIconClass", (depth0 && depth0.locked), options)))
@@ -1374,8 +1374,8 @@ function program6(depth0,data) {
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.locked), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    <a href=\"/";
-  if (helper = helpers.customer) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.customer); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if (helper = helpers.customer_uuid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.customer_uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "/surveys\" class=\"btn light round clone\" alt=\"Clone Survey\"><i class=\"ic fa ic_sheep\"></i></a>\n    <a data-bypass=\"true\" class=\"btn light round\" href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1['export'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))

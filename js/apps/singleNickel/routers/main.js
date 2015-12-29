@@ -20,8 +20,8 @@ define(function(require){
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             '(/)': 'listCustomers',
-            ':customer/surveys(/)': 'listSurveys',
-            ':customer/new(/)': 'buildSurvey',
+            ':customerId/surveys(/)': 'listSurveys',
+            ':customerId/new(/)': 'buildSurvey',
             'surveys/:id(/)': 'showSurvey',
             'surveys/:id/edit(/)': 'editSurvey',
             'surveys/:id/delete(/)': 'deleteSurvey'
@@ -29,8 +29,8 @@ define(function(require){
 
         navigation:  [
             {title: 'View Customers', link: '/', route: '(/)', icon: 'ic_star', active: false, hidden: false},
-            {title: 'View Surveys', link: '/:customer/surveys', route:':customer/surveys(/)', icon: 'ic_clipboard', active: false, hidden: true},
-            {title: 'Create New Survey',  link: '/:customer/new', route:':customer/new(/)', icon: 'ic_add', active: false, hidden: true}
+            {title: 'View Surveys', link: '/:customerId/surveys', route:':customerId/surveys(/)', icon: 'ic_clipboard', active: false, hidden: true},
+            {title: 'Create New Survey',  link: '/:customerId/new', route:':customerId/new(/)', icon: 'ic_add', active: false, hidden: true}
         ],
 
         showSurveyLink: [
@@ -46,10 +46,10 @@ define(function(require){
         before: function (parameters, route, name) {
             window.bootstrap.navigation = [];
 
-            if (route.indexOf(":customer") > -1) {
-                context.customer = parameters[0];
+            if (route.indexOf(":customerId") > -1) {
+                context.customerId = parameters[0];
             } else if (route === '(/)') {
-                context.customer = undefined;
+                context.customerId = undefined;
             }
 
             _.each(this.navigation, function(nav) {
@@ -60,8 +60,8 @@ define(function(require){
                     navItem.active = false;
                 }
 
-                if (context.customer) {
-                    navItem.link = navItem.link.replace(/:customer/gi, context.customer);
+                if (context.customerId) {
+                    navItem.link = navItem.link.replace(/:customerId/gi, context.customerId);
                     navItem.hidden = false;
                 }
 
@@ -79,16 +79,16 @@ define(function(require){
                 context.trigger('error');
             });
         },
-        listSurveys: function(customer) {
-            var surveys = new SurveyCollection(null, {customer: customer});
+        listSurveys: function(customerId) {
+            var surveys = new SurveyCollection(null, {customerId: customerId});
             surveys.fetch().then(function(response) {
                 $('#survey-container').html(new SurveyListView({collection: surveys}).render().el);
             }).fail(function() {
                 context.trigger('error');
             });
         },
-        buildSurvey: function(customer) {
-            $('#survey-container').html(new BuilderView({model: new SurveyModel({customer: customer})}).render().el);
+        buildSurvey: function(customerId) {
+            $('#survey-container').html(new BuilderView({model: new SurveyModel({customerId: customerId})}).render().el);
         },
         showSurvey: function(surveyId) {
             var survey = new SurveyModel({id: surveyId});
