@@ -15,7 +15,7 @@ define(function(require) {
             _.bindAll(this, 'renderSurveyItem');
             this.listenTo(this.collection, 'add', this.renderSurveyItem);
             this.model = new Model({customer: this.collection.options.customer});
-            this.customer = context.customers.findWhere({ uuid: this.collection.options.customerId})
+            this.customer = context.customers.findWhere({ uuid: this.collection.options.customerId});
         },
         render: function() {
             this.$el.html(this.template(this.customer.toJSON()));
