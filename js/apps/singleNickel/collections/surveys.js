@@ -5,7 +5,7 @@ define(function(require){
     return BaseCollection.extend({
         model: Survey,
         url: function() {
-            return '/api/surveys?customer='+ this.options.customer;
+            return '/api/surveys?customer_uuid='+ this.options.customerId;
         }
     });
 });

@@ -15,15 +15,16 @@ define(function(require) {
             _.bindAll(this, 'renderSurveyItem');
             this.listenTo(this.collection, 'add', this.renderSurveyItem);
             this.model = new Model({customer: this.collection.options.customer});
+            this.customer = context.customers.findWhere({ uuid: this.collection.options.customerId});
         },
         render: function() {
-            this.$el.html(this.template(this.collection.options));
+            this.$el.html(this.template(this.customer.toJSON()));
             this.renderSurveys();
             return this;
         },
         renderSurveys: function() {
             if(this.collection.isEmpty()) {
-                this.$('#survey-list-items').html('<tr><td colspan="2">No Surveys</td></tr>');
+                this.$('#survey-list-items').html('<tr><td colspan="4">No Surveys</td></tr>');
             } else {
                 this.collection.each(this.renderSurveyItem);
                 this.$('#survey-list-items').sortable({
