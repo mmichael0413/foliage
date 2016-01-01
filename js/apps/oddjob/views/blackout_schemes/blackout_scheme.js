@@ -24,6 +24,8 @@ define(function (require) {
             addButton.click(this.addDate);
             var saveButton = $("#blackout-scheme-save");
             saveButton.click(this.submitChanges);
+            var deleteButton = $("#blackout-scheme-delete");
+            deleteButton.click(this.deleteScheme);
             _.each(window.bootstrap.blackoutScheme.dates, this.addDate);
         },
         submitChanges: function(){
@@ -45,6 +47,25 @@ define(function (require) {
                 alert("Failed to save blackout scheme!");
                 $("#blackout-scheme-save").prop("disabled", false);
             });
+        },
+        deleteScheme: function(){
+            if(confirm("Are you sure you want to delete this Blackout Scheme? This will affect " + window.bootstrap.assignedJobs.length + " jobs.")){
+                $("#blackout-scheme-delete").prop("disabled", true);
+                var data = {
+                    "name": $("#blackout-scheme-name").get(0).value,
+                    "dates": $("#blackout-scheme-dates").find(".blackout-scheme-date-input").map(function(){return this.value;}).get(),
+                };
+                $.ajax({
+                    type: "POST",
+                    url: window.bootstrap.deleteUrl,
+                    success: function(data, textstatus, jqxhr) {
+                        window.location.href = ".";
+                    },
+                }).fail(function(){
+                    alert("Failed to delete blackout scheme!");
+                    $("#blackout-scheme-delete").prop("disabled", false);
+                });
+            }
         }
     });
 });

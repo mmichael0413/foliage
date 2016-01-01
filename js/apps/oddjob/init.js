@@ -20,7 +20,8 @@ require.config({
         'helpers'       : 'thirdchannel/utils/helpers',
         'context'       : 'shared/utils/context',
         'quill'         : '../libs/quill/custom',
-        'noty'          : '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged'
+        'noty'          : '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged',
+        'chosen' : "../libs/bower_components/chosen/chosen.jquery",
     },
     shim: {
         "jquery": {

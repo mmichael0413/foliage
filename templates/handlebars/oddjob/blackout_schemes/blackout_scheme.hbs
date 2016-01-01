@@ -1,29 +1,35 @@
 <h1 class="title">Editing Blackout Scheme</h1>
 
-<div class="actions btn primary" id="blackout-scheme-save">
-				<i class="ic fa ic_check"></i>
-				<span>Save</span>
+<div class="actions" id="blackout-scheme-save">
+	<button class="btn primary" id="blackout-scheme-delete">
+		<i class="ic fa ic_remove"></i>
+		<span>Delete</span>
+	</button>
+	<button class="btn primary" id="blackout-scheme-save">
+		<i class="ic fa ic_check"></i>
+		<span>Save</span>
+	</button>
 </div>
 
 {{#if assignedJobs}}
-				<div class="section">
-								Warning: Changes to this blackout scheme will affect the following jobs:
-								<ul>
-												{{#assignedJobs}}
-																<li>{{this}}</li>
-												{{/assignedJobs}}
-								</ul>
-				</div>
+	<div class="section">
+		Warning: Changes to this blackout scheme will affect the following jobs:
+		<ul>
+			{{#assignedJobs}}
+				<li>{{this}}</li>
+			{{/assignedJobs}}
+		</ul>
+	</div>
 {{/if}}
 
 <div class="section">
-				<h3>Name</h3>
-				<input id="blackout-scheme-name" value="{{blackoutScheme.name}}" required>
+	<h3>Name</h3>
+	<input id="blackout-scheme-name" value="{{blackoutScheme.name}}" required>
 </div>
 
 <div class="section">
-				<h3>Dates</h3>
-				<button id="blackout-scheme-date-add">Add Date</button>
-				<div id="blackout-scheme-dates">
-				</div>
+	<h3>Dates</h3>
+	<button id="blackout-scheme-date-add">Add Date</button>
+	<div id="blackout-scheme-dates">
+	</div>
 </div>
