@@ -177,18 +177,19 @@ define(function (require) {
             var model = this.collection.findWhere({id:id});
             var now = moment.utc().startOf('day');
             if(!context.isScheduleUnlocked) {
+                self.trigger('fullcalendar.refresh');
                 alert("Your schedule is locked. Please contact your Program Manager if you need to reschedule a visit.");
-                self.trigger('fullcalendar.refresh');
             } else if(date < now) {
-                alert("You cannot schedule a visit in the past.");
                 self.trigger('fullcalendar.refresh');
+                alert("You cannot schedule a visit in the past.");
             } else if (model) {
+                date = moment.utc(date).format("YYYY-MM-DD");
                 var blackouts = _.chain(model.attributes.jobDetails.blackoutDates).map(function(dateString){
-                    return moment.utc(dateString).startOf('day').unix();
+                    return moment.utc(dateString).format("YYYY-MM-DD");
                 });
-                if(blackouts.contains(now.unix()).value()) {
-                    alert("That visit cannot be scheduled for " + now.format("l"));
+                if(blackouts.contains(date).value()) {
                     self.trigger('fullcalendar.refresh');
+                    alert("That job cannot be scheduled for " + now.format("l") + ". A blackout exists for that job on that date.");
                 } else {
                     model.set('dateScheduled', date);
                     model.save(model.attributes).done(function() {
@@ -204,7 +205,6 @@ define(function (require) {
             _.chain(dates).map(function(date){
                 return moment.utc(date).format("YYYY-MM-DD"); // format used in fullcalendar data-date
             }).each(function(dateString){
-                console.log(dateString);
                 $("#calendar").find(".fc-day[data-date=" + dateString + "]").addClass("blackout-date");
             });
         },
@@ -212,10 +212,8 @@ define(function (require) {
             $("#calendar").find(".blackout-date").removeClass("blackout-date");
         },
         destroy: function(model) {
-            console.log(arguments);
             var m = this.collection.get(model.id);
             if(m) {
-                console.log("found the model");
                 this.collection.remove(m);
                 context.trigger('estimate:changed');
             }
