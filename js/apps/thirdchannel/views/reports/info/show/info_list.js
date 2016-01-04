@@ -1,5 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        $ = require('jquery'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         context = require('context'),
         Filter = require('thirdchannel/views/filter/main'),
@@ -13,7 +14,9 @@ define(function(require) {
         el: ".report-info",
         template: HandlebarsTemplates['thirdchannel/reports/info/show/info_list'],
         initialize: function (options) {
-            this.model = new InfoListModel($.extend(options, {queryString: window.bootstrap}));
+            var qs = $.param(window.bootstrap);
+            history.replaceState(null, null, document.location.pathname.replace(/.*\//,"") + "?" + qs);
+            this.model = new InfoListModel($.extend(options, {queryString: qs}));
             this.filters = new FilterCollection(options);
             this.listenTo(context, 'filter:query', this.applyFilter);
             this.loadingView = new LoadingView();
