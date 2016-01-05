@@ -206,5 +206,27 @@ define(function (require) {
             minute: "2-digit"
         });
     });
+
+    Handlebars.registerHelper('formatSecondsToDate', function(seconds, locale) {
+        if(locale === undefined) {
+            locale = 'en-US';
+        }
+        var date = new Date(1970,0,1);
+            date.setSeconds(seconds);
+
+        var offset = date.getTimezoneOffset()  / 60;
+        var hours = date.getHours();
+
+        date.setHours(hours - offset);
+        return date.toLocaleTimeString(locale, {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            timeZoneName: "short"
+        });
+    });
+
 });
 
