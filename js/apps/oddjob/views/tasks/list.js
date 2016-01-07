@@ -34,7 +34,7 @@ define(function (require) {
                 //Sort jobs by name
                 collection.comparator = function(model) {
                     return model.get('name');
-                }
+                };
 
                 //Sort names
                 collection.sort();
