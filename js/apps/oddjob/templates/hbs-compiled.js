@@ -700,15 +700,27 @@ function program10(depth0,data) {
   else { helper = (depth0 && depth0.tracked); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.tracked) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</h3>\n	<h3 class=\"col-2-12\">Duration<br/>(";
+  buffer += "</h3>\n	<span class=\"col-2-12\">";
   if (helper = helpers.displayDuration) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.displayDuration); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ")</h3>\n	<h3 class=\"col-2-12\">Payment Rate<br/>($";
+    + "</span>\n	<span class=\"col-2-12\">$";
   if (helper = helpers.displayTotalPayment) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.displayTotalPayment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ")</h3>\n	<h3 class=\"col-2-12\">Required?</h3>\n\n</div>\n\n<div class=\"tasks-container\"></div>\n\n<div class=\"frequencies-container pure-g\">\n    <h3 class=\"col-1-1 frequency-row\">Schedules:</h3>\n    <table class=\"col-1-1\">\n        <colgroup>\n            \n        </colgroup>\n        \n        <thead>\n            <th>Stores</th>\n            ";
+    + "</span>\n    <span class=\"col-2-12\"><button class=\"btn btn-primary toggleTasks\" data-id=\"";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">Show Tasks</button></span>\n</div>\n\n<div class=\"tasks-container tasks-container";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"></div>\n\n<div class=\"frequencies-container frequencies-container";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " pure-g\">\n    <h3 class=\"col-1-1 frequency-row\">Schedules:</h3>\n    <table class=\"col-1-1\">\n        <colgroup>\n            \n        </colgroup>\n        \n        <thead>\n            <th>Stores</th>\n            ";
   options={hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data}
   if (helper = helpers.scheduleDates) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.scheduleDates); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
@@ -1669,7 +1681,9 @@ function program48(depth0,data) {
   if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\"></span>\n                    by\n                    <a href=\"/programs/";
+    + "\"></span> <span>("
+    + escapeExpression((helper = helpers.formatSecondsToDate || (depth0 && depth0.formatSecondsToDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.created_at), options) : helperMissing.call(depth0, "formatSecondsToDate", (depth0 && depth0.created_at), options)))
+    + ")</span>\n                    by\n                    <a href=\"/programs/";
   if (helper = helpers.current_program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.current_program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)

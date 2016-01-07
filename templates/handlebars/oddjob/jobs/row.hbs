@@ -1,14 +1,13 @@
 <div class="header pure-g">
 	<h3 class="col-6-12"><a href="{{editUrl}}">{{name}}</a>{{#role}} ({{this}} only){{/role}} {{#tracked}}( Tracked ){{/tracked}}</h3>
-	<h3 class="col-2-12">Duration<br/>({{displayDuration}})</h3>
-	<h3 class="col-2-12">Payment Rate<br/>(${{displayTotalPayment}})</h3>
-	<h3 class="col-2-12">Required?</h3>
-
+	<span class="col-2-12">{{displayDuration}}</span>
+	<span class="col-2-12">${{displayTotalPayment}}</span>
+    <span class="col-2-12"><button class="btn btn-primary toggleTasks" data-id="{{id}}">Show Tasks</button></span>
 </div>
 
-<div class="tasks-container"></div>
+<div class="tasks-container tasks-container{{id}}"></div>
 
-<div class="frequencies-container pure-g">
+<div class="frequencies-container frequencies-container{{id}} pure-g">
     <h3 class="col-1-1 frequency-row">Schedules:</h3>
     <table class="col-1-1">
         <colgroup>
