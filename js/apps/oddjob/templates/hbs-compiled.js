@@ -601,6 +601,15 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   return buffer;
   });
 
+this["oddjob"]["templates"]["oddjob/jobs/header"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"job section\">\n	<div class=\"header pure-g\">\n		<h3 class=\"col-6-12\">Job Name</h3>\n		<h3 class=\"col-2-12\">Duration</h3>\n		<h3 class=\"col-2-12\">Total Payment</h3>\n		<h3>&nbsp;</h3>\n	</div>\n</div>";
+  });
+
 this["oddjob"]["templates"]["oddjob/jobs/row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -1051,6 +1060,15 @@ function program10(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n	    	";
   return buffer;
+  });
+
+this["oddjob"]["templates"]["oddjob/tasks/header"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"job\">\n    <div class=\"header pure-g\">\n        <h3 class=\"col-6-12\">Task Name:</h3>\n        <h3 class=\"col-2-12\">Duration (Minutes)</h3>\n        <h3 class=\"col-2-12\">Hourly Rate</h3>\n        <h3 class=\"col-2-12\">Task Required?</h3>\n    </div>\n</div>";
   });
 
 this["oddjob"]["templates"]["oddjob/tasks/row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
