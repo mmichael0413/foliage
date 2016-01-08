@@ -67,7 +67,7 @@ define(function(require) {
                     });
 
                 this.chart = true;
-                if(window.pdf !== undefined) {
+                if(window.report_pdf !== undefined) {
                     this.resizeChart();
                 }
             }

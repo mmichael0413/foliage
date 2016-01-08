@@ -4,7 +4,7 @@ define(function(require) {
 
 	return  {
 		init: function () {
-            if (window.pdf !== true) {
+            if (window.report_pdf !== true) {
                 new NavigationView();
             }
 

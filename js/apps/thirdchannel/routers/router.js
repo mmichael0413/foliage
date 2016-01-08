@@ -259,7 +259,7 @@ define(function(require){
 
         notFound: function(){
             // This maybe because we're generating a pdf
-            if (window.reportData !== undefined) {
+            if (context.current_report !== undefined && window.report_pdf) {
                 ReportMain.init({programId: ""});
             }
         }

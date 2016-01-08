@@ -2,26 +2,33 @@ define(function(require) {
     var Backbone = require('backbone'),
         context = require('context'),
         LoadingView = require('thirdchannel/views/utils/loading'),
-        AsyncReportLoader = require('thirdchannel/views/reports/async_report');
+        AsyncReportLoader = require('thirdchannel/views/reports/async_report'),
+        SyncReportLoader = require('thirdchannel/views/reports/sync_report');
 
     return Backbone.View.extend({
         el: ".report",
         initialize: function() {
             this.loadingView = new LoadingView();
-            this._attachAsyncLoader();
+            this._attachLoader();
             this.listenTo(this.reportLoader, "reports:async:complete", function() {
                 this.$el.find(".loading-section").slideUp(500);
                 this.listenToOnce(context, "filter:query", this.rerender);
             }.bind(this));
             this.listenTo(this.reportLoader, "reports:async:incomplete", this.rerender);
         },
-        _attachAsyncLoader: function() {
-            this.reportLoader = new AsyncReportLoader(context.current_report);
+        _attachLoader: function() {
+            if(window.report_pdf){
+              this.reportLoader = new SyncReportLoader(context.current_report);
+            } else {
+              this.reportLoader = new AsyncReportLoader(context.current_report);
+            }
             this.reportLoader.setElement(this.$el);
         },
         render: function() {
           this.$el.empty();
-          this.$el.append(this.loadingView.render().$el);
+          if(!window.report_pdf){
+            this.$el.append(this.loadingView.render().$el);
+          }
           this.reportLoader.layout();
           this.reportLoader.loadWidgets(window.location.search.substring(1));
           return this;
