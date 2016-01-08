@@ -84,7 +84,7 @@ define(function(require) {
                 ]
             };
 
-            if(window.pdf === undefined) {
+            if(window.report_pdf === undefined) {
                 this.listenTo(context, 'report post render', _.debounce(function () {
                     setTimeout(function() {
                         new Chart(canvas[0].getContext("2d")).Bar(self.data, self.chartOptions);

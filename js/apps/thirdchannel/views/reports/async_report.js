@@ -7,10 +7,6 @@ define(function(require) {
         Templates = require('handlebarsTemplates'),
         WidgetView = require('thirdchannel/views/reports/index/widget'),
 
-        AsyncReportCollection = Backbone.Model.extend({
-            // need a url for fetching the report
-        }),
-
         /**
          * Acts as a mechanism for loading report widgets asynchronously. Requires as input a json object containing
          * the report breakdown, eg.:
@@ -33,15 +29,14 @@ define(function(require) {
                     console.error("No report data provided!");
                 }
                 this.reportData = reportData;
-                this.report = new AsyncReportCollection(reportData);
                 this.cancelObservable = rx.Observable.fromEvent(context, 'filter:query');
             },
 
-            layout: function () {
-                var self = this;
-                _.each(this.report.get('sections'), function(section) {
-                    self._layoutSection(section);
-                });
+            layout: function (report_meta) {
+                if (report_meta) {
+                  this.reportData = report_meta;
+                }
+                this._layoutSections(this.reportData.sections);
             },
 
             loadWidgets: function (filter) {
@@ -49,7 +44,7 @@ define(function(require) {
                     activeRequests = [],
                     widgetLookup = {};
                 // set up an observable to emit all widgets in this report
-                rx.Observable.from(self._extractWidgetMetaInfo(this.report))
+                rx.Observable.from(self._extractWidgetMetaInfo(self.reportData))
                 .map(function(widget_meta_data) {
                     // because the resulting subscription item is the response data of the widget from the server,
                     // we need a way to reference the original widget meta_data. cache the meta_data by widget_uuid for later retrieval
@@ -87,15 +82,13 @@ define(function(require) {
                     } else {
                       self.trigger("reports:async:incomplete");
                     }
-                    
-
                 });
 
             },
 
             _extractWidgetMetaInfo: function(report) {
                 var widgetMetaData = [];
-                _.each(report.get('sections'), function (section) {
+                _.each(report.sections, function (section) {
                     _.each(section.subsections, function(subsection){
                         _.each(subsection.widgets, function (widget) {
                             if (widget.report_widget_uuid) {
@@ -117,6 +110,12 @@ define(function(require) {
                 $widget.fadeIn(500);
                 //trigger the drawing of the d3 widgets
                 context.trigger("report post render");
+            },
+
+            _layoutSections: function(sections) {
+              _.each(sections, function(section) {
+                this._layoutSection(section);
+              }.bind(this));
             },
 
             _layoutSection: function(section) {

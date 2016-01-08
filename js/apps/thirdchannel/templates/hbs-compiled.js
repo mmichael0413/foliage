@@ -1503,7 +1503,9 @@ function program48(depth0,data) {
   if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\"></span>\n                    by\n                    <a href=\"/programs/";
+    + "\"></span> <span>("
+    + escapeExpression((helper = helpers.formatSecondsToDate || (depth0 && depth0.formatSecondsToDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.created_at), options) : helperMissing.call(depth0, "formatSecondsToDate", (depth0 && depth0.created_at), options)))
+    + ")</span>\n                    by\n                    <a href=\"/programs/";
   if (helper = helpers.current_program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.current_program); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)

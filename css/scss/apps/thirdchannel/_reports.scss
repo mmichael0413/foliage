@@ -162,6 +162,17 @@
   h2 {
     color: $red;
   }
+
+  &.min {
+    > * {
+      display: inline-block;
+    }
+    h2 {
+      color: $text-color;
+      font-weight: normal;
+      font-size: 1em;
+    }
+  }
 }
 
 .leading-row {

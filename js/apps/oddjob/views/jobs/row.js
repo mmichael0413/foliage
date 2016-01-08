@@ -32,6 +32,15 @@ define(function(require) {
 
         renderRows: function (collection) {
             var $tasksContainer = this.$el.find('.tasks-container');
+            var $frequenciesContainer = this.$el.find('.frequencies-container');
+            
+            //JV
+            $tasksContainer.hide();
+            $frequenciesContainer.hide();
+
+            //Add header to top of list only once
+            $($tasksContainer).html(Templates['oddjob/tasks/header']);
+
             collection.each(function (job) {
                 var view = new TaskRowView({model: job});
                 view.render().$el.appendTo($tasksContainer);
