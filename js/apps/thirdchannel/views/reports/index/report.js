@@ -33,16 +33,19 @@ define(function(require) {
           this.reportLoader.loadWidgets(window.location.search.substring(1));
           return this;
         },
-        rerender: function(qs){
+        rerender: function(){
+          var qs = window.location.search.substring(1);
           this.$el.empty();
           this.$el.append(this.loadingView.render().$el);
           var report_id_match = /report=(\d+)/.exec(qs);
+          var uri = context.links.reports.meta;
           if(report_id_match !== null){
-            $.getJSON(context.links.reports.meta + "?report=" + report_id_match[1], function(data){
+              uri += "?report=" + report_id_match[1];
+          }
+          $.getJSON(uri, function(data){
               this.reportLoader.layout(data);
               this.reportLoader.loadWidgets(qs);
-            }.bind(this));
-          }
+          }.bind(this));
           return this;
         }
     });
