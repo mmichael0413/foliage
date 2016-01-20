@@ -37,10 +37,10 @@ define(function (require) {
                 var valid = false;
                 var data = {address: value};
                 $.ajax({
-                    url: "//maps.googleapis.com/maps/api/geocode/json",
+                    url: "http://maps.googleapis.com/maps/api/geocode/json",
                     data: data,
-                    async: false
-
+                    async: false,
+                    beforeSend: function(xhr){xhr.setRequestHeader('Origin', window.location.origin.replace("https:", "http:"));}
                 }).done(function(response){
                     if(response.status === 'OK') {
                         valid = true;
