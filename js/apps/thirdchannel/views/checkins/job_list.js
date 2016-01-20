@@ -8,8 +8,6 @@ define(function(require){
         className: 'job-list',
         loadingHTML: HandlebarsTemplates['thirdchannel/loading_icon'],
         render: function() {
-            console.log("job list");
-            console.log(this.model);
             var dates = _.keys(this.model.jobs_by_date).sort();
             _.each(dates, function(date){
                 var job_uuids_for_date = this.model.jobs_by_date[date];

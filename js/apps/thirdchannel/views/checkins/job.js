@@ -22,8 +22,6 @@ define(function(require){
                 // and format it as a localized date in utc
                 this.model.local_date = moment.utc(options.model.date).format("l");
             }
-            console.log("job");
-            console.log(this.model);
         },
         render: function() {
             this.$el.html(this.template(this.model));
