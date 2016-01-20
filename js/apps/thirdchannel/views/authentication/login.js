@@ -39,8 +39,7 @@ define(function (require) {
                 $.ajax({
                     url: "http://maps.googleapis.com/maps/api/geocode/json",
                     data: data,
-                    async: false,
-                    beforeSend: function(xhr){xhr.setRequestHeader('Origin', window.location.origin.replace("https:", "http:"));}
+                    async: false
                 }).done(function(response){
                     if(response.status === 'OK') {
                         valid = true;
