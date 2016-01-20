@@ -3,7 +3,7 @@ define(function(require){
         $ = require('jquery'),
         context = require('context'),
         HandleBarsTemplates = require('handlebarsTemplates'),
-        TaskList = require('thirdchannel/views/checkins/task_list');
+        JobList = require('thirdchannel/views/checkins/job_list');
 
 
     return Backbone.View.extend({
@@ -19,7 +19,9 @@ define(function(require){
         },
 
         render: function() {
-            this.$el.html(this.template(this.model.attributes));
+            console.log("store");
+            console.log(this.model);
+            this.$el.html(this.template(this.model.store));
             return this;
         },
 
@@ -32,13 +34,9 @@ define(function(require){
             $target.html(this.closeBtn);
             $target.addClass('close-jobs');
 
-            this.taskList = new TaskList({
-                tasks: this.model.get('tasks'),
-                customerStoreId: this.model.get('id'),
-                authenticityToken: this.model.get('authenticity_token')
-            });
+            this.jobList = new JobList({model: this.model});
 
-            this.$el.append(this.taskList.render().el);
+            this.$el.append(this.jobList.render().el);
         },
 
         closeVisits: function(e){
@@ -50,7 +48,7 @@ define(function(require){
             $target.html(this.openBtn);
             $target.addClass('open-jobs');
 
-            this.taskList.remove();
+            this.jobList.remove();
 
         }
     });

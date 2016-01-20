@@ -13,8 +13,13 @@ define(function(require) {
             if(this.collection.length === 0){
                 $body.append("No stores available for checkin");
             }
-            this.collection.each(function(model) {
-                $body.append(new StoreView({model: model}).render().el);
+            this.collection.each(function(store) {
+                var storeModel = {
+                    store: store.attributes,
+                    jobs_by_date: window.bootstrap.jobs_by_date_by_store[store.attributes.id],
+                    jobs: window.bootstrap.jobs_by_uuid
+                };
+                $body.append(new StoreView({model: storeModel}).render().el);
             });
 
             this.afterRender();
