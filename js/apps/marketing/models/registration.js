@@ -39,7 +39,7 @@ define(function (require) {
             var data = {address: attrs.zip};
 
             $.ajax({
-                url: "http://maps.googleapis.com/maps/api/geocode/json",
+                url: "//maps.googleapis.com/maps/api/geocode/json",
                 data: data,
                 async: false
 
