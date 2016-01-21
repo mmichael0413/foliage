@@ -2,6 +2,7 @@ define(function (require) {
 
     var $ = require('jquery'),
         _ = require('underscore'),
+        moment = require('moment'),
         Handlebars = require('handlebars'),
         chartistSeriesNames = [
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
@@ -226,6 +227,12 @@ define(function (require) {
             minute: "2-digit",
             timeZoneName: "short"
         });
+    });
+
+    // parse date (iso8601 format) as a date in utc
+    // and format it as a localized date in utc
+    Handlebars.registerHelper('localizedUTCDate', function(iso8601Date){
+        return moment.utc(iso8601Date).format("l");
     });
 
 });
