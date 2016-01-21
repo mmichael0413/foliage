@@ -19,7 +19,7 @@ define(function(require){
         },
 
         render: function() {
-            this.$el.html(this.template(this.model.store));
+            this.$el.html(this.template(this.model.store_details));
             return this;
         },
 

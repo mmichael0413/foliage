@@ -8,13 +8,16 @@ define(function(require){
         className: 'job-list',
         loadingHTML: HandlebarsTemplates['thirdchannel/loading_icon'],
         render: function() {
-            var dates = _.keys(this.model.jobs_by_date).sort();
-            _.each(dates, function(date){
-                var job_uuids_for_date = this.model.jobs_by_date[date];
-                _.each(job_uuids_for_date, function(job_uuid){
-                    var job = this.model.jobs[job_uuid];
-                    var jobView = new JobView({model: {job: job, date: date, store: this.model.store}});
-                    this.$el.append(jobView.render().el);
+            _.chain(this.model.job_uuids_by_date).keys().sort().each(function(date){
+                _.each(this.model.job_uuids_by_date, function(job_uuids, date){
+                    _.each(job_uuids, function(job_uuid){
+                        var jobView = new JobView({model: {
+                            job: this.model.job_details_by_uuid[job_uuid],
+                            date: date,
+                            store: this.model.store_details
+                        }});
+                        this.$el.append(jobView.render().el);
+                    }.bind(this));
                 }.bind(this));
             }.bind(this));
             return this;

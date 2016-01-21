@@ -9,12 +9,11 @@
         </div>
         <div class="col-1-5">
             <form accept-charset="UTF-8" action="{{form_url}}" method="post">
-
                 <input id="store_uuid" name="store_uuid" type="hidden" value="{{../store.id}}">
                 <input id="survey_uuid" name="survey_uuid" type="hidden" value="{{surveyUUID}}">
                 <input id="task_uuid" name="task_uuid" type="hidden" value="{{uuid}}">
                 <input id="job_uuid" name="job_uuid" type="hidden" value="{{../job.uuid}}">
-                <input name="authenticity_token" value="{{../store.authenticity_token}}" type="hidden">
+                <input name="authenticity_token" value="{{../auth_token}}" type="hidden">
                 <button class="btn primary" name="commit"><i class="ic fa ic_location"></i><span>Start</span></button>
             </form>
         </div>

@@ -30,7 +30,8 @@ define(function(require){
 
             this.taskList = new TaskList({model:{
                 job: this.model.job,
-                store: this.model.store
+                store: this.model.store,
+                auth_token: window.bootstrap.auth_token
             }});
 
             this.$el.append(this.taskList.render().el);

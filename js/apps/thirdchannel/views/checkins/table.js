@@ -10,14 +10,14 @@ define(function(require) {
             var $body = this.$el.find(this.bodySelector);
 
             $body.html('');
-            if(this.collection.length === 0){
+            if(window.bootstrap.pages.totalCount === 0){
                 $body.append("No stores available for checkin");
             }
-            this.collection.each(function(store) {
+            _.each(window.bootstrap.job_uuids_by_date_by_store_uuid, function(job_uuids_by_date, store_uuid) {
                 var storeModel = {
-                    store: store.attributes,
-                    jobs_by_date: window.bootstrap.jobs_by_date_by_store[store.attributes.id],
-                    jobs: window.bootstrap.jobs_by_uuid
+                    store_details: window.bootstrap.store_details_by_uuid[store_uuid],
+                    job_uuids_by_date: job_uuids_by_date,
+                    job_details_by_uuid: window.bootstrap.job_details_by_uuid
                 };
                 $body.append(new StoreView({model: storeModel}).render().el);
             });

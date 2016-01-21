@@ -1733,7 +1733,7 @@ function program1(depth0,data,depth1) {
   if (helper = helpers.form_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.form_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" method=\"post\">\n\n                <input id=\"store_uuid\" name=\"store_uuid\" type=\"hidden\" value=\""
+    + "\" method=\"post\">\n                <input id=\"store_uuid\" name=\"store_uuid\" type=\"hidden\" value=\""
     + escapeExpression(((stack1 = ((stack1 = (depth1 && depth1.store)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">\n                <input id=\"survey_uuid\" name=\"survey_uuid\" type=\"hidden\" value=\"";
   if (helper = helpers.surveyUUID) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -1746,7 +1746,7 @@ function program1(depth0,data,depth1) {
     + "\">\n                <input id=\"job_uuid\" name=\"job_uuid\" type=\"hidden\" value=\""
     + escapeExpression(((stack1 = ((stack1 = (depth1 && depth1.job)),stack1 == null || stack1 === false ? stack1 : stack1.uuid)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">\n                <input name=\"authenticity_token\" value=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth1 && depth1.store)),stack1 == null || stack1 === false ? stack1 : stack1.authenticity_token)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + escapeExpression(((stack1 = (depth1 && depth1.auth_token)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" type=\"hidden\">\n                <button class=\"btn primary\" name=\"commit\"><i class=\"ic fa ic_location\"></i><span>Start</span></button>\n            </form>\n        </div>\n    </div>\n";
   return buffer;
   }
