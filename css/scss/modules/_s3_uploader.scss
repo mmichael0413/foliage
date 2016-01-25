@@ -21,6 +21,12 @@
     margin-bottom: 1em;
     width: 100%;
 
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
     select {
       margin-bottom: 0;
     }
