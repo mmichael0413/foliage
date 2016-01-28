@@ -79,14 +79,9 @@ define(function(require) {
 
                     this.model.set('idx', swapIdx);
                     modelToSwap.set('idx', currentIdx);
-
-                    collection.parent.updateChildIndices().done(function() {
-                        collection.sort();
-                    }).fail(function() {
-                        context.trigger('error');
-                    });
                 }
             }
+            this.reindex(new this.model.reindexModel({baseUrl: collection.url()}), collection)
         },
         moveDown: function(e) {
             this.stopEvent(e);
@@ -104,14 +99,17 @@ define(function(require) {
 
                     this.model.set('idx', swapIdx);
                     modelToSwap.set('idx', currentIdx);
-
-                    collection.parent.updateChildIndices().done(function() {
-                        collection.sort();
-                    }).fail(function() {
-                        context.trigger('error');
-                    });
                 }
             }
+            this.reindex(new this.model.reindexModel({baseUrl: collection.url()}), collection)
+        },
+        reindex: function(model, collection) {
+            model.set("order", collection.map(function(model){
+                return {id: model.get('id'), idx: model.get('idx')};
+            })).save().fail(function() {
+                context.trigger('error');
+            });
+            collection.sort();
         },
         delete: function(e) {
             this.stopEvent(e);

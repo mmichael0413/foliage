@@ -449,6 +449,26 @@ function program10(depth0,data) {
   return buffer;
   }
 
+function program12(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                ";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.lookUps)),stack1 == null || stack1 === false ? stack1 : stack1.show_additional_images), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            ";
+  return buffer;
+  }
+
+function program14(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                ";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.lookUps)),stack1 == null || stack1 === false ? stack1 : stack1.require_additional_images), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            ";
+  return buffer;
+  }
+
   buffer += "<div class=\"editor\">\n    <div class=\"header\">\n        <label>\n            ";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.id), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -463,13 +483,25 @@ function program10(depth0,data) {
     + "\">\n        <label>Type</label>\n        <select name=\"survey_type\" required data-placeholder=\"Choose a survey type\">\n            <option></option>\n            ";
   stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.survey_type), options) : helperMissing.call(depth0, "select", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.survey_type), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </select>\n        <label>Show Before/After Images?</label>\n        <select name=\"show_images\" required data-placeholder=\"Choose an option\">\n            <option></option>\n            ";
+  buffer += "\n        </select>\n        <label>Request Before/After Images?</label>\n        <select name=\"show_images\" required data-placeholder=\"Choose an option\">\n            <option></option>\n            ";
   stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_images), options) : helperMissing.call(depth0, "select", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_images), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </select>\n        <label>Require Before/After Images to be submitted with survey?</label>\n        <select name=\"require_images\" required data-placeholder=\"Choose an option\">\n            <option></option>\n            ";
   stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), options) : helperMissing.call(depth0, "select", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </select>\n    </div>\n</div>\n\n\n\n\n\n\n\n";
+  buffer += "\n        </select>\n        <label>Request Additional Images?</label>\n        <select name=\"show_additional_images\" required data-placeholder=\"Choose an option\">\n            <option></option>\n            ";
+  stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_additional_images), options) : helperMissing.call(depth0, "select", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_additional_images), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </select>\n        <label>Require Additional Images to be submitted with survey?</label>\n        <select name=\"require_additional_images\" required data-placeholder=\"Choose an option\">\n            <option></option>\n            ";
+  stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(14, program14, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_additional_images), options) : helperMissing.call(depth0, "select", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_additional_images), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </select>\n        <label>Descriptive text that will appear ahead of the \"before\" images prompt</label>\n        <input type=\"text\" name=\"before_images_description\" placeholder=\"Please enter a description\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.before_images_description)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n        <label>Descriptive text that will appear ahead of the \"after\" images prompt</label>\n        <input type=\"text\" name=\"after_images_description\" placeholder=\"Please enter a description\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.after_images_description)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n        <label>Descriptive text that will appear ahead of the additional \"images\" prompt</label>\n        <input type=\"text\" name=\"additional_images_description\" placeholder=\"Please enter a description\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.additional_images_description)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n    </div>\n</div>\n\n\n\n\n\n\n\n";
   return buffer;
   }));
 

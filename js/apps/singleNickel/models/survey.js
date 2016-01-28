@@ -27,6 +27,14 @@ define(function(require){
             require_images: {
                 "true": "Yes",
                 "false": "No"
+            },
+            show_additional_images: {
+                "true": "Yes",
+                "false": "No"
+            },
+            require_additional_images: {
+                "true": "Yes",
+                "false": "No"
             }
         },
         events: {
@@ -47,16 +55,6 @@ define(function(require){
                     url: this.url() + '/lock',
                     type: 'PUT'
                 };
-
-            _.extend(options, opts);
-
-            return (this.sync || Backbone.sync).call(this, null, this, options);
-        },
-        reindex: function(opts) {
-            var options = {
-                url: this.url() + '/reindex/',
-                type: 'PUT'
-            };
 
             _.extend(options, opts);
 
@@ -95,6 +93,26 @@ define(function(require){
                 message: "Required"
             },
             show_images: {
+                required: true,
+                message: "Required"
+            },
+            require_additional_images: {
+                required: true,
+                message: "Required"
+            },
+            show_additional_images: {
+                required: true,
+                message: "Required"
+            },
+            additional_images_description: {
+                required: true,
+                message: "Required"
+            },
+            before_images_description: {
+                required: true,
+                message: "Required"
+            },
+            after_images_description: {
                 required: true,
                 message: "Required"
             }
