@@ -128,6 +128,7 @@ define(function (require) {
                 // Do things on Nav Close
                 this.$siteWrapper.removeClass('show-nav');
                 this.$siteSubmenu.removeClass('show-subnav');
+                this.$siteSubmenu.find('.site-submenu-component').hide();
             } else {
                 // Do things on Nav Open
                 this.$siteWrapper.addClass('show-nav');
@@ -142,6 +143,7 @@ define(function (require) {
                 // Do things on Nav Close
                 this.$siteWrapper.removeClass('show-nav');
                 this.$siteSubmenu.removeClass('show-subnav');
+                this.$siteSubmenu.find('.site-submenu-component').hide();
             }
         },
         toggleFilter: function (e) {
@@ -178,14 +180,22 @@ define(function (require) {
                 e.preventDefault();
                 e.stopPropagation();
             }
+
             if (this.$siteSubmenu.hasClass('show-subnav')) {
                 // Do things on Nav Close
                 this.$siteSubmenu.removeClass('show-subnav');
-               // this.subNavState = 'collapsed'
+                this.$siteSubmenu.find('.site-submenu-component').hide();
             } else {
                 // Do things on Nav Open
+                var $triggerEl = $(e.target);
+                
+                if($triggerEl[0].hasAttribute('rel')) {
+                    this.$siteSubmenu.find($triggerEl.attr('rel')).show();
+                } else {
+                    this.$siteSubmenu.find('.site-submenu-component').first().show();
+                }
+
                 this.$siteSubmenu.addClass('show-subnav');
-               // this.subNavState = 'expanded'
             }
         },
         closeSubNav: function() {
