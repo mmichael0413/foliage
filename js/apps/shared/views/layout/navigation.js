@@ -202,7 +202,6 @@ define(function (require) {
             if (this.$siteSubmenu.hasClass('show-subnav')) {
                 // Do things on Nav Close
                 this.$siteSubmenu.removeClass('show-subnav');
-
             }
         },
         collapseNav: function (e, trigger) {
