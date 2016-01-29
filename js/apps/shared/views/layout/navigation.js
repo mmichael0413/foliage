@@ -187,9 +187,9 @@ define(function (require) {
                 this.$siteSubmenu.find('.site-submenu-component').hide();
             } else {
                 // Do things on Nav Open
-                var $triggerEl = $(e.target);
-                
-                if($triggerEl[0].hasAttribute('rel')) {
+                var $triggerEl = $(e.target).closest('.nav-item');
+
+                if($triggerEl.attr('rel') !== undefined) {
                     this.$siteSubmenu.find($triggerEl.attr('rel')).show();
                 } else {
                     this.$siteSubmenu.find('.site-submenu-component').first().show();
@@ -202,6 +202,7 @@ define(function (require) {
             if (this.$siteSubmenu.hasClass('show-subnav')) {
                 // Do things on Nav Close
                 this.$siteSubmenu.removeClass('show-subnav');
+                this.$siteSubmenu.find('.site-submenu-component').hide();
             }
         },
         collapseNav: function (e, trigger) {
