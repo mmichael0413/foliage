@@ -28,6 +28,7 @@ define(function(require){
             '(/)': 'programList',
             'accounts(/)': 'accountList',
             'accounts/new(/)': 'accountNew',
+            'stores/export': 'storesExport',
             'stores/:storeId(/)': 'storeShow',
             'programs/:programId(/)': 'programStoreList',
             'programs/:programId/uploads(/)': 'uploadList',
@@ -54,6 +55,8 @@ define(function(require){
             var view = new AccountNewView({model: account});
             this.swap(view);
         },
+
+        storesExport: function() { /* NO-OP */ },
 
         storeShow: function(storeId) {
             var store = new Store({id: storeId});
