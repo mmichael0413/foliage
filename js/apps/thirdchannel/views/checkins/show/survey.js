@@ -124,47 +124,57 @@ define(function(require) {
                 imagesValid = true;
 
             var $beforeImages = this.$('.images.before[required]'),
-                $afterImages = this.$('.images.after[required]');
+                $afterImages = this.$('.images.after[required]'),
+                $extraImages = this.$('.images.extra[required]'),
+                requiredLabel = '<label class="error">This field is required.</label>';
 
-            if ($beforeImages.length > 0 || $afterImages.length > 0) {
-                // TODO: move to template?
-                var requiredLabel = '<label class="error">This field is required.</label>';
+            this.$('.image_label').parent().removeClass('error');
 
-                // TODO: jquery validator doesn't play nice with input arrays... This should get updated once we re-arch the checkin system
-                // clean up existing errors before re-validating
+            if ($beforeImages.length > 0) {
                 $beforeImages.removeClass('error');
                 $beforeImages.find('label.error').remove();
-
-                $afterImages.removeClass('error');
-                $afterImages.find('label.error').remove();
-
-                this.$('.image_label').parent().removeClass('error');
 
                 if($beforeImages.find('.holder').length === 0) {
                     $beforeImages.addClass('error');
                     this.$('#before_file').after(requiredLabel);
                     imagesValid = false;
                 }
+            }
+
+            if ($afterImages.length > 0) {
+                $afterImages.removeClass('error');
+                $afterImages.find('label.error').remove();
 
                 if($afterImages.find('.holder').length === 0) {
                     $afterImages.addClass('error');
                     this.$('#after_file').after(requiredLabel);
                     imagesValid = false;
                 }
-
-                // verify labels are present for all images
-                var $labels = this.$('.body.images .image_label');
-
-                _.each($labels, function(labelField) {
-                    var $labelField = $(labelField);
-                    if($labelField.val() === '') {
-                        imagesValid = false;
-
-                        $labelField.parent().addClass('error');
-                        $labelField.parent().append(requiredLabel);
-                    }
-                });
             }
+
+            if ($extraImages.length > 0) {
+                $extraImages.removeClass('error');
+                $extraImages.find('label.error').remove();
+
+                if ($extraImages.find('.holder').length === 0) {
+                    $extraImages.addClass('error');
+                    this.$('#extra_file').after(requiredLabel);
+                    imagesValid = false;
+                }
+            }
+
+            // verify labels are present for all images
+            var $labels = this.$('.body.images .image_label');
+
+            _.each($labels, function(labelField) {
+                var $labelField = $(labelField);
+                if($labelField.val() === '') {
+                    imagesValid = false;
+
+                    $labelField.parent().addClass('error');
+                    $labelField.parent().append(requiredLabel);
+                }
+            });
 
             return questionsValid && imagesValid;
         },
