@@ -16,6 +16,7 @@ require.config({
         'handlebars'    : '../libs/bower_components/handlebars/handlebars.min',
         'handlebarsTemplates': 'oddjob/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
+        'moment' : '../libs/bower_components/moment/moment',
         'helpers'       : 'thirdchannel/utils/helpers',
         'context'       : 'shared/utils/context',
         'quill'         : '../libs/quill/custom',
