@@ -21,7 +21,7 @@ require.config({
         'chartjs_stacked_bar': '../libs/bower_components/Chart.StackedBar.js/src/Chart.StackedBar',
         'slick_carousel': '../libs/bower_components/slick.js/slick/slick',
         'livestamp' : '../libs/livestamp.min',
-        'moment' : '../libs/moment',
+        'moment' : '../libs/bower_components/moment/moment',
         'chosen': "../libs/bower_components/chosen/chosen.jquery",
         'jquery-validate' : '../libs/bower_components/jquery-validation/dist/jquery.validate',
         'serializeObject' : "../libs/bower_components/jquery-serialize-object/jquery.serialize-object",

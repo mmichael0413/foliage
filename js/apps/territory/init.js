@@ -11,6 +11,7 @@ require.config({
         'handlebars': '../libs/bower_components/handlebars/handlebars.min',
         'handlebarsTemplates': '../app/templates/hbs-compiled',
         'handlebarsHelpers' : '../app/utils/handlebarsHelpers',
+        'moment' : '../libs/bower_components/moment/moment',
         'context': '../app/utils/context',
     },
     shim: {
