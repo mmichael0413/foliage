@@ -528,6 +528,53 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
+this["oddjob"]["templates"]["oddjob/blackout_schemes/blackout_scheme"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n				<div class=\"section\">\n								Warning: Changes to this blackout scheme will affect the following jobs:\n								<ul>\n												";
+  options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
+  if (helper = helpers.assignedJobs) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.assignedJobs); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.assignedJobs) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n								</ul>\n				</div>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "";
+  buffer += "\n																<li>"
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + "</li>\n												";
+  return buffer;
+  }
+
+  buffer += "<h1 class=\"title\">Editing Blackout Scheme</h1>\n\n<div class=\"actions btn primary\" id=\"blackout-scheme-save\">\n				<i class=\"ic fa ic_check\"></i>\n				<span>Save</span>\n</div>\n\n";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.assignedJobs), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n<div class=\"section\">\n				<h3>Name</h3>\n				<input id=\"blackout-scheme-name\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.blackoutScheme)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" required>\n</div>\n\n<div class=\"section\">\n				<h3>Dates</h3>\n				<button id=\"blackout-scheme-date-add\">Add Date</button>\n				<div id=\"blackout-scheme-dates\">\n				</div>\n</div>\n";
+  return buffer;
+  });
+
+this["oddjob"]["templates"]["oddjob/blackout_schemes/date_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"blackout-scheme-date-row\">\n<input class=\"blackout-scheme-date-input\" type=\"date\" required value=\""
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + "\">\n<button class=\"blackout-scheme-date-remove\">Remove</button>\n</div>\n";
+  return buffer;
+  });
+
 this["oddjob"]["templates"]["oddjob/frequencies/row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};

@@ -239,4 +239,31 @@ div.task.pure-g.row {
 	border:0;
 }
 
+#blackoutSchemesContainer {
+				margin-top: 1em;
+}
+
+.blackout-scheme-new-button {
+				margin-top: 1em;
+}
+
+.blackout-scheme-buttons {
+				text-align: right;
+}
+.blackout-scheme {
+				form {
+								display: inline;
+				}
+}
+
+.section {
+				margin-top: 2em;
+}
+#blackout-scheme-date-add {
+				display: block;
+}
+#blackout-scheme-name {
+				width: 100%;
+}
+
 @import "upload";
