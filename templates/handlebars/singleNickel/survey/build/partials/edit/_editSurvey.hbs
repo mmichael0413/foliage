@@ -19,7 +19,7 @@
                 {{/each}}
             {{/select}}
         </select>
-        <label>Show Before/After Images?</label>
+        <label>Request Before/After Images?</label>
         <select name="show_images" required data-placeholder="Choose an option">
             <option></option>
             {{#select attributes.show_images}}
@@ -37,6 +37,30 @@
                 {{/each}}
             {{/select}}
         </select>
+        <label>Request Additional Images?</label>
+        <select name="show_additional_images" required data-placeholder="Choose an option">
+            <option></option>
+            {{#select attributes.show_additional_images}}
+                {{#each lookUps.show_additional_images}}
+                    <option value="{{@key}}">{{this}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+        <label>Require Additional Images to be submitted with survey?</label>
+        <select name="require_additional_images" required data-placeholder="Choose an option">
+            <option></option>
+            {{#select attributes.require_additional_images}}
+                {{#each lookUps.require_additional_images}}
+                    <option value="{{@key}}">{{this}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+        <label>Descriptive text that will appear ahead of the "before" images prompt</label>
+        <input type="text" name="before_images_description" placeholder="Please enter a description" value="{{attributes.before_images_description}}">
+        <label>Descriptive text that will appear ahead of the "after" images prompt</label>
+        <input type="text" name="after_images_description" placeholder="Please enter a description" value="{{attributes.after_images_description}}">
+        <label>Descriptive text that will appear ahead of the additional "images" prompt</label>
+        <input type="text" name="additional_images_description" placeholder="Please enter a description" value="{{attributes.additional_images_description}}">
     </div>
 </div>
 
