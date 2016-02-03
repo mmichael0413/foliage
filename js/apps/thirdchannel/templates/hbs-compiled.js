@@ -2386,7 +2386,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"export-modal progress\">Generating the requested file...\n    <div class=\"small\">(This may take a while, please wait.)</div>\n    <div><i class=\"ic ic_processing fa-spin\"></i></div>\n</div>";
+  return "<div class=\"export-modal progress\">Generating the requested file...\n    <div class=\"small\">(This may take a while, please wait.)</div>\n    <div><i class=\"ic ic_processing fa fa-spin\"></i></div>\n</div>";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/modals/export/success"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -3378,7 +3378,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "\n                <p><a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">View Breakdown</a></p>\n                ";
+  return "\n                <p><a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">View Breakdown</a></p>\n            ";
   }
 
 function program3(depth0,data,depth1) {
@@ -3400,7 +3400,7 @@ function program3(depth0,data,depth1) {
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\n                ";
+    + "\n            ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_view_list), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </th>\n        </thead>\n        ";
