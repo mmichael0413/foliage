@@ -71,6 +71,10 @@ module.exports = function (grunt) {
 
         options.preprocessors = { '**/js/apps/**/*.js': 'coverage' };
         options.reporters = ['coverage'];
+        options.coverageReporter = {
+            type : 'cobertura',
+            dir : 'coverage/'
+        }
 
         return options;
     };
