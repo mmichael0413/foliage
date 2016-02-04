@@ -10,6 +10,7 @@
     "lodash": "3.6.0"
   },
   "devDependencies": {
+    "grunt": "*",
     "grunt-aws-s3": "*",
     "grunt-concurrent": "*",
     "grunt-contrib-clean": "*",
