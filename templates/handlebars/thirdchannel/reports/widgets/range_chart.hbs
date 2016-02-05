@@ -1,7 +1,11 @@
 <div class="widget {{config.widget_class}}">
     <table class="chart range">
         <thead>
-            <th colspan="2">{{title}}</th>
+            <th colspan="2">{{title}}
+            {{#if show_view_list}}
+                <p><a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a></p>
+            {{/if}}
+            </th>
         </thead>
         {{#each results}}
             <tr>
@@ -10,7 +14,5 @@
             </tr>
         {{/each}}
     </table>
-    {{#if show_view_list}}
-        <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
-    {{/if}}
+
 </div>

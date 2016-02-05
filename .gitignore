@@ -7,4 +7,4 @@ js/libs/bower_components
 node_modules/*
 .DS_Store
 foliage.iml
-
+coverage/
