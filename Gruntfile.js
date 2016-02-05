@@ -74,7 +74,7 @@ module.exports = function (grunt) {
         options.coverageReporter = {
             type : 'cobertura',
             dir : 'coverage/'
-        }
+        };
 
         return options;
     };
