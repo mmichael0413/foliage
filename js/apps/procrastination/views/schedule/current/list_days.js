@@ -10,7 +10,7 @@ define(function (require) {
         tagName: 'section',
         template: HandlebarsTemplates['procrastination/schedule/schedule_row_header'],
         initialize: function(options) {
-            this.date = moment(options.date).utc().format('MM/DD/YYYY');
+            this.date = options.date;
             this.visits = options.visits;
             this.showCompleted = options.showCompleted;
         },
