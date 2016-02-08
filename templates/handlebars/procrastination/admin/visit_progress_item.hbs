@@ -5,7 +5,7 @@
     {{/if}}
     {{storeName}}<br/>{{city}}, {{state}}
 </p>
-<p class="item col-2-12"><a href="{{links.cycleUrl}}">{{formattedDateScheduled}}</a></p>
-<p class="item col-2-12">{{formattedDateCompleted}}</p>
+<p class="item col-2-12"><a href="{{links.cycleUrl}}">{{localizedUTCDate dateScheduled}}</a></p>
+<p class="item col-2-12">{{localizedUTCDate dateCompleted}}</p>
 <p class="item col-1-12">{{daysLate}}</p>
 <p class="item col-2-12">{{daysBetweenCompletion}}</p>

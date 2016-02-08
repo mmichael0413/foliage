@@ -2,6 +2,7 @@
 @import "../../lib/pure.grids-core";
 @import "../../lib/pure.responsive-grid";
 @import "../../lib/quill.snow";
+@import "../../lib/chosen";
 
 @import "../../base/fonts_all";
 @import "../../base/base";
@@ -104,6 +105,11 @@
 }
 
 .job {
+	.blackout-schemes-container {
+		background-color: $light-gray;
+		margin: 0px 10px 0px 10px !important;
+		padding:10px;
+	}
 	.frequencies-container {
 		background-color: $light-blue;
 		margin: 0px 10px 0px 10px !important;
@@ -237,6 +243,34 @@ div.tasks-container {
 div.task.pure-g.row {
 	padding:0;
 	border:0;
+}
+
+
+#blackoutSchemesContainer {
+	margin-top: 1em;
+
+	.blackout-scheme-new-button {
+		margin-top: 1em;
+	}
+
+	.blackout-scheme-buttons {
+		text-align: right;
+	}
+	.blackout-scheme {
+		form {
+			display: inline;
+		}
+	}
+	.section {
+		margin-top: 2em;
+	}
+}
+
+#blackout-scheme-date-add {
+				display: block;
+}
+#blackout-scheme-name {
+				width: 100%;
 }
 
 @import "upload";

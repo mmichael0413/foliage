@@ -585,7 +585,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["procrastination"]["templates"]["procrastination/admin/visit_progress_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
@@ -625,14 +625,10 @@ function program1(depth0,data) {
   buffer += escapeExpression(stack1)
     + "\n</p>\n<p class=\"item col-2-12\"><a href=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.cycleUrl)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">";
-  if (helper = helpers.formattedDateScheduled) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.formattedDateScheduled); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</a></p>\n<p class=\"item col-2-12\">";
-  if (helper = helpers.formattedDateCompleted) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.formattedDateCompleted); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
+    + "\">"
+    + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.dateScheduled), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.dateScheduled), options)))
+    + "</a></p>\n<p class=\"item col-2-12\">"
+    + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.dateCompleted), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.dateCompleted), options)))
     + "</p>\n<p class=\"item col-1-12\">";
   if (helper = helpers.daysLate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.daysLate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -641,7 +637,7 @@ function program1(depth0,data) {
   if (helper = helpers.daysBetweenCompletion) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.daysBetweenCompletion); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>";
+    + "</p>\n";
   return buffer;
   });
 
@@ -702,7 +698,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["procrastination"]["templates"]["procrastination/schedule/schedule_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
@@ -712,15 +708,13 @@ function program1(depth0,data) {
 
 function program3(depth0,data) {
   
-  var buffer = "", stack1, helper;
+  var buffer = "", stack1, helper, options;
   buffer += "\n    <div class=\"col-2-12\">";
   if (helper = helpers.totalDuration) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.totalDuration); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " mins</div>\n    <div class=\"col-3-12 hidden-xs\">";
-  if (helper = helpers.dateCompleted) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.dateCompleted); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
+    + " mins</div>\n    <div class=\"col-3-12 hidden-xs\">"
+    + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.dateCompleted), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.dateCompleted), options)))
     + "</div>\n    <div class=\"col-1-12 col-sm-3-12 center\">";
   if (helper = helpers.taskCount) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.taskCount); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -761,13 +755,14 @@ function program5(depth0,data) {
   buffer += "\n\n\n";
   stack1 = self.invokePartial(partials.tasks, 'tasks', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
   return buffer;
   });
 
 this["procrastination"]["templates"]["procrastination/schedule/schedule_row_header"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
@@ -781,10 +776,8 @@ function program3(depth0,data) {
   return "\n        <h3 class=\"header col-4-12 hidden-xs\">Duration</h3>\n        <h3 class=\"header col-2-12 col-sm-3-12 center\">Tasks</h3>\n\n    ";
   }
 
-  buffer += "<div class=\"pure-g\">\n    <h3 class=\"header col-6-12 col-sm-9-12\">";
-  if (helper = helpers.date) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.date); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
+  buffer += "<div class=\"pure-g\">\n    <h3 class=\"header col-6-12 col-sm-9-12\">"
+    + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.date), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.date), options)))
     + "</h3>\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.showCompleted), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -889,7 +882,7 @@ function program1(depth0,data) {
   buffer += "\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.canUnassign), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>";
+  buffer += "\n</div>\n";
   return buffer;
   });
 

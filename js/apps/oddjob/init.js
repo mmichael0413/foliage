@@ -16,10 +16,12 @@ require.config({
         'handlebars'    : '../libs/bower_components/handlebars/handlebars.min',
         'handlebarsTemplates': 'oddjob/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
+        'moment' : '../libs/bower_components/moment/moment',
         'helpers'       : 'thirdchannel/utils/helpers',
         'context'       : 'shared/utils/context',
         'quill'         : '../libs/quill/custom',
-        'noty'          : '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged'
+        'noty'          : '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged',
+        'chosen' : "../libs/bower_components/chosen/chosen.jquery",
     },
     shim: {
         "jquery": {

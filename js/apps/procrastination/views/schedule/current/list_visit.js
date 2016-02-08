@@ -20,14 +20,14 @@ define(function (require) {
         },
 
         render: function() {
-            var dateCompleted = this.model.get('dateCompleted') ? moment(this.model.get('dateCompleted')).utc().format('MM/DD/YYYY') : null;
+            var dateCompleted = this.model.get('dateCompleted') || null;
 
             var attrs = {
                 address: this.model.get('address'),
                 city: this.model.get('city'),
                 customerStoreUUID: this.model.get('programStoreUUID'),
                 dateCompleted: dateCompleted,
-                dateScheduled: moment(this.model.get('dateScheduled')).utc().format('YYYY MM DD'),
+                dateScheduled: this.model.get('dateScheduled'),
                 state: this.model.get('state'),
                 storeName: this.model.get('storeName'),
                 jobDetail: this.model.get('jobDetail'),

@@ -2,6 +2,7 @@ define(function(require) {
 	var Backbone = require('backbone'),
 		Templates = require('handlebarsTemplates'),
 		context = require('context'),
+    Chosen = require('chosen'),
 		SurveysStore = require('oddjob/stores/surveys');
 
 	var JobEditView = {
@@ -14,6 +15,11 @@ define(function(require) {
 			for(i; i < max; i++) {
 				this._addTaskAtIndex(i, this.taskViewClass, new Backbone.Model(this.model.get('tasks')[i]));
 			}
+    $(this.model.attributes.blackoutSchemeUUIDs).each(function(){
+        $("#edit-blackout-schemes").find("option[value="+this+"]").attr("selected","selected");
+    });
+    $("#edit-blackout-schemes").chosen({disable_search: true, width: "100%"});
+
 		},
 
 		deleteJob: function (e) {
