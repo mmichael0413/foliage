@@ -183,7 +183,7 @@ define(function (require) {
                 self.trigger('fullcalendar.refresh');
                 alert("You cannot schedule a visit in the past.");
             } else if (model) {
-                date = moment.utc(date).format("YYYY-MM-DD");
+                date = moment.utc(date).format("YYYY-MM-DDTHH:MM:SSZZ");
                 /*var blackouts = _.chain(model.attributes.jobDetails.blackoutDates).map(function(dateString){
                     return moment.utc(dateString).format("YYYY-MM-DD");
                 });
