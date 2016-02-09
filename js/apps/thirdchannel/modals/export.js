@@ -23,6 +23,8 @@ define(function(require){
         onRender: function () {
             if (this.templateName == this.templates.progress) {
                 this.fetchExport();
+            } else {
+                this.model.clear();
             }
         },
         onDestroy: function () {

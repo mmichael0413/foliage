@@ -319,6 +319,11 @@
   padding-top: 65px;
 }
 
+.content.admin {
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
 /* Media Queries */
 @include swb-small {
   #site-menu {
