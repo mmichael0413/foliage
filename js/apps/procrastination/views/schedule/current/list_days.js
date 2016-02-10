@@ -1,6 +1,8 @@
 define(function (require) {
     var Backbone = require('backbone'),
         context = require('context'),
+        HandlebarsHelpers = require('handlebarsHelpers'),
+        HandlebarsHelpersExt = require('handlebarsHelpersExt'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         ScheduledVisits = require('procrastination/views/schedule/current/list_visit'),
         moment = require('moment');
