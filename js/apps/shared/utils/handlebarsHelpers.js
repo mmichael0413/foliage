@@ -2,7 +2,6 @@ define(function (require) {
 
     var $ = require('jquery'),
         _ = require('underscore'),
-        moment = require ('moment'),
         Handlebars = require('handlebars'),
         chartistSeriesNames = [
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
@@ -227,14 +226,6 @@ define(function (require) {
             minute: "2-digit",
             timeZoneName: "short"
         });
-    });
-
-    Handlebars.registerHelper('localizedUTCDate', function(iso8601Date){
-        if(iso8601Date){
-            return moment.utc(iso8601Date).format("l");
-        } else {
-            return "";
-        }
     });
 });
 
