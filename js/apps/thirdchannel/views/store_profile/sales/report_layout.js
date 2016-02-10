@@ -16,6 +16,7 @@ define(function(require) {
         initialize: function() {
             this.accountData = this.model.get('account');
             this.storeData = this.model.get('store');
+            this.categories = this.model.get('categories');
         },
 
         render: function() {
@@ -50,14 +51,14 @@ define(function(require) {
 
             model.breakdowns.add(new Backbone.Model(_.extend(_.omit(this.storeData, 'brands', 'categories'), {label: 'Total Sales', accountSalesChange: accountSalesChange})));
 
-            _.each(['man', 'woman', 'none'], function(category) {
+            _.each(this.categories, function(category) {
                 var data = this.storeData.categories[category];
                 var categoryAccountSalesChange = null;
                 if (data) {
                     if(this.accountData.categories[category] !== undefined && this.accountData.categories[category] !== undefined) {
                         categoryAccountSalesChange = this.accountData.categories[category].salesChange;
                     }
-                    model.breakdowns.add(_.extend(data, {label: category, accountSalesChange: categoryAccountSalesChange}));
+                    model.breakdowns.add(_.extend(data, {label: self._translateLabel(category), accountSalesChange: categoryAccountSalesChange}));
                 }
             }.bind(this));
 
@@ -78,10 +79,10 @@ define(function(require) {
                 var model = new Backbone.Model({brand: brand});
                 model.breakdowns = new Backbone.Collection();
 
-                var breakdownData = _.extend(_.omit(data, 'man', 'woman', 'none'), {label: brand, accountSalesChange: accountSalesChange});
+                var breakdownData = _.extend(_.omit(data, this.categories), {label: brand, accountSalesChange: accountSalesChange});
                 model.breakdowns.add(new Backbone.Model(breakdownData));
 
-                _.each(['man', 'woman', 'none'], function(c) {
+                _.each(this.categories, function(c) {
                     var categoryAccountSalesChange = null;
 
                     if(accountBrandData !== undefined && accountBrandData[c] !== undefined) {
@@ -90,7 +91,7 @@ define(function(require) {
 
                     var categoryData = data[c];
                     if (categoryData) {
-                        model.breakdowns.add(_.extend(categoryData, {label: c, accountSalesChange: categoryAccountSalesChange}));
+                        model.breakdowns.add(_.extend(categoryData, {label: self._translateLabel(c), accountSalesChange: categoryAccountSalesChange}));
                     }
                 });
 
@@ -119,6 +120,14 @@ define(function(require) {
                 this.storeData = this.model.get('store');
                 this.render();
             }.bind(this));
+        },
+        _translateLabel: function(label) {
+            if(label === 'man') {
+                label = "Men's";
+            } else if(label === 'woman') {
+                label = "Women's";
+            }
+            return label;
         }
     });
 
