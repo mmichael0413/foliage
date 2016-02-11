@@ -1,9 +1,8 @@
 <section class="sales-widget">
-    {{#if message}}
-    <p class="text full">{{message}}</p>
-    {{else}}
+  {{#if message}}
+    <p class="text">{{message}}</p>
+  {{else}}
     <p class="text">QTD $ Sales: <span class="percentage-change {{ percentageChangeClass salesChange }}"><i class="ic {{percentageChangeIcon salesChange }}"></i> {{formatPercentageChange salesChange}}</span> {{#if showLabel}} From LY{{/if}}</p>
-    <a class="details" href="{{salesUrl}}">DETAILS</a>
-    {{/if}}
-    
+  {{/if}}
+  <a class="details" href="{{salesUrl}}">DETAILS</a>
 </section>    
