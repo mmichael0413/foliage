@@ -49,16 +49,16 @@ define(function(require){
                 }
             },
             explain: {
-                true: {text: "Yes", showSiblings: "#questionPlaceholder"},
-                false: {text: "No", hideSiblings: "#questionPlaceholder"}
+                "true": {text: "Yes", showSiblings: "#questionPlaceholder"},
+                "false": {text: "No", hideSiblings: "#questionPlaceholder"}
             },
             multiple: {
-                true: "Yes",
-                false: "No"
+                "true": "Yes",
+                "false": "No"
             },
             required: {
-                true: "Yes",
-                false: "No"
+                "true": "Yes",
+                "false": "No"
             }
         },
         typesWithChildren : ["QuestionMultiChoice", "QuestionSelect"],

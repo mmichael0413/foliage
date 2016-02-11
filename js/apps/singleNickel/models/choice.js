@@ -10,8 +10,8 @@ define(function(require){
         },
         lookUps: {
             triggers: {
-                true: "Yes",
-                false: "No"
+                "true": "Yes",
+                "false": "No"
             }
         },
         validation: {

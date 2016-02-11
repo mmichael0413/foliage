@@ -2403,7 +2403,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"export-modal progress\">Generating the requested file...\n    <div class=\"small\">(This may take a while, please wait.)</div>\n    <div><i class=\"ic ic_processing fa-spin\"></i></div>\n</div>";
+  return "<div class=\"export-modal progress\">Generating the requested file...\n    <div class=\"small\">(This may take a while, please wait.)</div>\n    <div><i class=\"ic ic_processing fa fa-spin\"></i></div>\n</div>";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/modals/export/success"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -3392,7 +3392,13 @@ this["ThirdChannel"]["templates"]["thirdchannel/reports/widgets/range_chart"] = 
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
-function program1(depth0,data,depth1) {
+function program1(depth0,data) {
+  
+  
+  return "\n                <p><a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">View Breakdown</a></p>\n            ";
+  }
+
+function program3(depth0,data,depth1) {
   
   var buffer = "", stack1;
   buffer += "\n            <tr>\n                <td>"
@@ -3405,25 +3411,19 @@ function program1(depth0,data,depth1) {
   return buffer;
   }
 
-function program3(depth0,data) {
-  
-  
-  return "\n        <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\">View Breakdown</a>\n    ";
-  }
-
   buffer += "<div class=\"widget "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.widget_class)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">\n    <table class=\"chart range\">\n        <thead>\n            <th colspan=\"2\">";
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</th>\n        </thead>\n        ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.results), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
+    + "\n            ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_view_list), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </table>\n    ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_view_list), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  buffer += "\n            </th>\n        </thead>\n        ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.results), {hash:{},inverse:self.noop,fn:self.programWithDepth(3, program3, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>\n";
+  buffer += "\n    </table>\n\n</div>\n";
   return buffer;
   });
 
@@ -4320,13 +4320,22 @@ function program9(depth0,data) {
 function program11(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n    <div class=\"divider\"></div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Paypal Email:</div>\n        <div class=\"col-3-4\">"
+  buffer += "\n<div class=\"card\">\n    <div class=\"header\">Contact Information</div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Email:</div>\n        <div class=\"col-3-4\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.email)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Phone Number:</div>\n        <div class=\"col-3-4\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.phone)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Paypal Email:</div>\n        <div class=\"col-3-4\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.paypalEmail)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n    </div>\n    ";
+    + "</div>\n    </div>\n</div>\n\n\n<div class=\"card\">\n    <div class=\"header\">Address</div>\n\n    <div class=\"body pure-g\">\n        <div class=\"col-sm-1-1 col-1-4\">Residential Address:</div>\n        <div class=\"col-sm-1-1 col-3-4\">\n            ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.displayResidential), {hash:{},inverse:self.program(14, program14, data),fn:self.program(12, program12, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"body pure-g\">\n        <div class=\"col-sm-1-1 col-1-4\">Shipping Address:</div>\n        <div class=\"col-sm-1-1 col-3-4\">\n            ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.displayShipping), {hash:{},inverse:self.program(14, program14, data),fn:self.program(16, program16, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </div>\n    </div>\n</div>\n";
   return buffer;
   }
-
-function program13(depth0,data) {
+function program12(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                ";
@@ -4336,13 +4345,13 @@ function program13(depth0,data) {
   return buffer;
   }
 
-function program15(depth0,data) {
+function program14(depth0,data) {
   
   
   return "\n                Not Available\n            ";
   }
 
-function program17(depth0,data) {
+function program16(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                ";
@@ -4352,7 +4361,7 @@ function program17(depth0,data) {
   return buffer;
   }
 
-function program19(depth0,data) {
+function program18(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n    ";
@@ -4362,19 +4371,19 @@ function program19(depth0,data) {
   return buffer;
   }
 
-function program21(depth0,data) {
+function program20(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n<div class=\"card\">\n    <div class=\"header\">Additional Information</div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Shirt Size:</div>\n        <div class=\"col-3-4\">\n            ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.shirtSize), {hash:{},inverse:self.program(15, program15, data),fn:self.program(22, program22, data),data:data});
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.shirtSize), {hash:{},inverse:self.program(14, program14, data),fn:self.program(21, program21, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Shoe Size:</div>\n        <div class=\"col-3-4\">\n            ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.shoeSize), {hash:{},inverse:self.program(15, program15, data),fn:self.program(24, program24, data),data:data});
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.shoeSize), {hash:{},inverse:self.program(14, program14, data),fn:self.program(23, program23, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </div>\n    </div>\n</div>\n";
   return buffer;
   }
-function program22(depth0,data) {
+function program21(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                "
@@ -4383,7 +4392,7 @@ function program22(depth0,data) {
   return buffer;
   }
 
-function program24(depth0,data) {
+function program23(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                "
@@ -4392,16 +4401,16 @@ function program24(depth0,data) {
   return buffer;
   }
 
-function program26(depth0,data) {
+function program25(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n    <div class=\"card\">\n        <div class=\"body pure-g\">\n            <div class=\"col-1-5 col-sm-1-1 about-images\">\n\n                ";
-  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.aboutImages), {hash:{},inverse:self.noop,fn:self.program(27, program27, data),data:data});
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.aboutImages), {hash:{},inverse:self.noop,fn:self.program(26, program26, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </div>\n        </div>\n    </div>\n";
   return buffer;
   }
-function program27(depth0,data) {
+function program26(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                    <img src=\""
@@ -4430,28 +4439,19 @@ function program27(depth0,data) {
     + "\n\n\n    </div>\n</div>\n\n\n";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.activityUrl), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n\n<div class=\"card\">\n    <div class=\"header\">Contact Information</div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Email:</div>\n        <div class=\"col-3-4\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.email)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"body pure-g\">\n        <div class=\"col-1-4\">Phone Number:</div>\n        <div class=\"col-3-4\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.phone)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n    </div>\n    ";
+  buffer += "\n\n\n";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.showAllFields), {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>\n\n\n<div class=\"card\">\n    <div class=\"header\">Address</div>\n\n    <div class=\"body pure-g\">\n        <div class=\"col-sm-1-1 col-1-4\">Residential Address:</div>\n        <div class=\"col-sm-1-1 col-3-4\">\n            ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.displayResidential), {hash:{},inverse:self.program(15, program15, data),fn:self.program(13, program13, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"body pure-g\">\n        <div class=\"col-sm-1-1 col-1-4\">Shipping Address:</div>\n        <div class=\"col-sm-1-1 col-3-4\">\n            ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.displayShipping), {hash:{},inverse:self.program(15, program15, data),fn:self.program(17, program17, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </div>\n    </div>\n</div>\n\n";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.interests), {hash:{},inverse:self.noop,fn:self.program(19, program19, data),data:data});
+  buffer += "\n\n";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.interests), {hash:{},inverse:self.noop,fn:self.program(18, program18, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.showAllFields), {hash:{},inverse:self.noop,fn:self.program(21, program21, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.showAllFields), {hash:{},inverse:self.noop,fn:self.program(20, program20, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n";
-  stack1 = (helper = helpers.if_gt || (depth0 && depth0.if_gt),options={hash:{},inverse:self.noop,fn:self.program(26, program26, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.aboutImageCount), 0, options) : helperMissing.call(depth0, "if_gt", (depth0 && depth0.aboutImageCount), 0, options));
+  stack1 = (helper = helpers.if_gt || (depth0 && depth0.if_gt),options={hash:{},inverse:self.noop,fn:self.program(25, program25, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.aboutImageCount), 0, options) : helperMissing.call(depth0, "if_gt", (depth0 && depth0.aboutImageCount), 0, options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
   return buffer;
   });
 

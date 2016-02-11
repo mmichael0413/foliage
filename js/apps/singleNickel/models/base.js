@@ -1,11 +1,13 @@
 define(function(require){
     var _ = require('underscore'),
         Backbone = require('backbone'),
+        ReindexModel = require('singleNickel/models/reindex'),
         context = require('context');
 
     return Backbone.Model.extend({
         id: '',
         childrenCollection: undefined,
+        reindexModel: ReindexModel,
         events: {},
         initialize: function(options) {
             _.bindAll(this, 'surveyLockChange');
@@ -48,22 +50,6 @@ define(function(require){
             if (!_.isUndefined(this.children)) {
                 this.children.options = this.options;
             }
-        },
-        updateChildIndices: function() {
-            // not sure if there's a better way at getting the type of the children
-            var childAttributes = this.children.at(0).type + '_attributes';
-
-            var attributes = {};
-            attributes[childAttributes] = [];
-
-            this.children.each(function(child) {
-                attributes[childAttributes].push({
-                    id: child.id,
-                    idx: parseInt(child.get('idx'), 0)
-                });
-            });
-
-            return this.save(attributes, {patch: true});
         },
         childParams: function() {
             var idx = 0,

@@ -1,6 +1,8 @@
 define(function (require) {
     var Backbone = require('backbone'),
         context = require('context'),
+        HandlebarsHelpers = require('handlebarsHelpers'),
+        HandlebarsHelpersExt = require('handlebarsHelpersExt'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         ScheduledVisits = require('procrastination/views/schedule/current/list_visit'),
         moment = require('moment');
@@ -10,7 +12,7 @@ define(function (require) {
         tagName: 'section',
         template: HandlebarsTemplates['procrastination/schedule/schedule_row_header'],
         initialize: function(options) {
-            this.date = moment(options.date).utc().format('MM/DD/YYYY');
+            this.date = options.date;
             this.visits = options.visits;
             this.showCompleted = options.showCompleted;
         },

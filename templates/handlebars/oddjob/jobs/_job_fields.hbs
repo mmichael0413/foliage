@@ -38,3 +38,10 @@
     </div>
 
     <button class="btn add-task">Add Task</button>
+
+    <label for="edit-blackout-schemes" class="label">Blackout Schemes: </label>
+    <select id="edit-blackout-schemes" name="blackoutSchemes" class="input" multiple data-placeholder="Assign Blackout Schemes">
+			{{#each programBlackoutSchemes}}
+				<option value="{{id}}">{{name}}</option>
+			{{/each}}
+    </select>

@@ -3,15 +3,12 @@ define(function(require) {
         Backbone = require('backbone'),
         Templates = require('handlebarsTemplates'),
         TaskRowView = require('oddjob/views/tasks/row');
-    
     var JobRowView = Backbone.View.extend({
 
         className: 'job section',
         jobViews: [],
 
         render: function () {
-            // render myself, then add in any subViews
-            // do I need a view for this?
             var data = this.model.toJSON();
             data.taskCount = data.tasks.length;
             data.displayTotalPayment = data.totalPayment/100;
@@ -21,7 +18,6 @@ define(function(require) {
             if (data.role === "") {
                 data.role = undefined;
             }
-            
             // render my self
             data.scheduleDates = context.meta.scheduleDates;
             this.$el.html(Templates['oddjob/jobs/row'](data));
@@ -33,10 +29,11 @@ define(function(require) {
         renderRows: function (collection) {
             var $tasksContainer = this.$el.find('.tasks-container');
             var $frequenciesContainer = this.$el.find('.frequencies-container');
-            
+            var $blackoutSchemesContainer = this.$el.find('.blackout-schemes-container');
             //JV
             $tasksContainer.hide();
             $frequenciesContainer.hide();
+            $blackoutSchemesContainer.hide();
 
             //Add header to top of list only once
             $($tasksContainer).html(Templates['oddjob/tasks/header']);

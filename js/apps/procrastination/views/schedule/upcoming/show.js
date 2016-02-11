@@ -32,9 +32,11 @@ define(function (require) {
                 revertDuration: 0,
                 start: function (event, object) {
                     $(event.target).addClass('drag-active');
+                    context.trigger('blackoutdates:show', $(object.helper.context).find('.visit').val());
                 },
                 stop: function(event, object) {
                     $(event.target).removeClass('drag-active');
+                    context.trigger('blackoutdates:hide');
                 }
             });
             this.$el.addClass(this.model.get('jobColor'));

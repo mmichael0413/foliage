@@ -228,15 +228,5 @@ define(function (require) {
             timeZoneName: "short"
         });
     });
-
-    // parse date (iso8601 format) as a date in utc
-    // and format it as a localized date in utc
-    Handlebars.registerHelper('localizedUTCDate', function(iso8601Date){
-        if(iso8601Date){
-            return moment.utc(iso8601Date).format("l");
-        } else {
-            return "";
-        }
-    });
 });
 

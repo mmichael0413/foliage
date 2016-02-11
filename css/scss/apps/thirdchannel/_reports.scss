@@ -155,6 +155,13 @@
     tr > td:nth-child(2) {
       text-align: right;
     }
+    th {
+      a {
+        font-weight: normal;
+        text-transform: none;
+        color: $link-color;
+      }
+    }
   }
 }
 
@@ -346,3 +353,9 @@ ul.heatmap-legend {
   }
 }
 
+.report-list-item {
+   p {
+     margin-top: 0.25em;
+     margin-bottom: 0.25em;
+   }
+}

@@ -137,6 +137,21 @@ function program4(depth0,data) {
   return "selected=\"selected\"";
   }
 
+function program6(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n				<option value=\"";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</option>\n			";
+  return buffer;
+  }
+
   buffer += "	<p class=\"info\">If you leave the name blank, the group will use the name of the first Task (for now, this is a Survey). Furthermore, a Job must have at least one Task (Typically, there will be only one Task per Job).</p>\n\n    <label class=\"label\" for=\"jobName\">Name</label>\n    <input class=\"input\" type=\"text\" value=\"";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -157,7 +172,10 @@ function program4(depth0,data) {
   else { helper = (depth0 && depth0.roles); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.roles) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </select>\n\n    <div class=\"tasks-container\">\n    </div>\n\n    <button class=\"btn add-task\">Add Task</button>";
+  buffer += "\n    </select>\n\n    <div class=\"tasks-container\">\n    </div>\n\n    <button class=\"btn add-task\">Add Task</button>\n\n    <label for=\"edit-blackout-schemes\" class=\"label\">Blackout Schemes: </label>\n    <select id=\"edit-blackout-schemes\" name=\"blackoutSchemes\" class=\"input\" multiple data-placeholder=\"Assign Blackout Schemes\">\n			";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.programBlackoutSchemes), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </select>\n";
   return buffer;
   }));
 
@@ -528,6 +546,53 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
+this["oddjob"]["templates"]["oddjob/blackout_schemes/blackout_scheme"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n	<div class=\"section\">\n		Warning: Changes to this blackout scheme will affect the following jobs:\n		<ul>\n			";
+  options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}
+  if (helper = helpers.assignedJobs) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.assignedJobs); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.assignedJobs) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n		</ul>\n	</div>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "";
+  buffer += "\n				<li>"
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + "</li>\n			";
+  return buffer;
+  }
+
+  buffer += "<h1 class=\"title\">Editing Blackout Scheme</h1>\n\n<div class=\"actions\" id=\"blackout-scheme-save\">\n	<button class=\"btn primary\" id=\"blackout-scheme-delete\">\n		<i class=\"ic fa ic_remove\"></i>\n		<span>Delete</span>\n	</button>\n	<button class=\"btn primary\" id=\"blackout-scheme-save\">\n		<i class=\"ic fa ic_check\"></i>\n		<span>Save</span>\n	</button>\n</div>\n\n";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.assignedJobs), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n<div class=\"section\">\n	<h3>Name</h3>\n	<input id=\"blackout-scheme-name\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.blackoutScheme)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" required>\n</div>\n\n<div class=\"section\">\n	<h3>Dates</h3>\n	<button id=\"blackout-scheme-date-add\">Add Date</button>\n	<div id=\"blackout-scheme-dates\">\n	</div>\n</div>\n";
+  return buffer;
+  });
+
+this["oddjob"]["templates"]["oddjob/blackout_schemes/date_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"blackout-scheme-date-row\">\n<input class=\"blackout-scheme-date-input\" type=\"date\" required value=\""
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + "\">\n<button class=\"blackout-scheme-date-remove\">Remove</button>\n</div>\n";
+  return buffer;
+  });
+
 this["oddjob"]["templates"]["oddjob/frequencies/row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -674,7 +739,7 @@ function program7(depth0,data,depth1) {
   else { helper = (depth0 && depth0.monthlyVisits); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.monthlyVisits) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                </tr>\n                \n            ";
+  buffer += "\n                </tr>\n            ";
   return buffer;
   }
 function program8(depth0,data) {
@@ -692,6 +757,32 @@ function program10(depth0,data) {
   
   
   return "\n                <tr><td colspan=\"14\" class=\"info\">There are no Schedules or store assignments for this Job. Click 'Create New Schedule' to get started.</td></tr>\n            ";
+  }
+
+function program12(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n		<ul class=\"col-1-1\">\n			";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.blackoutSchemes), {hash:{},inverse:self.noop,fn:self.program(13, program13, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n		</ul>\n	";
+  return buffer;
+  }
+function program13(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n				<li>";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</li>\n			";
+  return buffer;
+  }
+
+function program15(depth0,data) {
+  
+  
+  return "\n		<div class=\"col-1-1\">No blackout schemes assigned.</div>\n	";
   }
 
   buffer += "<div class=\"header pure-g\">\n	<h3 class=\"col-6-12\"><a href=\"";
@@ -734,7 +825,7 @@ function program10(depth0,data) {
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " pure-g\">\n    <h3 class=\"col-1-1 frequency-row\">Schedules:</h3>\n    <table class=\"col-1-1\">\n        <colgroup>\n            \n        </colgroup>\n        \n        <thead>\n            <th>Stores</th>\n            ";
+    + " pure-g\">\n    <h3 class=\"col-1-1 frequency-row\">Schedules:</h3>\n    <table class=\"col-1-1\">\n        <colgroup>\n        </colgroup>\n        <thead>\n            <th>Stores</th>\n            ";
   options={hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data}
   if (helper = helpers.scheduleDates) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.scheduleDates); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
@@ -750,7 +841,14 @@ function program10(depth0,data) {
   if (helper = helpers.createScheduleUrl) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.createScheduleUrl); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">Create New Schedule</a></div> \n</div>\n\n\n";
+    + "\">Create New Schedule</a></div> \n</div>\n\n<div class=\"blackout-schemes-container blackout-schemes-container";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " pure-g\">\n	<h3 class=\"col-1-1\">Blackout Schemes:</h3>\n	";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.blackoutSchemes), {hash:{},inverse:self.program(15, program15, data),fn:self.program(12, program12, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</div>\n";
   return buffer;
   });
 
