@@ -13,27 +13,35 @@ define(function(require) {
 
         render: function() {
             this.$el.html(this.template());
-            this.renderSalesPerBrand();
+            this.renderSalesPerBreakdown();
             this.renderChangeInSales();
             return this;
         },
 
-        renderSalesPerBrand: function() {
+        renderSalesPerBreakdown: function() {
             var store = this.model.get('store');
-            var brands = store.brands;
+            var breakdowns = [];
 
-            brands = _.map(brands, function(data, key) {
+            // for now hard code how the customer wants to breakdown the sales data (lux -> by brand, oakly -> by category)
+            // TODO: enable configurable solution
+            if(this.model.get('customerUUID') === '4c4fce87-939a-44f0-a3d2-62231862e0ef') {
+                breakdowns = store.brands;
+            } else {
+                breakdowns = store.categories;
+            }
+
+            breakdowns = _.map(breakdowns, function(data, key) {
                 data.label = key;
                 data.percentageOfSales = (data.salesInCents / store.salesInCents) * 100;
                 return data;
             });
-            brands = _.filter(brands, function(data) { return data.percentageOfSales !== null; });
-            brands = _.sortBy(brands, 'percentageOfSales').reverse();
+            breakdowns = _.filter(breakdowns, function(data) { return data.percentageOfSales !== null; });
+            breakdowns = _.sortBy(breakdowns, 'percentageOfSales').reverse();
 
-            this.salesPerBrandChart = c3.generate({
+            this.salesPerCategoryChart = c3.generate({
                 bindto: this.$('#brand-percent-of-sales > .chart')[0],
                 data: {
-                    json: brands,
+                    json: breakdowns,
                     keys: {
                         x: 'label',
                         value: ['percentageOfSales']
@@ -41,8 +49,8 @@ define(function(require) {
                     labels: {
                         format: function(value, key, i, j) {
                             var sales = 'N/A';
-                            if(brands[i] !== undefined && brands[i].salesInCents) {
-                                sales = '$' + (brands[i].salesInCents / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                            if(breakdowns[i] !== undefined && breakdowns[i].salesInCents) {
+                                sales = '$' + (breakdowns[i].salesInCents / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                             }
                             return parseFloat(value).toFixed(2) + '% (' + sales + ')';
                         }
@@ -57,8 +65,8 @@ define(function(require) {
                         name: function(name, ratio, id, index) { return '% of Sales'; },
                         value: function(value, ratio, id, i) {
                             var sales = 'N/A';
-                            if(brands[i] !== undefined && brands[i].salesInCents) {
-                                sales = '$' + (brands[i].salesInCents / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                            if(breakdowns[i] !== undefined && breakdowns[i].salesInCents) {
+                                sales = '$' + (breakdowns[i].salesInCents / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                             }
                             return parseFloat(value).toFixed(2) + '% (' + sales + ')';
                         }
@@ -70,10 +78,10 @@ define(function(require) {
                         type: 'category',
                         tick: {
                             format: function(i) {
-                                if(brands[i] === undefined) {
+                                if(breakdowns[i] === undefined) {
                                     return;
                                 }
-                                return brands[i].label;
+                                return breakdowns[i].label;
                             }
                         }
                     },
@@ -101,18 +109,28 @@ define(function(require) {
         },
 
         renderChangeInSales: function() {
-            var brands = this.model.get('store').brands;
-            brands = _.map(brands, function(data, key) {
+            var store = this.model.get('store');
+            var breakdowns = [];
+
+            // for now hard code how the customer wants to breakdown the sales data (lux -> by brand, oakly -> by category)
+            // TODO: enable configurable solution
+            if(this.model.get('customerUUID') === '4c4fce87-939a-44f0-a3d2-62231862e0ef') {
+                breakdowns = store.brands;
+            } else {
+                breakdowns = store.categories;
+            }
+
+            breakdowns = _.map(breakdowns, function(data, key) {
                 data.label = key;
                 return data;
             });
-            brands = _.filter(brands, function(data) { return data.salesChange !== null; });
-            brands = _.sortBy(brands, 'salesChange');
+            breakdowns = _.filter(breakdowns, function(data) { console.log(data.percentageOfSales); return data.percentageOfSales !== null; });
+            breakdowns = _.sortBy(breakdowns, 'percentageOfSales').reverse();
 
             this.changeInSalesChart = c3.generate({
                 bindto: this.$('#brand-change-in-sales > .chart')[0],
                 data: {
-                    json: brands,
+                    json: breakdowns,
                     keys: {
                         x: 'label',
                         value: ['salesChange']
@@ -120,8 +138,8 @@ define(function(require) {
                     labels: {
                         format: function (value, key, i, j) {
                             var salesDiff = 'N/A';
-                            if(brands[i] !== undefined && brands[i].salesDiff) {
-                                salesDiff = '$' + (brands[i].salesDiff / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                            if(breakdowns[i] !== undefined && breakdowns[i].salesDiff) {
+                                salesDiff = '$' + (breakdowns[i].salesDiff / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                             }
                             return parseFloat(value).toFixed(2) + '% (' + salesDiff + ')';
                         }
@@ -136,8 +154,8 @@ define(function(require) {
                         name: function (name, ratio, id, index) { return 'Sales Change'; },
                         value: function (value, ratio, id, i) {
                             var salesDiff = 'N/A';
-                            if(brands[i] !== undefined && brands[i].salesDiff !== undefined && brands[i].salesDiff !== null) {
-                                salesDiff = '$' + (brands[i].salesDiff / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                            if(breakdowns[i] !== undefined && breakdowns[i].salesDiff !== undefined && breakdowns[i].salesDiff !== null) {
+                                salesDiff = '$' + (breakdowns[i].salesDiff / 100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                             }
                             return parseFloat(value).toFixed(2) + '% (' + salesDiff + ')';
                         }
@@ -149,10 +167,10 @@ define(function(require) {
                         type: 'category',
                         tick: {
                             format: function(i) {
-                                if(brands[i] === undefined) {
+                                if(breakdowns[i] === undefined) {
                                     return;
                                 }
-                                return brands[i].label;
+                                return breakdowns[i].label;
                             }
                         }
                     },
