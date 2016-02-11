@@ -58,6 +58,7 @@ define(function (require) {
                 tasksContainerButton.html("Show Tasks");
                 $('.tasks-container'+tasksContainerId).slideUp( "fast", function(){});
                 $('.frequencies-container'+tasksContainerId).slideUp( "fast", function(){});
+                $('.blackout-schemes-container'+tasksContainerId).slideUp( "fast", function(){});
             }
             else{
                 tasksContainerButton.html("Hide Tasks");
@@ -67,6 +68,7 @@ define(function (require) {
                 }, 600);*/
                 $('.tasks-container'+tasksContainerId).slideDown( "fast", function(){});
                 $('.frequencies-container'+tasksContainerId).slideDown( "fast", function(){});
+                $('.blackout-schemes-container'+tasksContainerId).slideDown( "fast", function(){});
             }
 
         }

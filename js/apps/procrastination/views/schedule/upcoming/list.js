@@ -21,6 +21,8 @@ define(function (require) {
             //this.list = new ListView({aggregateId: options.aggregateId, showComplete: false}).setElement('.scheduled .schedules');
             this.listenTo(this, 'fullcalendar.date.create', this.updateSchedule);
             this.listenTo(this, 'fullcalendar.refresh', this.refreshCalendar);
+            //this.listenTo(context, 'blackoutdates:show', this.showBlackoutDates);
+            //this.listenTo(context, 'blackoutdates:hide', this.hideBlackoutDates);
 
             this.aggregate = options.aggregateId;
             this.collection = new ScheduleCollection(null, {
@@ -51,7 +53,7 @@ define(function (require) {
                             id: model.get('id'),
                             title: model.get('storeName'),
                             store: label,
-                            start: moment(model.get('dateScheduled')).utc().format("YYYY-MM-DD"),
+                            start: model.get('dateScheduled'),
                             allDay: true,
                             className: model.get('jobColor'),
                             editable: model.get('dateCompleted') ? false : true
@@ -61,14 +63,19 @@ define(function (require) {
                     callback(events);
                 },
                 drop: function (date, event, object) {
-                    var now = moment().utc().startOf('day');
-                    if(date < now) {
-                        alert("You cannot schedule a visit in the past.");
-                        self.trigger('fullcalendar.refresh');
-                    } else {
-                        var id = $(object.helper.context).find('.visit').val();
-                        self.trigger('fullcalendar.date.create', date, id);
-                    }
+                    // Called when a visit on the left sidebar gets dropped onto the calendar
+                    var id = $(object.helper.context).find('.visit').val();
+                    self.trigger('fullcalendar.date.create', date, id);
+                },
+                eventDrop: function(event, delta, revertFunc) {
+                    // Called when a visit already on the calendar gets moved to another day
+                    self.trigger('fullcalendar.date.create', event.start, event.id);
+                },
+                eventDragStart: function(event, jsEvent, ui, view) {
+                    context.trigger('blackoutdates:show', event.id);
+                },
+                eventDragStop: function(event, jsEvent, ui, view) {
+                    context.trigger('blackoutdates:hide');
                 },
                 eventMouseover: function (calEvent, jsEvent) {
                     var tooltip = '<div class="tooltipevent">' + calEvent.store + '</div>';
@@ -81,20 +88,6 @@ define(function (require) {
                         $('.tooltipevent').css('top', e.pageY + 10);
                         $('.tooltipevent').css('left', e.pageX + 20);
                     });
-                },
-                eventDrop: function(event, delta, revertFunc) {
-
-                    if(!context.isScheduleUnlocked) {
-                        alert("Your schedule is locked. Please contact your Program Manager if you need to reschedule a visit.");
-                        return revertFunc();
-                    }
-                    var now = moment().utc().startOf('day');
-                    if(event.start < now) {
-                        alert("You cannot schedule a visit in the past.");
-                        return revertFunc();
-                    }
-
-                    self.trigger('fullcalendar.date.create', event.start, event.id);
                 },
                 eventMouseout: function (calEvent, jsEvent) {
                     $(this).css('z-index', 8);
@@ -182,20 +175,45 @@ define(function (require) {
         updateSchedule: function (date, id) {
             var self = this;
             var model = this.collection.findWhere({id:id});
-            if (model) {
-                model.set('dateScheduled', date.format("MM/DD/YYYY"));
-                model.save(model.attributes).done(function() {
-                    self.refreshCalendar();
-                    self.render();
+            var now = moment.utc().startOf('day');
+            if(!context.isScheduleUnlocked) {
+                self.trigger('fullcalendar.refresh');
+                alert("Your schedule is locked. Please contact your Program Manager if you need to reschedule a visit.");
+            } else if(date < now) {
+                self.trigger('fullcalendar.refresh');
+                alert("You cannot schedule a visit in the past.");
+            } else if (model) {
+                date = moment.utc(date).format("YYYY-MM-DDTHH:MM:SSZZ");
+                /*var blackouts = _.chain(model.attributes.jobDetails.blackoutDates).map(function(dateString){
+                    return moment.utc(dateString).format("YYYY-MM-DD");
                 });
+                if(blackouts.contains(date).value()) {
+                    self.trigger('fullcalendar.refresh');
+                    alert("That job cannot be scheduled for " + now.format("l") + ". A blackout exists for that job on that date.");
+                } else {*/
+                    model.set('dateScheduled', date);
+                    model.save(model.attributes).done(function() {
+                        self.refreshCalendar();
+                        self.render();
+                    });
+                //}
             }
         },
-
+        showBlackoutDates: function(id){
+            var model = this.collection.findWhere({id:id});
+            var dates = model.attributes.jobDetails.blackoutDates;
+            _.chain(dates).map(function(date){
+                return moment.utc(date).format("YYYY-MM-DD"); // format used in fullcalendar data-date
+            }).each(function(dateString){
+                $("#calendar").find(".fc-day[data-date=" + dateString + "]").addClass("blackout-date");
+            });
+        },
+        hideBlackoutDates: function(){
+            $("#calendar").find(".blackout-date").removeClass("blackout-date");
+        },
         destroy: function(model) {
-            console.log(arguments);
             var m = this.collection.get(model.id);
             if(m) {
-                console.log("found the model");
                 this.collection.remove(m);
                 context.trigger('estimate:changed');
             }

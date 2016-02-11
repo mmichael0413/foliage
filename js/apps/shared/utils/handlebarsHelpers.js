@@ -227,6 +227,5 @@ define(function (require) {
             timeZoneName: "short"
         });
     });
-
 });
 

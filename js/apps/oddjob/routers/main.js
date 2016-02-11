@@ -14,7 +14,8 @@ define(function (require) {
         ScheduledStoresView = require('oddjob/views/stores/scheduled'),
         StoreControlsView = require('oddjob/views/stores/controls'),
         AddStoresView = require('oddjob/views/schedules/addStores'),
-        TasksListView = require('oddjob/views/tasks/list');
+        TasksListView = require('oddjob/views/tasks/list'),
+        EditBlackoutSchemeView = require('oddjob/views/blackout_schemes/blackout_scheme');
 
     var Router = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
@@ -23,8 +24,8 @@ define(function (require) {
             ':customer/:programSlug/jobs/:jobId(/)': 'jobsEdit',
             ':customer/:programSlug/jobs/:jobId/schedule(/)': 'scheduleCreate',
             ':customer/:programSlug/jobs/:jobId/schedule/:frequencyIndex': 'scheduleEdit',
-            ':customer/:programSlug/jobs/:jobId/schedule/:frequencyIndex/add': 'scheduleAddStores'
-            
+            ':customer/:programSlug/jobs/:jobId/schedule/:frequencyIndex/add': 'scheduleAddStores',
+            ':customer/:programSlug/blackoutschemes/:id(/)': 'editBlackoutScheme',
         },
 
         before: function (parameters) {
@@ -83,6 +84,9 @@ define(function (require) {
             new StoreControlsView();
             new StoreUploadView();
             new StoreListView();
+        },
+        editBlackoutScheme: function(customer, programSlug, id) {
+            new EditBlackoutSchemeView();
         }
 
     });
