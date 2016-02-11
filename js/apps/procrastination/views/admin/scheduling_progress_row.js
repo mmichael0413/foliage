@@ -1,6 +1,8 @@
 define(function (require) {
     var Backbone = require('backbone'),
         Templates = require('handlebarsTemplates'),
+        HandlebarsHelpers = require('handlebarsHelpers'),
+        HandlebarsHelpersExt = require('handlebarsHelpersExt'),
         context = require('context'),
         SchedulingProgressRow = {
             className: 'item',

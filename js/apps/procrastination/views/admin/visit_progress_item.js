@@ -2,6 +2,8 @@ define(function (require) {
     var Backbone = require('backbone'),
         Templates = require('handlebarsTemplates'),
         context = require('context'),
+        HandlebarsHelpers = require('handlebarsHelpers'),
+        HandlebarsHelpersExt = require('handlebarsHelpersExt'),
         moment = require('moment');
         VisitProgressRow = {
             className: 'pure-g',

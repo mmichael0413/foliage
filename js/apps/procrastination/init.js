@@ -16,6 +16,7 @@ require.config({
         'handlebars'    : '../libs/bower_components/handlebars/handlebars.min',
         'handlebarsTemplates': 'procrastination/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
+        'handlebarsHelpersExt' : 'shared/utils/handlebarsHelpersExt',
         'helpers'       : 'thirdchannel/utils/helpers',
         'pikaday'       : '../libs/bower_components/pikaday/pikaday',
         'context'       : 'shared/utils/context',
@@ -60,8 +61,11 @@ require.config({
             deps: ["handlebars", "handlebarsHelpers"],
             exports: "HandlebarTemplates"
         },
+        'handlebarsHelpersExt': {
+            deps: ["handlebars", "moment"]
+        },
         'handlebarsHelpers': {
-            deps: ["handlebars"]
+            deps: ["handlebarsHelpersExt"]
         },
         'context': {
             deps: ["underscore"]
