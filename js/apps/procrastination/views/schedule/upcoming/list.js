@@ -21,8 +21,8 @@ define(function (require) {
             //this.list = new ListView({aggregateId: options.aggregateId, showComplete: false}).setElement('.scheduled .schedules');
             this.listenTo(this, 'fullcalendar.date.create', this.updateSchedule);
             this.listenTo(this, 'fullcalendar.refresh', this.refreshCalendar);
-            //this.listenTo(context, 'blackoutdates:show', this.showBlackoutDates);
-            //this.listenTo(context, 'blackoutdates:hide', this.hideBlackoutDates);
+            this.listenTo(context, 'blackoutdates:show', this.showBlackoutDates);
+            this.listenTo(context, 'blackoutdates:hide', this.hideBlackoutDates);
 
             this.aggregate = options.aggregateId;
             this.collection = new ScheduleCollection(null, {
@@ -183,20 +183,20 @@ define(function (require) {
                 self.trigger('fullcalendar.refresh');
                 alert("You cannot schedule a visit in the past.");
             } else if (model) {
-                date = moment.utc(date).format("YYYY-MM-DDTHH:MM:SSZZ");
-                /*var blackouts = _.chain(model.attributes.jobDetails.blackoutDates).map(function(dateString){
+                date = moment.utc(date).format("YYYY-MM-DD");
+                var blackouts = _.chain(model.attributes.jobDetails.blackoutDates).map(function(dateString){
                     return moment.utc(dateString).format("YYYY-MM-DD");
                 });
                 if(blackouts.contains(date).value()) {
                     self.trigger('fullcalendar.refresh');
                     alert("That job cannot be scheduled for " + now.format("l") + ". A blackout exists for that job on that date.");
-                } else {*/
+                } else {
                     model.set('dateScheduled', date);
                     model.save(model.attributes).done(function() {
                         self.refreshCalendar();
                         self.render();
                     });
-                //}
+                }
             }
         },
         showBlackoutDates: function(id){
