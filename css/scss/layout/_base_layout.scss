@@ -324,6 +324,12 @@
   padding-left: 1em;
 }
 
+.admin-nav {
+  .first {
+    margin-left: 2rem;
+  }
+}
+
 /* Media Queries */
 @include swb-small {
   #site-menu {
