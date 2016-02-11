@@ -22,12 +22,10 @@ define(function(require) {
             var store = this.model.get('store');
             var breakdowns = [];
 
-            // for now hard code how the customer wants to breakdown the sales data (lux -> by brand, oakly -> by category)
-            // TODO: enable configurable solution
-            if(this.model.get('customerUUID') === '4c4fce87-939a-44f0-a3d2-62231862e0ef') {
-                breakdowns = store.brands;
-            } else {
+            if(this.model.get('breakdown_by') === 'category') {
                 breakdowns = store.categories;
+            } else {
+                breakdowns = store.brands;
             }
 
             breakdowns = _.map(breakdowns, function(data, key) {
@@ -112,12 +110,10 @@ define(function(require) {
             var store = this.model.get('store');
             var breakdowns = [];
 
-            // for now hard code how the customer wants to breakdown the sales data (lux -> by brand, oakly -> by category)
-            // TODO: enable configurable solution
-            if(this.model.get('customerUUID') === '4c4fce87-939a-44f0-a3d2-62231862e0ef') {
-                breakdowns = store.brands;
-            } else {
+            if(this.model.get('breakdown_by') === 'category') {
                 breakdowns = store.categories;
+            } else {
+                breakdowns = store.brands;
             }
 
             breakdowns = _.map(breakdowns, function(data, key) {
