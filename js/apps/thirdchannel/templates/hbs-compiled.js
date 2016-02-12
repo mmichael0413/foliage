@@ -1935,37 +1935,23 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<p class=\"col-1-7\"><a href=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.report)),stack1 == null || stack1 === false ? stack1 : stack1.link)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">";
+  buffer += "<p class=\"col-1-4\">";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</a></p>\n<p class=\"col-1-7\">";
-  if (helper = helpers.customer_stores_count) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.customer_stores_count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+    + "</p>\n<p class=\"col-1-4\">";
+  if (helper = helpers.stores_count) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.stores_count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-7\">";
-  if (helper = helpers.customer_stores_with_open_alerts) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.customer_stores_with_open_alerts); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+    + "</p>\n<p class=\"col-1-4\">";
+  if (helper = helpers.stores_with_open_alerts) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.stores_with_open_alerts); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-7\">";
+    + "</p>\n<p class=\"col-1-4\">";
   if (helper = helpers.percent_of_stores_complete) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.percent_of_stores_complete); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "%</p>\n<p class=\"col-1-7\">";
-  if (helper = helpers.start_date) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.start_date); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-7\">";
-  if (helper = helpers.end_date) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.end_date); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-7\">";
-  if (helper = helpers.status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n";
+    + "%</p>\n";
   return buffer;
   });
 
@@ -1975,7 +1961,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-1-7\">Name</h3>\n        <h3 class=\"header col-1-7\"># Stores</h3>\n        <h3 class=\"header col-1-7\"># Stores that Need Revisit</h3>\n        <h3 class=\"header col-1-7\">% Complete</h3>\n        <h3 class=\"header col-1-7\">Start Date</h3>\n        <h3 class=\"header col-1-7\">End Date</h3>\n        <h3 class=\"header col-1-7\">Status</h3>\n    </div>\n    <div class=\"body\"></div>\n</div>";
+  return "<div class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-1-4\">Name</h3>\n        <h3 class=\"header col-1-4\"># Stores</h3>\n        <h3 class=\"header col-1-4\"># Stores that Need Revisit</h3>\n        <h3 class=\"header col-1-4\">% Complete</h3>\n    </div>\n    <div class=\"body\"></div>\n</div>";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/filter_active_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
