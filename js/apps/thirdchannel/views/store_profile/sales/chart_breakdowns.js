@@ -120,7 +120,7 @@ define(function(require) {
                 data.label = key;
                 return data;
             });
-            breakdowns = _.filter(breakdowns, function(data) { console.log(data.percentageOfSales); return data.percentageOfSales !== null; });
+            breakdowns = _.filter(breakdowns, function(data) { return data.percentageOfSales !== null; });
             breakdowns = _.sortBy(breakdowns, 'percentageOfSales').reverse();
 
             this.changeInSalesChart = c3.generate({
