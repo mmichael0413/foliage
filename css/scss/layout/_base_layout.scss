@@ -339,4 +339,14 @@
       @include transform($standard-nav-width);
     }
   }
+
+  .content.push-down {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .login-container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }
