@@ -11,7 +11,8 @@ define(function(require) {
         CommentsView = require('thirdchannel/views/comments/comments'),
         NewCommentView = require('thirdchannel/views/comments/new_comment'),
         Like = require('thirdchannel/models/activities/like'),
-        SlickCarousel = require('slick_carousel');
+        //SlickCarousel = require('slick_carousel');
+        Viewer = require('viewer');
 
     return Backbone.View.extend({
         className: 'activity',
@@ -21,7 +22,7 @@ define(function(require) {
             'click .start-comment': 'focusComment',
             'click .more-comments': 'showAdditionalComments',
             'click .less-comments': 'hideAdditionalComments',
-            'click .carousel img': 'openModal',
+           // 'click .carousel img': 'openModal',
             "click .arrow-left" : "prevSlide",
             "click .arrow-right" : "nextSlide",
             "click .hide-post" : "hidePost",
@@ -76,7 +77,7 @@ define(function(require) {
                 this.comments.render();
                 this.newComment.render();
             }
-
+            var viewer = this.$el.find('.activity-photos').viewer({inline: false, rotatable: false, transition: false, scalable: false});
             return this;
         },
 
