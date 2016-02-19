@@ -98,7 +98,9 @@ define(function(require) {
                     results: this.model.get('report').totalStores,
                     title: "Stores"
                 };
-                this.$el.find('.subsection').first().find('.widgets').append(templates['thirdchannel/reports/widgets/metric_icon'](data));
+                var $overview = this.$el.find('.subsection').first().find('.widgets');
+                $overview.append(templates['thirdchannel/reports/widgets/metric_icon'](data));
+                $overview.addClass('col-md-1 col-1-4');
             },
 
             _renderSales: function () {
