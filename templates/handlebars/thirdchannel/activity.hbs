@@ -6,9 +6,9 @@
                 {{#tasks}}
                 <a class="task-item {{#active}}active{{/active}}" href="{{href}}">
                     <div class="badge task-label col-md-1-2">{{title}}</div>
-                    {{#has_summary}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-summary"/></div>{{else}}<div class="col-md-1-7"></div>{{/has_summary}}
-                    {{#has_photos}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-photos"/></div>{{else}}<div class="col-md-1-7"></div>{{/has_photos}}
-                    {{#has_alerts}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-alerts"/></div>{{else}}<div class="col-md-1-7"></div>{{/has_alerts}}
+                    {{#has_summary}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-summary"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_summary}}
+                    {{#has_photos}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-photos"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_photos}}
+                    {{#has_alerts}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-alerts"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_alerts}}
                 </a>
                 {{/tasks}}
             </div>
