@@ -1,17 +1,38 @@
 define(function(require) {
-    var Backbone = require('backbone'),
+    var $ = require('jquery'),
+        Backbone = require('backbone'),
         context = require('context'),
         BackboneValidator = require('backboneValidator'),
-        Templates = require('handlebarsTemplates');
+        Templates = require('handlebarsTemplates'),
+        AccountSimilarities = require('stores/collections/account_similarities'),
+        AccountSimilaritiesView = require('stores/views/accounts/similar_accounts');
 
     var View = Backbone.View.extend({
         template: Templates['stores/accounts/new'],
         events: {
+            'keyup input[data-attr="name"]': 'retrieveSimilarities',
             'submit form': 'save'
+        },
+        initialize: function() {
+            this.accountSimilarities = new AccountSimilarities();
+            this.accountSimilaritiesView = new AccountSimilaritiesView({collection: this.accountSimilarities});
+            this.listenTo(this.accountSimilarities, 'reset', this.handleSimilarities);
         },
         render: function() {
             this.$el.html(this.template());
+            this.accountSimilaritiesView.setElement(this.$('#similar-accounts'));
+            this.accountSimilaritiesView.render();
             return this;
+        },
+        retrieveSimilarities: function(e) {
+            e.preventDefault();
+            var name = $.trim(e.target.value);
+            if(name !== undefined && name !== '') {
+                this.accountSimilarities.fetch({reset: true, data: { name: e.target.value }});
+            }
+        },
+        handleSimilarities: function() {
+
         },
         save: function(e) {
             e.preventDefault();

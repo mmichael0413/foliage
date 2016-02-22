@@ -1,0 +1,5 @@
+{{#if accounts}}
+    {{#each accounts}}
+        <li>{{this.name}} - {{displayPercentage this.similarity}}</li>
+    {{/each}}
+{{/if}}

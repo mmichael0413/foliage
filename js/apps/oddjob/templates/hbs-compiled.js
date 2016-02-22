@@ -1528,7 +1528,7 @@ function program5(depth0,data) {
 function program7(depth0,data) {
   
   
-  return "<div class=\"col-md-1-7\"></div>";
+  return "<span class=\"col-md-1-7\"></span>";
   }
 
 function program9(depth0,data) {
@@ -1658,8 +1658,8 @@ function program28(depth0,data,depth1) {
   else { helper = (depth0 && depth0.url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\" alt=\"";
-  if (helper = helpers.image_type) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.image_type); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\" class=\"img-responsive\" onerror=\"this.src='"
     + escapeExpression(((stack1 = (depth1 && depth1.content_image_error_url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))

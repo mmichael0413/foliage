@@ -227,5 +227,13 @@ define(function (require) {
             timeZoneName: "short"
         });
     });
+
+    Handlebars.registerHelper('displayPercentage', function(value) {
+        if(value === undefined || value === null) {
+            return 'N/A';
+        }
+        value = Math.round(value * 100.0);
+        return value + '%';
+    });
 });
 

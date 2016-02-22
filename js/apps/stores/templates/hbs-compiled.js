@@ -879,7 +879,37 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<h1>Add Account</h1>\n<div class=\"section\">\n    <form>\n        <div class=\"form-group\">\n            <label>Name:</label>\n            <input type=\"text\" name=\"name\" data-attr=\"name\" class=\"form-control\">\n            <label class=\"errors\"></label>\n        </div>\n        <div class=\"form-group\">\n            <button class=\"btn primary\">Save</button>\n            <a href=\"/accounts\" class=\"btn default\">Cancel</a>\n        </div>\n    </form>\n</div>";
+  return "<h1>Add Account</h1>\n<div class=\"section\">\n    <form>\n        <div class=\"form-group\">\n            <label>Name:</label>\n            <input type=\"text\" name=\"name\" data-attr=\"name\" class=\"form-control\">\n            <label class=\"errors\"></label>\n        </div>\n        <ul id=\"similar-accounts\"></ul>\n        <div class=\"form-group\">\n            <button class=\"btn primary\" id=\"account-save-button\" disabled>Save</button>\n            <a href=\"/accounts\" class=\"btn default\">Cancel</a>\n        </div>\n    </form>\n</div>";
+  });
+
+this["Stores"]["templates"]["stores/accounts/similar_accounts"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.accounts), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n        <li>"
+    + escapeExpression(((stack1 = (depth0 && depth0.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + " - "
+    + escapeExpression((helper = helpers.displayPercentage || (depth0 && depth0.displayPercentage),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.similarity), options) : helperMissing.call(depth0, "displayPercentage", (depth0 && depth0.similarity), options)))
+    + "</li>\n    ";
+  return buffer;
+  }
+
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.accounts), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
   });
 
 this["Stores"]["templates"]["stores/action"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
