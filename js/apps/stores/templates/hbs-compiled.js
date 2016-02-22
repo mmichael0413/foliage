@@ -885,7 +885,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["Stores"]["templates"]["stores/accounts/similar_accounts"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+  var stack1, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
 
 function program1(depth0,data) {
   
@@ -899,7 +899,9 @@ function program1(depth0,data) {
 function program2(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n        <li>"
+  buffer += "\n        <li class=\"similar-account "
+    + escapeExpression((helper = helpers.similarAccountClass || (depth0 && depth0.similarAccountClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.similarity), options) : helperMissing.call(depth0, "similarAccountClass", (depth0 && depth0.similarity), options)))
+    + "\">"
     + escapeExpression(((stack1 = (depth0 && depth0.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " - "
     + escapeExpression((helper = helpers.displayPercentage || (depth0 && depth0.displayPercentage),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.similarity), options) : helperMissing.call(depth0, "displayPercentage", (depth0 && depth0.similarity), options)))

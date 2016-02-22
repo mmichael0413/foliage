@@ -9,6 +9,7 @@ define(function(require) {
 
     var View = Backbone.View.extend({
         template: Templates['stores/accounts/new'],
+        confirmSubmission: false,
         events: {
             'keyup input[data-attr="name"]': 'retrieveSimilarities',
             'submit form': 'save'
@@ -36,6 +37,10 @@ define(function(require) {
         },
         save: function(e) {
             e.preventDefault();
+
+            if(this.confirmSubmission && !confirm('This account is similar to existing accounts. Are you sure you want to add this new account?')) {
+                return;
+            }
 
             var self = this;
 

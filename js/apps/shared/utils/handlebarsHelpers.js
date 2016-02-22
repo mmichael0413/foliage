@@ -228,6 +228,14 @@ define(function (require) {
         });
     });
 
+    Handlebars.registerHelper('similarAccountClass', function(similarity) {
+        if(similarity === 1) {
+            return 'match';
+        } else {
+            return '';
+        }
+    });
+
     Handlebars.registerHelper('displayPercentage', function(value) {
         if(value === undefined || value === null) {
             return 'N/A';
