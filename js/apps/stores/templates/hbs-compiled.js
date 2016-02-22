@@ -902,9 +902,9 @@ function program2(depth0,data) {
   buffer += "\n        <li class=\"similar-account "
     + escapeExpression((helper = helpers.similarAccountClass || (depth0 && depth0.similarAccountClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.similarity), options) : helperMissing.call(depth0, "similarAccountClass", (depth0 && depth0.similarity), options)))
     + "\">"
-    + escapeExpression(((stack1 = (depth0 && depth0.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + " - "
     + escapeExpression((helper = helpers.displayPercentage || (depth0 && depth0.displayPercentage),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.similarity), options) : helperMissing.call(depth0, "displayPercentage", (depth0 && depth0.similarity), options)))
+    + " - "
+    + escapeExpression(((stack1 = (depth0 && depth0.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</li>\n    ";
   return buffer;
   }
