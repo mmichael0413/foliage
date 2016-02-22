@@ -19,12 +19,14 @@ $padding: 1.5em;
   .task-container {
     display: inline-block;
     width: 90%;
-    
 
-    @media only screen and (max-width: 35.5em) {
-      // max-height: 5em;
-      // overflow: hidden;
+    @include swb-medium {
       position: relative;
+      width: 100%;
+
+      a {
+        margin-top: 0.1rem;
+      }
     }
   }
   .tasks-label {
@@ -144,6 +146,7 @@ $padding: 1.5em;
       width: 100%;
       display: block;
       float:none;
+      margin-top: 1.5rem;
     }
     .text, .details {
       display: inline-block;
@@ -151,6 +154,7 @@ $padding: 1.5em;
       font-weight: bold;
     }
     .text {
+      border-right: 1px solid $light-blue;
       width: 70%;
       &.full {
         width: 100%;
@@ -158,7 +162,7 @@ $padding: 1.5em;
     }
     .details {
       width: 28%;
-      border-left: 1px solid $light-blue;
+      vertical-align: middle;
     }
   }
 
@@ -374,6 +378,11 @@ $img-height: 3em;
     width: 100%;
     margin-bottom: 0;
   }
+
+  .activity-actions {
+    margin: $padding 0;
+  }
+
   .activity-content img {
     max-width: 100%;
   }
@@ -382,5 +391,9 @@ $img-height: 3em;
     padding: $padding;
     border-top: 1px solid $border-color;
     border-bottom: 1px solid $border-color;
+  }
+
+  .moderation-actions {
+    padding: $padding;
   }
 }
