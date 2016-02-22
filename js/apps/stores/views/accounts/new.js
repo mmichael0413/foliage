@@ -9,12 +9,13 @@ define(function(require) {
 
     var View = Backbone.View.extend({
         template: Templates['stores/accounts/new'],
-        confirmSubmission: false,
+        similarAccounts: false,
         events: {
             'keyup input[data-attr="name"]': 'retrieveSimilarities',
             'submit form': 'save'
         },
         initialize: function() {
+            _.bindAll(this, 'handleSimilarities');
             this.accountSimilarities = new AccountSimilarities();
             this.accountSimilaritiesView = new AccountSimilaritiesView({collection: this.accountSimilarities});
             this.listenTo(this.accountSimilarities, 'reset', this.handleSimilarities);
@@ -30,15 +31,42 @@ define(function(require) {
             var name = $.trim(e.target.value);
             if(name !== undefined && name !== '') {
                 this.accountSimilarities.fetch({reset: true, data: { name: e.target.value }});
+            } else {
+                this.accountSimilarities.reset();
             }
         },
         handleSimilarities: function() {
+            var $accountSaveButton = this.$('#account-save-button');
+            if(this.accountSimilarities.length) {
+                this.similarAccounts = true;
 
+                var hasExactMatch = this.accountSimilarities.findWhere({similarity: 1});
+                if(hasExactMatch) {
+                    $accountSaveButton.prop('disabled', true);
+                } else {
+                    $accountSaveButton.prop('disabled', false);
+                }
+            } else {
+                this.similarAccounts = false;
+
+                var name = $.trim(this.$('input[data-attr="name"]').val());
+                if(name !== undefined && name !== '') {
+                    $accountSaveButton.prop('disabled', false);
+                } else {
+                    $accountSaveButton.prop('disabled', true);
+                }
+
+            }
         },
         save: function(e) {
             e.preventDefault();
 
-            if(this.confirmSubmission && !confirm('This account is similar to existing accounts. Are you sure you want to add this new account?')) {
+            var message = 'Are you sure you want to add this new account?';
+            if(this.similarAccounts) {
+                message = 'This account is similar to existing accounts. ' + message;
+            }
+
+            if(!confirm(message)) {
                 return;
             }
 
