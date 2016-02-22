@@ -77,7 +77,16 @@ define(function(require) {
                 this.comments.render();
                 this.newComment.render();
             }
-            var viewer = this.$el.find('.activity-photos').viewer({inline: false, rotatable: false, transition: false, scalable: false, fullscreen: false});
+
+            if (!this.model.get('isMobile')) {
+                var viewer = this.$el.find('.activity-photos').viewer({
+                    inline: false,
+                    rotatable: false,
+                    transition: false,
+                    scalable: false,
+                    fullscreen: false
+                });
+            }
             return this;
         },
 
