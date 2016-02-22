@@ -41,13 +41,13 @@ define(function(require) {
             this.carousel = null;
             this.listenTo(context, 'navigation:collapsed', this.fixCollapsedCarousel);
             this.listenTo(context, 'store.sales.update', this.updateSalesWidget);
-            // setup registry listener
-            if (this.model.get('location')) {
-                context.trigger("store.sales.register", this.model.get('location').id);    
-            }
         },
         render: function () {
-            
+            // setup registry listener
+            if (this.model.get('location')) {
+                context.trigger("store.sales.register", this.model.get('location').id);
+            }
+
             if(this.model.get('images')) {
                     this.model.set('imageCount', this.model.get('images').length);
             } else {
@@ -201,7 +201,6 @@ define(function(require) {
                     salesUrl: event.salesUrl, message: event.message};
                 this.$el.find('.activity-meta').append(HandlebarsTemplates['thirdchannel/activities/sales_widget'](data));
                 this.$el.find('.sales-widget').fadeIn(500).css("display","inline-block");
-                this.stopListening(context, 'store.sales.update');
             }
         }
     });
