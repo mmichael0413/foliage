@@ -879,7 +879,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<h1>Add Account</h1>\n<div class=\"section\">\n    <form>\n        <div class=\"form-group\">\n            <label>Name:</label>\n            <input type=\"text\" name=\"name\" data-attr=\"name\" class=\"form-control\">\n            <label class=\"errors\"></label>\n        </div>\n        <ul id=\"similar-accounts\"></ul>\n        <div class=\"form-group\">\n            <button class=\"btn primary\" id=\"account-save-button\" disabled>Save</button>\n            <a href=\"/accounts\" class=\"btn default\">Cancel</a>\n        </div>\n    </form>\n</div>";
+  return "<h1>Add Account</h1>\n<div class=\"section\">\n    <form>\n        <div class=\"form-group\">\n            <label>Name:</label>\n            <input type=\"text\" name=\"name\" data-attr=\"name\" class=\"form-control\" autocomplete=\"off\">\n            <label class=\"errors\"></label>\n        </div>\n        <ul id=\"similar-accounts\"></ul>\n        <div class=\"form-group\">\n            <button class=\"btn primary\" id=\"account-save-button\" disabled>Save</button>\n            <a href=\"/accounts\" class=\"btn default\">Cancel</a>\n        </div>\n    </form>\n</div>";
   });
 
 this["Stores"]["templates"]["stores/accounts/similar_accounts"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
