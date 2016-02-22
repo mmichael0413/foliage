@@ -799,7 +799,7 @@ function program5(depth0,data) {
 function program7(depth0,data) {
   
   
-  return "<div class=\"col-md-1-7\"></div>";
+  return "<span class=\"col-md-1-7\"></span>";
   }
 
 function program9(depth0,data) {
