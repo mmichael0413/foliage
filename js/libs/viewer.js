@@ -1102,7 +1102,7 @@
         var width = image.naturalWidth;
         var height = image.naturalHeight;
 
-        $title.html(alt + ' (' + width + ' &times; ' + height + ')');
+        $title.html(alt);
       }, this));
 
       if ($image[0].complete) {
@@ -1863,13 +1863,13 @@
       '<div class="viewer-footer">' +
         '<div class="viewer-title"></div>' +
         '<ul class="viewer-toolbar">' +
-          '<li class="viewer-zoom-in" data-action="zoom-in"></li>' +
-          '<li class="viewer-zoom-out" data-action="zoom-out"></li>' +
+          '<li class="viewer-zoom-in" data-action="zoom-in" title="Zoom in"></li>' +
+          '<li class="viewer-zoom-out" data-action="zoom-out" title="Zoom out"></li>' +
           '<li class="viewer-one-to-one" data-action="one-to-one"></li>' +
-          '<li class="viewer-reset" data-action="reset"></li>' +
-          '<li class="viewer-prev" data-action="prev"></li>' +
+          '<li class="viewer-reset" data-action="reset" title="Reset zoom"></li>' +
+          '<li class="viewer-prev" data-action="prev" title="Previous Image"></li>' +
           '<li class="viewer-play" data-action="play"></li>' +
-          '<li class="viewer-next" data-action="next"></li>' +
+          '<li class="viewer-next" data-action="next" title="Next Image"></li>' +
           '<li class="viewer-rotate-left" data-action="rotate-left"></li>' +
           '<li class="viewer-rotate-right" data-action="rotate-right"></li>' +
           '<li class="viewer-flip-horizontal" data-action="flip-horizontal"></li>' +
