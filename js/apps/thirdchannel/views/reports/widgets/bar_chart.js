@@ -2,7 +2,8 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        context = require('context');
+        context = require('context'),
+        helpers = require('helpers');
 
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/bar_chart'],
@@ -16,8 +17,9 @@ define(function(require) {
             return this;
         },
         updateViewBreakDownLink : function (qs) {
+            var queryString = helpers.merge_query_string(qs, this.model.info_list_default_filters);
             var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
-            this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
+            this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?' + queryString);
         }
     });
 });

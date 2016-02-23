@@ -3,6 +3,7 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         Chartist = require('chartist'),
+        helpers = require('helpers'),
         context = require('context');
 
     return Backbone.View.extend({
@@ -58,8 +59,9 @@ define(function(require) {
             new Chartist.Bar(this.$('.ct-chart')[0], this.model.results, options);
         },
         updateViewBreakDownLink : function (qs) {
+            var queryString = helpers.merge_query_string(qs, this.model.info_list_default_filters);
             var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
-            this.$('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
+            this.$('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?' + queryString);
         }
     });
 });

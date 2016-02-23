@@ -36,7 +36,8 @@ require.config({
         'jquery.mask' : '../libs/bower_components/jquery-mask-plugin/dist/jquery.mask',
         'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min',
         'rxjs'          : '../libs/bower_components/rxjs/dist/rx.all.min',
-        'viewer'      : '../libs/viewer'
+        'viewer'      : '../libs/viewer',
+        'jquery-deparam' : '../libs/bower_components/jquery-deparam/jquery-deparam',
     },
     shim: {
         "jquery": {
@@ -114,6 +115,9 @@ require.config({
             exports: "$.fn"
         },
         "rxjs": {
+            deps: ["jquery"]
+        },
+        "jquery-deparam": {
             deps: ["jquery"]
         }
     }

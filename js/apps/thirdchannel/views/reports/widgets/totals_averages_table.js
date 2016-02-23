@@ -2,6 +2,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
+        helpers = require('helpers'),
         context = require('context');
 
     return Backbone.View.extend({
