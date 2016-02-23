@@ -3,6 +3,7 @@ define(function(require) {
         _ = require('underscore'),
         $ = require('jquery'),
         context = require('context'),
+        Viewer = require('viewer'),
         GalleryImageModal = require('thirdchannel/modals/gallery_image_modal'),
         HoverableImageView = require('thirdchannel/views/shared/hoverable_image'),
 
@@ -22,8 +23,9 @@ define(function(require) {
             initialize: function() {
                 var self = this;
                 this.listenTo(context, 'gallery:image:open', function(model) {
-                    self.modal = new GalleryImageModal({model: model});
-                    $("body").append(self.modal.render().el);
+                    
+                    //self.modal = new GalleryImageModal({model: model});
+                    //$("body").append(self.modal.render().el);
                 });
             },
 
@@ -36,6 +38,15 @@ define(function(require) {
                 } else {
                     $carousel.append("<p>There are no images for this task.</p>");
                 }
+
+                this.viewer = this.$('.carousel').viewer({
+                    inline: false,
+                    rotatable: false,
+                    transition: false,
+                    scalable: false,
+                    fullscreen: true
+                });
+                console.log(this.viewer);
 
                 this.carousel = $carousel.slick({
                     slidesToShow: 1,

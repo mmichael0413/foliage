@@ -34,7 +34,7 @@ define(function(require) {
             },
             openModal: function(e) {
                 e.stopPropagation();
-                context.trigger('gallery:image:open', this.model);
+                //context.trigger('gallery:image:open', this.model);
             }
         });
 
