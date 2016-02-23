@@ -20,20 +20,18 @@ define(function(require) {
             initialize: function () {
                 this.infiniteURL = context.links.feed;
                 GalleryView.__super__.initialize.apply(this, {url: context.links.feed});
-                this.listenTo(context, 'infinite:post:render', function() {
-                    this.getContentElement().viewer({
-                        inline: false,
-                        rotatable: false,
-                        transition: false,
-                        scalable: false,
-                        fullscreen: false
-                    });
-                }.bind(this));
             },
 
             renderModel: function (model) {
                 var view = new HoverableImageView({model: model}).render();
                 this.getContentElement().append(view.$el);
+                view.$el.viewer({
+                    inline: false,
+                    rotatable: false,
+                    transition: false,
+                    scalable: false,
+                    fullscreen: false
+                });
             },
 
             getContentElement: function () {

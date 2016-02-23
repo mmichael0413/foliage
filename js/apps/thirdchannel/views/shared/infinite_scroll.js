@@ -92,8 +92,6 @@ define(function(require) {
                     self.loadIndicator.removeFromDOM();
                     context.trigger('page:height');
                 }
-
-                context.trigger('infinite:post:render');
             },
 
             clearAndRender: function() {
