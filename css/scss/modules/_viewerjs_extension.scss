@@ -1,0 +1,15 @@
+.viewer-container {
+  .viewer-footer {
+    .viewer-toolbar {
+      width: 126px;
+    }
+    .viewer-play, .viewer-one-to-one, .viewer-invisible {
+      display: none;
+    }
+    .viewer-title {
+      font-size: 16px;
+      color: white;
+      line-height: 1.26;
+    }
+  }
+}

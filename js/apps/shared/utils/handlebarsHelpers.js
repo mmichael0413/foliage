@@ -227,5 +227,21 @@ define(function (require) {
             timeZoneName: "short"
         });
     });
+
+    Handlebars.registerHelper('similarAccountClass', function(similarity) {
+        if(similarity === 1) {
+            return 'match';
+        } else {
+            return '';
+        }
+    });
+
+    Handlebars.registerHelper('displayPercentage', function(value) {
+        if(value === undefined || value === null) {
+            return 'N/A';
+        }
+        value = Math.round(value * 100.0);
+        return value + '%';
+    });
 });
 
