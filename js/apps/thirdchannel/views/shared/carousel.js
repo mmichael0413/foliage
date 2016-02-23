@@ -54,8 +54,6 @@ define(function(require) {
                     scalable: false,
                     fullscreen: false
                 });
-
-                //this.$('img').on('click', fun)
             },
             prevSlide: function(e){
                 e.preventDefault();
