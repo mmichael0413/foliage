@@ -13,7 +13,7 @@ define(function(require) {
             events: {
                 'mouseover': 'mouseOver',
                 'mouseout': 'mouseOut',
-                'click': 'openModal'
+                'click .overlay': 'openModal'
             },
             render: function () {
                 this.$el.addClass(this.model.get('image_type'));
@@ -33,8 +33,9 @@ define(function(require) {
                 this.$el.removeClass('active');
             },
             openModal: function(e) {
+                e.preventDefault();
                 e.stopPropagation();
-                //context.trigger('gallery:image:open', this.model);
+                $(e.target).parent().find('img').click();
             }
         });
 

@@ -4,7 +4,6 @@ define(function(require) {
         $ = require('jquery'),
         context = require('context'),
         Viewer = require('viewer'),
-        GalleryImageModal = require('thirdchannel/modals/gallery_image_modal'),
         HoverableImageView = require('thirdchannel/views/shared/hoverable_image'),
 
         /**
@@ -20,15 +19,6 @@ define(function(require) {
                 'click .arrow-right' : 'nextSlide'
             },
 
-            initialize: function() {
-                var self = this;
-                this.listenTo(context, 'gallery:image:open', function(model) {
-                    
-                    //self.modal = new GalleryImageModal({model: model});
-                    //$("body").append(self.modal.render().el);
-                });
-            },
-
             render: function () {
                 var $carousel = this.$('.carousel');
                 if(!this.collection.isEmpty()) {
@@ -38,15 +28,6 @@ define(function(require) {
                 } else {
                     $carousel.append("<p>There are no images for this task.</p>");
                 }
-
-                this.viewer = this.$('.carousel').viewer({
-                    inline: false,
-                    rotatable: false,
-                    transition: false,
-                    scalable: false,
-                    fullscreen: true
-                });
-                console.log(this.viewer);
 
                 this.carousel = $carousel.slick({
                     slidesToShow: 1,
@@ -65,6 +46,16 @@ define(function(require) {
                         }
                     ]
                 });
+
+                this.viewer = this.$('.image-container').viewer({
+                    inline: false,
+                    rotatable: false,
+                    transition: false,
+                    scalable: false,
+                    fullscreen: false
+                });
+
+                //this.$('img').on('click', fun)
             },
             prevSlide: function(e){
                 e.preventDefault();
