@@ -12,7 +12,7 @@ define(function(require) {
         template: HandlebarsTemplates['thirdchannel/store_profile/sales/chart_breakdowns'],
 
         render: function() {
-            this.$el.html(this.template());
+            this.$el.html(this.template(this.model.toJSON()));
             this.renderSalesPerBreakdown();
             this.renderChangeInSales();
             return this;

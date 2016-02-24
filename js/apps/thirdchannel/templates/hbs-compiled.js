@@ -3854,10 +3854,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["ThirdChannel"]["templates"]["thirdchannel/store_profile/sales/chart_breakdowns"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  return "<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <div class=\"col-1-2\" id=\"brand-percent-of-sales\">\n            <h3>% of Sales By Brand</h3>\n            <p>This period</p>\n            <div class=\"chart\"></div>\n        </div>\n        <div class=\"col-1-2\" id=\"brand-change-in-sales\">\n            <h3>% Change in Sales</h3>\n            <p>Compared to this period previous year</p>\n            <div class=\"chart horizontal-bar\"></div>\n        </div>\n        <div class=\"col-1-1\">\n            <span class=\"pull-right sps-logo\"></span>\n        </div>\n    </div>\n</section>";
+  buffer += "<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <div class=\"col-1-2\" id=\"brand-percent-of-sales\">\n            <h3>% of Sales By ";
+  if (helper = helpers.breakdown_by) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.breakdown_by); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</h3>\n            <p>This period</p>\n            <div class=\"chart\"></div>\n        </div>\n        <div class=\"col-1-2\" id=\"brand-change-in-sales\">\n            <h3>% Change in Sales</h3>\n            <p>Compared to this period previous year</p>\n            <div class=\"chart horizontal-bar\"></div>\n        </div>\n        <div class=\"col-1-1\">\n            <span class=\"pull-right sps-logo\"></span>\n        </div>\n    </div>\n</section>";
+  return buffer;
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/store_profile/sales/overview"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
