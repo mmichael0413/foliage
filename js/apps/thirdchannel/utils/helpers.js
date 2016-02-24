@@ -58,10 +58,10 @@ define(function (require) {
             }
         },
 
-        merge_query_string: function(qs, obj) { // Given a query string and an object
-            var qs_obj = deparam(qs); // turn the query string into an object
-            var merged = _.extend(obj , qs_obj); // merge the two objects with higher precedence for keys in the query string
-            return $.param(merged); // then turn the result back into a query string
+        merge_query_string: function(qs, obj) {
+            var qs_obj = deparam(qs);
+            var merged = _.extend(obj , qs_obj);
+            return $.param(merged);
         }
     };
 });
