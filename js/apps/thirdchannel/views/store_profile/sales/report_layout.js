@@ -98,7 +98,7 @@ define(function(require) {
                 return model;
             }.bind(this));
 
-            var view = new BreakdownView({title: 'Brands', el: this.$('#brands-breakdown'), collection: new Backbone.Collection(brands)});
+            var view = new BreakdownView({title: this._breakdownLabel(), el: this.$('#brands-breakdown'), collection: new Backbone.Collection(brands)});
             view.render();
         },
 
@@ -120,6 +120,13 @@ define(function(require) {
                 this.storeData = this.model.get('store');
                 this.render();
             }.bind(this));
+        },
+        _breakdownLabel: function() {
+            var label = this.model.get('breakdown_by');
+            if(label) {
+                label = label.charAt(0).toUpperCase() + label.slice(1).toLowerCase();
+            }
+            return label;
         },
         _translateLabel: function(label) {
             if(label === 'man') {
