@@ -2,9 +2,10 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
+        ViewBreakdownLinkMixin = require('thirdchannel/views/reports/widgets/view_breakdown_link_mixin'),
         context = require('context');
 
-    return Backbone.View.extend({
+    var view = Backbone.View.extend({
         tagName: 'span',
         template: HandlebarsTemplates['thirdchannel/reports/widgets/quadrant_chart'],
         initialize: function (options) {
@@ -19,4 +20,6 @@ define(function(require) {
             return this;
         }
     });
+    _.extend(view.prototype, ViewBreakdownLinkMixin);
+    return view;
 });

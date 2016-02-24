@@ -3,7 +3,7 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
-    return Backbone.View.extend({
+    var view = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/metric_icon'],
         initialize: function (options) {
             this.model = options;
@@ -19,4 +19,5 @@ define(function(require) {
             return this;
         }
     });
+    return view;
 });

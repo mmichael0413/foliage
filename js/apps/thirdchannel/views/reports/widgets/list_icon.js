@@ -2,29 +2,29 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        helpers = require('helpers'),
+        ViewBreakdownLinkMixin = require('thirdchannel/views/reports/widgets/view_breakdown_link_mixin'),
         context = require('context');
 
-    return Backbone.View.extend({
+    var view = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/list_icon'],
         initialize: function (options) {
             this.model = options;
         },
         render: function () {
             this.setElement(this.template(this.model));
-            this.listenTo(context, 'filter:queryString', function(qs){ this.updateViewBreakDownLinkCustom(qs); });
+            this.listenTo(context, 'filter:queryString', function(qs){ this.updateViewBreakDownLinkWrapper(qs); });
             context.trigger('filter:request:queryString');
             return this;
         },
-        updateViewBreakDownLinkCustom : function (qs) {
-            var queryString = helpers.merge_query_string(qs, this.model.info_list_default_filters);
-            var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
+        updateViewBreakDownLinkWrapper : function (qs) {
+            var filters = this.model.info_list_default_filters;
             var infoListFilters = this.model.results.info_list_filters;
             if (infoListFilters !== undefined) {
-                queryString = helpers.merge_query_string(queryString, infoListFilters);
+                filters = _.extend(infoListFilters, filters);
             }
-            var viewBreakDownLink = 'reports/' + account + '/info/' + this.model.widget_id + '?' + queryString;
-            this.$el.find('a.breakdown-link').attr("href", viewBreakDownLink);
+            this.updateViewBreakDownLink(qs, filters);
         }
     });
+    _.extend(view.prototype, ViewBreakdownLinkMixin);
+    return view;
 });

@@ -3,9 +3,10 @@ define(function(require) {
         Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         c3 = require('c3'),
+        ViewBreakdownLinkMixin = require('thirdchannel/views/reports/widgets/view_breakdown_link_mixin'),
         context = require('context');
 
-    return Backbone.View.extend({
+    var view = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/donut_chart'],
 
         initialize: function (options) {
@@ -52,4 +53,6 @@ define(function(require) {
             }
         }
     });
+    _.extend(view.prototype, ViewBreakdownLinkMixin);
+    return view;
 });

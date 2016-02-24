@@ -3,9 +3,10 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         Chartist = require('chartist'),
+        ViewBreakdownLinkMixin = require('thirdchannel/views/reports/widgets/view_breakdown_link_mixin'),
         context = require('context');
 
-    return Backbone.View.extend({
+    var view = Backbone.View.extend({
         tagName: 'span',
         template: HandlebarsTemplates['thirdchannel/reports/widgets/stacked_bar'],
         initialize: function (options) {
@@ -58,4 +59,6 @@ define(function(require) {
             new Chartist.Bar(this.$('.ct-chart')[0], this.model.results, options);
         }
     });
+    _.extend(view.prototype, ViewBreakdownLinkMixin);
+    return view;
 });

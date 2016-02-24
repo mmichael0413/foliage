@@ -2,9 +2,10 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
+        ViewBreakdownLinkMixin = require('thirdchannel/views/reports/widgets/view_breakdown_link_mixin'),
         context = require('context');
 
-    return Backbone.View.extend({
+    var view = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/totals_averages_table'],
         initialize: function (options) {
             this.model = options;
@@ -16,4 +17,6 @@ define(function(require) {
             return this;
         }
     });
+    _.extend(view.prototype, ViewBreakdownLinkMixin);
+    return view;
 });

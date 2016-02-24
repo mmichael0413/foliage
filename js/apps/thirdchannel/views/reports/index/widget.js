@@ -1,10 +1,8 @@
 define(function(require) {
     var Backbone = require('backbone'),
-        _ = require('underscore'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         HandlebarsHelpers = require('handlebarsHelpers'),
-        SharedMixin = require('thirdchannel/views/reports/widgets/shared_mixin'),
         BarChartView = require('thirdchannel/views/reports/widgets/bar_chart'),
         DonutChartView = require('thirdchannel/views/reports/widgets/donut_chart'),
         HorizontalBarChartView = require('thirdchannel/views/reports/widgets/horizontal_bar_chart'),
@@ -78,99 +76,61 @@ define(function(require) {
             return this;
         },
         createDonutChart: function () {
-            _.extend(DonutChartView.prototype, SharedMixin);
-            var view = new DonutChartView(this.model);
-            return view.render().$el;
+            return new DonutChartView(this.model).render().$el;
         },
         createListIcon: function () {
-            _.extend(ListIconView.prototype, SharedMixin);
-            var view = new ListIconView(this.model);
-            return view.render().$el;
+            return new ListIconView(this.model).render().$el;
         },
         createBarChart: function () {
-            _.extend(BarChartView.prototype, SharedMixin);
-            var view = new BarChartView(this.model);
-            return view.render().$el;
+            return new BarChartView(this.model).render().$el;
         },
         createPercentIcon: function () {
-            _.extend(PercentIconView.prototype, SharedMixin);
-            var view = new PercentIconView(this.model);
-            return view.render().$el;
+            return new PercentIconView(this.model).render().$el;
         },
         createMetricIcon: function () {
-            _.extend(MetricIconView.prototype, SharedMixin);
-            var view = new MetricIconView(this.model);
-            return view.render().$el;
+            return new MetricIconView(this.model).render().$el;
         },
         createResolutionRow: function () {
-            _.extend(ResolutionRowView.prototype, SharedMixin);
-            var view = new ResolutionRowView(this.model);
-            return view.render().$el;
+            return new ResolutionRowView(this.model).render().$el;
         },
         createOverviewIcon: function () {
-            _.extend(OverviewIconView.prototype, SharedMixin);
-            var view = new OverviewIconView(this.model);
-            return view.render().$el;
+            return new OverviewIconView(this.model).render().$el;
         },
         createHorizontalBarChart: function () {
-            _.extend(HorizontalBarChartView.prototype, SharedMixin);
-            var view = new HorizontalBarChartView(this.model);
-            return view.render().$el;
+            return new HorizontalBarChartView(this.model).render().$el;
         },
         createRangeChart: function () {
-            _.extend(RangeChartView.prototype, SharedMixin);
-            var view = new RangeChartView(this.model);
-            return view.render().$el;
+            return new RangeChartView(this.model).render().$el;
         },
         createMultiQuestionTotal: function () {
-            _.extend(MultiQuestionTotalsView.prototype, SharedMixin);
-            var view = new MultiQuestionTotalsView(this.model);
-            return view.render().$el;
+            return new MultiQuestionTotalsView(this.model).render().$el;
         },
         createQuadrantChart: function () {
-            _.extend(QuadrantChartView.prototype, SharedMixin);
-            var view = new QuadrantChartView(this.model);
-            return view.render().$el;
+            return new QuadrantChartView(this.model).render().$el;
         },
         createLeadingRow: function () {
-            _.extend(LeadingRowView.prototype, SharedMixin);
-            var view = new LeadingRowView(this.model);
-            return view.render().$el;
+            return new LeadingRowView(this.model).render().$el;
         },
         createMultiQuestionCount: function () {
-            _.extend(MultiQuestionCountsView.prototype, SharedMixin);
-            var view = new MultiQuestionCountsView(this.model);
-            return view.render().$el;
+            return new MultiQuestionCountsView(this.model).render().$el;
         },
         createLineChart: function () {
-            _.extend(LineChartView.prototype, SharedMixin);
-            var view = new LineChartView(this.model);
-            return view.render().$el;
+            return new LineChartView(this.model).render().$el;
         },
         createGenericHorizontalBarChart: function () {
-            _.extend(GenericHorizontalBarChartView.prototype, SharedMixin);
-            var view = new GenericHorizontalBarChartView(this.model);
-            return view.render().$el;
+            return new GenericHorizontalBarChartView(this.model).render().$el;
         },
         createHorizontalStackedBarChart: function() {
-            _.extend(StackedBarChartView.prototype, SharedMixin);
-            var view = new StackedBarChartView(this.model);
-            return view.render().$el;
+            return new StackedBarChartView(this.model).render().$el;
         },
         createHeatmap: function() {
-            _.extend(HeatmapView.prototype, SharedMixin);
-            var view = new HeatmapView(this.model);
-            return view.render().$el;
+            return new HeatmapView(this.model).render().$el;
         },
         createTotalsAveragesTable: function() {
-            _.extend(TotalsAveragesTableView.prototype, SharedMixin);
-            var view = new TotalsAveragesTableView(this.model);
-            return view.render().$el;
+            return new TotalsAveragesTableView(this.model).render().$el;
         },
         createLegend: function() {
-            _.extend(LegendView.prototype, SharedMixin);
-            var view = new LegendView(this.model);
-            return view.render().$el;
+            return new LegendView(this.model).render().$el;
         }
     });
 });
