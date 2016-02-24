@@ -127,7 +127,7 @@ define(function(require){
         },
 
         adminView: function() {
-            new AdminView()
+            new AdminView();
         },
 
         checkin_list: function (program_id, user_id){
