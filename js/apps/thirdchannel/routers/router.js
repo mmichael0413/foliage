@@ -42,7 +42,7 @@ define(function(require){
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             'agents/opportunities/:program_id/applications/:id' : 'viewApplication',
-            'admin/*path' : 'adminView',
+
             'login' : 'login',
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
@@ -81,6 +81,7 @@ define(function(require){
             'programs/:program_id/exports/sales_stores': 'salesStoresExports',
 
             'admin/data_clips(/)': 'dataClipsExports',
+            'admin/*path' : 'adminView',
 
             'programs/:program_id/*path' : 'defaultPath',
             '*path': 'notFound'
@@ -259,6 +260,7 @@ define(function(require){
 
         dataClipsExports: function() {
             new DataClipsExportView().render();
+            new AdminView();
         },
 
         viewApplication: function(program_id, id) {
