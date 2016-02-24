@@ -116,9 +116,6 @@ require.config({
         },
         "rxjs": {
             deps: ["jquery"]
-        },
-        "jquery-deparam": {
-            deps: ["jquery"]
         }
     }
 });

@@ -4,8 +4,7 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates'),
         d3 = require('d3'),
         c3 = require('c3'),
-        context = require('context'),
-        helpers = require('helpers');
+        context = require('context');
 
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/line_chart'],
@@ -18,7 +17,7 @@ define(function(require) {
         render: function () {
             if (_.size(this.model.results) > 0) {
                 this.setElement(this.template(this.model));
-                this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
+                this.listenTo(context, 'filter:queryString', function(qs){ this.updateViewBreakDownLink(qs, this.model); });
                 this.listenTo(context, 'report post render', this.renderChart);
                 this.listenTo(context, 'report resize',      this.resizeChart);
                 context.trigger('filter:request:queryString');
@@ -53,11 +52,6 @@ define(function(require) {
             if (this.chart !== undefined) {
                 this.chart.flush();
             }
-        },
-        updateViewBreakDownLink : function (qs) {
-            var queryString = helpers.merge_query_string(qs, this.model.info_list_default_filters);
-            var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
-            this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?' + queryString);
         }
     });
 });

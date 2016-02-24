@@ -1,6 +1,4 @@
 define(function (require) {
-    var $ = require('jquery'),
-    deparam = require('jquery-deparam');
     return {
         isMobile: {
             Android: function () {
@@ -56,12 +54,6 @@ define(function (require) {
                     return "Not Mobile";
                 }
             }
-        },
-
-        merge_query_string: function(qs, obj) {
-            var qs_obj = deparam(qs);
-            var merged = _.extend(obj , qs_obj);
-            return $.param(merged);
         }
     };
 });
