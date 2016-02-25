@@ -1,7 +1,9 @@
 .subtle-instruction {
   color: $medium-blue;
   font-style: italic;
+  font-size: 0.8rem;
 }
+
 #taskContainer {
   .task-item, .complete-checkin-tasks {
     padding-bottom: 1em;
@@ -15,8 +17,18 @@
   .error {
     color: $red;
   }
+
+  @include swb-medium {
+    a, button {
+      width: 100%;
+    }
+  }
 }
 .job-schedule {
     font-weight: bold;
     margin-right: 1em;
+}
+
+.checkin-action {
+  padding: 1rem 0;
 }

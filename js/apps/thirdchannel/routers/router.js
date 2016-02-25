@@ -36,11 +36,13 @@ define(function(require){
         ProgramProfileEditView = require('erudition/views/profile/edit'),
         ProfileStoreListView = require('thirdchannel/views/profiles/stores/list'),
         ApplicationView = require('thirdchannel/views/application/main'),
+        AdminView = require('thirdchannel/views/admin/flash'),
         LoginView = require('thirdchannel/views/authentication/login');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             'agents/opportunities/:program_id/applications/:id' : 'viewApplication',
+
             'login' : 'login',
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
@@ -79,6 +81,7 @@ define(function(require){
             'programs/:program_id/exports/sales_stores': 'salesStoresExports',
 
             'admin/data_clips(/)': 'dataClipsExports',
+            'admin/*path' : 'adminView',
 
             'programs/:program_id/*path' : 'defaultPath',
             '*path': 'notFound'
@@ -118,9 +121,14 @@ define(function(require){
             var incomplete_url =  '/programs/' + context.programId + '/activities/incomplete_posts';
             ActivitiesMain.init(url, incomplete_url, false);
         },
+
         activityFeed: function(program_id, activity_id) {
             var url = '/programs/' + program_id + '/activities/' + activity_id;
             ActivitiesMain.init(url, null, true);
+        },
+
+        adminView: function() {
+            new AdminView();
         },
 
         checkin_list: function (program_id, user_id){
@@ -252,6 +260,7 @@ define(function(require){
 
         dataClipsExports: function() {
             new DataClipsExportView().render();
+            new AdminView();
         },
 
         viewApplication: function(program_id, id) {

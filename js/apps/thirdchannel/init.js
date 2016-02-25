@@ -35,7 +35,8 @@ require.config({
         'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
         'jquery.mask' : '../libs/bower_components/jquery-mask-plugin/dist/jquery.mask',
         'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min',
-        'rxjs'          : '../libs/bower_components/rxjs/dist/rx.all.min'
+        'rxjs'          : '../libs/bower_components/rxjs/dist/rx.all.min',
+        'viewer'      : '../libs/viewer'
     },
     shim: {
         "jquery": {

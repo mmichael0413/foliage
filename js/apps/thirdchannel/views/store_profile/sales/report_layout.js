@@ -16,6 +16,7 @@ define(function(require) {
         initialize: function() {
             this.accountData = this.model.get('account');
             this.storeData = this.model.get('store');
+            this.categories = this.model.get('categories');
         },
 
         render: function() {
@@ -27,7 +28,7 @@ define(function(require) {
         },
 
         renderOverview: function() {
-            var data = _.omit(this.storeData, 'brands', 'genders');
+            var data = _.omit(this.storeData, 'brands', 'categories');
             data.current_year = this.model.get('current_year');
             data.current_time_period = this.model.get('current_time_period');
             data.accountSalesInCents = this.accountData.salesInCents;
@@ -48,16 +49,16 @@ define(function(require) {
             var model = new Backbone.Model({brand: 'Total Sales'});
             model.breakdowns = new Backbone.Collection();
 
-            model.breakdowns.add(new Backbone.Model(_.extend(_.omit(this.storeData, 'brands', 'genders'), {label: 'Total Sales', accountSalesChange: accountSalesChange})));
+            model.breakdowns.add(new Backbone.Model(_.extend(_.omit(this.storeData, 'brands', 'categories'), {label: 'Total Sales', accountSalesChange: accountSalesChange})));
 
-            _.each(['man', 'woman', 'none'], function(gender) {
-                var data = this.storeData.genders[gender];
-                var genderAccountSalesChange = null;
+            _.each(this.categories, function(category) {
+                var data = this.storeData.categories[category];
+                var categoryAccountSalesChange = null;
                 if (data) {
-                    if(this.accountData.genders[gender] !== undefined && this.accountData.genders[gender] !== undefined) {
-                        genderAccountSalesChange = this.accountData.genders[gender].salesChange;
+                    if(this.accountData.categories[category] !== undefined && this.accountData.categories[category] !== undefined) {
+                        categoryAccountSalesChange = this.accountData.categories[category].salesChange;
                     }
-                    model.breakdowns.add(_.extend(data, {label: self._translateGenderLabel(gender), accountSalesChange: genderAccountSalesChange}));
+                    model.breakdowns.add(_.extend(data, {label: self._translateLabel(category), accountSalesChange: categoryAccountSalesChange}));
                 }
             }.bind(this));
 
@@ -78,26 +79,26 @@ define(function(require) {
                 var model = new Backbone.Model({brand: brand});
                 model.breakdowns = new Backbone.Collection();
 
-                var breakdownData = _.extend(_.omit(data, 'man', 'woman', 'none'), {label: brand, accountSalesChange: accountSalesChange});
+                var breakdownData = _.extend(_.omit(data, this.categories), {label: brand, accountSalesChange: accountSalesChange});
                 model.breakdowns.add(new Backbone.Model(breakdownData));
 
-                _.each(['man', 'woman', 'none'], function(g) {
-                    var genderAccountSalesChange = null;
+                _.each(this.categories, function(c) {
+                    var categoryAccountSalesChange = null;
 
-                    if(accountBrandData !== undefined && accountBrandData[g] !== undefined) {
-                        genderAccountSalesChange = accountBrandData[g].salesChange;
+                    if(accountBrandData !== undefined && accountBrandData[c] !== undefined) {
+                        categoryAccountSalesChange = accountBrandData[c].salesChange;
                     }
 
-                    var genderData = data[g];
-                    if (genderData) {
-                        model.breakdowns.add(_.extend(genderData, {label: self._translateGenderLabel(g), accountSalesChange: genderAccountSalesChange}));
+                    var categoryData = data[c];
+                    if (categoryData) {
+                        model.breakdowns.add(_.extend(categoryData, {label: self._translateLabel(c), accountSalesChange: categoryAccountSalesChange}));
                     }
                 });
 
                 return model;
             }.bind(this));
 
-            var view = new BreakdownView({title: 'Brands', el: this.$('#brands-breakdown'), collection: new Backbone.Collection(brands)});
+            var view = new BreakdownView({title: this._breakdownLabel(), el: this.$('#brands-breakdown'), collection: new Backbone.Collection(brands)});
             view.render();
         },
 
@@ -120,8 +121,14 @@ define(function(require) {
                 this.render();
             }.bind(this));
         },
-
-        _translateGenderLabel: function(label) {
+        _breakdownLabel: function() {
+            var label = this.model.get('breakdown_by');
+            if(label) {
+                label = label.charAt(0).toUpperCase() + label.slice(1).toLowerCase();
+            }
+            return label;
+        },
+        _translateLabel: function(label) {
             if(label === 'man') {
                 label = "Men's";
             } else if(label === 'woman') {

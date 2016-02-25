@@ -5,10 +5,10 @@
             <div class="task-container">
                 {{#tasks}}
                 <a class="task-item {{#active}}active{{/active}}" href="{{href}}">
-                    <div class="badge task-label">{{title}}</div>
-                    {{#has_summary}}<div class="task-info badge"><i class="ic ic_feed-summary"/></div>{{/has_summary}}
-                    {{#has_photos}}<div class="task-info badge"><i class="ic ic_feed-photos"/></div>{{/has_photos}}
-                    {{#has_alerts}}<div class="task-info badge"><i class="ic ic_feed-alerts"/></div>{{/has_alerts}}
+                    <div class="badge task-label col-md-1-2">{{title}}</div>
+                    {{#has_summary}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-summary"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_summary}}
+                    {{#has_photos}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-photos"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_photos}}
+                    {{#has_alerts}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-alerts"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_alerts}}
                 </a>
                 {{/tasks}}
             </div>
@@ -70,7 +70,7 @@
                 {{#each images}}
                 <div>
                     <div class="helper">
-                        <img src="{{url}}" class="img-responsive" onerror="this.src='{{../content_image_error_url}}'"/>
+                        <img src="{{url}}" alt="{{label}}" class="img-responsive" onerror="this.src='{{../content_image_error_url}}'"/>
                     </div>
                     <div class="img-label">{{image_type}}</div>
                 </div>

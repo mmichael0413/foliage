@@ -3,7 +3,7 @@ define(function(require) {
         _ = require('underscore'),
         $ = require('jquery'),
         context = require('context'),
-        GalleryImageModal = require('thirdchannel/modals/gallery_image_modal'),
+        Viewer = require('viewer'),
         HoverableImageView = require('thirdchannel/views/shared/hoverable_image'),
 
         /**
@@ -17,14 +17,6 @@ define(function(require) {
             events: {
                 'click .arrow-left' : 'prevSlide',
                 'click .arrow-right' : 'nextSlide'
-            },
-
-            initialize: function() {
-                var self = this;
-                this.listenTo(context, 'gallery:image:open', function(model) {
-                    self.modal = new GalleryImageModal({model: model});
-                    $("body").append(self.modal.render().el);
-                });
             },
 
             render: function () {
@@ -53,6 +45,14 @@ define(function(require) {
                             }
                         }
                     ]
+                });
+
+                this.viewer = this.$('.image-container').viewer({
+                    inline: false,
+                    rotatable: false,
+                    transition: false,
+                    scalable: false,
+                    fullscreen: false
                 });
             },
             prevSlide: function(e){

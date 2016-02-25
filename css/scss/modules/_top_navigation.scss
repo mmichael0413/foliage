@@ -9,7 +9,7 @@
   z-index: 10;
   top: 0;
   background-color: #fff;
-  // box-shadow: 0 2px 5px 0px #5D5D5D;
+  border-bottom: 1px solid #e3e8ec;
 
   @include swb-medium {
     left: inherit;
@@ -30,6 +30,7 @@
     float: left;
     height: 65px;
     display: inline;
+    background: transparent;
 
     @include swb-medium {
       padding-left: 0.8em;
@@ -69,9 +70,12 @@
           vertical-align: middle;
           color: #5d5d5d;
 
-          &:hover {
-            background-color: #f6f6f5;
-            transition: .3s background-color;
+          @include swa-medium {
+            &:hover {
+              background-color: #f6f6f5;
+              transition: .3s background-color;
+              border-bottom: 1px solid #e3e8ec;
+            }
           }
         }
 
