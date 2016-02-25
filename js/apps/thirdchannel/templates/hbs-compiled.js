@@ -1781,7 +1781,7 @@ function program2(depth0,data) {
   }
 
   buffer += "<div class=\"pure-g\">\n    <h3 class=\"col-4-5 col-md-1-2 task-item\">Tasks</h3>\n  <span class=\"subtle-instruction col-1-5 col-md-1-2\">* Required During Visit</span>\n</div>\n";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.tasks), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.tasks), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n";
   return buffer;
