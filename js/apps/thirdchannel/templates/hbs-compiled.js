@@ -1142,18 +1142,18 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n    <p class=\"text\">";
+  buffer += "\n    ";
   if (helper = helpers.message) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.message); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n  ";
+    + "\n  ";
   return buffer;
   }
 
 function program3(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n    <p class=\"text\">QTD $ Sales: <span class=\"percentage-change "
+  buffer += "\n    QTD $ Sales: <span class=\"percentage-change "
     + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.salesChange), options)))
     + "\"><i class=\"ic "
     + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.salesChange), options)))
@@ -1162,7 +1162,7 @@ function program3(depth0,data) {
     + "</span> ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.showLabel), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</p>\n  ";
+  buffer += "\n  ";
   return buffer;
   }
 function program4(depth0,data) {
@@ -1171,14 +1171,14 @@ function program4(depth0,data) {
   return " From LY";
   }
 
-  buffer += "<section class=\"sales-widget\">\n  ";
+  buffer += "<section class=\"sales-widget pure-g\">\n  <p class=\"text col-2-3\">\n  ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.message), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n  <a class=\"details\" href=\"";
+  buffer += "\n  </p>\n  <a class=\"details col-1-3\" href=\"";
   if (helper = helpers.salesUrl) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.salesUrl); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">DETAILS</a>\n</section>    ";
+    + "\">DETAILS</a>\n</section>";
   return buffer;
   });
 
@@ -2210,7 +2210,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.self)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" onerror=\"this.src='"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.error)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "'\" class=\"img-responsive\"/>\n</div>\n<div class=\"overlay\">\n  <div class=\"caption\">\n    <p class=\"label\">";
+    + "'\" title=\"";
+  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" alt=\"";
+  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"img-responsive\"/>\n</div>\n<div class=\"overlay\">\n  <div class=\"caption\">\n    <p class=\"label\">";
   if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -3846,10 +3854,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["ThirdChannel"]["templates"]["thirdchannel/store_profile/sales/chart_breakdowns"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  return "<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <div class=\"col-1-2\" id=\"brand-percent-of-sales\">\n            <h3>% of Sales By Brand</h3>\n            <p>This period</p>\n            <div class=\"chart\"></div>\n        </div>\n        <div class=\"col-1-2\" id=\"brand-change-in-sales\">\n            <h3>% Change in Sales</h3>\n            <p>Compared to this period previous year</p>\n            <div class=\"chart horizontal-bar\"></div>\n        </div>\n        <div class=\"col-1-1\">\n            <span class=\"pull-right sps-logo\"></span>\n        </div>\n    </div>\n</section>";
+  buffer += "<section class=\"section data-section\">\n    <div class=\"pure-g\">\n        <div class=\"col-1-2\" id=\"brand-percent-of-sales\">\n            <h3>% of Sales By ";
+  if (helper = helpers.breakdown_by) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.breakdown_by); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</h3>\n            <p>This period</p>\n            <div class=\"chart\"></div>\n        </div>\n        <div class=\"col-1-2\" id=\"brand-change-in-sales\">\n            <h3>% Change in Sales</h3>\n            <p>Compared to this period previous year</p>\n            <div class=\"chart horizontal-bar\"></div>\n        </div>\n        <div class=\"col-1-1\">\n            <span class=\"pull-right sps-logo\"></span>\n        </div>\n    </div>\n</section>";
+  return buffer;
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/store_profile/sales/overview"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {

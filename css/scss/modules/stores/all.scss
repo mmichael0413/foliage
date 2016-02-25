@@ -11,3 +11,11 @@
 #program-search {
   width: 75%;
 }
+
+.similar-account {
+
+  &.match {
+    font-weight: bold;
+    color: $palette7;
+  }
+}

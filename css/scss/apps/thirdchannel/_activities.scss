@@ -147,6 +147,14 @@ $padding: 1.5em;
       display: block;
       float:none;
       margin-top: 1.5rem;
+
+      p {
+        font-size: 0.85rem;
+        vertical-align: middle;
+      }
+      a {
+        font-size: 0.85rem;
+      }
     }
     .text, .details {
       display: inline-block;
