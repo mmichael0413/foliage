@@ -46,7 +46,8 @@
     "noty": "~2.3.5",
     "requirejs-plugins": "~1.0.3",
     "jquery-mask-plugin": "1.13.4",
-    "rxjs": "4.0.6"
+    "rxjs": "4.0.6",
+    "jquery-deparam": "0.5.1"
   },
   "resolutions": {
     "jquery": "~2.0.3",

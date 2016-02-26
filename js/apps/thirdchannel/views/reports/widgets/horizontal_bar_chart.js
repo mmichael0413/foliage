@@ -4,12 +4,13 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates'),
         d3 = require('d3'),
         c3 = require('c3'),
+        ViewBreakdownLinkMixin = require('thirdchannel/views/reports/widgets/view_breakdown_link_mixin'),
         context = require('context');
 
     var defaultLegendColors = ["#F15F51", "#585E60", "#9FB2C0", "#A9BC4D"];
 
 
-    return Backbone.View.extend({
+    var view = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/bar_chart'],
         initialize: function (options) {
             this.model = options;
@@ -18,7 +19,7 @@ define(function(require) {
         render: function () {
             if (_.size(this.model.results) > 0) {
                 this.setElement(this.template(this.model));
-                this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
+                this.listenTo(context, 'filter:queryString', function(qs){ this.updateViewBreakDownLink(qs, this.model); });
                 this.listenTo(context, 'report post render', this.renderChart);
                 this.listenTo(context, 'report resize',      this.resizeChart);
                 context.trigger('filter:request:queryString');
@@ -65,10 +66,8 @@ define(function(require) {
             if (this.chart !== undefined) {
                 this.chart.flush();
             }
-        },
-        updateViewBreakDownLink : function (qs) {
-            var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
-            this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
         }
     });
+    _.extend(view.prototype, ViewBreakdownLinkMixin);
+    return view;
 });

@@ -3,9 +3,10 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         Charts = require('chartjs'),
+        ViewBreakdownLinkMixin = require('thirdchannel/views/reports/widgets/view_breakdown_link_mixin'),
         context = require('context');
 
-    return Backbone.View.extend({
+    var view = Backbone.View.extend({
         tagName: 'span',
         template: HandlebarsTemplates['thirdchannel/reports/widgets/horizontal_bar_chart'],
         initialize: function (options) {
@@ -39,7 +40,7 @@ define(function(require) {
             if (_.size(this.model.results.values) > 0) {
                 this.$el.html(this.template(this.model));
                 this.setupHorizontalBarChart();
-                this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
+                this.listenTo(context, 'filter:queryString', function(qs){ this.updateViewBreakDownLink(qs, this.model); });
                 context.trigger('filter:request:queryString');
             }
             return this;
@@ -95,10 +96,8 @@ define(function(require) {
                     new Chart(canvas[0].getContext("2d")).Bar(self.data, self.chartOptions);
                 });
             }
-        },
-        updateViewBreakDownLink : function (qs) {
-            var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
-            this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
         }
     });
+    _.extend(view.prototype, ViewBreakdownLinkMixin);
+    return view;
 });

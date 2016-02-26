@@ -1,5 +1,4 @@
 define(function (require) {
-    var $ = require('jquery');
     return {
         isMobile: {
             Android: function () {
