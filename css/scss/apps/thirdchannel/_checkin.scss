@@ -14,9 +14,6 @@
     border-bottom: 1px solid $light-blue;
   }
 
-  .error {
-    color: $red;
-  }
 
   @include swb-medium {
     a, button {
@@ -31,4 +28,8 @@
 
 .checkin-action {
   padding: 1rem 0;
+}
+
+.error {
+	color: $red;
 }
