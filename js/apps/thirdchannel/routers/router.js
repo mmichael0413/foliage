@@ -8,6 +8,7 @@ define(function(require){
         MainLayout = require('shared/views/layout/main'),
         ActivitiesMain = require('thirdchannel/views/activities/main'),
         CheckinsView = require('thirdchannel/views/checkins/checkin'),
+        CheckinInProgressView = require('thirdchannel/views/checkins/in_progress'),
         TeamsMain = require('thirdchannel/views/teams/main'),
         StoresMain = require('thirdchannel/views/stores/main'),
         StoreProfileMain = require('thirdchannel/views/store_profile/main'),
@@ -51,6 +52,7 @@ define(function(require){
             'programs/:program_id/profiles/:user_id/stores': 'programProfileStores',
             'programs/:program_id/profiles/:user_id/edit': 'programProfileEdit',
             'programs/:program_id/checkins(/)' : 'checkin_list',
+            'programs/:program_id/checkins/:id(/)' : 'in_progress',
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
             'programs/:program_id/stores/:store_id(/)': 'storeProfile',
@@ -133,6 +135,10 @@ define(function(require){
 
         checkin_list: function (program_id, user_id){
             CheckinsView.init();
+        },
+
+        in_progress: function (program_id, checkin_id){
+            new CheckinInProgressView();
         },
 
         teams: function () {
