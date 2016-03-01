@@ -1,33 +1,7 @@
 .subtle-instruction {
-  color: $medium-blue;
-  font-style: italic;
-  font-size: 0.8rem;
-}
-
-#taskContainer {
-  .task-item, .complete-checkin-tasks {
-    padding-bottom: 1em;
-    padding-top: 1em;
-  }
-
-  .task-item {
-    border-bottom: 1px solid $light-blue;
-  }
-
-
-  @include swb-medium {
-    a, button {
-      width: 100%;
-    }
-  }
-}
-.job-schedule {
-    font-weight: bold;
-    margin-right: 1em;
-}
-
-.checkin-action {
-  padding: 1rem 0;
+	color: $medium-blue;
+	font-style: italic;
+	font-size: 0.8rem;
 }
 
 .error {
