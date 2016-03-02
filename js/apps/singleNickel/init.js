@@ -13,7 +13,6 @@ require.config({
         'handlebars': '../libs/bower_components/handlebars/handlebars',
         'handlebarsTemplates': 'singleNickel/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
-        'moment' : '../libs/moment',
         'context': 'shared/utils/context',
         'backboneValidator' : '../libs/bower_components/backbone-validator/backbone-validator',
         'backboneValidatorPatch': '../libs/backbone-validator/viewCallbackPatch',
