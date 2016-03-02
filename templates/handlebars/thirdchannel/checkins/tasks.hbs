@@ -14,7 +14,15 @@
                 <input id="task_uuid" name="task_uuid" type="hidden" value="{{uuid}}">
                 <input id="job_uuid" name="job_uuid" type="hidden" value="{{../job.uuid}}">
                 <input name="authenticity_token" value="{{../auth_token}}" type="hidden">
-                <button class="btn primary" name="commit"><i class="ic fa ic_location"></i><span>Start</span></button>
+                <button class="btn primary" name="commit">
+                    {{#if submission}}
+                        <i class="ic fa ic_edit"></i>
+                        <span>{{submission}}</span>
+                    {{else}}
+                      <i class="ic fa ic_location"></i>
+                      <span>Start</span>
+                    {{/if}}
+                </button>
             </form>
         </div>
     </div>

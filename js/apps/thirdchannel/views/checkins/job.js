@@ -15,14 +15,28 @@ define(function(require){
             "click .open-tasks": "openTasks",
             "click .close-tasks": "closeTasks"
         },
+        initialize: function(){
+            this.listenTo(this, 'tasks:open', this.openTasks);
+        },
         render: function() {
             this.$el.html(this.template(this.model));
+            console.log(this.model);
+            if(this.model.job.expand){
+               this.trigger("tasks:open");
+            }
             return this;
         },
         openTasks: function(e){
-            var $target = $(e.currentTarget);
-            e.preventDefault();
-            e.stopPropagation();
+            var $target;
+            if(e && e.hasOwnProperty("currentTarget")){
+                $target = $(e.currentTarget);
+                e.preventDefault();
+                e.stopPropagation();
+            } else {
+                $target = this.$el.find(".open-tasks");
+            }
+            console.log("open");
+            console.log($target);
 
             $target.removeClass('open-tasks');
             $target.html(this.closeBtn);
@@ -40,6 +54,8 @@ define(function(require){
             var $target = $(e.currentTarget);
             e.preventDefault();
             e.stopPropagation();
+            console.log("close");
+            console.log($target);
 
             $target.removeClass('close-tasks');
             $target.html(this.openBtn);

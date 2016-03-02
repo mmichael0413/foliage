@@ -1686,18 +1686,18 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", helper, options;
-  buffer += "\n<span class=\"job-schedule\">"
+  buffer += "\n			<span class=\"job-schedule\">"
     + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.date), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.date), options)))
-    + "</span>\n";
+    + "</span>\n		";
   return buffer;
   }
 
-  buffer += "<div class=\"pure-g\">\n<div class=\"col-4-5\">\n";
+  buffer += "<div class=\"pure-g\">\n	<div class=\"col-4-5\">\n		";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.date), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n<span class=\"job-name\">"
+  buffer += "\n		<span class=\"job-name\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</span>\n</div>\n<div class=\"col-1-5\"><a href=\"#\" class=\"open-tasks\">Show Tasks <i class=\"ic ic_down\"></i> </a> </div>\n</div>\n";
+    + "</span>\n	</div>\n	<div class=\"col-1-5\"><a href=\"#\" class=\"open-tasks\">Show Tasks <i class=\"ic ic_down\"></i> </a> </div>\n</div>\n";
   return buffer;
   });
 
@@ -1771,13 +1771,33 @@ function program1(depth0,data,depth1) {
     + escapeExpression(((stack1 = ((stack1 = (depth1 && depth1.job)),stack1 == null || stack1 === false ? stack1 : stack1.uuid)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">\n                <input name=\"authenticity_token\" value=\""
     + escapeExpression(((stack1 = (depth1 && depth1.auth_token)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" type=\"hidden\">\n                <button class=\"btn primary\" name=\"commit\"><i class=\"ic fa ic_location\"></i><span>Start</span></button>\n            </form>\n        </div>\n    </div>\n";
+    + "\" type=\"hidden\">\n                <button class=\"btn primary\" name=\"commit\">\n                    ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.submission), {hash:{},inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n                </button>\n            </form>\n        </div>\n    </div>\n";
   return buffer;
   }
 function program2(depth0,data) {
   
   
   return "<span class=\"subtle-instruction\">*</span>";
+  }
+
+function program4(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n                        <i class=\"ic fa ic_edit\"></i>\n                        <span>";
+  if (helper = helpers.submission) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.submission); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n                    ";
+  return buffer;
+  }
+
+function program6(depth0,data) {
+  
+  
+  return "\n                      <i class=\"ic fa ic_location\"></i>\n                      <span>Start</span>\n                    ";
   }
 
   buffer += "<div class=\"pure-g\">\n    <h3 class=\"col-4-5 col-md-1-2\">Tasks</h3>\n  <span class=\"subtle-instruction col-1-5 col-md-1-2\">* Required During Visit</span>\n</div>\n";

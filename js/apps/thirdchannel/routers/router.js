@@ -138,7 +138,7 @@ define(function(require){
         },
 
         in_progress: function (program_id, checkin_id){
-            new CheckinInProgressView();
+            new CheckinInProgressView({ model: window.bootstrap });
         },
 
         teams: function () {
