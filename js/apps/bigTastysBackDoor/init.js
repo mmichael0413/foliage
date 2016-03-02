@@ -11,7 +11,7 @@ require.config({
         'handlebars': '../libs/bower_components/handlebars/handlebars.min',
         'handlebarsTemplates': 'bigTastysBackDoor/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
-        'moment' : '../libs/bower_components/moment/moment',
+        'moment' : '../libs/moment',
         'context': 'shared/utils/context',
         'jquery_ujs' : '../libs/bower_components/jquery-ujs/src/rails',
 

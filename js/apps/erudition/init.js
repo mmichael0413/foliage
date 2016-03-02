@@ -11,7 +11,7 @@ require.config({
         'handlebars'    : '../libs/bower_components/handlebars/handlebars.min',
         'handlebarsTemplates': 'erudition/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
-        'moment' : '../libs/bower_components/moment/moment',
+        'moment' : '../libs/moment',
         'helpers'       : 'thirdchannel/utils/helpers',
         'serializeObject' : "../libs/bower_components/jquery-serialize-object/jquery.serialize-object",
         'jquery-validate' : '../libs/bower_components/jquery-validation/dist/jquery.validate',

@@ -15,7 +15,7 @@ require.config({
         'handlebars'    : '../libs/bower_components/handlebars/handlebars.min',
         'handlebarsTemplates': 'pennyPacker/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
-        'moment' : '../libs/bower_components/moment/moment',
+        'moment' : '../libs/moment',
         'helpers'       : 'thirdchannel/utils/helpers',
         'pikaday'       : '../libs/bower_components/pikaday/pikaday',
         'context'       : 'shared/utils/context',
