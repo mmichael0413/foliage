@@ -81,7 +81,7 @@ define(function(require) {
                     modelToSwap.set('idx', currentIdx);
                 }
             }
-            this.reindex(new this.model.reindexModel({baseUrl: collection.url()}), collection)
+            this.reindex(new this.model.reindexModel({baseUrl: collection.url()}), collection);
         },
         moveDown: function(e) {
             this.stopEvent(e);
@@ -101,7 +101,7 @@ define(function(require) {
                     modelToSwap.set('idx', currentIdx);
                 }
             }
-            this.reindex(new this.model.reindexModel({baseUrl: collection.url()}), collection)
+            this.reindex(new this.model.reindexModel({baseUrl: collection.url()}), collection);
         },
         reindex: function(model, collection) {
             model.set("order", collection.map(function(model){

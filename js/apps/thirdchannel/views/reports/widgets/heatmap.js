@@ -3,12 +3,13 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         d3 = require('d3'),
+        ViewBreakdownLinkMixin = require('thirdchannel/views/reports/widgets/view_breakdown_link_mixin'),
         context = require('context'),
         LoadingView = require('thirdchannel/views/utils/loading');
 
     var maxRectWidth = 30;
 
-    return Backbone.View.extend({
+    var view = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/heatmap'],
         initialize: function (options) {
             this.model = options;
@@ -141,4 +142,6 @@ define(function(require) {
             this.queryString = qs;
         }
     });
+    _.extend(view.prototype, ViewBreakdownLinkMixin);
+    return view;
 });
