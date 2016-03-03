@@ -13,6 +13,7 @@ require.config({
         'expanding': '../libs/expanding',
         'handlebarsTemplates': 'thirdchannel/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
+        'handlebarsHelpersExt' : 'shared/utils/handlebarsHelpersExt',
         'context': 'shared/utils/context',
         'imagesloaded' : "../libs/bower_components/imagesloaded/imagesloaded.pkgd",
         'backbone.modal' : '../libs/bower_components/backbone-modal/backbone.modal',
@@ -62,11 +63,14 @@ require.config({
             deps: ["jquery"],
             exports: "Handlebars"
         },
-        "handlebarTemplates": {
-            deps: ["handlebars", "handlebarsHelpers"],
-            exports: "HandlebarTemplates"
+        "handlebarsTemplates": {
+            deps: ["handlebars", "handlebarsHelpers", "handlebarsHelpersExt"],
+            exports: "HandlebarsTemplates"
         },
         'handlebarsHelpers': {
+            deps: ["handlebars"]
+        },
+        'handlebarsHelpersExt': {
             deps: ["handlebars"]
         },
         'context': {
