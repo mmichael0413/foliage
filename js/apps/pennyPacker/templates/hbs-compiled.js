@@ -611,7 +611,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   if (helper = helpers.locationName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.locationName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n\n\n<div class=\"col-2-12 entry-actions\">\n    <!--<a class=\"btn primary\" href=\"#\" title=\"View Checkin Report\"><i class=\"ic ic_report-16\"></i></a>-->\n    ";
+    + "</p>\n\n\n<div class=\"col-2-12 entry-actions\">\n    ";
   stack1 = self.invokePartial(partials.expand_action, 'expand_action', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    ";
