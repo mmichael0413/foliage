@@ -8,6 +8,24 @@
 	color: $red;
 }
 
-.job-schedule {
-	font-weight: bold;
+.store {
+	padding: 0.5em 0;
+	margin: 0;
+}
+
+.visit {
+	margin-bottom: 0.5em;
+}
+
+.job {
+	padding-left: 2em;
+}
+
+.expandable {
+	.main {
+		margin-bottom: 0.5em;
+	}
+	.toggle {
+		white-space: nowrap;
+	}
 }
