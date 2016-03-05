@@ -153,16 +153,18 @@ define(function (require) {
             }
             if (this.$siteWrapper.hasClass('show-filter')) {
                 this.closeFilter();
+                if(window.localStorage.getItem('main_navigation') === 'expanded-nav' && this.state == 'desktop') {
+                    this.expandNav(null, true);
+                }
             } else {
                 // Do things on Nav Open
                 this.$siteWrapper.addClass('show-filter');
                 this.$toggleFilter.addClass('enabled');
-            }
 
-            if(window.localStorage.getItem('main_navigation') === 'expanded-nav' && this.state == 'desktop') {
-                this.collapseNav(null, true);
+                if(window.localStorage.getItem('main_navigation') === 'expanded-nav' && this.state == 'desktop') {
+                    this._collapseNav(null, true);
+                }
             }
-
             context.trigger('filter-toggled');
         },
         closeFilter: function() {
