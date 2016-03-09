@@ -380,6 +380,24 @@ function program2(depth0,data) {
   return buffer;
   }));
 
+Handlebars.registerPartial("notifications", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  
+  return "\n                <option value=\"Yes\">Yes</option>\n                <option value=\"No\">No</option>\n            ";
+  }
+
+  buffer += "<div class=\"card\">\n    <div class=\"header\">Notification Preferences</div>\n\n    <div class=\"body\">\n\n        <label for=\"emailOpportunities\">Would you like to receive emails about future opportunities?</label>\n\n        <select name=\"emailOpportunities\" id=\"emailOpportunities\" data-rule-required=\"true\">\n            <option value=\"\">Select Preference</option>\n            ";
+  stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.emailOpportunities), options) : helperMissing.call(depth0, "select", ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.emailOpportunities), options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </select>\n\n    </div>\n</div>";
+  return buffer;
+  }));
+
 Handlebars.registerPartial("owns_car", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -1168,6 +1186,9 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   buffer += "\n    ";
   stack1 = self.invokePartial(partials.owns_car, 'owns_car', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    ";
+  stack1 = self.invokePartial(partials.notifications, 'notifications', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n    <input type=\"hidden\" name=\"referer\" value=\"";
   if (helper = helpers.referer) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.referer); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -1175,6 +1196,10 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
     + "\"/>\n    <input type=\"hidden\" name=\"programUUID\" value=\"";
   if (helper = helpers.programUUID) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.programUUID); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"/>\n    <input type=\"hidden\" name=\"validate\" value=\"";
+  if (helper = helpers.validate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.validate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\"/>\n\n    <div class=\"button-row\">\n        <a href=\"";
   if (helper = helpers.referer) { stack1 = helper.call(depth0, {hash:{},data:data}); }

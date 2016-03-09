@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="header">Notification Preferences</div>
+
+    <div class="body">
+
+        <label for="emailOpportunities">Would you like to receive emails about future opportunities?</label>
+
+        <select name="emailOpportunities" id="emailOpportunities" data-rule-required="true">
+            <option value="">Select Preference</option>
+            {{#select person.emailOpportunities}}
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            {{/select}}
+        </select>
+
+    </div>
+</div>
