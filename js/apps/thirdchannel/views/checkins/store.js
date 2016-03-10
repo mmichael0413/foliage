@@ -14,7 +14,7 @@ define(function(require) {
                     job_details_by_uuid: this.model.job_details_by_uuid,
                     store_details: this.model.store_details,
                     hide_toggle: true,
-                    preexpand: true,
+                    pre_expand: true,
                     auth_token: window.bootstrap.auth_token,
                 }}).render().$el);
             }.bind(this));

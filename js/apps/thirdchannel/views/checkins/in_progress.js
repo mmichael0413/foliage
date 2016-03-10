@@ -10,6 +10,7 @@ define(function(require){
                     job: job,
                     date: "",
                     store: this.model.store.id,
+                    pre_expand: job.pre_expand,
                 }});
                 this.$el.append(jobView.render().$el);
             }.bind(this));

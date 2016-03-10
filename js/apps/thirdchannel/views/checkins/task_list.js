@@ -4,7 +4,7 @@ define(function(require){
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-        className: 'task-list pure-g',
+        className: 'task-list',
         loadingHTML: HandlebarsTemplates['thirdchannel/loading_icon'],
         template: HandlebarsTemplates['thirdchannel/checkins/tasks'],
         render: function() {

@@ -23,7 +23,7 @@ define(function(require){
             this.main.html(HandleBarsTemplates[this.template](this.model));
             this.subsection = this.$el.find(".subsection");
             this.toggle = this.$el.find(".toggle");
-            if(this.model.preexpand){
+            if(this.model.pre_expand){
                this.trigger("subsection:open");
             }
             return this;
@@ -36,7 +36,8 @@ define(function(require){
                 this.expanded = true;
                 this.fillsubsection();
             }
-            if(this.model.preexpand){
+            if(this.model.pre_expand){
+                this.model.pre_expand = false;
                 this.subsection.show();
             } else {
                 this.subsection.slideDown();
