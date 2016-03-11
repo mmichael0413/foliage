@@ -32,7 +32,7 @@ define(function (require) {
                 dateScheduled: this.model.get('dateScheduled'),
                 state: this.model.get('state'),
                 storeName: this.model.get('storeName'),
-                jobDetail: this.model.get('jobDetail'),
+                jobDetails: this.model.get('jobDetails'),
                 visitUUID: this.model.get('visitUUID'),
                 zip: this.model.get('zip'),
                 canUnassign: this.model.get('canUnassign'),

@@ -746,6 +746,8 @@ function program5(depth0,data) {
   if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
+    + "</p>\n    <p>"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.jobDetails)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</p>\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.canUnassign), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -868,7 +870,9 @@ function program1(depth0,data) {
   if (helper = helpers.dateScheduled) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.dateScheduled); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" style=\"display: none;\"/>\n    <p><a href=\"#\" class=\"task-count\">";
+    + "\" style=\"display: none;\"/>\n    <p>"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.jobDetails)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + ": <a href=\"#\" class=\"task-count\">";
   if (helper = helpers.taskCount) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.taskCount); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -918,10 +922,12 @@ function program3(depth0,data) {
   if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
+    + "</p>\n<p class=\"bold\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.jobDetails)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</p>\n<ul class=\"unstyled\">\n    ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.tasks), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</ul>";
+  buffer += "\n</ul>\n";
   return buffer;
   });
 
