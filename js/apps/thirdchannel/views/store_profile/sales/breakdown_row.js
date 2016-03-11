@@ -6,12 +6,14 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     var View = Backbone.View.extend({
-        className: 'item pure-g',
-
+        tagName: 'tr',
         template: HandlebarsTemplates['thirdchannel/store_profile/sales/breakdown_row'],
 
         render: function() {
             this.$el.html(this.template(this.model.attributes));
+            if(this.model.get('index') === 0) {
+                this.$('td:first').addClass('breakdown-label');
+            }
             return this;
         }
     });
