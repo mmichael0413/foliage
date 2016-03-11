@@ -3903,39 +3903,39 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.current_year) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.current_year); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\n                <a href=\"#\" class=\"next-quarter\">Next Quarter</a>\n            </div>\n        </div>\n        <div class=\"col-1-4\">\n            <h2>"
+    + "\n                <a href=\"#\" class=\"next-quarter\">Next Quarter</a>\n            </div>\n        </div>\n        <div class=\"col-md-1-1 col-1-4\">\n            <div class=\"pure-g\">\n                <div class=\"col-1\">\n                    <h2>"
     + escapeExpression((helper = helpers.formatSalesDollarValue || (depth0 && depth0.formatSalesDollarValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesInCents), options) : helperMissing.call(depth0, "formatSalesDollarValue", (depth0 && depth0.accountSalesInCents), options)))
-    + "</h2>\n            <p>Total $ Account Sales</p>\n        </div>\n        <div class=\"col-1-4\">\n            <h2>"
-    + escapeExpression((helper = helpers.formatSalesDollarValue || (depth0 && depth0.formatSalesDollarValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesInCents), options) : helperMissing.call(depth0, "formatSalesDollarValue", (depth0 && depth0.salesInCents), options)))
-    + "</h2>\n            <p>Total $ Store Sales</p>\n        </div>\n        <div class=\"col-1-4\">\n            <h2>"
-    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSold), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsSold), options)))
-    + "</h2>\n            <p>Units Sold</p>\n        </div>\n        <div class=\"col-1-4\">\n            <h2>"
-    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHand), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsOnHand), options)))
-    + "</h2>\n            <p>Units OH</p>\n        </div>\n\n        <div class=\"col-1-4\">\n            <h2 class=\"percentage-change "
+    + "</h2>\n                    <p>Total $ Account Sales</p>\n                </div>\n                <div class=\"col-1\">\n                    <h2 class=\"percentage-change "
     + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.accountSalesChange), options)))
-    + "\">\n                <i class=\"ic "
+    + "\">\n                        <i class=\"ic "
     + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.accountSalesChange), options)))
     + "\"></i> "
     + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.accountSalesChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.accountSalesChange), options)))
-    + "\n            </h2>\n            <p>Compared to this period last year</p>\n        </div>\n        <div class=\"col-1-4\">\n            <h2 class=\"percentage-change "
+    + "\n                    </h2>\n                    <p>Compared to this period last year</p>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-md-1-1 col-1-4\">\n            <div class=\"pure-g\">\n                <div class=\"col-1\">\n                    <h2>"
+    + escapeExpression((helper = helpers.formatSalesDollarValue || (depth0 && depth0.formatSalesDollarValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesInCents), options) : helperMissing.call(depth0, "formatSalesDollarValue", (depth0 && depth0.salesInCents), options)))
+    + "</h2>\n                    <p>Total $ Store Sales</p>\n                </div>\n                <div class=\"col-1\">\n                    <h2 class=\"percentage-change "
     + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.salesChange), options)))
-    + "\">\n                <i class=\"ic "
+    + "\">\n                        <i class=\"ic "
     + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.salesChange), options)))
     + "\"></i> "
     + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.salesChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.salesChange), options)))
-    + "\n            </h2>\n            <p>Compared to this period last year</p>\n        </div>\n        <div class=\"col-1-4\">\n            <h2 class=\"percentage-change "
+    + "\n                    </h2>\n                    <p>Compared to this period last year</p>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-md-1-1 col-1-4\">\n            <div class=\"pure-g\">\n                <div class=\"col-1\">\n                    <h2>"
+    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSold), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsSold), options)))
+    + "</h2>\n                    <p>Units Sold</p>\n                </div>\n                <div class=\"col-1\">\n                    <h2 class=\"percentage-change "
     + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSoldChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.unitsSoldChange), options)))
-    + "\">\n                <i class=\"ic "
+    + "\">\n                        <i class=\"ic "
     + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSoldChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.unitsSoldChange), options)))
     + "\"></i> "
     + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsSoldChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.unitsSoldChange), options)))
-    + "\n            </h2>\n            <p>Compared to this period last year</p>\n        </div>\n        <div class=\"col-1-4\">\n            <h2 class=\"percentage-change "
+    + "\n                    </h2>\n                    <p>Compared to this period last year</p>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-md-1-1 col-1-4\">\n            <div class=\"pure-g\">\n                <div class=\"col-1\">\n                    <h2>"
+    + escapeExpression((helper = helpers.formatSalesValue || (depth0 && depth0.formatSalesValue),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHand), options) : helperMissing.call(depth0, "formatSalesValue", (depth0 && depth0.unitsOnHand), options)))
+    + "</h2>\n                    <p>Units OH</p>\n                </div>\n                <div class=\"col-1\">\n                    <h2 class=\"percentage-change "
     + escapeExpression((helper = helpers.percentageChangeClass || (depth0 && depth0.percentageChangeClass),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHandChange), options) : helperMissing.call(depth0, "percentageChangeClass", (depth0 && depth0.unitsOnHandChange), options)))
-    + "\">\n                <i class=\"ic "
+    + "\">\n                        <i class=\"ic "
     + escapeExpression((helper = helpers.percentageChangeIcon || (depth0 && depth0.percentageChangeIcon),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHandChange), options) : helperMissing.call(depth0, "percentageChangeIcon", (depth0 && depth0.unitsOnHandChange), options)))
     + "\"></i> "
     + escapeExpression((helper = helpers.formatPercentageChange || (depth0 && depth0.formatPercentageChange),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.unitsOnHandChange), options) : helperMissing.call(depth0, "formatPercentageChange", (depth0 && depth0.unitsOnHandChange), options)))
-    + "\n            </h2>\n            <p>Compared to this period last year</p>\n        </div>\n    </div>\n</section>";
+    + "\n                    </h2>\n                    <p>Compared to this period last year</p>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>";
   return buffer;
   });
 
