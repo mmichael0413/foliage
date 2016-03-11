@@ -1,5 +1,6 @@
 define(function(require){
     var ExpandableView = require('thirdchannel/views/checkins/expandable'),
+        HandleBarsHelpersExt = require('handlebarsHelpersExt'),
         Job = require('thirdchannel/views/checkins/job');
 
     return ExpandableView.extend({

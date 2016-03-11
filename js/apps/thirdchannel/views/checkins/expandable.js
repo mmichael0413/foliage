@@ -11,7 +11,6 @@ define(function(require){
             "click .close": "closesubsection"
         },
         initialize: function(){
-            console.log(this.model);
             this.listenTo(this, 'subsection:open', this.opensubsection);
         },
         render: function() {
