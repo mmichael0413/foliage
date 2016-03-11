@@ -1765,9 +1765,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<a href=\"/programs/"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store_details)),stack1 == null || stack1 === false ? stack1 : stack1.program)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "/stores/"
+  buffer += "<a href=\"/programs/Merchandising/stores/"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store_details)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store_details)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
