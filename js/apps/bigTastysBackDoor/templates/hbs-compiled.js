@@ -3,6 +3,15 @@ define(['handlebars'], function(Handlebars) {
 this["BigTastysBackDoor"] = this["BigTastysBackDoor"] || {};
 this["BigTastysBackDoor"]["templates"] = this["BigTastysBackDoor"]["templates"] || {};
 
+Handlebars.registerPartial("loading", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"section loading-section\">\n    <div class=\"loading\">\n        <div class=\"fa fa-spin ic_processing\"></div> Loading...\n    </div>\n</div>\n\n";
+  }));
+
 Handlebars.registerPartial("content", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
