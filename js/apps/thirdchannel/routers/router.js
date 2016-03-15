@@ -51,8 +51,8 @@ define(function(require){
             'programs/:program_id/profiles/:user_id/activities' : 'programProfileActivity',
             'programs/:program_id/profiles/:user_id/stores': 'programProfileStores',
             'programs/:program_id/profiles/:user_id/edit': 'programProfileEdit',
-            'programs/:program_id/checkins(/)' : 'checkin_list',
-            'programs/:program_id/checkins/:id(/)' : 'in_progress',
+            'programs/:program_id/checkins(/)' : 'checkinList',
+            'programs/:program_id/checkins/:id(/)' : 'inProgress',
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
             'programs/:program_id/stores/:store_id(/)': 'storeProfile',
@@ -120,12 +120,12 @@ define(function(require){
 
         activitiesFeed: function(){
             var url = '/programs/' + context.programId + '/activities/posts';
-            var incomplete_url =  '/programs/' + context.programId + '/activities/incomplete_posts';
-            ActivitiesMain.init(url, incomplete_url, false);
+            var incompleteUrl =  '/programs/' + context.programId + '/activities/incomplete_posts';
+            ActivitiesMain.init(url, incompleteUrl, false);
         },
 
-        activityFeed: function(program_id, activity_id) {
-            var url = '/programs/' + program_id + '/activities/' + activity_id;
+        activityFeed: function(programId, activityId) {
+            var url = '/programs/' + programId + '/activities/' + activityId;
             ActivitiesMain.init(url, null, true);
         },
 
@@ -133,11 +133,11 @@ define(function(require){
             new AdminView();
         },
 
-        checkin_list: function (program_id, user_id){
+        checkinList: function (){
             CheckinsView.init();
         },
 
-        in_progress: function (program_id, checkin_id){
+        inProgress: function (){
             new CheckinInProgressView({ model: window.bootstrap });
         },
 
@@ -185,7 +185,7 @@ define(function(require){
             StoreProfileSalesMain.init();
         },
 
-        programProfile: function(program_id, user_id) {
+        programProfile: function() {
             new ProgramProfileView().render();
         },
 
@@ -193,12 +193,12 @@ define(function(require){
             new ProgramProfileEditView().render();
         },
 
-        programProfileActivity: function(program_id, user_id) {
-            var url = '/programs/' + program_id + '/activities/' + user_id + '/for';
+        programProfileActivity: function(programId, userId) {
+            var url = '/programs/' + programId + '/activities/' + userId + '/for';
             ActivitiesMain.init(url, null, false);
         },
 
-        programProfileStores: function(program_id, user_id) {
+        programProfileStores: function() {
             new ProfileStoreListView().bootstrapCollection(window.bootstrap);
         },
 
@@ -269,12 +269,12 @@ define(function(require){
             new AdminView();
         },
 
-        viewApplication: function(program_id, id) {
-            context.programId = program_id;
+        viewApplication: function(programId, id) {
+            context.programId = programId;
             new ApplicationView({applicationId: id});
         },
 
-        defaultPath: function(program_id) {
+        defaultPath: function(programId) {
 
 
         },
