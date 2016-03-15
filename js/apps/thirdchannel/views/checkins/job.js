@@ -14,6 +14,6 @@ define(function(require) {
             }});
             this.subsection.append(taskList.render().el);
         },
-        template: 'thirdchannel/checkins/job',
+        rowTemplate: 'thirdchannel/checkins/job',
     });
 });

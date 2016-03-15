@@ -17,6 +17,6 @@ define(function(require){
                 this.subsection.append(jobView.render().el);
             }.bind(this));
         },
-        template: 'thirdchannel/checkins/date',
+        rowTemplate: 'thirdchannel/checkins/date',
     });
 });

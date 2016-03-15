@@ -19,6 +19,6 @@ define(function(require) {
                 }}).render().$el);
             }.bind(this));
         },
-        template: 'thirdchannel/checkins/store',
+        rowTemplate: 'thirdchannel/checkins/store',
     });
 });

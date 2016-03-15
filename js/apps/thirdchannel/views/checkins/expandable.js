@@ -19,7 +19,7 @@ define(function(require){
                 hide_toggle: this.model.hide_toggle,
             }));
             this.main = this.$el.find(".main");
-            this.main.html(HandleBarsTemplates[this.template](this.model));
+            this.main.html(HandleBarsTemplates[this.rowTemplate](this.model));
             this.subsection = this.$el.find(".subsection");
             this.toggle = this.$el.find(".toggle");
             if(this.model.pre_expand){
@@ -49,7 +49,7 @@ define(function(require){
             this.subsection.slideUp();
         },
         fillsubsection: function(){},
-        template: "",
+        rowTemplate: "",
         openText: "",
         closeText: ""
     });
