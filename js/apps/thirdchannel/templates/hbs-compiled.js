@@ -1707,7 +1707,7 @@ function program5(depth0,data) {
   buffer += "<div class=\"pure-g\">\n	";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.date), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n	<div class=\"col-1-5 col-md-1-2\">\n		<form accept-charset=\"UTF-8\" action=\"";
+  buffer += "\n	<div class=\"col-1-5 col-md-1-1\">\n		<form accept-charset=\"UTF-8\" action=\"";
   if (helper = helpers.form_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.form_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
