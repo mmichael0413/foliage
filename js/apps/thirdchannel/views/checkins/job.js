@@ -1,52 +1,19 @@
-define(function(require){
-    var Backbone = require('backbone'),
-        $ = require('jquery'),
-        context = require('context'),
-        HandleBarsTemplates = require('handlebarsTemplates'),
+define(function(require) {
+    var ExpandableView = require('thirdchannel/views/checkins/expandable'),
         TaskList = require('thirdchannel/views/checkins/task_list');
 
-
-    return Backbone.View.extend({
-        className: 'job',
-        template: HandleBarsTemplates['thirdchannel/checkins/job'],
-        openBtn: "Show Tasks <i class='ic ic_down'></i>",
-        closeBtn: "Hide Tasks <i class='ic ic_up'></i>",
-        events: {
-            "click .open-tasks": "openTasks",
-            "click .close-tasks": "closeTasks"
-        },
-        render: function() {
-            this.$el.html(this.template(this.model));
-            return this;
-        },
-        openTasks: function(e){
-            var $target = $(e.currentTarget);
-            e.preventDefault();
-            e.stopPropagation();
-
-            $target.removeClass('open-tasks');
-            $target.html(this.closeBtn);
-            $target.addClass('close-tasks');
-
-            this.taskList = new TaskList({model:{
+    return ExpandableView.extend({
+        className: ExpandableView.prototype.className + " job",
+        openText: "Show Tasks",
+        closeText: "Hide Tasks",
+        fillsubsection: function(){
+            var taskList = new TaskList({model:{
                 job: this.model.job,
                 store: this.model.store,
-                auth_token: window.bootstrap.auth_token
+                auth_token: window.bootstrap.auth_token,
             }});
-
-            this.$el.append(this.taskList.render().el);
+            this.subsection.append(taskList.render().el);
         },
-        closeTasks: function(e){
-            var $target = $(e.currentTarget);
-            e.preventDefault();
-            e.stopPropagation();
-
-            $target.removeClass('close-tasks');
-            $target.html(this.openBtn);
-            $target.addClass('open-tasks');
-
-            this.taskList.remove();
-
-        }
+        rowTemplate: 'thirdchannel/checkins/job',
     });
 });

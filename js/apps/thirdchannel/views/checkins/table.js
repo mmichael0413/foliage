@@ -4,11 +4,9 @@ define(function(require) {
 
     return PageableListView.extend({
         el: ".section",
-        bodySelector: '.table',
-
+        bodySelector: '#checkin',
         render: function () {
             var $body = this.$el.find(this.bodySelector);
-
             $body.html('');
             if(this.collection.length === 0){
                 $body.append("No stores available for checkin");
@@ -21,9 +19,7 @@ define(function(require) {
                 };
                 $body.append(new StoreView({model: storeModel}).render().el);
             });
-
             this.afterRender();
-
             return this;
         }
     });

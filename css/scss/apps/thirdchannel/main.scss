@@ -54,7 +54,11 @@
 @import "../../modules/top_navigation";
 @import "../../modules/tooltip";
 
+@import "../../lib/viewer";
+@import "../../modules/viewerjs_extension";
+
 @import "./activities";
+@import "./admin";
 @import "./checkin";
 @import "./dashboards";
 @import "./notifications";
@@ -64,3 +68,4 @@
 @import "./application";
 @import "./login";
 @import "./store_profile";
+@import "./special_projects";

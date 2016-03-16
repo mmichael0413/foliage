@@ -13,6 +13,7 @@ require.config({
         'expanding': '../libs/expanding',
         'handlebarsTemplates': 'thirdchannel/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
+        'handlebarsHelpersExt' : 'shared/utils/handlebarsHelpersExt',
         'context': 'shared/utils/context',
         'imagesloaded' : "../libs/bower_components/imagesloaded/imagesloaded.pkgd",
         'backbone.modal' : '../libs/bower_components/backbone-modal/backbone.modal',
@@ -21,7 +22,7 @@ require.config({
         'chartjs_stacked_bar': '../libs/bower_components/Chart.StackedBar.js/src/Chart.StackedBar',
         'slick_carousel': '../libs/bower_components/slick.js/slick/slick',
         'livestamp' : '../libs/livestamp.min',
-        'moment' : '../libs/bower_components/moment/moment',
+        'moment' : '../libs/moment',
         'chosen': "../libs/bower_components/chosen/chosen.jquery",
         'jquery-validate' : '../libs/bower_components/jquery-validation/dist/jquery.validate',
         'serializeObject' : "../libs/bower_components/jquery-serialize-object/jquery.serialize-object",
@@ -35,7 +36,9 @@ require.config({
         'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
         'jquery.mask' : '../libs/bower_components/jquery-mask-plugin/dist/jquery.mask',
         'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min',
-        'rxjs'          : '../libs/bower_components/rxjs/dist/rx.all.min'
+        'rxjs'          : '../libs/bower_components/rxjs/dist/rx.all.min',
+        'viewer'      : '../libs/viewer',
+        'jquery-deparam' : '../libs/bower_components/jquery-deparam/jquery-deparam',
     },
     shim: {
         "jquery": {
@@ -60,11 +63,14 @@ require.config({
             deps: ["jquery"],
             exports: "Handlebars"
         },
-        "handlebarTemplates": {
-            deps: ["handlebars", "handlebarsHelpers"],
-            exports: "HandlebarTemplates"
+        "handlebarsTemplates": {
+            deps: ["handlebars", "handlebarsHelpers", "handlebarsHelpersExt"],
+            exports: "HandlebarsTemplates"
         },
         'handlebarsHelpers': {
+            deps: ["handlebars"]
+        },
+        'handlebarsHelpersExt': {
             deps: ["handlebars"]
         },
         'context': {

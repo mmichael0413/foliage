@@ -1,0 +1,13 @@
+.admin-actions {
+  @include swb-medium {
+    margin-top: 0.5rem;
+  }
+
+  a {
+    margin-bottom: 0.5rem;
+
+    @include swb-medium {
+      width: 100%;
+    }
+  }
+}

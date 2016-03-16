@@ -2,9 +2,10 @@ define(function(require) {
     var Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
+        ViewBreakdownLinkMixin = require('thirdchannel/views/reports/widgets/view_breakdown_link_mixin'),
         context = require('context');
 
-    return Backbone.View.extend({
+    var view = Backbone.View.extend({
         tagName: 'span',
         template: HandlebarsTemplates['thirdchannel/reports/widgets/quadrant_chart'],
         initialize: function (options) {
@@ -13,14 +14,12 @@ define(function(require) {
         render: function () {
             if (_.size(this.model.results) > 0) {
                 this.setElement(this.template(this.model));
-                this.listenTo(context, 'filter:queryString', this.updateViewBreakDownLink);
+                this.listenTo(context, 'filter:queryString', function(qs){ this.updateViewBreakDownLink(qs, this.model); });
                 context.trigger('filter:request:queryString');
             }
             return this;
-        },
-        updateViewBreakDownLink : function (qs) {
-            var account = (this.model.report_filters.account !== undefined) ?  this.model.report_filters.account.id : 'all';
-            this.$el.find('a.breakdown-link').attr("href", 'reports/' + account + '/info/' + this.model.widget_id + '?'+qs);
         }
     });
+    _.extend(view.prototype, ViewBreakdownLinkMixin);
+    return view;
 });

@@ -11,7 +11,6 @@ require.config({
         'expanding': '../libs/expanding',
         'handlebarsTemplates': 'stores/templates/hbs-compiled',
         'handlebarsHelpers': 'shared/utils/handlebarsHelpers',
-        'moment' : '../libs/bower_components/moment/moment',
         'context': 'shared/utils/context',
         'serializeObject' : '../libs/bower_components/jquery-serialize-object/jquery.serialize-object',
         'backboneValidator' : '../libs/bower_components/backbone-validator/backbone-validator',

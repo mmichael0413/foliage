@@ -11,7 +11,8 @@ define(function(require) {
         CommentsView = require('thirdchannel/views/comments/comments'),
         NewCommentView = require('thirdchannel/views/comments/new_comment'),
         Like = require('thirdchannel/models/activities/like'),
-        SlickCarousel = require('slick_carousel');
+        //SlickCarousel = require('slick_carousel');
+        Viewer = require('viewer');
 
     return Backbone.View.extend({
         className: 'activity',
@@ -21,7 +22,7 @@ define(function(require) {
             'click .start-comment': 'focusComment',
             'click .more-comments': 'showAdditionalComments',
             'click .less-comments': 'hideAdditionalComments',
-            'click .carousel img': 'openModal',
+           // 'click .carousel img': 'openModal',
             "click .arrow-left" : "prevSlide",
             "click .arrow-right" : "nextSlide",
             "click .hide-post" : "hidePost",
@@ -41,13 +42,13 @@ define(function(require) {
             this.carousel = null;
             this.listenTo(context, 'navigation:collapsed', this.fixCollapsedCarousel);
             this.listenTo(context, 'store.sales.update', this.updateSalesWidget);
-            // setup registry listener
-            if (this.model.get('location')) {
-                context.trigger("store.sales.register", this.model.get('location').id);    
-            }
         },
         render: function () {
-            
+            // setup registry listener
+            if (this.model.get('location')) {
+                context.trigger("store.sales.register", this.model.get('location').id);
+            }
+
             if(this.model.get('images')) {
                     this.model.set('imageCount', this.model.get('images').length);
             } else {
@@ -77,6 +78,15 @@ define(function(require) {
                 this.newComment.render();
             }
 
+            if (!this.model.get('isMobile')) {
+                var viewer = this.$el.find('.activity-photos').viewer({
+                    inline: false,
+                    rotatable: false,
+                    transition: false,
+                    scalable: false,
+                    fullscreen: false
+                });
+            }
             return this;
         },
 
@@ -201,7 +211,6 @@ define(function(require) {
                     salesUrl: event.salesUrl, message: event.message};
                 this.$el.find('.activity-meta').append(HandlebarsTemplates['thirdchannel/activities/sales_widget'](data));
                 this.$el.find('.sales-widget').fadeIn(500).css("display","inline-block");
-                this.stopListening(context, 'store.sales.update');
             }
         }
     });
