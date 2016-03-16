@@ -1686,22 +1686,28 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", helper, options;
-  buffer += "\n			"
+  buffer += "\n		<div class=\"date col-4-5 col-md-1-2\">\n			"
     + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.date), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.date), options)))
-    + "\n		";
+    + "\n		</div>\n	";
   return buffer;
   }
 
 function program3(depth0,data) {
   
   
-  return "\n			Unscheduled Visit\n		";
+  return "\n		<div class=\"jobs col-4-5 col-1-2\"></div>\n	";
   }
 
-  buffer += "<div class=\"pure-g\">\n	<div class=\"date col-4-5 col-md-1-2\">\n		";
+function program5(depth0,data) {
+  
+  
+  return "\n		<div class=\"jobs col-1-1\"></div>\n	";
+  }
+
+  buffer += "<div class=\"pure-g\">\n	";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.date), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n	</div>\n	<div class=\"col-1-5 col-md-1-2\">\n		<form accept-charset=\"UTF-8\" action=\"";
+  buffer += "\n	<div class=\"col-1-5 col-md-1-2\">\n		<form accept-charset=\"UTF-8\" action=\"";
   if (helper = helpers.form_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.form_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1715,7 +1721,10 @@ function program3(depth0,data) {
   if (helper = helpers.auth_token) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.auth_token); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" type=\"hidden\">\n			<button class=\"btn primary\">\n				Start Visit\n			</button>\n		</form>\n	</div>\n</div>\n";
+    + "\" type=\"hidden\">\n			<button class=\"btn primary\">\n				Start Visit\n			</button>\n		</form>\n	</div>\n	";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.date), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</div>\n";
   return buffer;
   });
 

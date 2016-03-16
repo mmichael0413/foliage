@@ -1,11 +1,11 @@
 <div class="pure-g">
-	<div class="date col-4-5 col-md-1-2">
-		{{#if date}}
+	{{#if date}}
+		<div class="date col-4-5 col-md-1-2">
 			{{localizedUTCDate date}}
-		{{else}}
-			Unscheduled Visit
-		{{/if}}
-	</div>
+		</div>
+	{{else}}
+		<div class="jobs col-4-5 col-1-2"></div>
+	{{/if}}
 	<div class="col-1-5 col-md-1-2">
 		<form accept-charset="UTF-8" action="{{form_url}}" method="post">
 			<input name="store_uuid" type="hidden" value="{{store_details.id}}">
@@ -16,4 +16,7 @@
 			</button>
 		</form>
 	</div>
+	{{#if date}}
+		<div class="jobs col-1-1"></div>
+	{{/if}}
 </div>
