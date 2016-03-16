@@ -44,9 +44,10 @@
   // collapse nav
   &.collapsed-nav {
     #site-canvas {
+      @include transition(transform linear .3s, width .3s);
       #site-menu {
         width: $collapsed-nav-width;
-        @include transition(width .3s);
+        @include transition(transform linear .3s, width .3s);
         .third {
           display: none;
         }
@@ -73,8 +74,9 @@
   }
   &.expanded-nav {
     #site-canvas {
+      @include transition(transform linear .3s, width .3s);
       #site-menu {
-        @include transition(width .3s);
+        @include transition(transform linear .3s, width .3s);
         .link {
           opacity: 1;
           @include transition(opacity 1s, width 100% 1s);
@@ -92,7 +94,6 @@
       .content-holder {
         @include transition(padding .3s);
       }
-
     }
   }
   &.show-nav #site-canvas {
@@ -100,28 +101,47 @@
   }
   &.show-filter {
     #site-canvas {
-
+      @include transition(transform linear .3s, width .3s);
       @include transform(-$standard-nav-width);
     }
     &.collapsed-nav {
       #site-canvas {
         @include swa-small() {
           #site-menu {
-            @include transition(transform .3s linear .3s, width .3s);
+            @include transition(transform linear .3s, width .3s);
             @include transform($standard-nav-width);
           }
 
           .content-holder {
+            @include transition(padding-left linear .3s, width .3s);
             padding-left: $standard-nav-width + $collapsed-nav-width;
-            @include transition(padding .3s linear .3s);
           }
         }
       }
       #site-canvas #site-submenu.show-subnav {
-        @include transform(18em);
+        @include transition(transform .3s linear .3s, width .3s);
+        @include transform($standard-nav-width + $collapsed-nav-width);
       }
     }
+    &.expanded-nav {
+      #site-canvas {
+        @include swa-small() {
+          #site-menu {
+            @include transition(transform linear .3s, width .3s);
+            @include transform($standard-nav-width);
+          }
 
+          .content-holder {
+            @include transition(padding .3s);
+            padding-left: $standard-nav-width + $standard-nav-width;
+          }
+        }
+      }
+      #site-canvas #site-submenu.show-subnav {
+        @include transition(transform .3s linear .3s, width .3s);
+        @include transform($standard-nav-width + $standard-nav-width);
+      }
+    }
   }
   #site-menu {
     width: $standard-nav-width;
