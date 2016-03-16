@@ -21,6 +21,9 @@ define(function(require) {
                 this.setElement(this.template(this.model));
                 this.listenTo(context, 'filter:queryString', function(qs){ this.updateViewBreakDownLink(qs, this.model); });
                 this.listenTo(context, 'report post render', this.renderChart);
+                if (this.model.uuid) {
+                    this.listenTo(context, 'report post render widget_' + this.model.uuid, this.renderChart);
+                }
                 this.listenTo(context, 'report resize',      this.resizeChart);
                 context.trigger('filter:request:queryString');
             }

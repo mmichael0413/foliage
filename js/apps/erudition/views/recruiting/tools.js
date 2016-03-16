@@ -5,7 +5,7 @@ define(function (require) {
         el: '.content',
 
         events: {
-            "click a" :'disableLink'
+            "click a.download-link" :'disableLink'
         },
 
         disableLink: function (e) {

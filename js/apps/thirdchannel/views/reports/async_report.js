@@ -52,13 +52,12 @@ define(function(require) {
                     return widget_meta_data;
                 })
                 // throttle just a bit so as not to overwhelm the server
-                .delay(function (x) { return Rx.Observable.timer(x * 250); })
-                .flatMap(function(widget_meta_data) {
+                .flatMap(function(widget_meta_data, x) {
                     // generate ajax promises
                     var promise = $.getJSON(context.links.reports.widgets +"?report_widget_uuid=" + widget_meta_data.report_widget_uuid + "&report_report_uuid=" + widget_meta_data.report_report_uuid + "&" + filter);
                     // cache them... why? see below
                     activeRequests.push(promise);
-                    return rx.Observable.fromPromise(promise);
+                    return rx.Observable.fromPromise(promise).delay(x * 150);
                 })
                 .takeUntil(self.cancelObservable) // cancel this whole thing if the filter changes
                 .subscribe(function (data) {
@@ -106,10 +105,10 @@ define(function(require) {
                 }
                 var $widget = new WidgetView(widget_data).render().$el;
                 $widget.hide();
-                $("#widget-placeholder-"+widget_data.uuid).replaceWith($widget);
-                $widget.fadeIn(500);
-                //trigger the drawing of the d3 widgets
-                context.trigger("report post render");
+                this.$("#widget-placeholder-"+widget_data.uuid).replaceWith($widget);
+                $widget.fadeIn(500, function() {
+                    context.trigger("report post render widget_" + widget_data.uuid);
+                });
             },
 
             _layoutSections: function(sections) {
@@ -126,10 +125,11 @@ define(function(require) {
                     subsection.title = subsection.name;
                     var $subsectionsContainer = $section.find('.subsections');
                     var $subsection = $(Templates['thirdchannel/reports/index/subsection'](subsection));
+                    var $widgets = $subsection.find('.widgets');
                     _.chain(subsection.widgets).sortBy('idx').each(function(widget) {
                       $('<div/>', {
                           id: 'widget-placeholder-' + widget.report_widget_uuid,
-                      }).hide().appendTo($subsection);
+                      }).hide().appendTo($widgets);
                     });
                     $subsectionsContainer.append($subsection);
                 });

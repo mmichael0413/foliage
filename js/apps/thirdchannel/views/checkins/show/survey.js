@@ -43,7 +43,6 @@ define(function(require) {
             var self = this;
 
             this.$('select').chosen({disable_search: true, width: "100%"});
-            this.$('textarea:visible').expanding();
             this.$('.datetime').datetimepicker();
 
             // create a image file view to manage each image set
@@ -64,6 +63,8 @@ define(function(require) {
 
             this.$(".checkin-form").addClass('open');
             this.$(".loading-section").removeClass('open');
+
+            this.$('textarea:visible').expanding();
 
             return this;
         },

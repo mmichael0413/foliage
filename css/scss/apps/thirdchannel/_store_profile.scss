@@ -1,8 +1,10 @@
-.breakdown-group {
-  .item:first-of-type {
-    .breakdown-label {
-      font-weight: bold;
-    }
+.breakdown-label {
+  font-weight: bold;
+}
+
+@include swb-medium {
+  .sales-breakdown {
+    overflow-x: scroll;
   }
 }
 
