@@ -27,19 +27,19 @@ module.exports = function(grunt) {
             dest: 'dist/marketing/images/agents.jpg'
         },
         {
-            dest: 'dist/marketing/images/agents.png'
+            dest: 'dist/marketing/images/agents_home.jpg'
         },
         {
-            dest: 'dist/marketing/images/capture.png'
+            dest: 'dist/marketing/images/capture.jpg'
         },
         {
-            dest: 'dist/marketing/images/contact.png'
+            dest: 'dist/marketing/images/contact.jpg'
         },
         {
             dest: 'dist/marketing/images/facebook.png'
         },
         {
-            dest: 'dist/marketing/images/howdo.png'
+            dest: 'dist/marketing/images/howdo.jpg'
         },
         {
             dest: 'dist/marketing/images/linkedin.png'
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
             dest: 'dist/marketing/images/maximize.jpg'
         },
         {
-            dest: 'dist/marketing/images/whatsthejob.png'
+            dest: 'dist/marketing/images/whatsthejob.jpg'
         },
         {
             dest: 'dist/marketing/images/facebook.svg'

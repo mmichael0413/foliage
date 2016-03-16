@@ -43,6 +43,8 @@ define(function(require){
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
             'agents/opportunities/:program_id/applications/:id' : 'viewApplication',
+            'agents/profile(/)' : 'programProfile',
+            'agents/profile/edit(/)': 'programProfileEdit',
 
             'login' : 'login',
             'programs/:program_id/activities' : 'activitiesFeed',

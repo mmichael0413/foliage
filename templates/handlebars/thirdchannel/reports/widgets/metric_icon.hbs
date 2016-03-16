@@ -1,4 +1,11 @@
 <div class="widget metric-icon {{config.widget_class}}">
-    <h2>{{config.prepend_count}}{{format_number results}}{{config.append_count}}</h2>
-    <p>{{title}}</p>
+    {{#if_eq config.widget_class 'min'}}
+        <p>
+            {{config.prepend_count}}{{format_number results}}{{config.append_count}}
+            {{title}}
+        </p>
+    {{else}}
+        <h2>{{config.prepend_count}}{{format_number results}}{{config.append_count}}</h2>
+        <p>{{title}}</p>
+    {{/if_eq}}
 </div>

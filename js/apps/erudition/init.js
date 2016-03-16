@@ -2,13 +2,13 @@ require.config({
     baseUrl: 'http://www.thirdchannel.dev:3031/js/apps/',
 
     paths: {
-        'jquery'        : "../libs/bower_components/jquery/jquery.min",
+        'jquery'        : "../libs/bower_components/jquery/jquery",
         'jquery-ui'     : "../libs/bower_components/jquery-ui/jquery-ui",
         'jquery_ujs'    : '../libs/bower_components/jquery-ujs/src/rails',
         'backbone': '../libs/bower_components/backbone/backbone',
         'underscore': '../libs/bower_components/underscore/underscore',
         'context': 'shared/utils/context',
-        'handlebars'    : '../libs/bower_components/handlebars/handlebars.min',
+        'handlebars'    : '../libs/bower_components/handlebars/handlebars',
         'handlebarsTemplates': 'erudition/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
         'helpers'       : 'thirdchannel/utils/helpers',
@@ -16,7 +16,7 @@ require.config({
         'jquery-validate' : '../libs/bower_components/jquery-validation/dist/jquery.validate',
         'jquery.mask' : '../libs/bower_components/jquery-mask-plugin/dist/jquery.mask',
         'chosen': "../libs/bower_components/chosen/chosen.jquery",
-        'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min',
+        'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery',
         'expanding': '../libs/expanding'
 
     },

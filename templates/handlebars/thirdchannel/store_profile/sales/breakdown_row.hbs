@@ -1,22 +1,22 @@
-<div class="col-2-12 breakdown-label">{{label}}</div>
-<div class="col-1-12">{{formatSalesDollarValue salesInCents}}</div>
-<div class="col-1-12">{{formatSalesDollarValue salesInCentsLY}}</div>
-<div class="col-1-12">
+<td>{{label}}</td>
+<td>{{formatSalesDollarValue salesInCents}}</td>
+<td>{{formatSalesDollarValue salesInCentsLY}}</td>
+<td>
     <span class="percentage-change {{ percentageChangeClass salesChange }}">
         <i class="ic {{ percentageChangeIcon salesChange }}"></i> {{formatPercentageChange salesChange}}
     </span>
-</div>
-<div class="col-1-12">
+</td>
+<td>
     <span class="percentage-change {{ percentageChangeClass accountSalesChange }}">
         <i class="ic {{ percentageChangeIcon accountSalesChange }}"></i> {{formatPercentageChange accountSalesChange}}
     </span>
-</div>
-<div class="col-1-12">{{formatSalesValue unitsSold}}</div>
-<div class="col-1-12">{{formatSalesValue unitsSoldLY}}</div>
-<div class="col-1-12">{{formatSalesValue unitsOnHand}}</div>
-<div class="col-1-12">{{formatSalesValue unitsOnHandLY}}</div>
-<div class="col-1-12">
+</td>
+<td>{{formatSalesValue unitsSold}}</td>
+<td>{{formatSalesValue unitsSoldLY}}</td>
+<td>{{formatSalesValue unitsOnHand}}</td>
+<td>{{formatSalesValue unitsOnHandLY}}</td>
+<td>
     <span class="percentage-change {{ percentageChangeClass unitsOnHandChange }}">
         {{formatPercentageChange unitsOnHandChange}}
     </span>
-</div>
+</td>

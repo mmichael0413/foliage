@@ -4,7 +4,7 @@ define(function(require) {
         context = require('context'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        BreakdownGroup = require('thirdchannel/views/store_profile/sales/breakdown_group');
+        BreakdownRow = require('thirdchannel/views/store_profile/sales/breakdown_row');
 
     var View = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/store_profile/sales/breakdown'],
@@ -22,8 +22,11 @@ define(function(require) {
         renderBreakdownGroups: function() {
             var $body = this.$('.body');
             this.collection.each(function(breakdownGroup) {
-                var view = new BreakdownGroup({collection: breakdownGroup.breakdowns});
-                $body.append(view.render().el);
+                breakdownGroup.breakdowns.each(function(breakdown, index) {
+                    breakdown.set('index', index);
+                    var view = new BreakdownRow({model: breakdown});
+                    $body.append(view.render().el);
+                });
             });
         }
     });

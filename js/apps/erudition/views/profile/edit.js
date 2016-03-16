@@ -46,7 +46,8 @@ define(function (require) {
                 referer: context.content.referer,
                 aboutImageCount: this.aboutImageCount,
                 saveUrl: context.content.saveUrl,
-                programUUID: context.content.programUUID
+                programUUID: context.content.programUUID,
+                validate: context.content.requireValidation
             };
 
             this.$el.append(this.template(model));
