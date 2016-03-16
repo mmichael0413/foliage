@@ -34,9 +34,10 @@ define(function(require) {
                 _.each(section.subsections, function(subsection) {
                     var $subsectionsContainer = $section.find('.subsections');
                     var $subsection = $(Templates['thirdchannel/reports/index/subsection'](subsection));
+                    var $widgets = $subsection.find('.widgets');
                     _.each(subsection.widgets, function(widget) {
                       var $widget = new WidgetView(widget).render().$el;
-                      $widget.appendTo($subsection);
+                      $widget.appendTo($widgets);
                     });
                     $subsectionsContainer.append($subsection);
                 });
