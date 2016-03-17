@@ -1,5 +1,44 @@
-<p class="col-1-5">{{ name }}</p>
-<p class="col-1-5">{{ stores_count }}</p>
-<p class="col-1-5">{{ stores_not_visited }}</p>
-<p class="col-1-5">{{ stores_with_open_alerts }}</p>
-<p class="col-1-5">{{ percent_of_stores_complete }}%</p>
+<div class="pure-g">
+    <div class="col-1-1 special-project-header">
+        <h2>{{ name }} - {{ stores_count }} stores</h2>
+    </div>
+    <div class="col-1-3 col-md-1-1 special-project-overview">
+        <div class="chart"></div>
+        <h2>{{ percent_of_stores_complete }}% Complete</h2>
+        {{#if target}}
+            <h3>Target Completion: {{target}}%</h3>
+        {{/if}}
+    </div>
+    <div class="col-2-3 col-md-1-1 special-project-breakdown">
+        <div class="pure-g">
+            <div class="col-1-3 special-project-breakdown-container">
+                <div class="special-project-breakdown-item">
+                    <div>{{ stores_completed }} Stores</div>
+                    <div>Jobs Completed</div>
+                </div>
+            </div>
+            <div class="col-1-3 special-project-breakdown-container">
+                <div class="special-project-breakdown-item">
+                    <div>{{ stores_with_revisit_needed }} Stores</div>
+                    <div>Need Revisit</div>
+                </div>
+            </div>
+            <div class="col-1-3 special-project-breakdown-container">
+                <div class="special-project-breakdown-item">
+                    <div>{{ stores_not_visited }} Stores</div>
+                    <div>Not Visited</div>
+                </div>
+            </div>
+            <div class="col-1-1 special-project-latest-checkin">
+                <div>
+                    Most Recent Visit:
+                    {{#if latest_checkin}}
+                        <a href="{{latest_checkin.links.report}}" target="_blank">{{latest_checkin.date}}</a>
+                    {{else}}
+                        N/A
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
