@@ -177,7 +177,7 @@ function program8(depth0,data) {
   else { helper = (depth0 && depth0.tracked); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.tracked) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "/>\n</div>\n\n<section id=\"jobTrackingText\">\n    <div class=\"form-group\">\n        <label for=\"jobTarget\" class=\"\">Completion Target</label>\n        <input type=\"number\" class=\"input job-target\" name=\"target\" id=\"jobTarget\" value=\"";
+  buffer += "/>\n</div>\n\n<section id=\"jobTrackingText\">\n    <div class=\"form-group\">\n        <label for=\"jobTarget\" class=\"\">Completion Target (%)</label>\n        <input type=\"number\" class=\"input job-target\" name=\"target\" id=\"jobTarget\" value=\"";
   if (helper = helpers.target) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.target); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
