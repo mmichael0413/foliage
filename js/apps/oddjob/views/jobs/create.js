@@ -40,7 +40,14 @@ define(function(require) {
         },
 
         jobTrackingHandler: function (e) {
-            this._toggleJobTrackingText($(e.currentTarget).is(':checked'));
+            var enabled = $(e.currentTarget).is(':checked');
+            this._toggleJobTrackingText(enabled);
+
+            var $jobTargetEl = this.$('.job-target');
+            if(!enabled) {
+                $jobTargetEl.val('');
+            }
+            $jobTargetEl.prop('disabled', !enabled);
         },
         _toggleJobTrackingText: function (value) {
             var $text = this.$el.find("#jobTrackingText");

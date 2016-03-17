@@ -2,7 +2,7 @@ define(function(require) {
 	var Backbone = require('backbone'),
 		Templates = require('handlebarsTemplates'),
 		context = require('context'),
-    Chosen = require('chosen'),
+        Chosen = require('chosen'),
 		SurveysStore = require('oddjob/stores/surveys');
 
 	var JobEditView = {
