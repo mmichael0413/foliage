@@ -19,22 +19,28 @@ define(function(require) {
             return this;
         },
         renderChart: function() {
+            var colors = {
+                Completion: '#9fb2c0',
+                Target: '#e5e9ed'
+            };
+
             var data = [
                 ['Completion', this.model.get('percent_of_stores_complete')]
             ];
 
             if(this.model.get('target')) {
                 data.unshift(['Target', this.model.get('target')]);
+
+                if(this.model.get('percent_of_stores_complete') >= this.model.get('target')) {
+                    colors['Completion'] = '#a8bc4c';
+                }
             }
 
             var chart = c3.generate({
                 bindto: this.$('.chart')[0],
                 data: {
                     columns: data,
-                    colors: {
-                        Completion: '#9fb2c0',
-                        Target: '#e5e9ed'
-                    },
+                    colors: colors,
                     type: 'gauge'
                 },
                 gauge: {
