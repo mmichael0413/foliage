@@ -3,7 +3,7 @@
     <p>{{address}}</p>
     <input type="hidden" class="visit" value="{{id}}"/>
     <input type="text" value="{{dateScheduled}}" style="display: none;"/>
-    <p><a href="#" class="task-count">{{taskCount}} task(s)</a>, {{totalDuration}} minutes</p>
+    <p>{{jobDetails.name}}: <a href="#" class="task-count">{{taskCount}} task(s)</a>, {{totalDuration}} minutes</p>
     {{> 'tasks'}}
     {{#if canUnassign}}<a href="#" class='unassign btn primary small solid '>Unassign Visit</a>{{/if}}
 </div>
