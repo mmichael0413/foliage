@@ -123,7 +123,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n        <option value=\"";
+  buffer += "\n            <option value=\"";
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -149,7 +149,7 @@ function program4(depth0,data) {
 function program6(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n				<option value=\"";
+  buffer += "\n            <option value=\"";
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -157,34 +157,34 @@ function program6(depth0,data) {
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</option>\n			";
+    + "</option>\n        ";
   return buffer;
   }
 
-  buffer += "	<p class=\"info\">If you leave the name blank, the group will use the name of the first Task (for now, this is a Survey). Furthermore, a Job must have at least one Task (Typically, there will be only one Task per Job).</p>\n\n    <label class=\"label\" for=\"jobName\">Name</label>\n    <input class=\"input\" type=\"text\" value=\"";
+  buffer += "<p class=\"info\">If you leave the name blank, the group will use the name of the first Task (for now, this is a Survey). Furthermore, a Job must have at least one Task (Typically, there will be only one Task per Job).</p>\n\n<label class=\"label\" for=\"jobName\">Name</label>\n<input class=\"input\" type=\"text\" value=\"";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" name=\"name\" id=\"jobName\" placeholder=\"Enter Optional name here\"/>\n\n    <label for=\"jobTracked\" class=\"\">Enable Job Tracking (Special Project Tracking)?</label>\n    <input type=\"checkbox\" class=\"input-checkbox job-tracking\" name=\"tracked\" id=\"jobTracked\" ";
+    + "\" name=\"name\" id=\"jobName\" placeholder=\"Enter Optional name here\"/>\n\n<label for=\"jobTracked\" class=\"\">Enable Job Tracking (Special Project Tracking)?</label>\n<input type=\"checkbox\" class=\"input-checkbox job-tracking\" name=\"tracked\" id=\"jobTracked\" ";
   options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}
   if (helper = helpers.tracked) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.tracked); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.tracked) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "/>\n    \n    <section id=\"jobTrackingText\">\n        <p class=\"instruction\"><span class=\"important\">Note:</span> For now, any jobs we wish to track must have only one task and one frequency assigned to them. Or rather, only the first task's survey will be tracked, and the first frequency will be used for the start and end date of the tracking. We hope to change this in the future.</p>\n        <label for=\"editor\">Completion Instructions</label>\n        <input type=\"hidden\" name=\"completionInstructions\" id=\"completionInstructions\" value=\"";
+  buffer += "/>\n\n<section id=\"jobTrackingText\">\n    <p class=\"instruction\"><span class=\"important\">Note:</span> For now, any jobs we wish to track must have only one task and one frequency assigned to them. Or rather, only the first task's survey will be tracked, and the first frequency will be used for the start and end date of the tracking. We hope to change this in the future.</p>\n    <label for=\"editor\">Completion Instructions</label>\n    <input type=\"hidden\" name=\"completionInstructions\" id=\"completionInstructions\" value=\"";
   if (helper = helpers.completionInstructions) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.completionInstructions); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\"/>\n        <div class=\"editor-container message-content\">\n            <div id=\"full-toolbar\" class=\"toolbar ql-toolbar-container\">\n              <span title=\"Bold\" class=\"ql-format-button ql-bold\"></span>\n              <span title=\"Italic\" class=\"ql-format-button ql-italic\"></span>\n              <span title=\"Italic\" class=\"ql-format-button ql-underline\"></span>\n              <span class=\"ql-format-separator\"></span>\n              <span title=\"Italic\" class=\"ql-format-button ql-bullet\"></span>\n              <span title=\"Italic\" class=\"ql-format-button ql-list\"></span>\n            </div>\n            <div id=\"editor\">\n              <div></div>\n            </div>\n        </div>\n    </section>\n    \n    \n    <label for=\"role\" class=\"label\">Limit Job to Role: </label>\n    <select name=\"role\" id=\"role\" class=\"input\">\n        <option value=\"\">--No Limit on Role--</option>\n        ";
+    + "\"/>\n    <div class=\"editor-container message-content\">\n        <div id=\"full-toolbar\" class=\"toolbar ql-toolbar-container\">\n          <span title=\"Bold\" class=\"ql-format-button ql-bold\"></span>\n          <span title=\"Italic\" class=\"ql-format-button ql-italic\"></span>\n          <span title=\"Italic\" class=\"ql-format-button ql-underline\"></span>\n          <span class=\"ql-format-separator\"></span>\n          <span title=\"Italic\" class=\"ql-format-button ql-bullet\"></span>\n          <span title=\"Italic\" class=\"ql-format-button ql-list\"></span>\n        </div>\n        <div id=\"editor\">\n          <div></div>\n        </div>\n    </div>\n</section>\n\n<div class=\"form-group\">\n    <label for=\"role\" class=\"label\">Limit Job to Role: </label>\n    <select name=\"role\" id=\"role\" class=\"input\">\n        <option value=\"\">--No Limit on Role--</option>\n        ";
   options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}
   if (helper = helpers.roles) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.roles); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.roles) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </select>\n\n    <div class=\"tasks-container\">\n    </div>\n\n    <button class=\"btn add-task\">Add Task</button>\n\n    <label for=\"edit-blackout-schemes\" class=\"label\">Blackout Schemes: </label>\n    <select id=\"edit-blackout-schemes\" name=\"blackoutSchemes\" class=\"input\" multiple data-placeholder=\"Assign Blackout Schemes\">\n			";
+  buffer += "\n    </select>\n</div>\n\n\n<div class=\"tasks-container\"></div>\n<button class=\"btn add-task\">Add Task</button>\n\n<div class=\"form-group\">\n    <label for=\"edit-blackout-schemes\" class=\"label\">Blackout Schemes: </label>\n    <select id=\"edit-blackout-schemes\" name=\"blackoutSchemes\" class=\"input\" multiple data-placeholder=\"Assign Blackout Schemes\">\n        ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.programBlackoutSchemes), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </select>\n";
+  buffer += "\n    </select>\n</div>";
   return buffer;
   }));
 
@@ -682,10 +682,10 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   var buffer = "", stack1, self=this;
 
 
-  buffer += "	<h3>Edit Job</h3>\n	";
+  buffer += "<h3>Edit Job</h3>\n";
   stack1 = self.invokePartial(partials.job_fields, 'job_fields', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n    <button type=\"submit\" name=\"submit\" class=\"btn btn-primary\">Submit</button>\n    <button name=\"delete\" class=\"btn btn-primary delete\">Delete Job</button>";
+  buffer += "\n\n<div>\n    <button type=\"submit\" name=\"submit\" class=\"btn btn-primary\">Submit</button>\n    <button name=\"delete\" class=\"btn btn-primary delete\">Delete Job</button>\n</div>";
   return buffer;
   });
 
