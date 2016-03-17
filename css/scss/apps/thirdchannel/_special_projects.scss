@@ -13,8 +13,8 @@
 }
 
 .special-project-report {
-  margin-bottom: 0.75em;
   padding: 0;
+  margin-right: 0.75em;
 
   .special-project-header {
     width: 100%;
@@ -29,7 +29,12 @@
   .special-project-overview {
     text-align: center;
     border-right: 1px solid $light-blue;
-    padding: 0.5em;
+
+    @include swb-medium {
+      border-right: none;
+      border-bottom: 1px solid $light-blue;
+      margin-bottom: 0.25em;
+    }
 
     h2 {
       margin: 0;
@@ -37,7 +42,7 @@
     }
 
     h3 {
-      font-size: 1em;
+      font-size: 0.75em;
       font-weight: lighter;
     }
   }
@@ -45,13 +50,12 @@
   .special-project-breakdown {
     position: relative;
 
-    .special-project-breakdown-container {
-      text-align: center;
+    @include swb-medium {
+      position: static;
+    }
 
-      .special-project-breakdown-item {
-        margin: 0 auto;
-        padding-top: 3em;
-      }
+    .special-project-breakdown-item {
+      text-align: center;
     }
 
     .special-project-latest-checkin {
@@ -61,6 +65,10 @@
       left: 0;
       width: 100%;
       padding: 0.5em;
+
+      @include swb-medium {
+        position: static;
+      }
     }
   }
 }

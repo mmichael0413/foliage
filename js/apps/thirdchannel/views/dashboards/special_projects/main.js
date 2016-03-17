@@ -20,14 +20,14 @@ define(function(require) {
         },
         render: function() {
             this.$el.html(this.template());
-            this.$('.body').html(this.loadingView.render().el);
             return this;
         },
         constructView: function() {
-            this.$('.body').empty();
+            var $body = this.$('.special-projects');
+            $body.empty();
             this.collection.each(function(specialProject) {
                 var view = new ItemView({programId: this.options.programId, model: specialProject});
-                this.$('.body').append(view.render().el);
+                $body.append(view.render().el);
                 view.renderChart();
             }.bind(this));
         }

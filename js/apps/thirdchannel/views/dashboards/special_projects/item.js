@@ -8,7 +8,7 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-        className: 'section data-section special-project-report',
+        className: 'col-1-2 col-md-1-1',
         template: HandlebarsTemplates['thirdchannel/dashboards/special_projects/item'],
         initialize: function (options) {
             this.options = options;
@@ -32,7 +32,7 @@ define(function(require) {
                 data.unshift(['Target', this.model.get('target')]);
 
                 if(this.model.get('percent_of_stores_complete') >= this.model.get('target')) {
-                    colors['Completion'] = '#a8bc4c';
+                    colors.Completion = '#96d1b1';
                 }
             }
 
@@ -42,6 +42,10 @@ define(function(require) {
                     columns: data,
                     colors: colors,
                     type: 'gauge'
+                },
+                padding: {
+                    top: 0,
+                    bottom: 0
                 },
                 gauge: {
                     label: {
@@ -54,7 +58,7 @@ define(function(require) {
                     min: 0,
                     max: 100,
                     units: ' %',
-                    width: 40
+                    width: 25
                 },
                 tooltip: {
                     show: true,
