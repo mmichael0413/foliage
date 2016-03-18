@@ -5,7 +5,9 @@
         </div>
         <div class="col-1-1 special-project-header last">
             <span>{{ stores_count }} stores</span>
-            <span class="pull-right">View Report</span>
+            {{#if report}}
+                <span class="pull-right"><a href="{{report.link}}" target="_blank">View Report</a></span>
+            {{/if}}
         </div>
         <div class="col-1-1 special-project-overview">
             <div class="chart"></div>

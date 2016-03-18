@@ -1999,6 +1999,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 function program1(depth0,data) {
   
+  var buffer = "", stack1;
+  buffer += "\n                <span class=\"pull-right\"><a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.report)),stack1 == null || stack1 === false ? stack1 : stack1.link)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" target=\"_blank\">View Report</a></span>\n            ";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
   var buffer = "", stack1, helper;
   buffer += "\n                <h3>Target Completion: ";
   if (helper = helpers.target) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -2008,7 +2017,7 @@ function program1(depth0,data) {
   return buffer;
   }
 
-function program3(depth0,data) {
+function program5(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                    <a href=\""
@@ -2019,7 +2028,7 @@ function program3(depth0,data) {
   return buffer;
   }
 
-function program5(depth0,data) {
+function program7(depth0,data) {
   
   
   return "\n                    N/A\n                ";
@@ -2033,12 +2042,15 @@ function program5(depth0,data) {
   if (helper = helpers.stores_count) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.stores_count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " stores</span>\n            <span class=\"pull-right\">View Report</span>\n        </div>\n        <div class=\"col-1-1 special-project-overview\">\n            <div class=\"chart\"></div>\n            <h2>";
+    + " stores</span>\n            ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.report), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </div>\n        <div class=\"col-1-1 special-project-overview\">\n            <div class=\"chart\"></div>\n            <h2>";
   if (helper = helpers.percent_of_stores_complete) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.percent_of_stores_complete); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "% Complete</h2>\n            ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.target), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.target), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </div>\n        <div class=\"col-1-1 special-project-breakdown\">\n            <div class=\"pure-g\">\n                <div class=\"col-1-3 special-project-breakdown-item\">\n                    <div>";
   if (helper = helpers.stores_completed) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -2053,7 +2065,7 @@ function program5(depth0,data) {
   else { helper = (depth0 && depth0.stores_not_visited); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + " Stores</div>\n                    <div>Not Visited</div>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-1-1 special-project-latest-checkin\">\n            <div>\n                Most Recent Visit:\n                ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.latest_checkin), {hash:{},inverse:self.program(5, program5, data),fn:self.program(3, program3, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.latest_checkin), {hash:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </div>\n        </div>\n    </div>\n</div>";
   return buffer;
