@@ -14,20 +14,32 @@
         <input type="number" class="input job-target" name="target" id="jobTarget" value="{{target}}" {{#unless tracked}}disabled{{/unless}}/>
     </div>
     <br>
-    <p class="instruction"><span class="important">Note:</span> For now, any jobs we wish to track must have only one task and one frequency assigned to them. Or rather, only the first task's survey will be tracked, and the first frequency will be used for the start and end date of the tracking. We hope to change this in the future.</p>
-    <label for="editor">Completion Instructions</label>
-    <input type="hidden" name="completionInstructions" id="completionInstructions" value="{{completionInstructions}}"/>
-    <div class="editor-container message-content">
-        <div id="full-toolbar" class="toolbar ql-toolbar-container">
-          <span title="Bold" class="ql-format-button ql-bold"></span>
-          <span title="Italic" class="ql-format-button ql-italic"></span>
-          <span title="Italic" class="ql-format-button ql-underline"></span>
-          <span class="ql-format-separator"></span>
-          <span title="Italic" class="ql-format-button ql-bullet"></span>
-          <span title="Italic" class="ql-format-button ql-list"></span>
-        </div>
-        <div id="editor">
-          <div></div>
+    <div class="form-group">
+        <label for="report" class="">Report</label>
+        <select name="reportUUID" id="report" class="input job-report" {{#unless tracked}}disabled{{/unless}}>
+            <option value="">--Select a Report--</option>
+            {{#reports}}
+                <option value="{{uuid}}" {{#selected}}selected{{/selected}}>{{name}}</option>
+            {{/reports}}
+        </select>
+    </div>
+    <br><br>
+    <div style="clear: both;">
+        <p class="instruction"><span class="important">Note:</span> For now, any jobs we wish to track must have only one task and one frequency assigned to them. Or rather, only the first task's survey will be tracked, and the first frequency will be used for the start and end date of the tracking. We hope to change this in the future.</p>
+        <label for="editor">Completion Instructions</label>
+        <input type="hidden" name="completionInstructions" id="completionInstructions" value="{{completionInstructions}}"/>
+        <div class="editor-container message-content">
+            <div id="full-toolbar" class="toolbar ql-toolbar-container">
+              <span title="Bold" class="ql-format-button ql-bold"></span>
+              <span title="Italic" class="ql-format-button ql-italic"></span>
+              <span title="Italic" class="ql-format-button ql-underline"></span>
+              <span class="ql-format-separator"></span>
+              <span title="Italic" class="ql-format-button ql-bullet"></span>
+              <span title="Italic" class="ql-format-button ql-list"></span>
+            </div>
+            <div id="editor">
+              <div></div>
+            </div>
         </div>
     </div>
 </section>
