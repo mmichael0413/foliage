@@ -7,7 +7,7 @@ define(function(require) {
         LoadingView = require('thirdchannel/views/utils/loading');
 
     return Backbone.View.extend({
-        el: '.dashboard',
+        el: '#special-projects-dashboard',
         template: HandlebarsTemplates['thirdchannel/dashboards/special_projects/main'],
         initialize: function(options) {
             this.options = options;

@@ -198,16 +198,13 @@ define(function(require){
             new ProfileStoreListView().bootstrapCollection(window.bootstrap);
         },
 
-        dashboardAlerts: function(programId){
+        dashboardAlerts: function(programId) {
+            new DashboardsSpecialProjectsView({programId: programId}).render();
             $('#alerts-dashboard').append(new DashboardsAlertsSectionsView({programId: programId}).render().$el);
         },
 
         dashboardAlert: function(programId, id){
             new DashboardsAlertsStoresView({programId: programId, id: id}).render();
-        },
-
-        dashboardSpecialProjects: function(programId) {
-            new DashboardsSpecialProjectsView({programId: programId}).render();
         },
 
         reports: function(programId){
