@@ -2011,36 +2011,36 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                            <a href=\""
+  buffer += "\n                    <a href=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.latest_checkin)),stack1 == null || stack1 === false ? stack1 : stack1.links)),stack1 == null || stack1 === false ? stack1 : stack1.report)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" target=\"_blank\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.latest_checkin)),stack1 == null || stack1 === false ? stack1 : stack1.date)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a>\n                        ";
+    + "</a>\n                ";
   return buffer;
   }
 
 function program5(depth0,data) {
   
   
-  return "\n                            N/A\n                        ";
+  return "\n                    N/A\n                ";
   }
 
   buffer += "<div class=\"section data-section special-project-report\">\n    <div class=\"pure-g\">\n        <div class=\"col-1-1 special-project-header\">\n            <h2>";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " - ";
+    + "</h2>\n        </div>\n        <div class=\"col-1-1 special-project-header last\">\n            <span>";
   if (helper = helpers.stores_count) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.stores_count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " stores</h2>\n        </div>\n        <div class=\"col-3-7 col-md-1-1 special-project-overview\">\n            <div class=\"chart\"></div>\n            <h2>";
+    + " stores</span>\n            <span class=\"pull-right\">View Report</span>\n        </div>\n        <div class=\"col-1-1 special-project-overview\">\n            <div class=\"chart\"></div>\n            <h2>";
   if (helper = helpers.percent_of_stores_complete) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.percent_of_stores_complete); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "% Complete</h2>\n            ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.target), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </div>\n        <div class=\"col-4-7 col-md-1-1 special-project-breakdown\">\n            <div class=\"pure-g\">\n                <div class=\"col-1-3 special-project-breakdown-item\">\n                    <div>";
+  buffer += "\n        </div>\n        <div class=\"col-1-1 special-project-breakdown\">\n            <div class=\"pure-g\">\n                <div class=\"col-1-3 special-project-breakdown-item\">\n                    <div>";
   if (helper = helpers.stores_completed) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.stores_completed); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -2052,10 +2052,10 @@ function program5(depth0,data) {
   if (helper = helpers.stores_not_visited) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.stores_not_visited); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " Stores</div>\n                    <div>Not Visited</div>\n                </div>\n                <div class=\"col-1-1 special-project-latest-checkin\">\n                    <div>\n                        Most Recent Visit:\n                        ";
+    + " Stores</div>\n                    <div>Not Visited</div>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-1-1 special-project-latest-checkin\">\n            <div>\n                Most Recent Visit:\n                ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.latest_checkin), {hash:{},inverse:self.program(5, program5, data),fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>";
+  buffer += "\n            </div>\n        </div>\n    </div>\n</div>";
   return buffer;
   });
 

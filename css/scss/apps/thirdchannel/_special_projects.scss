@@ -16,29 +16,36 @@
   padding: 0;
   margin-right: 0.75em;
 
+  @include swb-medium {
+    margin-right: inherit;
+    margin-bottom: 0.5em;
+  }
+
   .special-project-header {
-    width: 100%;
-    border-bottom: 1px solid $light-blue;
     padding: 0.5em;
 
     h2 {
-      margin: 0;
+      font-size: 1.2em;
+      margin-bottom: 0;
+    }
+
+    &.last {
+      border-bottom: 1px solid $light-blue;
     }
   }
 
   .special-project-overview {
     text-align: center;
-    border-right: 1px solid $light-blue;
+    border-bottom: 1px solid $light-blue;
 
     @include swb-medium {
       border-right: none;
-      border-bottom: 1px solid $light-blue;
       margin-bottom: 0.25em;
     }
 
     h2 {
       margin: 0;
-      font-size: 1.5em;
+      font-size: 1.2em;
     }
 
     h3 {
@@ -48,27 +55,16 @@
   }
 
   .special-project-breakdown {
-    position: relative;
-
-    @include swb-medium {
-      position: static;
-    }
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 
     .special-project-breakdown-item {
       text-align: center;
     }
+  }
 
-    .special-project-latest-checkin {
-      background-color: #e5e9ed;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 0.5em;
-
-      @include swb-medium {
-        position: static;
-      }
-    }
+  .special-project-latest-checkin {
+    background-color: #e5e9ed;
+    padding: 0.5em;
   }
 }

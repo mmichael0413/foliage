@@ -58,7 +58,7 @@ define(function(require) {
                     min: 0,
                     max: 100,
                     units: ' %',
-                    width: 25
+                    width: 39
                 },
                 tooltip: {
                     show: true,
