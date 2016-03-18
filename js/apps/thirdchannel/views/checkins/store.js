@@ -11,8 +11,7 @@ define(function(require) {
                 this.subsection.append(new ScheduleDate({
                     model: {
                         date: date,
-                        job_uuids: this.model.job_uuids_by_date[date],
-                        job_details_by_uuid: this.model.job_details_by_uuid,
+                        jobs: _.chain(this.model.job_details_by_uuid).pick(this.model.job_uuids_by_date[date]).values().value(),
                         store_details: this.model.store_details,
                         pre_expand: true,
                         auth_token: window.bootstrap.auth_token,
