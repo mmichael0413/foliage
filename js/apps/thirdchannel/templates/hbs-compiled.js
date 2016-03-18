@@ -2009,15 +2009,21 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n                <h3>Target Completion: ";
+  buffer += "\n                    Target Completion: ";
   if (helper = helpers.target) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.target); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "%</h3>\n            ";
+    + "%\n                ";
   return buffer;
   }
 
 function program5(depth0,data) {
+  
+  
+  return "\n                    &nbsp\n                ";
+  }
+
+function program7(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                    <a href=\""
@@ -2028,7 +2034,7 @@ function program5(depth0,data) {
   return buffer;
   }
 
-function program7(depth0,data) {
+function program9(depth0,data) {
   
   
   return "\n                    N/A\n                ";
@@ -2049,10 +2055,10 @@ function program7(depth0,data) {
   if (helper = helpers.percent_of_stores_complete) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.percent_of_stores_complete); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "% Complete</h2>\n            ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.target), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+    + "% Complete</h2>\n            <h3>\n                ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.target), {hash:{},inverse:self.program(5, program5, data),fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </div>\n        <div class=\"col-1-1 special-project-breakdown\">\n            <div class=\"pure-g\">\n                <div class=\"col-1-3 special-project-breakdown-item\">\n                    <div>";
+  buffer += "\n            </h3>\n        </div>\n        <div class=\"col-1-1 special-project-breakdown\">\n            <div class=\"pure-g\">\n                <div class=\"col-1-3 special-project-breakdown-item\">\n                    <div>";
   if (helper = helpers.stores_completed) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.stores_completed); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -2065,7 +2071,7 @@ function program7(depth0,data) {
   else { helper = (depth0 && depth0.stores_not_visited); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + " Stores</div>\n                    <div>Not Visited</div>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-1-1 special-project-latest-checkin\">\n            <div>\n                Most Recent Visit:\n                ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.latest_checkin), {hash:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.latest_checkin), {hash:{},inverse:self.program(9, program9, data),fn:self.program(7, program7, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </div>\n        </div>\n    </div>\n</div>";
   return buffer;

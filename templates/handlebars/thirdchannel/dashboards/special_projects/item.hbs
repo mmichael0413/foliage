@@ -12,9 +12,13 @@
         <div class="col-1-1 special-project-overview">
             <div class="chart"></div>
             <h2>{{ percent_of_stores_complete }}% Complete</h2>
-            {{#if target}}
-                <h3>Target Completion: {{target}}%</h3>
-            {{/if}}
+            <h3>
+                {{#if target}}
+                    Target Completion: {{target}}%
+                {{else}}
+                    &nbsp
+                {{/if}}
+            </h3>
         </div>
         <div class="col-1-1 special-project-breakdown">
             <div class="pure-g">
