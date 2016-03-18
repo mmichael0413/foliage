@@ -19,6 +19,7 @@ define(function(require){
         CheckinChooseView = require('thirdchannel/views/checkins/choose/show/main'),
         DashboardsAlertsSectionsView = require('thirdchannel/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('thirdchannel/views/dashboards/alerts/show/stores'),
+        DashboardsSpecialProjectsView = require('thirdchannel/views/dashboards/special_projects/main'),
         DashboardsSpecialProjectStoresMain = require('thirdchannel/views/dashboards/special_projects/stores/main'),
         ReportMain = require('thirdchannel/views/reports/index/main'),
         CheckinReportView = require('thirdchannel/views/reports/checkins/show/report'),
