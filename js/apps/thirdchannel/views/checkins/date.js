@@ -8,14 +8,15 @@ define(function(require){
         template: HandlebarsTemplates['thirdchannel/checkins/date'],
         render: function() {
             this.$el.html(this.template(this.model));
-            this.jobs = this.$el.find(".jobs");
-            this.jobs.append("<div>Jobs:</div>");
+            this.jobs = this.$('> .pure-g > .jobs');
             _.each(this.model.job_uuids, function(job_uuid){
-                var jobView = new Job({model: {
-                    job: this.model.job_details_by_uuid[job_uuid],
+                var jobView = new Job({
+                    model: {
+                        job: this.model.job_details_by_uuid[job_uuid],
+                    },
                     hide_toggle: true,
-                }});
-                this.jobs.append(jobView.render().el);
+                });
+                this.jobs.append(jobView.render().$el);
             }.bind(this));
             return this;
         }
