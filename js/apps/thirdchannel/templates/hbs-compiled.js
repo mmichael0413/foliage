@@ -1748,13 +1748,13 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   
-  return "\n		<div class=\"jobs col-4-5 col-1-2\"></div>\n	";
+  return "\n		<div class=\"jobs col-4-5 col-md-1-2\">\n			<div>Jobs:</div>\n		</div>\n	";
   }
 
 function program5(depth0,data) {
   
   
-  return "\n		<div class=\"jobs col-1-1\"></div>\n	";
+  return "\n		<div class=\"jobs col-1-1\">\n			<div>Jobs:</div>\n		</div>\n	";
   }
 
   buffer += "<div class=\"pure-g\">\n	";

@@ -8,7 +8,6 @@ define(function(require){
             _.each(this.model.jobs, function(job){
                 var jobView = new JobView({model: {
                     job: job,
-                    date: "",
                     store: this.model.store.id,
                     pre_expand: job.pre_expand,
                 }});

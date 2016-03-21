@@ -4,7 +4,9 @@
 			{{localizedUTCDate date}}
 		</div>
 	{{else}}
-		<div class="jobs col-4-5 col-1-2"></div>
+		<div class="jobs col-4-5 col-md-1-2">
+			<div>Jobs:</div>
+		</div>
 	{{/if}}
 	<div class="col-1-5 col-md-1-1">
 		<form accept-charset="UTF-8" action="{{form_url}}" method="post">
@@ -17,6 +19,8 @@
 		</form>
 	</div>
 	{{#if date}}
-		<div class="jobs col-1-1"></div>
+		<div class="jobs col-1-1">
+			<div>Jobs:</div>
+		</div>
 	{{/if}}
 </div>

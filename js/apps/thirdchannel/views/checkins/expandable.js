@@ -7,23 +7,23 @@ define(function(require){
     return Backbone.View.extend({
         className: 'expandable pure-g',
         events: {
-            "click .open": "opensubsection",
-            "click .close": "closesubsection"
+            "click > div > .open": "opensubsection",
+            "click > div > .close": "closesubsection"
         },
-        initialize: function(){
-            this.listenTo(this, 'subsection:open', this.opensubsection);
+        initialize: function(options) {
+            this.hide_toggle = options.hide_toggle;
         },
         render: function() {
             this.$el.html(HandleBarsTemplates['thirdchannel/checkins/expandable']({
                 toggle: this.openText + "&nbsp;<i class='ic ic_down'></i>",
-                hide_toggle: this.model.hide_toggle,
+                hide_toggle: this.hide_toggle,
             }));
-            this.main = this.$el.find(".main");
+            this.main = this.$("> .main");
             this.main.html(HandleBarsTemplates[this.rowTemplate](this.model));
-            this.subsection = this.$el.find(".subsection");
-            this.toggle = this.$el.find(".toggle");
+            this.subsection = this.$("> .subsection");
+            this.toggle = this.$("> div > .toggle");
             if(this.model.pre_expand){
-               this.trigger("subsection:open");
+               this.opensubsection();
             }
             return this;
         },
