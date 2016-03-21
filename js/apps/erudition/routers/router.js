@@ -5,7 +5,8 @@ define(function(require){
         CreateApplicationView = require('erudition/views/application/create'),
         EditFTUEView = require('erudition/views/ftue/edit'),
         RecruitingToolsView = require('erudition/views/recruiting/tools'),
-        RecruitingUsersView = require('erudition/views/recruiting/users');
+        RecruitingUsersView = require('erudition/views/recruiting/users'),
+        RecruitingOpportunitiesView = require('erudition/views/recruiting/opportunities');
 
 
 
@@ -17,17 +18,18 @@ define(function(require){
         },
 
         routes: {
-            'program/:programUUID/profile' : 'completeProfile',
-            'profile/view/:personId' : 'viewProfile',
-            'profile/view' : 'viewProfile',
-            'profile/edit' : 'editProfile',
-            'profile/edit/:personId' : 'editProfile',
-            'profile/edit/program/:programUUID' : 'editProfile',
-            'program/:programId/application/step/1' : 'createApplication',
-            'profile/edit/ftue/program/:programUUID' : 'editFTUE',
+            'program/:programUUID/profile(/)' : 'completeProfile',
+            'profile/view/:personId(/)' : 'viewProfile',
+            'profile/view(/)' : 'viewProfile',
+            'profile/edit(/)' : 'editProfile',
+            'profile/edit/:personId(/)' : 'editProfile',
+            'profile/edit/program/:programUUID(/)' : 'editProfile',
+            'program/:programId/application/step/1(/)' : 'createApplication',
+            'profile/edit/ftue/program/:programUUID(/)' : 'editFTUE',
             
-            'recruiting/tools' : 'recruitingTools',
-            'recruiting/users' : 'recruitingUsers'
+            'recruiting/tools(/)' : 'recruitingTools',
+            'recruiting/users(/)' : 'recruitingUsers',
+            'recruiting/opportunities(/)' : 'recruitingOpportunities'
         },
 
         createApplication: function (programId) {
@@ -56,6 +58,10 @@ define(function(require){
 
         recruitingUsers: function () {
             new RecruitingUsersView().render();
+        },
+
+        recruitingOpportunities: function () {
+            new RecruitingOpportunitiesView().render();
         }
     });
 
