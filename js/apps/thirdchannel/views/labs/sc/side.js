@@ -100,7 +100,6 @@ define(function(require) {
                 };
                 var $overview = this.$el.find('.subsection').first().find('.widgets');
                 $overview.append(templates['thirdchannel/reports/widgets/metric_icon'](data));
-                $overview.addClass('col-md-1 col-1-4');
             },
 
             _renderSales: function () {
