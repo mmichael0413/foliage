@@ -94,6 +94,8 @@
 
   .question-show {
 
+    padding: 0 1em;
+
     &:not(.required) {
       p {
         font-style: italic;
@@ -112,5 +114,10 @@
         }
       }
     }
+  }
+
+  .disabled-question {
+    text-decoration: line-through;
+    color: $light-blue;
   }
 }

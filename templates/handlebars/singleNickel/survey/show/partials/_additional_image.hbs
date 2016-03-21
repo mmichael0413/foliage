@@ -1,0 +1,9 @@
+{{#if_eq attributes.show_additional_images 'true'}}
+    <div class="section {{#unless_eq attributes.require_additional_images 'true'}}medium-blue{{/unless_eq}}">
+        <h3>Images</h3>
+        <div class="question-show">
+            <p>{{attributes.additional_images_description}}</p>
+            <input type="file" name="file">
+        </div>
+    </div>
+{{/if_eq}}
