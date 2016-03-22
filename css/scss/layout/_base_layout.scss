@@ -350,6 +350,10 @@
   }
 }
 
+.no-nav-content {
+  margin: 1rem;
+}
+
 /* Media Queries */
 @include swb-small {
   #site-menu {

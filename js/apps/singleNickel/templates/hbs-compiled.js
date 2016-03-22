@@ -701,7 +701,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<p class=\"light-blue\"><i>"
+  buffer += "<p class=\"disabled-question\"><i>"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.ask)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</i></p>";
   return buffer;
@@ -841,7 +841,9 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<input type=\"text\" placeholder=\""
+  buffer += "<p>"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.ask)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</p>\n<input type=\"text\" placeholder=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.placeholder)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">";
   return buffer;
@@ -859,6 +861,87 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.placeholder)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">";
   return buffer;
+  }));
+
+Handlebars.registerPartial("additional_image", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, helper, options, self=this, helperMissing=helpers.helperMissing, functionType="function", escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n    <div class=\"section ";
+  stack1 = (helper = helpers.unless_eq || (depth0 && depth0.unless_eq),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_additional_images), "true", options) : helperMissing.call(depth0, "unless_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_additional_images), "true", options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\">\n        <h3>Images</h3>\n        <div class=\"question-show\">\n            <p>"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.additional_images_description)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</p>\n            <input type=\"file\" name=\"file\">\n        </div>\n    </div>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  
+  return "medium-blue";
+  }
+
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_additional_images), "true", options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_additional_images), "true", options));
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  }));
+
+Handlebars.registerPartial("after_image", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, helper, options, self=this, helperMissing=helpers.helperMissing, functionType="function", escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n    <div class=\"section ";
+  stack1 = (helper = helpers.unless_eq || (depth0 && depth0.unless_eq),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), "true", options) : helperMissing.call(depth0, "unless_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), "true", options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\">\n        <h3>After Images</h3>\n        <div class=\"question-show\">\n            <p>"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.after_images_description)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</p>\n            <input type=\"file\" name=\"file\">\n        </div>\n    </div>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  
+  return "medium-blue";
+  }
+
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_images), "true", options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_images), "true", options));
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  }));
+
+Handlebars.registerPartial("before_image", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, helper, options, self=this, helperMissing=helpers.helperMissing, functionType="function", escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n    <div class=\"section ";
+  stack1 = (helper = helpers.unless_eq || (depth0 && depth0.unless_eq),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), "true", options) : helperMissing.call(depth0, "unless_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), "true", options));
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\">\n        <h3>Before Images</h3>\n        <div class=\"question-show\">\n            <p>"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.before_images_description)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</p>\n            <input type=\"file\" name=\"file\">\n        </div>\n    </div>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  
+  return "medium-blue";
+  }
+
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_images), "true", options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_images), "true", options));
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
   }));
 
 Handlebars.registerPartial("question", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -896,9 +979,9 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  buffer += "<div class=\"section\">\n    <h2>"
+  buffer += "<div class=\"section\">\n    <h3>"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</h2>\n    ";
+    + "</h3>\n    ";
   stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.children)),stack1 == null || stack1 === false ? stack1 : stack1.models), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n</div>";
@@ -1463,9 +1546,19 @@ function program1(depth0,data) {
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.links)),stack1 == null || stack1 === false ? stack1 : stack1['export'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" alt=\"Export Survey YAML\"><i class=\"ic fa ic_download\"></i></a>\n<h1>Preview: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</h1>\n( Required / <i class=\"medium-blue\">Optional</i> )\n\n";
+    + "</h1>\n( Required / <i class=\"medium-blue\">Optional</i> / <i class=\"disabled-question\">Disabled</i>  )\n\n";
+  stack1 = self.invokePartial(partials.before_image, 'before_image', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n";
   stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.children)),stack1 == null || stack1 === false ? stack1 : stack1.models), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n";
+  stack1 = self.invokePartial(partials.after_image, 'after_image', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n";
+  stack1 = self.invokePartial(partials.additional_image, 'additional_image', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
   return buffer;
   });
 
