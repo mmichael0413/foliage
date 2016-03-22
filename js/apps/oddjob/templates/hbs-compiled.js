@@ -669,10 +669,10 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   var buffer = "", stack1, self=this;
 
 
-  buffer += "	<h3>Create New Job</h3>\n	";
+  buffer += "<h3>Create New Job</h3>\n";
   stack1 = self.invokePartial(partials.job_fields, 'job_fields', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n    <button type=\"submit\" name=\"submit\" class=\"btn btn-primary\">Submit</button>";
+  buffer += "\n<button type=\"submit\" name=\"submit\" class=\"btn btn-primary job-submit\">Submit</button>";
   return buffer;
   });
 
@@ -682,10 +682,10 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   var buffer = "", stack1, self=this;
 
 
-  buffer += "	<h3>Edit Job</h3>\n	";
+  buffer += "<h3>Edit Job</h3>\n";
   stack1 = self.invokePartial(partials.job_fields, 'job_fields', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n    <button type=\"submit\" name=\"submit\" class=\"btn btn-primary\">Submit</button>\n    <button name=\"delete\" class=\"btn btn-primary delete\">Delete Job</button>";
+  buffer += "\n<button type=\"submit\" name=\"submit\" class=\"btn btn-primary job-submit\">Submit</button>\n<button name=\"delete\" class=\"btn btn-primary delete\">Delete Job</button>";
   return buffer;
   });
 
@@ -1088,7 +1088,7 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n	    		<option value=\"";
+  buffer += "\n    <option value=\"";
   if (helper = helpers.uuid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1102,7 +1102,7 @@ function program3(depth0,data) {
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</option>\n	    	";
+    + "</option>\n";
   return buffer;
   }
 function program4(depth0,data) {
@@ -1123,13 +1123,7 @@ function program8(depth0,data) {
   return buffer;
   }
 
-function program10(depth0,data) {
-  
-  
-  return "\n				<a class='btn remove'>Remove</a>\n	    	";
-  }
-
-  buffer += "			\n			<input name=\"taskId[";
+  buffer += "<input name=\"taskId[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1139,17 +1133,17 @@ function program10(depth0,data) {
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.id) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\"/>\n			\n			<label class=\"label\">Task (Survey)</label>\n	    	<select name=\"survey[";
+  buffer += "\"/>\n\n<label class=\"label\">Task (Survey)</label>\n<select name=\"survey[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "]\" id=\"survey\" class=\"input\">\n	    	<option value=\"\">--Select a Survey--</option>\n	    	";
+    + "]\" id=\"survey\" class=\"input\">\n<option value=\"\">--Select a Survey--</option>\n";
   options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}
   if (helper = helpers.surveys) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.surveys); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.surveys) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n	    	</select>\n\n	    	<label for=\"\" class=\"label\">Expected Minutes</label>\n\n	    	<input name=\"expectedDuration[";
+  buffer += "\n</select>\n\n<label for=\"\" class=\"label\">Expected Minutes</label>\n\n<input name=\"expectedDuration[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1159,7 +1153,7 @@ function program10(depth0,data) {
   else { helper = (depth0 && depth0.expectedDuration); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.expectedDuration) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(6, program6, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\">\n\n\n	    	<label for=\"\" class=\"label\">Payment Rate ($/hr)</label>\n	    	<input name=\"paymentRate[";
+  buffer += "\">\n\n<label for=\"\" class=\"label\">Payment Rate ($/hr)</label>\n<input name=\"paymentRate[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1169,29 +1163,23 @@ function program10(depth0,data) {
   else { helper = (depth0 && depth0.displayPaymentRate); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.displayPaymentRate) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(6, program6, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\">\n\n	    	<label for=\"\" class=\"label\">Required?</label>\n	    	<select name=\"required[";
+  buffer += "\">\n\n<label for=\"\" class=\"label\">Required?</label>\n<select name=\"required[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "]\" id=\"\" class=\"input small\">\n	    		<option value=\"true\" ";
+    + "]\" id=\"\" class=\"input small\">\n    <option value=\"true\" ";
   options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}
   if (helper = helpers.required) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.required); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.required) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ">Yes</option>\n	    		<option value=\"false\"";
+  buffer += ">Yes</option>\n    <option value=\"false\"";
   options={hash:{},inverse:self.program(4, program4, data),fn:self.program(8, program8, data),data:data}
   if (helper = helpers.required) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.required); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.required) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(4, program4, data),fn:self.program(8, program8, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ">No</option>\n	    	</select>\n\n	    	";
-  options={hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data}
-  if (helper = helpers.removeable) { stack1 = helper.call(depth0, options); }
-  else { helper = (depth0 && depth0.removeable); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.removeable) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data}); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n	    	";
+  buffer += ">No</option>\n</select>\n\n<a class='btn remove'>Remove</a>";
   return buffer;
   });
 

@@ -10,10 +10,9 @@ define(function (require) {
 	 */
 	var TaskCreateView = {
 		templateName: 'oddjob/tasks/create',
-		className: 'task  clearfix',
+		className: 'task clearfix',
 		events: {
-			'click .remove': 'clear',
-
+			'click .remove': 'clear'
 		},
 
 		initialize: function (data) {
@@ -36,18 +35,12 @@ define(function (require) {
 			}
 			this.model.set('surveys', surveys);
 
-
-
-			if (this.model.get('index') > 0) {
-				this.model.set('removeable', true);
-			}
-
 			return this.model.toJSON();
 		},
 
 		clear: function (e) {
 			e.preventDefault();
-				this.remove();	
+			this.remove();
 		}
 
 	};
