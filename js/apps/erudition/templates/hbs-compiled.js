@@ -426,7 +426,7 @@ function program2(depth0,data) {
   return "checked";
   }
 
-  buffer += "<div class=\"card\">\n    <div class=\"header\">How do you spend your time?</div>\n    <div class=\"body\">\n        <div class=\"input-group interests\">\n            <div class=\"pure-g\">\n                ";
+  buffer += "<div class=\"card\">\n    <div class=\"header\">How do you spend your time?</div>\n    <div class=\"body\">\n        <div class=\"radio-input-group interests\">\n            <div class=\"pure-g\">\n                ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.interests), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </div>\n        </div>\n    </div>\n</div>";

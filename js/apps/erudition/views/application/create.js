@@ -29,7 +29,8 @@ define(function (require) {
                 uploader = context.content.uploader;
 
             var choices = ['ThirdChannel Invite', 'Professor', 'Department Head', 'Activities Advisor', 'Greek Life President',
-                'Resident Assistant', 'Orientation Leader', 'Tour Guide', 'ThirdChannel Agent', 'None of the above'];
+                'Resident Assistant', 'Orientation Leader', 'Tour Guide', 'ThirdChannel Agent', 'LinkedIn', 'WayUp', 'Indeed',
+                'Craigslist', 'Facebook', 'Twitter', 'None of the above'];
 
             var model = {
                 person: person,

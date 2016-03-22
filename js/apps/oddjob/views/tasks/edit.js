@@ -10,7 +10,6 @@ define(function (require) {
      */
     var TaskEditView = {
         
-        
         clear: function (e) {
             e.preventDefault();
             this.model.url = context.links.tasks +"/" + this.model.get('id');

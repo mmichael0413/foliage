@@ -15,7 +15,8 @@ define(function(require) {
         events: {
             'click .add-task': 'addTask',
             'click .delete': 'deleteJob',
-            'click .job-tracking': 'jobTrackingHandler'
+            'click .job-tracking': 'jobTrackingHandler',
+            'click .job-submit': 'jobSubmit'
         },
 
         render: function () {
@@ -88,6 +89,15 @@ define(function(require) {
             e.preventDefault();
             var index = this.$tasksContainer.find('.task').length;
             this._addTaskAtIndex(index, TaskCreateView, new Backbone.Model());
+        },
+
+        jobSubmit: function(e) {
+            var taskCount = this.$('.task').length;
+            if(taskCount === 0) {
+                alert('Jobs require at least one task');
+                return false;
+            }
+            return true;
         },
 
         deleteJob: function () {

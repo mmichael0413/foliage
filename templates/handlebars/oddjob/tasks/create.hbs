@@ -12,7 +12,6 @@
 
 <input name="expectedDuration[{{index}}]" type="number" class="input small" value="{{#expectedDuration}}{{this}}{{else}}0{{/expectedDuration}}">
 
-
 <label for="" class="label">Payment Rate ($/hr)</label>
 <input name="paymentRate[{{index}}]" type="number" class="input small" value="{{#displayPaymentRate}}{{this}}{{else}}0{{/displayPaymentRate}}">
 
@@ -22,7 +21,4 @@
     <option value="false"{{#required}}{{else}}selected{{/required}}>No</option>
 </select>
 
-{{#removeable}}
-    <a class='btn remove'>Remove</a>
-{{/removeable}}
-	    	
+<a class='btn remove'>Remove</a>
