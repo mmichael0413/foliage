@@ -28,7 +28,6 @@ define(function(require){
         NotificationSectionView = require('thirdchannel/views/notifications/notification_section'),
         PostView = require('thirdchannel/views/posts/main'),
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge'),
-        StoreProfileSchedule = require('thirdchannel/views/store_profile/schedule'),
         Labs = require('thirdchannel/views/labs/main'),
         AnswersExportView = require('thirdchannel/views/exports/answers/main'),
         SalesStoresExportView = require('thirdchannel/views/exports/sales_stores/main'),
@@ -64,7 +63,6 @@ define(function(require){
             'programs/:program_id/stores/:store_id/product': 'storeProfileProduct',
             'programs/:program_id/stores/:store_id/product/edit': 'editStoreProfileProduct',
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
-            'programs/:program_id/stores/:store_id/schedule' : 'storeProfileSchedule',
             'programs/:program_id/stores/:store_id/sales': 'storeProfileSales',
             'programs/:program_id/checkins/:checkin_id/submissions/:id': 'submission',
             'programs/:program_id/checkins/choose/:id': 'selectCheckin',
@@ -177,10 +175,6 @@ define(function(require){
 
         editStoreIntel: function () {
             new StoresIntelEdit().render();
-        },
-
-        storeProfileSchedule: function() {
-            new StoreProfileSchedule().init();
         },
 
         storeProfileSales: function() {
