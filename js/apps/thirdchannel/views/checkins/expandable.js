@@ -28,7 +28,9 @@ define(function(require){
             return this;
         },
         opensubsection: function(e){
-            e.preventDefault();
+            if(e){
+                e.preventDefault();
+            }
             this.toggle.removeClass('open');
             this.toggle.html(this.closeText + "&nbsp;<i class='ic ic_up'></i>");
             this.toggle.addClass('close');
@@ -44,7 +46,9 @@ define(function(require){
             }
         },
         closesubsection: function(e){
-            e.preventDefault();
+            if(e){
+                e.preventDefault();
+            }
             this.toggle.removeClass('close');
             this.toggle.html(this.openText + "&nbsp;<i class='ic ic_down'></i>");
             this.toggle.addClass('open');
