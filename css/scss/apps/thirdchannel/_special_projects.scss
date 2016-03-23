@@ -11,3 +11,64 @@
     margin-left: 1rem;
   }
 }
+
+.special-project-report {
+  padding: 0;
+  margin-right: 0.75em;
+  margin-bottom: 0.75em;
+
+  @include swb-medium {
+    margin-right: inherit;
+    margin-bottom: 0.5em;
+  }
+
+  .special-project-header {
+    padding: 0.5em;
+
+    h2 {
+      font-size: 1.2em;
+      margin-bottom: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &.last {
+      border-bottom: 1px solid $light-blue;
+    }
+  }
+
+  .special-project-overview {
+    text-align: center;
+    border-bottom: 1px solid $light-blue;
+
+    @include swb-medium {
+      border-right: none;
+      margin-bottom: 0.25em;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.2em;
+    }
+
+    h3 {
+      font-size: 0.75em;
+      font-weight: lighter;
+    }
+  }
+
+  .special-project-breakdown {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+
+    .special-project-breakdown-item {
+      text-align: center;
+    }
+  }
+
+  .special-project-latest-checkin {
+    background-color: #e5e9ed;
+    padding: 0.5em;
+  }
+}

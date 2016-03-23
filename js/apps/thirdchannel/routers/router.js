@@ -21,6 +21,7 @@ define(function(require){
         DashboardsAlertsSectionsView = require('thirdchannel/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('thirdchannel/views/dashboards/alerts/show/stores'),
         DashboardsSpecialProjectsView = require('thirdchannel/views/dashboards/special_projects/main'),
+        DashboardsSpecialProjectStoresMain = require('thirdchannel/views/dashboards/special_projects/stores/main'),
         ReportMain = require('thirdchannel/views/reports/index/main'),
         CheckinReportView = require('thirdchannel/views/reports/checkins/show/report'),
         ReportInfoMain = require('thirdchannel/views/reports/info/show/main'),
@@ -68,7 +69,7 @@ define(function(require){
             'programs/:program_id/checkins/choose/:id': 'selectCheckin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
-            'programs/:program_id/dashboards/special_projects': 'dashboardSpecialProjects',
+            'programs/:program_id/dashboards/special_projects/:special_project_id/stores': 'dashboardSpecialProjectStores',
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
@@ -198,16 +199,17 @@ define(function(require){
             new ProfileStoreListView().bootstrapCollection(window.bootstrap);
         },
 
-        dashboardAlerts: function(programId){
+        dashboardAlerts: function(programId) {
+            new DashboardsSpecialProjectsView({programId: programId}).render();
             $('#alerts-dashboard').append(new DashboardsAlertsSectionsView({programId: programId}).render().$el);
+        },
+
+        dashboardSpecialProjectStores: function(programId, specialProjectId) {
+            DashboardsSpecialProjectStoresMain.init();
         },
 
         dashboardAlert: function(programId, id){
             new DashboardsAlertsStoresView({programId: programId, id: id}).render();
-        },
-
-        dashboardSpecialProjects: function(programId) {
-            new DashboardsSpecialProjectsView({programId: programId}).render();
         },
 
         reports: function(programId){

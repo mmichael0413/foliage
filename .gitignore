@@ -8,3 +8,4 @@ node_modules/*
 .DS_Store
 foliage.iml
 coverage/
+npm-debug.log
