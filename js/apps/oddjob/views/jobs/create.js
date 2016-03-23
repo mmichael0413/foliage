@@ -23,6 +23,7 @@ define(function(require) {
             SurveysStore.fetch()
             .done(function () {
                 var data = this.model.toJSON();
+                data.reports = context.reports;
                 data.roles = context.roles;
                 _.each(data.roles, function (role) {
                     if (role.id === data.role) {
@@ -41,7 +42,11 @@ define(function(require) {
         },
 
         jobTrackingHandler: function (e) {
-            this._toggleJobTrackingText($(e.currentTarget).is(':checked'));
+            var enabled = $(e.currentTarget).is(':checked');
+            this._toggleJobTrackingText(enabled);
+
+            this.$('.job-target').prop('disabled', !enabled);
+            this.$('.job-report').prop('disabled', !enabled);
         },
         _toggleJobTrackingText: function (value) {
             var $text = this.$el.find("#jobTrackingText");

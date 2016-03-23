@@ -1,12 +1,30 @@
-	<p class="info">If you leave the name blank, the group will use the name of the first Task (for now, this is a Survey). Furthermore, a Job must have at least one Task (Typically, there will be only one Task per Job).</p>
+<p class="info">If you leave the name blank, the group will use the name of the first Task (for now, this is a Survey). Furthermore, a Job must have at least one Task (Typically, there will be only one Task per Job).</p>
 
-    <label class="label" for="jobName">Name</label>
-    <input class="input" type="text" value="{{name}}" name="name" id="jobName" placeholder="Enter Optional name here"/>
+<label class="label" for="jobName">Name</label>
+<input class="input" type="text" value="{{name}}" name="name" id="jobName" placeholder="Enter Optional name here"/>
 
+<div class="form-group">
     <label for="jobTracked" class="">Enable Job Tracking (Special Project Tracking)?</label>
     <input type="checkbox" class="input-checkbox job-tracking" name="tracked" id="jobTracked" {{#tracked}}checked{{/tracked}}/>
-    
-    <section id="jobTrackingText">
+</div>
+
+<section id="jobTrackingText">
+    <div class="form-group">
+        <label for="jobTarget" class="">Completion Target (%)</label>
+        <input type="number" class="input job-target" name="target" id="jobTarget" value="{{target}}" {{#unless tracked}}disabled{{/unless}}/>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="report" class="">Report</label>
+        <select name="reportUUID" id="report" class="input job-report" {{#unless tracked}}disabled{{/unless}}>
+            <option value="">--Select a Report--</option>
+            {{#reports}}
+                <option value="{{uuid}}" {{#selected}}selected{{/selected}}>{{name}}</option>
+            {{/reports}}
+        </select>
+    </div>
+    <br><br>
+    <div style="clear: both;">
         <p class="instruction"><span class="important">Note:</span> For now, any jobs we wish to track must have only one task and one frequency assigned to them. Or rather, only the first task's survey will be tracked, and the first frequency will be used for the start and end date of the tracking. We hope to change this in the future.</p>
         <label for="editor">Completion Instructions</label>
         <input type="hidden" name="completionInstructions" id="completionInstructions" value="{{completionInstructions}}"/>
@@ -23,25 +41,25 @@
               <div></div>
             </div>
         </div>
-    </section>
-    
-    
-    <label for="role" class="label">Limit Job to Role: </label>
-    <select name="role" id="role" class="input">
-        <option value="">--No Limit on Role--</option>
-        {{#roles}}
-        <option value="{{id}}" {{#selected}}selected="selected"{{/selected}}>{{key}}</option>
-        {{/roles}}
-    </select>
-
-    <div class="tasks-container">
     </div>
+</section>
 
-    <button class="btn add-task">Add Task</button>
+<label for="role" class="label">Limit Job to Role: </label>
+<select name="role" id="role" class="input">
+    <option value="">--No Limit on Role--</option>
+    {{#roles}}
+        <option value="{{id}}" {{#selected}}selected="selected"{{/selected}}>{{key}}</option>
+    {{/roles}}
+</select>
 
+<div class="tasks-container"></div>
+<button class="btn add-task">Add Task</button>
+
+<div class="form-group">
     <label for="edit-blackout-schemes" class="label">Blackout Schemes: </label>
     <select id="edit-blackout-schemes" name="blackoutSchemes" class="input" multiple data-placeholder="Assign Blackout Schemes">
-			{{#each programBlackoutSchemes}}
-				<option value="{{id}}">{{name}}</option>
-			{{/each}}
+        {{#each programBlackoutSchemes}}
+            <option value="{{id}}">{{name}}</option>
+        {{/each}}
     </select>
+</div>

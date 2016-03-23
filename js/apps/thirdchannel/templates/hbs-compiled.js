@@ -2107,30 +2107,91 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["ThirdChannel"]["templates"]["thirdchannel/dashboards/special_projects/item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                <span class=\"pull-right\"><a href=\""
+    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.report)),stack1 == null || stack1 === false ? stack1 : stack1.links)),stack1 == null || stack1 === false ? stack1 : stack1.self)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" target=\"_blank\">View Report</a></span>\n            ";
+  return buffer;
+  }
 
-  buffer += "<p class=\"col-1-5\">";
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n                    Target Completion: ";
+  if (helper = helpers.target) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.target); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "%\n                ";
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
+  
+  return "\n                    &nbsp\n                ";
+  }
+
+function program7(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n                    <a href=\""
+    + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.latest_checkin)),stack1 == null || stack1 === false ? stack1 : stack1.links)),stack1 == null || stack1 === false ? stack1 : stack1.report)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" target=\"_blank\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.latest_checkin)),stack1 == null || stack1 === false ? stack1 : stack1.date)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a>\n                ";
+  return buffer;
+  }
+
+function program9(depth0,data) {
+  
+  
+  return "\n                    N/A\n                ";
+  }
+
+  buffer += "<div class=\"section data-section special-project-report\">\n    <div class=\"pure-g\">\n        <div class=\"col-1-1 special-project-header\">\n            <h2>";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-5\">";
+    + "</h2>\n        </div>\n        <div class=\"col-1-1 special-project-header last\">\n            <span>";
   if (helper = helpers.stores_count) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.stores_count); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-5\">";
-  if (helper = helpers.stores_not_visited) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.stores_not_visited); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-5\">";
-  if (helper = helpers.stores_with_open_alerts) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.stores_with_open_alerts); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-5\">";
+    + " stores</span>\n            ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.report), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </div>\n        <div class=\"col-1-1 special-project-overview\">\n            <div class=\"chart\"></div>\n            <h2>";
   if (helper = helpers.percent_of_stores_complete) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.percent_of_stores_complete); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "%</p>\n";
+    + "% Complete</h2>\n            <h3>\n                ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.target), {hash:{},inverse:self.program(5, program5, data),fn:self.program(3, program3, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </h3>\n        </div>\n        <div class=\"col-1-1 special-project-breakdown\">\n            <div class=\"pure-g\">\n                <div class=\"col-1-3 special-project-breakdown-item\">\n                    <div><a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.stores)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "?status=Completed\">";
+  if (helper = helpers.stores_completed) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.stores_completed); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " Stores</a></div>\n                    <div>Jobs Completed</div>\n                </div>\n                <div class=\"col-1-3 special-project-breakdown-item\">\n                    <div><a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.stores)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "?status=Revisit Needed\">";
+  if (helper = helpers.stores_with_revisit_needed) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.stores_with_revisit_needed); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " Stores</a></div>\n                    <div>Need Revisit</div>\n                </div>\n                <div class=\"col-1-3 special-project-breakdown-item\">\n                    <div><a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.stores)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "?status=Not Visited\">";
+  if (helper = helpers.stores_not_visited) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.stores_not_visited); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " Stores</a></div>\n                    <div>Not Visited</div>\n                </div>\n\n            </div>\n        </div>\n        <div class=\"col-1-1 special-project-latest-checkin\">\n            <div>\n                Most Recent Visit:\n                ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.latest_checkin), {hash:{},inverse:self.program(9, program9, data),fn:self.program(7, program7, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </div>\n        </div>\n    </div>\n</div>";
   return buffer;
   });
 
@@ -2140,7 +2201,47 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"section data-section\">\n    <div class=\"pure-g\">\n        <h3 class=\"header col-1-5\">Name</h3>\n        <h3 class=\"header col-1-5\"># Stores</h3>\n        <h3 class=\"header col-1-5\"># Not visited</h3>\n        <h3 class=\"header col-1-5\"># Need Revisit</h3>\n        <h3 class=\"header col-1-5\">% Complete</h3>\n    </div>\n    <div class=\"body\"></div>\n</div>";
+  return "<div class=\"special-projects pure-g\">\n    <div class=\"section data-section col-1-1\">\n        <div class=\"loading\">\n            <div class=\"fa fa-spin ic_processing\"></div> Loading...\n        </div>\n    </div>\n</div>";
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/dashboards/special_projects/stores/rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n    <div class=\"item pure-g\">\n        <div class=\"col-1-3\">\n            <a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.profile)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</a>\n        </div>\n        <div class=\"col-1-3\">\n            ";
+  if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\n        </div>\n        <div class=\"col-1-3\">\n            ";
+  if (helper = helpers.status) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.status); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\n        </div>\n    </div>\n";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  
+  return "\n    <p class=\"item\">There are no stores for this query.</p>\n";
+  }
+
+  options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
+  if (helper = helpers.rows) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.rows); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.rows) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/filter_active_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
