@@ -20,20 +20,28 @@ define(function(require) {
         },
         renderChart: function() {
             var colors = {
-                Completion: '#9fb2c0',
-                Target: '#e5e9ed'
+                Completion: '#96d1b1'
             };
 
-            var data = [
-                ['Completion', this.model.get('percent_of_stores_complete')]
-            ];
+            var data = [];
 
-            if(this.model.get('target')) {
-                data.unshift(['Target', this.model.get('target')]);
+            var percentComplete = this.model.get('percent_of_stores_complete');
+            var target = this.model.get('target');
 
-                if(this.model.get('percent_of_stores_complete') >= this.model.get('target')) {
-                    colors.Completion = '#96d1b1';
+            if(target) {
+                if(percentComplete < target) {
+                    data.push(['Completion', percentComplete]);
+                } else {
+                    data.push(['Completion', percentComplete]);
+                    data.push(['Target', target]);
+
+                    colors = {
+                        Completion: '#709d84',
+                        Target: '#96d1b1'
+                    };
                 }
+            } else {
+                data.push(['Completion', percentComplete]);
             }
 
             var chart = c3.generate({
