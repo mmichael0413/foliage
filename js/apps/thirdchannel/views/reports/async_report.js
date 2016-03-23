@@ -105,11 +105,11 @@ define(function(require) {
                     console.error("Meta data report_widget uuid and the response uuid are not equal!");
                 }
                 var $widget = new WidgetView(widget_data).render().$el;
-                //$widget.hide();
+                $widget.hide();
                 this.$("#widget-placeholder-"+widget_data.uuid).replaceWith($widget);
-                //$widget.fadeIn(500, function() {
+                $widget.fadeIn(500, function() {
                     context.trigger("report post render widget_" + widget_data.uuid);
-                //});
+                });
             },
 
             _layoutSections: function(sections) {

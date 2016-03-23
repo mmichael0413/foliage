@@ -2553,7 +2553,7 @@ function program3(depth0,data) {
   return "\n<p class=\"col-1-1\">No Sales numbers found for this date range</p>\n";
   }
 
-  buffer += "<canvas width=\"450\" height=\"450\" class=\"retail-sales\">	</canvas>\n";
+  buffer += "<div class=\"retail-sales\">	</div>\n";
   options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
   if (helper = helpers.sales) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.sales); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
