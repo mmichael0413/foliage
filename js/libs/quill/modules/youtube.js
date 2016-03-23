@@ -1,6 +1,5 @@
 define(function(require) {
-    var $ = require('jquery'),
-        Charts = require('chartjs');
+    var $ = require('jquery');
 
     var Delta, YouTubeTooltip, Quill, Tooltip, dom, _,
         __hasProp = {}.hasOwnProperty,

@@ -57,7 +57,7 @@ define(function(require) {
                     var promise = $.getJSON(context.links.reports.widgets +"?report_widget_uuid=" + widget_meta_data.report_widget_uuid + "&report_report_uuid=" + widget_meta_data.report_report_uuid + "&" + filter);
                     // cache them... why? see below
                     activeRequests.push(promise);
-                    return rx.Observable.fromPromise(promise).delay(x * 150);
+                    return rx.Observable.fromPromise(promise).delay(x * 250);
                 })
                 .takeUntil(self.cancelObservable) // cancel this whole thing if the filter changes
                 .subscribe(function (data) {
@@ -77,7 +77,8 @@ define(function(require) {
                     });
                     // finally, alert any listeners that we're done (e.g. time to disable spinners)
                     if (trigger) {
-                      self.trigger("reports:async:complete");
+                        self.trigger("reports:async:complete");
+                        context.trigger('filter:request:queryString');
                     } else {
                       self.trigger("reports:async:incomplete");
                     }
@@ -104,11 +105,11 @@ define(function(require) {
                     console.error("Meta data report_widget uuid and the response uuid are not equal!");
                 }
                 var $widget = new WidgetView(widget_data).render().$el;
-                $widget.hide();
+                //$widget.hide();
                 this.$("#widget-placeholder-"+widget_data.uuid).replaceWith($widget);
-                $widget.fadeIn(500, function() {
+                //$widget.fadeIn(500, function() {
                     context.trigger("report post render widget_" + widget_data.uuid);
-                });
+                //});
             },
 
             _layoutSections: function(sections) {

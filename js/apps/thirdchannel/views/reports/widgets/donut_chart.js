@@ -12,21 +12,22 @@ define(function(require) {
         initialize: function (options) {
             this.model = options;
             this.config = this.model.results;
+            _.bindAll(this, 'resizeChart');
         },
 
         render: function () {
             if (_.size(this.model.results) > 0) {
                 this.setElement(this.template(this.model));
                 this.listenTo(context, 'filter:queryString', function(qs){ this.updateViewBreakDownLink(qs, this.model); });
-                this.listenTo(context, 'report post render', this.renderChart);
                 if (this.model.uuid) {
                     this.listenTo(context, 'report post render widget_' + this.model.uuid, this.renderChart);
+                } else {
+                    this.listenTo(context, 'report post render', this.renderChart);
                 }
-                this.listenTo(context, 'report resize',      this.resizeChart);
-                context.trigger('filter:request:queryString');
             }
             return this;
         },
+
         renderChart: function () {
             if (this.chart === undefined) {
                 var self = this;
@@ -48,11 +49,14 @@ define(function(require) {
                         }
                     }
                 }));
+
+                this.$el.on('mresize', this.resizeChart);
             }
         },
+        
         resizeChart: function() {
             if (this.chart !== undefined) {
-                this.chart.flush();
+                this.chart.resize();
             }
         }
     });
