@@ -64,7 +64,7 @@ module.exports = function(grunt) {
         },
         {
             dest: 'dist/marketing/images/twitter.svg'
-        }
+        },
     ];
 
     return {

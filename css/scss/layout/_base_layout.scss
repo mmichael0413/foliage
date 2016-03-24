@@ -29,6 +29,11 @@
         padding-right: 1em;
         padding-left: 1em;
         word-wrap: break-word;
+
+        &.full-content {
+          padding: 0;
+        }
+
         @include swb-small {
           overflow-y: hidden;
           padding-left: 0;

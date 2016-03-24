@@ -25,6 +25,9 @@ module.exports = function(grunt) {
         },
         {
             dest: 'dist/thirdchannel/images/sps-logo.svg'
+        },
+        {
+            dest: 'dist/thirdchannel/images/submitted.jpg'
         }
     ];
 
