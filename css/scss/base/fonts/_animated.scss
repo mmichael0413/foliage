@@ -1,0 +1,36 @@
+// Spinning Icons
+// --------------------------
+
+.ic-spin {
+  display: inline-block;
+  -webkit-animation: ic-spin 2s infinite linear;
+  animation: ic-spin 2s infinite linear;
+}
+
+.ic-pulse {
+  display: inline-block;
+  -webkit-animation: ic-spin 1s infinite steps(8);
+  animation: ic-spin 1s infinite steps(8);
+}
+
+@-webkit-keyframes ic-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes ic-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
