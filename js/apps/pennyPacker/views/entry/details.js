@@ -80,7 +80,7 @@ define(function (require) {
                         url: this.model.get('links').adjust
                     }))();
                 
-                if ($input && $input.val() > 0) {
+                if ($input && $input.val() >= 0) {
                     adjustment.set({value: $input.val()});
                     adjustment.save()
                     .done(function (data) {
