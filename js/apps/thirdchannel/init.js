@@ -18,8 +18,6 @@ require.config({
         'imagesloaded' : "../libs/bower_components/imagesloaded/imagesloaded.pkgd",
         'backbone.modal' : '../libs/bower_components/backbone-modal/backbone.modal',
         'jquery_ujs' : '../libs/bower_components/jquery-ujs/src/rails',
-        'chartjs' : '../libs/Chart',
-        'chartjs_stacked_bar': '../libs/bower_components/Chart.StackedBar.js/src/Chart.StackedBar',
         'slick_carousel': '../libs/bower_components/slick.js/slick/slick',
         'livestamp' : '../libs/livestamp.min',
         'moment' : '../libs/moment',
@@ -30,7 +28,6 @@ require.config({
         'quill-youtube' : '../libs/quill/modules/youtube',
         'helpers' : 'thirdchannel/utils/helpers',
         'pikaday' : '../libs/bower_components/pikaday/pikaday',
-        'chartist' : '../libs/bower_components/chartist/dist/chartist',
         'd3': '../libs/bower_components/d3/d3',
         'c3': '../libs/bower_components/c3/c3',
         'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
@@ -39,6 +36,7 @@ require.config({
         'rxjs'          : '../libs/bower_components/rxjs/dist/rx.all.min',
         'viewer'      : '../libs/viewer',
         'jquery-deparam' : '../libs/bower_components/jquery-deparam/jquery-deparam',
+        'mresize' : '../libs/bower_components/mresize/mresize'
     },
     shim: {
         "jquery": {
@@ -85,6 +83,9 @@ require.config({
         'slick_carousel': {
             deps: ["jquery"]
         },
+        'mresize': {
+            deps: ["jquery"]
+        },
         "livestamp": {
             deps: ["moment"],
             exports: 'Livestamp'
@@ -104,9 +105,6 @@ require.config({
         },
         'chosen': {
             deps: ["jquery"]
-        },
-        'chartjs_stacked_bar': {
-            deps: ['chartjs']
         },
         'dateTimePicker': {
             deps: ["jquery"]

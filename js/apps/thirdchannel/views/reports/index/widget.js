@@ -17,8 +17,6 @@ define(function(require) {
         RangeChartView = require('thirdchannel/views/reports/widgets/range_chart'),
         ResolutionRowView = require('thirdchannel/views/reports/widgets/resolution_row'),
         LineChartView = require('thirdchannel/views/reports/widgets/line_chart'),
-        GenericHorizontalBarChartView = require('thirdchannel/views/reports/widgets/generic_horizontal_bar_chart'),
-        StackedBarChartView = require('thirdchannel/views/reports/widgets/stacked_bar_chart'),
         HeatmapView = require('thirdchannel/views/reports/widgets/heatmap'),
         TotalsAveragesTableView = require('thirdchannel/views/reports/widgets/totals_averages_table'),
         LegendView = require('thirdchannel/views/reports/widgets/legend');
@@ -61,9 +59,9 @@ define(function(require) {
             } else if (this.model.display_type == 14) {
                 widget = this.createLineChart();
             } else if (this.model.display_type == 15) {
-                widget = this.createGenericHorizontalBarChart();
+                // REMOVED SINCE IT USES OLD LIBRARY
             } else if (this.model.display_type == 16) {
-                widget = this.createHorizontalStackedBarChart();
+                // REMOVED SINCE IT USES OLD LIBRARY
             } else if (this.model.display_type == 17) {
                 widget = this.createHeatmap();
             } else if (this.model.display_type == 18) {
@@ -116,12 +114,6 @@ define(function(require) {
         },
         createLineChart: function () {
             return new LineChartView(this.model).render().$el;
-        },
-        createGenericHorizontalBarChart: function () {
-            return new GenericHorizontalBarChartView(this.model).render().$el;
-        },
-        createHorizontalStackedBarChart: function() {
-            return new StackedBarChartView(this.model).render().$el;
         },
         createHeatmap: function() {
             return new HeatmapView(this.model).render().$el;

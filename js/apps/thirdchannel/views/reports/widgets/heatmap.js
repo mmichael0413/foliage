@@ -20,13 +20,11 @@ define(function(require) {
                 this.setElement(this.template(this.model));
                 _.bindAll(this, 'renderChart', 'resizeChart', 'updateQueryString', 'openViewBreakdown');
                 this.listenTo(context, 'filter:queryString', this.updateQueryString);
-                this.listenTo(context, 'report post render', this.renderChart);
                 if (this.model.uuid) {
                     this.listenTo(context, 'report post render widget_' + this.model.uuid, this.renderChart);
+                } else {
+                    this.listenTo(context, 'report post render', this.renderChart);
                 }
-                this.listenTo(context, 'report resize',      this.resizeChart);
-                $(window).resize(this.resizeChart);
-                context.trigger('filter:request:queryString');
             }
             return this;
         },
@@ -71,9 +69,8 @@ define(function(require) {
                     });
 
                 this.chart = true;
-                if(window.report_pdf !== undefined) {
-                    this.resizeChart();
-                }
+                this.resizeChart();
+                this.$el.on('mresize', this.resizeChart);
             }
         },
         resizeChart: function() {
