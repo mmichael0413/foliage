@@ -41,47 +41,45 @@ define(function(require) {
 
             loadWidgets: function (filter) {
                 var self = this,
-                    activeRequests = [],
+                    totalRendered = 0,
+                    totalWidgets = 0,
                     widgetLookup = {};
                 // set up an observable to emit all widgets in this report
                 rx.Observable.from(self._extractWidgetMetaInfo(self.reportData))
-                .map(function(widget_meta_data) {
-                    // because the resulting subscription item is the response data of the widget from the server,
-                    // we need a way to reference the original widget meta_data. cache the meta_data by widget_uuid for later retrieval
-                    widgetLookup[widget_meta_data.report_widget_uuid] = widget_meta_data;
-                    return widget_meta_data;
-                })
-                // throttle just a bit so as not to overwhelm the server
-                .flatMap(function(widget_meta_data, x) {
-                    // generate ajax promises
-                    var promise = $.getJSON(context.links.reports.widgets +"?report_widget_uuid=" + widget_meta_data.report_widget_uuid + "&report_report_uuid=" + widget_meta_data.report_report_uuid + "&" + filter);
-                    // cache them... why? see below
-                    activeRequests.push(promise);
-                    return rx.Observable.fromPromise(promise).delay(x * 150);
-                })
-                .takeUntil(self.cancelObservable) // cancel this whole thing if the filter changes
-                .subscribe(function (data) {
-                    self._renderWidget.call(self, widgetLookup[data.uuid], data);
-                }, function () {
-                    console.error("Failed:", arguments);
-                }, function() {
-                    // because we're generating a flurry of async requests, we don't want 'stale' requests (those that were fired before the page / filter was refreshed)
-                    // to complete. Because we're using an observable, we won't have them render... whoever, they'll still be active, and these are some long running requests.
-                    // Once the filter changes, we kill all open active async requests to be kind to the server
-                    var trigger = true;
-                    _.each(activeRequests, function(request) {
-                        if (request.state() == "pending") {
-                            trigger = false;
+                    .map(function(widget_meta_data) {
+                        // because the resulting subscription item is the response data of the widget from the server,
+                        // we need a way to reference the original widget meta_data. cache the meta_data by widget_uuid for later retrieval
+                        widgetLookup[widget_meta_data.report_widget_uuid] = widget_meta_data;
+                        totalWidgets++;
+                        return widget_meta_data;
+                    })
+                    // throttle just a bit so as not to overwhelm the server
+                    .concatMap(function(widget_meta_data) {
+                        return rx.Observable.defer(function(){
+                            return rx.Observable.fromPromise(
+                                    $.getJSON(context.links.reports.widgets +"?report_widget_uuid=" + widget_meta_data.report_widget_uuid + "&report_report_uuid=" + widget_meta_data.report_report_uuid + "&" + filter)
+                                )
+                                .delay(250)
+                                .map(function (data) {
+                                    totalRendered++;
+                                    return self._renderWidget.call(self, widgetLookup[data.uuid], data);
+                                });
+                        });
+                    })
+                    .takeUntil(self.cancelObservable) // cancel this whole thing if the filter changes
+                    .subscribe(
+                        function () {},
+                        function () {},
+                        function () {
+                            if (totalRendered != totalWidgets) {
+                                self.cancelObservable = rx.Observable.fromEvent(context, 'filter:query');
+                                self.trigger("reports:async:incomplete");
+                            } else {
+                                self.trigger("reports:async:complete");
+                                context.trigger('filter:request:queryString');
+                            }
                         }
-                        request.abort();
-                    });
-                    // finally, alert any listeners that we're done (e.g. time to disable spinners)
-                    if (trigger) {
-                      self.trigger("reports:async:complete");
-                    } else {
-                      self.trigger("reports:async:incomplete");
-                    }
-                });
+                    );
 
             },
 

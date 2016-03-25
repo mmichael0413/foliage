@@ -5,7 +5,8 @@ define(function(require) {
         d3 = require('d3'),
         c3 = require('c3'),
         ViewBreakdownLinkMixin = require('thirdchannel/views/reports/widgets/view_breakdown_link_mixin'),
-        context = require('context');
+        context = require('context'),
+        mresize = require('mresize');
 
     var defaultLegendColors = ["#F15F51", "#585E60", "#9FB2C0", "#A9BC4D"];
 
@@ -15,17 +16,17 @@ define(function(require) {
         initialize: function (options) {
             this.model = options;
             this.config = this.model.results;
+            _.bindAll(this, 'resizeChart');
         },
         render: function () {
             if (_.size(this.model.results) > 0) {
                 this.setElement(this.template(this.model));
                 this.listenTo(context, 'filter:queryString', function(qs){ this.updateViewBreakDownLink(qs, this.model); });
-                this.listenTo(context, 'report post render', this.renderChart);
                 if (this.model.uuid) {
                     this.listenTo(context, 'report post render widget_' + this.model.uuid, this.renderChart);
+                } else {
+                    this.listenTo(context, 'report post render', this.renderChart);    
                 }
-                this.listenTo(context, 'report resize',      this.resizeChart);
-                context.trigger('filter:request:queryString');
             }
             return this;
         },
@@ -63,11 +64,12 @@ define(function(require) {
                         }
                     }
                 }));
+                this.$el.on('mresize', this.resizeChart);
             }
         },
-        resizeChart: function() {
+        resizeChart: function(e, data) {
             if (this.chart !== undefined) {
-                this.chart.flush();
+                this.chart.resize();
             }
         }
     });

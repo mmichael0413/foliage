@@ -15,7 +15,6 @@ define(function(require) {
             if (_.size(this.model.results) > 0) {
                 this.setElement(this.template(this.model));
                 this.listenTo(context, 'filter:queryString', function(qs){ this.updateViewBreakDownLink(qs, this.model); });
-                context.trigger('filter:request:queryString');
             }
             return this;
         }

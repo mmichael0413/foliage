@@ -13,7 +13,6 @@ define(function(require) {
         render: function () {
             this.setElement(this.template(this.model));
             this.listenTo(context, 'filter:queryString', function(qs){this.updateViewBreakDownLink(qs, this.model); });
-            context.trigger('filter:request:queryString');
             return this;
         }
     });

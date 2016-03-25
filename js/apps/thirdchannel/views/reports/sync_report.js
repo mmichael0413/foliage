@@ -16,17 +16,17 @@ define(function(require) {
             },
 
             layout: function () {
-              this._layoutSections(this.reportData.sections);
+                this._layoutSections(this.reportData.sections);
             },
 
             loadWidgets: function () {
-              context.trigger("report post render");
+                context.trigger("report post render");
             },
 
             _layoutSections: function(sections) {
-              _.each(sections, function(section) {
-                this._layoutSection(section);
-              }.bind(this));
+                _.each(sections, function(section) {
+                    this._layoutSection(section);
+                }.bind(this));
             },
 
             _layoutSection: function(section) {
@@ -36,8 +36,8 @@ define(function(require) {
                     var $subsection = $(Templates['thirdchannel/reports/index/subsection'](subsection));
                     var $widgets = $subsection.find('.widgets');
                     _.each(subsection.widgets, function(widget) {
-                      var $widget = new WidgetView(widget).render().$el;
-                      $widget.appendTo($widgets);
+                        var $widget = new WidgetView(widget).render().$el;
+                        $widget.appendTo($widgets);
                     });
                     $subsectionsContainer.append($subsection);
                 });

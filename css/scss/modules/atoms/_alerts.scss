@@ -42,7 +42,7 @@
     background-color: lighten($link-color, 20%);
   }
   &.success {
-    background-color: #c9dd9b;
+    background-color: $light-green;
   }
 
   .close {
@@ -51,7 +51,11 @@
     cursor: pointer;
   }
   &.notice {
-    background-color: #c9dd9b;
+    background-color: $light-green;
+
+    .close-alert {
+      color: darken($light-green, 30%);
+    }
   }
 
 }

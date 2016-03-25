@@ -6,6 +6,8 @@ define(function(require) {
         _ = require('underscore'),
         templates = require('handlebarsTemplates'),
         WidgetView = require('thirdchannel/views/reports/index/widget'),
+        d3 = require('d3'),
+        c3 = require('c3'),
         AsyncReportLoader = require('thirdchannel/views/reports/async_report'),
 
         SalesCompareModel = Backbone.Model.extend({
@@ -43,7 +45,7 @@ define(function(require) {
                 // the breakdown links uses a relative path, which is incompatible with us. this function 
                 // updates the breakdown links on the fly to use the correct path
                 this.listenTo(this.reportLoader, "reports:async:complete", function () {
-                    this.$el.find(".loading").remove();
+                    this.$el.find(".loading-section").remove();
                     this.$el.find(".breakdown-link").on("click", function (e) {
                         this.updateLinks(e);
                     }.bind(this));
@@ -104,30 +106,44 @@ define(function(require) {
 
             _renderSales: function () {
                 this.$el.find('.sales-graph .widgets').append(templates['thirdchannel/labs/sales_compare/retail_sales']({sales: this.model.get('report').sales}));
-                var ctx = this.$el.find('.retail-sales')[0].getContext("2d");
-                this._buildChart(ctx, this.model.get('report').sales);
-
+                this._buildChart(this.model.get('report').sales);
             },
 
-            _buildChart: function (ctx, list) {
+            _buildChart: function (list) {
                 this._formatCents(list);
-                var labels = _.map(list, function (item) { return item.date; }),
-                    points = _.map(list, function (item) { return item.rawUSD; }),
-                    data = {
-                        labels: labels,
-                        datasets: [
-                        {
-                            label: "Test",
-                            fillColor: "rgba(241,95,81,0.2)",
-                            strokeColor: "rgba(241,95,81,1)",
-                            pointColor: "rgba(241,95,81,1)",
-                            pointStrokeColor: "#fff",
-                            pointHighlightFill: "#fff",
-                            pointHighlightStroke: "rgba(220,220,220,1)",
-                            data: points
-                        }]
-                    };
-                new Chart(ctx).Line(data, {});
+                var self = this;
+
+                var labels = ['x'].concat(_.map(list, function (item) { return item.date; })),
+                    points = ['Average Retail Sales ($USB)'].concat(_.map(list, function (item) { return item.rawUSD; }));
+
+
+                this.chart = c3.generate(
+                    {
+                        data: {
+                            x: 'x',
+                            columns: [labels, points],
+                            type: 'area-spline'
+                        },
+                        axis: {
+                            x: {
+                                type: 'timeseries',
+                                tick: {
+                                    fit: true,
+                                    centered: true,
+                                    multiline: false,
+                                    format: '%-m/%-d/%y'
+                                }
+                            }
+                        },
+                        padding: {
+                            top: 25,
+                            right: 25
+                        },
+                        bindto: self.$('.retail-sales')[0],
+                        color: {
+                            pattern: context.defaultLegendColors
+                        }
+                    });
             },
 
             _formatCents: function (list) {
