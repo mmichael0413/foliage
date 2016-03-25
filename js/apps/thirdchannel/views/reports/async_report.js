@@ -41,7 +41,8 @@ define(function(require) {
 
             loadWidgets: function (filter) {
                 var self = this,
-                    totalRendered = totalWidgets = 0,
+                    totalRendered = 0,
+                    totalWidgets = 0,
                     widgetLookup = {};
                 // set up an observable to emit all widgets in this report
                 rx.Observable.from(self._extractWidgetMetaInfo(self.reportData))
