@@ -1,11 +1,6 @@
-<div class="{{config.widget_class}}" style="padding-left: 70px;">
-    <div class="pull-left" style="margin-left: -70px;">
-        <div class="circle-icon circle-md">
-            <div class="circle {{config.circle_css}}"><div class="tc-icons tc-icons-md tc-icons_{{config.icon}}"></div></div>
-        </div>
-    </div>
+<div class="widget {{config.widget_class}}">
     <div class="pull-left">
-        <h4>{{title}}</h4>
+        <p>{{title}}</p>
         {{#if show_view_list}}
             <a href="#" class="breakdown-link" tag="View Breakdown">View Breakdown</a>
         {{/if}}
@@ -17,5 +12,4 @@
             <p>N/A</p>
         {{/if}}
     </div>
-    <div class="clearfix"></div>
 </div>

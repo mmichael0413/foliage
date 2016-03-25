@@ -3411,23 +3411,19 @@ function program6(depth0,data) {
   return "\n            <p>N/A</p>\n        ";
   }
 
-  buffer += "<div class=\""
+  buffer += "<div class=\"widget "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.widget_class)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" style=\"padding-left: 70px;\">\n    <div class=\"pull-left\" style=\"margin-left: -70px;\">\n        <div class=\"circle-icon circle-md\">\n            <div class=\"circle "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.circle_css)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\"><div class=\"tc-icons tc-icons-md tc-icons_"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.icon)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\"></div></div>\n        </div>\n    </div>\n    <div class=\"pull-left\">\n        <h4>";
+    + "\">\n    <div class=\"pull-left\">\n        <p>";
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</h4>\n        ";
+    + "</p>\n        ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_view_list), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        ";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.list), {hash:{},inverse:self.program(6, program6, data),fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n    <div class=\"clearfix\"></div>\n</div>";
+  buffer += "\n    </div>\n</div>";
   return buffer;
   });
 
