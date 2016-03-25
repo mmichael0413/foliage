@@ -45,7 +45,7 @@ define(function(require) {
                 // the breakdown links uses a relative path, which is incompatible with us. this function 
                 // updates the breakdown links on the fly to use the correct path
                 this.listenTo(this.reportLoader, "reports:async:complete", function () {
-                    this.$el.find(".loading").remove();
+                    this.$el.find(".loading-section").remove();
                     this.$el.find(".breakdown-link").on("click", function (e) {
                         this.updateLinks(e);
                     }.bind(this));
