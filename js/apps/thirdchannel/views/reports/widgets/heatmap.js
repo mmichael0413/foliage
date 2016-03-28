@@ -19,7 +19,9 @@ define(function(require) {
                 this.buildLegend();
                 this.setElement(this.template(this.model));
                 _.bindAll(this, 'renderChart', 'resizeChart', 'updateQueryString', 'openViewBreakdown');
-                this.listenTo(context, 'filter:queryString', this.updateQueryString);
+                if (this.model.show_view_list !== undefined) {
+                    this.listenTo(context, 'filter:queryString', this.updateQueryString);
+                }
                 if (this.model.uuid) {
                     this.listenTo(context, 'report post render widget_' + this.model.uuid, this.renderChart);
                 } else {
