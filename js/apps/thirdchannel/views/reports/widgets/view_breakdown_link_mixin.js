@@ -1,6 +1,7 @@
 define(function(require) {
     var deparam = require('jquery-deparam');
     var merge_query_string = function(qs, obj) {
+        obj = (obj === undefined) ? {} : obj;
         var qs_obj = deparam(qs);
         var merged = _.extend(obj, qs_obj);
         return $.param(merged);

@@ -12,7 +12,11 @@ define(function(require) {
         },
         render: function () {
             this.setElement(this.template(this.model));
-            this.listenTo(context, 'filter:queryString', function(qs){ this.updateViewBreakDownLink(qs, this.model); });
+            if (this.model.show_view_list !== undefined) {
+                this.listenTo(context, 'filter:queryString', function (qs) {
+                    this.updateViewBreakDownLink(qs, this.model);
+                });
+            }
             return this;
         }
     });
