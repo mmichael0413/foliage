@@ -35,7 +35,7 @@ define(function(require) {
             Filter.init();
             new ActionsView();
             var view = new EntriesListView(),
-            invalidView = new InvalidEntriesListView();
+                invalidView = new InvalidEntriesListView();
             if (context.content.items) {
                 view.bootstrapCollection(context.content);
             } else {
