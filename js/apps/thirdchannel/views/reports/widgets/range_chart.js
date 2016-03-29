@@ -18,6 +18,7 @@ define(function(require) {
                     this.listenTo(context, 'filter:queryString', function (qs) {
                         this.updateViewBreakDownLink(qs, this.model);
                     });
+                    context.trigger('filter:request:queryString');
                 }
             }
             return this;
