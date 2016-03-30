@@ -32,6 +32,7 @@ define(function(require){
         Labs = require('thirdchannel/views/labs/main'),
         AnswersExportView = require('thirdchannel/views/exports/answers/main'),
         SalesStoresExportView = require('thirdchannel/views/exports/sales_stores/main'),
+        SalesStoresAuditExportView = require('thirdchannel/views/exports/sales_stores_audit/main'),
         DataClipsExportView = require('thirdchannel/views/exports/data_clips/main'),
         ProgramProfileView = require('erudition/views/profile/view_profile'),
         ProgramProfileEditView = require('erudition/views/profile/edit'),
@@ -82,6 +83,7 @@ define(function(require){
             'programs/:program_id/labs/roi': 'labsRoi',
             'programs/:program_id/exports/survey_answers': 'answerExports',
             'programs/:program_id/exports/sales_stores': 'salesStoresExports',
+            'programs/:program_id/exports/sales_stores_audit': 'salesStoresAuditExports',
 
             'admin/data_clips(/)': 'dataClipsExports',
             'admin/*path' : 'adminView',
@@ -260,6 +262,10 @@ define(function(require){
 
         salesStoresExports: function() {
             new SalesStoresExportView().render();
+        },
+
+        salesStoresAuditExports: function() {
+            new SalesStoresAuditExportView().render();
         },
 
         dataClipsExports: function() {
