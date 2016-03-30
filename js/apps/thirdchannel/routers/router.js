@@ -83,7 +83,7 @@ define(function(require){
             'programs/:program_id/labs/roi': 'labsRoi',
             'programs/:program_id/exports/survey_answers': 'answerExports',
             'programs/:program_id/exports/sales_stores': 'salesStoresExports',
-            'programs/:program_id/exports/sales_stores_audit': 'salesStoresAuditExports',
+            'programs/:program_id/exports/sales_stores_audits': 'salesStoresAuditExports',
 
             'admin/data_clips(/)': 'dataClipsExports',
             'admin/*path' : 'adminView',
