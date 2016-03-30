@@ -12,8 +12,7 @@ define(function(require) {
             el: '.content',
 
             events: {
-                'click .paypal': 'paypal',
-                'click .sales-stores-audit': 'salesStoresAuditExport'
+                'click .paypal': 'paypal'
             },
 
             render: function () {
@@ -25,11 +24,6 @@ define(function(require) {
                 e.stopPropagation();
                 e.preventDefault();
                 window.location = context.content.links.paypal + window.location.search + "&format=csv";
-            },
-
-            salesStoresAuditExport: function(e) {
-                e.preventDefault();
-                console.log('sales stores audit export');
             }
         };
     return Backbone.View.extend(ActionsRowView);
