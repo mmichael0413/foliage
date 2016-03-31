@@ -148,6 +148,7 @@ define(function (require) {
         },
 
         refreshCalendar: function () {
+            console.log("refresh");
             this.calendar.fullCalendar('refetchEvents');
         },
 
@@ -175,29 +176,18 @@ define(function (require) {
         updateSchedule: function (date, id) {
             var self = this;
             var model = this.collection.findWhere({id:id});
-            var now = moment.utc().startOf('day');
-            if(!context.isScheduleUnlocked) {
-                self.trigger('fullcalendar.refresh');
-                alert("Your schedule is locked. Please contact your Program Manager if you need to reschedule a visit.");
-            } else if(date < now) {
-                self.trigger('fullcalendar.refresh');
-                alert("You cannot schedule a visit in the past.");
-            } else if (model) {
-                date = moment.utc(date).format("YYYY-MM-DD");
-                var blackouts = _.chain(model.attributes.jobDetails.blackoutDates).map(function(dateString){
-                    return moment.utc(dateString).format("YYYY-MM-DD");
-                });
-                if(blackouts.contains(date).value()) {
-                    self.trigger('fullcalendar.refresh');
-                    alert("That job cannot be scheduled for " + now.format("l") + ". A blackout exists for that job on that date.");
-                } else {
-                    model.set('dateScheduled', date);
-                    model.save(model.attributes).done(function() {
-                        self.refreshCalendar();
-                        self.render();
-                    });
+            date = moment.utc(date).format("YYYY-MM-DD");
+            model.set('dateScheduled', date);
+            model.save(model.attributes, {wait: true}).done(function(jsonResponse){
+                if(!jsonResponse.allow_schedule){
+                    console.log(jsonResponse.reason);
                 }
-            }
+                self.fetch();
+            }).fail(function(){
+                console.log("Failed to connect to server");
+                // need to reset calendar state to avoid making the user think it worked
+                self.refreshCalendar(); // this doesn't work!
+            });
         },
         showBlackoutDates: function(id){
             var model = this.collection.findWhere({id:id});
