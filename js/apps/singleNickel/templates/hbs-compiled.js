@@ -955,8 +955,14 @@ function program1(depth0,data) {
   return "required";
   }
 
+function program3(depth0,data) {
+  
+  
+  return "optional";
+  }
+
   buffer += "<div class=\"question-show ";
-  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.required), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.required), "true", options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.required), "true", options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\">\n    "
     + escapeExpression((helper = helpers.partial || (depth0 && depth0.partial),options={hash:{},data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.type), depth0, options) : helperMissing.call(depth0, "partial", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.type), depth0, options)))
