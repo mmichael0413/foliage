@@ -871,10 +871,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n    <div class=\"section ";
-  stack1 = (helper = helpers.unless_eq || (depth0 && depth0.unless_eq),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_additional_images), "true", options) : helperMissing.call(depth0, "unless_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_additional_images), "true", options));
+  buffer += "\n    <div class=\"section\">\n        <h3>Images</h3>\n        <div class=\"question-show ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.program(4, program4, data),fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_additional_images), "true", options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_additional_images), "true", options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\">\n        <h3>Images</h3>\n        <div class=\"question-show\">\n            <p>"
+  buffer += "\">\n            <p>"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.additional_images_description)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</p>\n            <input type=\"file\" name=\"file\">\n        </div>\n    </div>\n";
   return buffer;
@@ -882,7 +882,13 @@ function program1(depth0,data) {
 function program2(depth0,data) {
   
   
-  return "medium-blue";
+  return "required";
+  }
+
+function program4(depth0,data) {
+  
+  
+  return "optional";
   }
 
   stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_additional_images), "true", options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_additional_images), "true", options));
@@ -898,10 +904,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n    <div class=\"section ";
-  stack1 = (helper = helpers.unless_eq || (depth0 && depth0.unless_eq),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), "true", options) : helperMissing.call(depth0, "unless_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), "true", options));
+  buffer += "\n    <div class=\"section\">\n        <h3>After Images</h3>\n        <div class=\"question-show ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.program(4, program4, data),fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), "true", options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), "true", options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\">\n        <h3>After Images</h3>\n        <div class=\"question-show\">\n            <p>"
+  buffer += "\">\n            <p>"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.after_images_description)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</p>\n            <input type=\"file\" name=\"file\">\n        </div>\n    </div>\n";
   return buffer;
@@ -909,7 +915,13 @@ function program1(depth0,data) {
 function program2(depth0,data) {
   
   
-  return "medium-blue";
+  return "required";
+  }
+
+function program4(depth0,data) {
+  
+  
+  return "optional";
   }
 
   stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_images), "true", options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_images), "true", options));
@@ -925,10 +937,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n    <div class=\"section ";
-  stack1 = (helper = helpers.unless_eq || (depth0 && depth0.unless_eq),options={hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), "true", options) : helperMissing.call(depth0, "unless_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), "true", options));
+  buffer += "\n    <div class=\"section\">\n        <h3>Before Images</h3>\n        <div class=\"question-show ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.program(4, program4, data),fn:self.program(2, program2, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), "true", options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.require_images), "true", options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\">\n        <h3>Before Images</h3>\n        <div class=\"question-show\">\n            <p>"
+  buffer += "\">\n            <p>"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.before_images_description)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</p>\n            <input type=\"file\" name=\"file\">\n        </div>\n    </div>\n";
   return buffer;
@@ -936,7 +948,13 @@ function program1(depth0,data) {
 function program2(depth0,data) {
   
   
-  return "medium-blue";
+  return "required";
+  }
+
+function program4(depth0,data) {
+  
+  
+  return "optional";
   }
 
   stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_images), "true", options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.attributes)),stack1 == null || stack1 === false ? stack1 : stack1.show_images), "true", options));

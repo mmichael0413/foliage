@@ -1,7 +1,7 @@
 {{#if_eq attributes.show_images 'true'}}
-    <div class="section {{#unless_eq attributes.require_images 'true'}}medium-blue{{/unless_eq}}">
+    <div class="section">
         <h3>Before Images</h3>
-        <div class="question-show">
+        <div class="question-show {{#if_eq attributes.require_images 'true'}}required{{else}}optional{{/if_eq}}">
             <p>{{attributes.before_images_description}}</p>
             <input type="file" name="file">
         </div>
