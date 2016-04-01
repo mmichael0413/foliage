@@ -76,7 +76,6 @@ define(function(require) {
                                 self.trigger("reports:async:incomplete");
                             } else {
                                 self.trigger("reports:async:complete");
-                                context.trigger('filter:request:queryString');
                             }
                         }
                     );

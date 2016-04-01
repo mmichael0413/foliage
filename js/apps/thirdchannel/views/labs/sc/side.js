@@ -114,7 +114,7 @@ define(function(require) {
                 var self = this;
 
                 var labels = ['x'].concat(_.map(list, function (item) { return item.date; })),
-                    points = ['Average Retail Sales ($USB)'].concat(_.map(list, function (item) { return item.rawUSD; }));
+                    points = ['Average Retail Sales ($USD)'].concat(_.map(list, function (item) { return item.rawUSD; }));
 
 
                 this.chart = c3.generate(

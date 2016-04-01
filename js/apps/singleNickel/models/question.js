@@ -31,7 +31,7 @@ define(function(require){
                     hideSiblings: "#questionMultiple,#questionExplain,#questionPlaceholder"
                 },
                 "QuestionSummary": {
-                    text: "Describing their overall visit",
+                    text: "Describing their overall visit (SUMMARY QUESTION)",
                     hideSiblings: "#questionMultiple,#questionExplain",
                     showSiblings: "#questionPlaceholder"
                 },
