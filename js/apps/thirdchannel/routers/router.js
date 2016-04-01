@@ -38,7 +38,8 @@ define(function(require){
         ProfileStoreListView = require('thirdchannel/views/profiles/stores/list'),
         ApplicationView = require('thirdchannel/views/application/main'),
         AdminView = require('thirdchannel/views/admin/flash'),
-        LoginView = require('thirdchannel/views/authentication/login');
+        LoginView = require('thirdchannel/views/authentication/login'),
+        ContractView = require('thirdchannel/views/legal/contract');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
@@ -74,6 +75,7 @@ define(function(require){
             'programs/:program_id/reports.pdf': 'reports',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
             'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
+            'programs/:program_id/legal/new(/)': 'signContract',
             'programs/:program_id/notifications' : 'notificationList',
             'programs/:program_id/posts/new' : 'newPost',
             'programs/:program_id/labs/sku_sales': 'labsSkus',
@@ -260,6 +262,10 @@ define(function(require){
 
         salesStoresExports: function() {
             new SalesStoresExportView().render();
+        },
+
+        signContract: function() {
+            new ContractView().render();
         },
 
         dataClipsExports: function() {

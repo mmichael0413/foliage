@@ -90,6 +90,10 @@
     }
     &.primary {
         @include btn-details($link-color);
+
+      &.not-active {
+        @include btn-details(lighten($link-color, 15%));
+      }
     }
     &.light {
         @include btn-details($medium-blue);
