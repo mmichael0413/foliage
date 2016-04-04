@@ -1,11 +1,11 @@
 <div class="card">
     <div class="header">Shipping Address</div>
     <div class="body">
-        Reliable address we can mail program materials to
+        <label>Reliable address we can mail program materials to</label>
         <input type="text" class="low-margin" name="shippingAddress.street1" placeholder="Street" value="{{person.shippingAddress.street1}}" data-rule-required="true" />
         <input type="text" class="low-margin" name="shippingAddress.city" placeholder="City" value="{{person.shippingAddress.city}}" data-rule-required="true"/>
-        <select name="shippingAddress.state" data-rule-required="true">
-            <option value="">Select State/Province</option>
+        <select name="shippingAddress.state" data-placeholder="Select State/Province" data-rule-required="true">
+            <option></option>
             {{#each states}}
                 {{#select ../person.shippingAddress.state}}
                     <option value="{{this.abbr}}">{{this.name}}</option>

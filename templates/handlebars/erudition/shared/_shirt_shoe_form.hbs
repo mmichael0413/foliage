@@ -2,8 +2,8 @@
     <div class="header">Additional Information</div>
     <div class="body">
         <label for="shirtSize">Shirt Size:</label>
-        <select name="shirtSize" id="shirtSize" data-rule-required="true">
-            <option value="">Select Size</option>
+        <select name="shirtSize" id="shirtSize" data-placeholder="Select Size" data-rule-required="true">
+            <option></option>
             {{#select person.shirtSize}}
             <option value="Men - S">Men - S</option>
             <option value="Men - M">Men - M</option>
@@ -19,8 +19,8 @@
         </select>
 
         <label for="shoeSize">Shoe Size</label>
-        <select name="shoeSize" id="shoeSize" data-rule-required="true">
-            <option value="">Select Size</option>
+        <select name="shoeSize" id="shoeSize" data-placeholder="Select Size" data-rule-required="true">
+            <option></option>
             {{#select person.shoeSize}}
             <option value="Men - 7">Men - 7</option>
             <option value="Men - 7.5">Men - 7.5</option>
