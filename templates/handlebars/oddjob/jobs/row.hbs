@@ -46,3 +46,7 @@
 		<div class="col-1-1">No blackout schemes assigned.</div>
 	{{/if}}
 </div>
+
+<div class="allow-rescheduling-container allow-rescheduling-container{{id}} pure-g">
+	<div class="col-1-1">This job can{{#unless allowRescheduling}}not{{/unless}} be rescheduled after schedule finalization.</div>
+</div>

@@ -63,3 +63,8 @@
         {{/each}}
     </select>
 </div>
+
+<div class="form-group">
+    <label for="allowRescheduling" class="">Allow Job to be Rescheduled After Schedule Finalization?</label>
+    <input type="checkbox" class="input-checkbox" name="allowRescheduling" id="allowRescheduling" {{#if allowRescheduling}}checked{{/if}}/>
+</div>

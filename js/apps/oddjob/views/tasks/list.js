@@ -59,6 +59,7 @@ define(function (require) {
                 $('.tasks-container'+tasksContainerId).slideUp( "fast", function(){});
                 $('.frequencies-container'+tasksContainerId).slideUp( "fast", function(){});
                 $('.blackout-schemes-container'+tasksContainerId).slideUp( "fast", function(){});
+                $('.allow-rescheduling-container'+tasksContainerId).slideUp( "fast", function(){});
             }
             else{
                 tasksContainerButton.html("Hide Tasks");
@@ -69,6 +70,7 @@ define(function (require) {
                 $('.tasks-container'+tasksContainerId).slideDown( "fast", function(){});
                 $('.frequencies-container'+tasksContainerId).slideDown( "fast", function(){});
                 $('.blackout-schemes-container'+tasksContainerId).slideDown( "fast", function(){});
+                $('.allow-rescheduling-container'+tasksContainerId).slideDown( "fast", function(){});
             }
 
         }
