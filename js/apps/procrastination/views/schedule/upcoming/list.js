@@ -1,14 +1,15 @@
 define(function (require) {
-    var jquery = require('jquery'),
-        Backbone = require('backbone'),
-        jqueryui = require('jquery-ui'),
-        HandlebarsTemplates = require('handlebarsTemplates'),
-        context = require('context'),
-        FullCalendar = require('fullcalendar'),
-        ScheduleCollection = require('procrastination/collections/schedule/upcoming/create_schedules'),
-        StoreSchedule = require('procrastination/views/schedule/upcoming/show'),
-        ListView = require('procrastination/views/schedule/current/main'),
+        var Backbone = require('backbone'),
         ControlsView = require('procrastination/views/schedule/upcoming/controls'),
+        FullCalendar = require('fullcalendar'),
+        HandlebarsTemplates = require('handlebarsTemplates'),
+        ListView = require('procrastination/views/schedule/current/main'),
+        ScheduleCollection = require('procrastination/collections/schedule/upcoming/create_schedules'),
+        StateMachine = require('state-machine'),
+        StoreSchedule = require('procrastination/views/schedule/upcoming/show'),
+        context = require('context'),
+        jquery = require('jquery'),
+        jqueryui = require('jquery-ui'),
         moment = require('moment');
 
     return Backbone.View.extend({
@@ -17,8 +18,25 @@ define(function (require) {
 
         initialize: function (options) {
             var self = this;
-            this.unscheduledCount = 0;
-            //this.list = new ListView({aggregateId: options.aggregateId, showComplete: false}).setElement('.scheduled .schedules');
+            var initialState;
+            if(finalized){
+                initialState = 'finalized';
+            } else if(this.groupSchedules().unscheduled.length){
+                initialState = 'unlocked';
+            } else {
+                initialState = 'readyToFinalize';
+            }
+            this.fsm = StateMachine.create({
+                initial: initialState,
+                events: [
+                    { name: 'unlock', from: 'finalized', to: 'unlocked' },
+                    { name: 'finalize', from: 'readyToFinalize', to: 'finalized' },
+                    { name: 'schedulingComplete', from: 'unlocked', to: 'readyToFinalize' },
+                ],
+                callbacks: {
+                    onenterstate: this.render,
+                },
+            });
             this.listenTo(this, 'fullcalendar.date.create', this.updateSchedule);
             this.listenTo(this, 'fullcalendar.refresh', this.refreshCalendar);
             this.listenTo(context, 'blackoutdates:show', this.showBlackoutDates);
@@ -97,36 +115,20 @@ define(function (require) {
             });
 
             this.listenTo(this.collection, 'destroy', this.destroy);
-           // this.listenTo(this.list.collection, 'destroy', this.destroy);
-            this.renderControls();
             return this;
         },
         events: {
         },
         render: function () {
             var self = this;
-
             if(this.collection.models.length === 0) {
                 this.$('.schedule-container .unscheduled .schedules').html('No visits are required for this month.');
                 return this;
             }
 
-            // if collection has models, render them
             this.$('.schedule-container .unscheduled .schedules').html('');
-           // this.$('.schedule-container .scheduled .schedules').html('');
 
-            this.groupedSchedules = this.collection.groupBy(function(schedule){
-                return schedule.get('dateScheduled') !== null;
-            });
-
-            // if(this.groupedSchedules.true !== undefined) {
-            //     this.list.$el.html('');
-            //     this.list.fetch();
-            // }
-
-            if(this.groupedSchedules.false !== undefined) {
                 this.unscheduledCount = this.groupedSchedules.false.length;
-
                 _.each(this.groupedSchedules.false, function (model) {
                     self.renderModel(model);
                 });
@@ -139,12 +141,6 @@ define(function (require) {
             this.refreshCalendar();
 
             return this;
-        },
-
-        renderControls: function() {
-            var controls = new ControlsView({collection: this.collection});
-
-            this.$el.append(controls.render().el);
         },
 
         refreshCalendar: function () {
@@ -208,7 +204,27 @@ define(function (require) {
                 context.trigger('estimate:changed');
             }
             this.fetch();
-        }
-
+        },
+        groupSchedules: function(){
+            var grouped = this.collection.groupBy(function(schedule){
+                return schedule.get('dateScheduled') !== null;
+            });
+            return {
+                scheduled: grouped.true || [],
+                unscheduled: grouped.false || [],
+            }
+        },
+        renderLeftSide: function(){
+/*
+            p(class: 'section', 'To schedule your visit, drag the selected store to the date on the calendar. You can reschedule a visit by ' +
+                    'dragging the store from the original list to a new date, or by dragging the event on the calendar ' +
+                    'to a new date.')
+*/
+            if(this.fsm.is("unlocked")){
+                this.$('.schedule-container .unscheduled .schedules').html('');
+            } else if(this.fsm.is("readyToFinalize")){
+            } else {
+            }
+        },
     });
 });
