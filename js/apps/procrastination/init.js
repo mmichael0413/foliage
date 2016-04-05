@@ -23,9 +23,8 @@ require.config({
         'fullcalendar'  : '../libs/bower_components/fullcalendar/dist/fullcalendar',
         'moment'        : '../libs/bower_components/moment/moment',
         'syncOverride'  : 'shared/utils/syncOverride',
-        'buttons'       : '../libs/buttons'
-        
-
+        'buttons'       : '../libs/buttons',
+        'state-machine' : '../libs/bower_components/javascript-state-machine/state-machine.min',
     },
     shim: {
         "jquery": {
