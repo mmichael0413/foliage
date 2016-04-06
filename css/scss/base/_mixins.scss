@@ -59,6 +59,11 @@
           box-shadow: inset $h-shadow $v-shadow $blur $spread $color;
 }
 
+@mixin drop-shadow-filter($h-shadow, $v-shadow, $blur, $color) {
+  -webkit-filter: drop-shadow( $h-shadow $v-shadow $blur $color );
+          filter: drop-shadow( $h-shadow $v-shadow $blur $color );
+}
+
 // media query mixins
 //***********************************
 // a** - Media Type All
