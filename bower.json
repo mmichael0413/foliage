@@ -41,7 +41,7 @@
     "datetimepicker": "2.4.1",
     "d3": "3.5.16",
     "c3": "0.4.11-rc4",
-    "fullcalendar": "~2.3.1",
+    "fullcalendar": "~2.6.1",
     "noty": "~2.3.5",
     "requirejs-plugins": "~1.0.3",
     "jquery-mask-plugin": "1.13.4",
