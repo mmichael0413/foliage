@@ -1,0 +1,15 @@
+.store-modal {
+  padding: 1.5em;
+}
+
+.delete-confirmation-modal {
+  .danger {
+    font-weight: bold;
+    color: $red;
+  }
+}
+
+.tags-modal {
+  max-height: 20em;
+  overflow-y: scroll;
+}

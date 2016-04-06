@@ -982,7 +982,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"bbm-button cancel-button pull-right\"><i class=\"ic ic_x\"></i></div>\n<div class=\"delete-confirmation-modal\">\n    <h2>Remove ";
+  buffer += "<div class=\"bbm-button cancel-button pull-right\"><i class=\"ic ic_x\"></i></div>\n<div class=\"delete-confirmation-modal store-modal\">\n    <h2>Remove ";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1000,7 +1000,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</h1>\n<section class=\"section\">\n    <table class=\"table\">\n        <thead>\n            <tr>\n                <th>Store Name</th>\n                <th>Address</th>\n                <th>Latitude</th>\n                <th>Longitude</th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody id=\"program-store-list\">\n            <tr>\n                <td colspan=\"5\">\n                    <div class=\"loading-section\">\n                        <div class=\"loading\">\n                            <div class=\"fa fa-spin fa-spinner\"></div> Loading...\n                        </div>\n                    </div>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</section>";
+    + "</h1>\n<section class=\"section\">\n    <table class=\"table\">\n        <thead>\n            <tr>\n                <th>Store Name</th>\n                <th></th>\n                <th>Address</th>\n                <th>Latitude</th>\n                <th>Longitude</th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody id=\"program-store-list\">\n            <tr>\n                <td colspan=\"5\">\n                    <div class=\"loading-section\">\n                        <div class=\"loading\">\n                            <div class=\"fa fa-spin fa-spinner\"></div> Loading...\n                        </div>\n                    </div>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</section>";
   return buffer;
   });
 
@@ -1018,7 +1018,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</a></td>\n<td>";
+    + "</a></td>\n<td><a href=\"#\" class=\"view-tags\" data-bypass=\"true\">View Tags</a></td>\n<td>";
   if (helper = helpers.address) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.address); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1031,6 +1031,33 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   else { helper = (depth0 && depth0.longitude); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "</td>\n<td><button class=\"remove btn primary\"><i class=\"fa ic ic_x\"></i></button></td>";
+  return buffer;
+  });
+
+this["Stores"]["templates"]["stores/program_stores/tag_item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  if (helper = helpers.content) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.content); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\n";
+  return buffer;
+  });
+
+this["Stores"]["templates"]["stores/program_stores/tags"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"bbm-button cancel-button pull-right\"><i class=\"ic ic_x\"></i></div>\n<div class=\"tags-modal store-modal\">\n    <h2>";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " Tags</h2>\n    <div>\n        <ul class=\"tags\"></ul>\n    </div>\n</div>";
   return buffer;
   });
 

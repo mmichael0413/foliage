@@ -3,7 +3,8 @@ define(function(require) {
         Noty = require('noty'),
         context = require('context'),
         Templates = require('handlebarsTemplates'),
-        DeleteModal = require('stores/views/program_stores/delete_modal');
+        DeleteModal = require('stores/views/program_stores/delete_modal'),
+        TagsModal = require('stores/views/program_stores/tags_modal');
 
     var View = Backbone.View.extend({
         template: Templates['stores/program_stores/list_item'],
@@ -11,6 +12,7 @@ define(function(require) {
         className: 'program-store-list-item',
         events: {
             'change .status': 'update',
+            'click .view-tags': 'displayTagsModal',
             'click .remove': 'displayRemoveDialog'
         },
         render: function() {
@@ -60,6 +62,11 @@ define(function(require) {
             e.preventDefault();
             var modal = new DeleteModal({model: this.model});
             $("body").append(modal.render().el);
+        },
+        displayTagsModal: function(e) {
+            e.preventDefault();
+            var modal = new TagsModal({model: this.model});
+            $('body').append(modal.render().el);
         }
     });
 
