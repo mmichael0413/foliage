@@ -1,11 +1,11 @@
 <div class="card">
     <div class="header">Residential Address</div>
-    <div class="body compressed">
-        <label>(Where you currently live / where you leave from to begin store visits)</label>
+    <div class="body">
+        <label>Where you currently live / where you leave from to begin store visits</label>
         <input type="text" class="low-margin" name="residentialAddress.street1" placeholder="Street" value="{{person.residentialAddress.street1}}"  data-rule-required="true"/>
         <input type="text" class="low-margin" name="residentialAddress.city" placeholder="City" value="{{person.residentialAddress.city}}" data-rule-required="true"/>
-        <select name="residentialAddress.state" data-rule-required="true">
-            <option value="">Select State/Province</option>
+        <select name="residentialAddress.state" data-placeholder="Select State/Province" data-rule-required="true">
+            <option></option>
             {{#each states}}
                 {{#select ../person.residentialAddress.state}}
                     <option value="{{this.abbr}}">{{this.name}}</option>

@@ -4,7 +4,7 @@ define(function(require) {
         $ = require('jquery'),
 
         /**
-         * Encapsules the Actions Row in the Entries List View, specifically the buttons regarding report generation
+         * Encapsulates the Actions Row in the Entries List View, specifically the buttons regarding report generation
          * 
          * @type {Object}
          */

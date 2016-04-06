@@ -15,8 +15,8 @@
 
         <label for="graduationYear">When did you graduate</label>
 
-        <select name="graduationYear" id="graduationYear">
-            <option value="">When did you graduate?</option>
+        <select name="graduationYear" data-placeholder="When did you graduate?" id="graduationYear">
+            <option></option>
             {{#each graduationYears}}
                 {{#select ../person.graduationYear}}
                     <option value="{{this}}">{{this}}</option>

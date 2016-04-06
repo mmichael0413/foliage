@@ -9,6 +9,7 @@ define(function (require) {
         context = require('context'),
         templates = require('handlebarsTemplates'),
         typeahead = require('typeahead'),
+        Chosen = require('chosen'),
         FileView = require('shared/views/s3uploader/application_file');
 
     return Backbone.View.extend({
@@ -51,6 +52,8 @@ define(function (require) {
             };
 
             this.$el.append(this.template(model));
+
+            this.$('select').chosen({disable_search: true, width: "100%"});
 
             if(context.content.requireValidation) {
                 this.beginValidation();

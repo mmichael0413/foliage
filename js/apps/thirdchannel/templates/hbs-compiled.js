@@ -499,7 +499,7 @@ function program2(depth0,data) {
 
   buffer += "<input type=\"text\" class=\"low-margin\" name=\"residentialAddress.city\" placeholder=\"City\"\n       value=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.address)),stack1 == null || stack1 === false ? stack1 : stack1.city)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" data-rule-required=\"true\"/>\n<select name=\"residentialAddress.state\" data-rule-required=\"true\">\n    <option value=\"\">Select State/Province</option>\n    ";
+    + "\" data-rule-required=\"true\"/>\n<select name=\"residentialAddress.state\" data-placeholder=\"Select State/Province\" data-rule-required=\"true\">\n    <option></option>\n    ";
   stack1 = helpers.each.call(depth0, (depth1 && depth1.states), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n</select>";
@@ -606,7 +606,7 @@ function program1(depth0,data) {
   return "\n                <option value=\"Yes\">Yes</option>\n                <option value=\"No\">No</option>\n            ";
   }
 
-  buffer += "<div class=\"card\">\n    <div class=\"header\">Notification Preferences</div>\n\n    <div class=\"body\">\n\n        <label for=\"emailOpportunities\">Would you like to receive emails about future opportunities?</label>\n\n        <select name=\"emailOpportunities\" id=\"emailOpportunities\" data-rule-required=\"true\">\n            <option value=\"\">Select Preference</option>\n            ";
+  buffer += "<div class=\"card\">\n    <div class=\"header\">Notification Preferences</div>\n\n    <div class=\"body\">\n\n        <label for=\"emailOpportunities\">Would you like to receive emails about future opportunities?</label>\n\n        <select name=\"emailOpportunities\" id=\"emailOpportunities\" data-placeholder=\"Select Preference\" data-rule-required=\"true\">\n            <option></option>\n            ";
   stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.emailOpportunities), options) : helperMissing.call(depth0, "select", ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.emailOpportunities), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </select>\n\n    </div>\n</div>";
@@ -712,11 +712,11 @@ function program2(depth0,data) {
   return buffer;
   }
 
-  buffer += "<div class=\"card\">\n    <div class=\"header\">Residential Address</div>\n    <div class=\"body compressed\">\n        <label>(Where you currently live / where you leave from to begin store visits)</label>\n        <input type=\"text\" class=\"low-margin\" name=\"residentialAddress.street1\" placeholder=\"Street\" value=\""
+  buffer += "<div class=\"card\">\n    <div class=\"header\">Residential Address</div>\n    <div class=\"body\">\n        <label>Where you currently live / where you leave from to begin store visits</label>\n        <input type=\"text\" class=\"low-margin\" name=\"residentialAddress.street1\" placeholder=\"Street\" value=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.residentialAddress)),stack1 == null || stack1 === false ? stack1 : stack1.street1)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\"  data-rule-required=\"true\"/>\n        <input type=\"text\" class=\"low-margin\" name=\"residentialAddress.city\" placeholder=\"City\" value=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.residentialAddress)),stack1 == null || stack1 === false ? stack1 : stack1.city)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" data-rule-required=\"true\"/>\n        <select name=\"residentialAddress.state\" data-rule-required=\"true\">\n            <option value=\"\">Select State/Province</option>\n            ";
+    + "\" data-rule-required=\"true\"/>\n        <select name=\"residentialAddress.state\" data-placeholder=\"Select State/Province\" data-rule-required=\"true\">\n            <option></option>\n            ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.states), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </select>\n        <input type=\"text\" name=\"residentialAddress.zip\" placeholder=\"Zip Code\" value=\""
@@ -750,11 +750,11 @@ function program2(depth0,data) {
   return buffer;
   }
 
-  buffer += "<div class=\"card\">\n    <div class=\"header\">Shipping Address</div>\n    <div class=\"body\">\n        Reliable address we can mail program materials to\n        <input type=\"text\" class=\"low-margin\" name=\"shippingAddress.street1\" placeholder=\"Street\" value=\""
+  buffer += "<div class=\"card\">\n    <div class=\"header\">Shipping Address</div>\n    <div class=\"body\">\n        <label>Reliable address we can mail program materials to</label>\n        <input type=\"text\" class=\"low-margin\" name=\"shippingAddress.street1\" placeholder=\"Street\" value=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.shippingAddress)),stack1 == null || stack1 === false ? stack1 : stack1.street1)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" data-rule-required=\"true\" />\n        <input type=\"text\" class=\"low-margin\" name=\"shippingAddress.city\" placeholder=\"City\" value=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.shippingAddress)),stack1 == null || stack1 === false ? stack1 : stack1.city)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" data-rule-required=\"true\"/>\n        <select name=\"shippingAddress.state\" data-rule-required=\"true\">\n            <option value=\"\">Select State/Province</option>\n            ";
+    + "\" data-rule-required=\"true\"/>\n        <select name=\"shippingAddress.state\" data-placeholder=\"Select State/Province\" data-rule-required=\"true\">\n            <option></option>\n            ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.states), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </select>\n        <input type=\"text\" name=\"shippingAddress.zip\" placeholder=\"Zip Code\" value=\""
@@ -780,10 +780,10 @@ function program3(depth0,data) {
   return "\n            <option value=\"Men - 7\">Men - 7</option>\n            <option value=\"Men - 7.5\">Men - 7.5</option>\n            <option value=\"Men - 8\">Men - 8</option>\n            <option value=\"Men - 8.5\">Men - 8.5</option>\n            <option value=\"Men - 9\">Men - 9</option>\n            <option value=\"Men - 9.5\">Men - 9.5</option>\n            <option value=\"Men - 10\">Men - 10</option>\n            <option value=\"Men - 10.5\">Men - 10.5</option>\n            <option value=\"Men - 11\">Men - 11</option>\n            <option value=\"Men - 11.5\">Men - 11.5</option>\n            <option value=\"Men - 12\">Men - 12</option>\n            <option value=\"Men - 12.5\">Men - 12.5</option>\n            <option value=\"Men - 13\">Men - 13</option>\n            <option value=\"Men - 13.5\">Men - 13.5</option>\n            <option value=\"Men - 14\">Men - 14</option>\n            <option value=\"Men - 14.5\">Men - 14.5</option>\n            <option value=\"Men - 15\">Men - 15</option>\n            <option value=\"Men - 15.5\">Men - 15.5</option>\n            <option value=\"Women - 5\">Women - 5</option>\n            <option value=\"Women - 5.5\">Women - 5.5</option>\n            <option value=\"Women - 6\">Women - 6</option>\n            <option value=\"Women - 6.5\">Women - 6.5</option>\n            <option value=\"Women - 7\">Women - 7</option>\n            <option value=\"Women - 7.5\">Women - 7.5</option>\n            <option value=\"Women - 8\">Women - 8</option>\n            <option value=\"Women - 8.5\">Women - 8.5</option>\n            <option value=\"Women - 9\">Women - 9</option>\n            <option value=\"Women - 9.5\">Women - 9.5</option>\n            <option value=\"Women - 10\">Women - 10</option>\n            <option value=\"Women - 10.5\">Women - 10.5</option>\n            <option value=\"Women - 11\">Women - 11</option>\n            <option value=\"Women - 11.5\">Women - 11.5</option>\n            <option value=\"Women - 12\">Women - 12</option>\n            <option value=\"Women - 12.5\">Women - 12.5</option>\n            ";
   }
 
-  buffer += "<div class=\"card\">\n    <div class=\"header\">Additional Information</div>\n    <div class=\"body\">\n        <label for=\"shirtSize\">Shirt Size:</label>\n        <select name=\"shirtSize\" id=\"shirtSize\" data-rule-required=\"true\">\n            <option value=\"\">Select Size</option>\n            ";
+  buffer += "<div class=\"card\">\n    <div class=\"header\">Additional Information</div>\n    <div class=\"body\">\n        <label for=\"shirtSize\">Shirt Size:</label>\n        <select name=\"shirtSize\" id=\"shirtSize\" data-placeholder=\"Select Size\" data-rule-required=\"true\">\n            <option></option>\n            ";
   stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.shirtSize), options) : helperMissing.call(depth0, "select", ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.shirtSize), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </select>\n\n        <label for=\"shoeSize\">Shoe Size</label>\n        <select name=\"shoeSize\" id=\"shoeSize\" data-rule-required=\"true\">\n            <option value=\"\">Select Size</option>\n            ";
+  buffer += "\n        </select>\n\n        <label for=\"shoeSize\">Shoe Size</label>\n        <select name=\"shoeSize\" id=\"shoeSize\" data-placeholder=\"Select Size\" data-rule-required=\"true\">\n            <option></option>\n            ";
   stack1 = (helper = helpers.select || (depth0 && depth0.select),options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.shoeSize), options) : helperMissing.call(depth0, "select", ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.shoeSize), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </select>\n    </div>\n</div>";
@@ -831,7 +831,7 @@ function program4(depth0,data) {
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.university)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" />\n            <input type=\"hidden\" name=\"university.id\" id=\"university\" value=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.university)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\"/>\n        </div>\n\n        <label for=\"graduationYear\">When did you graduate</label>\n\n        <select name=\"graduationYear\" id=\"graduationYear\">\n            <option value=\"\">When did you graduate?</option>\n            ";
+    + "\"/>\n        </div>\n\n        <label for=\"graduationYear\">When did you graduate</label>\n\n        <select name=\"graduationYear\" data-placeholder=\"When did you graduate?\" id=\"graduationYear\">\n            <option></option>\n            ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.graduationYears), {hash:{},inverse:self.noop,fn:self.programWithDepth(3, program3, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </select>\n    </div>\n</div>\n";
