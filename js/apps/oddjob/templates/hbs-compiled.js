@@ -918,10 +918,10 @@ function program17(depth0,data) {
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + " pure-g\">\n	<div class=\"col-1-1\">This job can";
+    + " pure-g\">\n	<div class=\"col-1-1\">This job <b>can";
   stack1 = helpers.unless.call(depth0, (depth0 && depth0.allowRescheduling), {hash:{},inverse:self.noop,fn:self.program(17, program17, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " be rescheduled after schedule finalization.</div>\n</div>\n";
+  buffer += "</b> be rescheduled after schedule finalization.</div>\n</div>\n";
   return buffer;
   });
 
