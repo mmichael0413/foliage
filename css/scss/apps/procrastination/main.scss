@@ -67,8 +67,7 @@ div.schedule-layout {
   }
 }
 
-
-.save-schedule, .set-schedule {
+.set-schedule {
   margin-top: 1em;
 }
 
@@ -100,4 +99,7 @@ div.schedule-layout {
 
 .blackout-date {
   background: gray !important;
+}
+.fc-day-number.fc-other-month {
+  visibility: hidden;
 }

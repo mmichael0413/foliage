@@ -24,7 +24,8 @@ require.config({
         'moment'        : '../libs/bower_components/moment/moment',
         'syncOverride'  : 'shared/utils/syncOverride',
         'buttons'       : '../libs/buttons',
-        'state-machine' : '../libs/bower_components/javascript-state-machine/state-machine.min',
+        'state-machine' : '../libs/bower_components/javascript-state-machine/state-machine',
+        'blockui' : '../libs/bower_components/blockui/jquery.blockUI',
     },
     shim: {
         "jquery": {
