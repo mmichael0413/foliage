@@ -113,7 +113,13 @@ define(function (require) {
             return this;
         },
         render: function () {
-            this.renderLeftSide();
+            this.$('.schedule-container .unscheduled .schedules').html('');
+            _.each(this.groupedJobsByScheduled().unscheduled, function (model) {
+                this.renderModel(model);
+            }.bind(this));
+            this.$('.schedule-container .unscheduled .instructions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/' + this.fsm.current]());
+            this.$('.finalize-button').click(this.finalizeSchedule.bind(this));
+            this.$('.schedule-container .unscheduled .restrictions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/restrictions'](context));
             this.refreshCalendar();
             return this;
         },
@@ -189,15 +195,6 @@ define(function (require) {
                 scheduled: grouped.true || [],
                 unscheduled: grouped.false || [],
             };
-        },
-        renderLeftSide: function(){
-            this.$('.schedule-container .unscheduled .schedules').html('');
-            _.each(this.groupedJobsByScheduled().unscheduled, function (model) {
-                this.renderModel(model);
-            }.bind(this));
-            this.$('.schedule-container .unscheduled .instructions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/' + this.fsm.current]());
-            this.$('.finalize-button').click(this.finalizeSchedule.bind(this));
-            this.$('.schedule-container .unscheduled .restrictions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/restrictions'](context));
         },
         finalizeSchedule: function(e) {
             e.preventDefault();
