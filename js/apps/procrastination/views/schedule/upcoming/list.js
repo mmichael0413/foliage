@@ -17,8 +17,6 @@ define(function (require) {
         initialize: function (options) {
             this.unlockButton = $('.unlock-button');
             this.unlockButton.click(this.unlockSchedule.bind(this));
-            this.listenTo(this, 'fullcalendar.date.create', this.updateSchedule);
-            this.listenTo(this, 'fullcalendar.refresh', this.refreshCalendar);
             this.listenTo(context, 'blackoutdates:show', this.showBlackoutDates);
             this.listenTo(context, 'blackoutdates:hide', this.hideBlackoutDates);
             this.aggregate = options.aggregateId;
@@ -31,7 +29,7 @@ define(function (require) {
             this.calendar = this.$('#calendar').fullCalendar({
                 defaultDate: context.startDate,
                 droppable: true,
-                eventLimit: 2,
+                eventLimit: 4,
                 header: false,
                 events: function (start, end, timezone, callback) {
                     var events = [];
@@ -53,14 +51,12 @@ define(function (require) {
                     });
                     callback(events);
                 },
-                drop: function (date, event, object) {
-                    // Called when a visit on the left sidebar gets dropped onto the calendar
-                    var id = $(object.helper.context).find('.visit').val();
-                    self.trigger('fullcalendar.date.create', date, id);
+                eventReceive: function (event) {
+                    self.updateSchedule(event.start, event.id, function(){ self.calendar.fullCalendar('removeEvents', event.id); });
                 },
-                eventDrop: function(event, delta, revertFunc) {
+                eventDrop: function(event, delta, revertFunc, jsEvent, ui, view){
                     // Called when a visit already on the calendar gets moved to another day
-                    self.trigger('fullcalendar.date.create', event.start, event.id, revertFunc);
+                    self.updateSchedule(event.start, event.id, revertFunc);
                 },
                 eventDragStart: function(event, jsEvent, ui, view) {
                     context.trigger('blackoutdates:show', event.id);
@@ -98,10 +94,6 @@ define(function (require) {
                         { name: 'schedulingComplete', from: 'unlocked', to: 'readyToFinalize' },
                     ],
                     callbacks: {
-                        onafterevent: function(){
-                            this.render();
-                            console.log("schedule state: " + this.fsm.current);
-                        }.bind(this),
                         onfinalized: function(){
                             this.unlockButton.removeClass("hide");
                             this.render();
@@ -109,7 +101,6 @@ define(function (require) {
                         onreadyToFinalize: function(){
                             this.unlockButton.addClass("hide");
                             this.render();
-                            this.$('.finalize-button').click(this.finalizeSchedule.bind(this));
                         }.bind(this),
                         onunlocked: function(){
                             this.unlockButton.addClass("hide");
@@ -148,13 +139,12 @@ define(function (require) {
                 this.$('.schedule-container .scheduled .schedules').append(storeSchedule.render().el);
             }
         },
-        updateSchedule: function (date, id) {
+        updateSchedule: function (date, id, revertFunc) {
             var model = this.collection.findWhere({id:id});
             date = moment.utc(date).format("YYYY-MM-DD");
             this.$el.block({message: null});
             model.set('dateScheduled', date);
             model.save(model.attributes, {wait: true}).done(function(jsonResponse){
-                console.log(jsonResponse);
                 if(!jsonResponse.allow_schedule){
                     alert("You cannot make that scheduling change because " + jsonResponse.reason);
                     this.$el.unblock();
@@ -166,9 +156,8 @@ define(function (require) {
                     this.render();
                 }.bind(this));
             }.bind(this)).fail(function(){
-                console.log("Failed to connect to server");
-                // need to reset calendar state to avoid making the user think it worked
-                this.refreshCalendar(); // this doesn't work!
+                revertFunc(); // need to reset calendar state to avoid making the user think it worked
+                alert("Your schedule change could not be completed due to a network error. Please try again.");
                 this.$el.unblock();
             }.bind(this));
         },
@@ -207,6 +196,7 @@ define(function (require) {
                 this.renderModel(model);
             }.bind(this));
             this.$('.schedule-container .unscheduled .instructions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/' + this.fsm.current]());
+            this.$('.finalize-button').click(this.finalizeSchedule.bind(this));
             this.$('.schedule-container .unscheduled .restrictions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/restrictions'](context));
         },
         finalizeSchedule: function(e) {
@@ -233,7 +223,7 @@ define(function (require) {
             $.post(context.base_url + '/schedule/unlock/' + context.aggregateId).done(function () {
                 this.fsm.unlock();
             }.bind(this)).fail(function () {
-                alert("Could not unlock schedule. Please try again.");
+                alert("This schedule could not be unlocked due to a network error. Please try again.");
             }.bind(this)).always(function() {
                 this.$el.unblock();
                 this.unlockButton.prop("disabled",false);
