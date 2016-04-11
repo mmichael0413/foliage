@@ -17,8 +17,12 @@ define(function (require) {
         initialize: function (options) {
             this.unlockButton = $('.unlock-button');
             this.unlockButton.click(this.unlockSchedule.bind(this));
-            this.listenTo(context, 'blackoutdates:show', this.showBlackoutDates);
-            this.listenTo(context, 'blackoutdates:hide', this.hideBlackoutDates);
+            this.listenTo(context, 'blackoutdates:show', this.showInvalidDates);
+            this.listenTo(context, 'blackoutdates:hide', this.hideInvalidDates);
+            this.$('#restrictions-toggle').click(function(e){
+                e.preventDefault();
+                this.$('#restrictions').slideToggle(200);
+            }.bind(this));
             this.aggregate = options.aggregateId;
             this.collection = new ScheduleCollection(null, {
                 aggregateId: this.aggregate,
@@ -52,6 +56,7 @@ define(function (require) {
                     callback(events);
                 },
                 eventReceive: function (event) {
+                    // Called when an unscheduled visit from the sidebar is dropped onto the calendar
                     self.updateSchedule(event.start, event.id, function(){ self.calendar.fullCalendar('removeEvents', event.id); });
                 },
                 eventDrop: function(event, delta, revertFunc, jsEvent, ui, view){
@@ -66,13 +71,13 @@ define(function (require) {
                 },
                 eventMouseover: function (calEvent, jsEvent) {
                     self.$('.schedule-container .unscheduled .instructions').fadeTo(100,0.5);
-                    self.$('.schedule-container .unscheduled .restrictions').fadeTo(100,0.5);
-                    self.$('.tooltipevent').hide().html(calEvent.store).show('size', { origin: ["top", "left"] }, 200);
+                    self.$('#restrictions').fadeTo(100,0.5);
+                    self.$('.tooltipevent').hide().html(calEvent.store).fadeIn(100);
                 },
                 eventMouseout: function (calEvent, jsEvent) {
                     self.$('.schedule-container .unscheduled .instructions').fadeTo(100,1);
-                    self.$('.schedule-container .unscheduled .restrictions').fadeTo(100,1);
-                    self.$('.tooltipevent').hide('size', { origin: ["top", "left"] }, 200);
+                    self.$('#restrictions').fadeTo(100,1);
+                    self.$('.tooltipevent').fadeOut(100);
                 },
                 aspectRatio: 1
             });
@@ -119,20 +124,22 @@ define(function (require) {
             }.bind(this));
             this.$('.schedule-container .unscheduled .instructions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/' + this.fsm.current]());
             this.$('.finalize-button').click(this.finalizeSchedule.bind(this));
-            this.$('.schedule-container .unscheduled .restrictions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/restrictions'](context));
-            this.refreshCalendar();
+            this.$('#restrictions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/restrictions'](context));
             return this;
         },
-        refreshCalendar: function () {
-            this.calendar.fullCalendar('refetchEvents');
-        },
+        //refreshCalendar: function () {
+        //    this.calendar.fullCalendar('refetchEvents');
+        //},
         fetch: function (callback) {
             this.collection.fetch().done(function (collection) {
                 this.collection.generateLegend();
                 if(callback){
                     callback();
                 }
+                this.calendar.fullCalendar('refetchEvents');
                 this.$el.unblock();
+            }.bind(this)).fail(function(e,a,b){
+                alert("Your schedule could not be loaded due to a network error. Please try again.");
             }.bind(this));
         },
         renderModel: function (model) {
@@ -153,6 +160,7 @@ define(function (require) {
             model.save(model.attributes, {wait: true}).done(function(jsonResponse){
                 if(!jsonResponse.allow_schedule){
                     alert("You cannot make that scheduling change because " + jsonResponse.reason);
+                    revertFunc();
                     this.$el.unblock();
                 }
                 this.fetch(function(){
@@ -167,16 +175,16 @@ define(function (require) {
                 this.$el.unblock();
             }.bind(this));
         },
-        showBlackoutDates: function(id){
+        showInvalidDates: function(id){
             var model = this.collection.findWhere({id:id});
-            var dates = model.attributes.jobDetails.blackoutDates;
+            var dates = model.attributes.invalidSchedulingDates;
             _.chain(dates).map(function(date){
                 return moment.utc(date).format("YYYY-MM-DD"); // format used in fullcalendar data-date
             }).each(function(dateString){
                 $("#calendar").find(".fc-day[data-date=" + dateString + "]").addClass("blackout-date");
             });
         },
-        hideBlackoutDates: function(){
+        hideInvalidDates: function(){
             $("#calendar").find(".blackout-date").removeClass("blackout-date");
         },
         destroy: function(model) {

@@ -820,7 +820,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "When scheduling, keep in mind the following restrictions:\n<ul>\n<li> Jobs cannot be rescheduled if they have already been completed\n<li> Jobs cannot be scheduled outside of the current month\n<li> Jobs cannot be scheduled for dates in the past\n<li> Some jobs may be prevented from being scheduled on certain dates\n<li> Some jobs cannot be rescheduled at all once the schedule is finalized\n<li>\n	After the schedule is finalized, jobs can only be rescheduled within a limited window:\n	<ul>\n			<li> Jobs can be rescheduled up to <b>"
+  buffer += "<ul>\n<li> Jobs cannot be rescheduled if they have already been completed\n<li> Jobs cannot be scheduled outside of the current month\n<li> Jobs cannot be scheduled for dates in the past\n<li> Some jobs may be prevented from being scheduled on certain dates\n<li> Some jobs cannot be rescheduled at all once the schedule is finalized\n<li>\n	After the schedule is finalized, jobs can only be rescheduled within a limited window:\n	<ul>\n			<li> Jobs can be rescheduled up to <b>"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.reschedulingWindow)),stack1 == null || stack1 === false ? stack1 : stack1.past)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</b> days before their original finalization date\n			<li> Jobs can be rescheduled up to <b>"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.reschedulingWindow)),stack1 == null || stack1 === false ? stack1 : stack1.future)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
