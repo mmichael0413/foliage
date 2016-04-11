@@ -18,7 +18,7 @@ module.exports = function(grunt) {
                     mime: {
                         'dist/shared/fonts/nexa_bold-webfont.woff': 'application/font-woff',
                         'dist/shared/fonts/nexa_light-webfont.woff': 'application/font-woff',
-                        'dist/shared/fonts/tc-icons_13271346428e88c9d2b2e9445373c21d.woff': 'application/font-woff'
+                        'dist/shared/fonts/tc-icons_4d999ad5bae3a80901e87cdef62c8114.woff': 'application/font-woff'
                     }
                 },
                 files: [
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
                     mime: {
                         'dist/shared/fonts/nexa_bold-webfont.woff': 'application/font-woff',
                         'dist/shared/fonts/nexa_light-webfont.woff': 'application/font-woff',
-                        'dist/shared/fonts/tc-icons_13271346428e88c9d2b2e9445373c21d.woff': 'application/font-woff'
+                        'dist/shared/fonts/tc-icons_4d999ad5bae3a80901e87cdef62c8114.woff': 'application/font-woff'
                     }
                 },
                 files: [
