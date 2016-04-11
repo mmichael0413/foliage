@@ -1,15 +1,20 @@
 define(function(require) {
-    var PageableListView = require('thirdchannel/views/shared/pageable_list'),
+    var FilterableTableView = require('thirdchannel/views/shared/filterable_table'),
+        AsyncCollection = require('thirdchannel/collections/shared/async'),
+        HandlebarsTemplates = require('handlebarsTemplates'),
         /**
          *
          * The Teams list
          * 
-         * @extends {module:thirdchannel/views/shared/pageable_list}
+         * @extends {module:thirdchannel/views/shared/filterable_table}
          * @exports thirdchannel/views/teams/list
          */
-        TeamListView = PageableListView.extend({
+        TeamListView = FilterableTableView.extend({
+            loadingHTML: HandlebarsTemplates['thirdchannel/loading_icon'],
+            collectionClass: AsyncCollection,
+            bodySelector: '.body',
             el: '#team',
-            template: 'thirdchannel/teams/rows',
+            template: 'thirdchannel/teams/rows'
         });
     return TeamListView;
 });
