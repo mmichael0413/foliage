@@ -33,6 +33,7 @@ define(function(require){
         AnswersExportView = require('thirdchannel/views/exports/answers/main'),
         SalesStoresExportView = require('thirdchannel/views/exports/sales_stores/main'),
         SalesStoresAuditExportView = require('thirdchannel/views/exports/sales_stores_audit/main'),
+        RoiExportView = require('thirdchannel/views/exports/roi/main'),
         DataClipsExportView = require('thirdchannel/views/exports/data_clips/main'),
         ProgramProfileView = require('erudition/views/profile/view_profile'),
         ProgramProfileEditView = require('erudition/views/profile/edit'),
@@ -82,7 +83,7 @@ define(function(require){
             'programs/:program_id/labs/sku_sales': 'labsSkus',
             'programs/:program_id/labs(/)': 'labsSalesCompare',
             'programs/:program_id/labs/sales_comparison': 'labsSalesCompare',
-            'programs/:program_id/labs/roi': 'labsRoi',
+            'programs/:program_id/exports/roi': 'exportsRoi',
             'programs/:program_id/exports/survey_answers': 'answerExports',
             'programs/:program_id/exports/sales_stores': 'salesStoresExports',
             'programs/:program_id/exports/sales_stores_audits': 'salesStoresAuditExports',
@@ -254,8 +255,8 @@ define(function(require){
             Labs.salesCompare();
         },
 
-        labsRoi: function () {
-            Labs.roi();
+        exportsRoi: function () {
+            RoiExportView.roi();
         },
 
         answerExports: function() {
