@@ -20,7 +20,7 @@ $padding: 1.5em;
     display: inline-block;
     width: 90%;
 
-    @include swb-medium {
+    @include swb-small {
       position: relative;
       width: 100%;
 
@@ -42,8 +42,9 @@ $padding: 1.5em;
   }
 
   .task-item {
-    display: inline-flex;
-    -webkit-flex-flow: row wrap;
+    @include inline-flex;
+    @include flex-flow(row wrap);
+
     margin-right: 1em;
     margin-bottom: $padding;
     background-color: $main-background;
@@ -374,7 +375,7 @@ $img-height: 3em;
   }
 }
 
-@include swb-medium {
+@include swb-small {
   .activity-content, .activity-photos {
     width: 100%;
     margin-bottom: 1em;
