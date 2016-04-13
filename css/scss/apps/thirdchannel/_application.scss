@@ -40,6 +40,7 @@ form.application-form {
   }
 
   text-align: justify;
+  padding: 1em;
   @include swb-small() {
     text-align: left;
   }
