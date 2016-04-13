@@ -30,6 +30,7 @@ define(function(require){
         PostView = require('thirdchannel/views/posts/main'),
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge'),
         Labs = require('thirdchannel/views/labs/main'),
+        ViewOpportunity = require('thirdchannel/views/opportunities/main'),
         AnswersExportView = require('thirdchannel/views/exports/answers/main'),
         SalesStoresExportView = require('thirdchannel/views/exports/sales_stores/main'),
         SalesStoresAuditExportView = require('thirdchannel/views/exports/sales_stores_audit/main'),
@@ -49,6 +50,7 @@ define(function(require){
             'agents/profile/edit(/)': 'programProfileEdit',
 
             'login' : 'login',
+            'opportunities/:id': 'viewOpportunity',
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
@@ -148,6 +150,10 @@ define(function(require){
 
         teams: function () {
             TeamsMain.init();
+        },
+
+        viewOpportunity: function() {
+            ViewOpportunity.init();
         },
 
         stores: function () {
