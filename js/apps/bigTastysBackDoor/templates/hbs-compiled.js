@@ -1007,7 +1007,7 @@ function program39(depth0,data) {
   if (helper = helpers.editable) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.editable); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">Edit Checkin</a></span>\n                ";
+    + "\">Edit Visit</a></span>\n                ";
   return buffer;
   }
 
@@ -1061,7 +1061,7 @@ function program50(depth0,data) {
   if (helper = helpers.editable) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.editable); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">Edit Checkin</a></span>\n            ";
+    + "\">Edit Visit</a></span>\n            ";
   return buffer;
   }
 
