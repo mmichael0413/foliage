@@ -14,15 +14,14 @@ define(function (require) {
     return Backbone.View.extend({
         el: '.main-content',
         template: HandlebarsTemplates['procrastination/schedule/upcoming/visit_label'],
+        events: {
+            "click #restrictions-toggle": "toggleRestrictions",
+        },
         initialize: function (options) {
             this.unlockButton = $('.unlock-button');
             this.unlockButton.click(this.unlockSchedule.bind(this));
             this.listenTo(context, 'blackoutdates:show', this.showInvalidDates);
             this.listenTo(context, 'blackoutdates:hide', this.hideInvalidDates);
-            this.$('#restrictions-toggle').click(function(e){
-                e.preventDefault();
-                this.$('#restrictions').slideToggle(200);
-            }.bind(this));
             this.aggregate = options.aggregateId;
             this.collection = new ScheduleCollection(null, {
                 aggregateId: this.aggregate,
@@ -247,6 +246,10 @@ define(function (require) {
                 this.$el.unblock();
                 this.unlockButton.prop("disabled",false);
             }.bind(this));
-        }
+        },
+        toggleRestrictions: function(e){
+            e.preventDefault();
+            this.$('#restrictions').slideToggle(200);
+        },
     });
 });

@@ -18,7 +18,9 @@ define(function(require) {
             this.jobs = this.groupBy(function(job) {
                 return job.get('jobDetail');
             });
-            _.each(this.jobs, function(job, idx) {
+            var idx=0;
+            _.each(this.jobs, function(job) {
+                console.log(idx);
                 _.each(job, function(visit) {
                     var jobNum = 'job-' + idx;
                     if (visit.get('dateCompleted')) {
@@ -26,6 +28,7 @@ define(function(require) {
                     }
                     visit.set('jobColor', jobNum);
                 });
+                idx++;
             });
         }
     });
