@@ -50,27 +50,22 @@ define(function (require) {
 
         },
         toggleTasks: function (e) {
-            //e.preventDefault();
             var tasksContainerId = $(e.target).data("id");
             var tasksContainerButton = $(e.target);
 
             if($('.tasks-container'+tasksContainerId).is(":visible")){
                 tasksContainerButton.html("Show Tasks");
-                $('.tasks-container'+tasksContainerId).slideUp( "fast", function(){});
-                $('.frequencies-container'+tasksContainerId).slideUp( "fast", function(){});
-                $('.blackout-schemes-container'+tasksContainerId).slideUp( "fast", function(){});
-                $('.allow-rescheduling-container'+tasksContainerId).slideUp( "fast", function(){});
+                $('.tasks-container'+tasksContainerId).slideUp(200);
+                $('.frequencies-container'+tasksContainerId).slideUp(200);
+                $('.blackout-schemes-container'+tasksContainerId).slideUp(200);
+                $('.allow-rescheduling-container'+tasksContainerId).slideUp(200);
             }
             else{
                 tasksContainerButton.html("Hide Tasks");
-                /*var scrollTopVal = $(e.target).offset().top; console.log(scrollTopVal); console.log($(e.target).offset());
-                $('.content-holder').animate({
-                    scrollTop: scrollTopVal
-                }, 600);*/
-                $('.tasks-container'+tasksContainerId).slideDown( "fast", function(){});
-                $('.frequencies-container'+tasksContainerId).slideDown( "fast", function(){});
-                $('.blackout-schemes-container'+tasksContainerId).slideDown( "fast", function(){});
-                $('.allow-rescheduling-container'+tasksContainerId).slideDown( "fast", function(){});
+                $('.tasks-container'+tasksContainerId).slideDown(200);
+                $('.frequencies-container'+tasksContainerId).slideDown(200);
+                $('.blackout-schemes-container'+tasksContainerId).slideDown(200);
+                $('.allow-rescheduling-container'+tasksContainerId).slideDown(200);
             }
 
         }
