@@ -184,10 +184,8 @@ define(function (require) {
         },
         showInvalidDates: function(id){
             $.getJSON(context.base_url + '/schedule/' + context.aggregateId + '/invalidSchedulingDates/' + id).done(function (dates) {
-                console.log(dates);
-                _.chain(dates).map(function(date){
-                    return moment.utc(date).format("YYYY-MM-DD"); // format used in fullcalendar data-date
-                }).each(function(dateString){
+                _.each(dates, function(date){
+                    var dateString = moment.utc(date).format("YYYY-MM-DD"); // format used in fullcalendar data-date
                     this.calendar.find(".fc-day[data-date=" + dateString + "]").addClass("blackout-date");
                 }.bind(this));
                 var model = this.collection.findWhere({id:id});
