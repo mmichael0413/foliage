@@ -49,7 +49,7 @@ form.application-form {
     text-align: center;
   }
 
-  .program.program-header {
+  .program-header {
     color: #FAFAFA;
     vertical-align: middle;
     position: absolute;
@@ -61,23 +61,15 @@ form.application-form {
     transform: translate(0, -55%);
   }
 
-  .program.program-header h1 {
+  .program-header h1 {
     margin: auto;
     font-size: 2em;
     line-height: 1em;
+    margin-bottom: .5em;
   }
 
-  .program.program-header p {
-    margin-top: .5em;
-  }
-
-  .program-btn-link-wrapper {
-    width: 100%;
-    marign: 1em;
-  }
-
-  .btn.solid.program-btn-link,
-  .btn.solid.program-btn-link.solid {
+  button.btn.solid.primary,
+  .btn.solid.solid {
     max-width: 16em;
     min-width: 8em;
     padding: 1em;
@@ -90,15 +82,13 @@ form.application-form {
     margin: 2rem 4rem;
   }
 
-  .full-section-controls {
+  .full-width {
     width: 100%;
-    margin-top: -5em;
-    bottom: 0;
   }
 
-  .program-quick-description {
-    margin-bottom: 1em;
-    color: #ffffff;
+  .full-section-controls {
+    margin-top: -5em;
+    bottom: 0;
   }
 
   .read-more-circle {
@@ -116,7 +106,8 @@ form.application-form {
     line-height: 2.5rem;
   }
 
-  #opportunity-apply-now-btn-bottom {
+  #opportunity-apply-now-btn-bottom,
+  .program-quick-description{
     margin-bottom: 1em;
   }
 
@@ -139,26 +130,27 @@ form.application-form {
   .opportunity-image-label {
     text-align: center;
   }
+}
 
-  .opportunity-content {
-    text-align: justify;
-    padding: 1em;
-    @include swb-small() {
-      text-align: left;
-    }
+.opportunity-content {
+  text-align: justify;
+  padding: 1em;
+  @include swb-small() {
+    text-align: left;
   }
+}
 
-  .opportunity-header {
-    .opportunity-logo {
-      float: right;
-      img {
-
-        max-height: $img-height;
-        margin-right: 1em;
-      }
+.opportunity-header {
+  .opportunity-logo {
+    float: right;
+    img {
+      max-height: $img-height;
+      margin-right: 1em;
     }
   }
 }
+
+
 .opportunity-link {
   height: 15rem;
   margin: 0.5rem;
