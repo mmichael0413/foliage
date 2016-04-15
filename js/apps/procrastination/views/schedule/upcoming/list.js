@@ -34,7 +34,11 @@ define(function (require) {
                 defaultDate: context.startDate,
                 droppable: true,
                 eventLimit: 4,
-                header: false,
+                header: {
+                    left: null,
+                    center: 'title',
+                    right: null,
+                },
                 events: function (start, end, timezone, callback) {
                     var events = [];
                     var scheduledVisits = self.collection.filter(function (model) {
@@ -71,12 +75,18 @@ define(function (require) {
                 },
                 eventMouseover: function (calEvent, jsEvent) {
                     self.$('.schedule-container .unscheduled .instructions').fadeTo(100,0.5);
-                    self.$('#restrictions').fadeTo(100,0.5);
+                    var $restrictions = self.$('#restrictions');
+                    if($restrictions.is(":visible")){
+                        $restrictions.fadeTo(100,0.5);
+                    }
                     self.$('.tooltipevent').hide().html(calEvent.store).fadeIn(100);
                 },
                 eventMouseout: function (calEvent, jsEvent) {
                     self.$('.schedule-container .unscheduled .instructions').fadeTo(100,1);
-                    self.$('#restrictions').fadeTo(100,1);
+                    var $restrictions = self.$('#restrictions');
+                    if($restrictions.is(":visible")){
+                        $restrictions.fadeTo(100,1);
+                    }
                     self.$('.tooltipevent').fadeOut(100);
                 },
                 aspectRatio: 1
@@ -127,9 +137,6 @@ define(function (require) {
             this.$('#restrictions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/restrictions'](context));
             return this;
         },
-        //refreshCalendar: function () {
-        //    this.calendar.fullCalendar('refetchEvents');
-        //},
         fetch: function (callback) {
             this.collection.fetch().done(function (collection) {
                 this.collection.generateLegend();
@@ -176,16 +183,20 @@ define(function (require) {
             }.bind(this));
         },
         showInvalidDates: function(id){
-            var model = this.collection.findWhere({id:id});
-            var dates = model.attributes.invalidSchedulingDates;
-            _.chain(dates).map(function(date){
-                return moment.utc(date).format("YYYY-MM-DD"); // format used in fullcalendar data-date
-            }).each(function(dateString){
-                $("#calendar").find(".fc-day[data-date=" + dateString + "]").addClass("blackout-date");
-            });
+            $.getJSON(context.base_url + '/schedule/' + context.aggregateId + '/invalidSchedulingDates/' + id).done(function (dates) {
+                console.log(dates);
+                _.chain(dates).map(function(date){
+                    return moment.utc(date).format("YYYY-MM-DD"); // format used in fullcalendar data-date
+                }).each(function(dateString){
+                    this.calendar.find(".fc-day[data-date=" + dateString + "]").addClass("blackout-date");
+                }.bind(this));
+                var model = this.collection.findWhere({id:id});
+                // Endpoint doesn't check dates in the past, or outside of the cycle, so we mark them here
+                this.calendar.find(".fc-past").add(".fc-other-month").addClass("blackout-date");
+            }.bind(this));
         },
         hideInvalidDates: function(){
-            $("#calendar").find(".blackout-date").removeClass("blackout-date");
+            this.calendar.find(".blackout-date").removeClass("blackout-date");
         },
         destroy: function(model) {
             var m = this.collection.get(model.id);
