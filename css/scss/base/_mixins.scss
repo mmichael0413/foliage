@@ -14,6 +14,28 @@
   transition: $args;
 }
 
+@mixin flexbox {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin inline-flex {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@mixin flex-flow($values: (row nowrap)) {
+  -webkit-flex-flow: $values;
+  -moz-flex-flow: $values;
+  -ms-flex-flow: $values;
+  flex-flow: $values;
+}
 
 @mixin placeholder($color) {
   ::-webkit-input-placeholder { /* WebKit browsers */
@@ -77,49 +99,65 @@
 // **b - Below (max-*)
 
 @mixin swa-xlarge {
-  @media only screen and (min-width: 80em) {
+  @media only screen and (min-width: 80em),
+         only screen and (min-device-width: 80em),
+         only screen and (min-device-width: 80em) and (-webkit-min-device-pixel-ratio: 2) {
     @content;
   }
 }
 
 @mixin swa-large {
-  @media only screen and (min-width: 64em) {
+  @media only screen and (min-width: 64em),
+         only screen and (min-device-width: 64em),
+         only screen and (min-device-width: 64em) and (-webkit-min-device-pixel-ratio: 2) {
     @content;
   }
 }
 
 @mixin swa-medium {
-  @media only screen and (min-width: 48em) {
+  @media only screen and (min-width: 48em),
+         only screen and (min-device-width: 48em),
+         only screen and (min-device-width: 48em) and (-webkit-min-device-pixel-ratio: 2) {
     @content;
   }
 }
 
 @mixin swa-small {
-  @media only screen and (min-width: 35.5em) {
+  @media only screen and (min-width: 35.5em),
+         only screen and (min-device-width: 35.5em),
+         only screen and (min-device-width: 35.5em) and (-webkit-min-device-pixel-ratio: 2) {
     @content;
   }
 }
 
 @mixin swb-xlarge {
-  @media only screen and (max-width: 80em) {
+  @media only screen and (max-width: 80em),
+         only screen and (max-device-width: 80em),
+         only screen and (max-device-width: 80em) and (-webkit-min-device-pixel-ratio: 2) {
     @content;
   }
 }
 
 @mixin swb-large {
-  @media only screen and (max-width: 64em) {
+  @media only screen and (max-width: 64em),
+         only screen and (max-device-width: 64em),
+         only screen and (max-device-width: 64em) and (-webkit-min-device-pixel-ratio: 2) {
     @content;
   }
 }
 
 @mixin swb-medium {
-  @media only screen and (max-width: 48em) {
+  @media only screen and (max-width: 48em),
+         only screen and (max-device-width: 48em),
+         only screen and (max-device-width: 48em) and (-webkit-min-device-pixel-ratio: 2) {
     @content;
   }
 }
 
 @mixin swb-small {
-  @media only screen and (max-width: 35.5em) {
+  @media only screen and (max-width: 35.5em),
+         only screen and (max-device-width: 35.5em),
+         only screen and (max-device-width: 35.5em) and (-webkit-min-device-pixel-ratio: 2) {
     @content;
   }
 }

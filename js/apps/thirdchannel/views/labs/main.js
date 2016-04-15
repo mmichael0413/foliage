@@ -5,8 +5,7 @@ define(function(require) {
 		$ = require('jquery'),
 		Filter = require('thirdchannel/views/filter/main'),
 		SalesCompareSideView = require('thirdchannel/views/labs/sc/side'),
-		TopSkusView = require('thirdchannel/views/labs/top_skus'),
-		RoiView = require('thirdchannel/views/labs/roi');
+		TopSkusView = require('thirdchannel/views/labs/top_skus');
 
 
 	var main = {
@@ -27,11 +26,6 @@ define(function(require) {
 			new SalesCompareSideView({el: $(".left"), groupSelect: $("#firstCompare")});
 			new SalesCompareSideView({el: $(".right"), groupSelect: $("#secondCompare")});
 			context.trigger('filter:request');
-		},
-
-		roi: function () {
-			this.init();
-			new RoiView().render();
 		}
 	};
 
