@@ -10,7 +10,6 @@ define(function(require) {
 		taskViewClass: require('oddjob/views/tasks/edit'),
 
 		renderChildViews: function () {
-        console.log(this.model);
 			var i = 0,
 				max = this.model.get('tasks').length;
 			for(i; i < max; i++) {
