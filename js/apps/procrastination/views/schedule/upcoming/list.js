@@ -220,8 +220,13 @@ define(function (require) {
             e.stopPropagation();
             this.$el.block({message:null});
             if(confirm('Are you sure you want to finalize your schedule?')) {
-                $.post(context.base_url + '/schedule/lock/' + context.aggregateId).done(function () {
-                    this.fsm.finalize();
+                $.post(context.base_url + '/schedule/lock/' + context.aggregateId).done(function (response) {
+                    var jsonResponse = JSON.parse(response);
+                    if(jsonResponse){
+                        this.fsm.finalize();
+                    } else {
+                        alert("Your schedule could not be finalized because you have unscheduled visits");
+                    }
                 }.bind(this)).fail(function () {
                     alert("Your schedule could not be finalized due to a network error. Please try again.");
                 }.bind(this)).always(function() {
