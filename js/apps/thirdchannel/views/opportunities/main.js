@@ -10,13 +10,11 @@ define(function (require) {
 
     var anchorTransition = require('thirdchannel/views/utils/anchor_transition'),
         Backbone = require('backbone'),
-        context = require('context'),
-        templates = require('handlebarsTemplates');
+        context = require('context');
 
     return Backbone.View.extend({
         el: '#registration-form-container',
 
-        registrationTemplate: templates['thirdchannel/authentication/register_form'],
         initialize: function () {
             anchorTransition(-65, 1000);
             this.listenTo(this, 'setupValidation', this.validateRegistrationForm);
@@ -29,7 +27,6 @@ define(function (require) {
         },
 
         renderRegistrationForm: function () {
-            this.$el.html(this.registrationTemplate());
             this.trigger('setupValidation');
         },
 
