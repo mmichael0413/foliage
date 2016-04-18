@@ -128,9 +128,7 @@ define(function (require) {
         },
         render: function () {
             this.$('.schedule-container .unscheduled .schedules').html('');
-            _.each(this.groupedJobsByScheduled().unscheduled, function (model) {
-                this.renderModel(model);
-            }.bind(this));
+            _.each(this.groupedJobsByScheduled().unscheduled, this.renderModel);
             this.$('.schedule-container .unscheduled .instructions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/' + this.fsm.current]());
             this.$('.finalize-button').click(this.finalizeSchedule.bind(this));
             this.$('#restrictions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/restrictions'](context));
