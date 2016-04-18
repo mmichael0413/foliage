@@ -1,14 +1,28 @@
 <ul>
-<li> Jobs cannot be rescheduled if they have already been completed
-<li> Jobs cannot be scheduled outside of the current month
-<li> Jobs cannot be scheduled for dates in the past
-<li> Some jobs may be prevented from being scheduled on certain dates
-<li> Some jobs cannot be rescheduled at all once the schedule is finalized
-<li>
-	After the schedule is finalized, jobs can only be rescheduled within a limited window:
-	<ul>
-			<li> Jobs can be rescheduled up to <b>{{reschedulingWindow.past}}</b> days before their original finalization date
-			<li> Jobs can be rescheduled up to <b>{{reschedulingWindow.future}}</b> days after their original finalization date
-	</ul>
-</li>
+	<li>
+		Jobs cannot be rescheduled if they have already been completed
+	</li>
+	<li>
+		Jobs cannot be scheduled outside of the current month
+	</li>
+	<li>
+		Jobs cannot be scheduled for dates in the past
+	</li>
+	<li>
+		Some jobs may be prevented from being scheduled on certain dates
+	</li>
+	<li>
+		Some jobs cannot be rescheduled at all once the schedule is finalized
+	</li>
+	<li>
+		After the schedule is finalized, jobs can only be rescheduled within a limited window:
+		<ul>
+			<li>
+				Jobs can be rescheduled up to <b>{{reschedulingWindow.past}}</b> days before their original finalization date
+			</li>
+			<li>
+				Jobs can be rescheduled up to <b>{{reschedulingWindow.future}}</b> days after their original finalization date
+			</li>
+		</ul>
+	</li>
 </ul>
