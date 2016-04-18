@@ -20,7 +20,6 @@ define(function(require) {
             });
             var idx=0;
             _.each(this.jobs, function(job) {
-                console.log(idx);
                 _.each(job, function(visit) {
                     var jobNum = 'job-' + idx;
                     if (visit.get('dateCompleted')) {
