@@ -45,9 +45,11 @@ form.application-form {
     vertical-align: middle;
     position: relative;
     height: 100vh;
+    min-height: 20em;
     width: 100%;
     color: #FAFAFA;
     text-align: center;
+    margin-top: -4em;
   }
 
   .program-header {
