@@ -80,9 +80,18 @@ form.application-form {
     display: block;
   }
 
-  .card-container {
-    margin: 2rem 4rem;
+  @include swa-small {
+    .card-container {
+      margin: 3% 6%;
+    }
   }
+
+  @include swb-small {
+    .card-container {
+      margin: 3% 0%;
+    }
+  }
+
 
   .full-width {
     width: 100%;
