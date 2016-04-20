@@ -40,7 +40,7 @@
   &:first-child {
     padding-left: 1em;
 
-    @include swb-small {
+    @include swb-medium {
       padding-left: 0;
     }
   }
@@ -48,7 +48,7 @@
   &:last-child {
     padding-right: 1em;
 
-    @include swb-small {
+    @include swb-medium {
       padding-right: 0;
     }
   }
