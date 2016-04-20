@@ -802,7 +802,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<h2>Your schedule is finalized</h2>\n<p> You may be able to make limited adjustments to your schedule at this time.\nIf you will not be able to make one of your scheduled visits, please contact a program manager.\n";
+  return "<h2>Your schedule is finalized</h2>\n<p>\n	You may be able to make limited adjustments to your schedule at this time.\n	If you will not be able to make one of your scheduled visits, please contact a program manager.\n</p>\n";
   });
 
 this["procrastination"]["templates"]["procrastination/schedule/upcoming/instructions/readyToFinalize"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -811,7 +811,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<h2>Your schedule is ready to be finalized</h2>\n<p> If you are satisfied with your schedule, finalize your schedule with the button below.\nOtherwise, you may continue to adjust the schedule by dragging the jobs on the calendar.\n<div>\n	<a href=\"#\" class=\"finalize-button btn primary\">Finalize Schedule</a>\n</div>\n\n";
+  return "<h2>Your schedule is ready to be finalized</h2>\n<p>\n	If you are satisfied with your schedule, finalize your schedule with the button below.\n	Otherwise, you may continue to adjust the schedule by dragging the jobs on the calendar.\n</p>\n<div>\n	<a href=\"#\" class=\"finalize-button btn primary\">Finalize Schedule</a>\n</div>\n\n";
   });
 
 this["procrastination"]["templates"]["procrastination/schedule/upcoming/instructions/restrictions"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -834,7 +834,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<h2>Your schedule is unlocked</h2>\n<p> Drag the jobs listed below onto the calendar to schedule them. All of them must be scheduled before you can finalize your schedule.\n";
+  return "<h2>Your schedule is unlocked</h2>\n<p>\n	Drag the jobs listed below onto the calendar to schedule them.\n	All of them must be scheduled before you can finalize your schedule.\n</p>\n";
   });
 
 this["procrastination"]["templates"]["procrastination/schedule/upcoming/visit"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {

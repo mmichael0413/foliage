@@ -175,7 +175,7 @@ define(function (require) {
                 }.bind(this));
             }.bind(this)).fail(function(){
                 revertFunc(); // need to reset calendar state to avoid making the user think it worked
-                alert("Your schedule change could not be completed due to a network error. Please try again.");
+                alert("Your schedule may not have been completed due to a network error. Please reload the page.");
                 this.$el.unblock();
             }.bind(this));
         },
@@ -223,7 +223,7 @@ define(function (require) {
                         alert("Your schedule could not be finalized because you have unscheduled visits");
                     }
                 }.bind(this)).fail(function () {
-                    alert("Your schedule could not be finalized due to a network error. Please try again.");
+                    alert("Your schedule may not have been finalized due to a network error. Please reload the page.");
                 }.bind(this)).always(function() {
                     this.$el.unblock();
                 }.bind(this));
@@ -239,7 +239,7 @@ define(function (require) {
             $.post(context.base_url + '/schedule/unlock/' + context.aggregateId).done(function () {
                 this.fsm.unlock();
             }.bind(this)).fail(function () {
-                alert("This schedule could not be unlocked due to a network error. Please try again.");
+                alert("This schedule may not have been unlocked due to a network error. Please reload the page.");
             }.bind(this)).always(function() {
                 this.$el.unblock();
                 this.unlockButton.prop("disabled",false);
