@@ -4,6 +4,7 @@ define(function(require) {
 		_ = require('underscore'),
 		$ = require('jquery'),
 		Filter = require('thirdchannel/views/filter/main'),
+		Chosen = require('chosen'),
 		SalesComparisonSideView = require('thirdchannel/views/labs/sales_comparison/side');
 
 
@@ -15,7 +16,7 @@ define(function(require) {
 		salesCompare: function () {
 			this.init();
 			Filter.init();
-
+			$('.labs.header select').chosen({disable_search: true, width: "100%"});
 			new SalesComparisonSideView({el: $(".left"), groupSelect: $("#firstCompare")});
 			new SalesComparisonSideView({el: $(".right"), groupSelect: $("#secondCompare")});
 			context.trigger('filter:request');

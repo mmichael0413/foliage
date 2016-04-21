@@ -1,8 +1,22 @@
 .labs {
 
   &.header {
-    .center {
+    h2 {
       text-align: center;
+      margin-bottom: 0;
+      line-height: 2rem;
+      vertical-align: middle;
+      position: absolute;
+      left: 0;
+      right: 0;
+    }
+
+    > .first {
+      padding-right: 2em;
+    }
+
+    > .last {
+      padding-left: 2em;
     }
   }
 
@@ -20,9 +34,23 @@
     }
   }
 
+  .left, .right {
+    .section[class*="col-"],
+    .subsection[class*="col-"]{
+       width: 100%;
+     }
+
+    .widgets {
+      > div[class*="col-"]:not(.resolution-row) {
+        width: 100%;
+      }
+    }
+  }
+
   .widgets {
-    div[class*="col-"] {
-      width: 100%;
+
+    > div:not(.min) {
+      border-top: 1px solid $light-blue;
     }
 
     .overview {

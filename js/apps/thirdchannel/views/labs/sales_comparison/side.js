@@ -5,21 +5,10 @@ define(function(require) {
         Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-
-
-
         context = require('context'),
-        templates = require('handlebarsTemplates'),
-        d3 = require('d3'),
-        c3 = require('c3'),
-
-
-
         AsyncReportLoader = require('thirdchannel/views/reports/async_report'),
         SalesCompareModel = require('thirdchannel/models/labs/sales_comparison'),
         WidgetView = require('thirdchannel/views/reports/index/widget');
-
-
 
         /**
          * Responsible for the rendering of one 'side's' worth of widgets
@@ -30,59 +19,36 @@ define(function(require) {
             loadingTemplate: HandlebarsTemplates['thirdchannel/loading'],
             saleSectionTemplate: HandlebarsTemplates['thirdchannel/labs/sales_comparison/sales_section'],
             retailSalesTemplate: HandlebarsTemplates['thirdchannel/labs/sales_comparison/retail_sales'],
-            initialize: function (opts) {
-                if (opts.groupSelect === undefined) {
+            initialize: function (options) {
+                if (options.groupSelect === undefined) {
                     throw "No 'groupSelect' parameter set in constructor for the SalesCompareSideView";
                 }
-                this.$groupSelect = opts.groupSelect;
-
+                _.bindAll(this, 'applyFilter', 'reportComplete', 'updateLinks');
+                this.$groupSelect = options.groupSelect;
                 this.model = new SalesCompareModel();
-                this._attachAsyncLoader();
-
-
-                
-                this.$groupSelect.on('change', function () {
-                    this.applyFilter(this.currentQS);
-                }.bind(this));
-                this.listenTo(context, 'filter:query', this.applyFilter);
-                this.listenTo(this.model, "sync", this.render);
-                // the breakdown links uses a relative path, which is incompatible with us. this function 
-                // updates the breakdown links on the fly to use the correct path
-                this.listenTo(this.reportLoader, "reports:async:complete", function () {
-                    this.$el.find(".loading-section").remove();
-                    this.$el.find(".breakdown-link").on("click", function (e) {
-                        this.updateLinks(e);
-                    }.bind(this));
-                }.bind(this));
-                return this;
-            },
-
-            _attachAsyncLoader: function () {
                 this.reportLoader = new AsyncReportLoader(context.current_report);
                 this.reportLoader.setElement(this.$el);
 
+                this.$groupSelect.on('change', this.applyFilter);
+                this.listenTo(context, 'filter:query', this.applyFilter);
+                this.listenTo(this.model, "sync", this.render);
+                this.listenTo(this.reportLoader, "reports:async:complete", this.reportComplete);
+
+                return this;
             },
 
 
             applyFilter: function (qs) {
                 this.$el.html(this.loadingTemplate());
-                this.currentQS = qs;
+                if (qs && !qs.preventDefault) {
+                    this.currentQS = qs;
+                } else {
+                    qs = this.currentQS;
+                }
                 qs = qs + "&group=" + encodeURIComponent(this.$groupSelect.val());
                 this.model.setQueryString(qs);
                 this.model.fetch();
             },
-
-
-
-
-
-
-
-
-
-
-
-
 
             updateLinks: function (e) {
                 e.preventDefault();
@@ -95,18 +61,19 @@ define(function(require) {
                 window.location = "../" + href;
             },
 
-
-
-
-
             render: function () {
                 this.$el.empty().append(this.loadingTemplate()).append(this.saleSectionTemplate());
 
-                this.reportLoader.layout();
+                this.reportLoader.layout(this.model.get('report').report_meta_data);
                 this._renderSales();
                 this.reportLoader.loadWidgets(this.model.queryString);
 
                 return this;
+            },
+
+            reportComplete: function() {
+                this.$(".loading-section").remove();
+                this.$(".breakdown-link").on("click", this.updateLinks);
             },
 
             _renderSales: function () {

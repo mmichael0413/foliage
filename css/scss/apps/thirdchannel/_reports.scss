@@ -3,30 +3,11 @@
 // General Styles
 
 .report {
-  h2 {
-    margin-bottom: 0;
-  }
-
-  p {
-    padding: 0.5em 0;
-    margin: 0;
-  }
-
   .section > h2, .subsection  h3 {
       text-transform: uppercase;
       border-bottom: 1px solid $light-blue;
       padding: 0.25em 0.85em 0.5em 0.85em;
       margin-bottom: 0.5em;
-  }
-
-  .widget {
-    page-break-inside: avoid;
-    padding: 1em;
-
-    &.small-padding {
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
-    }
   }
 
   .border-top {
@@ -35,6 +16,27 @@
 }
 
 // Styles for Widgets
+
+.widgets {
+  h2 {
+    margin-bottom: 0;
+  }
+
+  p {
+    padding: 0.5em 0;
+    margin: 0;
+  }
+}
+
+.widget {
+  page-break-inside: avoid;
+  padding: 1em;
+
+  &.small-padding {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+}
 
 .overview {
   &:first-child {
