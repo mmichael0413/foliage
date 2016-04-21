@@ -1,0 +1,52 @@
+.labs {
+
+  &.header {
+    .center {
+      text-align: center;
+    }
+  }
+
+  &.split {
+    .left {
+      .section {
+        margin-right: 1em;
+      }
+    }
+
+    .right {
+      .section {
+        margin-left: 1em;
+      }
+    }
+  }
+
+  .widgets {
+    div[class*="col-"] {
+      width: 100%;
+    }
+
+    .overview {
+      > div {
+        text-align: left;
+        border: none;
+      }
+
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+
+
+.roi-control {
+
+  .instruction {
+    margin-bottom: 1em;
+  }
+
+  .multi-select {
+    height: 6em;
+  }
+}

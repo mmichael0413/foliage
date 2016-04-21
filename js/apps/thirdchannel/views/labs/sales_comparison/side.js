@@ -1,37 +1,41 @@
 /*globals Chart */
 define(function(require) {
-    var Backbone = require('backbone'),
-        context = require('context'),
-        $ = require('jquery'),
+    var $ = require('jquery'),
         _ = require('underscore'),
+        Backbone = require('backbone'),
+        Handlebars = require('handlebars'),
+        HandlebarsTemplates = require('handlebarsTemplates'),
+
+
+
+        context = require('context'),
         templates = require('handlebarsTemplates'),
-        WidgetView = require('thirdchannel/views/reports/index/widget'),
         d3 = require('d3'),
         c3 = require('c3'),
-        AsyncReportLoader = require('thirdchannel/views/reports/async_report'),
 
-        SalesCompareModel = Backbone.Model.extend({
-            // fetch the meta sales information into this model, then use that to render the meta and sales tabs
-         setQueryString: function (qs) {
-             this.queryString = qs;
-         },
-         url: function () {
-             return context.links.salesCompare.side +"?" + this.queryString;
-         }
-        }),
+
+
+        AsyncReportLoader = require('thirdchannel/views/reports/async_report'),
+        SalesCompareModel = require('thirdchannel/models/labs/sales_comparison'),
+        WidgetView = require('thirdchannel/views/reports/index/widget');
+
+
 
         /**
          * Responsible for the rendering of one 'side's' worth of widgets
          *  
          * @type View
          */
-        SalesCompareSideView = {
+        return Backbone.View.extend({
+            loadingTemplate: HandlebarsTemplates['thirdchannel/loading'],
+            saleSectionTemplate: HandlebarsTemplates['thirdchannel/labs/sales_comparison/sales_section'],
+            retailSalesTemplate: HandlebarsTemplates['thirdchannel/labs/sales_comparison/retail_sales'],
             initialize: function (opts) {
                 if (opts.groupSelect === undefined) {
                     throw "No 'groupSelect' parameter set in constructor for the SalesCompareSideView";
                 }
                 this.$groupSelect = opts.groupSelect;
-                this.loadingHTML = this.$el.html();
+
                 this.model = new SalesCompareModel();
                 this._attachAsyncLoader();
 
@@ -61,26 +65,24 @@ define(function(require) {
 
 
             applyFilter: function (qs) {
-                this.$el.html(this.loadingHTML);
+                this.$el.html(this.loadingTemplate());
                 this.currentQS = qs;
                 qs = qs + "&group=" + encodeURIComponent(this.$groupSelect.val());
                 this.model.setQueryString(qs);
-                this.model.fetch()
-                 .fail(function () {
-                        
-                 });
+                this.model.fetch();
             },
 
-            render: function () {
-                //this.$el.empty();
-                this.$el.html(this.loadingHTML);
-                this.reportLoader.layout();
-                this._renderMeta();
-                this._renderSales();
-                this.reportLoader.loadWidgets(this.model.queryString);
-                
-                return this;
-            },
+
+
+
+
+
+
+
+
+
+
+
 
             updateLinks: function (e) {
                 e.preventDefault();
@@ -93,57 +95,73 @@ define(function(require) {
                 window.location = "../" + href;
             },
 
-            _renderMeta: function () {
-                var data = {
-                    config: {},
 
-                    results: this.model.get('report').totalStores,
-                    title: "Stores"
-                };
-                var $overview = this.$el.find('.subsection').first().find('.widgets');
-                $overview.append(templates['thirdchannel/reports/widgets/metric_icon'](data));
+
+
+
+            render: function () {
+                this.$el.empty().append(this.loadingTemplate()).append(this.saleSectionTemplate());
+
+                this.reportLoader.layout();
+                this._renderSales();
+                this.reportLoader.loadWidgets(this.model.queryString);
+
+                return this;
             },
 
             _renderSales: function () {
-                this.$el.find('.sales-graph .widgets').append(templates['thirdchannel/labs/sales_compare/retail_sales']({sales: this.model.get('report').sales}));
-                this._buildChart(this.model.get('report').sales);
+                var $widgets = this.$('.sales-overview .widgets');
+                $widgets.append(this._buildStoreTotal());
+                $widgets.append(this._buildAverageRetailSalesChart());
             },
 
-            _buildChart: function (list) {
+            _buildStoreTotal: function () {
+                var data = {
+                    config: {},
+                    display_type: 5,
+                    results: this.model.get('report').totalStores,
+                    title: "Stores with Sales Data"
+                };
+                return new WidgetView(data).render().$el;
+            },
+
+            _buildAverageRetailSalesChart: function () {
+
+                var list = this.model.get('report').sales;
                 this._formatCents(list);
-                var self = this;
 
                 var labels = ['x'].concat(_.map(list, function (item) { return item.date; })),
-                    points = ['Average Retail Sales ($USD)'].concat(_.map(list, function (item) { return item.rawUSD; }));
-
-
-                this.chart = c3.generate(
-                    {
-                        data: {
-                            x: 'x',
-                            columns: [labels, points],
-                            type: 'area-spline'
+                    points = ['Average Retail Sales'].concat(_.map(list, function (item) { return item.rawUSD; })),
+                    data = {
+                        config: {
+                            y_prefix: '$'
                         },
-                        axis: {
-                            x: {
-                                type: 'timeseries',
-                                tick: {
-                                    fit: true,
-                                    centered: true,
-                                    multiline: false,
-                                    format: '%-m/%-d/%y'
+                        display_type: 14,
+                        results: {
+                            data: {
+                                x: 'x',
+                                columns: [labels, points],
+                                type: 'area-spline'
+                            },
+                            axis: {
+                                x: {
+                                    type: 'timeseries',
+                                    tick: {
+                                        fit: true,
+                                        centered: true,
+                                        multiline: false,
+                                        format: '%-m/%-d/%y'
+                                    }
                                 }
+                            },
+                            padding: {
+                                top: 25,
+                                right: 25
                             }
                         },
-                        padding: {
-                            top: 25,
-                            right: 25
-                        },
-                        bindto: self.$('.retail-sales')[0],
-                        color: {
-                            pattern: context.defaultLegendColors
-                        }
-                    });
+                        title: ""
+                    };
+                return new WidgetView(data).render().$el;
             },
 
             _formatCents: function (list) {
@@ -153,6 +171,5 @@ define(function(require) {
                     list[i].rawUSD = Math.round(list[i].cents/100);
                 }
             }
-        };
-    return Backbone.View.extend(SalesCompareSideView);
+        });
 });

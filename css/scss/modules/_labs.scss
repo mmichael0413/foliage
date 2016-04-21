@@ -10,25 +10,8 @@
 		margin: 0;
 	}
 
-	&.header {
-		.center {
-			text-align: center;
-		}	
-	}
 	
-	&.split {
-		.left {
-			.section {
-				margin-right: 1em;
-			}
-		}
-		.right {
-			.section {
-				margin-left: 1em;
-			}
-		}
-		
-	}
+
 	&.section {
 		.header {
 			border-bottom: 1px solid $main-background;
@@ -44,35 +27,5 @@
 		.leading-dots {
 			background: none;
 		}
-	}
-
-	.sales-summary {
-		// todo: replace this with custom widgets; these are all override hacks
-		.widget, .overview {
-			display: inline-block;
-			width: 33%;
-			padding: 0;
-		}
-		
-		.overview {
-			width:33%;
-
-			&:last-child {
-				padding: 0;
-			}
-			&>div {
-				padding: 0;
-				border: 0;
-				text-align: initial;
-			}
-		}
-	}
-}
-.roi-control {
-	.instruction {
-		margin-bottom: 1em;
-	}
-	.multi-select {
-		height: 6em;
 	}
 }

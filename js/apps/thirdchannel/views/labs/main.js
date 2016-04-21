@@ -4,27 +4,20 @@ define(function(require) {
 		_ = require('underscore'),
 		$ = require('jquery'),
 		Filter = require('thirdchannel/views/filter/main'),
-		SalesCompareSideView = require('thirdchannel/views/labs/sc/side'),
-		TopSkusView = require('thirdchannel/views/labs/top_skus');
+		SalesComparisonSideView = require('thirdchannel/views/labs/sales_comparison/side');
 
 
 	var main = {
 		init: function () {
 			_.extend(context, window.bootstrap);
 		},
-
-		skus: function () {
-			this.init();
-			Filter.init();
-			new TopSkusView();
-		},
 		
 		salesCompare: function () {
 			this.init();
 			Filter.init();
 
-			new SalesCompareSideView({el: $(".left"), groupSelect: $("#firstCompare")});
-			new SalesCompareSideView({el: $(".right"), groupSelect: $("#secondCompare")});
+			new SalesComparisonSideView({el: $(".left"), groupSelect: $("#firstCompare")});
+			new SalesComparisonSideView({el: $(".right"), groupSelect: $("#secondCompare")});
 			context.trigger('filter:request');
 		}
 	};
