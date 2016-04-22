@@ -6,13 +6,13 @@
         <i class="ic {{ percentageChangeIcon salesChange }}"></i> {{formatPercentageChange salesChange}}
     </span>
 </td>
-<td>
-    <span class="percentage-change {{ percentageChangeClass accountSalesChange }}">
-        <i class="ic {{ percentageChangeIcon accountSalesChange }}"></i> {{formatPercentageChange accountSalesChange}}
-    </span>
-</td>
 <td>{{formatSalesValue unitsSold}}</td>
 <td>{{formatSalesValue unitsSoldLY}}</td>
+<td>
+    <span class="percentage-change {{ percentageChangeClass unitsSoldChange }}">
+        {{formatPercentageChange unitsSoldChange }}
+    </span>
+</td>
 <td>{{formatSalesValue unitsOnHand}}</td>
 <td>{{formatSalesValue unitsOnHandLY}}</td>
 <td>
