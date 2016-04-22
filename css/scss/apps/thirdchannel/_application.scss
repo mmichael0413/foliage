@@ -34,12 +34,118 @@ form.application-form {
   float:right;
 }
 
-.opportunity-content {
-  .opportunity-header {
+#opportunities-page {
+  .banner-image {
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .full-width-banner {
+    vertical-align: middle;
+    position: relative;
+    height: 100vh;
+    min-height: 20em;
+    width: 100%;
+    color: #FAFAFA;
+    text-align: center;
+    margin-top: -4em;
+  }
+
+  .program-header {
+    color: #FAFAFA;
+    vertical-align: middle;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 45%;
+    -moz-transform: translate(0, -55%);
+    -webkit-transform: translate(0, -55%);
+    transform: translate(0, -55%);
+  }
+
+  .program-header h1 {
+    margin: .5em auto;
+    font-size: 2em;
+    line-height: 1em;
+  }
+
+  button.btn.solid.primary,
+  .btn.solid.solid {
+    max-width: 16em;
+    min-width: 8em;
+    padding: 1em;
+    margin: auto;
+    text-align: center;
+    display: block;
+  }
+
+  @include swa-small {
+    .card-container {
+      margin: 3% 6%;
+    }
+  }
+
+  @include swb-small {
+    .card-container {
+      margin: 3% 0%;
+    }
+  }
+
+
+  .full-width {
+    width: 100%;
+  }
+
+  .full-section-controls {
+    margin-top: -5em;
+    bottom: 0;
+  }
+
+  .read-more-circle {
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 2.5em 2.5em 0 0;
+    -moz-border-radius: 2.5em 2.5em 0 0;
+    -webkit-border-radius: 2.5em 2.5em 0 0;
+    bottom: 0;
+    background-color: #FAFAFA;
+    margin: auto;
+  }
+
+  .read-more-circle > .ic_down {
+    line-height: 2.5rem;
+  }
+
+  #opportunity-apply-now-btn-bottom,
+  .program-quick-description{
     margin-bottom: 1em;
   }
 
+  .opportunity-image {
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+    margin: 1em auto;
+    padding: 1rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+  }
+
+  #opportunity-apply-now-heading {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .opportunity-image-label {
+    text-align: center;
+  }
+}
+
+.opportunity-content {
   text-align: justify;
+  padding: 1em;
   @include swb-small() {
     text-align: left;
   }
@@ -49,17 +155,12 @@ form.application-form {
   .opportunity-logo {
     float: right;
     img {
-
       max-height: $img-height;
       margin-right: 1em;
     }
   }
-  .opportunity-logo, .program {
-    display: inline-block;
-    vertical-align: bottom;
-  }
-
 }
+
 
 .opportunity-link {
   height: 15rem;

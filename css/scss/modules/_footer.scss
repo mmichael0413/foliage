@@ -1,0 +1,43 @@
+.page-footer {
+  background-color: $slate;
+  min-height: 200px;
+  padding: 2em 1.1em 2em 1.1em;
+  font-size: 0.9em;
+
+  .about {
+    color: #f6f6f5;
+    .about-header {
+      font-weight: bold;
+      color: #9fb2bf;
+    }
+
+    .social-icons {
+      font-size: 3em;
+      margin-bottom: 1em;
+      a {
+        color: #ffffff;
+      }
+    }
+    .request-btn {
+      width: 90%;
+      padding: 0.5em;
+      text-align: center;
+    }
+  }
+  .footer-links {
+    margin-top: 2em;
+    margin-bottom: 10px;
+
+    a, span {
+      margin-left: 2em;
+      margin-right: 2em;
+      color: #9fb2bf;
+    }
+
+    a:first-child, span:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+
