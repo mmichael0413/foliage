@@ -9,5 +9,8 @@
     @include swb-medium {
       width: 100%;
     }
+    + a {
+      margin-left: 1.5em;
+    }
   }
 }
