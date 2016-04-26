@@ -2523,117 +2523,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return buffer;
   });
 
-this["ThirdChannel"]["templates"]["thirdchannel/labs/sales_compare/meta"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/labs/sales_comparison/sales_section"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
-
-
-  buffer += "<section class=\"section labs pure-g\">\n	<div class=\"col-1-6\">\n		<p class=\"statistic\">";
-  if (helper = helpers.totalStores) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.totalStores); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n		<p>Stores</p>\n	</div>\n\n	<div class=\"col-1-3\">\n		<p class=\"statistic\">";
-  if (helper = helpers.states) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.states); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n		<p>States Covered</p>\n	</div>\n\n	<div class=\"col-1-2\">\n		<p class=\"statistic\">";
-  if (helper = helpers.averageUnits) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.averageUnits); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n		<p>Avg. Units on Display</p>\n	</div>	\n</section>\n";
-  return buffer;
-  });
-
-this["ThirdChannel"]["templates"]["thirdchannel/labs/sales_compare/retail_sales"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, options, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
-
-function program1(depth0,data) {
   
-  
-  return "\n";
-  }
-
-function program3(depth0,data) {
-  
-  
-  return "\n<p class=\"col-1-1\">No Sales numbers found for this date range</p>\n";
-  }
-
-  buffer += "<div class=\"retail-sales\">	</div>\n";
-  options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
-  if (helper = helpers.sales) { stack1 = helper.call(depth0, options); }
-  else { helper = (depth0 && depth0.sales); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.sales) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n\n";
-  return buffer;
-  });
-
-this["ThirdChannel"]["templates"]["thirdchannel/labs/sales_compare/widget_section"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<section class=\"section labs\">\n\n	<h2 class=\"header\">";
-  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</h2>\n	<div class=\"widgets\"></div>\n</section>";
-  return buffer;
-  });
-
-this["ThirdChannel"]["templates"]["thirdchannel/labs/top_sku_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this, blockHelperMissing=helpers.blockHelperMissing;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, helper, options;
-  buffer += "\n\n	<div class=\"col-1-6\">\n		<p>"
-    + escapeExpression((helper = helpers.index_inc || (depth0 && depth0.index_inc),options={hash:{},data:data},helper ? helper.call(depth0, (data == null || data === false ? data : data.index), options) : helperMissing.call(depth0, "index_inc", (data == null || data === false ? data : data.index), options)))
-    + ") ";
-  if (helper = helpers.sku) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.sku); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>No Description Available</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>";
-  if (helper = helpers.usd) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.usd); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>";
-  if (helper = helpers.unitsSold) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.unitsSold); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p>";
-  if (helper = helpers.unitsOnHand) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.unitsOnHand); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</p>\n	</div>\n\n	<div class=\"col-1-6\">\n		<p><a href=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.links)),stack1 == null || stack1 === false ? stack1 : stack1.emptyStores)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">";
-  if (helper = helpers.emptyStores) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.emptyStores); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</a></p>\n	</div>\n";
-  return buffer;
-  }
-
-function program3(depth0,data) {
-  
-  
-  return "\n	<p class=\"col-1-1\">No Report Data found for this date range</p>\n\n";
-  }
-
-  options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
-  if (helper = helpers.skus) { stack1 = helper.call(depth0, options); }
-  else { helper = (depth0 && depth0.skus); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.skus) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}); }
-  if(stack1 || stack1 === 0) { return stack1; }
-  else { return ''; }
+  return "<div class=\"section sales-overview\">\n    <h2>Sales Overview</h2>\n    <div class=\"subsections\">\n        <div class=\"subsection\">\n            <div class=\"widgets\"></div>\n        </div>\n    </div>\n</div>";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/loading"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -2642,7 +2538,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"section loading-section\">\n    <div class=\"loading\">\n        <div class=\"fa fa-spin ic_processing\"></div> Loading...\n    </div>\n</div>\n\n";
+  return "<div class=\"section loading-section\">\n    <div class=\"loading\">\n        <div class=\"ic ic-spin ic_processing\"></div> Loading...\n    </div>\n</div>\n\n";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/loading_icon"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
