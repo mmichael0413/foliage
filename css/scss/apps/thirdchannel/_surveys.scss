@@ -6,7 +6,12 @@
     h1 {
       margin-bottom: 0.5em;
     }
+    h2 {
+      font-size: 1em;
+      margin-bottom: 0;
+    }
     p {
+      margin-top: 0;
       margin-bottom: 1em;
     }
   }
@@ -92,3 +97,13 @@
   }
 }
 
+@include swb-medium {
+  .survey {
+    .header {
+      h1, h2, p {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}

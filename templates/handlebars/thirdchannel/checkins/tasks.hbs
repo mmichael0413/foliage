@@ -2,13 +2,14 @@
 {{#each job.tasks}}
 	<div class="task pure-g">
 		<div class="col-3-4">
-			{{name}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}
+			{{name}}{{#if category_name}} - {{category_name}}{{/if}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}
 		</div>
 		<form accept-charset="UTF-8" action="{{form_url}}" method="post" class="checkin-action col-1-4">
 			<input id="store_uuid" name="store_uuid" type="hidden" value="{{../store.id}}">
 			<input id="survey_uuid" name="survey_uuid" type="hidden" value="{{surveyUUID}}">
 			<input id="task_uuid" name="task_uuid" type="hidden" value="{{uuid}}">
 			<input id="job_uuid" name="job_uuid" type="hidden" value="{{../job.uuid}}">
+			<input id="category_id" name="category_id" type="hidden" value="{{category_id}}">
 			<input name="authenticity_token" value="{{../auth_token}}" type="hidden">
 			<button class="checkin-form-btn btn primary" name="commit">
 				{{#if submission}}
