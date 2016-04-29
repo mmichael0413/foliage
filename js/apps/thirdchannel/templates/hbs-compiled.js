@@ -3796,6 +3796,69 @@ function program1(depth0,data) {
   return buffer;
   });
 
+this["ThirdChannel"]["templates"]["thirdchannel/scheduled_visits/scheduled_visit"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n		<div class=\"col-1-12\"><a href=\"";
+  if (helper = helpers.checkin_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.checkin_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">"
+    + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.date_completed), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.date_completed), options)))
+    + "</a></div>\n	";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "", helper, options;
+  buffer += "\n		<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.date_completed), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.date_completed), options)))
+    + "</div>\n	";
+  return buffer;
+  }
+
+  buffer += "<div class=\"pure-g\">\n	<div class=\"col-3-12\"><a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.link)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a>, "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.locality)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + ", "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.administrativeAreaLevel1)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\n	<div class=\"col-3-12\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\n	<div class=\"col-1-12\">"
+    + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.date_scheduled), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.date_scheduled), options)))
+    + "</div>\n	";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.checkin_url), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n	<div class=\"col-2-12\"><a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.link)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a></div>\n	<div class=\"col-2-12\"><a href=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.fmr)),stack1 == null || stack1 === false ? stack1 : stack1.link)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.fmr)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a></div>\n</div>\n";
+  return buffer;
+  });
+
+this["ThirdChannel"]["templates"]["thirdchannel/scheduled_visits/scheduled_visits"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"pure-g header\">\n	<h3 class=\"col-3-12\">Store</h3>\n	<h3 class=\"col-3-12\">Job</h3>\n	<h3 class=\"col-1-12\">Scheduled</h3>\n	<h3 class=\"col-1-12\">Completed</h3>\n	<h3 class=\"col-2-12\">Agent</h3>\n	<h3 class=\"col-2-12\">FMR</h3>\n</div>\n";
+  });
+
 this["ThirdChannel"]["templates"]["thirdchannel/store_profile/alerts_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};

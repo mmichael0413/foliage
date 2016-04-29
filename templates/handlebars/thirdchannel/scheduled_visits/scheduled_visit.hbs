@@ -1,0 +1,12 @@
+<div class="pure-g">
+	<div class="col-3-12"><a href="{{store.link}}">{{store.name}}</a>, {{store.locality}}, {{store.administrativeAreaLevel1}}</div>
+	<div class="col-3-12">{{job.name}}</div>
+	<div class="col-1-12">{{localizedUTCDate date_scheduled}}</div>
+	{{#if checkin_url}}
+		<div class="col-1-12"><a href="{{checkin_url}}">{{localizedUTCDate date_completed}}</a></div>
+	{{else}}
+		<div class="col-1-12">{{localizedUTCDate date_completed}}</div>
+	{{/if}}
+	<div class="col-2-12"><a href="{{person.link}}">{{person.name}}</a></div>
+	<div class="col-2-12"><a href="{{fmr.link}}">{{fmr.name}}</a></div>
+</div>
