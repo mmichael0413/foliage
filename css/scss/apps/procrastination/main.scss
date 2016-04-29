@@ -67,8 +67,7 @@ div.schedule-layout {
   }
 }
 
-
-.save-schedule, .set-schedule {
+.set-schedule {
   margin-top: 1em;
 }
 
@@ -100,4 +99,8 @@ div.schedule-layout {
 
 .blackout-date {
   background: gray !important;
+}
+
+.instructions {
+	margin-bottom: 1em;
 }

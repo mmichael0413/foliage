@@ -1,44 +1,42 @@
 define(function (require) {
-    var jquery = require('jquery'),
-        Backbone = require('backbone'),
-        jqueryui = require('jquery-ui'),
-        HandlebarsTemplates = require('handlebarsTemplates'),
-        context = require('context'),
+        var Backbone = require('backbone'),
         FullCalendar = require('fullcalendar'),
-        ScheduleCollection = require('procrastination/collections/schedule/upcoming/create_schedules'),
-        StoreSchedule = require('procrastination/views/schedule/upcoming/show'),
+        HandlebarsTemplates = require('handlebarsTemplates'),
         ListView = require('procrastination/views/schedule/current/main'),
-        ControlsView = require('procrastination/views/schedule/upcoming/controls'),
+        ScheduleCollection = require('procrastination/collections/schedule/upcoming/create_schedules'),
+        StateMachine = require('state-machine'),
+        StoreSchedule = require('procrastination/views/schedule/upcoming/show'),
+        context = require('context'),
+        blockui = require('blockui'),
+        jquery = require('jquery'),
+        jqueryui = require('jquery-ui'),
         moment = require('moment');
-
     return Backbone.View.extend({
         el: '.main-content',
         template: HandlebarsTemplates['procrastination/schedule/upcoming/visit_label'],
-
+        events: {
+            "click #restrictions-toggle": "toggleRestrictions",
+        },
         initialize: function (options) {
-            var self = this;
-            this.unscheduledCount = 0;
-            //this.list = new ListView({aggregateId: options.aggregateId, showComplete: false}).setElement('.scheduled .schedules');
-            this.listenTo(this, 'fullcalendar.date.create', this.updateSchedule);
-            this.listenTo(this, 'fullcalendar.refresh', this.refreshCalendar);
-            this.listenTo(context, 'blackoutdates:show', this.showBlackoutDates);
-            this.listenTo(context, 'blackoutdates:hide', this.hideBlackoutDates);
-
+            this.unlockButton = $('.unlock-button');
+            this.unlockButton.click(this.unlockSchedule.bind(this));
+            this.listenTo(context, 'blackoutdates:show', this.showInvalidDates);
+            this.listenTo(context, 'blackoutdates:hide', this.hideInvalidDates);
             this.aggregate = options.aggregateId;
             this.collection = new ScheduleCollection(null, {
                 aggregateId: this.aggregate,
                 personId: context.personId,
                 programId: context.programId
             });
-
+            var self = this;
             this.calendar = this.$('#calendar').fullCalendar({
-                droppable: context.isScheduleUnlocked,
-                eventLimit: 2,
                 defaultDate: context.startDate,
+                droppable: true,
+                eventLimit: 4,
                 header: {
-                    left: 'title',
-                    center: '',
-                    right: ''
+                    left: null,
+                    center: 'title',
+                    right: null,
                 },
                 events: function (start, end, timezone, callback) {
                     var events = [];
@@ -48,7 +46,6 @@ define(function (require) {
                     });
                     _.each(scheduledVisits, function (model) {
                         var label = self.template(model.attributes);
-
                         events.push({
                             id: model.get('id'),
                             title: model.get('storeName'),
@@ -59,17 +56,15 @@ define(function (require) {
                             editable: model.get('dateCompleted') ? false : true
                         });
                     });
-
                     callback(events);
                 },
-                drop: function (date, event, object) {
-                    // Called when a visit on the left sidebar gets dropped onto the calendar
-                    var id = $(object.helper.context).find('.visit').val();
-                    self.trigger('fullcalendar.date.create', date, id);
+                eventReceive: function (event) {
+                    // Called when an unscheduled visit from the sidebar is dropped onto the calendar
+                    self.updateSchedule(event.start, event.id, function(){ self.calendar.fullCalendar('removeEvents', event.id); });
                 },
-                eventDrop: function(event, delta, revertFunc) {
+                eventDrop: function(event, delta, revertFunc, jsEvent, ui, view){
                     // Called when a visit already on the calendar gets moved to another day
-                    self.trigger('fullcalendar.date.create', event.start, event.id);
+                    self.updateSchedule(event.start, event.id, revertFunc);
                 },
                 eventDragStart: function(event, jsEvent, ui, view) {
                     context.trigger('blackoutdates:show', event.id);
@@ -78,138 +73,125 @@ define(function (require) {
                     context.trigger('blackoutdates:hide');
                 },
                 eventMouseover: function (calEvent, jsEvent) {
-                    var tooltip = '<div class="tooltipevent">' + calEvent.store + '</div>';
-                    $("body").append(tooltip);
-                    $(this).mouseover(function (e) {
-                        $(this).css('z-index', 10000);
-                        $('.tooltipevent').fadeIn('500');
-                        $('.tooltipevent').fadeTo('10', 1.9);
-                    }).mousemove(function (e) {
-                        $('.tooltipevent').css('top', e.pageY + 10);
-                        $('.tooltipevent').css('left', e.pageX + 20);
-                    });
+                    self.$('.schedule-container .unscheduled .instructions').fadeTo(100,0.5);
+                    var $restrictions = self.$('#restrictions');
+                    if($restrictions.is(":visible")){
+                        $restrictions.fadeTo(100,0.5);
+                    }
+                    self.$('.tooltipevent').hide().html(calEvent.store).fadeIn(100);
                 },
                 eventMouseout: function (calEvent, jsEvent) {
-                    $(this).css('z-index', 8);
-                    $('.tooltipevent').remove();
+                    self.$('.schedule-container .unscheduled .instructions').fadeTo(100,1);
+                    var $restrictions = self.$('#restrictions');
+                    if($restrictions.is(":visible")){
+                        $restrictions.fadeTo(100,1);
+                    }
+                    self.$('.tooltipevent').fadeOut(100);
                 },
                 aspectRatio: 1
             });
-
             this.listenTo(this.collection, 'destroy', this.destroy);
-           // this.listenTo(this.list.collection, 'destroy', this.destroy);
-            this.renderControls();
+            var initialState;
+            this.fetch(function(){
+                if(!context.isScheduleUnlocked){
+                    initialState = 'finalized';
+                } else if(this.groupedJobsByScheduled().unscheduled.length > 0){
+                    initialState = 'unlocked';
+                } else {
+                    initialState = 'readyToFinalize';
+                }
+                this.fsm = StateMachine.create({
+                    initial: { state: initialState, event: 'init', defer: true },
+                    events: [
+                        { name: 'unlock', from: 'finalized', to: 'readyToFinalize' },
+                        { name: 'finalize', from: 'readyToFinalize', to: 'finalized' },
+                        { name: 'schedulingComplete', from: 'unlocked', to: 'readyToFinalize' },
+                    ],
+                    callbacks: {
+                        onfinalized: function(){
+                            this.unlockButton.removeClass("hide");
+                            this.render();
+                        }.bind(this),
+                        onreadyToFinalize: function(){
+                            this.unlockButton.addClass("hide");
+                            this.render();
+                        }.bind(this),
+                        onunlocked: function(){
+                            this.unlockButton.addClass("hide");
+                            this.render();
+                        }.bind(this),
+                    },
+                });
+                this.fsm.init();
+            }.bind(this));
             return this;
-        },
-        events: {
         },
         render: function () {
-            var self = this;
-
-            if(this.collection.models.length === 0) {
-                this.$('.schedule-container .unscheduled .schedules').html('No visits are required for this month.');
-                return this;
-            }
-
-            // if collection has models, render them
             this.$('.schedule-container .unscheduled .schedules').html('');
-           // this.$('.schedule-container .scheduled .schedules').html('');
-
-            this.groupedSchedules = this.collection.groupBy(function(schedule){
-                return schedule.get('dateScheduled') !== null;
-            });
-
-            // if(this.groupedSchedules.true !== undefined) {
-            //     this.list.$el.html('');
-            //     this.list.fetch();
-            // }
-
-            if(this.groupedSchedules.false !== undefined) {
-                this.unscheduledCount = this.groupedSchedules.false.length;
-
-                _.each(this.groupedSchedules.false, function (model) {
-                    self.renderModel(model);
-                });
-                $('.unscheduled .count').html(this.unscheduledCount);
-            } else {
-                $('.unscheduled .count').html('');
-                this.$('.schedule-container .unscheduled .schedules').html(HandlebarsTemplates['procrastination/schedule/upcoming/info']({isScheduleUnlocked: context.isScheduleUnlocked}));
-            }
-
-            this.refreshCalendar();
-
+            _.each(this.groupedJobsByScheduled().unscheduled, this.renderModel);
+            this.$('.schedule-container .unscheduled .instructions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/' + this.fsm.current]());
+            this.$('.finalize-button').click(this.finalizeSchedule.bind(this));
+            this.$('#restrictions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/restrictions'](context));
             return this;
         },
-
-        renderControls: function() {
-            var controls = new ControlsView({collection: this.collection});
-
-            this.$el.append(controls.render().el);
-        },
-
-        refreshCalendar: function () {
-            this.calendar.fullCalendar('refetchEvents');
-        },
-
-        fetch: function () {
-            var self = this;
+        fetch: function (callback) {
             this.collection.fetch().done(function (collection) {
-                self.collection.generateLegend();
-                self.render();
-            });
+                this.collection.generateLegend();
+                if(callback){
+                    callback();
+                }
+                this.calendar.fullCalendar('refetchEvents');
+                this.$el.unblock();
+            }.bind(this)).fail(function(e,a,b){
+                alert("Your schedule could not be loaded due to a network error. Please try again.");
+            }.bind(this));
         },
-
         renderModel: function (model) {
             var storeSchedule = new StoreSchedule({
                 model: model
             });
-
             if(model.get('dateScheduled') === null) {
                 this.$('.schedule-container .unscheduled .schedules').append(storeSchedule.render().el);
             } else {
                 this.$('.schedule-container .scheduled .schedules').append(storeSchedule.render().el);
             }
-
         },
-
-        updateSchedule: function (date, id) {
-            var self = this;
+        updateSchedule: function (date, id, revertFunc) {
             var model = this.collection.findWhere({id:id});
-            var now = moment.utc().startOf('day');
-            if(!context.isScheduleUnlocked) {
-                self.trigger('fullcalendar.refresh');
-                alert("Your schedule is locked. Please contact your Program Manager if you need to reschedule a visit.");
-            } else if(date < now) {
-                self.trigger('fullcalendar.refresh');
-                alert("You cannot schedule a visit in the past.");
-            } else if (model) {
-                date = moment.utc(date).format("YYYY-MM-DD");
-                var blackouts = _.chain(model.attributes.jobDetails.blackoutDates).map(function(dateString){
-                    return moment.utc(dateString).format("YYYY-MM-DD");
-                });
-                if(blackouts.contains(date).value()) {
-                    self.trigger('fullcalendar.refresh');
-                    alert("That job cannot be scheduled for " + now.format("l") + ". A blackout exists for that job on that date.");
-                } else {
-                    model.set('dateScheduled', date);
-                    model.save(model.attributes).done(function() {
-                        self.refreshCalendar();
-                        self.render();
-                    });
+            date = moment.utc(date).format("YYYY-MM-DD");
+            this.$el.block({message: null});
+            model.set('dateScheduled', date);
+            model.save(model.attributes, {wait: true}).done(function(jsonResponse){
+                if(!jsonResponse.allow_schedule){
+                    alert("You cannot make that scheduling change because " + jsonResponse.reason);
+                    revertFunc();
+                    this.$el.unblock();
                 }
-            }
+                this.fetch(function(){
+                    if(this.fsm.is('unlocked') && this.groupedJobsByScheduled().unscheduled.length === 0){
+                        this.fsm.schedulingComplete();
+                    }
+                    this.render();
+                }.bind(this));
+            }.bind(this)).fail(function(){
+                revertFunc(); // need to reset calendar state to avoid making the user think it worked
+                alert("Your schedule may not have been completed due to a network error. Please reload the page.");
+                this.$el.unblock();
+            }.bind(this));
         },
-        showBlackoutDates: function(id){
-            var model = this.collection.findWhere({id:id});
-            var dates = model.attributes.jobDetails.blackoutDates;
-            _.chain(dates).map(function(date){
-                return moment.utc(date).format("YYYY-MM-DD"); // format used in fullcalendar data-date
-            }).each(function(dateString){
-                $("#calendar").find(".fc-day[data-date=" + dateString + "]").addClass("blackout-date");
-            });
+        showInvalidDates: function(id){
+            $.getJSON(context.base_url + '/schedule/' + context.aggregateId + '/invalidSchedulingDates/' + id).done(function (dates) {
+                _.each(dates, function(date){
+                    var dateString = moment.utc(date).format("YYYY-MM-DD"); // format used in fullcalendar data-date
+                    this.calendar.find(".fc-day[data-date=" + dateString + "]").addClass("blackout-date");
+                }.bind(this));
+                var model = this.collection.findWhere({id:id});
+                // Endpoint doesn't check dates in the past, or outside of the cycle, so we mark them here
+                this.calendar.find(".fc-past").add(".fc-other-month").addClass("blackout-date");
+            }.bind(this));
         },
-        hideBlackoutDates: function(){
-            $("#calendar").find(".blackout-date").removeClass("blackout-date");
+        hideInvalidDates: function(){
+            this.calendar.find(".blackout-date").removeClass("blackout-date");
         },
         destroy: function(model) {
             var m = this.collection.get(model.id);
@@ -217,8 +199,55 @@ define(function (require) {
                 this.collection.remove(m);
                 context.trigger('estimate:changed');
             }
-            this.fetch();
-        }
-
+            this.fetch(function(){this.render();}.bind(this));
+        },
+        groupedJobsByScheduled: function(){
+            var grouped = this.collection.groupBy(function(schedule){
+                return schedule.get('dateScheduled') !== null;
+            });
+            return {
+                scheduled: grouped.true || [],
+                unscheduled: grouped.false || [],
+            };
+        },
+        finalizeSchedule: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.$el.block({message:null});
+            if(confirm('Are you sure you want to finalize your schedule?')) {
+                $.post(context.base_url + '/schedule/lock/' + context.aggregateId).done(function (response) {
+                    var jsonResponse = JSON.parse(response);
+                    if(jsonResponse){
+                        this.fsm.finalize();
+                    } else {
+                        alert("Your schedule could not be finalized because you have unscheduled visits");
+                    }
+                }.bind(this)).fail(function () {
+                    alert("Your schedule may not have been finalized due to a network error. Please reload the page.");
+                }.bind(this)).always(function() {
+                    this.$el.unblock();
+                }.bind(this));
+            } else {
+                this.$el.unblock();
+            }
+        },
+        unlockSchedule: function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            this.unlockButton.prop("disabled",true);
+            this.$el.block({message:null});
+            $.post(context.base_url + '/schedule/unlock/' + context.aggregateId).done(function () {
+                this.fsm.unlock();
+            }.bind(this)).fail(function () {
+                alert("This schedule may not have been unlocked due to a network error. Please reload the page.");
+            }.bind(this)).always(function() {
+                this.$el.unblock();
+                this.unlockButton.prop("disabled",false);
+            }.bind(this));
+        },
+        toggleRestrictions: function(e){
+            e.preventDefault();
+            this.$('#restrictions').slideToggle(200);
+        },
     });
 });

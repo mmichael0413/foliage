@@ -232,7 +232,10 @@ function program11(depth0,data) {
   buffer += "\n</select>\n\n<div class=\"tasks-container\"></div>\n<button class=\"btn add-task\">Add Task</button>\n\n<div class=\"form-group\">\n    <label for=\"edit-blackout-schemes\" class=\"label\">Blackout Schemes: </label>\n    <select id=\"edit-blackout-schemes\" name=\"blackoutSchemes\" class=\"input\" multiple data-placeholder=\"Assign Blackout Schemes\">\n        ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.programBlackoutSchemes), {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </select>\n</div>";
+  buffer += "\n    </select>\n</div>\n\n<div class=\"form-group\">\n    <label for=\"allowRescheduling\" class=\"\">Allow Job to be Rescheduled After Schedule Finalization?</label>\n    <input type=\"checkbox\" class=\"input-checkbox\" name=\"allowRescheduling\" id=\"allowRescheduling\" ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.allowRescheduling), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "/>\n</div>\n";
   return buffer;
   }));
 
@@ -842,6 +845,12 @@ function program15(depth0,data) {
   return "\n		<div class=\"col-1-1\">No blackout schemes assigned.</div>\n	";
   }
 
+function program17(depth0,data) {
+  
+  
+  return "not";
+  }
+
   buffer += "<div class=\"header pure-g\">\n	<h3 class=\"col-6-12\"><a href=\"";
   if (helper = helpers.editUrl) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.editUrl); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -905,7 +914,14 @@ function program15(depth0,data) {
     + " pure-g\">\n	<h3 class=\"col-1-1\">Blackout Schemes:</h3>\n	";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.blackoutSchemes), {hash:{},inverse:self.program(15, program15, data),fn:self.program(12, program12, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>\n";
+  buffer += "\n</div>\n\n<div class=\"allow-rescheduling-container allow-rescheduling-container";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " pure-g\">\n	<div class=\"col-1-1\">This job <b>can";
+  stack1 = helpers.unless.call(depth0, (depth0 && depth0.allowRescheduling), {hash:{},inverse:self.noop,fn:self.program(17, program17, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</b> be rescheduled after schedule finalization.</div>\n</div>\n";
   return buffer;
   });
 

@@ -41,7 +41,7 @@ define(function(require) {
             },
 
             createSchedule: function(customerSlug, programSlug, personId, aggregateId) {
-                new SetSchedule({aggregateId: aggregateId}).fetch();
+                new SetSchedule({aggregateId: aggregateId});
                 var model = new CostEstimate({id: aggregateId});
                 new CostEstimateView({model: model}).fetch();
             },
