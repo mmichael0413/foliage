@@ -30,10 +30,12 @@ define(function(require) {
             var $tasksContainer = this.$el.find('.tasks-container');
             var $frequenciesContainer = this.$el.find('.frequencies-container');
             var $blackoutSchemesContainer = this.$el.find('.blackout-schemes-container');
+            var $allowReschedulingContainer = this.$el.find('.allow-rescheduling-container');
             //JV
             $tasksContainer.hide();
             $frequenciesContainer.hide();
             $blackoutSchemesContainer.hide();
+            $allowReschedulingContainer.hide();
 
             //Add header to top of list only once
             $($tasksContainer).html(Templates['oddjob/tasks/header']);
