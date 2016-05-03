@@ -28,6 +28,17 @@
     .pure-g:first-child {
         padding:1em;
     }
+  }
 
+  .task-list {
+    .task {
+      button {
+        margin-left: 0.5rem;
+
+        @include swb-medium {
+          margin-top: 0;
+        }
+      }
+    }
   }
 }

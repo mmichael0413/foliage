@@ -1715,49 +1715,6 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return "<h2>Create your account</h2>\n<form action=\"/register\" id=\"registration-form\" method=\"post\">\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"first_name\" class=\"large dark low-margin\" placeholder=\"First Name\" name=\"user[first_name\"]>\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"last_name\" class=\"large dark low-margin\" placeholder=\"Last Name\" name=\"user[last_name]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"email\" class=\"large dark low-margin\" placeholder=\"Email\" name=\"user[email]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"password\" id=\"password\" class=\"large dark low-margin\" placeholder=\"Password (8 Character Minimum)\" name=\"user[password]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"password\" id=\"password_confirmation\" class=\"large dark low-margin\" placeholder=\"Confirm Password\" name=\"user[password_confirmation]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"zip\" class=\"large dark low-margin\" placeholder=\"Zip Code\" name=\"user[zip]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n\n\n    <span class=\"tooltip\">\n            <span class=\"visible-xs\"><i class=\"fa fa-info-circle\"></i></span> <span class=\"hidden-xs\">Why are we asking for your zip code?</span>\n        </span>\n\n    <div class=\"tip\">\n        This allows us to match you with current opportunities in your geographic location.\n    </div>\n\n\n    <div class=\"clear\"></div>\n    <div class=\"form-group\">\n        <button class=\"btn primary solid\">Create Account</button>\n    </div>\n</form>\n\n<div>Already have an account? <a href=\"#\" class=\"login\">Login here.</a></div>\n";
   });
 
-this["ThirdChannel"]["templates"]["thirdchannel/checkins/choose"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
-
-
-  buffer += "<div class=\"pure-g item\">\n    <div class=\"col-3-4 col-md-1\">\n        ";
-  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\n    </div>\n    <div class=\"col-1-4 col-md-1 general-actions\">\n        <form accept-charset=\"UTF-8\" action=\"";
-  if (helper = helpers.checkin_choose_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.checkin_choose_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\" method=\"post\">\n            <input id=\"customer_store_uuid\" name=\"customer_store_uuid\" type=\"hidden\" value=\"";
-  if (helper = helpers.customer_store_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.customer_store_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\">\n            <input id=\"survey_id\" name=\"survey_id\" type=\"hidden\" value=\"";
-  if (helper = helpers.survey_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.survey_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\">\n            <input id=\"type\" name=\"type\" type=\"hidden\" value=\"";
-  if (helper = helpers.checkin_type) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.checkin_type); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\">\n            <input name=\"authenticity_token\" value=\"";
-  if (helper = helpers.authenticity_token) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.authenticity_token); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\" type=\"hidden\">\n            <button class=\"btn primary\" name=\"commit\"><i class=\"ic fa ic_location\"></i><span>Continue</span></button>\n        </form>\n    </div>\n</div>\n";
-  return buffer;
-  });
-
-this["ThirdChannel"]["templates"]["thirdchannel/checkins/chooses"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  
-
-
-  return "<div class=\"section data-section\">\n    <h3>Checkins</h3>\n    <div class=\"surveys body\"></div>\n</div>";
-  });
-
 this["ThirdChannel"]["templates"]["thirdchannel/checkins/date"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -1873,15 +1830,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return "<div class=\"pure-g\">\n    <h3 class=\"col-1-2 col-md-1\">YOUR STORES</h3>\n    <h3 class=\"col-1-2 minor-m\">LAST CHECKIN</h3>\n</div>\n";
   });
 
-this["ThirdChannel"]["templates"]["thirdchannel/checkins/tasks"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["ThirdChannel"]["templates"]["thirdchannel/checkins/tasks"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data,depth1) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data,depth1) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n	<div class=\"task pure-g\">\n		<div class=\"col-3-4\">\n			";
+  buffer += "\n	<div class=\"task pure-g\">\n		<div class=\"col-4-5\">\n			";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1);
@@ -1896,7 +1853,7 @@ function program1(depth0,data,depth1) {
   if (helper = helpers.form_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.form_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" method=\"post\" class=\"checkin-action col-1-4\">\n			<input id=\"store_uuid\" name=\"store_uuid\" type=\"hidden\" value=\""
+    + "\" method=\"post\" class=\"checkin-action col-1-5\">\n			<input id=\"store_uuid\" name=\"store_uuid\" type=\"hidden\" value=\""
     + escapeExpression(((stack1 = ((stack1 = (depth1 && depth1.store)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">\n			<input id=\"survey_uuid\" name=\"survey_uuid\" type=\"hidden\" value=\"";
   if (helper = helpers.surveyUUID) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -1953,10 +1910,84 @@ function program8(depth0,data) {
   return "\n					<i class=\"ic ic_location\"></i>\n					<span>Start</span>\n				";
   }
 
-  buffer += "<span class=\"subtle-instruction\">* Required During Visit</span>\n";
-  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.tasks), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
+function program10(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n            <optgroup label=\"";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n            ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.tasks), {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
+  buffer += "\n            </optgroup>\n        ";
+  return buffer;
+  }
+function program11(depth0,data) {
+  
+  var buffer = "", stack1, helper, options;
+  buffer += "\n                <option data-surveyUUID=\"";
+  if (helper = helpers.surveyUUID) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.surveyUUID); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" data-taskUUID=\"";
+  if (helper = helpers.uuid) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.uuid); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" data-categoryID=\"";
+  if (helper = helpers.category_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.category_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n                    ";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1);
+  options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}
+  if (helper = helpers.required) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.required); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.required) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n                </option>\n            ";
+  return buffer;
+  }
+
+function program13(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n                <i class=\"ic ic_edit\"></i>\n                <span>";
+  if (helper = helpers.submission) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.submission); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n            ";
+  return buffer;
+  }
+
+function program15(depth0,data) {
+  
+  
+  return "\n                <i class=\"ic ic_location\"></i>\n                <span>Start</span>\n            ";
+  }
+
+  buffer += "<span class=\"subtle-instruction\">* Required During Visit</span>\n";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.required_tasks), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n\n<form accept-charset=\"UTF-8\" action=\"";
+  if (helper = helpers.form_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.form_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" method=\"post\" class=\"checkin-action task grouped pure-g\">\n    <input id=\"store_uuid\" name=\"store_uuid\" type=\"hidden\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth1 && depth1.store)),stack1 == null || stack1 === false ? stack1 : stack1.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n    <input id=\"job_uuid\" name=\"job_uuid\" type=\"hidden\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth1 && depth1.job)),stack1 == null || stack1 === false ? stack1 : stack1.uuid)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n    <input name=\"authenticity_token\" value=\""
+    + escapeExpression(((stack1 = (depth1 && depth1.auth_token)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" type=\"hidden\">\n    <div class=\"col-4-5\">\n        <select name=\"selectedTask\">\n        ";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.grouped_tasks), {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </select>\n    </div>\n    <div class=\"col-1-5\">\n        <button class=\"checkin-form-btn btn primary\" name=\"commit\">\n            ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.submission), {hash:{},inverse:self.program(15, program15, data),fn:self.program(13, program13, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </button>\n    </div>\n</form>";
   return buffer;
   });
 
