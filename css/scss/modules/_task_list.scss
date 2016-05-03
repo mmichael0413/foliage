@@ -12,9 +12,6 @@
 
   .pure-g:first-child {
       text-transform: none;
-      a {
-        color: $link-color;
-      }
   }
 
   .job-list {
@@ -27,6 +24,10 @@
 
     .pure-g:first-child {
         padding:1em;
+    }
+
+    a.toggle {
+      color: $link-color;
     }
   }
 
