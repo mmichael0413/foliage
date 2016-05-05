@@ -1,12 +1,17 @@
 <div class="pure-g">
-	<div class="col-3-12"><a href="{{store.link}}">{{store.name}}</a>, {{store.locality}}, {{store.administrativeAreaLevel1}}</div>
-	<div class="col-3-12">{{job.name}}</div>
-	<div class="col-1-12">{{localizedUTCDate date_scheduled}}</div>
-	{{#if checkin_url}}
-		<div class="col-1-12"><a href="{{checkin_url}}">{{localizedUTCDate date_completed}}</a></div>
+	<div class="col-3-12">
+		<a href="{{program_store_link}}">
+			{{program_store_account}} {{program_store_tag}}
+		</a>,
+		{{program_store_locality}},
+		{{program_store_administrative_area_level_1}}</div>
+	<div class="col-3-12">{{job_name}}</div>
+	<div class="col-1-12">{{localizedUTCDate visit_date_scheduled}}</div>
+	{{#if checkin_link}}
+		<div class="col-1-12"><a href="{{checkin_link}}">{{localizedUTCDate visit_date_completed}}</a></div>
 	{{else}}
-		<div class="col-1-12">{{localizedUTCDate date_completed}}</div>
+		<div class="col-1-12">{{localizedUTCDate visit_date_completed}}</div>
 	{{/if}}
-	<div class="col-2-12"><a href="{{person.link}}">{{person.name}}</a></div>
-	<div class="col-2-12"><a href="{{fmr.link}}">{{fmr.name}}</a></div>
+	<div class="col-2-12"><a href="{{agent_link}}">{{agent_name}}</a></div>
+	<div class="col-2-12"><a href="{{fmr_link}}">{{fmr_name}}</a></div>
 </div>

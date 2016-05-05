@@ -3805,11 +3805,11 @@ function program1(depth0,data) {
   
   var buffer = "", stack1, helper, options;
   buffer += "\n		<div class=\"col-1-12\"><a href=\"";
-  if (helper = helpers.checkin_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.checkin_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if (helper = helpers.checkin_link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.checkin_link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\">"
-    + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.date_completed), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.date_completed), options)))
+    + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.visit_date_completed), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.visit_date_completed), options)))
     + "</a></div>\n	";
   return buffer;
   }
@@ -3818,34 +3818,56 @@ function program3(depth0,data) {
   
   var buffer = "", helper, options;
   buffer += "\n		<div class=\"col-1-12\">"
-    + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.date_completed), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.date_completed), options)))
+    + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.visit_date_completed), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.visit_date_completed), options)))
     + "</div>\n	";
   return buffer;
   }
 
-  buffer += "<div class=\"pure-g\">\n	<div class=\"col-3-12\"><a href=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.link)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a>, "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.locality)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + ", "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.store)),stack1 == null || stack1 === false ? stack1 : stack1.administrativeAreaLevel1)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n	<div class=\"col-3-12\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+  buffer += "<div class=\"pure-g\">\n	<div class=\"col-3-12\">\n		<a href=\"";
+  if (helper = helpers.program_store_link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.program_store_link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n			";
+  if (helper = helpers.program_store_account) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.program_store_account); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " ";
+  if (helper = helpers.program_store_tag) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.program_store_tag); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\n		</a>,\n		";
+  if (helper = helpers.program_store_locality) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.program_store_locality); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ",\n		";
+  if (helper = helpers.program_store_administrative_area_level_1) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.program_store_administrative_area_level_1); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</div>\n	<div class=\"col-3-12\">";
+  if (helper = helpers.job_name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.job_name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
     + "</div>\n	<div class=\"col-1-12\">"
-    + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.date_scheduled), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.date_scheduled), options)))
+    + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.visit_date_scheduled), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.visit_date_scheduled), options)))
     + "</div>\n	";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.checkin_url), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.checkin_link), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n	<div class=\"col-2-12\"><a href=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.link)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a></div>\n	<div class=\"col-2-12\"><a href=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.fmr)),stack1 == null || stack1 === false ? stack1 : stack1.link)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.fmr)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+  buffer += "\n	<div class=\"col-2-12\"><a href=\"";
+  if (helper = helpers.agent_link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.agent_link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (helper = helpers.agent_name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.agent_name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</a></div>\n	<div class=\"col-2-12\"><a href=\"";
+  if (helper = helpers.fmr_link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.fmr_link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (helper = helpers.fmr_name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.fmr_name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
     + "</a></div>\n</div>\n";
   return buffer;
   });
