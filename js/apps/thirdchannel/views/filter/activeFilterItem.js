@@ -17,7 +17,6 @@ define(function(require) {
         },
 
         render: function () {
-
             this.$el.html(HandlebarsTemplates['thirdchannel/filter_active_item'](this.options));
             return this;
         },
@@ -30,8 +29,9 @@ define(function(require) {
         },
 
         clear: function () {
-
             context.trigger(this.options.param + ':filter:clear', this.options);
+            // todo: remove the above functionality and make it use the new event below.
+            context.trigger("filter:item:cleared", this.options);
             this.remove();
         },
         getQueryValue: function () {

@@ -8,6 +8,7 @@ define(function(require) {
         HiddenComponentView = require('thirdchannel/views/filter/hiddenComponent'),
         FilterableComponentView = require('thirdchannel/views/filter/filterableComponent'),
         ComponentView = require('thirdchannel/views/filter/component'),
+        FilterStore = require('thirdchannel/views/filter/filterStore'),
         SerializeObject = require('serializeObject'),
         helpers = require('helpers');
 
@@ -60,6 +61,9 @@ define(function(require) {
                 
                 return false;
             }
+            this.store = FilterStore;
+            this._registerStore(this.store);
+            
 
             shouldTrigger = this.renderFilterCollection(data.collection, qsHash);
 
@@ -105,6 +109,13 @@ define(function(require) {
                 // let my master know, yes.
                 context.trigger('filter:toggle');
             }
+        },
+
+        _registerStore: function (filterStore) {
+            if (!context.hasOwnProperty("stores")) {
+                context.stores = {};
+            }
+            context.stores.filter = filterStore;
         },
 
         render: function () {
