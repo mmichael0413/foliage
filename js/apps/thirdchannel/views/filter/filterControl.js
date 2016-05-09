@@ -141,6 +141,7 @@ define(function(require) {
                 view;
             filterCollection.each(function (filterModel) {
                 if (filterModel.get('name') !== undefined) {
+                    context.stores.filter.setFilterState(filterModel.get('name'), undefined);
                     view = self.selectComponentView(filterModel).render();
                     self.$el.append(view.$el);
                     self.components[view.filterParam] = view;

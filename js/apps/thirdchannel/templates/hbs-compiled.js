@@ -1942,6 +1942,8 @@ function program11(depth0,data) {
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1);
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.category_name), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
   options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}
   if (helper = helpers.required) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.required); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
@@ -1983,7 +1985,7 @@ function program15(depth0,data) {
   if (helper = helpers.auth_token) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.auth_token); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" type=\"hidden\">\n    <div class=\"col-4-5\">\n        <select name=\"selectedTask\" data-placeholder=\"Choose a task to complete\">\n            <optgroup>\n                <option></option>\n            </optgroup>\n        ";
+    + "\" type=\"hidden\">\n    <div class=\"col-4-5\">\n        <select name=\"selectedTask\" data-placeholder=\"Choose a task to complete\">\n            <optgroup>\n                <option value=\"\">Choose a task to complete</option>\n            </optgroup>\n        ";
   stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.grouped_tasks), {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </select>\n        <div class=\"error hide\">Please select a task to complete.</div>\n    </div>\n    <div class=\"col-1-5\">\n        <button class=\"btn primary\" name=\"commit\">\n            ";

@@ -76,9 +76,12 @@ define(function(require) {
             var show = true;
             _.forEach(this.visibilityOptions, function (visibilityData, filterParamName) {
                 // default to true if the filter name isn't even in the store (e.g. not on the page)
-                show = !context.stores.filter.has(filterParamName);
-                if (visibilityData.values.indexOf(context.stores.filter.getFilterState(filterParamName)) > -1) {
-                    show = true;
+                if (context.stores.filter.has(filterParamName)) {
+                    if (visibilityData.values.indexOf(context.stores.filter.getFilterState(filterParamName)) > -1) {
+                        show = true;
+                    } else {
+                        show = visibilityData.defaultvisibile;
+                    }
                     return;
                 }
             });
