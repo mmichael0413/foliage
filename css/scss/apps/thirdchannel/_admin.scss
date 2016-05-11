@@ -4,13 +4,17 @@
   }
 
   a {
+    div {
+      display: inline-block;
+    }
+    font-size: .9em;
     margin-bottom: 0.5rem;
+    margin-right: 1.25em;
 
     @include swb-medium {
+      display:block;
       width: 100%;
-    }
-    + a {
-      margin-left: 1.5em;
+      margin-bottom: 1em;
     }
   }
 }

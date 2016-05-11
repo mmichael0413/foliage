@@ -796,60 +796,45 @@ function program3(depth0,data) {
   return buffer;
   });
 
-this["procrastination"]["templates"]["procrastination/schedule/upcoming/controls"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["procrastination"]["templates"]["procrastination/schedule/upcoming/instructions/finalized"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, self=this;
+  
 
-function program1(depth0,data) {
-  
-  
-  return "\n<p class=\"bottom\">Once your schedule is finalized you will need to contact your Program Manager if you need to reschedule a visit.</p>\n";
-  }
 
-function program3(depth0,data) {
-  
-  
-  return "\n    <a href=\"#\" class=\"set-schedule btn primary\">Finalize Schedule</a>\n";
-  }
+  return "<h2>Your schedule is finalized</h2>\n<p>\n	You may be able to make limited adjustments to your schedule at this time.\n	If you will not be able to make one of your scheduled visits, please contact a program manager.\n</p>\n";
+  });
 
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.showButton), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.showButton), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
+this["procrastination"]["templates"]["procrastination/schedule/upcoming/instructions/readyToFinalize"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<h2>Your schedule is ready to be finalized</h2>\n<p>\n	If you are satisfied with your schedule, finalize your schedule with the button below.\n	Otherwise, you may continue to adjust the schedule by dragging the jobs on the calendar.\n</p>\n<div>\n	<a href=\"#\" class=\"finalize-button btn primary\">Finalize Schedule</a>\n</div>\n\n";
+  });
+
+this["procrastination"]["templates"]["procrastination/schedule/upcoming/instructions/restrictions"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<ul>\n	<li>\n		Jobs cannot be rescheduled if they have already been completed\n	</li>\n	<li>\n		Jobs cannot be scheduled outside of the current month\n	</li>\n	<li>\n		Jobs cannot be scheduled for dates in the past\n	</li>\n	<li>\n		Some jobs may be prevented from being scheduled on certain dates\n	</li>\n	<li>\n		Some jobs cannot be rescheduled at all once the schedule is finalized\n	</li>\n	<li>\n		After the schedule is finalized, jobs can only be rescheduled within a limited window:\n		<ul>\n			<li>\n				Jobs can be rescheduled up to <b>"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.reschedulingWindow)),stack1 == null || stack1 === false ? stack1 : stack1.past)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</b> days before their original finalization date\n			</li>\n			<li>\n				Jobs can be rescheduled up to <b>"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.reschedulingWindow)),stack1 == null || stack1 === false ? stack1 : stack1.future)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</b> days after their original finalization date\n			</li>\n		</ul>\n	</li>\n</ul>\n";
   return buffer;
   });
 
-this["procrastination"]["templates"]["procrastination/schedule/upcoming/info"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var stack1, self=this;
-
-function program1(depth0,data) {
-  
-  
-  return "\n    <p>All visits have been scheduled. You can still update your schedule by dragging the visits on the calendar.</p>\n";
-  }
-
-function program3(depth0,data) {
-  
-  
-  return "\n    <p>Your schedule is locked. If you need to make changes, please contact your Program Manager.</p>\n";
-  }
-
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.isScheduleUnlocked), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { return stack1; }
-  else { return ''; }
-  });
-
-this["procrastination"]["templates"]["procrastination/schedule/upcoming/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+this["procrastination"]["templates"]["procrastination/schedule/upcoming/instructions/unlocked"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"clear\"><a href=\"#\" class=\"btn primary save-schedule\">Submit</a></div>";
+  return "<h2>Your schedule is unlocked</h2>\n<p>\n	Drag the jobs listed below onto the calendar to schedule them.\n	All of them must be scheduled before you can finalize your schedule.\n</p>\n";
   });
 
 this["procrastination"]["templates"]["procrastination/schedule/upcoming/visit"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
