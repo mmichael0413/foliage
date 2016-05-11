@@ -24,39 +24,42 @@
 	</div>
 {{/each}}
 
-<form accept-charset="UTF-8" action="{{job.form_url}}" method="post" class="task grouped pure-g">
-    <input name="store_uuid" type="hidden" value="{{store}}">
-    <input name="job_uuid" type="hidden" value="{{job.uuid}}">
-    <input name="survey_uuid" type="hidden">
-    <input name="task_uuid" type="hidden">
-    <input name="category_id" type="hidden">
-    <input name="authenticity_token" value="{{auth_token}}" type="hidden">
-    <div class="col-4-5">
-        <select name="selectedTask" data-placeholder="Choose a task to complete">
-            <optgroup>
-                <option value="">Choose a task to complete</option>
-            </optgroup>
-        {{#each job.grouped_tasks}}
-            <optgroup label="{{name}}">
-            {{#each tasks}}
-                <option data-survey="{{surveyUUID}}" data-task="{{uuid}}" data-category="{{category_id}}">
-                    {{name}}{{#if category_name}} - {{category_name}}{{/if}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}
-                </option>
-            {{/each}}
-            </optgroup>
-        {{/each}}
-        </select>
-        <div class="error hide">Please select a task to complete.</div>
-    </div>
-    <div class="col-1-5">
-        <button class="btn primary" name="commit">
-            {{#if submission}}
-                <i class="ic ic_edit"></i>
-                <span>{{submission}}</span>
-            {{else}}
-                <i class="ic ic_location"></i>
-                <span>Start</span>
-            {{/if}}
-        </button>
-    </div>
-</form>
+{{#if job.grouped_tasks.length}}
+    <form accept-charset="UTF-8" action="{{job.form_url}}" method="post" class="task grouped pure-g">
+        <input name="store_uuid" type="hidden" value="{{store}}">
+        <input name="job_uuid" type="hidden" value="{{job.uuid}}">
+        <input name="survey_uuid" type="hidden">
+        <input name="task_uuid" type="hidden">
+        <input name="category_id" type="hidden">
+        <input name="authenticity_token" value="{{auth_token}}" type="hidden">
+        <div class="col-4-5">
+            <select name="selectedTask" data-placeholder="Choose a task to complete">
+                <optgroup>
+                    <option value="">Choose a task to complete</option>
+                </optgroup>
+                {{#each job.grouped_tasks}}
+                    <optgroup label="{{name}}">
+                        {{#each tasks}}
+                            <option data-survey="{{surveyUUID}}" data-task="{{uuid}}" data-category="{{category_id}}">
+                                {{name}}{{#if category_name}} - {{category_name}}{{/if}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}
+                            </option>
+                        {{/each}}
+                    </optgroup>
+                {{/each}}
+            </select>
+            <div class="error hide">Please select a task to complete.</div>
+        </div>
+        <div class="col-1-5">
+            <button class="btn primary" name="commit">
+                {{#if submission}}
+                    <i class="ic ic_edit"></i>
+                    <span>{{submission}}</span>
+                {{else}}
+                    <i class="ic ic_location"></i>
+                    <span>Start</span>
+                {{/if}}
+            </button>
+        </div>
+    </form>
+{{/if}}
+

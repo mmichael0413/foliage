@@ -1833,7 +1833,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 this["ThirdChannel"]["templates"]["thirdchannel/checkins/tasks"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
 
 function program1(depth0,data,depth1) {
   
@@ -1913,20 +1913,44 @@ function program8(depth0,data) {
 function program10(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n            <optgroup label=\"";
-  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += "\n    <form accept-charset=\"UTF-8\" action=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.form_url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" method=\"post\" class=\"task grouped pure-g\">\n        <input name=\"store_uuid\" type=\"hidden\" value=\"";
+  if (helper = helpers.store) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.store); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n            ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.tasks), {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data});
+    + "\">\n        <input name=\"job_uuid\" type=\"hidden\" value=\""
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.uuid)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\">\n        <input name=\"survey_uuid\" type=\"hidden\">\n        <input name=\"task_uuid\" type=\"hidden\">\n        <input name=\"category_id\" type=\"hidden\">\n        <input name=\"authenticity_token\" value=\"";
+  if (helper = helpers.auth_token) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.auth_token); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" type=\"hidden\">\n        <div class=\"col-4-5\">\n            <select name=\"selectedTask\" data-placeholder=\"Choose a task to complete\">\n                <optgroup>\n                    <option value=\"\">Choose a task to complete</option>\n                </optgroup>\n                ";
+  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.grouped_tasks), {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            </optgroup>\n        ";
+  buffer += "\n            </select>\n            <div class=\"error hide\">Please select a task to complete.</div>\n        </div>\n        <div class=\"col-1-5\">\n            <button class=\"btn primary\" name=\"commit\">\n                ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.submission), {hash:{},inverse:self.program(16, program16, data),fn:self.program(14, program14, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </button>\n        </div>\n    </form>\n";
   return buffer;
   }
 function program11(depth0,data) {
   
+  var buffer = "", stack1, helper;
+  buffer += "\n                    <optgroup label=\"";
+  if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n                        ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.tasks), {hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n                    </optgroup>\n                ";
+  return buffer;
+  }
+function program12(depth0,data) {
+  
   var buffer = "", stack1, helper, options;
-  buffer += "\n                <option data-survey=\"";
+  buffer += "\n                            <option data-survey=\"";
   if (helper = helpers.surveyUUID) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.surveyUUID); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1938,7 +1962,7 @@ function program11(depth0,data) {
   if (helper = helpers.category_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.category_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n                    ";
+    + "\">\n                                ";
   if (helper = helpers.name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1);
@@ -1949,49 +1973,34 @@ function program11(depth0,data) {
   else { helper = (depth0 && depth0.required); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.required) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                </option>\n            ";
+  buffer += "\n                            </option>\n                        ";
   return buffer;
   }
 
-function program13(depth0,data) {
+function program14(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n                <i class=\"ic ic_edit\"></i>\n                <span>";
+  buffer += "\n                    <i class=\"ic ic_edit\"></i>\n                    <span>";
   if (helper = helpers.submission) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.submission); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</span>\n            ";
+    + "</span>\n                ";
   return buffer;
   }
 
-function program15(depth0,data) {
+function program16(depth0,data) {
   
   
-  return "\n                <i class=\"ic ic_location\"></i>\n                <span>Start</span>\n            ";
+  return "\n                    <i class=\"ic ic_location\"></i>\n                    <span>Start</span>\n                ";
   }
 
   buffer += "<span class=\"subtle-instruction\">* Required During Visit</span>\n";
   stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.required_tasks), {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n<form accept-charset=\"UTF-8\" action=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.form_url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" method=\"post\" class=\"task grouped pure-g\">\n    <input name=\"store_uuid\" type=\"hidden\" value=\"";
-  if (helper = helpers.store) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.store); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\">\n    <input name=\"job_uuid\" type=\"hidden\" value=\""
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.uuid)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n    <input name=\"survey_uuid\" type=\"hidden\">\n    <input name=\"task_uuid\" type=\"hidden\">\n    <input name=\"category_id\" type=\"hidden\">\n    <input name=\"authenticity_token\" value=\"";
-  if (helper = helpers.auth_token) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.auth_token); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\" type=\"hidden\">\n    <div class=\"col-4-5\">\n        <select name=\"selectedTask\" data-placeholder=\"Choose a task to complete\">\n            <optgroup>\n                <option value=\"\">Choose a task to complete</option>\n            </optgroup>\n        ";
-  stack1 = helpers.each.call(depth0, ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.grouped_tasks), {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data});
+  buffer += "\n\n";
+  stack1 = helpers['if'].call(depth0, ((stack1 = ((stack1 = (depth0 && depth0.job)),stack1 == null || stack1 === false ? stack1 : stack1.grouped_tasks)),stack1 == null || stack1 === false ? stack1 : stack1.length), {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </select>\n        <div class=\"error hide\">Please select a task to complete.</div>\n    </div>\n    <div class=\"col-1-5\">\n        <button class=\"btn primary\" name=\"commit\">\n            ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.submission), {hash:{},inverse:self.program(15, program15, data),fn:self.program(13, program13, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </button>\n    </div>\n</form>";
+  buffer += "\n\n";
   return buffer;
   });
 
