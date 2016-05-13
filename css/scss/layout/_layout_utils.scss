@@ -75,6 +75,16 @@
   vertical-align: top;
 }
 
+@include swb-large {
+  .visible-lg {
+    display: block;
+  }
+
+  .hidden-lg {
+    display:none !important;
+  }
+}
+
 @include swb-medium {
   .visible-md {
     display: block;
