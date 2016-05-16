@@ -11,10 +11,10 @@ define(function(require) {
             var taskList = new TaskList({model:{
                 job: this.model.job,
                 store: this.model.store,
-                auth_token: window.bootstrap.auth_token,
+                auth_token: window.bootstrap.auth_token
             }});
             this.subsection.append(taskList.render().el);
         },
-        rowTemplate: 'thirdchannel/checkins/job',
+        rowTemplate: 'thirdchannel/checkins/job'
     });
 });

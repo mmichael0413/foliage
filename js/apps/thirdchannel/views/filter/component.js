@@ -11,9 +11,11 @@ define(function(require) {
      * 
      */
     var component = {
+        className: "filter-component",
         templateName: 'thirdchannel/filters/list_component',
 
         openClassName: 'open',
+        visibilityOptions: {},
         /**
          * The Events that component responds to.
          * @type {Object}
@@ -29,15 +31,62 @@ define(function(require) {
             'click .clear-items-filter': 'clearFilterItems'
         },
 
-        render: function () {
-            // set up listeners for things to do with the filter param type (e.g. state)
-            // for the component
+        initialize: function (options) {            
+            this.model = options.model;
+            
+            this._configureVisibility();
+
             this.activeFilters = [];
             this.filterParam = this.model.get('name');
-            
             this.$el.html(handlebarsTemplates[this.templateName](this.model.toJSON()));
-            this.listenTo(context, this.filterParam +':filter:clear', this.restoreFilter);
+            this.listenTo(context, this.filterParam +':filter:clear', this.restoreFilter); 
+        },
+
+        render: function () {
+            if (this._visibilityCheck()) {
+                this.$el.html(handlebarsTemplates[this.templateName](this.model.toJSON()));    
+            } else {
+                this.$el.html("<div class='placeholder'></div>");
+            }
             return this;
+        },
+
+        _configureVisibility: function () {
+            this.visibilityOptions = this.model.get("visibility");
+
+            // set up listeners for things to do with the filter param type (e.g. state)
+            // for the component
+            // 
+            if (Object.keys(this.visibilityOptions).length > 0) {
+                var self = this;
+                _.forEach(this.visibilityOptions, function (visibilityData, key) {
+                    // check to see if filter is present on page
+                    self.listenTo(context, "filter:state:changed:" + key, function (event) {
+                        self.render();
+                    });
+                });
+            }
+        },
+
+        /**
+         * 
+         * @return {boolean} If true, the filter should render. If False, then no. 
+         */
+        _visibilityCheck: function () {
+            var show = true;
+            _.forEach(this.visibilityOptions, function (visibilityData, filterParamName) {
+                // default to true if the filter name isn't even in the store (e.g. not on the page)
+                if (context.stores.filter.has(filterParamName)) {
+                    if (visibilityData.values.indexOf(context.stores.filter.getFilterState(filterParamName)) > -1) {
+                        show = true;
+                    } else {
+                        show = visibilityData.defaultvisibile;
+                    }
+                    return;
+                }
+            });
+            return show;
+
         },
 
         /**
@@ -98,15 +147,15 @@ define(function(require) {
         },
 
         _addFilter: function (label, value) {
-            var view = new ActiveFilterItemView({
+            var filterItemData = {
                 param: this.filterParam,
-                label: label,
+                label: label.trim(),
                 value: value
-            }).render();
+            }, view = new ActiveFilterItemView(filterItemData).render();
 
             view.$el.appendTo(this.$('.filter-item'));
-            
             this.activeFilters.push(view);
+            context.trigger("filter:item:selected", filterItemData);
         },
 
         _buildFilterItemLink: function(value) {

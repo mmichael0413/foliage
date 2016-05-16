@@ -18,6 +18,7 @@ define(function (require) {
 
         initialize: function() {
             this._filterItems = _.debounce(_.bind(this.filterItems, this), 250);
+            FilterableComponent.__super__.initialize.apply(this, arguments);
         },
 
         handleFilterItems: function(e) {
