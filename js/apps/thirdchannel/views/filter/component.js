@@ -57,7 +57,7 @@ define(function(require) {
             // set up listeners for things to do with the filter param type (e.g. state)
             // for the component
             // 
-            if (Object.keys(this.visibilityOptions).length > 0) {
+            if (this.visibilityOptions && Object.keys(this.visibilityOptions).length > 0) {
                 var self = this;
                 _.forEach(this.visibilityOptions, function (visibilityData, key) {
                     // check to see if filter is present on page
