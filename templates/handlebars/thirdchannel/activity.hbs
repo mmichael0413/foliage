@@ -16,7 +16,7 @@
     {{/if}}
     <div class="activity">
         <div class="activity-meta">
-            <img src="{{user_image}}" alt="Images That Describes Me" class="user-image img-circle" onerror="this.src='{{user_image_error_url}}'"/>
+            {{> user_image user_image}}
 
             <div class="bar-body">
                 {{#if_eq type "Checkin"}}
