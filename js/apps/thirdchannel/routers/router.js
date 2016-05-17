@@ -37,9 +37,10 @@ define(function(require){
         DataClipsExportView = require('thirdchannel/views/exports/data_clips/main'),
         ProgramProfileView = require('erudition/views/profile/view_profile'),
         ProgramProfileEditView = require('erudition/views/profile/edit'),
+        programProfileSecurityView = require('erudition/views/profile/security'),
         ProfileStoreListView = require('thirdchannel/views/profiles/stores/list'),
         ApplicationView = require('thirdchannel/views/application/main'),
-        AdminView = require('thirdchannel/views/admin/flash'),
+        FlashView = require('thirdchannel/views/shared/flash'),
         LoginView = require('thirdchannel/views/authentication/login'),
         ContractView = require('thirdchannel/views/legal/contract');
 
@@ -48,6 +49,7 @@ define(function(require){
             'agents/opportunities/:program_id/applications/:id' : 'viewApplication',
             'agents/profile(/)' : 'programProfile',
             'agents/profile/edit(/)': 'programProfileEdit',
+            'agents/profile/security(/)': 'programProfileSecurity',
 
             'login' : 'login',
             'opportunities/:id': 'viewOpportunity',
@@ -57,6 +59,7 @@ define(function(require){
             'programs/:program_id/profiles/:user_id/activities' : 'programProfileActivity',
             'programs/:program_id/profiles/:user_id/stores': 'programProfileStores',
             'programs/:program_id/profiles/:user_id/edit': 'programProfileEdit',
+            'programs/:program_id/profiles/:user_id/security': 'programProfileSecurity',
             'programs/:program_id/checkins(/)' : 'checkinList',
             'programs/:program_id/checkins/:id(/)' : 'inProgress',
             'programs/:program_id/teams(/)': 'teams',
@@ -136,7 +139,7 @@ define(function(require){
         },
 
         adminView: function() {
-            new AdminView();
+            new FlashView();
         },
 
         checkinList: function (){
@@ -193,10 +196,17 @@ define(function(require){
 
         programProfile: function() {
             new ProgramProfileView().render();
+            new FlashView();
         },
 
         programProfileEdit: function () {
             new ProgramProfileEditView().render();
+            new FlashView();
+        },
+
+        programProfileSecurity: function () {
+            new programProfileSecurityView().render();
+            new FlashView();
         },
 
         programProfileActivity: function(programId, userId) {
@@ -277,7 +287,7 @@ define(function(require){
 
         dataClipsExports: function() {
             new DataClipsExportView().render();
-            new AdminView();
+            new FlashView();
         },
 
         viewApplication: function(programId, id) {

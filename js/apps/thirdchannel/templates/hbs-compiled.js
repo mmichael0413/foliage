@@ -636,7 +636,7 @@ function program1(depth0,data) {
   return "checked";
   }
 
-  buffer += "<div class=\"card\">\n    <div class=\"body\">\n        <label>Do you own a reliable car that you would be willing to drive to and from stores (if compensated)?</label>\n\n        <div class='radio-input-group bottom'>\n            <label class='radio'><input type='radio' name='ownsCar' value='Yes'\n                                        ";
+  buffer += "<div class=\"card\">\n    <div class=\"header\">Transportation</div>\n    <div class=\"body\">\n        <label>Do you own a reliable car that you would be willing to drive to and from stores (if compensated)?</label>\n\n        <div class='radio-input-group bottom'>\n            <label class='radio'><input type='radio' name='ownsCar' value='Yes'\n                                        ";
   stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.ownsCar), "Yes", options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.ownsCar), "Yes", options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "  data-rule-required=\"true\"/> Yes</label>\n            <label class='radio'><input type='radio' name='ownsCar' value='No'\n                                        ";
@@ -644,6 +644,15 @@ function program1(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "  data-rule-required=\"true\"/> No</label>\n        </div>\n    </div>\n</div>";
   return buffer;
+  }));
+
+Handlebars.registerPartial("password", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"card\">\n    <div class=\"header\">Change Password</div>\n    <div class=\"body password\">\n        <div><label for=\"current_password\">Enter your current password to change your password</label></div>\n        <input type=\"password\" id=\"current_password\" name=\"current_password\" placeholder=\"Current Password\"\n               data-rule-required=\"true\"/>\n\n        <div><label for=\"password\">Password</label></div>\n        <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Password (8 Characters Minimum)\"\n               data-rule-required=\"true\"/>\n\n        <div><label for=\"password_confirmation\">Confirm Password</label></div>\n        <input type=\"password\" id=\"password_confirmation\" name=\"password_confirmation\" placeholder=\"Confirm Password\"\n               data-rule-required=\"true\"/>\n    </div>\n</div>";
   }));
 
 Handlebars.registerPartial("paypal", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -833,7 +842,7 @@ function program4(depth0,data) {
   return buffer;
   }
 
-  buffer += "<div class=\"card\">\n    <div class=\"body\">\n        <label>Do/Did you attend college?</label>\n        <div class='radio-input-group spacer'>\n            <label class='radio'><input type='radio' name='attendedCollege' value='Yes' ";
+  buffer += "<div class=\"card\">\n    <div class=\"header\">Education</div>\n    <div class=\"body\">\n        <label>Do/Did you attend college?</label>\n        <div class='radio-input-group spacer'>\n            <label class='radio'><input type='radio' name='attendedCollege' value='Yes' ";
   stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data},helper ? helper.call(depth0, ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.attendedCollege), "Yes", options) : helperMissing.call(depth0, "if_eq", ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.attendedCollege), "Yes", options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "  data-rule-required=\"true\"/> Yes</label>\n            <div class=\"clear visible-xs\"></div>\n            <label class='radio'><input type='radio' name='attendedCollege' value='No' ";
@@ -4370,12 +4379,9 @@ function program1(depth0,data) {
 this["ThirdChannel"]["templates"]["erudition/profile/edit"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, helper, self=this, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<h1 class=\"subheader\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.person)),stack1 == null || stack1 === false ? stack1 : stack1.fullName)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</h1>\n<h2>Edit Profile</h2>\n\n";
   stack1 = self.invokePartial(partials.upload_form, 'upload_form', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n<form action=\"";
@@ -4432,6 +4438,31 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   else { helper = (depth0 && depth0.referer); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\" class=\"btn inverse\">Cancel</a>\n        <input type=\"submit\" class=\"btn primary submit\" value=\"Save\" data-input=\"false\"/>\n    </div>\n</form>\n\n";
+  return buffer;
+  });
+
+this["ThirdChannel"]["templates"]["erudition/profile/security"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+
+  buffer += "<form action=\"";
+  if (helper = helpers.saveUrl) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.saveUrl); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"profile-form\" method=\"post\">\n    ";
+  stack1 = self.invokePartial(partials.password, 'password', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n    <input name=\"authenticity_token\" value=\"";
+  if (helper = helpers.authToken) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.authToken); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" type=\"hidden\">\n\n    <div class=\"button-row\">\n        <a href=\"";
+  if (helper = helpers.referer) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.referer); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" class=\"btn inverse\">Cancel</a>\n        <input type=\"submit\" class=\"btn primary submit\" value=\"Save\" data-input=\"false\"/>\n    </div>\n</form>";
   return buffer;
   });
 
