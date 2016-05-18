@@ -3804,7 +3804,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper, options;
-  buffer += "\n		<div class=\"col-1-12\"><a href=\"";
+  buffer += "\n		<div class=\"col-2-12 scheduled-visit-cell\"><a href=\"";
   if (helper = helpers.checkin_link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.checkin_link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -3817,13 +3817,13 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", helper, options;
-  buffer += "\n		<div class=\"col-1-12\">"
+  buffer += "\n		<div class=\"col-2-12 scheduled-visit-cell\">"
     + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.visit_date_completed), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.visit_date_completed), options)))
     + "</div>\n	";
   return buffer;
   }
 
-  buffer += "<div class=\"pure-g\">\n	<div class=\"col-3-12\">\n		<a href=\"";
+  buffer += "<div class=\"pure-g scheduled-visit-row\">\n	<div class=\"col-2-12 scheduled-visit-cell\">\n		<a href=\"";
   if (helper = helpers.program_store_link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.program_store_link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -3835,24 +3835,24 @@ function program3(depth0,data) {
   if (helper = helpers.program_store_tag) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.program_store_tag); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\n		</a>,\n		";
+    + "\n		</a>\n		<div>\n			";
   if (helper = helpers.program_store_locality) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.program_store_locality); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + ",\n		";
+    + ",\n			";
   if (helper = helpers.program_store_administrative_area_level_1) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.program_store_administrative_area_level_1); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</div>\n	<div class=\"col-3-12\">";
+    + "\n		</div>\n	</div>\n	<div class=\"col-2-12 scheduled-visit-cell\">";
   if (helper = helpers.job_name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.job_name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</div>\n	<div class=\"col-1-12\">"
+    + "</div>\n	<div class=\"col-2-12 scheduled-visit-cell\">"
     + escapeExpression((helper = helpers.localizedUTCDate || (depth0 && depth0.localizedUTCDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.visit_date_scheduled), options) : helperMissing.call(depth0, "localizedUTCDate", (depth0 && depth0.visit_date_scheduled), options)))
     + "</div>\n	";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.checkin_link), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n	<div class=\"col-2-12\"><a href=\"";
+  buffer += "\n	<div class=\"col-2-12 scheduled-visit-cell\"><a href=\"";
   if (helper = helpers.agent_link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.agent_link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -3860,7 +3860,7 @@ function program3(depth0,data) {
   if (helper = helpers.agent_name) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.agent_name); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</a></div>\n	<div class=\"col-2-12\"><a href=\"";
+    + "</a></div>\n	<div class=\"col-2-12 scheduled-visit-cell\"><a href=\"";
   if (helper = helpers.fmr_link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.fmr_link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -3878,7 +3878,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"pure-g header\">\n	<h3 class=\"col-3-12\">Store</h3>\n	<h3 class=\"col-3-12\">Job</h3>\n	<h3 class=\"col-1-12\">Scheduled</h3>\n	<h3 class=\"col-1-12\">Completed</h3>\n	<h3 class=\"col-2-12\">Agent</h3>\n	<h3 class=\"col-2-12\">FMR</h3>\n</div>\n";
+  return "<div class=\"pure-g header\">\n	<h3 class=\"col-2-12 scheduled-visit-cell\">Store</h3>\n	<h3 class=\"col-2-12 scheduled-visit-cell\">Job</h3>\n	<h3 class=\"col-2-12 scheduled-visit-cell\">Scheduled</h3>\n	<h3 class=\"col-2-12 scheduled-visit-cell\">Completed</h3>\n	<h3 class=\"col-2-12 scheduled-visit-cell\">Agent</h3>\n	<h3 class=\"col-2-12 scheduled-visit-cell\">FMR</h3>\n</div>\n";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/store_profile/alerts_rows"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
