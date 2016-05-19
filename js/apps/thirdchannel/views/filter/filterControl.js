@@ -8,6 +8,7 @@ define(function(require) {
         HiddenComponentView = require('thirdchannel/views/filter/hiddenComponent'),
         FilterableComponentView = require('thirdchannel/views/filter/filterableComponent'),
         ComponentView = require('thirdchannel/views/filter/component'),
+        FilterStore = require('thirdchannel/views/filter/filterStore'),
         SerializeObject = require('serializeObject'),
         helpers = require('helpers');
 
@@ -60,6 +61,9 @@ define(function(require) {
                 
                 return false;
             }
+            this.store = FilterStore;
+            this._registerStore(this.store);
+            
 
             shouldTrigger = this.renderFilterCollection(data.collection, qsHash);
 
@@ -107,6 +111,13 @@ define(function(require) {
             }
         },
 
+        _registerStore: function (filterStore) {
+            if (!context.hasOwnProperty("stores")) {
+                context.stores = {};
+            }
+            context.stores.filter = filterStore;
+        },
+
         render: function () {
 
         },
@@ -130,6 +141,7 @@ define(function(require) {
                 view;
             filterCollection.each(function (filterModel) {
                 if (filterModel.get('name') !== undefined) {
+                    context.stores.filter.setFilterState(filterModel.get('name'), undefined);
                     view = self.selectComponentView(filterModel).render();
                     self.$el.append(view.$el);
                     self.components[view.filterParam] = view;

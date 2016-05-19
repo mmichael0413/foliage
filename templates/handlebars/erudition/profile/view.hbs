@@ -6,10 +6,7 @@
 {{/if}}
 
 <div class="page-heading">
-    <div>
-        <img class="user-image img-circle" onerror="this.src='/assets/user/missing.jpg'"
-             src="{{person.profileImage.small}}">
-    </div>
+    {{> user_image person.profileImage.small}}
     <div>
         <h1>{{person.fullName}}</h1>
         {{universityLabel}}

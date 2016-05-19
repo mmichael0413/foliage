@@ -17,7 +17,6 @@ define(function(require){
         StoreProfileSalesMain = require('thirdchannel/views/store_profile/sales/main'),
         SurveyView = require('thirdchannel/views/checkins/show/survey'),
         SurveyModel = require('thirdchannel/models/checkins/show/form'),
-        CheckinChooseView = require('thirdchannel/views/checkins/choose/show/main'),
         DashboardsAlertsSectionsView = require('thirdchannel/views/dashboards/alerts/index/sections'),
         DashboardsAlertsStoresView = require('thirdchannel/views/dashboards/alerts/show/stores'),
         DashboardsSpecialProjectsView = require('thirdchannel/views/dashboards/special_projects/main'),
@@ -71,7 +70,6 @@ define(function(require){
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
             'programs/:program_id/stores/:store_id/sales': 'storeProfileSales',
             'programs/:program_id/checkins/:checkin_id/submissions/:id': 'submission',
-            'programs/:program_id/checkins/choose/:id': 'selectCheckin',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
             'programs/:program_id/dashboards/special_projects/:special_project_id/stores': 'dashboardSpecialProjectStores',
@@ -229,10 +227,6 @@ define(function(require){
 
         submission: function(programId, checkinId, submissionId) {
             new SurveyView({model: new SurveyModel({programId: programId, checkinId: checkinId, submissionId: submissionId})}).render();
-        },
-
-        selectCheckin : function(programId, id) {
-            new CheckinChooseView({programId: programId, id: id}).render();
         },
 
         checkinReport: function(programId, id){

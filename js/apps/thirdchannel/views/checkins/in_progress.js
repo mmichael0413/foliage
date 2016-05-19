@@ -9,7 +9,7 @@ define(function(require){
                 var jobView = new JobView({model: {
                     job: job,
                     store: this.model.store.id,
-                    pre_expand: job.pre_expand,
+                    pre_expand: job.pre_expand
                 }});
                 this.$el.append(jobView.render().$el);
             }.bind(this));
