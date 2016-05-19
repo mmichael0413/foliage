@@ -8,13 +8,15 @@ define(function (require) {
     require('jquery-validate');
 
     var Backbone = require('backbone'),
-        context = require('context'),
-        zipCodeUSRegex = /^\d{5}(-\d{4})?$/,
-        postalCodeCARegex = /^[ABCEGHJKLMNPRSTVXY]\d[A-Z] \d[A-Z]\d$/;
+        context = require('context');
 
     return Backbone.View.extend({
         validateRegistrationForm: function () {
             $.validator.addMethod("validateZip", function (value, element) {
+                // Validate with regexes from jquery validation 1.15.0
+                // I could not figure out how to call these directly on the element and OR the results
+                var zipCodeUSRegex = /^\d{5}(-\d{4})?$/;
+                var postalCodeCARegex = /^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ] *\d[ABCEGHJKLMNPRSTVWXYZ]\d$/i;
                 var valid = zipCodeUSRegex.test(value) || postalCodeCARegex.test(value);
                 var data = {address: value};
                 $.ajax({
