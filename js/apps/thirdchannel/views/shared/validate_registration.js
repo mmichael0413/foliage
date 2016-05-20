@@ -42,7 +42,7 @@ define(function (require) {
                 });
 
                 return valid;
-            }, "Please enter a valid US ZIP code or Canadian postal code.");
+            }, "Please enter a valid ZIP/Postal code");
 
             $.validator.addMethod("validateEmail", function (value, element) {
                 var valid = false;
