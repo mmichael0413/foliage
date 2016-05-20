@@ -1719,7 +1719,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<h2>Create your account</h2>\n<form action=\"/register\" id=\"registration-form\" method=\"post\">\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"first_name\" class=\"large dark low-margin\" placeholder=\"First Name\" name=\"user[first_name\"]>\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"last_name\" class=\"large dark low-margin\" placeholder=\"Last Name\" name=\"user[last_name]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"email\" class=\"large dark low-margin\" placeholder=\"Email\" name=\"user[email]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"password\" id=\"password\" class=\"large dark low-margin\" placeholder=\"Password (8 Character Minimum)\" name=\"user[password]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"password\" id=\"password_confirmation\" class=\"large dark low-margin\" placeholder=\"Confirm Password\" name=\"user[password_confirmation]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"zip\" class=\"large dark low-margin\" placeholder=\"Zip Code\" name=\"user[zip]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n\n\n    <span class=\"tooltip\">\n            <span class=\"visible-xs\"><i class=\"fa fa-info-circle\"></i></span> <span class=\"hidden-xs\">Why are we asking for your zip code?</span>\n        </span>\n\n    <div class=\"tip\">\n        This allows us to match you with current opportunities in your geographic location.\n    </div>\n\n\n    <div class=\"clear\"></div>\n    <div class=\"form-group\">\n        <button class=\"btn primary solid\">Create Account</button>\n    </div>\n</form>\n\n<div>Already have an account? <a href=\"#\" class=\"login\">Login here.</a></div>\n";
+  return "<h2>Create your account</h2>\n<form action=\"/register\" id=\"registration-form\" method=\"post\">\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"first_name\" class=\"large dark low-margin\" placeholder=\"First Name\" name=\"user[first_name\"]>\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"last_name\" class=\"large dark low-margin\" placeholder=\"Last Name\" name=\"user[last_name]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"email\" class=\"large dark low-margin\" placeholder=\"Email\" name=\"user[email]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"password\" id=\"password\" class=\"large dark low-margin\" placeholder=\"Password (8 Character Minimum)\" name=\"user[password]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"password\" id=\"password_confirmation\" class=\"large dark low-margin\" placeholder=\"Confirm Password\" name=\"user[password_confirmation]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n    <div class=\"form-group\">\n        <input type=\"text\" id=\"zip\" class=\"large dark low-margin\" placeholder=\"ZIP/Postal Code\" name=\"user[zip]\">\n        <span class=\"error-message\" style=\"display: none;\"></span>\n    </div>\n\n\n    <span class=\"tooltip\">\n            <span class=\"visible-xs\"><i class=\"fa fa-info-circle\"></i></span> <span class=\"hidden-xs\">Why are we asking for your ZIP/postal code?</span>\n        </span>\n\n    <div class=\"tip\">\n        This allows us to match you with current opportunities in your geographic location.\n    </div>\n\n\n    <div class=\"clear\"></div>\n    <div class=\"form-group\">\n        <button class=\"btn primary solid\">Create Account</button>\n    </div>\n</form>\n\n<div>Already have an account? <a href=\"#\" class=\"login\">Login here.</a></div>\n";
   });
 
 this["ThirdChannel"]["templates"]["thirdchannel/checkins/date"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -3228,6 +3228,25 @@ function program1(depth0,data) {
   return "\n            <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\" target=\"_blank\">View Breakdown</a>\n        ";
   }
 
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n                <div class=\"legend-item\" data-chart-id=\"";
+  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n                    <span class=\"legend-box\" style=\"background-color: ";
+  if (helper = helpers.color) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.color); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"></span>\n                    ";
+  if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\n                </div>\n            ";
+  return buffer;
+  }
+
   buffer += "<div class=\"widget "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.widget_class)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">\n    <p>";
@@ -3237,7 +3256,10 @@ function program1(depth0,data) {
     + "</p>\n    <div>\n        ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_view_list), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n    <div class=\"chart donut-chart\"></div>\n</div>";
+  buffer += "\n    </div>\n    <div class=\"donut pure-g\">\n        <div class=\"col-md-1 col-1-2\">\n            <div class=\"chart donut-chart\"></div>\n        </div>\n        <div class=\"col-md-1 col-1-2 legend\">\n            ";
+  stack1 = helpers.each.call(depth0, ((stack1 = ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.legend)),stack1 == null || stack1 === false ? stack1 : stack1.items), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        </div>\n    </div>\n</div>";
   return buffer;
   });
 
@@ -3683,32 +3705,34 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  return "<a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\" target=\"_blank\">";
+  return "\n        <a href=\"#\" class=\"breakdown-link\" tag=\"View Breakdown\" target=\"_blank\">\n        ";
   }
 
 function program3(depth0,data) {
   
   
-  return "</a>";
+  return "\n        </a>\n        ";
   }
 
-  buffer += "<div class=\"widget small-padding resolution-row "
+  buffer += "<div class=\"widget small-padding pure-g resolution-row "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.config)),stack1 == null || stack1 === false ? stack1 : stack1.widget_class)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\"><div class=\"col-1-4\">";
+    + "\">\n    <div class=\"col-md-1 col-1-4\">\n        ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_view_list), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n        ";
   if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1);
+  buffer += escapeExpression(stack1)
+    + "\n        ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_view_list), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</div><div class=\"col-1-4\">"
+  buffer += "\n    </div>\n    <div class=\"col-md-1 col-1-4\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.occurrences)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div><div class=\"col-1-4\">"
+    + "</div>\n    <div class=\"col-md-1 col-1-4\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.resolutions)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div><div class=\"col-1-4\">"
+    + "</div>\n    <div class=\"col-md-1 col-1-4\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.results)),stack1 == null || stack1 === false ? stack1 : stack1.remaining)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div></div>\n\n";
+    + "</div>\n</div>\n\n";
   return buffer;
   });
 
