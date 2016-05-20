@@ -41,6 +41,7 @@ define(function(require){
         ApplicationView = require('thirdchannel/views/application/main'),
         AdminView = require('thirdchannel/views/admin/flash'),
         LoginView = require('thirdchannel/views/authentication/login'),
+        ScheduledVisitsView = require('thirdchannel/views/scheduled_visits/scheduled_visits'),
         ContractView = require('thirdchannel/views/legal/contract');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
@@ -87,6 +88,7 @@ define(function(require){
             'programs/:program_id/exports/survey_answers': 'answerExports',
             'programs/:program_id/exports/sales_stores': 'salesStoresExports',
             'programs/:program_id/exports/sales_stores_audits': 'salesStoresAuditExports',
+            'programs/:program_id/visits': 'visits',
 
             'admin/data_clips(/)': 'dataClipsExports',
             'admin/*path' : 'adminView',
@@ -295,6 +297,10 @@ define(function(require){
             if (context.current_report !== undefined && window.report_pdf) {
                 ReportMain.init({programId: ""});
             }
+        },
+
+        visits: function(){
+            new ScheduledVisitsView({model: window.bootstrap});
         }
     });
 
