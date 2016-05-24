@@ -24,7 +24,7 @@
         </select>
     </div>
     <br><br>
-    <div class="clearfix">
+    <div class="clear">
         <p class="instruction"><span class="important">Note:</span> For now, any jobs we wish to track must have only one task and one frequency assigned to them. Or rather, only the first task's survey will be tracked, and the first frequency will be used for the start and end date of the tracking. We hope to change this in the future.</p>
         <label for="editor">Completion Instructions</label>
         <input type="hidden" name="completionInstructions" id="completionInstructions" value="{{completionInstructions}}"/>
@@ -53,14 +53,13 @@
         {{/roles}}
     </select>
 </div>
-
-<div class="tasks-container clearfix"></div>
+<br>
+<div class="tasks-container clear"></div>
 <br>
 <div class="form-group">
     <button class="btn add-task">Add Task</button>
 </div>
 <br>
-
 <div class="form-group">
     <label for="edit-blackout-schemes" class="label">Blackout Schemes: </label>
     <select id="edit-blackout-schemes" name="blackoutSchemes" class="input" multiple data-placeholder="Assign Blackout Schemes">
