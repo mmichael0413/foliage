@@ -14,6 +14,9 @@ define(function(require) {
             collectionClass: AsyncCollection,
             bodySelector: '.body',
             el: '#team',
+            afterRender: function () {
+               $("#agent-total").html(this.collection.length + " Agents");
+            },
             template: 'thirdchannel/teams/rows'
         });
     return TeamListView;
