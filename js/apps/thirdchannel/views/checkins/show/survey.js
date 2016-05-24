@@ -90,7 +90,9 @@ define(function(require) {
         },
         showElement: function(e) {
             this.$(e.currentTarget.getAttribute('data-show-element')).show('fast', "linear");
-            this.$(e.currentTarget.getAttribute('data-show-element')).prop('required', true).trigger('change');
+            if(this.$(e.currentTarget)[0].control.required) {
+                this.$(e.currentTarget.getAttribute('data-show-element')).prop('required', true).trigger('change');
+            }
         },
         hideElement: function(e) {
             this.$(e.currentTarget.getAttribute('data-hide-element')).hide('fast', "linear").val('').trigger('change');
@@ -99,7 +101,9 @@ define(function(require) {
         displayQuestionExtraIfTriggered: function(e) {
           if(this.$(e.currentTarget).find(":selected[data-trigger=true]").length > 0){
             this.$(e.currentTarget.getAttribute('data-trigger-element')).show('fast', "linear");
-            this.$(e.currentTarget.getAttribute('data-trigger-element')).prop('required', true).trigger('change');
+            if(this.$(e.currentTarget)[0].required) {
+                this.$(e.currentTarget.getAttribute('data-trigger-element')).prop('required', true).trigger('change');
+            }
           } else {
             this.$(e.currentTarget.getAttribute('data-trigger-element')).hide('fast', "linear").val('').trigger('change');
             this.$(e.currentTarget.getAttribute('data-trigger-element')).prop('required', false).trigger('change');
