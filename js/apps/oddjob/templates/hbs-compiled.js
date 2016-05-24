@@ -229,7 +229,7 @@ function program11(depth0,data) {
   else { helper = (depth0 && depth0.roles); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.roles) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </select>\n</div>\n<br>\n<div class=\"tasks-container clear\"></div>\n<br>\n<div class=\"form-group\">\n    <button class=\"btn add-task\">Add Task</button>\n</div>\n<br>\n<div class=\"form-group\">\n    <label for=\"edit-blackout-schemes\" class=\"label\">Blackout Schemes: </label>\n    <select id=\"edit-blackout-schemes\" name=\"blackoutSchemes\" class=\"input\" multiple data-placeholder=\"Assign Blackout Schemes\">\n        ";
+  buffer += "\n    </select>\n</div>\n\n<div class=\"tasks-container clear\"></div>\n\n<div class=\"form-group\">\n    <button class=\"btn add-task\">Add Task</button>\n</div>\n<br>\n<div class=\"form-group\">\n    <label for=\"edit-blackout-schemes\" class=\"label\">Blackout Schemes: </label>\n    <select id=\"edit-blackout-schemes\" name=\"blackoutSchemes\" class=\"input\" multiple data-placeholder=\"Assign Blackout Schemes\">\n        ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.programBlackoutSchemes), {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    </select>\n</div>\n\n<div class=\"form-group\">\n    <label for=\"allowRescheduling\" class=\"\">Allow Job to be Rescheduled After Schedule Finalization?</label>\n    <input type=\"checkbox\" class=\"input-checkbox\" name=\"allowRescheduling\" id=\"allowRescheduling\" ";
