@@ -1187,6 +1187,12 @@ function program8(depth0,data) {
   return buffer;
   }
 
+function program10(depth0,data) {
+  
+  
+  return "checked=\"checked\"";
+  }
+
   buffer += "<input name=\"taskId[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -1243,7 +1249,27 @@ function program8(depth0,data) {
   else { helper = (depth0 && depth0.required); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.required) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(4, program4, data),fn:self.program(8, program8, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ">No</option>\n</select>\n\n<a class='btn remove'>Remove</a>";
+  buffer += ">No</option>\n</select>\n\n<label class=\"label\">\n    <input name=\"payable[";
+  if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "]\" type=\"checkbox\" ";
+  options={hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data}
+  if (helper = helpers.payable) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.payable); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.payable) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " />\n    Payable?\n</label>\n\n<label class=\"label\">\n    <input name=\"billable[";
+  if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "]\" type=\"checkbox\" ";
+  options={hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data}
+  if (helper = helpers.billable) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.billable); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.billable) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " />\n    Billable?\n</label>\n\n<a class='btn remove'>Remove</a>";
   return buffer;
   });
 

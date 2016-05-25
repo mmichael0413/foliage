@@ -21,4 +21,14 @@
     <option value="false"{{#required}}{{else}}selected{{/required}}>No</option>
 </select>
 
+<label class="label">
+    <input name="payable[{{index}}]" type="checkbox" {{#payable}}checked="checked"{{/payable}} />
+    Payable?
+</label>
+
+<label class="label">
+    <input name="billable[{{index}}]" type="checkbox" {{#billable}}checked="checked"{{/billable}} />
+    Billable?
+</label>
+
 <a class='btn remove'>Remove</a>

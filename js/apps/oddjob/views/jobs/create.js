@@ -3,6 +3,7 @@ define(function(require) {
         _ = require('underscore'),
         Templates = require('handlebarsTemplates'),
         context = require('context'),
+        Task = require('oddjob/models/task'),
         TaskCreateView = require('oddjob/views/tasks/create'),
         Quill = require('quill'),
         SurveysStore = require('oddjob/stores/surveys');
@@ -74,7 +75,7 @@ define(function(require) {
         },
 
         renderChildViews: function () {
-            this._addTaskAtIndex(0, this.taskViewClass, new Backbone.Model());
+            this._addTaskAtIndex(0, this.taskViewClass, new Task());
 
         },
 
