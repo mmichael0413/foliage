@@ -89,25 +89,28 @@ define(function(require) {
             }
         },
         showElement: function(e) {
-            this.$(e.currentTarget.getAttribute('data-show-element')).show('fast', "linear");
+            var $attribute = this.$(e.currentTarget.getAttribute('data-show-element'));
+            $attribute.show('fast', "linear");
             if(this.$(e.currentTarget)[0].control.required) {
-                this.$(e.currentTarget.getAttribute('data-show-element')).prop('required', true).trigger('change');
+                $attribute.prop('required', true).trigger('change');
             }
         },
         hideElement: function(e) {
-            this.$(e.currentTarget.getAttribute('data-hide-element')).hide('fast', "linear").val('').trigger('change');
-            this.$(e.currentTarget.getAttribute('data-hide-element')).prop('required', false).trigger('change');
+            var $attribute = this.$(e.currentTarget.getAttribute('data-hide-element'));
+            $attribute.hide('fast', "linear").val('').trigger('change');
+            $attribute.prop('required', false).trigger('change');
         },
         displayQuestionExtraIfTriggered: function(e) {
-          if(this.$(e.currentTarget).find(":selected[data-trigger=true]").length > 0){
-            this.$(e.currentTarget.getAttribute('data-trigger-element')).show('fast', "linear");
-            if(this.$(e.currentTarget)[0].required) {
-                this.$(e.currentTarget.getAttribute('data-trigger-element')).prop('required', true).trigger('change');
+            var $attribute = this.$(e.currentTarget.getAttribute('data-trigger-element'));
+            if(this.$(e.currentTarget).find(":selected[data-trigger=true]").length > 0){
+                $attribute.show('fast', "linear");
+                if(this.$(e.currentTarget)[0].required) {
+                    $attribute.prop('required', true).trigger('change');
+                }
+            } else {
+                $attribute.hide('fast', "linear").val('').trigger('change');
+                $attribute.prop('required', false).trigger('change');
             }
-          } else {
-            this.$(e.currentTarget.getAttribute('data-trigger-element')).hide('fast', "linear").val('').trigger('change');
-            this.$(e.currentTarget.getAttribute('data-trigger-element')).prop('required', false).trigger('change');
-          }
         },
         validateForm: function(e) {
             e.preventDefault();
