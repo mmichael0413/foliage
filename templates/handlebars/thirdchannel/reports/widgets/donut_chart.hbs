@@ -5,5 +5,17 @@
             <a href="#" class="breakdown-link" tag="View Breakdown" target="_blank">View Breakdown</a>
         {{/if}}
     </div>
-    <div class="chart donut-chart"></div>
+    <div class="donut pure-g">
+        <div class="col-md-1 col-1-2">
+            <div class="chart donut-chart"></div>
+        </div>
+        <div class="col-md-1 col-1-2 legend">
+            {{#each results.legend.items}}
+                <div class="legend-item" data-chart-id="{{label}}">
+                    <span class="legend-box" style="background-color: {{color}}"></span>
+                    {{label}}
+                </div>
+            {{/each}}
+        </div>
+    </div>
 </div>

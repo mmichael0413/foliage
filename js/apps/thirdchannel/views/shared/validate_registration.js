@@ -13,7 +13,11 @@ define(function (require) {
     return Backbone.View.extend({
         validateRegistrationForm: function () {
             $.validator.addMethod("validateZip", function (value, element) {
-                var valid = false;
+                // Validate with regexes from jquery validation 1.15.0
+                // I could not figure out how to call these directly on the element and OR the results
+                var zipCodeUSRegex = /^\d{5}(-\d{4})?$/;
+                var postalCodeCARegex = /^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ] *\d[ABCEGHJKLMNPRSTVWXYZ]\d$/i;
+                var valid = zipCodeUSRegex.test(value) || postalCodeCARegex.test(value);
                 var data = {address: value};
                 $.ajax({
                     url: "//maps.googleapis.com/maps/api/geocode/json",
@@ -38,7 +42,7 @@ define(function (require) {
                 });
 
                 return valid;
-            }, "Please enter a valid zip code.");
+            }, "Please enter a valid ZIP/Postal code");
 
             $.validator.addMethod("validateEmail", function (value, element) {
                 var valid = false;
@@ -82,8 +86,6 @@ define(function (require) {
                     },
                     'user[zip]': {
                         required: true,
-                        digits: true,
-                        maxlength: 5,
                         validateZip: true
                     }
                 },
