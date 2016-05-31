@@ -30,18 +30,18 @@ default:
 
 build-dev:
   - 'clean'
-  - 'test'
   - 'build'
+  - 'test'
   - 'copy'
 
 build-beta:
   - 'clean'
-  - 'test'
   - 'build'
+  - 'test'
   - 'release-beta'
 
 build-prod:
   - 'clean'
-  - 'test'
   - 'build'
+  - 'test'
   - 'release-prod'

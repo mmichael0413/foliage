@@ -9,3 +9,4 @@ node_modules/*
 foliage.iml
 coverage/
 npm-debug.log
+js/apps/*/templates
