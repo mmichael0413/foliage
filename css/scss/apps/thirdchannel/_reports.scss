@@ -63,27 +63,36 @@
   }
 }
 
-.chart {
+.donut {
 
-  &.donut {
-    canvas {
-      float: left;
+  .donut-chart {
+    margin-left: auto;
+  }
+
+  .legend {
+    padding-top: 1rem;
+    padding-left: 2rem;
+
+    .unselected, .unhighlighed {
+      opacity: 0.5;
     }
 
-    .legend {
-      padding-left: 130px;
-      table {
-        tr > td {
-          padding: 0.20em;
-          border: none;
+    .legend-item {
+      font-size: 0.8em;
+      cursor: pointer;
 
-          &:first-child {
-            width: 1em;
-          }
-        }
+      .legend-box {
+        margin-left: -1rem;
+        margin-right: 0.15rem;
+        height: 0.625rem;
+        width: 0.625rem;
+        display: inline-block;
       }
     }
   }
+}
+
+.chart {
 
   &.quadrant {
 
