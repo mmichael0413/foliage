@@ -79,7 +79,8 @@ define(function(require) {
         },
 
         _addTaskAtIndex: function (index, taskClass, model) {
-            var view = new taskClass({index:index, model: model});
+            model.set('index', index);
+            var view = new taskClass({model: model});
             this.$tasksContainer.append(view.render().$el);
             this.childViews.push(view);
         },

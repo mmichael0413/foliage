@@ -15,11 +15,6 @@ define(function (require) {
 			'click .remove': 'clear'
 		},
 
-		initialize: function (data) {
-			this.model = data.model;
-			this.model.set('index', data.index);
-		},
-
 		render: function () {
 			this.$el.html(Templates[this.templateName](this.buildData()));
 			return this;
