@@ -1,39 +1,3 @@
-{{#if canEdit}}
-    <div class="action-row">
-        <a href="{{#if editUrl}}{{editUrl}}{{else}}/profile/edit/{{person.id}}{{/if}}" class="light"><i
-                class="ic ic_edit"></i> Edit Info</a>
-    </div>
-{{/if}}
-
-<div class="page-heading">
-    {{> user_image person.profileImage.small}}
-    <div>
-        <h1>{{person.fullName}}</h1>
-        {{universityLabel}}
-
-        {{#if displayResidential}}
-            {{person.residentialAddress.city}}, {{person.residentialAddress.state}}
-        {{/if}}
-
-        {{userLabel}}
-
-
-    </div>
-</div>
-
-
-{{#if activityUrl}}
-    <ul class="nav tabbed-nav">
-        <li class="tab active"><a href="#">Profile</a></li>
-        <li class="tab"><a href="{{activityUrl}}" class="">Activities</a></li>
-        <li class="tab"><a href="{{storeUrl}}">Stores</a></li>
-        {{#if notificationUrl}}
-            <li class="tab"><a href="{{notificationUrl}}">Notification Preferences</a></li>
-        {{/if}}
-    </ul>
-{{/if}}
-
-
 {{#if showAllFields}}
 <div class="card">
     <div class="header">Contact Information</div>
