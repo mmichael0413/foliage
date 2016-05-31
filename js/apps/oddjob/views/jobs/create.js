@@ -76,7 +76,6 @@ define(function(require) {
 
         renderChildViews: function () {
             this._addTaskAtIndex(0, this.taskViewClass, new Task());
-
         },
 
         _addTaskAtIndex: function (index, taskClass, model) {
@@ -89,7 +88,7 @@ define(function(require) {
             e.stopPropagation();
             e.preventDefault();
             var index = this.$tasksContainer.find('.task').length;
-            this._addTaskAtIndex(index, TaskCreateView, new Backbone.Model());
+            this._addTaskAtIndex(index, TaskCreateView, new Task());
         },
 
         jobSubmit: function(e) {

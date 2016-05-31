@@ -22,12 +22,12 @@
 </select>
 
 <label class="label">
-    <input name="payable[{{index}}]" type="checkbox" {{#payable}}checked="checked"{{/payable}} />
+    <input name="tasks[{{index}}].payable" type="checkbox" {{#payable}}checked="checked"{{/payable}} />
     Payable?
 </label>
 
 <label class="label">
-    <input name="billable[{{index}}]" type="checkbox" {{#billable}}checked="checked"{{/billable}} />
+    <input name="tasks[{{index}}].billable" type="checkbox" {{#billable}}checked="checked"{{/billable}} />
     Billable?
 </label>
 
