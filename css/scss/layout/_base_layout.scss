@@ -276,6 +276,9 @@
   border-radius: $border-radius-base;
   margin-bottom: 2em;
   position: relative;
+  &.reduce-bottom {
+    margin-bottom: 1em;
+  }
 }
 
 .card {
@@ -305,9 +308,9 @@
     }
     &+.divider {
       border-top: 1px solid $border-color;
-      &:last-of-type {
-        border: none;
-      }
+      //&:last-of-type {
+      //  border: none;
+      //}
     }
   }
 }

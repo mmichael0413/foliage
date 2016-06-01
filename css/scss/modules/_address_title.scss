@@ -1,8 +1,11 @@
 .address-title {
 	.title {
-		margin-bottom: 0.5em;
+		margin-bottom: 0.25em;
 	}
 	.address {
 		margin: 0 0 0 0;
+		@include swb-small {
+			margin: .3em 0 1em 1.1em;
+		}
 	}
 }

@@ -1,26 +1,19 @@
 <div class="pure-g">
-	{{#if date}}
-		<div class="date col-4-5 col-md-1-2">
-			{{localizedUTCDate date}}
-		</div>
-	{{else}}
-		<div class="jobs col-4-5 col-md-1-2">
-			<div>Jobs:</div>
-		</div>
-	{{/if}}
-	<div class="col-1-5 col-md-1-1">
-		<form accept-charset="UTF-8" action="{{form_url}}" method="post">
-			<input name="store_uuid" type="hidden" value="{{store_details.id}}">
-			<input name="date" type="hidden" value="{{date}}">
-			<input name="authenticity_token" value="{{auth_token}}" type="hidden">
-			<button class="btn primary">
-				Start Visit
-			</button>
-		</form>
-	</div>
-	{{#if date}}
-		<div class="jobs col-1-1">
-			<div>Jobs:</div>
-		</div>
-	{{/if}}
+    <div class="date col-4-5 col-md-1-2">
+        {{#if date}}
+            {{localizedUTCDate date}}
+        {{/if}}
+    </div>
+    <div class="col-1-5 col-md-1-2 right-align">
+        <form accept-charset="UTF-8" action="{{form_url}}" method="post">
+            <input name="store_uuid" type="hidden" value="{{store_details.id}}">
+            <input name="date" type="hidden" value="{{date}}">
+            <input name="authenticity_token" value="{{auth_token}}" type="hidden">
+            <button class="btn primary">
+                <i class="fa fa-street-view" aria-hidden="true"></i> <span class="hidden-xs">Start</span>
+            </button>
+        </form>
+    </div>
+    <div class="jobs col-4-5 col-md-1-1">
+    </div>
 </div>

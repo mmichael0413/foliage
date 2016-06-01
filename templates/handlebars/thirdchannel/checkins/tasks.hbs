@@ -1,31 +1,34 @@
-<span class="subtle-instruction">* Required During Visit</span>
+
 {{#each job.required_tasks}}
-	<div class="task pure-g">
-		<div class="col-4-5">
-			{{name}}{{#if category_name}} - {{category_name}}{{/if}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}
-		</div>
-		<form accept-charset="UTF-8" action="{{form_url}}" method="post" class="checkin-action col-1-5">
-			<input id="store_uuid" name="store_uuid" type="hidden" value="{{../store}}">
-			<input id="survey_uuid" name="survey_uuid" type="hidden" value="{{surveyUUID}}">
-			<input id="task_uuid" name="task_uuid" type="hidden" value="{{uuid}}">
-			<input id="job_uuid" name="job_uuid" type="hidden" value="{{../job.uuid}}">
-			<input id="category_id" name="category_id" type="hidden" value="{{category_id}}">
-			<input name="authenticity_token" value="{{../auth_token}}" type="hidden">
-			<button class="checkin-form-btn btn primary" name="commit">
-				{{#if submission}}
-                    {{#if_eq submission "Completed"}}
-					    <i class="ic ic_check"></i>
-                    {{else}}
-                        <i class="ic ic_edit"></i>
-                    {{/if_eq}}
-					<span>{{submission}}</span>
-				{{else}}
-					<i class="ic ic_location"></i>
-					<span>Start</span>
-				{{/if}}
-			</button>
-		</form>
-	</div>
+    <div class="task pure-g">
+        <div class="col-4-5">
+            {{name}}{{#if category_name}} - {{category_name}}{{/if}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}
+        </div>
+        <form accept-charset="UTF-8" action="{{form_url}}" method="post" class="checkin-action col-1-5 right-align">
+            <input id="store_uuid" name="store_uuid" type="hidden" value="{{../store}}">
+            <input id="survey_uuid" name="survey_uuid" type="hidden" value="{{surveyUUID}}">
+            <input id="task_uuid" name="task_uuid" type="hidden" value="{{uuid}}">
+            <input id="job_uuid" name="job_uuid" type="hidden" value="{{../job.uuid}}">
+            <input id="category_id" name="category_id" type="hidden" value="{{category_id}}">
+            <input name="authenticity_token" value="{{../auth_token}}" type="hidden">
+            {{#contains uuid ../incomplete_tasks}}
+            <button class="checkin-form-btn btn primary" name="commit">
+
+                {{#if submission}}
+                    <i class="ic ic_edit"></i>
+                    <span>{{submission}}</span>
+                {{else}}
+                    <i class="fa fa-play"></i>
+                    <span>Start</span>
+                </button>
+                {{/if}}
+            {{else}}
+                <button class="btn light">
+                    <i class="fa fa-check"></i>
+                </button>
+            {{/contains}}
+        </form>
+    </div>
 {{/each}}
 
 {{#if job.grouped_tasks.length}}
@@ -36,10 +39,14 @@
         <input name="task_uuid" type="hidden">
         <input name="category_id" type="hidden">
         <input name="authenticity_token" value="{{auth_token}}" type="hidden">
+        <div class="col-1-1">
+            <label>Optional Activities:</label>
+        </div>
+
         <div class="col-4-5">
             <select name="selectedTask" data-placeholder="Choose a task to complete">
                 <optgroup>
-                    <option value="">Choose a task to complete</option>
+                    <option value="">Select</option>
                 </optgroup>
                 {{#each job.grouped_tasks}}
                     <optgroup label="{{name}}">
@@ -53,13 +60,13 @@
             </select>
             <div class="error hide">Please select a task to complete.</div>
         </div>
-        <div class="col-1-5">
+        <div class="col-1-5 right-align">
             <button class="btn primary" name="commit">
                 {{#if submission}}
                     <i class="ic ic_edit"></i>
                     <span>{{submission}}</span>
                 {{else}}
-                    <i class="ic ic_location"></i>
+                    <i class="fa fa-play"></i>
                     <span>Start</span>
                 {{/if}}
             </button>
