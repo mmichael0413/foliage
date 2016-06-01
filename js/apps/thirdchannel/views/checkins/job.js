@@ -4,13 +4,14 @@ define(function(require) {
 
     return ExpandableView.extend({
         className: ExpandableView.prototype.className + " job",
-        openText: "Show Tasks",
-        closeText: "Hide Tasks",
+        openText: "",
+        closeText: "",
         fillsubsection: function(){
             console.log(this.hide_toggle);
             var taskList = new TaskList({model:{
                 job: this.model.job,
                 store: this.model.store,
+                incomplete_tasks: this.model.incomplete_tasks,
                 auth_token: window.bootstrap.auth_token
             }});
             this.subsection.append(taskList.render().el);

@@ -2,6 +2,7 @@
 	color: $medium-blue;
 	font-style: italic;
 	font-size: 0.8rem;
+	vertical-align: super;
 }
 
 .store {
@@ -10,21 +11,33 @@
 }
 
 .visit {
-	margin-bottom: 0.5em;
+	margin: 0.5em 0;
 	.date {
 		font-weight: bold;
 	}
 }
 
 .job {
-	padding-left: 2em;
+	padding-left: 1em;
+	&+.job {
+		padding-top: .75em;
+	}
 }
 
 .expandable {
 	.main {
-		margin-bottom: 0.5em;
+		//margin-bottom: 0.5em;
 	}
 	.toggle {
 		white-space: nowrap;
+		color: $text-color;
 	}
+}
+
+.jobs{
+	margin-top: 0.5em;
+}
+
+.right-align {
+	text-align: right;
 }

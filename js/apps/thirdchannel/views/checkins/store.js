@@ -4,8 +4,8 @@ define(function(require) {
 
     return ExpandableView.extend({
         className: ExpandableView.prototype.className + " store",
-        openText: "Show Visits",
-        closeText: "Hide Visits",
+        openText: "",
+        closeText: "",
         fillsubsection: function(){
             _.chain(this.model.job_uuids_by_date).keys().sort().each(function(date){
                 this.subsection.append(new ScheduleDate({
