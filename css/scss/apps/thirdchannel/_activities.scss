@@ -330,10 +330,20 @@ $padding: 1.5em;
 $img-height: 3em;
 
 .user-image {
-  width: $img-height;
-  height: $img-height;
+
   margin-right: 1em;
+  background-image: url("/dist/thirdchannel/images/missing.jpg");
+  background-position: center center;
+  background-size: cover;
+
+  > div {
+    background-position: center center;
+    background-size: cover;
+    width: $img-height;
+    height: $img-height;
+  }
 }
+
 
 .comment-holder {
   background-color: $border-color;

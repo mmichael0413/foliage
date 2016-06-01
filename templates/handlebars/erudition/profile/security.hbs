@@ -1,0 +1,10 @@
+<form action="{{saveUrl}}" class="profile-form" method="post">
+    {{> password}}
+
+    <input name="authenticity_token" value="{{authToken}}" type="hidden">
+
+    <div class="button-row">
+        <a href="{{referer}}" class="btn inverse">Cancel</a>
+        <input type="submit" class="btn primary submit" value="Save" data-input="false"/>
+    </div>
+</form>

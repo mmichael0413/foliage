@@ -12,9 +12,6 @@
 
   .pure-g:first-child {
       text-transform: none;
-      a {
-        color: $link-color;
-      }
   }
 
   .job-list {
@@ -29,5 +26,20 @@
         padding:1em;
     }
 
+    a.toggle {
+      color: $link-color;
+    }
+  }
+
+  .task-list {
+    .task {
+      button {
+        margin-left: 0.5rem;
+
+        @include swb-medium {
+          margin-top: 0;
+        }
+      }
+    }
   }
 }

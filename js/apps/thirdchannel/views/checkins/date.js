@@ -12,9 +12,9 @@ define(function(require){
             _.each(this.model.jobs, function(job){
                 var jobView = new Job({
                     model: {
-                        job: job,
+                        job: job
                     },
-                    hide_toggle: true,
+                    hide_toggle: true
                 });
                 this.$jobs.append(jobView.render().$el);
             }.bind(this));

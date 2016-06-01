@@ -14,12 +14,12 @@ define(function(require) {
                         jobs: _.chain(this.model.job_details_by_uuid).pick(this.model.job_uuids_by_date[date]).values().value(),
                         store_details: this.model.store_details,
                         pre_expand: true,
-                        auth_token: window.bootstrap.auth_token,
+                        auth_token: window.bootstrap.auth_token
                     },
-                    hide_toggle: true,
+                    hide_toggle: true
                 }).render().$el);
             }.bind(this));
         },
-        rowTemplate: 'thirdchannel/checkins/store',
+        rowTemplate: 'thirdchannel/checkins/store'
     });
 });
