@@ -72,6 +72,8 @@ define(function (require) {
                 this.getDataFromEditor();
 
                 if (this.model.isValid()) {
+                    this.$("#cancel-post").hide();
+                    this.$("#post-submit-btn").prop('disabled', true).text(" Submitting").prepend('<i class="ic ic-spin ic_processing"></i>');
                     this.model.save(this.$('.new-message form').serializeObject()).done(function () {
                         window.location = '/programs/' + context.programId + '/activities';
                     }).fail(function () {
