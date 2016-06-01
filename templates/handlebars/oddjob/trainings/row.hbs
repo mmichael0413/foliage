@@ -1,0 +1,52 @@
+<div class="header pure-g">
+	<h3 class="col-6-12"><a href="{{editUrl}}">{{name}}</a>{{#role}} ({{this}} only){{/role}} {{#tracked}}( Tracked ){{/tracked}}</h3>
+	<span class="col-2-12">{{displayDuration}}</span>
+	<span class="col-2-12">${{displayTotalPayment}}</span>
+    <span class="col-2-12"><button class="btn btn-primary toggleTasks" data-id="{{id}}">Show Tasks</button></span>
+</div>
+
+<div class="tasks-container tasks-container{{id}}"></div>
+
+<div class="frequencies-container frequencies-container{{id}} pure-g">
+    <h3 class="col-1-1 frequency-row">Schedules:</h3>
+    <table class="col-1-1">
+        <colgroup>
+        </colgroup>
+        <thead>
+            <th>Stores</th>
+            {{#scheduleDates}}
+                <th>{{short}}</th>
+            {{/scheduleDates}}
+        </thead>
+        <tbody>
+            {{#scheduleSummaries}}
+                <tr class="schedule-row">
+                    <td><a href="{{../createScheduleUrl}}/{{id}}">{{programStoreCount}}</a></td>
+                    {{#monthlyVisits}}
+                        <td>{{visits}}</td>
+                    {{/monthlyVisits}}
+                </tr>
+            {{else}}
+                <tr><td colspan="14" class="info">There are no Schedules or store assignments for this Job. Click 'Create New Schedule' to get started.</td></tr>
+            {{/scheduleSummaries}}
+        </tbody>
+    </table>
+    <div class="frequency-row col-1-1 static"><a class="btn btn-primary primary" href="{{createScheduleUrl}}">Create New Schedule</a></div> 
+</div>
+
+<div class="blackout-schemes-container blackout-schemes-container{{id}} pure-g">
+	<h3 class="col-1-1">Blackout Schemes:</h3>
+	{{#if blackoutSchemes}}
+		<ul class="col-1-1">
+			{{#each blackoutSchemes}}
+				<li>{{name}}</li>
+			{{/each}}
+		</ul>
+	{{else}}
+		<div class="col-1-1">No blackout schemes assigned.</div>
+	{{/if}}
+</div>
+
+<div class="allow-rescheduling-container allow-rescheduling-container{{id}} pure-g">
+	<div class="col-1-1">This job <b>can{{#unless allowRescheduling}}not{{/unless}}</b> be rescheduled after schedule finalization.</div>
+</div>
