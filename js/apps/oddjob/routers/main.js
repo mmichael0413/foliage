@@ -8,6 +8,8 @@ define(function (require) {
         MessagesView = require('oddjob/views/misc/messages'),
         JobCreateView = require('oddjob/views/jobs/create'),
         JobEditView = require('oddjob/views/jobs/edit'),
+        TrainingCreateView = require('oddjob/views/trainings/create'),
+        TrainingEditView = require('oddjob/views/trainings/edit'),
         ScheduleEditView = require('oddjob/views/schedules/schedule'),
         StoreListView = require('oddjob/views/stores/list'),
         StoreUploadView = require('oddjob/views/stores/upload'),
@@ -26,6 +28,12 @@ define(function (require) {
             ':customer/:programSlug/jobs/:jobId/schedule/:frequencyIndex': 'scheduleEdit',
             ':customer/:programSlug/jobs/:jobId/schedule/:frequencyIndex/add': 'scheduleAddStores',
             ':customer/:programSlug/blackoutschemes/:id(/)': 'editBlackoutScheme',
+            ':customer/:programSlug/trainings(/)': 'jobsList',
+            ':customer/:programSlug/trainings/create(/)': 'trainingsCreate',
+            ':customer/:programSlug/trainings/:jobId(/)': 'trainingsEdit',
+           // ':customer/:programSlug/trainings/:jobId/schedule(/)': 'scheduleCreate',
+           // ':customer/:programSlug/trainings/:jobId/schedule/:frequencyIndex': 'scheduleEdit',
+           // ':customer/:programSlug/trainings/:jobId/schedule/:frequencyIndex/add': 'scheduleAddStores',
         },
 
         before: function (parameters) {
@@ -87,6 +95,25 @@ define(function (require) {
         },
         editBlackoutScheme: function(customer, programSlug, id) {
             new EditBlackoutSchemeView();
+        },
+        trainingsCreate: function (customer, programSlug) {
+            new TrainingCreateView({model: new Backbone.Model()}).render();
+        },
+
+        trainingsEdit: function (customer, programSlug, jobId) {
+            var job = new (Backbone.Model.extend({
+                url: function () {
+                    return context.links.self;
+                }
+            }))();
+
+            job.fetch()
+                .fail(function () {
+                    console.log("something went wrong");
+                })
+                .done(function () {
+                    new TrainingEditView({model: job}).render();
+                });
         }
 
     });
