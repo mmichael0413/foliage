@@ -33,6 +33,7 @@ define(function (require) {
             var data = {
                 "name": $("#blackout-scheme-name").get(0).value,
                 "dates": $("#blackout-scheme-dates").find(".blackout-scheme-date-input").map(function(){return this.value;}).get(),
+                "inverse": $("#blackout-scheme-inverse").is(':checked'),
             };
             $.ajax({
                 type: "POST",
@@ -49,7 +50,7 @@ define(function (require) {
             });
         },
         deleteScheme: function(){
-            if(confirm("Are you sure you want to delete this Blackout Scheme? This will affect " + window.bootstrap.assignedJobs.length + " jobs.")){
+            if(confirm("Are you sure you want to delete this Blackout Scheme? This will affect " + window.bootstrap.assignedJobs.length + " jobs and "+window.bootstrap.assignedTrainings.length+" Trainings")){
                 $("#blackout-scheme-delete").prop("disabled", true);
                 var data = {
                     "name": $("#blackout-scheme-name").get(0).value,

@@ -22,9 +22,25 @@
 	</div>
 {{/if}}
 
+{{#if assignedTrainings}}
+    <div class="section">
+        Warning: Changes to this blackout scheme will affect the following Trainings:
+        <ul>
+            {{#assignedTrainings}}
+                <li>{{this}}</li>
+            {{/assignedTrainings}}
+        </ul>
+    </div>
+{{/if}}
+
 <div class="section">
 	<h3>Name</h3>
 	<input id="blackout-scheme-name" value="{{blackoutScheme.name}}" required>
+</div>
+
+<div class="section">
+    <h3>Is Whitelist?</h3>
+    <input id="blackout-scheme-inverse" type="checkbox" {{#if blackoutScheme.inverse}}checked{{/if}} required>
 </div>
 
 <div class="section">
