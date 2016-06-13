@@ -1,0 +1,22 @@
+.fixture-item {
+    margin: 0 0 2em 0;
+    background-color: $main-background;
+    border: 1px solid $border-color;
+
+    .fixture-image {
+        display: inline-block;
+        height: 10em;
+        margin: 0.5em 0 0.5em 2em;
+    }
+    .fixture-breakdown {
+        display: inline-block;
+        vertical-align: top;
+        width: 80%;
+        margin-left: 1em;
+
+        .label {
+            font-weight: bold;
+            padding-right: 0.5em;
+        }
+    }
+}
