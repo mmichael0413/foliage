@@ -25,9 +25,13 @@
 <div class="section">
 	<h3>Name</h3>
 	<input id="blackout-scheme-name" value="{{blackoutScheme.name}}" required>
-</div>
 
-<div class="section">
+    <div id="type-list" class="radio-input-group bottom">
+    <h3>Type of Date</h3>
+        <label for="blackout-scheme-inverse_blacklist" class="radio"><input id="blackout-scheme-inverse_blacklist" name="blackout-scheme-inverse" type="radio" value="false" {{#unless blackoutScheme.inverse}}checked{{/unless}} required/> Blackout</label>
+        <label for="blackout-scheme-inverse_whitelist" class="radio"><input id="blackout-scheme-inverse_whitelist" name="blackout-scheme-inverse" type="radio" value="true" {{#if blackoutScheme.inverse}}checked{{/if}} required/> Available</label>
+    </div>
+
 	<h3>Dates</h3>
 	<button id="blackout-scheme-date-add">Add Date</button>
 	<div id="blackout-scheme-dates">
