@@ -3,6 +3,7 @@ define(function (require) {
         Filter = require('thirdchannel/views/filter/main'),
         context = require('context'),
         Stores = require('thirdchannel/views/fixtures/stores'),
+        Problems = require('thirdchannel/views/fixtures/problems'),
         Overview = require('thirdchannel/views/fixtures/overview');
     
 
@@ -21,6 +22,11 @@ define(function (require) {
             this.init();
             //Filter.init();
             new Stores().render();
+        },
+
+        problems: function () {
+            this.init();
+            new Problems().render();
         }
     };
 });

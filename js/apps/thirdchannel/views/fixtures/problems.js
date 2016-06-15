@@ -5,28 +5,32 @@ define(function(require){
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
 
-        FixtureStoreListCollection = Backbone.Collection.extend({
+        ProblemFixturesCollection = Backbone.Collection.extend({
             url: function () {
-                return context.links.fixtures.stores;
+                return context.links.fixtures.problem;
+            },
+            parse: function (response) {
+                return response.fixtures;
             }
+
         }),
 
-        FixtureStores = Backbone.View.extend({
+        ProblemFixture = Backbone.View.extend({
             el: "#fixturesList",
 
             render: function () {
                 var self = this;
-                this.stores = new FixtureStoreListCollection();
+                this.stores = new ProblemFixturesCollection();
                 this.stores.fetch()
                 .done(function () {
                     self.$el.html("");
-                    self.$el.append(HandlebarsTemplates["thirdchannel/fixtures/fixture_stores"]({stores: this.stores.toJSON(), store_url:context.links.program_stores.self}));
+                    self.$el.append(HandlebarsTemplates["thirdchannel/fixtures/fixture_problems"]({fixtures: this.stores.toJSON(), store_url: context.links.program_stores.self}));
                 }.bind(this));
             }
 
         });
 
 
-    return FixtureStores;
+    return ProblemFixture;
 
 });
