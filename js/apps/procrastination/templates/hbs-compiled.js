@@ -712,7 +712,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 function program1(depth0,data) {
   
   
-  return "\n        <div><a href=\"#\" class='unassign'>Unassign Visit</a></div>\n    ";
+  return "\n        <div><a href=\"#\" class='unassign'>Unassign Visit</a></div>\n        <div><a href=\"#\" class='remove'>Remove Visit</a></div>\n    ";
   }
 
 function program3(depth0,data) {
@@ -845,7 +845,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 function program1(depth0,data) {
   
   
-  return "<a href=\"#\" class='unassign btn primary small solid '>Unassign Visit</a>";
+  return "\n        <a href=\"#\" class='unassign btn primary small solid '>Unassign Visit</a>\n        <a href=\"#\" class='remove btn primary small solid '>Remove Visit</a>\n    ";
   }
 
   buffer += "<div class=\"col-5-5\">\n    <p class=\"bold\">";
