@@ -13,7 +13,11 @@
 			<input name="authenticity_token" value="{{../auth_token}}" type="hidden">
 			<button class="checkin-form-btn btn primary" name="commit">
 				{{#if submission}}
-					<i class="ic ic_edit"></i>
+                    {{#if_eq submission "Completed"}}
+					    <i class="ic ic_check"></i>
+                    {{else}}
+                        <i class="ic ic_edit"></i>
+                    {{/if_eq}}
 					<span>{{submission}}</span>
 				{{else}}
 					<i class="ic ic_location"></i>

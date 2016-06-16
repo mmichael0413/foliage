@@ -5,6 +5,9 @@ define(function(require){
     return Backbone.View.extend({
         el: "#jobs",
         initialize: function(){
+            if(this.model.jobs.length == 1){
+                this.model.jobs[0].pre_expand = true;
+            }
             _.each(this.model.jobs, function(job){
                 var jobView = new JobView({model: {
                     job: job,

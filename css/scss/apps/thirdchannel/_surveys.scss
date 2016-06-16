@@ -32,6 +32,18 @@
     padding: 1em;
   }
 
+  .visit-description {
+    margin-top: 0;
+    border-top: none;
+    padding: 0 1em;
+
+    img {
+      display: block;
+      max-width: 100% !important;
+      height: auto !important;
+    }
+  }
+
   .question {
     margin-bottom: 2em;
 
