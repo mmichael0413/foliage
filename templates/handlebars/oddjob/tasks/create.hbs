@@ -1,24 +1,45 @@
 <input name="tasks[{{index}}].id" type="hidden" value="{{#id}}{{this}}{{/id}}"/>
 
-<label class="label">Task (Survey)</label>
-<select name="tasks[{{index}}].survey" id="survey" class="input">
-<option value="">--Select a Survey--</option>
-{{#surveys}}
-    <option value="{{uuid}}" {{#selected}}selected{{/selected}}>{{title}}</option>
-{{/surveys}}
-</select>
+<div class="col-3-12 cell">
+    <select name="tasks[{{index}}].type" id="taskType">
+    {{#types}}
+        <option value="{{this}}">{{this}}</option>
+    {{/types}}
+    </select>    
+</div>
 
-<label for="" class="label">Expected Minutes</label>
 
-<input name="tasks[{{index}}].expectedDuration" type="number" class="input small" value="{{#expectedDuration}}{{this}}{{else}}0{{/expectedDuration}}">
+<div class="col-3-12 cell">
+    <select name="tasks[{{index}}].trackableUuid" id="survey">
+        {{#surveys}}
+            <option value="{{uuid}}" {{#selected}}selected{{/selected}}>{{title}}</option>
+        {{/surveys}}
+    </select>
+</div>
 
-<label for="" class="label">Payment Rate ($/hr)</label>
-<input name="tasks[{{index}}].paymentRate" type="number" class="input small" value="{{#displayPaymentRate}}{{this}}{{else}}0{{/displayPaymentRate}}">
 
-<label for="" class="label">Required?</label>
-<select name="tasks[{{index}}].required" class="input small">
-    <option value="true" {{#required}}selected{{/required}}>Yes</option>
-    <option value="false"{{#required}}{{else}}selected{{/required}}>No</option>
-</select>
+<div class="col-1-12 cell">
+    <input name="tasks[{{index}}].expectedDuration" type="number" value="{{#expectedDuration}}{{this}}{{else}}0{{/expectedDuration}}">
+</div>
 
-<a class='btn remove'>Remove</a>
+
+<div class="col-1-12 cell">
+    <input name="tasks[{{index}}].paymentRate" type="number" placeholder="15.00" class="input" value="{{#displayPaymentRate}}{{this}}{{else}}0{{/displayPaymentRate}}">
+</div>
+
+<div class="col-1-12 cell center">
+    <input name="tasks[{{index}}].payable" type="checkbox" checked={{#required}}checked{{/required}}> </input>
+</div>
+
+<div class="col-1-12 cell center">
+    <input name="tasks[{{index}}].billable" type="checkbox" checked={{#required}}checked{{/required}}> </input>
+</div>
+
+<div  class="col-1-12 cell center">
+    <input name="tasks[{{index}}].required" type="checkbox" checked={{#required}}checked{{/required}}> </input>
+</div>
+
+<div class="col-1-12 cell center">
+
+    <i class="fa fa-trash"></i>
+</div>

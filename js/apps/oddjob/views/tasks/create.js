@@ -2,6 +2,7 @@ define(function (require) {
 	var Backbone = require('backbone'),
 		Templates = require('handlebarsTemplates'),
 		context = require('context'),
+		ActivityPacketStore = require('oddjob/stores/activityPackets'),
 		SurveysStore = require('oddjob/stores/surveys');
 
 	/**
@@ -10,14 +11,19 @@ define(function (require) {
 	 */
 	var TaskCreateView = {
 		templateName: 'oddjob/tasks/create',
-		className: 'task clearfix',
+		className: 'task row clearfix pure-g',
 		events: {
-			'click .remove': 'clear'
+			'click .remove': 'clear',
+			'change #taskType': 'onTypeChange'
 		},
 
 		initialize: function (data) {
 			this.model = data.model;
 			this.model.set('index', data.index);
+		},
+
+		onTypeChange: function () {
+			console.log("type changed! ", arguments);
 		},
 
 		render: function () {
@@ -26,16 +32,30 @@ define(function (require) {
 		},
 
 		buildData: function () {
+			this.model.set('types', context.taskTypes);
 			var surveys = SurveysStore.toJSON(),
-				pos = surveys.length;
-			while(pos--) {
-				if (surveys[pos].uuid == this.model.get('surveyId')) {
-					surveys[pos].selected = true;
-				}
-			}
-			this.model.set('surveys', surveys);
+				activityPackets = ActivityPacketStore.toJSON(),
+				pos = surveys.length,
+				data = this.model.toJSON();
 
-			return this.model.toJSON();
+			if (!data.type) {
+				data.type = context.taskTypes[0]
+			}
+
+			
+			// while(pos--) {
+			// 	if (surveys[pos].uuid == this.model.get('surveyId')) {
+			// 		surveys[pos].selected = true;
+			// 	}
+			// }
+			// this.model.set('surveys', surveys);
+			// this.model.set('activityPackets', activityPackets);
+			
+
+
+
+			// return this.model.toJSON();
+			return data;
 		},
 
 		clear: function (e) {

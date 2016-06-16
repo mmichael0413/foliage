@@ -5,6 +5,7 @@ define(function(require) {
         context = require('context'),
         TaskCreateView = require('oddjob/views/tasks/create'),
         Quill = require('quill'),
+        ActivityPacketStore = require("oddjob/stores/activityPackets"),
         SurveysStore = require('oddjob/stores/surveys');
 
     var JobCreateView = {
@@ -20,22 +21,26 @@ define(function(require) {
         },
 
         render: function () {
+            // todo: when we add trainings, convert this to a spread or something
             SurveysStore.fetch()
             .done(function () {
-                var data = this.model.toJSON();
-                data.reports = context.reports;
-                data.roles = context.roles;
-                _.each(data.roles, function (role) {
-                    if (role.id === data.role) {
-                        role.selected = true;
-                    }
-                });
-                this.$el.html(Templates[this.templateName](data));
-                this._toggleJobTrackingText(data.tracked);
-                this._configureTextEditor();
-                this.$tasksContainer = this.$el.find('.tasks-container');
-                // create the first view
-                this.renderChildViews();
+                ActivityPacketStore.fetch()
+                .done(function () {
+                    var data = this.model.toJSON();
+                    data.reports = context.reports;
+                    data.roles = context.roles;
+                    _.each(data.roles, function (role) {
+                        if (role.id === data.role) {
+                            role.selected = true;
+                        }
+                    });
+                    this.$el.html(Templates[this.templateName](data));
+                    this._toggleJobTrackingText(data.tracked);
+                    this._configureTextEditor();
+                    this.$tasksContainer = this.$el.find('.tasks-container');
+                    // create the first view
+                    this.renderChildViews();
+                }.bind(this));
             }.bind(this));
             
             return this;
