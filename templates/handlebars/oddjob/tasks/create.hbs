@@ -3,7 +3,7 @@
 <div class="col-3-12 cell">
     <select name="tasks[{{index}}].type" id="taskType">
     {{#types}}
-        <option value="{{this}}">{{this}}</option>
+        <option value="{{value}}" {{#selected}}selected{{/selected}}>{{name}}</option>
     {{/types}}
     </select>    
 </div>
@@ -11,9 +11,9 @@
 
 <div class="col-3-12 cell">
     <select name="tasks[{{index}}].trackableUuid" id="survey">
-        {{#surveys}}
-            <option value="{{uuid}}" {{#selected}}selected{{/selected}}>{{title}}</option>
-        {{/surveys}}
+        {{#trackableItems}}
+            <option value="{{uuid}}{{id}}" {{#selected}}selected{{/selected}}>{{title}}{{name}}</option>
+        {{/trackableItems}}
     </select>
 </div>
 

@@ -22,8 +22,9 @@ define(function (require) {
 			this.model.set('index', data.index);
 		},
 
-		onTypeChange: function () {
-			console.log("type changed! ", arguments);
+		onTypeChange: function (event) {
+			this.model.set("type", $(event.currentTarget).val());
+			this.render();
 		},
 
 		render: function () {
@@ -35,26 +36,62 @@ define(function (require) {
 			this.model.set('types', context.taskTypes);
 			var surveys = SurveysStore.toJSON(),
 				activityPackets = ActivityPacketStore.toJSON(),
-				pos = surveys.length,
-				data = this.model.toJSON();
+				cursor,
+				data = this.model.toJSON(),
+				types = [
+					{name: "Single Survey", selected: false, value: "SURVEY"},
+					{name: "Fixture / POP Management", selected: false, value: "ACTIVITY_PACKET"}
+				];
 
-			if (!data.type) {
-				data.type = context.taskTypes[0]
+			console.log(this.model);
+			cursor = surveys.length;
+			while(cursor--) {
+				if (surveys[cursor].uuid == this.model.get('trackableId')) {
+					surveys[cursor].selected = true;
+				}
 			}
 
+			cursor = activityPackets.length;
+			while(cursor--) {
+				if (this.model.get('subject') && activityPackets[cursor].id == this.model.get('subject').uuid) {
+					activityPackets[cursor].selected = true;
+				}
+			}
+
+			console.log("data type = ", data.type)
+			if (!data.type) {
+				data.type = types[0].value
+			}
+			if (data.type === types[0].name){ 
+				data.type = types[0].value;
+			} else if (data.type == types[1].name) {
+				data.type = types[1].value;
+			}
+
+
+			if (data.type == types[0].value){
+				data.trackableItems = surveys;
+				types[0].selected = true;
+			} else if (data.type == types[1].value) {
+				data.trackableItems = activityPackets;
+				types[1].selected = true;
+			}
+			data.types = types;
+			//console.log("data types = ", data.types);
+
+			/*
+				What do we need?
+				types
+
+				list of items based on types.
+
+				list of times
+
+
+				... but we hve to iterate on each  and mark as selected
+
+			 */
 			
-			// while(pos--) {
-			// 	if (surveys[pos].uuid == this.model.get('surveyId')) {
-			// 		surveys[pos].selected = true;
-			// 	}
-			// }
-			// this.model.set('surveys', surveys);
-			// this.model.set('activityPackets', activityPackets);
-			
-
-
-
-			// return this.model.toJSON();
 			return data;
 		},
 
