@@ -32,65 +32,47 @@ define(function (require) {
 			return this;
 		},
 
+		/**
+		 *	Compares a trackable data collection and marks the 
+		 *	item that matches the model's subject id as being sellected
+		 * 
+		 * @param  {collection} collection [description]
+		 * @param  {string} idField    [description]
+		 */
+		markSelected: function (collection, idField) {
+			var cursor = collection.length,
+				subject = this.model.get('subject');
+			while(cursor--) {
+				if (subject && collection[cursor][idField] == subject.uuid) {
+					collection[cursor].selected = true;
+				}
+			}
+			
+		},
+
 		buildData: function () {
-			this.model.set('types', context.taskTypes);
+			//this.model.set('types', context.taskTypes);
 			var surveys = SurveysStore.toJSON(),
 				activityPackets = ActivityPacketStore.toJSON(),
-				cursor,
 				data = this.model.toJSON(),
-				types = [
-					{name: "Single Survey", selected: false, value: "SURVEY"},
-					{name: "Fixture / POP Management", selected: false, value: "ACTIVITY_PACKET"}
-				];
+				types = JSON.parse(JSON.stringify(context.taskTypes));
 
-			console.log(this.model);
-			cursor = surveys.length;
-			while(cursor--) {
-				if (surveys[cursor].uuid == this.model.get('trackableId')) {
-					surveys[cursor].selected = true;
-				}
-			}
-
-			cursor = activityPackets.length;
-			while(cursor--) {
-				if (this.model.get('subject') && activityPackets[cursor].id == this.model.get('subject').uuid) {
-					activityPackets[cursor].selected = true;
-				}
-			}
-
-			console.log("data type = ", data.type)
+			
 			if (!data.type) {
-				data.type = types[0].value
-			}
-			if (data.type === types[0].name){ 
-				data.type = types[0].value;
-			} else if (data.type == types[1].name) {
-				data.type = types[1].value;
+				data.type = types[0];
 			}
 
 
-			if (data.type == types[0].value){
+			if (data.type.id == types[0].id){
 				data.trackableItems = surveys;
+				this.markSelected(surveys, "uuid");
 				types[0].selected = true;
-			} else if (data.type == types[1].value) {
+			} else if (data.type.id == types[1].id) {
 				data.trackableItems = activityPackets;
+				this.markSelected(activityPackets, "id");
 				types[1].selected = true;
 			}
 			data.types = types;
-			//console.log("data types = ", data.types);
-
-			/*
-				What do we need?
-				types
-
-				list of items based on types.
-
-				list of times
-
-
-				... but we hve to iterate on each  and mark as selected
-
-			 */
 			
 			return data;
 		},
