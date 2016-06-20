@@ -18,10 +18,23 @@ define(function (require) {
             });
             $("#blackout-scheme-dates").append(newDateRow);
         },
+        addRange: function(date) {
+            date = moment.utc(date).format("YYYY-MM-DD");
+            var newRangeRow = $(Templates['oddjob/blackout_schemes/range_row'](date));
+            newRangeRow.find(".blackout-scheme-date-remove").click(function() {
+               newRangeRow.remove();
+            });
+            $("#blackout-scheme-ranges").append(newRangeRow);
+        },
         render: function(){
             this.$el.html(Templates[this.template](window.bootstrap));
             var addButton = $("#blackout-scheme-date-add");
             addButton.click(this.addDate);
+
+            // new
+            var addRangeButton = $("#blackout-scheme-range-add");
+            addRangeButton.click(this.addRange);
+
             var saveButton = $("#blackout-scheme-save");
             saveButton.click(this.submitChanges);
             var deleteButton = $("#blackout-scheme-delete");
@@ -33,6 +46,8 @@ define(function (require) {
             var data = {
                 "name": $("#blackout-scheme-name").get(0).value,
                 "dates": $("#blackout-scheme-dates").find(".blackout-scheme-date-input").map(function(){return this.value;}).get(),
+                "rangesFrom": $("#blackout-scheme-ranges").find(".blackout-scheme-range-input1").map(function(){return this.value;}).get(),
+                "rangesTo": $("#blackout-scheme-ranges").find(".blackout-scheme-range-input2").map(function(){return this.value;}).get(),
                 "inverse": $("#blackout-scheme-inverse_whitelist").is(':checked'),
             };
             $.ajax({
