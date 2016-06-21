@@ -1,5 +1,6 @@
 define(function (require) {
 	var Backbone = require('backbone'),
+		_		= require('underscore'),
 		Templates = require('handlebarsTemplates'),
 		context = require('context'),
 		ActivityPacketStore = require('oddjob/stores/activityPackets'),
@@ -14,17 +15,59 @@ define(function (require) {
 		className: 'task row clearfix pure-g',
 		events: {
 			'click .remove': 'clear',
-			'change #taskType': 'onTypeChange'
+			'change .task-type': 'onTypeChange',
+			'keyup .expected-duration': 'onDurationChange',
+			'keyup .payment-rate': 'onRateChange',
+			'click .payable': 'onPayableChange',
+			'click .billable': 'onBillableChange',
+			'click .required': 'onRequiredChange'
 		},
 
 		initialize: function (data) {
 			this.model = data.model;
 			this.model.set('index', data.index);
+			this._setInitialType();
+			this._broadcastTask();
 		},
 
+		onDurationChange: function(event) {
+			this._updateFromEvent("expectedDuration", parseInt($(event.currentTarget).val(), 10));
+		},
+
+		onRateChange: function (event) {
+			this._updateFromEvent("paymentRate", parseInt($(event.currentTarget).val(), 10)*100);
+		},
+
+		onPayableChange: function (event) {
+			this._updateFromEvent("payable", $(event.currentTarget).is(":checked"));
+		},
+		onBillableChange: function (event) {
+			this._updateFromEvent("billable", $(event.currentTarget).is(":checked"));
+		},
+		onRequiredChange: function (event) {
+			this._updateFromEvent("required", $(event.currentTarget).is(":checked"));
+		},
+
+
 		onTypeChange: function (event) {
-			this.model.set("type", $(event.currentTarget).val());
+			var typeId = $(event.currentTarget).val(),
+			// we have the raw string, find it in the collection
+				result = _.find(context.taskTypes, function (type) {
+					return type.name == typeId;
+				});
+			this.model.set("type", result);
 			this.render();
+			this._broadcastTask();
+		},
+
+		_updateFromEvent: function (key, value) {
+			//event.preventDefault();
+			this.model.set(key, value);
+			this._broadcastTask();
+		},
+
+		_broadcastTask: function () {
+			context.trigger("task:updated", this.model);
 		},
 
 		render: function () {
@@ -62,7 +105,6 @@ define(function (require) {
 				data.type = types[0];
 			}
 
-
 			if (data.type.id == types[0].id){
 				data.trackableItems = surveys;
 				this.markSelected(surveys, "uuid");
@@ -73,8 +115,14 @@ define(function (require) {
 				types[1].selected = true;
 			}
 			data.types = types;
-			
 			return data;
+		},
+
+		_setInitialType: function () {
+			var types = JSON.parse(JSON.stringify(context.taskTypes));
+			if (!this.model.get('type')) {
+				this.model.set('type', types[0]);
+			}
 		},
 
 		clear: function (e) {

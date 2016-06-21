@@ -1,23 +1,39 @@
-.form-group {
+.form-section {
+    margin: 0 0 2em 0;
+
     .header {
         border-bottom: 2px solid $border-color;
+        padding: 0 1em;
     }
     .summary {
         border-top: 2px solid $border-color;
     }
 
+    .btn-row {
+        padding: 1em 0;
+    }
+}
+
+.form-group {
+    margin-bottom: 1em;
 }
 
 .tasks-container {
-    //background-color: $light-gray;
-    margin: 15px 10px 0px 10px;
-    padding:10px;
+    padding: 0 1em;
+}
+.summary {
+    text-align: center;
 }
 
 .task.row {
     padding:0;
     border:0;
     border-bottom: 1px solid $border-color;
+
+    .remove {
+        margin: 0 0.5em 0.5em 0.5em;
+        cursor: pointer;
+    }
 }
 
 .cell.center {

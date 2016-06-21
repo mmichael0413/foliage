@@ -1,4 +1,4 @@
-<div class="form-group clearfix">
+<div class="form-section clearfix">
     <label class="label" for="jobName">Name</label>
     <input class="input" type="text" value="{{name}}" name="name" id="jobName" placeholder="Enter Optional name here"/>
 
@@ -10,50 +10,51 @@
         {{/roles}}
     </select>
 
-    <div class="form-group">
-        <label for="edit-blackout-schemes" class="label">Blackout Schemes: </label>
-        <select id="edit-blackout-schemes" name="blackoutSchemes" class="input" multiple data-placeholder="Assign Blackout Schemes">
-            {{#each programBlackoutSchemes}}
-                <option value="{{id}}">{{name}}</option>
-            {{/each}}
-        </select>
-    </div>
+    
+    <label for="edit-blackout-schemes" class="label">Blackout Schemes: </label>
+    <select id="edit-blackout-schemes" name="blackoutSchemes" class="input" multiple data-placeholder="Assign Blackout Schemes">
+        {{#each programBlackoutSchemes}}
+            <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select>
+    
 </div>
 
-<section id="tasks" class="form-group clearfix">
+<section id="tasks" class="form-section clearfix">
     <h3>Activities</h3>
-    
     <div class="header pure-g">
-        <p class="col-3-12">Type</p>
-        <p class="col-3-12">Activity / Packet</p>
-        <p class="col-1-12">Duration</p>
-        <p class="col-1-12">Hourly Rate</p>
-        <p class="col-1-12">Payable</p>
-        <p class="col-1-12">Billable</p>
-        <p class="col-1-12">Required</p>
-        <p class="col-1-12"></p>
+        <p class="col-3-12 header-item">Type</p>
+        <p class="col-3-12 header-item">Activity / Packet</p>
+        <p class="col-1-12 header-item">Duration</p>
+        <p class="col-1-12 header-item">Hourly Rate</p>
+        <p class="col-1-12 header-item">Payable</p>
+        <p class="col-1-12 header-item">Billable</p>
+        <p class="col-1-12 header-item">Required</p>
+        <p class="col-1-12 header-item"></p>
     </div>
     <div class="tasks-container"></div>
-    <button class="btn add-task">Add Task</button>
-    <div class="summary pure-g"></div>    
+    <div class="btn-row pure-g">
+        <div class="col-11-12"></div>
+        <button class="btn add-task col-1-12"><i class="fa fa-plus"></i>&nbsp;Add</button>    
+    </div>
+    
+    <div class="summary pure-g" id="jobSummary"></div>    
 </section>
 
 
-
-
-
-
-<div class="form-group">
-    <label for="allowRescheduling" class="">Allow Job to be Rescheduled After Schedule Finalization?</label>
-    <input type="checkbox" class="input-checkbox" name="allowRescheduling" id="allowRescheduling" {{#if allowRescheduling}}checked{{/if}}/>
+<div class="form-section">
+    <div class="form-group">
+        <label for="allowRescheduling" class="">Allow Job to be Rescheduled After Schedule Finalization?</label>
+        <input type="checkbox" class="input-checkbox" name="allowRescheduling" id="allowRescheduling" {{#if allowRescheduling}}checked{{/if}}/>    
+    </div>
+    
+    <div class="form-group">
+        <label for="jobTracked" class="">Enable Job Tracking (Special Project Tracking)?</label>
+        <input type="checkbox" class="input-checkbox job-tracking" name="tracked" id="jobTracked" {{#tracked}}checked{{/tracked}}/>    
+    </div>
 </div>
 
-<div class="form-group">
-    <label for="jobTracked" class="">Enable Job Tracking (Special Project Tracking)?</label>
-    <input type="checkbox" class="input-checkbox job-tracking" name="tracked" id="jobTracked" {{#tracked}}checked{{/tracked}}/>
-</div>
-
-<section id="jobTrackingText">
+<section id="jobTrackingText" class="form-section">
     <div class="form-group">
         <label for="jobTarget" class="">Completion Target (%)</label>
         <input type="number" class="input job-target" name="target" id="jobTarget" value="{{target}}" {{#unless tracked}}disabled{{/unless}}/>

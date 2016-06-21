@@ -4,6 +4,7 @@ define(function(require) {
         Templates = require('handlebarsTemplates'),
         context = require('context'),
         TaskCreateView = require('oddjob/views/tasks/create'),
+        SummaryView = require('oddjob/views/jobs/summary'),
         Quill = require('quill'),
         ActivityPacketStore = require("oddjob/stores/activityPackets"),
         SurveysStore = require('oddjob/stores/surveys');
@@ -27,6 +28,7 @@ define(function(require) {
                 ActivityPacketStore.fetch()
                 .done(function () {
                     var data = this.model.toJSON();
+                    this.summary = new SummaryView();
                     data.reports = context.reports;
                     data.roles = context.roles;
                     _.each(data.roles, function (role) {
@@ -40,6 +42,8 @@ define(function(require) {
                     this.$tasksContainer = this.$el.find('.tasks-container');
                     // create the first view
                     this.renderChildViews();
+                    this.summary.setElement($("#jobSummary"));
+                    this.summary.render();
                 }.bind(this));
             }.bind(this));
             
