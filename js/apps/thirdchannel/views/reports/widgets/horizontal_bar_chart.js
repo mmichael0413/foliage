@@ -76,6 +76,12 @@ define(function(require) {
                 this.chart = c3.generate($.extend( true, this.config, chartConfig));
 
                 this.$el.on('mresize', this.resizeChart);
+
+                if (this.config.breakdowns.length > 0) {
+                    this.$('.c3-event-rect').attr('class', function(i, existingClassNames) {
+                        return (existingClassNames + ' clickable');
+                    });
+                }
             }
         },
         resizeChart: function(e, data) {
