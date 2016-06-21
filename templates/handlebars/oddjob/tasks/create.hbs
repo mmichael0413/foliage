@@ -19,12 +19,16 @@
 
 
 <div class="col-1-12 cell">
-    <input name="tasks[{{index}}].expectedDuration" type="number" class="expected-duration" value="{{#expectedDuration}}{{this}}{{else}}0{{/expectedDuration}}">
+    <select name="tasks[{{index}}].expectedDuration" class="expected-duration">
+        {{#durations}}
+            <option value="{{value}}" {{#selected}}selected{{/selected}}>{{displayName}}</option>
+        {{/durations}}
+    </select>
 </div>
 
 
-<div class="col-1-12 cell">
-    <input name="tasks[{{index}}].paymentRate" type="number" placeholder="15.00" class="payment-rate" class="input" value="{{#displayPaymentRate}}{{this}}{{else}}0{{/displayPaymentRate}}">
+<div class="col-1-12 cell right">
+    <input name="tasks[{{index}}].paymentRate" type="number" step="any" placeholder="15.00" class="payment-rate input cell right" value="{{#displayPaymentRate}}{{this}}{{else}}0{{/displayPaymentRate}}">
 </div>
 
 <div class="col-1-12 cell center">

@@ -6,6 +6,19 @@ define(function (require) {
 		ActivityPacketStore = require('oddjob/stores/activityPackets'),
 		SurveysStore = require('oddjob/stores/surveys');
 
+	var durations = [
+		{value: 30,  displayName: "30 min"},
+		{value: 60,  displayName: "60 min"},
+		{value: 90,  displayName: "1h 30 min"},
+		{value: 120, displayName: "2h 0 min"},
+		{value: 150, displayName: "2h 30 min"},
+		{value: 180, displayName: "3h 0 min"},
+		{value: 210, displayName: "3h 30 min"},
+		{value: 240, displayName: "4h 0 min"},
+		{value: 270, displayName: "4h 30 min"},
+		{value: 300, displayName: "5h 0 min"},
+	];
+
 	/**
 	 * 
 	 * @type View
@@ -16,8 +29,8 @@ define(function (require) {
 		events: {
 			'click .remove': 'clear',
 			'change .task-type': 'onTypeChange',
-			'keyup .expected-duration': 'onDurationChange',
-			'keyup .payment-rate': 'onRateChange',
+			'change .expected-duration': 'onDurationChange',
+			'blur .payment-rate': 'onRateChange',
 			'click .payable': 'onPayableChange',
 			'click .billable': 'onBillableChange',
 			'click .required': 'onRequiredChange'
@@ -35,7 +48,11 @@ define(function (require) {
 		},
 
 		onRateChange: function (event) {
-			this._updateFromEvent("paymentRate", parseInt($(event.currentTarget).val(), 10)*100);
+			var target = $(event.currentTarget), 
+				cents = parseInt(parseFloat(target.val(), 10)*100, 10);
+			this.model.set("displayPaymentRate", this._formatCents(cents));
+			target.val(this.model.get("displayPaymentRate"));
+			this._updateFromEvent("paymentRate", cents);
 		},
 
 		onPayableChange: function (event) {
@@ -92,6 +109,9 @@ define(function (require) {
 			}
 			
 		},
+		_formatCents: function(cents) {
+			return parseFloat(cents/100).toFixed(2);
+		},
 
 		buildData: function () {
 			//this.model.set('types', context.taskTypes);
@@ -100,7 +120,7 @@ define(function (require) {
 				data = this.model.toJSON(),
 				types = JSON.parse(JSON.stringify(context.taskTypes));
 
-			
+			data.displayPaymentRate = this._formatCents(data.paymentRate);			
 			if (!data.type) {
 				data.type = types[0];
 			}
@@ -114,7 +134,14 @@ define(function (require) {
 				this.markSelected(activityPackets, "id");
 				types[1].selected = true;
 			}
+
 			data.types = types;
+			data.durations = JSON.parse(JSON.stringify(durations));
+			_.each(data.durations, function (duration) {
+				if (duration.value == data.expectedDuration) {
+					duration.selected = true;
+				}
+			});
 			return data;
 		},
 
@@ -127,6 +154,7 @@ define(function (require) {
 
 		clear: function (e) {
 			e.preventDefault();
+			context.trigger("task:removed", this.model.get('index'));
 			this.remove();
 		}
 

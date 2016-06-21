@@ -97,7 +97,7 @@ define(function(require) {
             e.stopPropagation();
             e.preventDefault();
             var index = this.$tasksContainer.find('.task').length;
-            this._addTaskAtIndex(index, TaskCreateView, new Backbone.Model());
+            this._addTaskAtIndex(index, TaskCreateView, new Backbone.Model({required:true, payable: true, billable: true}));
         },
 
         jobSubmit: function(e) {

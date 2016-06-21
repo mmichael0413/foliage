@@ -5,11 +5,7 @@ define(function(require) {
         context = require('context'),
 
         JobSummary = Backbone.View.extend({
-
-            //el: '#jobSummary',
-
             taskData : {
-
             },
 
             buildSummary: function () {
@@ -39,6 +35,7 @@ define(function(require) {
                 if (isNaN(summary.expectedPayment)) {
                     summary.expectedPayment = "0";
                 }
+                summary.expectedDuration = this._timeDisplay(summary.expectedDuration);
                 return summary;
             },
 
@@ -48,6 +45,13 @@ define(function(require) {
                 } else {
                     return value;
                 }
+            },
+
+            _timeDisplay: function(time) {
+                var h = parseInt(time / 60, 10),
+                    m = time % 60;
+                return h +" h, " + m +" min";
+
             },
 
             _buildTypes: function (keys) {
@@ -68,6 +72,11 @@ define(function(require) {
             updateTaskData: function (model) {
                 this.taskData[model.get("index")] = model.toJSON();
             },
+            removeTaskData: function (index) {
+                //this.taskData.delete(index);
+                delete this.taskData[index];
+            },
+
             _calculatedExpectedPayment: function (duration, rate) {
                 return (parseInt(duration, 10) / 60) * parseInt(rate, 10);
             },
@@ -76,6 +85,11 @@ define(function(require) {
                 var self = this;
                 this.listenTo(context, 'task:updated', function (model) {
                     self.updateTaskData(model);
+                    this.render();
+                });
+
+                this.listenTo(context, 'task:removed', function(index) {
+                    self.removeTaskData(index);
                     this.render();
                 });
             },

@@ -944,23 +944,23 @@ function program1(depth0,data) {
   buffer += "<div class=\"col-3-12\">\n    ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.types), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>\n<div class=\"col-3-12\"></div>\n<p class=\"col-1-12\">";
+  buffer += "\n</div>\n\n<div class=\"col-3-12\"></div>\n<p class=\"col-1-12\">";
   if (helper = helpers.expectedDuration) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.expectedDuration); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-12\">";
+    + "</p>\n<p class=\"col-1-12 cell right\">$";
   if (helper = helpers.expectedPayment) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.expectedPayment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-12\">";
+    + "</p>\n<p class=\"col-1-12 cell center\">";
   if (helper = helpers.payable) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.payable); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-12\">";
+    + "</p>\n<p class=\"col-1-12 cell center\">";
   if (helper = helpers.billable) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.billable); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n<p class=\"col-1-12\">";
+    + "</p>\n<p class=\"col-1-12 cell center\">";
   if (helper = helpers.required) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.required); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1247,11 +1247,32 @@ function program6(depth0,data) {
 
 function program8(depth0,data) {
   
+  var buffer = "", stack1, helper, options;
+  buffer += "\n            <option value=\"";
+  if (helper = helpers.value) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.value); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" ";
+  options={hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}
+  if (helper = helpers.selected) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.selected); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.selected) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ">";
+  if (helper = helpers.displayName) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.displayName); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</option>\n        ";
+  return buffer;
+  }
+
+function program10(depth0,data) {
+  
   
   return "0";
   }
 
-function program10(depth0,data) {
+function program12(depth0,data) {
   
   
   return "checked";
@@ -1287,25 +1308,25 @@ function program10(depth0,data) {
   else { helper = (depth0 && depth0.trackableItems); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.trackableItems) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </select>\n</div>\n\n\n<div class=\"col-1-12 cell\">\n    <input name=\"tasks[";
+  buffer += "\n    </select>\n</div>\n\n\n<div class=\"col-1-12 cell\">\n    <select name=\"tasks[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "].expectedDuration\" type=\"number\" class=\"expected-duration\" value=\"";
-  options={hash:{},inverse:self.program(8, program8, data),fn:self.program(1, program1, data),data:data}
-  if (helper = helpers.expectedDuration) { stack1 = helper.call(depth0, options); }
-  else { helper = (depth0 && depth0.expectedDuration); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.expectedDuration) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(8, program8, data),fn:self.program(1, program1, data),data:data}); }
+    + "].expectedDuration\" class=\"expected-duration\">\n        ";
+  options={hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data}
+  if (helper = helpers.durations) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.durations); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.durations) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\">\n</div>\n\n\n<div class=\"col-1-12 cell\">\n    <input name=\"tasks[";
+  buffer += "\n    </select>\n</div>\n\n\n<div class=\"col-1-12 cell right\">\n    <input name=\"tasks[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "].paymentRate\" type=\"number\" placeholder=\"15.00\" class=\"payment-rate\" class=\"input\" value=\"";
-  options={hash:{},inverse:self.program(8, program8, data),fn:self.program(1, program1, data),data:data}
+    + "].paymentRate\" type=\"number\" step=\"any\" placeholder=\"15.00\" class=\"payment-rate input cell right\" value=\"";
+  options={hash:{},inverse:self.program(10, program10, data),fn:self.program(1, program1, data),data:data}
   if (helper = helpers.displayPaymentRate) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.displayPaymentRate); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.displayPaymentRate) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(8, program8, data),fn:self.program(1, program1, data),data:data}); }
+  if (!helpers.displayPaymentRate) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.program(10, program10, data),fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\">\n</div>\n\n<div class=\"col-1-12 cell center\">\n    <input type=\"hidden\" value=\"on\" name=\"_tasks[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -1316,10 +1337,10 @@ function program10(depth0,data) {
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "].payable\" type=\"checkbox\" class=\"payable\" ";
-  options={hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data}
+  options={hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data}
   if (helper = helpers.payable) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.payable); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.payable) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data}); }
+  if (!helpers.payable) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "> </input>\n</div>\n\n<div class=\"col-1-12 cell center\">\n    <input type=\"hidden\" value=\"on\" name=\"_tasks[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -1330,10 +1351,10 @@ function program10(depth0,data) {
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "].billable\" type=\"checkbox\" class=\"billable\" ";
-  options={hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data}
+  options={hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data}
   if (helper = helpers.billable) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.billable); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.billable) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data}); }
+  if (!helpers.billable) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "> </input>\n</div>\n\n<div  class=\"col-1-12 cell center\">\n    <input type=\"hidden\" value=\"on\" name=\"_tasks[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -1344,10 +1365,10 @@ function program10(depth0,data) {
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "].required\" type=\"checkbox\" class=\"required\" ";
-  options={hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data}
+  options={hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data}
   if (helper = helpers.required) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.required); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.required) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data}); }
+  if (!helpers.required) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "> </input>\n</div>\n\n<div class=\"col-1-12 cell center\">\n    <i class=\"fa fa-trash remove\"></i>\n</div>";
   return buffer;

@@ -7,10 +7,11 @@
     }
     .summary {
         border-top: 2px solid $border-color;
+        padding: 0 1em;
     }
 
     .btn-row {
-        padding: 1em 0;
+        padding: 1em 1em;
     }
 }
 
@@ -20,9 +21,6 @@
 
 .tasks-container {
     padding: 0 1em;
-}
-.summary {
-    text-align: center;
 }
 
 .task.row {
@@ -36,7 +34,13 @@
     }
 }
 
-.cell.center {
-    text-align: center;
+.cell {
+    &.center {
+        text-align: center;
+    }
+    
+    &.right {
+        text-align: right;
+    }
 }
 

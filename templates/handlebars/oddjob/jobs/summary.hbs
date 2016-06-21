@@ -3,9 +3,10 @@
         <p>{{this}} {{@key}}</p>
     {{/each}}
 </div>
+
 <div class="col-3-12"></div>
 <p class="col-1-12">{{expectedDuration}}</p>
-<p class="col-1-12">{{expectedPayment}}</p>
-<p class="col-1-12">{{payable}}</p>
-<p class="col-1-12">{{billable}}</p>
-<p class="col-1-12">{{required}}</p>
+<p class="col-1-12 cell right">${{expectedPayment}}</p>
+<p class="col-1-12 cell center">{{payable}}</p>
+<p class="col-1-12 cell center">{{billable}}</p>
+<p class="col-1-12 cell center">{{required}}</p>
