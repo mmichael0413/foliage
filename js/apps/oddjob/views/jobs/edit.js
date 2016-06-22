@@ -3,6 +3,7 @@ define(function(require) {
 		Templates = require('handlebarsTemplates'),
 		context = require('context'),
         Chosen = require('chosen'),
+		Task = require('oddjob/models/task');
 		SurveysStore = require('oddjob/stores/surveys');
 
 	var JobEditView = {

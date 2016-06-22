@@ -89,17 +89,28 @@ define(function(require) {
             }
         },
         showElement: function(e) {
-            this.$(e.currentTarget.getAttribute('data-show-element')).show('fast', "linear");
+            var $attribute = this.$(e.currentTarget.getAttribute('data-show-element'));
+            $attribute.show('fast', "linear");
+            if(this.$(e.currentTarget)[0].control.required) {
+                $attribute.prop('required', true).trigger('change');
+            }
         },
         hideElement: function(e) {
-            this.$(e.currentTarget.getAttribute('data-hide-element')).hide('fast', "linear").val('').trigger('change');
+            var $attribute = this.$(e.currentTarget.getAttribute('data-hide-element'));
+            $attribute.hide('fast', "linear").val('').trigger('change');
+            $attribute.prop('required', false).trigger('change');
         },
         displayQuestionExtraIfTriggered: function(e) {
-          if(this.$(e.currentTarget).find(":selected[data-trigger=true]").length > 0){
-            this.$(e.currentTarget.getAttribute('data-trigger-element')).show('fast', "linear");
-          } else {
-            this.$(e.currentTarget.getAttribute('data-trigger-element')).hide('fast', "linear").val('').trigger('change');
-          }
+            var $attribute = this.$(e.currentTarget.getAttribute('data-trigger-element'));
+            if(this.$(e.currentTarget).find(":selected[data-trigger=true]").length > 0){
+                $attribute.show('fast', "linear");
+                if(this.$(e.currentTarget)[0].required) {
+                    $attribute.prop('required', true).trigger('change');
+                }
+            } else {
+                $attribute.hide('fast', "linear").val('').trigger('change');
+                $attribute.prop('required', false).trigger('change');
+            }
         },
         validateForm: function(e) {
             e.preventDefault();
@@ -109,7 +120,7 @@ define(function(require) {
                 this.$form.submit();
             } else {
                 $('.content-holder').animate({
-                    scrollTop: this.$('div.error:first')[0].offsetTop
+                    scrollTop: Math.abs(this.$form.offset().top - this.$('div.error:first').offset().top + this.$('div.error:first').height() / 2)
                 }, 500);
             }
         },

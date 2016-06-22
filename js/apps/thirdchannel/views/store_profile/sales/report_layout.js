@@ -62,7 +62,7 @@ define(function(require) {
                 }
             }.bind(this));
 
-            var view = new BreakdownView({title: 'Breakdown', el: this.$('#overview-breakdown'), collection: new Backbone.Collection([model])});
+            var view = new BreakdownView({config: {title: 'Breakdown', sales_data_logos: this.model.get('sales_data_logos')}, el: this.$('#overview-breakdown'), collection: new Backbone.Collection([model])});
             view.render();
         },
 
@@ -98,7 +98,7 @@ define(function(require) {
                 return model;
             }.bind(this));
 
-            var view = new BreakdownView({title: this._breakdownLabel(), el: this.$('#brands-breakdown'), collection: new Backbone.Collection(brands)});
+            var view = new BreakdownView({config: {title: this._breakdownLabel(), sales_data_logos: this.model.get('sales_data_logos')}, el: this.$('#brands-breakdown'), collection: new Backbone.Collection(brands)});
             view.render();
         },
 

@@ -33,6 +33,7 @@ define(function (require) {
             var data = {
                 "name": $("#blackout-scheme-name").get(0).value,
                 "dates": $("#blackout-scheme-dates").find(".blackout-scheme-date-input").map(function(){return this.value;}).get(),
+                "inverse": $("#blackout-scheme-inverse_whitelist").is(':checked'),
             };
             $.ajax({
                 type: "POST",

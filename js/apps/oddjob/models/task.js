@@ -7,5 +7,5 @@ define(function(require) {
             paymentRate: 1500,
             expectedDuration: 60
         }
-    });     
+    });
 });

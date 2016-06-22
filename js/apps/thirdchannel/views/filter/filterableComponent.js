@@ -32,7 +32,7 @@ define(function (require) {
             this.$('.filter-list-item:not(.filtered)').show();
 
             if(term && term !== '') {
-                var termPattern = new RegExp('^' + term, 'i');
+                var termPattern = new RegExp(term, 'i');
 
                 // The active items are just hidden and there's no correlation except for the data-value attribute...
                 // So in order to maintain the hidden filtered items, just hide any that are not filtered and match the term
@@ -47,7 +47,6 @@ define(function (require) {
 
         addFilterHandler: function(e) {
             Component.prototype.addFilterHandler.call(this, e);
-            this.clearFilterItems(e);
         },
 
         clearFilterItems: function(e) {

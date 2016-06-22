@@ -12,6 +12,7 @@ define(function (require) {
         events: {
             "change input": "updateScheduledDate",
             "click .unassign" : "unassign",
+            "click .remove" : "remove",
             "click .task-count": "toggleTaskList"
         },
         render: function () {
@@ -58,8 +59,16 @@ define(function (require) {
         unassign: function(e){
             e.preventDefault();
             e.stopPropagation();
+            if(confirm('This operation cannot be undone. Are you sure you want to unassign this visit?')) {
+                this.model.destroy({wait: true, data: {id: this.model.id, remove: false, aggregateId: context.aggregateId}});
+            }
+        },
+
+        remove: function(e){
+            e.preventDefault();
+            e.stopPropagation();
             if(confirm('This operation cannot be undone. Are you sure you want to remove this visit?')) {
-                this.model.destroy({wait: true, data: {id: this.model.id, aggregateId: context.aggregateId}});
+                this.model.destroy({wait: true, data: {id: this.model.id, remove: true, aggregateId: context.aggregateId}});
             }
         },
 

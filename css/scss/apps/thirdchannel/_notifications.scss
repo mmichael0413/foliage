@@ -5,3 +5,9 @@
 #actionNotification {
   min-width: 2rem;
 }
+
+.new-notifications, .past-notifications {
+  .first, .prev, .next, .last {
+    display: none;
+  }
+}

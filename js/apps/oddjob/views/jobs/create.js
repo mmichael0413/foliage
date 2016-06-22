@@ -4,6 +4,7 @@ define(function(require) {
         $ = require('jquery'),
         Templates = require('handlebarsTemplates'),
         context = require('context'),
+        Task = require('oddjob/models/task'),
         TaskCreateView = require('oddjob/views/tasks/create'),
         SummaryView = require('oddjob/views/jobs/summary'),
         Quill = require('quill'),
@@ -112,7 +113,8 @@ define(function(require) {
         },
 
         _addTaskAtIndex: function (index, taskClass, model) {
-            var view = new taskClass({index:index, model: model});
+            model.set('index', index);
+            var view = new taskClass({model: model});
             this.$tasksContainer.append(view.render().$el);
             
         },
@@ -120,11 +122,13 @@ define(function(require) {
         addTask: function (e) {
             e.stopPropagation();
             e.preventDefault();
+
             
             var index = this.tasks.length,
                 model = new Task();
             this.tasks.add(model);
             this._addTaskAtIndex(index, TaskCreateView, model);
+
         },
 
         jobSubmit: function(e) {

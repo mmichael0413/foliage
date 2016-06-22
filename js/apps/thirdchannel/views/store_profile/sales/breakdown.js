@@ -10,11 +10,11 @@ define(function(require) {
         template: HandlebarsTemplates['thirdchannel/store_profile/sales/breakdown'],
 
         initialize: function(options) {
-            this.title = options.title;
+            this.config = options.config;
         },
 
         render: function() {
-            this.$el.html(this.template({title: this.title}));
+            this.$el.html(this.template(this.config));
             this.renderBreakdownGroups();
             return this;
         },
