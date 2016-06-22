@@ -42,27 +42,62 @@ define(function (require) {
             _.each(window.bootstrap.blackoutScheme.dates, this.addDate);
         },
         submitChanges: function(){
-            $("#blackout-scheme-save").prop("disabled", true);
-            var data = {
-                "name": $("#blackout-scheme-name").get(0).value,
-                "dates": $("#blackout-scheme-dates").find(".blackout-scheme-date-input").map(function(){return this.value;}).get(),
-                "rangesFrom": $("#blackout-scheme-ranges").find(".blackout-scheme-range-input1").map(function(){return this.value;}).get(),
-                "rangesTo": $("#blackout-scheme-ranges").find(".blackout-scheme-range-input2").map(function(){return this.value;}).get(),
-                "inverse": $("#blackout-scheme-inverse_whitelist").is(':checked'),
-            };
-            $.ajax({
-                type: "POST",
-                url: window.bootstrap.submitUrl,
-                data: JSON.stringify(data),
-                success: function(data, textstatus, jqxhr) {
-                    window.location.href = ".";
-                },
-                dataType: 'json',
-                contentType: "application/json; charset=utf-8",
-            }).fail(function(){
-                alert("Failed to save blackout scheme!");
-                $("#blackout-scheme-save").prop("disabled", false);
+            var rangesFrom = $("#blackout-scheme-ranges").find(".blackout-scheme-range-input1").map(function(){return this.value;}).get();
+            var rangesTo = $("#blackout-scheme-ranges").find(".blackout-scheme-range-input2").map(function(){return this.value;}).get();
+            var invalidRanges = [];
+
+            // validate ranges
+            for(var i = 0; i < rangesFrom.length; i++) {
+                var from = rangesFrom[i];
+                var to = rangesTo[i];
+                var element = $("#blackout-scheme-ranges").find(".blackout-scheme-range-input1").
+                filter(function(){return this.value == from;});
+
+                if(moment(from).isAfter(to)) {
+                    element.parent().addClass('error');
+                    invalidRanges.push({to: to, from: from});
+                }
+                else {
+                    element.parent().removeClass('error');
+                }
+            }
+
+            // create warning for when invalid ranges exist
+            var warningText = "WARNING! You have entered one or more ranges that are invalid and will be disregarded when" +
+            " updating the blackout scheme. \n\nERROR: The date in the 'From' field cannot be after the date in the To field. " +
+                "\n\nInvalid Ranges: ";
+
+            _.each(invalidRanges, function(range) {
+                warningText += "\nFrom: " + range.from + ", To: " + range.to;
             });
+
+            warningText += "\n\nContinue anyway?";
+
+            if (invalidRanges.length == 0 || confirm(warningText)) {
+                $("#blackout-scheme-save").prop("disabled", true);
+                var data = {
+                    "name": $("#blackout-scheme-name").get(0).value,
+                    "dates": $("#blackout-scheme-dates").find(".blackout-scheme-date-input").map(function () {
+                        return this.value;
+                    }).get(),
+                    "rangesFrom": rangesFrom,
+                    "rangesTo": rangesTo,
+                    "inverse": $("#blackout-scheme-inverse_whitelist").is(':checked'),
+                };
+                $.ajax({
+                    type: "POST",
+                    url: window.bootstrap.submitUrl,
+                    data: JSON.stringify(data),
+                    success: function (data, textstatus, jqxhr) {
+                        window.location.href = ".";
+                    },
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                }).fail(function () {
+                    alert("Failed to save blackout scheme!");
+                    $("#blackout-scheme-save").prop("disabled", false);
+                });
+            }
         },
         deleteScheme: function(){
             if(confirm("Are you sure you want to delete this Blackout Scheme? This will affect " + window.bootstrap.assignedJobs.length + " jobs.")){
