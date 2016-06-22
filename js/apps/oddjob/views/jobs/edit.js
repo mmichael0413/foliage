@@ -11,9 +11,9 @@ define(function(require) {
 
 		renderChildViews: function () {
 			var i = 0,
-				max = this.model.get('tasks').length;
-			for(i; i < max; i++) {
-				this._addTaskAtIndex(i, this.taskViewClass, new Backbone.Model(this.model.get('tasks')[i]));
+				max = this.tasks.length;
+			for (i; i< max; i++) {
+				this._addTaskAtIndex(i, this.taskViewClass, this.tasks.at(i));
 			}
             $(this.model.attributes.blackoutSchemeUUIDs).each(function(){
                 $("#edit-blackout-schemes").find("option[value="+this+"]").attr("selected","selected");

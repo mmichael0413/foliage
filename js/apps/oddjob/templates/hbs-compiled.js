@@ -1278,6 +1278,12 @@ function program12(depth0,data) {
   return "checked";
   }
 
+function program14(depth0,data) {
+  
+  
+  return "\n    <i class=\"fa fa-trash remove\"></i>\n    ";
+  }
+
   buffer += "<input name=\"tasks[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -1370,7 +1376,13 @@ function program12(depth0,data) {
   else { helper = (depth0 && depth0.required); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.required) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(12, program12, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "> </input>\n</div>\n\n<div class=\"col-1-12 cell center\">\n    <i class=\"fa fa-trash remove\"></i>\n</div>";
+  buffer += "> </input>\n</div>\n\n<div class=\"col-1-12 cell center\">\n    ";
+  options={hash:{},inverse:self.noop,fn:self.program(14, program14, data),data:data}
+  if (helper = helpers.canDelete) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.canDelete); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.canDelete) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(14, program14, data),data:data}); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</div>";
   return buffer;
   });
 

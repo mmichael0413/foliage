@@ -18,8 +18,8 @@ define(function (require) {
 
                 this.model.destroy()
                     .done(function () {
-                        context.trigger("task:removed", index);
                         this.remove();
+                        context.trigger("task:removed", index);
                     }.bind(this))
                     .fail(function () {
                         console.error("Uh oh");

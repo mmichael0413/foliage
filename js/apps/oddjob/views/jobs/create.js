@@ -1,18 +1,27 @@
 define(function(require) {
     var Backbone = require('backbone'),
         _ = require('underscore'),
+        $ = require('jquery'),
         Templates = require('handlebarsTemplates'),
         context = require('context'),
         TaskCreateView = require('oddjob/views/tasks/create'),
         SummaryView = require('oddjob/views/jobs/summary'),
         Quill = require('quill'),
+        Task = require('oddjob/models/task'),
         ActivityPacketStore = require("oddjob/stores/activityPackets"),
-        SurveysStore = require('oddjob/stores/surveys');
+        SurveysStore = require('oddjob/stores/surveys'),
+
+        TaskCollection = Backbone.Collection.extend({
+            model: Task
+        });
+
+
 
     var JobCreateView = {
         el: "#job",
         templateName: "oddjob/jobs/create",
         taskViewClass: TaskCreateView, // the class to use when instantiate existing tasks from the server
+
         childViews: [],
         events: {
             'click .add-task': 'addTask',
@@ -21,31 +30,44 @@ define(function(require) {
             'click .job-submit': 'jobSubmit'
         },
 
-        render: function () {
-            // todo: when we add trainings, convert this to a spread or something
-            SurveysStore.fetch()
-            .done(function () {
-                ActivityPacketStore.fetch()
-                .done(function () {
-                    var data = this.model.toJSON();
-                    this.summary = new SummaryView();
-                    data.reports = context.reports;
-                    data.roles = context.roles;
-                    _.each(data.roles, function (role) {
-                        if (role.id === data.role) {
-                            role.selected = true;
-                        }
-                    });
-                    this.$el.html(Templates[this.templateName](data));
-                    this._toggleJobTrackingText(data.tracked);
-                    this._configureTextEditor();
-                    this.$tasksContainer = this.$el.find('.tasks-container');
-                    // create the first view
-                    this.renderChildViews();
-                    this.summary.setElement($("#jobSummary"));
-                    this.summary.render();
-                }.bind(this));
+        initialize: function(data){
+            this.model = data.model;
+            this.tasks = new TaskCollection();
+            if (this.model.get('tasks')) {
+                this.tasks.add(this.model.get('tasks'));
+            } else {
+                this.tasks.add(new Task());
+            }
+
+            this.listenTo(this.tasks, 'remove', function() {
+                this.renderChildViews();
             }.bind(this));
+
+        },
+
+        fetch: function () {
+            return $.when(SurveysStore.fetch(), ActivityPacketStore.fetch());
+        },
+
+        render: function () {
+            var data = this.model.toJSON();
+            this.summary = new SummaryView({tasks: this.tasks});
+            data.reports = context.reports;
+            data.roles = context.roles;
+            _.each(data.roles, function (role) {
+                if (role.id === data.role) {
+                    role.selected = true;
+                }
+            });
+            
+            this.$el.html(Templates[this.templateName](data));
+            this._toggleJobTrackingText(data.tracked);
+            this._configureTextEditor();
+            this.$tasksContainer = this.$el.find('.tasks-container');
+            // create the first view
+            this.renderChildViews();
+            this.summary.setElement($("#jobSummary"));
+            this.summary.render();
             
             return this;
         },
@@ -83,21 +105,26 @@ define(function(require) {
         },
 
         renderChildViews: function () {
-            this._addTaskAtIndex(0, this.taskViewClass, new Backbone.Model());
-
+            this.$tasksContainer.html("");
+            for (var i = 0; i < this.tasks.length; i++) {
+                this._addTaskAtIndex(i, this.taskViewClass, this.tasks.at(i));
+            }
         },
 
         _addTaskAtIndex: function (index, taskClass, model) {
             var view = new taskClass({index:index, model: model});
             this.$tasksContainer.append(view.render().$el);
-            this.childViews.push(view);
+            
         },
 
         addTask: function (e) {
             e.stopPropagation();
             e.preventDefault();
-            var index = this.$tasksContainer.find('.task').length;
-            this._addTaskAtIndex(index, TaskCreateView, new Backbone.Model({required:true, payable: true, billable: true}));
+            
+            var index = this.tasks.length,
+                model = new Task();
+            this.tasks.add(model);
+            this._addTaskAtIndex(index, TaskCreateView, model);
         },
 
         jobSubmit: function(e) {

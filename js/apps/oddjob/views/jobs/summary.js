@@ -5,8 +5,6 @@ define(function(require) {
         context = require('context'),
 
         JobSummary = Backbone.View.extend({
-            taskData : {
-            },
 
             buildSummary: function () {
                 var summary = {
@@ -16,18 +14,18 @@ define(function(require) {
                     payable: 0,
                     billable: 0,
                     required: 0
-                },
-                    keys = _.keys(this.taskData);
+                };
                 
-                summary.types = this._buildTypes(keys);
-                _.each(keys, function(key) {
-                    var task = this.taskData[key];
+                summary.types = this._buildTypes();
+                
+                this.tasks.each(function(model) {
+                
+                    var task = model.toJSON();
                     summary.expectedDuration += this._safeAdd(parseInt(task.expectedDuration, 10));
                     summary.expectedPayment += this._safeAdd(this._calculatedExpectedPayment(task.expectedDuration, task.paymentRate));
                     summary.payable += task.payable ? 1 : 0;
                     summary.billable += task.billable ? 1 : 0;
                     summary.required += task.required ? 1 : 0;
-                    
                 }.bind(this));
 
 
@@ -54,11 +52,12 @@ define(function(require) {
 
             },
 
-            _buildTypes: function (keys) {
+            _buildTypes: function () {
                 var types = {};
-                _.each(keys, function(key) {
-                    if (this.taskData[key].type) {
-                        var typeName = this.taskData[key].type.displayName;
+                this.tasks.each(function(task) {
+                    var type = task.get('type');
+                    if (type) {
+                        var typeName = type.displayName;
                         if (!types.hasOwnProperty(typeName)) {
                             types[typeName] = 0;
                         }
@@ -69,28 +68,21 @@ define(function(require) {
                 return types;
             },
 
-            updateTaskData: function (model) {
-                this.taskData[model.get("index")] = model.toJSON();
-            },
-            removeTaskData: function (index) {
-                //this.taskData.delete(index);
-                delete this.taskData[index];
-            },
 
             _calculatedExpectedPayment: function (duration, rate) {
                 return (parseInt(duration, 10) / 60) * parseInt(rate, 10);
             },
 
-            initialize: function () {
+            initialize: function (data) {
                 var self = this;
-                this.listenTo(context, 'task:updated', function (model) {
-                    self.updateTaskData(model);
-                    this.render();
+                this.tasks = data.tasks;
+
+                this.listenTo(this.tasks, 'change', function() {
+                    self.render();
                 });
 
-                this.listenTo(context, 'task:removed', function(index) {
-                    self.removeTaskData(index);
-                    this.render();
+                this.listenTo(this.tasks, 'remove', function() {
+                    self.render();
                 });
             },
 

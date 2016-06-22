@@ -38,9 +38,17 @@ define(function (require) {
 
 		initialize: function (data) {
 			this.model = data.model;
-			this.model.set('index', data.index);
+			this.model.set({'index':data.index}, {silent: true});
 			this._setInitialType();
 			this._broadcastTask();
+			this.listenTo(this.model.collection, "change", function () {
+				//console.log("coll size is ", this.model.collection.length);
+				this.render();
+			}.bind(this));
+		},
+
+		setIndex: function(index) {
+			this.model.set('index', index);
 		},
 
 		onDurationChange: function(event) {
@@ -142,6 +150,10 @@ define(function (require) {
 					duration.selected = true;
 				}
 			});
+
+			//console.log("Part of a group of ", this.model.collection.length);
+			data.canDelete = this.model.collection.length > 1;
+
 			return data;
 		},
 
@@ -153,9 +165,11 @@ define(function (require) {
 		},
 
 		clear: function (e) {
+			var index = this.model.get('index');
 			e.preventDefault();
-			context.trigger("task:removed", this.model.get('index'));
+			this.model.destroy();
 			this.remove();
+			context.trigger("task:removed", index);
 		}
 
 	};
