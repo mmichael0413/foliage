@@ -46,8 +46,8 @@ define(function (require) {
             var rangesTo = $("#blackout-scheme-ranges").find(".blackout-scheme-range-input2").map(function(){return this.value;}).get();
             var invalidRanges = [];
             // filter for finding invalid input fields
-            function findFrom(customArgument, index, value, array) {
-                return customArgument == value.value;
+            function findFrom(from, index, date, array) {
+                return from == date.value;
             }
 
             // validate ranges
