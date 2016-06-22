@@ -45,13 +45,17 @@ define(function (require) {
             var rangesFrom = $("#blackout-scheme-ranges").find(".blackout-scheme-range-input1").map(function(){return this.value;}).get();
             var rangesTo = $("#blackout-scheme-ranges").find(".blackout-scheme-range-input2").map(function(){return this.value;}).get();
             var invalidRanges = [];
+            // filter for finding invalid input fields
+            function findFrom(customArgument, index, value, array) {
+                return customArgument == value.value;
+            }
 
             // validate ranges
             for(var i = 0; i < rangesFrom.length; i++) {
                 var from = rangesFrom[i];
                 var to = rangesTo[i];
-                var element = $("#blackout-scheme-ranges").find(".blackout-scheme-range-input1").
-                filter(function(){return this.value == from;});
+                var element = $("#blackout-scheme-ranges").find(".blackout-scheme-range-input1")
+                    .filter(findFrom.bind(null, from));
 
                 if(moment(from).isAfter(to)) {
                     element.parent().addClass('error');
@@ -73,7 +77,7 @@ define(function (require) {
 
             warningText += "\n\nContinue anyway?";
 
-            if (invalidRanges.length == 0 || confirm(warningText)) {
+            if (invalidRanges.length === 0 || confirm(warningText)) {
                 $("#blackout-scheme-save").prop("disabled", true);
                 var data = {
                     "name": $("#blackout-scheme-name").get(0).value,
