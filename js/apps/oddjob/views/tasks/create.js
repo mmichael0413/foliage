@@ -151,7 +151,7 @@ define(function (require) {
 				}
 			});
 
-			//console.log("Part of a group of ", this.model.collection.length);
+			console.log("Have index ", data.index);
 			data.canDelete = this.model.collection.length > 1;
 
 			return data;

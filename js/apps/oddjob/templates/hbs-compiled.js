@@ -231,7 +231,7 @@ function program11(depth0,data) {
   else { helper = (depth0 && depth0.reports); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.reports) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </select>\n    </div>\n    <br><br>\n    <div style=\"clear: both;\">\n        <p class=\"instruction\"><span class=\"important\">Note:</span> For now, any jobs we wish to track must have only one task and one frequency assigned to them. Or rather, only the first task's survey will be tracked, and the first frequency will be used for the start and end date of the tracking. We hope to change this in the future.</p>\n        <label for=\"editor\">Completion Instructions</label>\n        <input type=\"hidden\" name=\"completionInstructions\" id=\"completionInstructions\" value=\"";
+  buffer += "\n        </select>\n    </div>\n    <br><br>\n    <div class=\"clear\">\n        <p class=\"instruction\"><span class=\"important\">Note:</span> For now, any jobs we wish to track must have only one task and one frequency assigned to them. Or rather, only the first task's survey will be tracked, and the first frequency will be used for the start and end date of the tracking. We hope to change this in the future.</p>\n        <label for=\"editor\">Completion Instructions</label>\n        <input type=\"hidden\" name=\"completionInstructions\" id=\"completionInstructions\" value=\"";
   if (helper = helpers.completionInstructions) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.completionInstructions); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -632,12 +632,24 @@ function program2(depth0,data) {
   return buffer;
   }
 
+function program4(depth0,data) {
+  
+  
+  return "checked";
+  }
+
   buffer += "<h1 class=\"title\">Editing Blackout Scheme</h1>\n\n<div class=\"actions\" id=\"blackout-scheme-save\">\n	<button class=\"btn primary\" id=\"blackout-scheme-delete\">\n		<i class=\"ic fa ic_remove\"></i>\n		<span>Delete</span>\n	</button>\n	<button class=\"btn primary\" id=\"blackout-scheme-save\">\n		<i class=\"ic fa ic_check\"></i>\n		<span>Save</span>\n	</button>\n</div>\n\n";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.assignedJobs), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n<div class=\"section\">\n	<h3>Name</h3>\n	<input id=\"blackout-scheme-name\" value=\""
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.blackoutScheme)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" required>\n</div>\n\n<div class=\"section\">\n	<h3>Dates</h3>\n	<button id=\"blackout-scheme-date-add\">Add Date</button>\n	<div id=\"blackout-scheme-dates\">\n	</div>\n</div>\n";
+    + "\" required>\n\n    <div id=\"type-list\" class=\"radio-input-group bottom\">\n    <h3>Type of Date</h3>\n        <label for=\"blackout-scheme-inverse_blacklist\" class=\"radio\"><input id=\"blackout-scheme-inverse_blacklist\" name=\"blackout-scheme-inverse\" type=\"radio\" value=\"false\" ";
+  stack1 = helpers.unless.call(depth0, ((stack1 = (depth0 && depth0.blackoutScheme)),stack1 == null || stack1 === false ? stack1 : stack1.inverse), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " required/> Blackout</label>\n        <label for=\"blackout-scheme-inverse_whitelist\" class=\"radio\"><input id=\"blackout-scheme-inverse_whitelist\" name=\"blackout-scheme-inverse\" type=\"radio\" value=\"true\" ";
+  stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.blackoutScheme)),stack1 == null || stack1 === false ? stack1 : stack1.inverse), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " required/> Available</label>\n    </div>\n\n	<h3>Dates</h3>\n	<button id=\"blackout-scheme-date-add\">Add Date</button>\n	<div id=\"blackout-scheme-dates\">\n	</div>\n</div>\n";
   return buffer;
   });
 
@@ -1294,7 +1306,7 @@ function program14(depth0,data) {
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.id) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\"/>\n\n<div class=\"col-3-12 cell\">\n    <select name=\"tasks[";
+  buffer += "\"/>\n\n\n<div class=\"col-3-12 cell\">\n    <select name=\"tasks[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1324,7 +1336,7 @@ function program14(depth0,data) {
   else { helper = (depth0 && depth0.durations); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.durations) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </select>\n</div>\n\n\n<div class=\"col-1-12 cell right\">\n    <input name=\"tasks[";
+  buffer += "\n    </select>\n</div>\n\n<div class=\"col-1-12 cell right\">\n    <input name=\"tasks[";
   if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -1382,7 +1394,7 @@ function program14(depth0,data) {
   else { helper = (depth0 && depth0.canDelete); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
   if (!helpers.canDelete) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(14, program14, data),data:data}); }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>";
+  buffer += "\n</div>\n";
   return buffer;
   });
 
@@ -1482,7 +1494,7 @@ function program3(depth0,data) {
   if (helper = helpers.label) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.label); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "<span class=\"expand-indicator\"></span></div>\n    <div class=\"filter-list filter-list-items\">\n        <div class=\"filter-list-search\">\n            <input type=\"text\" name=\"items-filter\" class=\"items-filter\">\n            <a href=\"#\" class=\"btn light clear-items-filter\"><i class=\"ic ic_x\"></i></a>\n        </div>\n        ";
+    + "<span class=\"expand-indicator\"></span></div>\n    <div class=\"filter-list filter-list-items\">\n        <div class=\"filter-list-search\">\n            <input type=\"text\" name=\"items-filter\" class=\"items-filter\" placeholder=\"Search\" />\n            <a href=\"#\" class=\"btn light clear-items-filter\"><i class=\"ic ic_x\"></i></a>\n        </div>\n        ";
   options={hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data}
   if (helper = helpers.items) { stack1 = helper.call(depth0, options); }
   else { helper = (depth0 && depth0.items); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
@@ -1991,7 +2003,7 @@ function program52(depth0,data) {
   return "\n            <span class=\"action\"><a href=\"#\" class=\"hide-post\">Hide Post</a></span>\n            ";
   }
 
-  buffer += "<div class=\"activity-holder\">\n\n    ";
+  buffer += "<div class=\"activity-holder\">\n    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.tasks), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    <div class=\"activity\">\n        <div class=\"activity-meta\">\n            ";
