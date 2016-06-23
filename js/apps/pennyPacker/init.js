@@ -18,7 +18,8 @@ require.config({
         'helpers'       : 'thirdchannel/utils/helpers',
         'pikaday'       : '../libs/bower_components/pikaday/pikaday',
         'context'       : 'shared/utils/context',
-        'noty'          : '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged'
+        'noty'          : '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged',
+        'qs' : '../libs/bower_components/ljharb-qs/dist/qs'
     },
     shim: {
         "jquery": {

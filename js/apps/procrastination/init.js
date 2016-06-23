@@ -26,6 +26,7 @@ require.config({
         'buttons'       : '../libs/buttons',
         'state-machine' : '../libs/bower_components/javascript-state-machine/state-machine',
         'blockui' : '../libs/bower_components/blockui/jquery.blockUI',
+        'qs' : '../libs/bower_components/ljharb-qs/dist/qs'
     },
     shim: {
         "jquery": {
