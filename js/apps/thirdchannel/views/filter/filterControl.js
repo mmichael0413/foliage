@@ -311,7 +311,7 @@ define(function(require) {
                     value[key] = this.filterExcludedFields(key, valueObj);
                 }, this);
             }
-            if (value == '') {
+            if (value === '') {
                 return;
             }
             if ($.inArray(prefix, this.excludeFields) !== -1) {

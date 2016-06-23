@@ -18,7 +18,8 @@ require.config({
         'pikaday' : '../libs/bower_components/pikaday/pikaday',
         'noty': '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged',
         'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
-        'async': '../libs/bower_components/requirejs-plugins/src/async'
+        'async': '../libs/bower_components/requirejs-plugins/src/async',
+        'qs' : '../libs/bower_components/ljharb-qs/dist/qs'
     },
     shim: {
         'jquery': {
