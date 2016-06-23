@@ -1,6 +1,7 @@
 define(function(require) {
-    var Backbone = require('backbone'),
-        $ = require('jquery'),
+    var $ = require('jquery'),
+        _ = require('underscore'),
+        Backbone = require('backbone'),
         context = require('context'),
         spinnerTemplate = require('handlebarsTemplates')['thirdchannel/filters/spinner_component'],
         SingleAnswerComponentView = require('thirdchannel/views/filter/singleAnswerComponent'),
@@ -9,6 +10,7 @@ define(function(require) {
         FilterableComponentView = require('thirdchannel/views/filter/filterableComponent'),
         ComponentView = require('thirdchannel/views/filter/component'),
         FilterStore = require('thirdchannel/views/filter/filterStore'),
+        qslib = require('qs'),
         SerializeObject = require('serializeObject'),
         helpers = require('helpers');
 
@@ -48,6 +50,8 @@ define(function(require) {
         excludeFields: [],
         
         initialize: function (data) {
+            _.bindAll(this, 'filterExcludedFields');
+
             this.components = {};
 
             // look for any filter components within the filter, then wrap a view around them
@@ -298,20 +302,22 @@ define(function(require) {
         },
 
         serializeForm: function(){
-            var self = this;
+            return qslib.stringify(this.$el.serializeObject(), { arrayFormat: 'brackets', filter: this.filterExcludedFields });
+        },
 
-            if (this.excludeFields.length > 0) {
-                var filteredParams = {};
-                _.each(this.$el.serializeObject(), function(value, key) {
-                    if(($.inArray(key, self.excludeFields) === -1)){
-                        filteredParams[key] = value;
-                    }
-                });
-
-                return $.param(filteredParams);
-            } else {
-                return this.$el.serialize().replace(/\+/g,'%20');
+        filterExcludedFields: function(prefix, value) {
+            if (typeof value === 'object') {
+                _.each(value, function(valueObj, key){
+                    value[key] = this.filterExcludedFields(key, valueObj);
+                }, this);
             }
+            if (value == '') {
+                return;
+            }
+            if ($.inArray(prefix, this.excludeFields) !== -1) {
+                return;
+            }
+            return value;
         }
     };
 
