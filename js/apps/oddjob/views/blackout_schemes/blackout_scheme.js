@@ -67,17 +67,15 @@ define(function (require) {
             }
 
             // create warning for when invalid ranges exist
-            var warningText = "WARNING! You have entered one or more ranges that are invalid and will be disregarded when" +
-            " updating the blackout scheme. \n\nERROR: The date in the 'From' field cannot be after the date in the To field. " +
+            var warningText = "ERROR: You have entered one or more ranges that are invalid." +
+                " \n\nThe date in the 'From' field cannot be after the date in the To field. " +
                 "\n\nInvalid Ranges: ";
 
             _.each(invalidRanges, function(range) {
                 warningText += "\nFrom: " + range.from + ", To: " + range.to;
             });
 
-            warningText += "\n\nContinue anyway?";
-
-            if (invalidRanges.length === 0 || confirm(warningText)) {
+            if (invalidRanges.length === 0) {
                 $("#blackout-scheme-save").prop("disabled", true);
                 var data = {
                     "name": $("#blackout-scheme-name").get(0).value,
@@ -101,6 +99,9 @@ define(function (require) {
                     alert("Failed to save blackout scheme!");
                     $("#blackout-scheme-save").prop("disabled", false);
                 });
+            }
+            else {
+                alert(warningText);
             }
         },
         deleteScheme: function(){
