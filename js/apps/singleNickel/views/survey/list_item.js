@@ -10,7 +10,8 @@ define(function(require) {
           'click .delete': 'removeSurvey',
           'click .lock': 'toggleLock',
           'click .reindex': 'reindexSurvey',
-          'click .clone': 'cloneSurvey'
+          'click .clone': 'toggleClone',
+            'click .save-clone': 'cloneSurvey'
         },
         initialize: function() {
             _.bindAll(this, 'removeSurvey', 'toggleLock');
@@ -18,8 +19,10 @@ define(function(require) {
         },
         render: function() {
             var attributes = _.extend({survey: this.model}, this.model.toJSON());
-            this.$el.html(this.template(attributes));
+            var customers = _.extend(attributes, {customers : context.customers.models});
+            this.$el.html(this.template(customers));
             this.$el.attr("data-survey", this.model.get("id"));
+            this.$el.find("#clone-customer-container").hide();
             return this;
         },
         removeSurvey: function(e) {
@@ -43,6 +46,20 @@ define(function(require) {
                 context.trigger('error');
             });
         },
+        toggleClone: function(e) {
+            e.preventDefault();
+            var self = this;
+            var container = $("#clone-customer-container");
+
+            if (container[0].className === 'visible') {
+                container.hide('fast', "linear");
+                container.removeClass('visible');
+            }
+            else {
+                container.addClass('visible');
+                container.show('fast', "linear");
+            }
+        },
         reindexSurvey: function(e) {
             e.preventDefault();
 
@@ -56,9 +73,12 @@ define(function(require) {
             e.preventDefault();
 
             var self = this;
-
-            this.model.cloneSurvey().done(function(response) {
-                self.model.collection.add(response);
+            var customerUUID = $("#clone-customer-select")[0].value;
+            this.model.cloneSurvey(null, customerUUID).done(function(response) {
+                if(response.customer_uuid === self.model.get('customer_uuid')) {
+                    self.model.collection.add(response);
+                }
+                alert("Succesfully cloned survey to " + response.customer + '!');
             }).fail(function() {
                 context.trigger('error');
             });
