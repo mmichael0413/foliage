@@ -60,9 +60,9 @@ define(function(require){
 
             return (this.sync || Backbone.sync).call(this, null, this, options);
         },
-        cloneSurvey: function(opts) {
+        cloneSurvey: function(opts, customer) {
             var options = {
-                url: this.url() + '/clone',
+                url: this.url() + '/clone' + (customer ? '?customer_uuid=' + customer : ''),
                 type: 'POST'
             };
 
