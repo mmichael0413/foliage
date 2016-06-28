@@ -15,19 +15,32 @@ define(function(require){
                var users = []
                data.table.users.forEach(function (item) {
                    var user = item.table;
-                   users.push({label: user.first_name + " " + user.last_name + " " + user.email, value: user.person_uuid});
+                   users.push({label: user.first_name+" "+user.last_name+"\t["+user.program_name+"]\t"+user.residential_address.table.state+"\t"+user.email, value: user.person_uuid});
                });
+
+               var displayItem = function(e, ui) {
+                   e.preventDefault();
+                   e.stopPropagation();
+                   var splitLabel = ui.item.label.split("\t");
+                   var currentText = $(e.target).val();
+                   $(e.target).val(currentText.substring(0, currentText.lastIndexOf('@'))+splitLabel[0]+" "+splitLabel[1]);
+               };
 
                $(".new-comment-field").autocomplete({
                    source: users,
-                   _renderItem: function( ul, item ) {
-                       return $( "<li>" )
-                           .attr( "data-value-value", item.label )
-                           .append( item.label )
-                           .appendTo( ul )
+                   _renderItem: function( ul, item ) {},
+                   focus: function (e, ui) {
+                       e.preventDefault();
+                       e.stopPropagation();
                    },
-                   focus: function( event, ui ) {},
-                   select: function( event, ui ) {}
+                   select: displayItem,
+                   search: function(e, ui) {
+                       var currentText = $(e.target).val();
+                       if(currentText.charAt(currentText.length-1) != '@') {
+                           e.preventDefault();
+                           e.stopImmediatePropagation();
+                       }
+                   }
                });
            })
 
