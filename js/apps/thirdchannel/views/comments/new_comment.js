@@ -11,6 +11,26 @@ define(function(require){
        initialize: function (options) {
            this.activity = options.activity;
            this.collection = options.collection;
+           $.get('activities/'+this.activity.id+'/get_mentionable_users', function(data) {
+               var users = []
+               data.table.users.forEach(function (item) {
+                   var user = item.table;
+                   users.push({label: user.first_name + " " + user.last_name + " " + user.email, value: user.person_uuid});
+               });
+
+               $(".new-comment-field").autocomplete({
+                   source: users,
+                   _renderItem: function( ul, item ) {
+                       return $( "<li>" )
+                           .attr( "data-value-value", item.label )
+                           .append( item.label )
+                           .appendTo( ul )
+                   },
+                   focus: function( event, ui ) {},
+                   select: function( event, ui ) {}
+               });
+           })
+
 
        },
        template: HandlebarsTemplates['thirdchannel/new-comment'],
