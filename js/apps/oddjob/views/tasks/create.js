@@ -75,7 +75,6 @@ define(function (require) {
 		},
 		onTrackableChange: function(event) {
 			var trackableId = $(event.currentTarget).val();
-			console.log("setting ", trackableId);
 			this.model.set("subject", {"uuid":trackableId});
 		},
 
