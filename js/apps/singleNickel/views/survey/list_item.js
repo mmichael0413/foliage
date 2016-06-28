@@ -49,7 +49,7 @@ define(function(require) {
         toggleClone: function(e) {
             e.preventDefault();
             var self = this;
-            var container = $("#clone-customer-container");
+            var container = this.$el.find("#clone-customer-container");
 
             if (container[0].className === 'visible') {
                 container.hide('fast', "linear");
@@ -73,7 +73,7 @@ define(function(require) {
             e.preventDefault();
 
             var self = this;
-            var customerUUID = $("#clone-customer-select")[0].value;
+            var customerUUID = this.$el.find("#clone-customer-select")[0].value;
             this.model.cloneSurvey(null, customerUUID).done(function(response) {
                 if(response.customer_uuid === self.model.get('customer_uuid')) {
                     self.model.collection.add(response);
