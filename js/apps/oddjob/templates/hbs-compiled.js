@@ -649,7 +649,7 @@ function program4(depth0,data) {
   buffer += " required/> Blackout</label>\n        <label for=\"blackout-scheme-inverse_whitelist\" class=\"radio\"><input id=\"blackout-scheme-inverse_whitelist\" name=\"blackout-scheme-inverse\" type=\"radio\" value=\"true\" ";
   stack1 = helpers['if'].call(depth0, ((stack1 = (depth0 && depth0.blackoutScheme)),stack1 == null || stack1 === false ? stack1 : stack1.inverse), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " required/> Available</label>\n    </div>\n\n	<h3>Dates</h3>\n	<button id=\"blackout-scheme-date-add\">Add Date</button>\n	<div id=\"blackout-scheme-dates\">\n	</div>\n</div>\n";
+  buffer += " required/> Available</label>\n    </div>\n\n	<h3>Dates</h3>\n	<button id=\"blackout-scheme-date-add\">Add Date</button>\n	<button id=\"blackout-scheme-range-add\">Add Range</button>\n	<div id=\"blackout-scheme-ranges\">\n    </div>\n	<div id=\"blackout-scheme-dates\">\n	</div>\n</div>\n";
   return buffer;
   });
 
@@ -660,6 +660,20 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 
   buffer += "<div class=\"blackout-scheme-date-row\">\n<input class=\"blackout-scheme-date-input\" type=\"date\" required value=\""
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + "\">\n<button class=\"blackout-scheme-date-remove\">Remove</button>\n</div>\n";
+  return buffer;
+  });
+
+this["oddjob"]["templates"]["oddjob/blackout_schemes/range_row"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"blackout-scheme-range-row\">\nDate From: <input class=\"blackout-scheme-range-input1\" type=\"date\" required value=\""
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + "\">\nDate To: <input class=\"blackout-scheme-range-input2\" type=\"date\" required value=\""
     + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
     + "\">\n<button class=\"blackout-scheme-date-remove\">Remove</button>\n</div>\n";
   return buffer;

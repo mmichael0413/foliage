@@ -29,6 +29,7 @@ define(function (require) {
 		events: {
 			'click .remove': 'clear',
 			'change .task-type': 'onTypeChange',
+			'change .survey': 'onTrackableChange',
 			'change .expected-duration': 'onDurationChange',
 			'blur .payment-rate': 'onRateChange',
 			'click .payable': 'onPayableChange',
@@ -71,6 +72,11 @@ define(function (require) {
 		},
 		onRequiredChange: function (event) {
 			this._updateFromEvent("required", $(event.currentTarget).is(":checked"));
+		},
+		onTrackableChange: function(event) {
+			var trackableId = $(event.currentTarget).val();
+			console.log("setting ", trackableId);
+			this.model.set("subject", {"uuid":trackableId});
 		},
 
 
@@ -151,7 +157,6 @@ define(function (require) {
 				}
 			});
 
-			console.log("Have index ", data.index);
 			data.canDelete = this.model.collection.length > 1;
 
 			return data;
