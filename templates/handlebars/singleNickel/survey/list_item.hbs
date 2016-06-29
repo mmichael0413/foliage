@@ -15,9 +15,9 @@
     {{/isSuperAdmin}}
     <a data-bypass="true" class="btn light round" href="{{links.export}}" alt="Export Survey YAML"><i class="ic fa ic_download"></i></a>
     <a href="/{{customer_uuid}}/surveys" class="btn light round clone" alt="Clone Survey"><i class="ic fa ic_sheep"></i></a>
-    <div id="clone-customer-container">
+    <div class="clone-customer-container">
         <label>Clone Customer:</label>
-        <select style="width: 50%;" id="clone-customer-select" name="clone_customer">
+        <select style="width: 50%;" class="clone-customer-select" name="clone_customer">
             <option value="{{customer_uuid}}">{{customer}}</option>
             {{#select customer}}
                 {{#each customers}}
