@@ -24,10 +24,17 @@ define(function(require){
                    var splitLabel = ui.item.label.split("\t");
                    var currentText = $(e.target).val();
                    $(e.target).val(currentText.substring(0, currentText.lastIndexOf('@'))+splitLabel[0]+" "+splitLabel[1]);
+                   $(e.target).autoResize();
                };
 
                $(".new-comment-field").autocomplete({
-                   source: users,
+                   source: function (request, response) {
+                       var term = $.ui.autocomplete.escapeRegex(request.term.substring(request.term.lastIndexOf('@')+1));
+                       var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex(term), "i" );
+                       response( $.grep( users, function( item ){
+                           return matcher.test( item.label );
+                       }));
+                   },
                    _renderItem: function( ul, item ) {},
                    focus: function (e, ui) {
                        e.preventDefault();
@@ -36,7 +43,8 @@ define(function(require){
                    select: displayItem,
                    search: function(e, ui) {
                        var currentText = $(e.target).val();
-                       if(currentText.charAt(currentText.length-1) != '@') {
+                       var matcher = new RegExp('(@\\w+)$')
+                       if(!matcher.test(currentText)) {
                            e.preventDefault();
                            e.stopImmediatePropagation();
                        }
