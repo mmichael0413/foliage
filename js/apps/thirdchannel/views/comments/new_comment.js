@@ -24,7 +24,8 @@ define(function(require){
                    var splitLabel = ui.item.label.split("\t");
                    var currentText = $(e.target).val();
                    $(e.target).val(currentText.substring(0, currentText.lastIndexOf('@'))+splitLabel[0]+" "+splitLabel[1]);
-                   $(e.target).autoResize();
+                   $(e.target).trigger($.Event("keypress"))
+                   $(e.target).trigger($.Event("change"))
                };
 
                $(".new-comment-field").autocomplete({
