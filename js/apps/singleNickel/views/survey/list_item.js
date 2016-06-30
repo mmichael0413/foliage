@@ -50,7 +50,7 @@ define(function(require) {
             e.preventDefault();
             var container = this.$el.find(".clone-customer-container");
 
-            if (container[0].className === 'clone-customer-container visible') {
+            if (container.hasClass('visible')) {
                 container.hide('fast', "linear");
                 container.removeClass('visible');
             }
