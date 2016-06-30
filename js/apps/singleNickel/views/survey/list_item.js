@@ -7,10 +7,11 @@ define(function(require) {
         tagName: 'tr',
         template: HandlebarsTemplates['singleNickel/survey/list_item'],
         events: {
-          'click .delete': 'removeSurvey',
-          'click .lock': 'toggleLock',
-          'click .reindex': 'reindexSurvey',
-          'click .clone': 'toggleClone',
+            'click .delete': 'removeSurvey',
+            'click .lock': 'toggleLock',
+            'click .reindex': 'reindexSurvey',
+            'click .clone': 'toggleClone',
+            'click .export': 'toggleExport',
             'click .save-clone': 'cloneSurvey'
         },
         initialize: function() {
@@ -22,7 +23,7 @@ define(function(require) {
             var customers = _.extend(attributes, {customers : context.customers.models});
             this.$el.html(this.template(customers));
             this.$el.attr("data-survey", this.model.get("id"));
-            this.$el.find(".clone-customer-container").hide();
+            this.$el.find(".survey-list-container").hide();
             return this;
         },
         removeSurvey: function(e) {
@@ -50,12 +51,29 @@ define(function(require) {
             e.preventDefault();
             var container = this.$el.find(".clone-customer-container");
 
-            if (container[0].className === 'clone-customer-container visible') {
+            if (container.hasClass('visible')) {
                 container.hide('fast', "linear");
                 container.removeClass('visible');
+                $(e.currentTarget).removeClass('survey-toggle-on');
             }
             else {
                 container.addClass('visible');
+                $(e.currentTarget).addClass('survey-toggle-on');
+                container.show('fast', "linear");
+            }
+        },
+        toggleExport: function(e) {
+            e.preventDefault();
+            var container = this.$el.find(".export-container");
+
+            if (container.hasClass('visible')) {
+                container.hide('fast', "linear");
+                container.removeClass('visible');
+                $(e.currentTarget).removeClass('survey-toggle-on');
+            }
+            else {
+                container.addClass('visible');
+                $(e.currentTarget).addClass('survey-toggle-on');
                 container.show('fast', "linear");
             }
         },
@@ -83,6 +101,7 @@ define(function(require) {
                 alert("Succesfully cloned survey to " + response.customer + '!');
             }).fail(function() {
                 context.trigger('error');
+                self.$el.find(".fa-spinner").remove();
                 self.toggleClone(e);
             });
         }

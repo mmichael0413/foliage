@@ -13,11 +13,16 @@
     {{#isSuperAdmin}}
         <a class="btn light round lock" href="/{{customer_uuid}}/surveys" alt="Toggle Locked"><i class="ic fa {{ lockActionIconClass locked }}"></i></a>
     {{/isSuperAdmin}}
-    <a data-bypass="true" class="btn light round" href="{{links.export}}" alt="Export Survey YAML"><i class="ic fa ic_download"></i></a>
     <a href="/{{customer_uuid}}/surveys" class="btn light round clone" alt="Clone Survey"><i class="ic fa ic_sheep"></i></a>
-    <div class="clone-customer-container">
+    <a href="/{{customer_uuid}}/surveys" class="btn light round export" alt="Export Survey"><i class="ic fa ic_download"></i></a>
+    <div class="survey-list-container export-container">
+        {{#each links}}
+            <a data-bypass="true" href="{{this.url}}" alt="Export Survey CSV" class="btn light solid">{{this.type}}</a>
+        {{/each}}
+    </div>
+    <div class="survey-list-container clone-customer-container">
         <label>Clone Customer:</label>
-        <select style="width: 50%;" class="clone-customer-select" name="clone_customer">
+        <select class="clone-customer-select" name="clone_customer">
             <option value="{{customer_uuid}}">{{customer}}</option>
             {{#select customer}}
                 {{#each customers}}
@@ -25,7 +30,7 @@
                 {{/each}}
             {{/select}}
         </select>
-        <button id="clone-save" class="btn light solid save-clone">Clone Survey</button>
+        <button class="btn light solid save-clone">Clone Survey</button>
     </div>
 </td>
 <td class="idx-handle"><i class="ic ic_hamburger medium-blue"></i></td>
