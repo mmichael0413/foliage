@@ -2,7 +2,7 @@
 
 
 <div class="col-3-12 cell">
-    <select name="tasks[{{index}}].type" class="task-type">
+    <select name="tasks[{{index}}].type" class="task-type max">
     {{#types}}
         <option value="{{name}}" {{#selected}}selected{{/selected}}>{{displayName}}</option>
     {{/types}}
@@ -11,7 +11,7 @@
 
 
 <div class="col-3-12 cell">
-    <select name="tasks[{{index}}].trackableUuid" class="survey">
+    <select name="tasks[{{index}}].trackableUuid" class="survey max">
         {{#trackableItems}}
             <option value="{{uuid}}{{id}}" {{#selected}}selected{{/selected}}>{{title}}{{name}}</option>
         {{/trackableItems}}
@@ -20,7 +20,7 @@
 
 
 <div class="col-1-12 cell">
-    <select name="tasks[{{index}}].expectedDuration" class="expected-duration">
+    <select name="tasks[{{index}}].expectedDuration" class="expected-duration max">
         {{#durations}}
             <option value="{{value}}" {{#selected}}selected{{/selected}}>{{displayName}}</option>
         {{/durations}}
@@ -28,25 +28,25 @@
 </div>
 
 <div class="col-1-12 cell right">
-    <input name="tasks[{{index}}].paymentRate" type="number" step="any" placeholder="15.00" class="payment-rate input cell right" value="{{#displayPaymentRate}}{{this}}{{else}}0{{/displayPaymentRate}}">
+    $&nbsp;<input name="tasks[{{index}}].paymentRate" type="number" step="any" placeholder="15.00" class="payment-rate input cell right" value="{{#displayPaymentRate}}{{this}}{{else}}0{{/displayPaymentRate}}">
 </div>
 
-<div class="col-1-12 cell center">
+<div class="col-1-12 cell center task-checkbox">
     <input type="hidden" value="on" name="_tasks[{{index}}].payable"/>
     <input name="tasks[{{index}}].payable" type="checkbox" class="payable" {{#payable}}checked{{/payable}}> </input>
 </div>
 
-<div class="col-1-12 cell center">
+<div class="col-1-12 cell center task-checkbox">
     <input type="hidden" value="on" name="_tasks[{{index}}].billable"/>
     <input name="tasks[{{index}}].billable" type="checkbox" class="billable" {{#billable}}checked{{/billable}}> </input>
 </div>
 
-<div  class="col-1-12 cell center">
+<div  class="col-1-12 cell center task-checkbox">
     <input type="hidden" value="on" name="_tasks[{{index}}].required"/>
     <input name="tasks[{{index}}].required" type="checkbox" class="required" {{#required}}checked{{/required}}> </input>
 </div>
 
-<div class="col-1-12 cell center">
+<div class="col-1-12 cell center task-checkbox">
     {{#canDelete}}
     <i class="fa fa-trash remove"></i>
     {{/canDelete}}

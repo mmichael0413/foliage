@@ -7,16 +7,16 @@ define(function (require) {
 		SurveysStore = require('oddjob/stores/surveys');
 
 	var durations = [
-		{value: 30,  displayName: "30 min"},
-		{value: 60,  displayName: "60 min"},
-		{value: 90,  displayName: "1h 30 min"},
-		{value: 120, displayName: "2h 0 min"},
-		{value: 150, displayName: "2h 30 min"},
-		{value: 180, displayName: "3h 0 min"},
-		{value: 210, displayName: "3h 30 min"},
-		{value: 240, displayName: "4h 0 min"},
-		{value: 270, displayName: "4h 30 min"},
-		{value: 300, displayName: "5h 0 min"},
+		{value: 30,  displayName: ":30"},
+		{value: 60,  displayName: "1:00"},
+		{value: 90,  displayName: "1:30"},
+		{value: 120, displayName: "2:00"},
+		{value: 150, displayName: "2:30"},
+		{value: 180, displayName: "3:00"},
+		{value: 210, displayName: "3:30"},
+		{value: 240, displayName: "4:00"},
+		{value: 270, displayName: "4:30"},
+		{value: 300, displayName: "5:00"},
 	];
 
 	/**

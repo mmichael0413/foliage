@@ -1,23 +1,28 @@
 <div class="form-section clearfix">
-    <label class="label" for="jobName">Name</label>
-    <input class="input" type="text" value="{{name}}" name="name" id="jobName" placeholder="Enter Optional name here"/>
-
-    <label for="role" class="label">Limit Job to Role: </label>
-    <select name="role" id="role" class="input">
-        <option value="">Anyone</option>
-        {{#roles}}
-            <option value="{{id}}" {{#selected}}selected="selected"{{/selected}}>{{key}}</option>
-        {{/roles}}
-    </select>
-
+    <div class="form-group">
+        <label class="label" for="jobName">Name</label>
+        <input class="input" type="text" value="{{name}}" name="name" id="jobName" placeholder="Enter Optional name here"/>    
+    </div>
     
-    <label for="edit-blackout-schemes" class="label">Blackout Schemes: </label>
-    <select id="edit-blackout-schemes" name="blackoutSchemes" class="input" multiple data-placeholder="Assign Blackout Schemes">
-        {{#each programBlackoutSchemes}}
-            <option value="{{id}}">{{name}}</option>
-        {{/each}}
-    </select>
+    <div class="form-group">
+        <label for="role" class="label">Role</label>
+        <select name="role" id="role" class="input grow">
+            <option value="">Anyone</option>
+            {{#roles}}
+                <option value="{{id}}" {{#selected}}selected="selected"{{/selected}}>{{key}}</option>
+            {{/roles}}
+        </select>    
+    </div>
     
+
+    <div class="form-group">
+        <label for="edit-blackout-schemes" class="label">Blackout Schemes</label>
+        <select id="edit-blackout-schemes" name="blackoutSchemes" class="input no-fill grow" multiple data-placeholder="Assign Blackout Schemes">
+            {{#each programBlackoutSchemes}}
+                <option value="{{id}}">{{name}}</option>
+            {{/each}}
+        </select>    
+    </div>
 </div>
 
 <section id="tasks" class="form-section clearfix">
@@ -26,16 +31,16 @@
         <p class="col-3-12 header-item">Type</p>
         <p class="col-3-12 header-item">Activity / Packet</p>
         <p class="col-1-12 header-item">Duration</p>
-        <p class="col-1-12 header-item">Hourly Rate</p>
-        <p class="col-1-12 header-item">Payable</p>
-        <p class="col-1-12 header-item">Billable</p>
-        <p class="col-1-12 header-item">Required</p>
-        <p class="col-1-12 header-item"></p>
+        <p class="col-1-12 header-item cell right">Hourly Rate</p>
+        <p class="col-1-12 header-item check-col">Payable</p>
+        <p class="col-1-12 header-item check-col">Billable</p>
+        <p class="col-1-12 header-item check-col">Required</p>
+        <p class="col-1-12 header-item check-col">Actions</p>
     </div>
     <div class="tasks-container"></div>
     <div class="btn-row pure-g">
         <div class="col-11-12"></div>
-        <button class="btn add-task col-1-12"><i class="fa fa-plus"></i>&nbsp;Add</button>    
+        <button class="btn primary add-task col-1-12"><i class="fa fa-plus"></i>&nbsp;Add</button>    
     </div>
     
     <div class="summary pure-g" id="jobSummary"></div>    
@@ -44,13 +49,14 @@
 
 <div class="form-section">
     <div class="form-group">
-        <label for="allowRescheduling" class="">Allow Job to be Rescheduled After Schedule Finalization?</label>
+        
         <input type="checkbox" class="input-checkbox" name="allowRescheduling" id="allowRescheduling" {{#if allowRescheduling}}checked{{/if}}/>    
+        <label for="allowRescheduling" class="">Allow Job rescheduling after schedule finalization.</label>
     </div>
     
     <div class="form-group">
-        <label for="jobTracked" class="">Enable Job Tracking (Special Project Tracking)?</label>
-        <input type="checkbox" class="input-checkbox job-tracking" name="tracked" id="jobTracked" {{#tracked}}checked{{/tracked}}/>    
+        <input type="checkbox" class="input-checkbox job-tracking" name="tracked" id="jobTracked" {{#tracked}}checked{{/tracked}}/>
+        <label for="jobTracked" class="">Special Project Tracking.</label>
     </div>
 </div>
 
