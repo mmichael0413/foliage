@@ -202,6 +202,10 @@ $padding: 1.5em;
   padding: 0em;
 }
 
+.highlight {
+  color: $link-color;
+}
+
 .activity-content, .activity-actions {
   display: inline-block;
   vertical-align: top;
