@@ -22,7 +22,7 @@ define(function(require) {
             var customers = _.extend(attributes, {customers : context.customers.models});
             this.$el.html(this.template(customers));
             this.$el.attr("data-survey", this.model.get("id"));
-            this.$el.find("#clone-customer-container").hide();
+            this.$el.find(".clone-customer-container").hide();
             return this;
         },
         removeSurvey: function(e) {
@@ -48,10 +48,9 @@ define(function(require) {
         },
         toggleClone: function(e) {
             e.preventDefault();
-            var self = this;
-            var container = $("#clone-customer-container");
+            var container = this.$el.find(".clone-customer-container");
 
-            if (container[0].className === 'visible') {
+            if (container.hasClass('visible')) {
                 container.hide('fast', "linear");
                 container.removeClass('visible');
             }
@@ -73,14 +72,18 @@ define(function(require) {
             e.preventDefault();
 
             var self = this;
-            var customerUUID = $("#clone-customer-select")[0].value;
+            var customerUUID = this.$el.find(".clone-customer-select")[0].value;
+            this.$el.find(".clone-customer-container").append("<i class='fa fa-spin fa-spinner'></i>");
+
             this.model.cloneSurvey(null, customerUUID).done(function(response) {
                 if(response.customer_uuid === self.model.get('customer_uuid')) {
                     self.model.collection.add(response);
                 }
+                self.$el.find(".fa-spinner").remove();
                 alert("Succesfully cloned survey to " + response.customer + '!');
             }).fail(function() {
                 context.trigger('error');
+                self.toggleClone(e);
             });
         }
     });
