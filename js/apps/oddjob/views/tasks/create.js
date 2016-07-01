@@ -6,18 +6,27 @@ define(function (require) {
 		ActivityPacketStore = require('oddjob/stores/activityPackets'),
 		SurveysStore = require('oddjob/stores/surveys');
 
+	function buildDurationDisplay(value) {
+		var label ="";
+		label += Math.floor(value / 60) + ":";
+		if (value % 60 === 0) {
+			label += "00";
+		} else {
+			label += value % 60;
+		}
+		return label;
+	}
+
 	var durations = [
+		{value: 15,  displayName: ":15"},
 		{value: 30,  displayName: ":30"},
-		{value: 60,  displayName: "1:00"},
-		{value: 90,  displayName: "1:30"},
-		{value: 120, displayName: "2:00"},
-		{value: 150, displayName: "2:30"},
-		{value: 180, displayName: "3:00"},
-		{value: 210, displayName: "3:30"},
-		{value: 240, displayName: "4:00"},
-		{value: 270, displayName: "4:30"},
-		{value: 300, displayName: "5:00"},
+		{value: 45,  displayName: ":45"}
 	];
+	for (var i=60; i <= 480; i++) {
+		if (i % 30 === 0) {
+			durations.push({ value: i, displayName: buildDurationDisplay(i) });
+		}
+	}
 
 	/**
 	 * 
@@ -115,6 +124,7 @@ define(function (require) {
 		markSelected: function (collection, idField) {
 			var cursor = collection.length,
 				subject = this.model.get('subject');
+
 			while(cursor--) {
 				if (subject && collection[cursor][idField] == subject.uuid) {
 					collection[cursor].selected = true;

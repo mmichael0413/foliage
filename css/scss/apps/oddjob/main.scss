@@ -55,6 +55,11 @@
 			float:right;
 		}	
 	}
+
+	.right {
+		float:right;
+		margin-left: 3em;
+	}
 	
 }
 
@@ -70,6 +75,10 @@
 
 .delete {
 	float:right;
+	text-decoration: underline;
+	cursor: pointer;
+	color: inherit;
+	line-height: 2em;
 }
 
 .job {

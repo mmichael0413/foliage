@@ -749,7 +749,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   buffer += "<h3>Job Details</h3>\n";
   stack1 = self.invokePartial(partials.job_fields, 'job_fields', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n<button type=\"submit\" name=\"submit\" class=\"btn btn-primary job-submit\">Save</button>";
+  buffer += "\n<div class=\"btn-row\">\n    <button type=\"submit\" name=\"submit\" class=\"btn btn-primary primary job-submit right\">Save</button>    \n</div>\n";
   return buffer;
   });
 
@@ -762,7 +762,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   buffer += "<h3>Job Details</h3>\n";
   stack1 = self.invokePartial(partials.job_fields, 'job_fields', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n<div>\n    <button type=\"submit\" name=\"submit\" class=\"btn btn-primary primary job-submit\">Save</button>\n    <button name=\"delete\" class=\"btn btn-primary delete\">Delete</button>\n</div>\n";
+  buffer += "\n\n<div class=\"btn-row\">\n    <button type=\"submit\" name=\"submit\" class=\"btn btn-primary primary job-submit right\">Save</button>\n    <a name=\"delete\" class=\"delete\">Delete</a>\n</div>\n";
   return buffer;
   });
 
