@@ -23,6 +23,14 @@ define(function(require) {
             $("#edit-blackout-schemes").chosen({disable_search: true, width: "100%"});
 		},
 
+		loadRole: function (selectedRole, roles) {
+			_.each(roles, function (role) {
+                if (role.id === selectedRole) {
+                    role.selected = true;
+                }
+            });
+		},
+
 		deleteJob: function (e) {
 			e.preventDefault();
 			if (confirm("Are you sure you wish to delete this job?")) {

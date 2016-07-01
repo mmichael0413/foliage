@@ -54,11 +54,8 @@ define(function(require) {
             this.summary = new SummaryView({tasks: this.tasks});
             data.reports = context.reports;
             data.roles = context.roles;
-            _.each(data.roles, function (role) {
-                if (role.id === data.role) {
-                    role.selected = true;
-                }
-            });
+            
+            this.loadRole(data.role, data.roles);
             
             this.$el.html(Templates[this.templateName](data));
             this._toggleJobTrackingText(data.tracked);
@@ -70,6 +67,14 @@ define(function(require) {
             this.summary.render();
             
             return this;
+        },
+
+        loadRole: function (selectedRole, roles) {
+            _.each(roles, function (role) {
+                if (role.id === "agent") {
+                    role.selected = true;
+                }
+            });
         },
 
         jobTrackingHandler: function (e) {
