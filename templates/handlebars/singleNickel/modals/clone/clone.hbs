@@ -1,0 +1,26 @@
+<div class="clone-modal clone">
+    <h3>Clone Survey to Customer</h3>
+    <div class="clone-customer-container">
+        <select class="clone-customer-select" id="cloneCustomerSelect" name="clone_customer">
+            <option value="{{customer_uuid}}">{{customer}}</option>
+            {{#select customer}}
+                {{#each customers}}
+                    <option value="{{attributes.uuid}}">{{attributes.name}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+        <div class="go-to-container">
+            <div class="go-to-group">
+                <input type="checkbox" class="go-to survey" id="goToSurvey">
+                <label> Go to survey</label>
+            </div>
+            <div class="go-to-group">
+                <input type="checkbox" class="go-to customer" id="goToCustomer">
+                <label> Go to customer</label>
+            </div>
+        </div>
+        <div class="clone-save-container">
+            <button id="clone-save" class="btn light solid save-clone">Clone Survey</button>
+        </div>
+    </div>
+</div>

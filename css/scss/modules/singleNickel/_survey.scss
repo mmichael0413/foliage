@@ -1,3 +1,5 @@
+@import '../../lib/backbone.modal/modal';
+
 #survey-container {
 
   .header {
@@ -119,5 +121,28 @@
   .disabled-question {
     text-decoration: line-through;
     color: $light-blue;
+  }
+
+  .clone-modal {
+    padding: 5rem;
+    text-align: center;
+
+    &.clone {
+      div:last-child {
+        padding-top: 1rem;
+        color: $red;
+      }
+    }
+  }
+
+  .go-to-container {
+    label {
+      text-transform: none;
+      font-weight: normal;
+    }
+  }
+
+  .clone-customer-select {
+    width: 50%;
   }
 }
