@@ -36,7 +36,7 @@ define(function(require){
             var self = this;
             this.xhr = this.model.fetch({
                 success: function (model, response, options) {
-                    if (self.retries++ > 60) {
+                    if (self.retries++ > 120) {
                         self.updateView(self.templates.timeout);
                     } else if (options.xhr.status == 202) {
                         setTimeout(self.fetchExport, 5000);
