@@ -24,11 +24,11 @@ define(function(require){
                         job: job,
                         store: self.model.store.id,
                         pre_expand: job.pre_expand,
-                        incomplete_tasks: data.incomplete_tasks
+                        incomplete_tasks: data.incomplete
                     }});
                     self.$el.append(jobView.render().$el);
                 });
-            })
+            });
         }
     });
 });

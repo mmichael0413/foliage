@@ -37,7 +37,9 @@
     .task {
       button {
         margin-left: 0.5rem;
-
+        &.small {
+          margin-left: 0;
+        }
         @include swb-medium {
           margin-top: 0;
         }
