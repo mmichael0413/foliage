@@ -22,10 +22,11 @@ define(function(require){
                    e.preventDefault();
                    e.stopPropagation();
                    var splitLabel = ui.item.label.split("\t");
-                   var currentText = $(e.target).val();
-                   $(e.target).val(currentText.substring(0, currentText.lastIndexOf('@')+1)+splitLabel[0]+' '+splitLabel[1]);
-                   $(e.target).trigger($.Event("keypress"))
-                   $(e.target).trigger($.Event("change"))
+                   var currentText = $(e.target).html();
+                   $(e.target).html(currentText.substring(0, currentText.lastIndexOf('@')+1)+splitLabel[0]+' '+splitLabel[1]);
+                   $(e.target).trigger($.Event("highlight"))
+                  $(e.target).trigger($.Event("keypress"))
+                  $(e.target).trigger($.Event("change"))
                };
 
                $(".new-comment-field").autocomplete({
@@ -43,7 +44,7 @@ define(function(require){
                    },
                    select: displayItem,
                    search: function(e, ui) {
-                       var currentText = $(e.target).val();
+                       var currentText = $(e.target).html();
                        var matcher = new RegExp('(@\\w+)$')
                        if(!matcher.test(currentText)) {
                            e.preventDefault();
@@ -51,13 +52,14 @@ define(function(require){
                        }
                    }
                });
-           })
+           });
 
 
        },
        template: HandlebarsTemplates['thirdchannel/new-comment'],
        events: {
-           'click .add-comment': 'createComment'
+           'click .add-comment': 'createComment',
+           'keypress .new-comment-field' : 'highlight'
        },
        render: function () {
            this.$el.html(this.template(this.activity.attributes));
@@ -79,6 +81,31 @@ define(function(require){
 
                });
            }
+       },
+       highlight: function (e) {
+
+           var text = $(e.target).html();
+           var highlightMatcher = RegExp("@\\w+\\s\\w+\\s\\[[^\\[\\t\\n\\r\\]]+\\]", "g");
+           var mentions = [];
+
+           // highlight previous mentions
+           var match;
+           do {
+               match =  highlightMatcher.exec(text);
+               if (match) {
+                   mentions.push(match);
+               }
+           } while (match);
+
+           for(var i = 0; i < mentions.length; i++) {
+               text = text.replace(mentions[i], "<span class='highlight'>"+mentions[i]+"</span>");
+           }gyu
+
+           $(e.target).html(text);
+           //$(e.target).trigger($.Event("keypress"))
+           //$(e.target).trigger($.Event("change"))
+           $(e.target).focus();
+           $(e.target).setSelectionRange(text.length, text.length);
        },
        commentFocus: function () {
            if(!this.activity.get('isMobile') || (this.activity.get('isMobile') && this.activity.get('singleActivity'))) {
