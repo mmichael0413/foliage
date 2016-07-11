@@ -165,8 +165,11 @@ define(function (require) {
 					duration.selected = true;
 				}
 			});
-
-			data.canDelete = this.model.collection.length > 1;
+			
+			if (this.model.collection) {
+				data.canDelete = this.model.collection.length > 1;	
+			}
+			
 
 			return data;
 		},
