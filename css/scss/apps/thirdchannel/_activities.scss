@@ -209,6 +209,24 @@ $padding: 1.5em;
   list-style-type: none;
   padding: 0em;
 }
+.ui-menu-item {
+  width: 100%;
+  background-color: inherit;
+}
+.autocompleteColumn {
+  width: 25%;
+  height: 1.5em;
+  float: left;
+  text-align: left;
+  font-size: .75em;
+  padding-right: .25em;
+  background-color: inherit;
+  padding-bottom: .1em;
+}
+.autocompleteState {
+  text-align: center;
+  color: orangered;
+}
 
 .highlight {
   color: $link-color;

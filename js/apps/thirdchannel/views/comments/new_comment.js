@@ -12,10 +12,10 @@ define(function(require){
            this.activity = options.activity;
            this.collection = options.collection;
            $.get('activities/'+this.activity.id+'/get_mentionable_users', function(data) {
-               var users = []
+               var users = [];
                data.table.users.forEach(function (item) {
                    var user = item.table;
-                   users.push({label: user.first_name+" "+user.last_name+"\t["+user.program_name+"]\t"+user.residential_address.table.state+"\t"+user.email, value: user.person_uuid});
+                   users.push({label: user.first_name+" "+user.last_name+"\t["+user.program_name+" "+user.user_role.name+"]\t"+user.residential_address.table.state+"\t"+user.email, value: user.person_uuid});
                });
 
                var displayItem = function(e, ui) {
@@ -24,9 +24,17 @@ define(function(require){
                    var splitLabel = ui.item.label.split("\t");
                    var currentText = $(e.target).html();
                    $(e.target).html(currentText.substring(0, currentText.lastIndexOf('@')+1)+splitLabel[0]+' '+splitLabel[1]);
-                   $(e.target).trigger($.Event("highlight"))
-                  $(e.target).trigger($.Event("keypress"))
-                  $(e.target).trigger($.Event("change"))
+                   var mentions = [];
+                   var previousMentions = $(e.target).data('mentions');
+                   if (previousMentions) {
+                       mentions = mentions.concat(previousMentions);
+                   }
+                   mentions.push(ui.item.value);
+
+                   $(e.target).data('mentions', mentions);
+                   $(e.target).trigger($.Event("highlight"));
+                   $(e.target).trigger($.Event("keypress"));
+                   $(e.target).trigger($.Event("change"));
                };
 
                $(".new-comment-field").autocomplete({
@@ -37,7 +45,6 @@ define(function(require){
                            return matcher.test( item.label );
                        }));
                    },
-                   _renderItem: function( ul, item ) {},
                    focus: function (e, ui) {
                        e.preventDefault();
                        e.stopPropagation();
@@ -51,7 +58,22 @@ define(function(require){
                            e.stopImmediatePropagation();
                        }
                    }
-               });
+               }).data('ui-autocomplete')._renderItem = function (ul, item) {
+                   var li =  $("<li></li>")
+                       .data('value', item.value);
+
+                   var userInfo = item.label.split("\t");
+                   var classNames = ["autocompleteName", "autocompleteProgram", "autocompleteState", "autocompleteEmail"];
+                   for(var i = 0; i< userInfo.length; i++) {
+                       $(document.createElement('div'))
+                           .addClass("autocompleteColumn")
+                           .addClass(classNames[i])
+                           .html(userInfo[i])
+                           .appendTo(li);
+                   }
+                   li.appendTo(ul);
+                   return li;
+               };
            });
 
 
@@ -69,23 +91,24 @@ define(function(require){
            e.preventDefault();
            e.stopPropagation();
            var self = this;
-           var comment = new Comment({comment: this.$('.new-comment-field').val()}, {url: this.collection.url});
+           var comment = new Comment({comment: this.$('.new-comment-field').html()}, {url: this.collection.url});
 
            if (comment.isValid()) {
-               comment.set({type: this.activity.get('type'), id: this.activity.get('id')});
+               comment.set({type: this.activity.get('type'), id: this.activity.get('id'), mentions: $('.new-comment-field').data('mentions')});
                comment.save().done(function (obj, status) {
                    comment.set(obj);
                    self.collection.add([comment]);
-                   self.$('.new-comment-field').val('');
+                   self.$('.new-comment-field').html('');
                }).fail(function () {
 
                });
            }
        },
        highlight: function (e) {
+           /*
 
            var text = $(e.target).html();
-           var highlightMatcher = RegExp("@\\w+\\s\\w+\\s\\[[^\\[\\t\\n\\r\\]]+\\]", "g");
+           var highlightMatcher = RegExp("(?!<a class='highlight'>)(?:@\\w+\\s\\w+\\s\\[[^\\[\\t\\n\\r\\]]+\\])(?!<\/a>)", "g");
            var mentions = [];
 
            // highlight previous mentions
@@ -93,19 +116,20 @@ define(function(require){
            do {
                match =  highlightMatcher.exec(text);
                if (match) {
-                   mentions.push(match);
+                   mentions.push(match[0]);
                }
            } while (match);
 
            for(var i = 0; i < mentions.length; i++) {
-               text = text.replace(mentions[i], "<span class='highlight'>"+mentions[i]+"</span>");
-           }gyu
+               text = text.replace(mentions[i], "<a class='highlight'>"+mentions[i]+"</a>\u200B");
+           }
 
            $(e.target).html(text);
            //$(e.target).trigger($.Event("keypress"))
            //$(e.target).trigger($.Event("change"))
-           $(e.target).focus();
-           $(e.target).setSelectionRange(text.length, text.length);
+           //$(e.target).focus();
+           //$(e.target).setSelectionRange(text.length, text.length);
+           */
        },
        commentFocus: function () {
            if(!this.activity.get('isMobile') || (this.activity.get('isMobile') && this.activity.get('singleActivity'))) {

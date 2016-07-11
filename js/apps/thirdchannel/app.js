@@ -22,7 +22,7 @@ define(function(require){
                 } while (match);
 
                 for(var i = 0; i < mentions.length; i++) {
-                    text = text.replace(mentions[i], "<span class='highlight'>"+mentions[i]+"</span>");
+                    text = text.replace(mentions[i], "<a class='highlight'>"+mentions[i]+"</a>");
                 } 
                 return text;
             });
