@@ -78,8 +78,6 @@ define(function(require){
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
             'programs/:program_id/dashboards/special_projects/:special_project_id/stores': 'dashboardSpecialProjectStores',
-            'programs/:program_id/fixtures/overview/problem(/)' : 'fixturesProblem',
-            'programs/:program_id/fixtures/overview/stores(/)' : 'fixturesStores',
             'programs/:program_id/fixtures/overview(/)' : 'fixturesIndex',
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
@@ -155,11 +153,9 @@ define(function(require){
         fixturesIndex: function () {
             FixturesMain.index();
         },
-        fixturesStores: function () {
-            FixturesMain.stores();
-        },
-        fixturesProblem: function () {
-            FixturesMain.problems();
+        
+        fixturesDetails: function () {
+            // todo
         },
 
         inProgress: function (){

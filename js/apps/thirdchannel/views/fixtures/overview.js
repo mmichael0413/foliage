@@ -3,6 +3,7 @@ define(function(require){
         $ = require('jquery'),
         _ = require('underscore'),
         context = require('context'),
+        TypeTile = require('thirdchannel/views/fixtures/typeTile'),
         HandlebarsTemplates = require('handlebarsTemplates'),
 
         TypesCollection = Backbone.Collection.extend({
@@ -19,6 +20,7 @@ define(function(require){
             el: "#fixturesList",
 
             alignBreakdown: function(type, breakdown) {
+
                 var specific = breakdown.problems.byType[type.get("id")];
                 if (specific) {
                     var store_uuids = _.uniq(_.map(specific.entities, function (entity) {return entity.programStoreUuid;}));
@@ -35,7 +37,7 @@ define(function(require){
                     this.types.each(function(type) {
                         type.set({"imageError":context.links.fixtures.image_error, total: 0, matching: 0, stores: 0});
                         self.alignBreakdown(type, self.types.breakdown);
-                        self.$el.append(HandlebarsTemplates["thirdchannel/fixtures/fixture_overview_item"](type.toJSON()));
+                        self.$el.append((new TypeTile({model:type}).render()).el);
                     });
                 }.bind(this));
             }
