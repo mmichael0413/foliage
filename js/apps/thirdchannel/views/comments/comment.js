@@ -7,6 +7,7 @@ define(function(require){
         template: HandlebarsTemplates['thirdchannel/comment'],
         initialize: function (options) {
             this.model = options.model;
+            this.model.set('mentions', options.mentions);
             this.model.collection.bind('reset', this.removeFromDom, this);
         },
         events: {

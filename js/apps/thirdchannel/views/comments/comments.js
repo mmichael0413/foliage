@@ -14,6 +14,7 @@ define(function(require){
            this.activity = options.activity;
            this.programId = options.programId;
            this.objId = this.activity.get('id');
+           this.mentions = options.activity.get('mentions');
 
            this.commentUrl = '/programs/' + this.programId + '/activities/' + this.objId + '/comments';
 
@@ -26,24 +27,25 @@ define(function(require){
        render: function () {
            var self = this;
            _.each(this.collection.models, function (model) {
-               self.$el.append(new CommentView({model: model, activityId: self.activityId, programId: self.programId}).render().el);
+               self.$el.append(new CommentView({model: model, activityId: self.activityId, programId: self.programId, mentions: self.mentions}).render().el);
            });
 
            return this;
        },
        initializeModels: function () {
            var comments = this.activity.get('comments');
+           var mentions = this.activity.get('mentions');
            var commentModels = [];
 
            var self = this;
            _.each(comments, function (comment) {
-               commentModels.push(new Comment(comment, {url: self.commentUrl}));
+               commentModels.push(new Comment(comment, {url: self.commentUrl, mentions: mentions}));
            });
 
            this.collection.add(commentModels);
        },
        onModelAdded: function (model) {
-           this.$el.append(new CommentView({model: model, activityId: this.activityId, programId: this.programId}).render().el);
+           this.$el.append(new CommentView({model: model, activityId: this.activityId, programId: this.programId, mentions: this.mentions}).render().el);
 
            return this;
        },
