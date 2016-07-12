@@ -5,9 +5,6 @@ define(function (require) {
 
     return Backbone.View.extend({
         className: "task pure-g row",
-        // events: {
-        //  'click': 'edit'
-        // },
 
         edit: function () {
             window.location = 'tasks/' + this.model.get('id');

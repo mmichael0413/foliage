@@ -22,6 +22,7 @@ require.config({
         'quill'         : '../libs/quill/custom',
         'noty'          : '../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged',
         'chosen' : "../libs/bower_components/chosen/chosen.jquery",
+        'qs' : '../libs/bower_components/ljharb-qs/dist/qs'
     },
     shim: {
         "jquery": {

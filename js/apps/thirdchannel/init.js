@@ -35,8 +35,8 @@ require.config({
         'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min',
         'rxjs'          : '../libs/bower_components/rxjs/dist/rx.all.min',
         'viewer'      : '../libs/viewer',
-        'jquery-deparam' : '../libs/bower_components/jquery-deparam/jquery-deparam',
-        'mresize' : '../libs/bower_components/mresize/mresize'
+        'mresize' : '../libs/bower_components/mresize/mresize',
+        'qs' : '../libs/bower_components/ljharb-qs/dist/qs'
     },
     shim: {
         "jquery": {

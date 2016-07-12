@@ -1,6 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
         context = require('context'),
+        CloneModal = require('singleNickel/modals/clone'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
@@ -10,7 +11,7 @@ define(function(require) {
           'click .delete': 'removeSurvey',
           'click .lock': 'toggleLock',
           'click .reindex': 'reindexSurvey',
-          'click .clone': 'cloneSurvey'
+          'click .clone': 'openCloneModal'
         },
         initialize: function() {
             _.bindAll(this, 'removeSurvey', 'toggleLock');
@@ -43,22 +44,16 @@ define(function(require) {
                 context.trigger('error');
             });
         },
+        openCloneModal: function(e) {
+            e.preventDefault();
+            context.modal = new CloneModal({model: this.model});
+            $(".modal").append(context.modal.render().el);
+        },
         reindexSurvey: function(e) {
             e.preventDefault();
 
             this.model.reindex().done(function(response) {
                 alert('Successfully re-indexed survey');
-            }).fail(function() {
-                context.trigger('error');
-            });
-        },
-        cloneSurvey: function(e) {
-            e.preventDefault();
-
-            var self = this;
-
-            this.model.cloneSurvey().done(function(response) {
-                self.model.collection.add(response);
             }).fail(function() {
                 context.trigger('error');
             });

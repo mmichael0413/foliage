@@ -6,7 +6,6 @@ define(function(require) {
         Filter = require('thirdchannel/views/filter/main'),
         DirectPaymentView = require('pennyPacker/views/programs/directPayment'),
         ActionsView = require('pennyPacker/views/entries/actions'),
-        MissingTravelView = require('pennyPacker/views/travel/missing'),
         InvalidEntriesListView = require('pennyPacker/views/entries/invalid'),
         EntriesListView = require('pennyPacker/views/entries/list'),
         InvalidEntriesFullListView = require('pennyPacker/views/entries/invalidFullList');
@@ -20,7 +19,6 @@ define(function(require) {
             'entries/:programId(/)' : 'entryList',
             'entries/:programId/invalid(/)': 'invalidList',
             'program/:programId/direct(/)': 'direct',
-            'program/:programId/travel(/)': 'travel'
         },
 
         before: function (parameters) {
@@ -63,12 +61,6 @@ define(function(require) {
             }
             
             context.trigger("configure:deepLinks",true);
-        },
-
-        travel: function(programId) {
-            context.programId = programId;
-            var view = new MissingTravelView();
-            view.render();
         },
 
         direct: function (programId) {
