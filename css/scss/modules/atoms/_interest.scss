@@ -4,7 +4,7 @@
   .pure-g > div {
     text-align: center;
     margin-bottom: 1em;
-    height: 6em;
+    min-height: 6em;
 
     &:last-of-type {
       margin-bottom: 0;
@@ -25,5 +25,9 @@
     &+label:hover {
         color: $link-color;
     }
+  }
+
+  label {
+    display: block;
   }
 }
