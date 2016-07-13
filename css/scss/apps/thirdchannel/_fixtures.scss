@@ -1,3 +1,14 @@
+.dropdown {
+    display: inline-block;
+    .dropdown-item {
+        padding: 0.25em;
+
+        .ic {
+            padding-right: 0.25em;
+        }
+    }
+}
+
 .fixture-type-tile {
     margin: 0 2em 2em 0;
     padding: 0.5em;
@@ -30,9 +41,10 @@
             color: white;
             background-color: $medium-blue;
             padding: 0 0.25em;
+            border-radius: 5px;
         }
 
-        
+
     }
 
 

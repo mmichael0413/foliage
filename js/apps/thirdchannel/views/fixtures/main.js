@@ -13,7 +13,7 @@ define(function (require) {
         index: function () {
             this.init();
             Filter.init();
-            new Overview().render();
+            new Overview().fetch();
         }
     };
 });
