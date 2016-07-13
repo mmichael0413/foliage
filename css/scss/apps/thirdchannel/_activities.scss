@@ -232,9 +232,16 @@ $padding: 1.5em;
   text-overflow: ellipsis;
 }
 
-.autocompleteSearchTerm{
+.autocompleteSearchTerm {
   font-weight: bold;
   background: #eaeae8;
+}
+
+.autocompletePlaceholder {
+  color: #c2cdd5;
+  font-style: italic;
+  padding-left: .25em;
+  font-size: .75em;
 }
 
 .highlight {

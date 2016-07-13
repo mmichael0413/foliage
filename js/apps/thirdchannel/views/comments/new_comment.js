@@ -23,6 +23,9 @@ define(function(require){
                var displayItem = function(e, ui) {
                    e.preventDefault();
                    e.stopPropagation();
+                   if (ui.item.value == "placeholder") {
+                       return;
+                   }
                    var splitLabel = ui.item.label.split("\t");
                    var currentText = $(e.target).html();
                    $(e.target).html(currentText.substring(0, currentText.lastIndexOf('@')+1)+splitLabel[0]+' '+splitLabel[1]);
@@ -47,6 +50,40 @@ define(function(require){
                            var matchText = (item.originalText) ? item.originalText : item.label;
                            return matcher.test(matchText);
                        }));
+                   },
+                   create: function () {
+
+                       $(this).data("ui-autocomplete")._renderItem = function (ul, item) {
+                           if (item.value == "placeholder") {
+                               return $("<li></li>")
+                                   .addClass("autocompletePlaceholder")
+                                   .html(item.label)
+                                   .appendTo(ul);
+                           }
+                           var li =  $("<li></li>")
+                               .data('value', item.value);
+
+                           var userInfo = item.label.split("\t");
+                           var classNames = ["autocompleteName", "autocompleteProgram", "autocompleteState", "autocompleteEmail"];
+                           for(var i = 0; i< userInfo.length; i++) {
+                               $(document.createElement('div'))
+                                   .addClass("autocompleteColumn")
+                                   .addClass(classNames[i])
+                                   .html(userInfo[i])
+                                   .appendTo(li);
+                           }
+                           li.appendTo(ul);
+                           return li;
+                       }
+
+                       $(this).data("ui-autocomplete")._renderMenu = function (ul, items) {
+                           var placeholder = {label: "Searching for.....", value: "placeholder"};
+                           items.unshift(placeholder);
+                           var that = this;
+                           $.each( items, function( index, item ) {
+                               that._renderItemData( ul, item );
+                           });
+                       };
                    },
                    focus: function (e, ui) {
                        e.preventDefault();
@@ -74,22 +111,7 @@ define(function(require){
                        });
 
                    }
-               }).data('ui-autocomplete')._renderItem = function (ul, item) {
-                   var li =  $("<li></li>")
-                       .data('value', item.value);
-
-                   var userInfo = item.label.split("\t");
-                   var classNames = ["autocompleteName", "autocompleteProgram", "autocompleteState", "autocompleteEmail"];
-                   for(var i = 0; i< userInfo.length; i++) {
-                       $(document.createElement('div'))
-                           .addClass("autocompleteColumn")
-                           .addClass(classNames[i])
-                           .html(userInfo[i])
-                           .appendTo(li);
-                   }
-                   li.appendTo(ul);
-                   return li;
-               };
+               });
            });
 
 
