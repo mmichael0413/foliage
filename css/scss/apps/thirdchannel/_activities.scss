@@ -244,6 +244,10 @@ $padding: 1.5em;
   font-size: .75em;
 }
 
+.autocompletePlaceholder:hover {
+  background-color: transparent;
+}
+
 .highlight {
   color: $link-color;
 }
