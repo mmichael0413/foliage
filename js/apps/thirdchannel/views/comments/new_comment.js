@@ -15,7 +15,9 @@ define(function(require){
                var users = [];
                data.table.users.forEach(function (item) {
                    var user = item.table;
-                   users.push({label: user.first_name+" "+user.last_name+"\t["+user.program_name+" "+user.user_role.name+"]\t"+user.residential_address.table.state+"\t"+user.email, value: user.person_uuid});
+                   var userRole = user.user_role.name;
+                   userRole = userRole.charAt(0).toUpperCase()+userRole.substring(1);
+                   users.push({label: user.first_name+" "+user.last_name+"\t["+userRole+"]\t"+user.residential_address.table.state+"\t"+user.email, value: user.person_uuid});
                });
 
                var displayItem = function(e, ui) {
@@ -42,7 +44,8 @@ define(function(require){
                        var term = $.ui.autocomplete.escapeRegex(request.term.substring(request.term.lastIndexOf('@')+1));
                        var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex(term), "i" );
                        response( $.grep( users, function( item ){
-                           return matcher.test( item.label );
+                           var matchText = (item.originalText) ? item.originalText : item.label;
+                           return matcher.test(matchText);
                        }));
                    },
                    focus: function (e, ui) {
@@ -52,11 +55,24 @@ define(function(require){
                    select: displayItem,
                    search: function(e, ui) {
                        var currentText = $(e.target).html();
-                       var matcher = new RegExp('(@\\w+)$')
+                       var matcher = new RegExp('(?:@(\\w+))$')
                        if(!matcher.test(currentText)) {
                            e.preventDefault();
                            e.stopImmediatePropagation();
+                       } else {
+                           var matchArr = matcher.exec(currentText);
+                           $(e.target).data('autocompleteSearchTerm', matchArr[1]);
                        }
+                   },
+                   response: function (e, ui) {
+                       var searchMatch = new RegExp($(e.target).data('autocompleteSearchTerm'), "gi");
+                       _.each(ui.content, function (content) {
+                           if (!content.originalText) {
+                               content.originalText = content.label;
+                           }
+                           content.label = content.originalText.replace(searchMatch,"<span class='autocompleteSearchTerm'>"+searchMatch.source+"</span>")
+                       });
+
                    }
                }).data('ui-autocomplete')._renderItem = function (ul, item) {
                    var li =  $("<li></li>")
