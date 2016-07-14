@@ -2,6 +2,7 @@ define(function (require) {
     var _ = require('underscore'),
         Filter = require('thirdchannel/views/filter/main'),
         context = require('context'),
+        ReportsDropdown = require('thirdchannel/views/fixtures/reportsDropdown'),
         Overview = require('thirdchannel/views/fixtures/overview');
     
 
@@ -13,6 +14,7 @@ define(function (require) {
         index: function () {
             this.init();
             Filter.init();
+            new ReportsDropdown();
             new Overview().fetch();
         }
     };
