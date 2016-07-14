@@ -105,7 +105,6 @@ define(function(require) {
             editor.on('text-change', function(delta, source) {
                 completionInstructions.val(editor.getHTML());
             });
-
             editor.setHTML(completionInstructions.val());
         },
 
