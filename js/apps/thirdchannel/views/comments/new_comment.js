@@ -15,7 +15,7 @@ define(function(require){
                var users = [];
                data.table.users.forEach(function (item) {
                    var user = item.table;
-                   var userRole = user.user_role.name;
+                   var userRole = user.user_role;
                    userRole = userRole.charAt(0).toUpperCase()+userRole.substring(1);
                    users.push({label: user.first_name+" "+user.last_name+"\t["+userRole+"]\t"+user.residential_address.table.state+"\t"+user.email, value: user.person_uuid});
                });
@@ -26,7 +26,7 @@ define(function(require){
                    if (ui.item.value == "placeholder") {
                        return;
                    }
-                   var splitLabel = ui.item.label.split("\t");
+                   var splitLabel = ui.item.originalText.split("\t");
                    var currentText = $(e.target).html();
                    $(e.target).html(currentText.substring(0, currentText.lastIndexOf('@')+1)+splitLabel[0]+' '+splitLabel[1]);
                    var mentions = [];
@@ -102,7 +102,7 @@ define(function(require){
                        }
                    },
                    response: function (e, ui) {
-                       var searchMatch = new RegExp($(e.target).data('autocompleteSearchTerm'), "gi");
+                       var searchMatch = new RegExp($(e.target).data('autocompleteSearchTerm'), "g");
                        _.each(ui.content, function (content) {
                            if (!content.originalText) {
                                content.originalText = content.label;
