@@ -13,12 +13,16 @@ define(function(require){
            this.collection = options.collection;
            $.get('activities/'+this.activity.id+'/get_mentionable_users', function(data) {
                var users = [];
-               data.table.users.forEach(function (item) {
+               var program = data.table.program;
+               users.push({label: "All "+program+" Agents\t[Agent]\t\t", value: "ALL_AGENTS"});
+               users.push({label: "All "+program+"\t["+program+"]\t\t", value: "ALL_BRAND"});
+               data.table.users.table.users.forEach(function (item) {
                    var user = item.table;
                    var userRole = user.user_role;
                    userRole = userRole.charAt(0).toUpperCase()+userRole.substring(1);
                    users.push({label: user.first_name+"\u0020"+user.last_name+"\t["+userRole+"]\t"+user.residential_address.table.state+"\t"+user.email, value: user.person_uuid});
                });
+
 
                var displayItem = function(e, ui) {
                    e.preventDefault();

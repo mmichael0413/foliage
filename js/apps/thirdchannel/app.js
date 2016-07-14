@@ -10,7 +10,7 @@ define(function(require){
             Router.initialize();
             Backbone.history.start({pushState: true, hashChange: false});
             Handlebars.registerHelper("highlight", function (text, mentionedUsers, options) {
-                var highlightMatcher = RegExp("@(\\w+\\s\\w+)\\s\\[[^\\[\\t\\n\\r\\]]+\\]", "g");
+                var highlightMatcher = RegExp("@(\\w+\\s\\w+)(?:\\sAgents)?\\s\\[[^\\[\\t\\n\\r\\]]+\\]", "g");
                 var mentions = [];
                 var names = [];
 
