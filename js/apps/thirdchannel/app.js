@@ -30,9 +30,13 @@ define(function(require){
                 } while (match);
 
                 for(var i = 0; i < mentions.length; i++) {
-                    text = text.replace(mentions[i], "<a class='highlight' href='/programs/Merchandising/profiles/"+userNameIdMap[names[i]]+"'>"+mentions[i]+"</a>");
+                    if (userNameIdMap[names[i]]) {
+                        text = text.replace(mentions[i], "<a class='highlight' href='/programs/Merchandising/profiles/"+userNameIdMap[names[i]]+"'>"+mentions[i]+"</a>");
+                    } else {
+                        text = text.replace(mentions[i], "<a class='highlight'>"+mentions[i]+"</a>");
+                    }
                 } 
-                return text;
+                return new Handlebars.SafeString(text);
             });
             
         };

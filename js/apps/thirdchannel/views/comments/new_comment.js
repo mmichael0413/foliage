@@ -143,7 +143,7 @@ define(function(require){
            e.preventDefault();
            e.stopPropagation();
            var self = this;
-           var comment = new Comment({comment: this.$('.new-comment-field').html()}, {url: this.collection.url});
+           var comment = new Comment({comment: this.$('.new-comment-field').text()}, {url: this.collection.url});
 
            if (comment.isValid()) {
                comment.set({type: this.activity.get('type'), id: this.activity.get('id'), mentions: $('.new-comment-field').data('mentions')});
