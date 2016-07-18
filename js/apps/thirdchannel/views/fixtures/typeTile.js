@@ -24,6 +24,9 @@ define(function(require) {
                     //data.imageUrl = attributes.fixtureImages[attributes.fixtureImages.length-1].links[2].href
                     data.imageUrl = attributes.fixtureImages[0].original;
                 }
+                if (data.matching > 0) {
+                    data.alert = true;
+                }
                 this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/fixture_type_tile"](data));
                 return this;
             }

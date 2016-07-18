@@ -12,7 +12,6 @@ define(function(require) {
 
         initialize: function (options) {
             this.model = options.model;
-            console.log(this.model.toJSON());
         },
         template: function () {
             return HandlebarsTemplates['thirdchannel/fixtures/fixture_details_modal'](this.getTemplateData());

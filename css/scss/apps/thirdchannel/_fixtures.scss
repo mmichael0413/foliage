@@ -50,6 +50,16 @@
             padding: 0 0.25em;
             border-radius: 5px;
         }
+        .stores {
+            color: $medium-blue;
+        }
+        .problems {
+            color: $light-blue;
+            &.exist {
+                color: $red;
+            }
+
+        }
     }
 }
 
