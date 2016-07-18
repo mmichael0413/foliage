@@ -11,7 +11,7 @@ define(function(require){
        initialize: function (options) {
            this.activity = options.activity;
            this.collection = options.collection;
-           $.get('activities/'+this.activity.id+'/get_mentionable_users', function(data) {
+           $.get('/programs/'+context.programId+'/activities/'+this.activity.id+'/get_mentionable_users', function(data) {
                var users = [];
                var program = data.table.program;
                users.push({label: "All "+program+" Agents\t[Agent]\t\t", value: "ALL_AGENTS"});

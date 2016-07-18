@@ -216,6 +216,9 @@ $padding: 1.5em;
 .ui-menu-item:hover {
   background: #f2fafc;
 }
+.ui-helper-hidden-accessible {
+  visibility: hidden;
+}
 .autocompleteColumn {
   width: 25%;
   height: 1.5em;
