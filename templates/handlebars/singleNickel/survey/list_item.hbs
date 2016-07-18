@@ -20,17 +20,5 @@
             <a data-bypass="true" href="{{this.url}}" alt="Export Survey CSV" class="btn light solid">{{this.type}}</a>
         {{/each}}
     </div>
-    <div class="survey-list-container clone-customer-container">
-        <label>Clone Customer:</label>
-        <select class="clone-customer-select" name="clone_customer">
-            <option value="{{customer_uuid}}">{{customer}}</option>
-            {{#select customer}}
-                {{#each customers}}
-                    <option value="{{attributes.uuid}}">{{attributes.name}}</option>
-                {{/each}}
-            {{/select}}
-        </select>
-        <button class="btn light solid save-clone">Clone Survey</button>
-    </div>
 </td>
 <td class="idx-handle"><i class="ic ic_hamburger medium-blue"></i></td>

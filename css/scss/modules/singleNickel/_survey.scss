@@ -1,3 +1,5 @@
+@import '../../lib/backbone.modal/modal';
+
 #survey-container {
 
   .header {
@@ -121,10 +123,6 @@
     color: $light-blue;
   }
 
-  .clone-customer-select {
-    width: 50%;
-  }
-
   .survey-show-container {
     float: right;
     margin-right: 5px;
@@ -144,4 +142,28 @@
     background-color: #93a8b8;
     border-color: #93a8b8;
   }
+
+  .clone-modal {
+    padding: 5rem;
+    text-align: center;
+
+    &.clone {
+      div:last-child {
+        padding-top: 1rem;
+        color: $red;
+      }
+    }
+  }
+
+  .go-to-container {
+    label {
+      text-transform: none;
+      font-weight: normal;
+    }
+  }
+
+  .clone-customer-select {
+    width: 50%;
+  }
 }
+

@@ -43,7 +43,14 @@ define(function (require) {
         },
 
         jobsCreate: function (customer, programSlug) {
-            new JobCreateView({model: new Backbone.Model()}).render();
+            var view = new JobCreateView({model: new Backbone.Model()});
+            view.fetch()
+            .done(function () {
+                view.render();
+            });
+
+
+            
         },
 
         jobsEdit: function (customer, programSlug, jobId) {
@@ -58,7 +65,11 @@ define(function (require) {
                     console.log("something went wrong");
                 })
                 .done(function () {
-                    new JobEditView({model: job}).render();
+                    var view = new JobEditView({model: job});
+                    view.fetch()
+                    .done(function() {
+                        view.render();
+                    });
                 });
         },
 
