@@ -8,10 +8,11 @@ define(function(require) {
         tagName: 'tr',
         template: HandlebarsTemplates['singleNickel/survey/list_item'],
         events: {
-          'click .delete': 'removeSurvey',
-          'click .lock': 'toggleLock',
-          'click .reindex': 'reindexSurvey',
-          'click .clone': 'openCloneModal'
+            'click .delete': 'removeSurvey',
+            'click .lock': 'toggleLock',
+            'click .reindex': 'reindexSurvey',
+            'click .clone': 'openCloneModal',
+            'click .export': 'toggleExport'
         },
         initialize: function() {
             _.bindAll(this, 'removeSurvey', 'toggleLock');
@@ -21,6 +22,7 @@ define(function(require) {
             var attributes = _.extend({survey: this.model}, this.model.toJSON());
             this.$el.html(this.template(attributes));
             this.$el.attr("data-survey", this.model.get("id"));
+            this.$el.find(".survey-list-container").hide();
             return this;
         },
         removeSurvey: function(e) {
@@ -48,6 +50,21 @@ define(function(require) {
             e.preventDefault();
             context.modal = new CloneModal({model: this.model});
             $(".modal").append(context.modal.render().el);
+        },
+        toggleExport: function(e) {
+            e.preventDefault();
+            var container = this.$el.find(".export-container");
+
+            if (container.hasClass('visible')) {
+                container.hide('fast', "linear");
+                container.removeClass('visible');
+                $(e.currentTarget).removeClass('survey-toggle-on');
+            }
+            else {
+                container.addClass('visible');
+                $(e.currentTarget).addClass('survey-toggle-on');
+                container.show('fast', "linear");
+            }
         },
         reindexSurvey: function(e) {
             e.preventDefault();
