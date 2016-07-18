@@ -14,8 +14,12 @@ define(function(require){
            $.get('/programs/'+context.programId+'/activities/'+this.activity.id+'/get_mentionable_users', function(data) {
                var users = [];
                var program = data.table.program;
-               users.push({label: "All "+program+" Agents\t[Agent]\t\t", value: "ALL_AGENTS"});
-               users.push({label: "All "+program+"\t["+program+"]\t\t", value: "ALL_BRAND"});
+               if (data.table.can_all_agents) {
+                   users.push({label: "All "+program+" Agents\t[Agent]\t\t", value: "ALL_AGENTS"});
+               }
+               if (data.table.can_all_brand) {
+                   users.push({label: "All "+program+"\t["+program+"]\t\t", value: "ALL_BRAND"});
+               }
                data.table.users.table.users.forEach(function (item) {
                    var user = item.table;
                    var userRole = user.user_role;
