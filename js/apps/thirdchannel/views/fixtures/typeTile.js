@@ -1,10 +1,20 @@
 define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates'),
+        FixtureDetailsModal = require('thirdchannel/modals/fixtures/fixture_details'),
 
         TypeTile = {
 
             className: "fixture-type-tile",
+
+            events: {
+                'click .more-info': 'loadModal'
+            },
+
+            loadModal: function () {
+                this.modal = new FixtureDetailsModal({model: this.model});
+                this.$el.append(this.modal.render().$el);
+            },
 
             render: function () {
                 var attributes = this.model.get("attributes"),

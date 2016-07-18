@@ -7,6 +7,7 @@ define(function(require){
         TypeTile = require('thirdchannel/views/fixtures/typeTile'),
         HandlebarsTemplates = require('handlebarsTemplates'),
 
+
         TypesCollection = Backbone.Collection.extend({
             parse: function (response) {
                 this.breakdown = response.breakdown;
