@@ -28,7 +28,7 @@ define(function(require) {
             var file = e.target.files[0],
                 self = this;
 
-            if (file && file.size <= 15000000) {
+            if (file && file.size <= (15 << 20)) {
                 var reader = new FileReader();
                 reader.onload = (function (event) {
                     var model = new FileModel({url: self.form.attr('action'), policy: self.form.serializeObject(), source: event.target.result, input: self.$el.data('input')});
