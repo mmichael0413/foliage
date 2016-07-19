@@ -82,7 +82,7 @@ define(function(require){
                            }
                            li.appendTo(ul);
                            return li;
-                       }
+                       };
 
                        $(this).data("ui-autocomplete")._renderMenu = function (ul, items) {
                            var placeholder = {label: "Searching for.....", value: "placeholder"};
@@ -100,7 +100,7 @@ define(function(require){
                    select: displayItem,
                    search: function(e, ui) {
                        var currentText = $(e.target).text();
-                       var matcher = new RegExp('(?:@([\\w\\s]+))$')
+                       var matcher = new RegExp('(?:@([\\w\\s]+))$');
                        if(!matcher.test(currentText)) {
                            e.preventDefault();
                            e.stopImmediatePropagation();
@@ -117,7 +117,7 @@ define(function(require){
                            }
                            var matches = content.originalText.match(searchMatch);
                            var text = content.originalText.split(searchMatch);
-                           if (text && text[0] == "") {
+                           if (text && text[0] === "") {
                                text = text.slice(1);
                            }
                            var newText = "";
@@ -159,33 +159,6 @@ define(function(require){
 
                });
            }
-       },
-       highlight: function (e) {
-           /*
-
-           var text = $(e.target).html();
-           var highlightMatcher = RegExp("(?!<a class='highlight'>)(?:@\\w+\\s\\w+\\s\\[[^\\[\\t\\n\\r\\]]+\\])(?!<\/a>)", "g");
-           var mentions = [];
-
-           // highlight previous mentions
-           var match;
-           do {
-               match =  highlightMatcher.exec(text);
-               if (match) {
-                   mentions.push(match[0]);
-               }
-           } while (match);
-
-           for(var i = 0; i < mentions.length; i++) {
-               text = text.replace(mentions[i], "<a class='highlight'>"+mentions[i]+"</a>\u200B");
-           }
-
-           $(e.target).html(text);
-           //$(e.target).trigger($.Event("keypress"))
-           //$(e.target).trigger($.Event("change"))
-           //$(e.target).focus();
-           //$(e.target).setSelectionRange(text.length, text.length);
-           */
        },
        commentFocus: function () {
            if(!this.activity.get('isMobile') || (this.activity.get('isMobile') && this.activity.get('singleActivity'))) {
