@@ -11,15 +11,24 @@ define(function(require) {
 		taskViewClass: require('oddjob/views/tasks/edit'),
 
 		renderChildViews: function () {
+			this.$tasksContainer.html("");
 			var i = 0,
-				max = this.model.get('tasks').length;
-			for(i; i < max; i++) {
-				this._addTaskAtIndex(i, this.taskViewClass, new Task(this.model.get('tasks')[i]));
+				max = this.tasks.length;
+			for (i; i< max; i++) {
+				this._addTaskAtIndex(i, this.taskViewClass, this.tasks.at(i));
 			}
             $(this.model.attributes.blackoutSchemeUUIDs).each(function(){
                 $("#edit-blackout-schemes").find("option[value="+this+"]").attr("selected","selected");
             });
             $("#edit-blackout-schemes").chosen({disable_search: true, width: "100%"});
+		},
+
+		loadRole: function (selectedRole, roles) {
+			_.each(roles, function (role) {
+                if (role.id === selectedRole) {
+                    role.selected = true;
+                }
+            });
 		},
 
 		deleteJob: function (e) {

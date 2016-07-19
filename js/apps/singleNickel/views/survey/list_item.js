@@ -1,17 +1,18 @@
 define(function(require) {
     var Backbone = require('backbone'),
         context = require('context'),
+        CloneModal = require('singleNickel/modals/clone'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
         tagName: 'tr',
         template: HandlebarsTemplates['singleNickel/survey/list_item'],
         events: {
-          'click .delete': 'removeSurvey',
-          'click .lock': 'toggleLock',
-          'click .reindex': 'reindexSurvey',
-          'click .clone': 'toggleClone',
-            'click .save-clone': 'cloneSurvey'
+            'click .delete': 'removeSurvey',
+            'click .lock': 'toggleLock',
+            'click .reindex': 'reindexSurvey',
+            'click .clone': 'openCloneModal',
+            'click .export': 'toggleExport'
         },
         initialize: function() {
             _.bindAll(this, 'removeSurvey', 'toggleLock');
@@ -19,10 +20,9 @@ define(function(require) {
         },
         render: function() {
             var attributes = _.extend({survey: this.model}, this.model.toJSON());
-            var customers = _.extend(attributes, {customers : context.customers.models});
-            this.$el.html(this.template(customers));
+            this.$el.html(this.template(attributes));
             this.$el.attr("data-survey", this.model.get("id"));
-            this.$el.find("#clone-customer-container").hide();
+            this.$el.find(".survey-list-container").hide();
             return this;
         },
         removeSurvey: function(e) {
@@ -46,17 +46,23 @@ define(function(require) {
                 context.trigger('error');
             });
         },
-        toggleClone: function(e) {
+        openCloneModal: function(e) {
             e.preventDefault();
-            var self = this;
-            var container = $("#clone-customer-container");
+            context.modal = new CloneModal({model: this.model});
+            $(".modal").append(context.modal.render().el);
+        },
+        toggleExport: function(e) {
+            e.preventDefault();
+            var container = this.$el.find(".export-container");
 
-            if (container[0].className === 'visible') {
+            if (container.hasClass('visible')) {
                 container.hide('fast', "linear");
                 container.removeClass('visible');
+                $(e.currentTarget).removeClass('survey-toggle-on');
             }
             else {
                 container.addClass('visible');
+                $(e.currentTarget).addClass('survey-toggle-on');
                 container.show('fast', "linear");
             }
         },
@@ -65,20 +71,6 @@ define(function(require) {
 
             this.model.reindex().done(function(response) {
                 alert('Successfully re-indexed survey');
-            }).fail(function() {
-                context.trigger('error');
-            });
-        },
-        cloneSurvey: function(e) {
-            e.preventDefault();
-
-            var self = this;
-            var customerUUID = $("#clone-customer-select")[0].value;
-            this.model.cloneSurvey(null, customerUUID).done(function(response) {
-                if(response.customer_uuid === self.model.get('customer_uuid')) {
-                    self.model.collection.add(response);
-                }
-                alert("Succesfully cloned survey to " + response.customer + '!');
             }).fail(function() {
                 context.trigger('error');
             });

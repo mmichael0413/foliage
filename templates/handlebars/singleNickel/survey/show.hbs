@@ -1,4 +1,10 @@
-<a class="btn light round pull-right" href="{{attributes.links.export}}" alt="Export Survey YAML"><i class="ic fa ic_download"></i></a>
+<a href="surveys/{{attributes.id}}" class="btn light round pull-right export" alt="Export Survey"><i class="ic fa ic_download"></i></a>
+<div class="survey-show-container export-container">
+    <label>Export:</label>
+    {{#each attributes.links}}
+        <a data-bypass="true" href="{{this.url}}" alt="Export Survey CSV" class="btn light solid">{{this.type}}</a>
+    {{/each}}
+</div>
 <h1>Preview: {{attributes.title}}</h1>
 ( Required / <i class="medium-blue">Optional</i> / <i class="disabled-question">Disabled</i>  )
 
