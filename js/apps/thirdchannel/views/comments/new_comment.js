@@ -11,7 +11,7 @@ define(function(require){
        initialize: function (options) {
            this.activity = options.activity;
            this.collection = options.collection;
-           $.get('/programs/'+context.programId+'/activities/'+this.activity.id+'/get_mentionable_users', function(data) {
+           $.get('/programs/'+context.programId+'/activities/'+this.activity.id+'/mentionable_users', function(data) {
                var users = [];
                var program = data.table.program;
                if (data.table.can_all_agents) {
@@ -45,7 +45,6 @@ define(function(require){
                    mentions.push(ui.item.value);
 
                    $(e.target).data('mentions', mentions);
-                   $(e.target).trigger($.Event("highlight"));
                    $(e.target).trigger($.Event("keypress"));
                    $(e.target).trigger($.Event("change"));
                };
@@ -100,7 +99,7 @@ define(function(require){
                    select: displayItem,
                    search: function(e, ui) {
                        var currentText = $(e.target).text();
-                       var matcher = new RegExp('(?:@([\\w\\s]+))$');
+                       var matcher = new RegExp(/(?:@([\w\s]+))$/);
                        if(!matcher.test(currentText)) {
                            e.preventDefault();
                            e.stopImmediatePropagation();

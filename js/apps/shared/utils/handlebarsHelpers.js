@@ -235,5 +235,38 @@ define(function (require) {
         value = Math.round(value * 100.0);
         return value + '%';
     });
+
+    Handlebars.registerHelper("highlight", function (text, mentionedUsers, options) {
+        var highlightMatcher = new RegExp(/@(\w+\s\w+)(?:\sAgents)?\s\[[^\[\t\n\r\]]+\]/g);
+        var mentions = [];
+        var names = [];
+
+        var userNameIdMap = {};
+        for(var i = 0; i < mentionedUsers.length; i++) {
+            userNameIdMap[mentionedUsers[i].user_name] = mentionedUsers[i].user_id;
+        }
+
+
+        var match;
+        do {
+            match =  highlightMatcher.exec(text);
+            if (match) {
+                mentions.push(match[0]);
+                names.push(match[1]);
+            }
+        } while (match);
+
+        for(i = 0; i < mentions.length; i++) {
+            var mentionLink = $(document.createElement('a'))
+                .addClass('highlight');
+
+            if (userNameIdMap[names[i]]) {
+                mentionLink.attr('href', '/programs/Merchandising/profiles/'+userNameIdMap[names[i]]);
+            }
+            mentionLink.html(mentions[i]);
+            text = text.replace(mentions[i], mentionLink[0].outerHTML);
+        }
+        return new Handlebars.SafeString(text);
+    });
 });
 
