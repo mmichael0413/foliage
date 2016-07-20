@@ -1,0 +1,17 @@
+<div class="col-1-12">
+    <img class="preview-image" src="{{previewImageUrl}}" alt="{{name}}" onerror="this.src='{{imageErrorUrl}}'"></img>    
+</div>
+
+
+<p class="col-2-12 name">{{name}}</p>
+
+<div class="col-4-12"><a href="{{storeUrl}}">{{storeName}}</a><br/>{{storeAddress}}</div>
+
+<div class="col-2-12">
+    {{lastUpdated}}<br/>
+    by Jane Doe
+</div>
+
+<p class="col-1-12 images {{#containsImages}}has-images{{else}}calm{{/containsImages}}"><i class="ic fa fa-camera"></i>{{imagesCount}}</p>
+<p class="col-1-12 problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{problemsCount}}</p>
+<span class="col-1-12"><i class="ic ic_down"></i></span>

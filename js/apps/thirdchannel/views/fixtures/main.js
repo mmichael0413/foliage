@@ -3,7 +3,8 @@ define(function (require) {
         Filter = require('thirdchannel/views/filter/main'),
         context = require('context'),
         ReportsDropdown = require('thirdchannel/views/fixtures/reportsDropdown'),
-        Overview = require('thirdchannel/views/fixtures/overview');
+        Overview = require('thirdchannel/views/fixtures/overview'),
+        DetailsView = require('thirdchannel/views/fixtures/details/list');
     
 
     return {
@@ -16,6 +17,13 @@ define(function (require) {
             Filter.init();
             new ReportsDropdown();
             new Overview().fetch();
+        },
+
+        details: function () {
+            this.init();
+            Filter.init();
+            new ReportsDropdown();
+            new DetailsView().bootstrapCollection(window.bootstrap);
         }
     };
 });

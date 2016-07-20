@@ -64,11 +64,27 @@
 }
 
 .fixture-type-description {
-
+    
 }
 
 .fixture-instance-tile {
+    .preview-image {
+        width: 3em;
+    }
+    .name {
+        margin: 0;
+    }
 
+    .images, .problems {
+        color: $light-blue;
+        &.exist {
+            color: $red;
+        }
+        &.has-images {
+            color: $medium-blue;
+        }
+
+    }    
 }
 
 .fixture-modal {

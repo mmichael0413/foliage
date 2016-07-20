@@ -79,6 +79,7 @@ define(function(require){
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
             'programs/:program_id/dashboards/special_projects/:special_project_id/stores': 'dashboardSpecialProjectStores',
             'programs/:program_id/fixtures/overview(/)' : 'fixturesIndex',
+            'programs/:program_id/fixtures/overview/details(/)' : 'fixturesDetails',
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
@@ -155,7 +156,7 @@ define(function(require){
         },
         
         fixturesDetails: function () {
-            // todo
+            FixturesMain.details();
         },
 
         inProgress: function (){
