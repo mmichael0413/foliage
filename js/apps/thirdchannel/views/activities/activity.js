@@ -11,6 +11,7 @@ define(function(require) {
         CommentsView = require('thirdchannel/views/comments/comments'),
         NewCommentView = require('thirdchannel/views/comments/new_comment'),
         Like = require('thirdchannel/models/activities/like'),
+        Follow = require('thirdchannel/models/activities/follow'),
         Viewer = require('viewer');
 
     return Backbone.View.extend({
@@ -18,6 +19,7 @@ define(function(require) {
         template: HandlebarsTemplates['thirdchannel/activity'],
         events: {
             'click .activity_like_button': 'likeActivity',
+            'click .activity_follow_button': 'followActivity',
             'click .start-comment': 'focusComment',
             'click .more-comments': 'showAdditionalComments',
             'click .less-comments': 'hideAdditionalComments',
@@ -116,6 +118,25 @@ define(function(require) {
                 }
 
                 $(e.target).replaceWith('Liked');
+            });
+        },
+        followActivity: function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            var self = this;
+            var isFollowing = $(e.target).data("following");
+
+            // create model and save it to the server
+            var follow = new Follow({id: this.objId}, {programId: this.programId, following: isFollowing});
+            follow.save().done(function () {
+                if (!isFollowing) {
+                    $(e.target).text('Unfollow');
+                    $(e.target).data("following", true);
+                } else {
+                    $(e.target).text('Follow');
+                    $(e.target).data("following", false);
+                }
             });
         },
         focusComment: function (e) {

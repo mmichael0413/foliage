@@ -114,7 +114,21 @@
                     {{/if}}
                 </span>
             <span class="action bold">
+                {{#if is_following}}
+                    <a class="activity_follow_button" data-id="{{activity_id}}" data-following="{{is_following}}" href="#">
+                        Unfollow
+                    </a>
+                {{else}}
+                    <a class="activity_follow_button" data-id="{{activity_id}}" data-following="{{is_following}}" href="#">
+                        Follow
+                    </a>
+                {{/if}}
+            </span>
+            <span class="action bold">
                 <a href="#" class="start-comment">Comment</a>
+            </span>
+            <span class="action bold link-color">
+                 |
             </span>
             {{#if_eq type "Checkin"}}
                 <span class="action bold">
