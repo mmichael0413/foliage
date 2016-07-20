@@ -129,6 +129,14 @@ $padding: 1.5em;
       font-style: italic;
     }
 
+    .new-comment-field {
+      background-color: white;
+      vertical-align: top;
+      margin-bottom: 0.5em;
+      -webkit-border-radius: .35em;
+      -moz-border-radius: .35em;
+    }
+
     textarea, button {
       display: inline-block;
       vertical-align: top;
@@ -190,6 +198,65 @@ $padding: 1.5em;
 
 .comment.new-comment {
   padding-bottom: $padding;
+}
+
+// added by jQuery autocomplete
+.ui-autocomplete {
+
+  background-color: #ffffff;
+  width: 20em;
+  list-style: none;
+  list-style-type: none;
+  padding: .75em;
+}
+.ui-menu-item {
+  width: 100%;
+  background-color: inherit;
+}
+.ui-menu-item:hover {
+  background: #f2fafc;
+}
+.ui-helper-hidden-accessible {
+  visibility: hidden;
+}
+.autocompleteColumn {
+  width: 25%;
+  height: 1.5em;
+  text-align: left;
+  font-size: 1em;
+  background-color: inherit;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.autocompleteProgram {
+  width: 15%;
+}
+.autocompleteState {
+  width: 10%;
+}
+.autocompleteEmail {
+  width: 35%;
+}
+
+.autocompleteSearchTerm {
+  font-weight: bold;
+  background: #eaeae8;
+}
+
+.autocompletePlaceholder {
+  color: #c2cdd5;
+  font-style: italic;
+  font-size: .9em;
+}
+
+.autocompletePlaceholder:hover {
+  background-color: transparent;
+}
+
+.highlight {
+  color: $link-color;
 }
 
 .activity-content, .activity-actions {
