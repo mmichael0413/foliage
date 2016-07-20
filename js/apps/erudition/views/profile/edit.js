@@ -120,7 +120,8 @@ define(function (require) {
             var self = this;
             this.$('.typeahead').typeahead({
                     minLength: 3,
-                    highlight: true
+                    highlight: true,
+                    autoselect: true
                 },
                 {
                     source: function (query, cb) {
