@@ -124,7 +124,6 @@ define(function(require){
                                newText += "<span class='autocompleteSearchTerm'>"+matches[i]+"</span>" + text[i];
                            }
                            content.label = newText;
-                           //content.label = content.originalText.replace(searchMatch,"<span class='autocompleteSearchTerm'>"+searchMatch.source+"</span>")
                        });
 
                    }
