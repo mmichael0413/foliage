@@ -236,7 +236,7 @@ define(function (require) {
         return value + '%';
     });
 
-    Handlebars.registerHelper("highlight", function (text, mentionedUsers, options) {
+    Handlebars.registerHelper("highlight", function (text, mentionedUsers, currentUserId, options) {
         var highlightMatcher = new RegExp(/@(\w+\s\w+)(?:\sAgents)?\s\[[^\[\t\n\r\]]+\]/g);
         var mentions = [];
         var names = [];
@@ -262,6 +262,11 @@ define(function (require) {
 
             if (userNameIdMap[names[i]]) {
                 mentionLink.attr('href', '/programs/Merchandising/profiles/'+userNameIdMap[names[i]]);
+            } else {
+                mentionLink.addClass('highlightNoLink');
+            }
+            if (userNameIdMap[names[i]] && userNameIdMap[names[i]] == currentUserId) {
+                mentionLink.addClass('highlightWord');
             }
             mentionLink.html(mentions[i]);
             text = text.replace(mentions[i], mentionLink[0].outerHTML);

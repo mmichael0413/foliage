@@ -258,6 +258,14 @@ $padding: 1.5em;
 .highlight {
   color: $link-color;
 }
+.highlightNoLink {
+  color: $text-color;
+  font-weight: bold;
+}
+
+.highlightWord {
+  background-color: white;
+}
 
 .activity-content, .activity-actions {
   display: inline-block;
