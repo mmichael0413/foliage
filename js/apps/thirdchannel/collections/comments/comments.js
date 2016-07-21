@@ -7,6 +7,8 @@ define(function(require){
     return Backbone.Collection.extend({
         initialize: function (models, options) {
             this.url = options.url;
+            this.currentUserId = options.currentUserId;
+            this.highlightWords = options.highlightWords;
         },
         comparator: function(m) {
             return Date.parse(m.get('posted_at'));

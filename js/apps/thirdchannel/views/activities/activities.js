@@ -49,11 +49,15 @@ define(function (require) {
         
 
         renderModel: function (model) {
-            if (model.get('type') !== undefined) {
-                var activity = new ActivityView({ model: model, programId: context.programId, singleActivity: this.singleActivity});
-                this.getContentElement().append(activity.render().el);
-                activity.$("textarea").expanding();
-                activity.initializeCarousel();
+            for (var i = 0; i < model.attributes.length; i++) {
+                var activityModel = new Backbone.Model(model.attributes[i]);
+                if (activityModel.get('type') !== undefined) {
+                    var activity = new ActivityView({ model: activityModel, programId: context.programId, singleActivity:
+                        this.singleActivity, currentUserId: model.currentUserId, highlightWords: model.highlightWords});
+                    this.getContentElement().append(activity.render().el);
+                    activity.$("textarea").expanding();
+                    activity.initializeCarousel();
+                }
             }
         },
 

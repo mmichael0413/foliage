@@ -32,6 +32,8 @@ define(function(require) {
 
             var self = this;
             this.programId = options.programId;
+            this.currentUserId = options.currentUserId;
+            this.highlightWords = options.highlightWords;
             this.options = options;
             if (options.model === undefined) {
                 this.model = new Activity();
@@ -70,7 +72,7 @@ define(function(require) {
 
             // render the comments view
             var c = this.$('.comments');
-            this.comments = new CommentsView({el: c, activity: this.model, programId: this.programId}).render();
+            this.comments = new CommentsView({el: c, activity: this.model, programId: this.programId, currentUserId: this.currentUserId, highlightWords: this.highlightWords}).render();
             this.newComment = new NewCommentView({el: this.$('.new-comment'), activity: this.model, collection: this.comments.collection}).render();
             
             if (!this.model.get('isMobile')) {
