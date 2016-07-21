@@ -258,7 +258,7 @@ $padding: 1.5em;
 .highlight {
   color: $link-color;
 }
-.highlightNoLink {
+.highlightNoLink, .highlightNoLink:hover {
   color: $text-color;
   font-weight: bold;
 }
