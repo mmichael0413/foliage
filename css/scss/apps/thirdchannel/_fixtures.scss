@@ -68,6 +68,12 @@
 }
 
 .fixture-instance-tile {
+    
+
+    .ic {
+        margin-right: 0.5em;
+
+    }
     .preview-image {
         width: 3em;
     }
@@ -77,13 +83,55 @@
 
     .images, .problems {
         color: $light-blue;
+        text-align:center;
         &.exist {
             color: $red;
         }
         &.has-images {
             color: $medium-blue;
         }
+    }
 
+    .arrow {
+        text-align: right;
+    }
+    .details-toggle {
+        cursor: pointer;
+    }
+
+    .details {
+        display: none;
+        margin-top: 0.5em;
+        padding-top: 0.5em;
+        border-top: 1px solid $border-color;
+        font-size: 0.8em;
+
+        .property-group {
+            margin-bottom: 2em;
+        }
+        .activity-photos {
+            width: 20%;
+        }
+        .list {
+            padding:0;
+            margin:0 0 0 0.5em;
+            .list-item {
+                &.no-properties {
+                    color: $medium-blue;
+                    font-style: italic;
+                }
+                list-style: none;
+                padding:0;
+                border:none;
+                .checked, .no-properties {
+                    color: $medium-blue;
+                }
+                .alerted {
+                    color: $red;
+                }
+                
+            }
+        }
     }    
 }
 

@@ -1,17 +1,86 @@
-<div class="col-1-12">
-    <img class="preview-image" src="{{previewImageUrl}}" alt="{{name}}" onerror="this.src='{{imageErrorUrl}}'"></img>    
+<div class="summary pure-g">
+    <div class="col-1-12">
+        <img class="preview-image" src="{{previewImageUrl}}" alt="{{name}}" onerror="this.src='{{imageErrorUrl}}'"></img>    
+    </div>
+
+
+    <p class="col-2-12 name">{{name}}</p>
+
+    <div class="col-4-12"><a href="{{storeUrl}}">{{storeName}}</a><br/>{{storeAddress}}</div>
+
+    <div class="col-2-12">
+        {{lastUpdated}}<br/>
+    </div>
+
+    <p class="col-1-12 images {{#containsImages}}has-images{{else}}calm{{/containsImages}}"><i class="ic fa fa-camera"></i>{{imagesCount}}</p>
+    <p class="col-1-12 problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{problemsCount}}</p>
+    <p class="col-1-12 arrow"><i class="ic ic_up details-toggle"></i></p>    
 </div>
 
 
-<p class="col-2-12 name">{{name}}</p>
 
-<div class="col-4-12"><a href="{{storeUrl}}">{{storeName}}</a><br/>{{storeAddress}}</div>
+<div class="details pure-g">
+    
+    <div class="col-3-12 checks">
+        <div class="property-group">
+            <span>Visiblity</span>
+            {{#visibility}}
+                <ul class="list">
+                    <li class="list-item"><i class="ic fa fa-check checked"></i>{{this}}</li>    
+                </ul>
+            {{else}}
+                <p class="list-item no-properties">No Visibility Given</p>    
+            {{/visibility}}
+        </div>
 
-<div class="col-2-12">
-    {{lastUpdated}}<br/>
-    by Jane Doe
+        <div class="property-group">
+            <span>Location</span>
+            <ul class="list">
+            {{#locations}}
+                <li class="list-item"><i class="ic fa fa-check checked"></i>{{this}}</li>
+            {{else}}
+                <li class="list-item no-properties">No Desired Locations</li>    
+            {{/locations}}
+            </ul>
+        </div>
+
+        
+    </div>
+    <div class="col-6-12 problems-list">
+        <div class="property-group">
+            <ul class="list">
+            {{#problems}}
+                <li class="list-item"><i class="ic fa fa-exclamation-circle alerted"></i>{{this}}</li>    
+            {{else}}
+                <li class="list-item no-properties">No Issues</li>    
+            {{/problems}}
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="col-3-12 images activity-photos">
+    {{#if pictures}}
+        <div class="carousel">
+            {{#each pictures}}
+            <div>
+                <div class="helper">
+                    <img src="{{href}}" alt="{{../name}}" class="img-responsive" onerror="this.src='{{../imageErrorUrl}}'"/>
+                </div>
+            </div>
+            {{/each}}
+            {{#unless_eq pictures.length 1}}
+            <a href="#" class="arrow arrow-left">
+                <span class="ic ic_left"></span>
+            </a>
+            <a href="#" class="arrow arrow-right">
+                <span class="ic ic_right"></span>
+            </a>
+            {{/unless_eq}}
+        </div>
+    {{/if}}
+        
+    </div>
+    
+
 </div>
-
-<p class="col-1-12 images {{#containsImages}}has-images{{else}}calm{{/containsImages}}"><i class="ic fa fa-camera"></i>{{imagesCount}}</p>
-<p class="col-1-12 problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{problemsCount}}</p>
-<span class="col-1-12"><i class="ic ic_down"></i></span>
