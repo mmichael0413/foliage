@@ -148,10 +148,10 @@ define(function(require){
            var comment = new Comment({comment: this.$('.new-comment-field').text()}, {url: this.collection.url});
 
            if (comment.isValid()) {
-               comment.set({type: this.activity.get('type'), id: this.activity.get('id')});
+               comment.set({type: this.activity.get('type'), id: this.activity.get('id'), mentions: $('.new-comment-field').data('mentions')});
                comment.save().done(function (obj, status) {
                    comment.set(obj.comment);
-                   comment.set({mentions: obj.mentions, user_id: obj.user_id});
+                   comment.set({mentions: obj.mentions, currentUserId: obj.current_user_id});
                    self.collection.add([comment]);
                    self.$('.new-comment-field').html('');
                }).fail(function () {
