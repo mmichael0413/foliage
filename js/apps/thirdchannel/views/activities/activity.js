@@ -95,7 +95,7 @@ define(function(require) {
             model.url = e.currentTarget.href;
             model.fetch()
             .done(function () {
-                self.model = model;
+                self.model = new Backbone.Model(model.get('activities'));
                 self.render();
                 self.initializeCarousel();
             });

@@ -49,11 +49,12 @@ define(function (require) {
         
 
         renderModel: function (model) {
-            for (var i = 0; i < model.attributes.length; i++) {
+            for (var i = 0; i<model.attributes.length; i++) {
                 var activityModel = new Backbone.Model(model.attributes[i]);
+
                 if (activityModel.get('type') !== undefined) {
                     var activity = new ActivityView({ model: activityModel, programId: context.programId, singleActivity:
-                        this.singleActivity, currentUserId: model.currentUserId, highlightWords: model.highlightWords});
+                    this.singleActivity, currentUserId: model.currentUserId, highlightWords: model.highlightWords});
                     this.getContentElement().append(activity.render().el);
                     activity.$("textarea").expanding();
                     activity.initializeCarousel();
