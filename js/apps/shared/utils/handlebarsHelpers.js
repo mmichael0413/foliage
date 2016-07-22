@@ -237,7 +237,7 @@ define(function (require) {
     });
 
     Handlebars.registerHelper("highlight", function (text, mentionedUsers, currentUserId, options) {
-        var highlightMatcher = new RegExp(/@(\w+\s\w+)(?:\sAgents)?\s\[[^\[\t\n\r\]]+\]/g);
+        var highlightMatcher = new RegExp(/@(\w+\s{1,3}\w+)(?:\sAgents)?\s\[[^\[\t\n\r\]]+\]/g); // allow for 1-3 spaces between first, last
         var mentions = [];
         var names = [];
 
