@@ -34,6 +34,7 @@ define(function(require) {
             this.programId = options.programId;
             this.currentUserId = options.currentUserId;
             this.highlightWords = options.highlightWords;
+            this.mentions = options.mentions
             this.options = options;
             if (options.model === undefined) {
                 this.model = new Activity();
@@ -41,6 +42,7 @@ define(function(require) {
                 this.model = options.model;
             }
             this.objId = this.model.get('activity_id');
+            this.mentions = this.model.get('mentions');
             this.carousel = null;
             this.listenTo(context, 'navigation:collapsed', this.fixCollapsedCarousel);
             this.listenTo(context, 'store.sales.update', this.updateSalesWidget);
@@ -72,7 +74,7 @@ define(function(require) {
 
             // render the comments view
             var c = this.$('.comments');
-            this.comments = new CommentsView({el: c, activity: this.model, programId: this.programId, currentUserId: this.currentUserId, highlightWords: this.highlightWords}).render();
+            this.comments = new CommentsView({el: c, activity: this.model, programId: this.programId, mentions: this.mentions, currentUserId: this.currentUserId, highlightWords: this.highlightWords}).render();
             this.newComment = new NewCommentView({el: this.$('.new-comment'), activity: this.model, collection: this.comments.collection}).render();
             
             if (!this.model.get('isMobile')) {

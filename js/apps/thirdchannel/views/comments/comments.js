@@ -48,7 +48,7 @@ define(function(require){
            this.collection.add(commentModels);
        },
        onModelAdded: function (model) {
-           this.$el.append(new CommentView({model: model, activityId: this.activityId, programId: this.programId, mentions: this.mentions, currentUserId: this.currentUserId, highlightWords: this.highlightWords}).render().el);
+           this.$el.append(new CommentView({model: model, activityId: this.activityId, programId: this.programId, mentions: model.get('mentions'), currentUserId: model.get('currentUserId'), highlightWords: model.get('highlightWords')}).render().el);
 
            return this;
        },
