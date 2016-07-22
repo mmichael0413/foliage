@@ -154,6 +154,11 @@ define(function(require){
                    comment.set({mentions: obj.mentions, currentUserId: obj.current_user_id});
                    self.collection.add([comment]);
                    self.$('.new-comment-field').html('');
+                   var followButton = $(".activity_follow_button[data-id="+self.activity.get('activity_id')+"]");
+                   followButton.text('Unfollow');
+                   followButton.data("following", true);
+                   followButton.addClass('activity_unfollow_button');
+                   followButton.removeClass('activity_follow_button');
                }).fail(function () {
 
                });

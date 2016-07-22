@@ -95,7 +95,7 @@ define(function(require) {
             model.url = e.currentTarget.href;
             model.fetch()
             .done(function () {
-                self.model = new Backbone.Model(model.get('activities'));
+                self.model =  (model.get('activities') && model.get('activities').length > 0) ? new Backbone.Model(model.get('activities')[0]) : new Backbone.Model(model.get('activities')[0]);
                 self.render();
                 self.initializeCarousel();
             });
@@ -135,9 +135,13 @@ define(function(require) {
                 if (!isFollowing) {
                     $(e.target).text('Unfollow');
                     $(e.target).data("following", true);
+                    $(e.target).addClass('activity_unfollow_button');
+                    $(e.target).removeClass('activity_follow_button');
                 } else {
                     $(e.target).text('Follow');
                     $(e.target).data("following", false);
+                    $(e.target).addClass('activity_follow_button');
+                    $(e.target).removeClass('activity_unfollow_button');
                 }
             });
         },
