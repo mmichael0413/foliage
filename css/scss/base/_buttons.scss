@@ -2,7 +2,7 @@
     height: 3em;
     background: none;
     color: $color;
-    border: 0.2em solid $color;
+    border: 0.1em solid $color;
     border-radius: $border-radius-base;
 }
 
@@ -79,9 +79,9 @@
 
 .btn {
     display: inline-block;
-    border: 2px solid #000000;
+    border: 1px solid #000000;
     background: none;
-    border-radius: $border-radius_base;
+    //border-radius: $border-radius_base;
     padding: 2px 6px;
     font-size: 1.0em;
     vertical-align: middle;
@@ -170,5 +170,23 @@ a.light {
 
     opacity: 0;
     filter: alpha(opacity=0);
+  }
+}
+
+button.link {
+  border: none;
+  background: none;
+  padding: 0;
+  &.primary {
+    color: $link-color;
+  }
+  &.light {
+    color: $medium-blue;
+  }
+  &.small {
+    font-size: .8em;
+  }
+  &.underline {
+    text-decoration: underline;
   }
 }

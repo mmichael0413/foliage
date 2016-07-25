@@ -3,6 +3,9 @@
   TODO: break this up into form base and form layout
 */
 
+form.inline {
+  display:inline;
+}
 input[type=text], input[type=password], input[type=number], textarea, select, input[type="file"], input[type="email"] {
   width: 100%;
   &.inline {

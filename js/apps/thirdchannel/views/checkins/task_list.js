@@ -45,7 +45,9 @@ define(function(require){
                 this.$('form.task.grouped input[name=category_id]').val(categoryId);
                 this.hideError();
             } else {
-                this.showError();
+                if(selectedOption.value !== undefined) {
+                    this.showError();
+                }
             }
         },
         showError: function(e) {
