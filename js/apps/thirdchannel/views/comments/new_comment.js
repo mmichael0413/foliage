@@ -13,14 +13,14 @@ define(function(require){
            this.collection = options.collection;
            $.get('/programs/'+context.programId+'/activities/'+this.activity.id+'/mentionable_users', function(data) {
                var users = [];
-               var program = data.table.program;
-               if (data.table.can_all_agents) {
+               var program = data.program;
+               if (data.can_all_agents) {
                    users.push({label: "All "+program+" Agents\t[Agent]\t\t", value: "ALL_AGENTS"});
                }
-               if (data.table.can_all_brand) {
+               if (data.can_all_brand) {
                    users.push({label: "All "+program+"\t["+program+"]\t\t", value: "ALL_BRAND"});
                }
-               data.table.users.table.users.forEach(function (item) {
+               data.users.table.users.forEach(function (item) {
                    var user = item.table;
                    var userRole = user.user_role;
                    userRole = userRole.charAt(0).toUpperCase()+userRole.substring(1);
