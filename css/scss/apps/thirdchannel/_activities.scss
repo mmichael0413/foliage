@@ -258,13 +258,24 @@ $padding: 1.5em;
 .highlight {
   color: $link-color;
 }
-.highlightNoLink {
+.highlightNoLink, .highlightNoLink:hover {
   color: $text-color;
   font-weight: bold;
 }
 
 .highlightWord {
   background-color: white;
+}
+
+.activity_unfollow_button {
+  background-color: $link-color;
+  color: white;
+  -webkit-border-radius: .35em;
+  -moz-border-radius: .35em;
+  border-radius: .35em;
+  width: 5em;
+  display: inline-block;
+  text-align: center;
 }
 
 .activity-content, .activity-actions {
