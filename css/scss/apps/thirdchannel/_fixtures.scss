@@ -1,0 +1,174 @@
+.dropdown {
+    display: inline-block;
+    .dropdown-item {
+        padding: 0.25em;
+
+        .ic {
+            padding-right: 0.25em;
+        }
+    }
+}
+
+.fixture-type-tile {
+    margin: 0 2em 2em 0;
+    padding: 0.5em;
+    width: 14em;
+    display: inline-block;
+    background-color: white;
+    border: 1px solid $border-color;
+
+    .name {
+        margin: 0;
+        width: 90%;
+        display: inline-block;
+    }
+    .more-info {
+        color: $medium-blue;
+        cursor: pointer;
+        &:hover {
+            color: $slate;
+        }
+    }
+    
+    .ic {
+        margin-right:0.25em;
+    }
+    .fixture-image {
+        display: block;
+        height: 10em;
+        margin: 1em auto;
+        border: 1px solid $border-color;
+
+        
+    }
+    .icon-row {
+        display: flex;
+        justify-content: space-between;
+        .total {
+            color: white;
+            background-color: $medium-blue;
+            padding: 0 0.25em;
+            border-radius: 5px;
+        }
+        .stores {
+            color: $medium-blue;
+        }
+        .problems {
+            color: $light-blue;
+            &.exist {
+                color: $red;
+            }
+
+        }
+    }
+}
+
+.fixture-type-description {
+    
+}
+
+.fixture-instance-tile {
+    
+
+    .ic {
+        margin-right: 0.5em;
+
+    }
+    .preview-image {
+        width: 3em;
+    }
+    .name {
+        margin: 0;
+    }
+
+    .images, .problems {
+        color: $light-blue;
+        text-align:center;
+        &.exist {
+            color: $red;
+        }
+        &.has-images {
+            color: $medium-blue;
+        }
+    }
+
+    .arrow {
+        text-align: right;
+    }
+    .details-toggle {
+        cursor: pointer;
+    }
+
+    .details {
+        display: none;
+        margin-top: 0.5em;
+        padding-top: 0.5em;
+        border-top: 1px solid $border-color;
+        font-size: 0.8em;
+
+        .property-group {
+            margin-bottom: 2em;
+        }
+        .activity-photos {
+            width: 20%;
+        }
+        .list {
+            padding:0;
+            margin:0 0 0 0.5em;
+            .list-item {
+                &.no-properties {
+                    color: $medium-blue;
+                    font-style: italic;
+                }
+                list-style: none;
+                padding:0;
+                border:none;
+                .checked, .no-properties {
+                    color: $medium-blue;
+                }
+                .alerted {
+                    color: $red;
+                }
+                
+            }
+        }
+    }    
+}
+
+.fixture-modal {
+    padding:0.5em;
+    .header-bar {
+        height: 4em;
+        line-height: 2em;
+        padding: 1em 2em;
+        background-color: lighten($light-blue, 30%);
+        color: $medium-blue;
+        border:1px solid $border-color;
+        .name {
+            font-weight: normal;
+            width: 93%;
+        }
+        .fa {
+            font-size: 1.25em;
+            cursor: pointer;
+        }
+    }
+    .content {
+        padding : 1em;
+        display: flex;
+        justify-content: space-between;
+
+        .image {
+            max-height:15em;
+        }
+
+        .description {
+            width: 45%;
+            padding: 0em;
+            margin: 0em;
+        }
+    }
+
+    
+
+}

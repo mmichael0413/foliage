@@ -9,6 +9,7 @@ require.config({
         'jquery-ui'     : "../libs/bower_components/jquery-ui/jquery-ui",
         'underscore': '../libs/bower_components/underscore/underscore',
         'backbone': '../libs/bower_components/backbone/backbone',
+        'buttons' : '../libs/buttons',
         'handlebars': '../libs/bower_components/handlebars/handlebars.min',
         'expanding': '../libs/expanding',
         'handlebarsTemplates': 'thirdchannel/templates/hbs-compiled',
@@ -56,6 +57,9 @@ require.config({
         "backbone": {
             deps: ["underscore"],
             exports: "Backbone"
+        },
+        'buttons' : {
+            deps: ['jquery']
         },
         "handlebars": {
             deps: ["jquery"],
