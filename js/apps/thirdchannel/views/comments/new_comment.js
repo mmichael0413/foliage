@@ -151,7 +151,7 @@ define(function(require){
                comment.set({type: this.activity.get('type'), id: this.activity.get('id'), mentions: $('.new-comment-field').data('mentions')});
                comment.save().done(function (obj, status) {
                    comment.set(obj.comment);
-                   comment.set({mentions: obj.mentions, currentUserId: obj.current_user_id});
+                   comment.set({mentions: obj.mentions, currentUserId: obj.current_user_id, highlightWords: obj.highlight_words});
                    self.collection.add([comment]);
                    self.$('.new-comment-field').html('');
                    var followButton = $(".activity_follow_button[data-id="+self.activity.get('activity_id')+"]");
