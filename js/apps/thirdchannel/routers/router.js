@@ -21,6 +21,7 @@ define(function(require){
         DashboardsAlertsStoresView = require('thirdchannel/views/dashboards/alerts/show/stores'),
         DashboardsSpecialProjectsView = require('thirdchannel/views/dashboards/special_projects/main'),
         DashboardsSpecialProjectStoresMain = require('thirdchannel/views/dashboards/special_projects/stores/main'),
+        FixturesMain = require('thirdchannel/views/fixtures/main'),
         ReportMain = require('thirdchannel/views/reports/index/main'),
         CheckinReportView = require('thirdchannel/views/reports/checkins/show/report'),
         ReportInfoMain = require('thirdchannel/views/reports/info/show/main'),
@@ -79,6 +80,8 @@ define(function(require){
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
             'programs/:program_id/dashboards/special_projects/:special_project_id/stores': 'dashboardSpecialProjectStores',
+            'programs/:program_id/fixtures/overview(/)' : 'fixturesIndex',
+            'programs/:program_id/fixtures/overview/details(/)' : 'fixturesDetails',
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
@@ -148,6 +151,14 @@ define(function(require){
 
         checkinList: function (){
             CheckinsView.init();
+        },
+
+        fixturesIndex: function () {
+            FixturesMain.index();
+        },
+        
+        fixturesDetails: function () {
+            FixturesMain.details();
         },
 
         inProgress: function (){

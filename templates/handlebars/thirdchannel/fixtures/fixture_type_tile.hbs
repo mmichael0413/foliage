@@ -1,0 +1,12 @@
+<div class="header-row">
+    <p class="name">{{name}}</p>
+    <i class="fa fa-exclamation-circle more-info"></i>
+
+</div>
+<img class="fixture-image" src="{{imageUrl}}" alt="{{name}}" onerror="this.src='{{imageError}}'"></img>
+
+<div class="icon-row">
+    <span class="total">{{total}}</span>
+    <span class="stores"><i class="ic ic_store"></i>{{stores}}</span>
+    <span class="problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{matching}}</span>
+</div>
