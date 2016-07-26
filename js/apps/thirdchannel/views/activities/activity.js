@@ -20,6 +20,7 @@ define(function(require) {
         events: {
             'click .activity_like_button': 'likeActivity',
             'click .activity_follow_button': 'followActivity',
+            'click .activity_unfollow_button': 'followActivity',
             'click .start-comment': 'focusComment',
             'click .more-comments': 'showAdditionalComments',
             'click .less-comments': 'hideAdditionalComments',
