@@ -34,7 +34,7 @@ define(function(require) {
             this.programId = options.programId;
             this.currentUserId = options.currentUserId;
             this.highlightWords = options.highlightWords;
-            this.mentions = options.mentions
+            this.mentions = options.mentions;
             this.options = options;
             if (options.model === undefined) {
                 this.model = new Activity();
