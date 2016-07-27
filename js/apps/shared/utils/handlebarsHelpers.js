@@ -236,13 +236,17 @@ define(function (require) {
         return value + '%';
     });
 
-    Handlebars.registerHelper("highlight", function (text, mentionedUsers, options) {
-        var highlightMatcher = new RegExp(/@(\w+\s\w+)(?:\sAgents)?\s\[[^\[\t\n\r\]]+\]/g);
+    Handlebars.registerHelper("highlight", function (text, mentionedUsers, currentUserId, highlightWords, options) {
+        var highlightMatcher = new RegExp(/@(\w+\s{1,3}\w+)(?:\sAgents)?\s\[[^\[\t\n\r\]]+\]/g); // allow for 1-3 spaces between first, last
         var mentions = [];
         var names = [];
+        var highlightWordsHash = {};
+        for (var i = 0; i < highlightWords.length; i++) {
+            highlightWordsHash[highlightWords[i]] = highlightWords[i];
+        }
 
         var userNameIdMap = {};
-        for(var i = 0; i < mentionedUsers.length; i++) {
+        for(i = 0; i < mentionedUsers.length; i++) {
             userNameIdMap[mentionedUsers[i].user_name] = mentionedUsers[i].user_id;
         }
 
@@ -262,6 +266,11 @@ define(function (require) {
 
             if (userNameIdMap[names[i]]) {
                 mentionLink.attr('href', '/programs/Merchandising/profiles/'+userNameIdMap[names[i]]);
+            } else {
+                mentionLink.addClass('highlightNoLink');
+            }
+            if ((userNameIdMap[names[i]] && userNameIdMap[names[i]] == currentUserId) || highlightWordsHash[mentions[i]]) {
+                mentionLink.addClass('highlightWord');
             }
             mentionLink.html(mentions[i]);
             text = text.replace(mentions[i], mentionLink[0].outerHTML);

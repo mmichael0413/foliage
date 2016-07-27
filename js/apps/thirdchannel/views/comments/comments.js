@@ -15,6 +15,8 @@ define(function(require){
            this.programId = options.programId;
            this.objId = this.activity.get('id');
            this.mentions = options.activity.get('mentions');
+           this.currentUserId = options.currentUserId;
+           this.highlightWords = options.highlightWords;
 
            this.commentUrl = '/programs/' + this.programId + '/activities/' + this.objId + '/comments';
 
@@ -27,7 +29,8 @@ define(function(require){
        render: function () {
            var self = this;
            _.each(this.collection.models, function (model) {
-               self.$el.append(new CommentView({model: model, activityId: self.activityId, programId: self.programId, mentions: self.mentions}).render().el);
+               self.$el.append(new CommentView({model: model, activityId: self.activityId, programId: self.programId,
+                   mentions: self.mentions, currentUserId: self.currentUserId, highlightWords: self.highlightWords}).render().el);
            });
 
            return this;
@@ -39,13 +42,13 @@ define(function(require){
 
            var self = this;
            _.each(comments, function (comment) {
-               commentModels.push(new Comment(comment, {url: self.commentUrl, mentions: mentions}));
+               commentModels.push(new Comment(comment, {url: self.commentUrl, mentions: mentions, currentUserId: self.currentUserId, highlightWords: self.highlightWords}));
            });
 
            this.collection.add(commentModels);
        },
        onModelAdded: function (model) {
-           this.$el.append(new CommentView({model: model, activityId: this.activityId, programId: this.programId, mentions: this.mentions}).render().el);
+           this.$el.append(new CommentView({model: model, activityId: this.activityId, programId: this.programId, mentions: model.get('mentions'), currentUserId: model.get('currentUserId'), highlightWords: model.get('highlightWords')}).render().el);
 
            return this;
        },
