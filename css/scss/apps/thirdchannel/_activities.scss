@@ -276,6 +276,12 @@ $padding: 1.5em;
   width: 5em;
   display: inline-block;
   text-align: center;
+  margin-bottom: .4em;
+}
+
+.activity_unfollow_button:hover {
+  color: #FFF;
+  background: #DA5348;
 }
 
 .activity-content, .activity-actions {
