@@ -202,16 +202,16 @@ $padding: 1.5em;
 
 // added by jQuery autocomplete
 .ui-autocomplete {
-
-  background-color: #ffffff;
+  background-color: #A0B3C1;
   width: 20em;
   list-style: none;
   list-style-type: none;
-  padding: .75em;
+  padding: 1px;
 }
 .ui-menu-item {
   width: 100%;
-  background-color: inherit;
+  background-color: #ffffff;
+  padding-left: .5em;
 }
 .ui-menu-item:hover {
   background: #f2fafc;
