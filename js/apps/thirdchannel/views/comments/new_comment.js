@@ -135,7 +135,6 @@ define(function(require){
        template: HandlebarsTemplates['thirdchannel/new-comment'],
        events: {
            'click .add-comment': 'createComment',
-           'keypress .new-comment-field' : 'highlight'
        },
        render: function () {
            this.$el.html(this.template(this.activity.attributes));
@@ -154,6 +153,7 @@ define(function(require){
                    comment.set({mentions: obj.mentions, currentUserId: obj.current_user_id, highlightWords: obj.highlight_words});
                    self.collection.add([comment]);
                    self.$('.new-comment-field').html('');
+                   self.$('.new-comment-field').removeData();
                    var followButton = $(".activity_follow_button[data-id="+self.activity.get('activity_id')+"]");
                    followButton.text('Unfollow');
                    followButton.data("following", true);
