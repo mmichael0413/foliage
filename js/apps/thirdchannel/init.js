@@ -36,7 +36,8 @@ require.config({
         'rxjs'          : '../libs/bower_components/rxjs/dist/rx.all.min',
         'viewer'      : '../libs/viewer',
         'mresize' : '../libs/bower_components/mresize/mresize',
-        'qs' : '../libs/bower_components/ljharb-qs/dist/qs'
+        'qs' : '../libs/bower_components/ljharb-qs/dist/qs',
+        'slidebars': "../libs/bower_components/slidebars/development/slidebars"
     },
     shim: {
         "jquery": {
@@ -118,6 +119,9 @@ require.config({
         },
         "rxjs": {
             deps: ["jquery"]
+        },
+        'slidebars': {
+            deps: ['jquery']
         }
     }
 });
