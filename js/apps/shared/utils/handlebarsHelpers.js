@@ -235,5 +235,47 @@ define(function (require) {
         value = Math.round(value * 100.0);
         return value + '%';
     });
+
+    Handlebars.registerHelper("highlight", function (text, mentionedUsers, currentUserId, highlightWords, options) {
+        var highlightMatcher = new RegExp(/@(\w+\s{1,3}\w+)(?:\sAgents)?\s\[[^\[\t\n\r\]]+\]/g); // allow for 1-3 spaces between first, last
+        var mentions = [];
+        var names = [];
+        var highlightWordsHash = {};
+        for (var i = 0; i < highlightWords.length; i++) {
+            highlightWordsHash[highlightWords[i]] = highlightWords[i];
+        }
+
+        var userNameIdMap = {};
+        for(i = 0; i < mentionedUsers.length; i++) {
+            userNameIdMap[mentionedUsers[i].user_name] = mentionedUsers[i].user_id;
+        }
+
+
+        var match;
+        do {
+            match =  highlightMatcher.exec(text);
+            if (match) {
+                mentions.push(match[0]);
+                names.push(match[1]);
+            }
+        } while (match);
+
+        for(i = 0; i < mentions.length; i++) {
+            var mentionLink = $(document.createElement('a'))
+                .addClass('highlight');
+
+            if (userNameIdMap[names[i]]) {
+                mentionLink.attr('href', '/programs/Merchandising/profiles/'+userNameIdMap[names[i]]);
+            } else {
+                mentionLink.addClass('highlightNoLink');
+            }
+            if ((userNameIdMap[names[i]] && userNameIdMap[names[i]] == currentUserId) || highlightWordsHash[mentions[i]]) {
+                mentionLink.addClass('highlightWord');
+            }
+            mentionLink.html(mentions[i]);
+            text = text.replace(mentions[i], mentionLink[0].outerHTML);
+        }
+        return new Handlebars.SafeString(text);
+    });
 });
 

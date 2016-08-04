@@ -42,6 +42,10 @@ a {
   }
 }
 
+.link-color {
+  color: $link-color;
+}
+
 ul {
   &.unstyled {
     padding: 0;

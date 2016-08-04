@@ -3,6 +3,7 @@ define(function(require){
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
+        Handlebars = require('handlebars'),
         Router = require('thirdchannel/routers/router');
 
         var initialize = function(){
