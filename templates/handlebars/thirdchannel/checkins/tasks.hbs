@@ -30,17 +30,27 @@
                 <button class="checkin-form-btn btn primary" name="commit">
 
                 {{#if submission}}
-                    <i class="ic ic_start"></i>
+                    {{#if ../packet_uuid}}
+                        <i class="ic ic_playlist"></i>
+                    {{else}}
+                        <i class="ic ic_start"></i>
+                    {{/if}}
+
                     <span>{{submission}}</span>
                 {{else}}
-                    <i class="ic ic_start"></i>
+                    {{#if ../packet_uuid}}
+                        <i class="ic ic_playlist"></i>
+                    {{else}}
+                        <i class="ic ic_start"></i>
+                    {{/if}}
+
                     <span>Start</span>
                 </button>
                 {{/if}}
             {{else}}
                 <button class="btn light">
                     <i class="ic_check"></i>
-                    <span>{{submission}}</span>
+                    <span>{{submission}} ll</span>
                 </button>
             {{/contains}}
         </form>
