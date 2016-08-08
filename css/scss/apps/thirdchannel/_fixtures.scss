@@ -2,7 +2,12 @@
     display: inline-block;
     .dropdown-item {
         padding: 0.25em;
-
+        a {
+            color: $slate;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
         .ic {
             padding-right: 0.25em;
         }
@@ -92,6 +97,10 @@
         }
     }
 
+    .images {
+        float: right;
+    }
+
     .arrow {
         text-align: right;
     }
@@ -104,13 +113,12 @@
         margin-top: 0.5em;
         padding-top: 0.5em;
         border-top: 1px solid $border-color;
-        font-size: 0.8em;
 
         .property-group {
             margin-bottom: 2em;
         }
         .activity-photos {
-            width: 20%;
+            width: 18%;
         }
         .list {
             padding:0;
