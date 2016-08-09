@@ -14,6 +14,7 @@ define(function (require) {
         GalleryView = require('thirdchannel/views/store_profile/gallery'),
         ProductView = require('thirdchannel/views/store_profile/products/show'),
         ResolvedAlertsView = require('thirdchannel/views/store_profile/resolved_alerts'),
+        FixturesListView = require('thirdchannel/views/store_profile/fixtures');
         ChoicesView = require('thirdchannel/views/reports/checkins/show/choices');
 
     /**
@@ -49,6 +50,9 @@ define(function (require) {
         },
         product: function () {
             new ProductView().bootstrapCollection(window.bootstrap);
+        },
+        fixtures: function () {
+            new FixturesListView().render();
         }
     };
     return main;
