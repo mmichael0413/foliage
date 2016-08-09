@@ -1,7 +1,11 @@
 <div class="card">
-    <div class="header">Paypal Email</div>
+    <div class="header">Paypal account information</div>
     <div class="body">
-        <label>Providing this enables us to pay you.</label>
+        <label>Providing this enables us to pay you. Please double check that the information entered here matches what you have with Paypal.</label>
         <input type="email" name="paypalEmail" value="{{person.paypalEmail}}" placeholder="Paypal Email" data-rule-required="true"/>
+        <label>First Name</label>
+        <input type="firstName" name="firstName" value="{{person.firstName}}" placeholder="First Name" data-rule-required="true"/>
+        <label>Last Name</label>
+        <input type="lastName" name="lastName" value="{{person.lastName}}" placeholder="Last Name" data-rule-required="true"/>
     </div>
 </div>
