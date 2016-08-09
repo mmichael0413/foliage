@@ -75,6 +75,7 @@ define(function(require){
             'programs/:program_id/stores/:store_id/product': 'storeProfileProduct',
             'programs/:program_id/stores/:store_id/product/edit': 'editStoreProfileProduct',
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
+            'programs/:program_id/stores/:store_id/fixtures': 'storeProfileFixtures',
             'programs/:program_id/stores/:store_id/sales': 'storeProfileSales',
             'programs/:program_id/checkins/:checkin_id/submissions/:id': 'submission',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
@@ -183,6 +184,10 @@ define(function(require){
 
         storeProfileActivity: function () {
             StoreProfileMain.activity();
+        },
+
+        storeProfileFixtures: function () {
+            StoreProfileMain.fixtures();
         },
 
         storeProfileHistory: function () {
