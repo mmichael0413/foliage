@@ -1931,6 +1931,36 @@ function program34(depth0,data) {
 function program36(depth0,data) {
   
   var buffer = "", stack1, helper;
+  buffer += "\n                    <a class=\"activity_unfollow_button\" data-id=\"";
+  if (helper = helpers.activity_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.activity_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" data-following=\"";
+  if (helper = helpers.is_following) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.is_following); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" href=\"#\">\n                        Unfollow\n                    </a>\n                ";
+  return buffer;
+  }
+
+function program38(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n                    <a class=\"activity_follow_button\" data-id=\"";
+  if (helper = helpers.activity_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.activity_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" data-following=\"";
+  if (helper = helpers.is_following) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.is_following); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" href=\"#\">\n                        Follow\n                    </a>\n                ";
+  return buffer;
+  }
+
+function program40(depth0,data) {
+  
+  var buffer = "", stack1, helper;
   buffer += "\n                <span class=\"action bold\">\n                    <a href=\"";
   if (helper = helpers.report_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.report_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
@@ -1939,19 +1969,19 @@ function program36(depth0,data) {
   return buffer;
   }
 
-function program38(depth0,data) {
+function program42(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n            <div class=\"moderation-actions  visible-xs\">\n                ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.editable), {hash:{},inverse:self.noop,fn:self.program(39, program39, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.editable), {hash:{},inverse:self.noop,fn:self.program(43, program43, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n                ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.hideable), {hash:{},inverse:self.noop,fn:self.program(41, program41, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.hideable), {hash:{},inverse:self.noop,fn:self.program(45, program45, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </div>\n        ";
   return buffer;
   }
-function program39(depth0,data) {
+function program43(depth0,data) {
   
   var buffer = "", stack1, helper;
   buffer += "\n                    <span class=\"action\"><a href=\"";
@@ -1962,19 +1992,19 @@ function program39(depth0,data) {
   return buffer;
   }
 
-function program41(depth0,data) {
+function program45(depth0,data) {
   
   
   return "\n                    <span class=\"action\"><a href=\"#\" class=\"hide-post\">Hide Post</a></span>\n                ";
   }
 
-function program43(depth0,data) {
+function program47(depth0,data) {
   
   
   return "hidden-xs";
   }
 
-function program45(depth0,data) {
+function program49(depth0,data) {
   
   var buffer = "", stack1, helper, options;
   buffer += "\n            <span class=\"action\">\n                <a href=\"#\" class=\"more-comments\">View ";
@@ -1987,25 +2017,25 @@ function program45(depth0,data) {
   return buffer;
   }
 
-function program47(depth0,data) {
+function program51(depth0,data) {
   
   
   return "\n        <div class=\"comment new-comment\">\n\n\n        </div>\n        ";
   }
 
-function program49(depth0,data) {
+function program53(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n        <div class=\"moderation-actions\">\n            ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.editable), {hash:{},inverse:self.noop,fn:self.program(50, program50, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.editable), {hash:{},inverse:self.noop,fn:self.program(54, program54, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n            ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.hideable), {hash:{},inverse:self.noop,fn:self.program(52, program52, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.hideable), {hash:{},inverse:self.noop,fn:self.program(56, program56, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </div>\n        ";
   return buffer;
   }
-function program50(depth0,data) {
+function program54(depth0,data) {
   
   var buffer = "", stack1, helper;
   buffer += "\n            <span class=\"action\"><a href=\"";
@@ -2016,7 +2046,7 @@ function program50(depth0,data) {
   return buffer;
   }
 
-function program52(depth0,data) {
+function program56(depth0,data) {
   
   
   return "\n            <span class=\"action\"><a href=\"#\" class=\"hide-post\">Hide Post</a></span>\n            ";
@@ -2083,8 +2113,11 @@ function program52(depth0,data) {
     + "\n                </span>\n            </span>\n\n        </div>\n\n        <div class=\"activity-actions\">\n                <span class=\"action bold\">\n                    ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.show_like_button), {hash:{},inverse:self.program(34, program34, data),fn:self.program(32, program32, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                </span>\n            <span class=\"action bold\">\n                <a href=\"#\" class=\"start-comment\">Comment</a>\n            </span>\n            ";
-  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(36, program36, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.type), "Checkin", options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.type), "Checkin", options));
+  buffer += "\n                </span>\n            <span class=\"action bold\">\n                ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.is_following), {hash:{},inverse:self.program(38, program38, data),fn:self.program(36, program36, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </span>\n            <span class=\"action bold\">\n                <a href=\"#\" class=\"start-comment\">Comment</a>\n            </span>\n            <span class=\"action bold link-color\">\n                 |\n            </span>\n            ";
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(40, program40, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.type), "Checkin", options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.type), "Checkin", options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            <span class=\"action bold\">\n            <a href=\"/programs/";
   if (helper = helpers.current_program) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -2095,10 +2128,10 @@ function program52(depth0,data) {
   else { helper = (depth0 && depth0.activity_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\" class=\"hidden-xs\">View Activity</a>\n                </span>\n        </div>\n\n        ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0['show-moderation']), {hash:{},inverse:self.noop,fn:self.program(38, program38, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0['show-moderation']), {hash:{},inverse:self.noop,fn:self.program(42, program42, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    </div>\n    <div class=\"comment-holder ";
-  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(43, program43, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.singleActivity), false, options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.singleActivity), false, options));
+  stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(47, program47, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.singleActivity), false, options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.singleActivity), false, options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\">\n        <div class=\"activity-status\">\n            <span class=\"action\">\n                <span class=\"like-count\" data-likecount=\"";
   if (helper = helpers.like_count) { stack1 = helper.call(depth0, {hash:{},data:data}); }
@@ -2111,13 +2144,13 @@ function program52(depth0,data) {
     + "</span> <span class=\"like-label\">"
     + escapeExpression((helper = helpers.pluralize || (depth0 && depth0.pluralize),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.like_count), "Like", "Likes", options) : helperMissing.call(depth0, "pluralize", (depth0 && depth0.like_count), "Like", "Likes", options)))
     + "</span>\n            </span>\n\n            ";
-  stack1 = (helper = helpers.if_gt || (depth0 && depth0.if_gt),options={hash:{},inverse:self.noop,fn:self.program(45, program45, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.comments_count), 3, options) : helperMissing.call(depth0, "if_gt", (depth0 && depth0.comments_count), 3, options));
+  stack1 = (helper = helpers.if_gt || (depth0 && depth0.if_gt),options={hash:{},inverse:self.noop,fn:self.program(49, program49, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.comments_count), 3, options) : helperMissing.call(depth0, "if_gt", (depth0 && depth0.comments_count), 3, options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </div>\n        <div class=\"comments\">\n\n        </div>\n\n        ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.current_user), {hash:{},inverse:self.noop,fn:self.program(47, program47, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.current_user), {hash:{},inverse:self.noop,fn:self.program(51, program51, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n        ";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0['show-moderation']), {hash:{},inverse:self.noop,fn:self.program(49, program49, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0['show-moderation']), {hash:{},inverse:self.noop,fn:self.program(53, program53, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    </div>\n</div>\n";
   return buffer;
@@ -2126,7 +2159,7 @@ function program52(depth0,data) {
 this["oddjob"]["templates"]["thirdchannel/comment"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
-  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
@@ -2155,6 +2188,12 @@ function program3(depth0,data) {
 
 function program5(depth0,data) {
   
+  var buffer = "";
+  return buffer;
+  }
+
+function program7(depth0,data) {
+  
   
   return "\n<div class=\"pull-right\">\n    <a href=\"#\" class=\"fa fa-times-circle delete-comment\" style=\"text-decoration: none; font-size: 16px;\"></a>\n</div>\n";
   }
@@ -2165,15 +2204,14 @@ function program5(depth0,data) {
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.user_name), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "</strong>:\n    ";
-  if (helper = helpers.comment) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.comment); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  stack1 = (helper = helpers.highlight || (depth0 && depth0.highlight),options={hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.comment), (depth0 && depth0.mentions), (depth0 && depth0.currentUserId), (depth0 && depth0.highlightWords), options) : helperMissing.call(depth0, "highlight", (depth0 && depth0.comment), (depth0 && depth0.mentions), (depth0 && depth0.currentUserId), (depth0 && depth0.highlightWords), options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "<br/>\n    <span class=\"tiny\">posted  <span data-livestamp=\"";
   if (helper = helpers.posted_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.posted_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\"></span></span>\n</div>\n\n";
-  stack1 = helpers['if'].call(depth0, (depth0 && depth0.deletable), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.deletable), {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer;
   });
@@ -2347,7 +2385,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 
   stack1 = self.invokePartial(partials.user_image, 'user_image', ((stack1 = (depth0 && depth0.current_user)),stack1 == null || stack1 === false ? stack1 : stack1.user_image), helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n<div class=\"bar-body\">\n\n    <textarea rows=\"1\" class=\"expanding new-comment-field\" placeholder=\"Write a comment...\"></textarea>\n\n    <button class=\"btn light solid add-comment\">Comment</button>\n</div>";
+  buffer += "\n\n<div class=\"bar-body\">\n\n    <div contenteditable=\"true\" class=\"expanding new-comment-field\" placeholder=\"Write a comment...\"></div>\n\n    <button class=\"btn light solid add-comment\">Comment</button>\n</div>";
   return buffer;
   });
 
