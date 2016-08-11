@@ -13,7 +13,5 @@ WORKDIR /data
 COPY . /data
 
 RUN npm install
-RUN bower install
-RUN grunt build-dev
 
 CMD grunt
