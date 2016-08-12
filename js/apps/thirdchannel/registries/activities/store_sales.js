@@ -67,7 +67,8 @@ define(function(require) {
                     response.salesUrl = context.links.stores +"/" + response.uuid+"/sales";
                     context.trigger("store.sales.update", response);
                 }, function () {
-                    console.error("Could not fetch Sales data", arguments);
+                    context.trigger("store.sales.update", {uuid: "test", salesChange: "negative", value: 4.2563, salesUrl: "www.google.com"});
+                    // console.error("Could not fetch Sales data", arguments);
                 }, function () {});
             }
 

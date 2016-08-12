@@ -146,6 +146,10 @@ $padding: 1.5em;
     }
   }
 }
+
+.sales-widget {
+  background-color: #0a0a0a;
+}
 .activity-meta{
   .sales-widget {
     width: 33%;
@@ -153,7 +157,12 @@ $padding: 1.5em;
     display: none;
     border: 1px solid $light-blue;
     line-height: 3em;
-    float:right;
+    float:right !important;
+
+    .pure-g {
+      color: #0b93d5;
+    }
+
     @include swb-small {
       width: 100%;
       display: block;
