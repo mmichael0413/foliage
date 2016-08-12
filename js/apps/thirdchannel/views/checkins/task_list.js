@@ -10,7 +10,7 @@ define(function(require){
         template: HandlebarsTemplates['thirdchannel/checkins/tasks'],
         events: {
             'click .task.grouped button' : 'submit',
-            'click .checkin-form-btn' : 'disableStart',
+            //'click .checkin-form-btn' : 'disableStart',
             "change select": "updateInputs"
         },
         render: function() {
