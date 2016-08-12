@@ -45,7 +45,11 @@ define(function(require){
                 var self = this;
                 self.$el.html("");
                 this.types.each(function(type) {
-                    type.set({"imageError":context.links.fixtures.image_error, total: 0, matching: 0, stores: 0});
+                    type.set({
+                        "imageError": context.links.fixtures.image_error,
+                        total: 0, matching: 0, stores: 0,
+                        "detailsUrl": context.links.fixtures.details
+                    });
                     self.alignBreakdown(type, self.types.breakdown);
                     self.$el.append((new TypeTile({model:type}).render()).el);
                 });

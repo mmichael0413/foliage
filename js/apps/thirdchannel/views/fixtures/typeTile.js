@@ -27,6 +27,7 @@ define(function(require) {
                 if (data.matching > 0) {
                     data.alert = true;
                 }
+                
                 this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/fixture_type_tile"](data));
                 return this;
             }

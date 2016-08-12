@@ -6,7 +6,7 @@
 <img class="fixture-image" src="{{imageUrl}}" alt="{{name}}" onerror="this.src='{{imageError}}'"></img>
 
 <div class="icon-row">
-    <span class="total">{{total}}</span>
-    <span class="stores"><i class="ic ic_store"></i>{{stores}}</span>
-    <span class="problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{matching}}</span>
+    <a href="{{detailsUrl}}?types[]={{id}}"><span class="total">{{total}}</span></a>
+    <a href="{{detailsUrl}}?types[]={{id}}"><span class="stores"><i class="ic ic_store"></i>{{stores}}</span></a>
+    <a href="{{detailsUrl}}?types[]={{id}}"><span class="problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{matching}}</span></a>
 </div>
