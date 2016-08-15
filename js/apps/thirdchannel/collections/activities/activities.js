@@ -3,7 +3,7 @@ define(function (require) {
         Activity = require('thirdchannel/models/activities/activity');
 
     return InfiniteCollection.extend({
-        model: Activity
+        model: Activity,
     });
 
 });

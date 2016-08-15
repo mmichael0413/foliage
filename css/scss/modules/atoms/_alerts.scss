@@ -32,17 +32,16 @@
       }
     }
   }
-  &.info {
-    background-color: $palette1;
-  //  padding: 1em;
-    border-radius: $border-radius-base;
-    margin-bottom: 1em;
-  }
   &.error, &.alert {
     background-color: lighten($link-color, 20%);
   }
   &.success {
     background-color: $light-green;
+  }
+  &.info {
+    background-color: $palette1;
+    border-radius: $border-radius-base;
+    margin-bottom: 1em;
   }
 
   .close {

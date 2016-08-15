@@ -10,6 +10,7 @@ define(function(require){
         template: HandlebarsTemplates['thirdchannel/checkins/tasks'],
         events: {
             'click .task.grouped button' : 'submit',
+            'submit form' : 'disableStart',
             "change select": "updateInputs"
         },
         render: function() {
@@ -30,6 +31,9 @@ define(function(require){
             } else {
                 this.showError(e);
             }
+        },
+        disableStart: function(e) {
+            $(e.currentTarget).find(".btn.primary").prop( "disabled", true );
         },
         updateInputs: function () {
             var selectedOption = this.$('select :selected'),

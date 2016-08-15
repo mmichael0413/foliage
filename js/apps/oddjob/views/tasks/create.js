@@ -18,6 +18,7 @@ define(function (require) {
 	}
 
 	var durations = [
+		{value: 0, displayName: ":00"},
 		{value: 15,  displayName: ":15"},
 		{value: 30,  displayName: ":30"},
 		{value: 45,  displayName: ":45"}

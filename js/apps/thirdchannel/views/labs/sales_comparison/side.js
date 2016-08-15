@@ -23,7 +23,7 @@ define(function(require) {
                 if (options.groupSelect === undefined) {
                     throw "No 'groupSelect' parameter set in constructor for the SalesCompareSideView";
                 }
-                _.bindAll(this, 'applyFilter', 'reportComplete', 'updateLinks');
+                _.bindAll(this, 'applyFilter', 'reportComplete');
                 this.$groupSelect = options.groupSelect;
                 this.model = new SalesCompareModel();
                 this.reportLoader = new AsyncReportLoader(context.current_report);
@@ -50,17 +50,6 @@ define(function(require) {
                 this.model.fetch();
             },
 
-            updateLinks: function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                var $link = $(e.currentTarget),
-                    href = $link.attr("href");
-                if (this.global !== true) {
-                    href = href + "&customer_store_id=" + this.model.get('report').customer_store_id;
-                }
-                window.location = "../" + href;
-            },
-
             render: function () {
                 this.$el.empty().append(this.loadingTemplate()).append(this.saleSectionTemplate());
 
@@ -73,7 +62,6 @@ define(function(require) {
 
             reportComplete: function() {
                 this.$(".loading-section").remove();
-                this.$(".breakdown-link").on("click", this.updateLinks);
             },
 
             _renderSales: function () {

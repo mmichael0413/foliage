@@ -7,7 +7,6 @@ define(function(require) {
         openText: "",
         closeText: "",
         fillsubsection: function(){
-            console.log(this.hide_toggle);
             var taskList = new TaskList({model:{
                 job: this.model.job,
                 store: this.model.store,

@@ -50,7 +50,8 @@ define(function(require) {
         fileChanged: function(e) {
             var file = e.target.files[0],
                 self = this;
-            if(file !== undefined) {
+            
+            if (file && file.size <= (15 << 20)) {
                 var reader = new FileReader();
                 reader.onload = (function(event) {
                     var model = new FileModel({url: self.$form.attr('action'), policy: self.$form.serializeObject(), source: event.target.result});
@@ -59,25 +60,34 @@ define(function(require) {
                          .success(function() {
                             model.set({source: event.target.result});
                             self.fileUploaded(model);
-                         }).error(function() {
-                            self.fileUploadError();
+                         }).error(function(data) {
+                            var msg = data.statusText === "abort" ? "You have cancelled the upload." :
+                            "The image uploader has encountered an error.  " +
+                            "This is most likely due to a bad internet connection.  " +
+                            "Please check your connection and try again or wait until " +
+                            "you can get a better connection.";
+                            self.fileUploadError(msg);
                          });
                     self.clearFileInput();
                 });
 
                 reader.readAsDataURL(file);
             }
+            else if (file) {
+                self.fileUploadError("The size of your file is too large! File Size: " + file.size / 1000000 + " MB (Max: 15 MB)");
+                self.clearFileInput();
+            }
         },
-        fileUploadError: function() {
-            var $error = this.$('.error');
+        fileUploadError: function(error) {
+            var $error = this.$('.uploader-error');
             if ($error.length > 0) {
-                $error.html(HandlebarsTemplates['shared/s3uploader/error']());
+                $error.html(HandlebarsTemplates['shared/s3uploader/error']({errorMsg: error}));
             } else {
-                this.$viewer.prepend(HandlebarsTemplates['shared/s3uploader/error']());
+                this.$viewer.prepend(HandlebarsTemplates['shared/s3uploader/error']({errorMsg: error}));
             }
         },
         errorRemove: function(e) {
-            this.$('.error').remove();
+            this.$('.uploader-error').remove();
         },
         fileUploaded: function(file) {
             var self = this,
