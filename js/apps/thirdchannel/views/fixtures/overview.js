@@ -28,11 +28,20 @@ define(function(require){
                 this.listenTo(this.types, 'sync', this.render);
             },
 
-            alignBreakdown: function(type, breakdown) {
-                var specific = breakdown.problems.byType[type.get("id")];
+            /**
+             * Give a type and breakdown array, will look for the type's information in the breakdown structure and join it with the 
+             * type object for display. 
+             * 
+             * @param  {[type]} type      [description]
+             * @param  {[type]} breakdown [description]
+             * @return {[type]}           [description]
+             */
+            alignBreakdown: function(type, breakdown) {                
+                var specific = _.find(breakdown, function (item) {
+                    return item.entityTypeUuid == type.id;
+                });
                 if (specific) {
-                    var store_uuids = _.uniq(_.map(specific.entities, function (entity) {return entity.programStoreUuid;}));
-                    type.set({total: specific.total, matching: specific.matching, stores: store_uuids.length});
+                    type.set({total: specific.total, matching: specific.problems, stores: specific.stores, problems: specific.possibleProblems});
                 }
             },
 

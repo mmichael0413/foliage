@@ -16,6 +16,19 @@ define(function(require) {
                 this.$el.append(this.modal.render().$el);
             },
 
+            buildProblemsQueryString: function (data) {
+                var qs = "&problems[]=";
+
+                if (data.problems.constructor === Array) {
+                    qs += data.problems.join("&problems[]=");
+                    data.problemsDisplay = qs;
+                    console.log(data.problemsDisplay);
+                } else {
+                    console.warn("Problems needs to be an array before it can be turned into a query string. instead, received a ", typeof data.problems);
+                }
+                
+            },
+
             render: function () {
                 var attributes = this.model.get("attributes"),
                     data = this.model.toJSON();
@@ -28,6 +41,10 @@ define(function(require) {
                     data.alert = true;
                 }
                 
+                if (data.problems) {
+                    this.buildProblemsQueryString(data);
+                }
+
                 this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/fixture_type_tile"](data));
                 return this;
             }
