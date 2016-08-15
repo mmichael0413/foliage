@@ -41,10 +41,9 @@
     .fixture-image {
         display: block;
         height: 10em;
+        max-width: 90%;
         margin: 1em auto;
         border: 1px solid $border-color;
-
-        
     }
     .icon-row {
         display: flex;
