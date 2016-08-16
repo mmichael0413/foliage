@@ -114,11 +114,12 @@
     }
 
     .images {
-        float: right;
+        float: left;
     }
 
     .arrow {
         text-align: right;
+        float: right;
     }
     .details-toggle {
         cursor: pointer;
@@ -135,6 +136,7 @@
         }
         .activity-photos {
             width: 18%;
+            float: right;
         }
         .list {
             padding:0;

@@ -11,6 +11,7 @@ define(function(require) {
 
         render: function () {
             var self = this;
+            self.$el.html("");
             window.bootstrap.data.forEach(function (fixture) {
                 self.$el.append(new FixtureDetails({model:fixture}).render().$el);
             });

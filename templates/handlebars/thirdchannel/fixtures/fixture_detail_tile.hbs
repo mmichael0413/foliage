@@ -13,11 +13,15 @@
     </div>
 
     <div class="col-1-12">
-        <p class="images {{#containsImages}}has-images{{else}}calm{{/containsImages}}"><i class="ic fa fa-camera"></i>{{imagesCount}}</p>
+        
         <p class="problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{problemsCount}}</p>    
     </div>
+    <div class="col-1-12">
+        
+        <p class="arrow"><i class="ic ic_up details-toggle"></i></p>    
+        <p class="images {{#containsImages}}has-images{{else}}calm{{/containsImages}}"><i class="ic fa fa-camera"></i>{{imagesCount}}</p>
+    </div>
     
-    <p class="col-1-12 arrow"><i class="ic ic_up details-toggle"></i></p>    
 </div>
 
 
@@ -62,7 +66,7 @@
     </div>
 
 
-    <div class="col-2-12 images activity-photos">
+    <div class="col-2-12 activity-photos">
     {{#if pictures}}
         <div class="carousel">
             {{#each pictures}}
