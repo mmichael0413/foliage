@@ -1,0 +1,11 @@
+<div class="header-row">
+    <p class="name">{{name}}</p>
+    <i class="fa fa-info-circle more-info"></i>
+</div>
+<img class="fixture-image" src="{{imageUrl}}" alt="{{name}}" onerror="this.src='{{imageError}}'"></img>
+
+<div class="icon-row">
+    <a href="{{detailsUrl}}?types[]={{id}}" title="Total Fixtures"><span class="total">{{total}}</span></a>
+    <a href="{{detailsUrl}}?types[]={{id}}" title="Stores with Fixture Type"><span class="stores"><i class="ic ic_store"></i>{{stores}}</span></a>
+    <a href="{{detailsUrl}}?types[]={{id}}{{problemsDisplay}}" title="Fixtures with Issues"><span class="problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{matching}}</span></a>
+</div>

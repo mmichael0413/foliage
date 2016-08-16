@@ -12,6 +12,7 @@
 @import "../../base/text";
 @import "../../base/forms";
 @import "../../base/buttons";
+@import "../../base/dropdowns";
 @import "../../layout/layout_utils";
 @import "../../layout/base_layout";
 
@@ -56,6 +57,8 @@
 @import "./admin";
 @import "./checkin";
 @import "./dashboards";
+@import "./fixtures";
+
 @import "./labs";
 @import "./notifications";
 @import "./posts";

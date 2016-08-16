@@ -4,19 +4,21 @@
 
 @font-face {
   font-family: "tc-icons";
-  src: url("../../shared/fonts/tc-icons_3f967068f1716e11ac20d0159aa6481d.eot");
-  src: url("../../shared/fonts/tc-icons_3f967068f1716e11ac20d0159aa6481d.eot?#iefix") format("embedded-opentype"),
-       url("../../shared/fonts/tc-icons_3f967068f1716e11ac20d0159aa6481d.woff") format("woff"),
-       url("../../shared/fonts/tc-icons_3f967068f1716e11ac20d0159aa6481d.ttf") format("truetype"),
-       url("../../shared/fonts/tc-icons_3f967068f1716e11ac20d0159aa6481d.svg#tc-icons") format("svg");
+  src: url("../../shared/fonts/tc-icons_f4750c555846a82df8ed0a60e1b56bbb.eot");
+  src: url("../../shared/fonts/tc-icons_f4750c555846a82df8ed0a60e1b56bbb.eot?#iefix") format("embedded-opentype"),
+       url("../../shared/fonts/tc-icons_f4750c555846a82df8ed0a60e1b56bbb.woff") format("woff"),
+       url("../../shared/fonts/tc-icons_f4750c555846a82df8ed0a60e1b56bbb.ttf") format("truetype"),
+       url("../../shared/fonts/tc-icons_f4750c555846a82df8ed0a60e1b56bbb.svg#tc-icons") format("svg");
+
   font-weight: normal;
   font-style: normal;
 }
 
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: "tc-icons";
-    src: url("../../shared/fonts/tc-icons_3f967068f1716e11ac20d0159aa6481d.svg#tc-icons") format("svg");
+    src: url("../../shared/fonts/tc-icons_f4750c555846a82df8ed0a60e1b56bbb.svg#tc-icons") format("svg");
   }
 }
 
@@ -52,6 +54,7 @@
 .ic_feed-photos:before,
 .ic_feed-summary:before,
 .ic_filter:before,
+.ic_fixture-pop:before,
 .ic_gear:before,
 .ic_gear-alt:before,
 .ic_greeklife-o:before,
@@ -67,6 +70,15 @@
 .ic_logo:before,
 .ic_moviestv-o:before,
 .ic_music-o:before,
+.ic_o-activities:before,
+.ic_o-agents:before,
+.ic_o-hours:before,
+.ic_o-jobs:before,
+.ic_o-payable:before,
+.ic_o-sps:before,
+.ic_o-store:before,
+.ic_o-travel:before,
+.ic_o-visits:before,
 .ic_open-circle:before,
 .ic_otherhobbies-o:before,
 .ic_outdoors-o:before,
@@ -97,6 +109,7 @@
 .ic_up:before,
 .ic_upload:before,
 .ic_visit:before,
+.ic_vs:before,
 .ic_work-o:before,
 .ic_workingout-o:before,
 .ic_x:before {
@@ -143,6 +156,7 @@
 .ic_feed-photos:before { content: "\f11c"; }
 .ic_feed-summary:before { content: "\f11d"; }
 .ic_filter:before { content: "\f11e"; }
+.ic_fixture-pop:before { content: "\f160"; }
 .ic_gear:before { content: "\f11f"; }
 .ic_gear-alt:before { content: "\f120"; }
 .ic_greeklife-o:before { content: "\f121"; }
@@ -158,6 +172,15 @@
 .ic_logo:before { content: "\f12b"; }
 .ic_moviestv-o:before { content: "\f12c"; }
 .ic_music-o:before { content: "\f12d"; }
+.ic_o-activities:before { content: "\f152"; }
+.ic_o-agents:before { content: "\f153"; }
+.ic_o-hours:before { content: "\f154"; }
+.ic_o-jobs:before { content: "\f155"; }
+.ic_o-payable:before { content: "\f156"; }
+.ic_o-sps:before { content: "\f157"; }
+.ic_o-store:before { content: "\f158"; }
+.ic_o-travel:before { content: "\f159"; }
+.ic_o-visits:before { content: "\f15a"; }
 .ic_open-circle:before { content: "\f12e"; }
 .ic_otherhobbies-o:before { content: "\f12f"; }
 .ic_outdoors-o:before { content: "\f130"; }
@@ -175,7 +198,7 @@
 .ic_socialmedia-o:before { content: "\f13c"; }
 .ic_sportsevents-o:before { content: "\f13d"; }
 .ic_star:before { content: "\f13e"; }
-.ic_start:before { content: "\f14d"; }
+.ic_start:before { content: "\f161"; }
 .ic_store:before { content: "\f13f"; }
 .ic_survey:before { content: "\f140"; }
 .ic_teamsports-o:before { content: "\f141"; }
@@ -187,7 +210,8 @@
 .ic_unlock:before { content: "\f147"; }
 .ic_up:before { content: "\f148"; }
 .ic_upload:before { content: "\f149"; }
-.ic_visit:before { content: "\f14e"; }
+.ic_visit:before { content: "\f162"; }
+.ic_vs:before { content: "\f15b"; }
 .ic_work-o:before { content: "\f14a"; }
 .ic_workingout-o:before { content: "\f14b"; }
 .ic_x:before { content: "\f14c"; }
@@ -221,6 +245,7 @@ $font-tc-icons-ic_feed-alerts: "\f11b";
 $font-tc-icons-ic_feed-photos: "\f11c";
 $font-tc-icons-ic_feed-summary: "\f11d";
 $font-tc-icons-ic_filter: "\f11e";
+$font-tc-icons-ic_fixture-pop: "\f160";
 $font-tc-icons-ic_gear: "\f11f";
 $font-tc-icons-ic_gear-alt: "\f120";
 $font-tc-icons-ic_greeklife-o: "\f121";
@@ -236,6 +261,15 @@ $font-tc-icons-ic_lock: "\f12a";
 $font-tc-icons-ic_logo: "\f12b";
 $font-tc-icons-ic_moviestv-o: "\f12c";
 $font-tc-icons-ic_music-o: "\f12d";
+$font-tc-icons-ic_o-activities: "\f152";
+$font-tc-icons-ic_o-agents: "\f153";
+$font-tc-icons-ic_o-hours: "\f154";
+$font-tc-icons-ic_o-jobs: "\f155";
+$font-tc-icons-ic_o-payable: "\f156";
+$font-tc-icons-ic_o-sps: "\f157";
+$font-tc-icons-ic_o-store: "\f158";
+$font-tc-icons-ic_o-travel: "\f159";
+$font-tc-icons-ic_o-visits: "\f15a";
 $font-tc-icons-ic_open-circle: "\f12e";
 $font-tc-icons-ic_otherhobbies-o: "\f12f";
 $font-tc-icons-ic_outdoors-o: "\f130";
@@ -253,7 +287,7 @@ $font-tc-icons-ic_shopping-o: "\f13b";
 $font-tc-icons-ic_socialmedia-o: "\f13c";
 $font-tc-icons-ic_sportsevents-o: "\f13d";
 $font-tc-icons-ic_star: "\f13e";
-$font-tc-icons-ic_start: "\f14d";
+$font-tc-icons-ic_start: "\f161";
 $font-tc-icons-ic_store: "\f13f";
 $font-tc-icons-ic_survey: "\f140";
 $font-tc-icons-ic_teamsports-o: "\f141";
@@ -265,7 +299,8 @@ $font-tc-icons-ic_twitter: "\f146";
 $font-tc-icons-ic_unlock: "\f147";
 $font-tc-icons-ic_up: "\f148";
 $font-tc-icons-ic_upload: "\f149";
-$font-tc-icons-ic_visit: "\f14e";
+$font-tc-icons-ic_visit: "\f162";
+$font-tc-icons-ic_vs: "\f15b";
 $font-tc-icons-ic_work-o: "\f14a";
 $font-tc-icons-ic_workingout-o: "\f14b";
 $font-tc-icons-ic_x: "\f14c";
