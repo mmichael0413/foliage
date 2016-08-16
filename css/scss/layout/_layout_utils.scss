@@ -30,7 +30,7 @@
   float:right;
 }
 
-.visible-xs, .visible-xs-inline, .visible-md, .visible-lg {
+.visible-xs, .visible-xs-inline, .visible-md, .visible-login-toolbar, .visible-lg {
   display:none;
 }
 
@@ -91,6 +91,16 @@
   }
 
   .hidden-md {
+    display:none !important;
+  }
+}
+
+@include swb-login-toolbar {
+  .visible-login-toolbar {
+    display: block;
+  }
+
+  .hidden-login-toolbar {
     display:none !important;
   }
 }
