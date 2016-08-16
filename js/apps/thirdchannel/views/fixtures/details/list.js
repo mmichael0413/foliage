@@ -11,6 +11,9 @@ define(function(require) {
         FixtureListView = PageableListView.extend({
             el: '#fixtureList',
             template: FixtureDetailsView,
+            renderEmptyResult: function ($container) {
+                $container.html("<section class='section'><p>No Fixtures match your filter selections.</p></section>");
+            },
         });
     return FixtureListView;
 });
