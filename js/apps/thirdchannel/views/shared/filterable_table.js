@@ -65,12 +65,19 @@ define(function(require) {
             var self = this;
             this._destroyRowViews();
             $container.html("");
-            rows.forEach(function (row) {
-                var view = new self.template({model:row});
-                $container.append(view.render().$el);
-                self.rowViews.push(view);
-            });
+            if (rows.constructor === Array && rows.length > 0) {
+                    rows.forEach(function (row) {
+                    var view = new self.template({model:row});
+                    $container.append(view.render().$el);
+                    self.rowViews.push(view);
+                });
+            } else {
+                console.warn("No results found for query");
+                this.renderEmptyResult($container);
+            }
         },
+
+
 
         _destroyRowViews: function () {
             var size = this.rowViews.length;
@@ -88,6 +95,10 @@ define(function(require) {
          */
         renderCollection: function (data) {
             this.collection.reset(data);
+        },
+
+        renderEmptyResult: function ($container) {
+            $container.html("<p>No matching results</p>");
         },
 
         /**
