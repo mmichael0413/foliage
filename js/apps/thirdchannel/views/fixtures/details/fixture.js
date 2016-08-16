@@ -88,7 +88,7 @@ define(function(require){
                 });
             }
             data.imageErrorUrl = context.links.fixtures.image_error;
-            data.storeUrl = context.links.fixtures.program_store_base +"/" + this.model.programStoreUuid;
+            data.storeUrl = context.links.fixtures.program_store_base +"/" + this.model.programStoreUuid +"/fixtures";
             this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/fixture_detail_tile"](data));
             return this;
         }
