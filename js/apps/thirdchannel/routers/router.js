@@ -31,6 +31,7 @@ define(function(require){
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge'),
         Labs = require('thirdchannel/views/labs/main'),
         ViewOpportunity = require('thirdchannel/views/opportunities/main'),
+        ViewOpportunities = require('thirdchannel/views/opportunities/list'),
         AnswersExportView = require('thirdchannel/views/exports/answers/main'),
         SalesStoresExportView = require('thirdchannel/views/exports/sales_stores/main'),
         SalesStoresAuditExportView = require('thirdchannel/views/exports/sales_stores_audit/main'),
@@ -55,6 +56,7 @@ define(function(require){
             'agents/profile/security(/)': 'programProfileSecurity',
 
             'login' : 'login',
+            'opportunities': 'ViewOpportunities',
             'opportunities/:id': 'viewOpportunity',
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
@@ -172,6 +174,10 @@ define(function(require){
 
         viewOpportunity: function() {
             new ViewOpportunity();
+        },
+
+        ViewOpportunities: function() {
+            new ViewOpportunities();
         },
 
         stores: function () {
