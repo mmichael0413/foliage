@@ -7,21 +7,22 @@ define(function(require){
     return Backbone.View.extend({
         className: 'expandable pure-g',
         events: {
-            "click > div > .open": "opensubsection",
-            "click > div > .close": "closesubsection"
+            "click .open": "opensubsection",
+            "click .close": "closesubsection"
         },
         initialize: function(options) {
             this.hide_toggle = options.hide_toggle;
         },
         render: function() {
             this.$el.html(HandleBarsTemplates['thirdchannel/checkins/expandable']({
+                store_details: this.model.store_details,
                 toggle: this.openText + "&nbsp;<i class='ic ic_down'></i>",
                 hide_toggle: this.hide_toggle,
             }));
             this.main = this.$("> .main");
             this.main.html(HandleBarsTemplates[this.rowTemplate](this.model));
             this.subsection = this.$("> .subsection");
-            this.toggle = this.$("> div > .toggle");
+            this.toggle = this.$("> .toggle");
             if(this.model.pre_expand){
                this.opensubsection();
             }
@@ -34,6 +35,10 @@ define(function(require){
             this.toggle.removeClass('open');
             this.toggle.html(this.closeText + "&nbsp;<i class='ic ic_up'></i>");
             this.toggle.addClass('close');
+
+            this.main.removeClass('open');
+            this.main.addClass('close');
+
             if(!this.expanded){
                 this.expanded = true;
                 this.fillsubsection();
@@ -53,6 +58,8 @@ define(function(require){
             this.toggle.html(this.openText + "&nbsp;<i class='ic ic_down'></i>");
             this.toggle.addClass('open');
             this.subsection.slideUp();
+            this.main.removeClass('close');
+            this.main.addClass('open');
         },
         fillsubsection: function(){},
         rowTemplate: "",
