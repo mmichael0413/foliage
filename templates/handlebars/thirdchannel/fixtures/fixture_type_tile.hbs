@@ -1,8 +1,11 @@
 <div class="header-row">
     <p class="name">{{name}}</p>
-    <i class="fa fa-info-circle more-info"></i>
+    <div class="more-info-container"><i class="fa fa-info-circle more-info"></i></div>
 </div>
-<img class="fixture-image" src="{{imageUrl}}" alt="{{name}}" onerror="this.src='{{imageError}}'"></img>
+
+<div class="image-row">
+    <img class="fixture-image" src="{{imageUrl}}" alt="{{name}}" onerror="this.src='{{imageError}}'"></img>    
+</div>
 
 <div class="icon-row">
     <a href="{{detailsUrl}}?types[]={{id}}" title="Total Fixtures"><span class="total">{{total}}</span></a>
