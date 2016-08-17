@@ -237,7 +237,7 @@ define(function (require) {
     });
 
     Handlebars.registerHelper("highlight", function (text, mentionedUsers, currentUserId, highlightWords, options) {
-        var highlightMatcher = new RegExp(/@(\w+\s{1,3}\w+)(?:\sAgents)?\s\[[^\[\t\n\r\]]+\]/g); // allow for 1-3 spaces between first, last
+        var highlightMatcher = new RegExp(/@(\w+\s{1,3}\w+(?:\sAgents)?\s{1,3})\[[^\[\t\n\r\]]+\]/g); // allow for 1-3 spaces between first, last
         var mentions = [];
         var names = [];
         var highlightWordsHash = {};
@@ -256,7 +256,7 @@ define(function (require) {
             match =  highlightMatcher.exec(text);
             if (match) {
                 mentions.push(match[0]);
-                names.push(match[1]);
+                names.push(match[1].slice(0, match[1].length-1));
             }
         } while (match);
 

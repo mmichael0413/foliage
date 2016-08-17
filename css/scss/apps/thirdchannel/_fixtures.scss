@@ -14,19 +14,31 @@
     }
 }
 
+$row-margin: 0.5em;
+
 .fixture-type-tile {
     margin: 0 2em 2em 0;
-    padding: 0.5em;
+    padding: $row-margin 1em;
     width: 14em;
     display: inline-block;
     background-color: white;
     border: 1px solid $border-color;
 
-    .name {
-        margin: 0;
-        width: 90%;
-        display: inline-block;
+    .header-row {
+        margin-bottom: $row-margin;
+        display: flex;
+        .name {
+            margin: 0;
+            width: 90%;
+            display: inline-block;
+            line-height: 1em;
+            height: 2em;
+        }
+        .more-info-container {
+            width:10%;
+        }
     }
+    
     .more-info {
         color: $medium-blue;
         cursor: pointer;
@@ -34,18 +46,29 @@
             color: $medium-blue-hover;
         }
     }
-    
     .ic {
         margin-right:0.25em;
     }
-    .fixture-image {
-        display: block;
-        height: 10em;
-        max-width: 90%;
-        margin: 1em auto;
+    .image-row {
         border: 1px solid $border-color;
+        height: 10em;
+        // the following aligns the image in the middle. The specific width is necessary because of the display table-cell
+        display: table-cell;
+        width: 12em;
+        text-align: center;
+        vertical-align: middle;
+
+        .fixture-image {
+            display: block;
+            max-height: 100%;
+            max-width: 100%;
+            margin: 0em auto;
+            
+        }    
     }
+    
     .icon-row {
+        margin-top: $row-margin;
         display: flex;
         justify-content: space-between;
         .total {
@@ -164,15 +187,20 @@
 .fixture-modal {
     padding:0.5em;
     .header-bar {
+        display: flex;
+        justify-content: space-between;
         height: 4em;
         line-height: 2em;
-        padding: 1em 2em;
+        padding: 1em 1em;
         background-color: lighten($light-blue, 30%);
         color: $medium-blue;
         border:1px solid $border-color;
         .name {
             font-weight: normal;
             width: 93%;
+        }
+        .close-container {
+            text-align: right;
         }
         .fa {
             font-size: 1.25em;
@@ -184,9 +212,18 @@
         display: flex;
         justify-content: space-between;
 
-        .image {
-            max-height:15em;
+        .image-container {
+            width: 50%;
+            .image {
+                max-height:15em;
+                max-width: 105%;
+                display: block;
+                margin: 0 auto;
+
+            }    
         }
+
+        
 
         .description {
             width: 45%;
