@@ -53,6 +53,8 @@ define(function (require) {
         },
         fixtures: function () {
             new FixturesListView().render();
+            var wrapper = new ExpandWrapperView();
+            wrapper.setElement('#site-canvas').render();
         }
     };
     return main;
