@@ -13,6 +13,9 @@ h1 {
     margin: .9em 0 1em .8em;
     max-width: 100%;
   }
+  &.task {
+    margin: .9em 0 0 0;
+  }
 }
 
 h2 {
@@ -28,6 +31,15 @@ h3 {
   margin: 0 0 .25em 0;
 }
 
+p {
+  &.small-margin{
+    margin: .25em 0;
+  }
+}
+
+strong {
+  font-weight: 600;
+}
 a {
   color: $link-color;
   text-decoration: none;
