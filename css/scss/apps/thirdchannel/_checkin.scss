@@ -1,44 +1,47 @@
 .subtle-instruction {
-	color: $medium-blue;
-	font-style: italic;
-	font-size: 0.8rem;
-	vertical-align: super;
-	text-align: right;
+  color: $medium-blue;
+  font-style: italic;
+  font-size: 0.8rem;
+  vertical-align: super;
+  text-align: right;
 }
 
 .store {
-	padding: 0.5em 0;
-	margin: 0;
+  padding: 0.5em 0;
+  margin: 0;
 }
 
 .visit {
-	margin: 0.5em 0;
-	.date {
-		font-weight: bold;
-	}
+  margin: 0.5em 0;
+  .date {
+    font-weight: bold;
+  }
 }
 
 .job {
-	padding-left: 1em;
-	&+.job {
-		padding-top: .75em;
-	}
+  padding-left: 1em;
+  & + .job {
+    padding-top: .75em;
+  }
 }
 
 .expandable {
-	.main {
-		//margin-bottom: 0.5em;
-	}
-	.toggle {
-		white-space: nowrap;
-		color: $text-color;
-	}
+  .main {
+    //margin-bottom: 0.5em;
+  }
+  .toggle {
+    white-space: nowrap;
+    color: $text-color;
+  }
+  .open, .close {
+    cursor: pointer;
+  }
 }
 
-.jobs{
-	margin-top: 0.5em;
+.jobs {
+  margin-top: 0.5em;
 }
 
 .right-align {
-	text-align: right;
+  text-align: right;
 }

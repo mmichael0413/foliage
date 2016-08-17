@@ -147,7 +147,7 @@ define(function(require){
            var comment = new Comment({comment: this.$('.new-comment-field').text()}, {url: this.collection.url});
 
            if (comment.isValid()) {
-               comment.set({type: this.activity.get('type'), id: this.activity.get('id'), mentions: $('.new-comment-field').data('mentions')});
+               comment.set({type: this.activity.get('type'), id: this.activity.get('id'), mentions: this.$('.new-comment-field').data('mentions')});
                comment.save().done(function (obj, status) {
                    comment.set(obj.comment);
                    comment.set({mentions: obj.mentions, currentUserId: obj.current_user_id, highlightWords: obj.highlight_words});
