@@ -1,8 +1,25 @@
 .address-title {
+
+	.title-status {
+		margin: 0.9em 0 0.5em 0;
+	}
+
 	.title {
 		margin-bottom: 0.5em;
 	}
+
+	.status {
+		font-size: 20px;
+	}
+
 	.address {
 		margin: 0 0 0 0;
+	}
+
+	.status.active {
+		color: $palette7;
+	}
+	.status.inactive {
+		color: $palette5;
 	}
 }
