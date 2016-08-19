@@ -37,6 +37,9 @@ define(function(require){
         },
 
         _extractImageUrl: function (images, rel) {
+            if (!images.hasOwnProperty("links")) {
+                return;
+            }
             var link = _.find(images.links, function (image) { 
                 return image.rel === rel;
             });
