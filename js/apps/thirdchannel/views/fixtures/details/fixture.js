@@ -37,11 +37,13 @@ define(function(require){
         },
 
         _extractImageUrl: function (images, rel) {
-            var link = _.find(images.links, function (image) { 
-                return image.rel === rel;
-            });
-            if (link){
-                return link.href;
+            if (images && images.hasOwnProperty("links")) {
+                var link = _.find(images.links, function (image) { 
+                    return image.rel === rel;
+                });
+                if (link){
+                    return link.href;
+                }
             }
         },
 
@@ -79,11 +81,13 @@ define(function(require){
                 data.previewImageUrl = this._extractImageUrl(data.attributes.pictures[0], "small");   
                 data.pictures = [];
                 data.attributes.pictures.forEach(function (picture) {
-                    var link = _.find(picture.links, function (image) { 
+                    if (picture && picture.links) {
+                        var link = _.find(picture.links, function (image) { 
                         return image.rel === "medium";
-                    });
-                    if (link) {
-                        data.pictures.push(link);
+                        });
+                        if (link) {
+                            data.pictures.push(link);
+                        }    
                     }
                 });
             }
