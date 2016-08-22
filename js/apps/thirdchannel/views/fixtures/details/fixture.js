@@ -77,6 +77,19 @@ define(function(require){
             });
         },
 
+        _buildStoreUrl: function(data) {
+            var storeUrl = "",
+                fixturesTag = "/fixtures",
+                indexOfFixtures = location.pathname.indexOf(fixturesTag);
+            // if we're already at the fixture page, go to the root
+            if (indexOfFixtures == location.pathname.length-fixturesTag.length) {
+                storeUrl = location.pathname.substr(0, indexOfFixtures);
+            } else {
+                storeUrl = context.links.fixtures.program_store_base +"/" + data.programStoreUuid + fixturesTag;
+            }
+            return storeUrl;
+        },
+
         render: function () {
             // the following is pretty gross. todo: clean this up
             var data = this.model;
@@ -96,7 +109,7 @@ define(function(require){
                 });
             }
             data.imageErrorUrl = context.links.fixtures.image_error;
-            data.storeUrl = context.links.fixtures.program_store_base +"/" + this.model.programStoreUuid +"/fixtures";
+            data.storeUrl = this._buildStoreUrl(data);
             this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/fixture_detail_tile"](data));
             return this;
         }
