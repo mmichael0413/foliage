@@ -32,13 +32,21 @@ define(function(require) {
                 var attributes = this.model.get("attributes"),
                     data = this.model.toJSON(),
                     nameMax = 45;
-                    
+                   
                 if (attributes.hasOwnProperty("fixtureImages") && attributes.fixtureImages.length >= 1) {
                     //data.imageUrl = attributes.fixtureImages[attributes.fixtureImages.length-1].links[2].href
                     data.imageUrl = attributes.fixtureImages[0].original;
                 }
+
+                // I'm sure this can be optimized with a handlebars helper
+                if (data.total > 0) {
+                    data.hasTotal = true;
+                }
                 if (data.matching > 0) {
                     data.alert = true;
+                }
+                if (data.stores > 0) {
+                    data.hasStores = true;
                 }
                 
                 if (data.problems) {

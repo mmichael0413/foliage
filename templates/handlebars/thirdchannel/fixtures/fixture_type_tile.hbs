@@ -8,7 +8,7 @@
 </div>
 
 <div class="icon-row">
-    <a href="{{detailsUrl}}?types[]={{id}}" title="Total Fixtures"><span class="total">{{total}}</span></a>
-    <a href="{{detailsUrl}}?types[]={{id}}" title="Stores with Fixture Type"><span class="stores"><i class="ic ic_store"></i>{{stores}}</span></a>
-    <a href="{{detailsUrl}}?types[]={{id}}{{problemsDisplay}}" title="Fixtures with Issues"><span class="problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{matching}}</span></a>
+    <a href="{{detailsUrl}}?types[]={{id}}" title="Total Fixtures"><span class="icon total {{#hasTotal}}exist{{/hasTotal}}">{{total}}</span></a>
+    <a href="{{detailsUrl}}?types[]={{id}}" title="Stores with Fixture Type"><span class="icon stores {{#hasStores}}exist{{/hasStores}}"><i class="ic ic_store"></i>{{stores}}</span></a>
+    <a href="{{detailsUrl}}?types[]={{id}}{{problemsDisplay}}" title="Fixtures with Issues"><span class="icon problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{matching}}</span></a>
 </div>

@@ -71,25 +71,35 @@ $row-margin: 0.5em;
         margin-top: $row-margin;
         display: flex;
         justify-content: space-between;
+        .icon {
+            color: $light-blue;
+        }
+        
         .total {
             color: white;
-            background-color: $medium-blue;
+            //background-color: $medium-blue;
+            background-color: $light-blue;
             padding: 0 0.25em;
             border-radius: 5px;
-            &:hover {
+            &.exist {
+                background-color: $medium-blue;
+            }
+            &.exist:hover {
                 background-color: $medium-blue-hover;
             }
         }
 
         .stores {
-            color: $medium-blue;
-            &:hover {
+            &.exist {
+                color: $medium-blue;
+            }
+            &.exist:hover {
                 color: $medium-blue-hover;
                 border-bottom: 1px solid;
             }
+            
         }
         .problems {
-            color: $light-blue;
             &.exist {
                 color: $red;
             }
