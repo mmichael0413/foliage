@@ -10,6 +10,8 @@ define(function(require){
 
         events: {
             'click .details-toggle.ic_up': "showDetails",
+            'click .problems': "toggleDetails",
+            'click .images': "toggleDetails",
             'click .details-toggle.ic_down': 'hideDetails',
             "click .arrow-left" : "prevSlide",
             "click .arrow-right" : "nextSlide"
@@ -21,17 +23,23 @@ define(function(require){
             if (!this.carousel) {
                 this.initializeCarousel();
             }
-            this._swapArrows(e, "ic_up", "ic_down");
-            
+            this._swapArrows(this.$el.find('.details-toggle'), "ic_up", "ic_down");
         },
 
         hideDetails: function (e) {
             this.$el.find(".details").hide();
-            this._swapArrows(e, "ic_down", "ic_up");
+            this._swapArrows(this.$el.find('.details-toggle'), "ic_down", "ic_up");
         },
 
-        _swapArrows: function (e, toRemove, toAdd) {
-            $link = $(e.currentTarget);
+        toggleDetails: function (e) {
+            if (this.$el.find(".details").is(":visible")) {
+                this.hideDetails(e);
+            } else {
+                this.showDetails(e);
+            }
+        },
+
+        _swapArrows: function ($link, toRemove, toAdd) {
             $link.removeClass(toRemove);
             $link.addClass(toAdd);
         },
