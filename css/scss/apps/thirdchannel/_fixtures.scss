@@ -123,13 +123,21 @@ $row-margin: 0.5em;
         margin-right: 0.5em;
 
     }
-    .preview-image {
-        width: 3em;
-        display: block;
-        margin: 0 auto;
+    .preview-image-container {
+        display: flex;align-items: center;
+        justify-content: center;
+
+
+        .preview-image {
+            max-width: 4em;
+            max-height: 3em;
+            display: block;
+        }    
     }
-    .name {
+    
+    .name, .address {
         margin: 0;
+        padding-right: 1.4em;
     }
     .last-updated {
         text-align: center;
@@ -137,7 +145,8 @@ $row-margin: 0.5em;
 
     .images, .problems {
         color: $light-blue;
-        text-align:center;
+        text-align: center;
+        cursor: pointer;
         &.exist {
             color: $red;
         }
@@ -146,7 +155,7 @@ $row-margin: 0.5em;
         }
     }
 
-    .images {
+    .problems {
         float: left;
     }
 
