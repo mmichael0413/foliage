@@ -1,15 +1,26 @@
 .dropdown {
     display: inline-block;
-    .dropdown-item {
-        padding: 0.25em;
-        a {
-            color: $slate;
-        }
-        &:hover {
-            text-decoration: underline;
-        }
-        .ic {
-            padding-right: 0.25em;
+    .dropdown-menu {
+        padding: 0;
+        margin: 0;
+        .dropdown-item {
+            .report {
+                margin: 0em;
+                padding: 0.50em;
+                color: $slate;
+                &:hover {
+                    background-color: #f7f6f6;
+                }
+            }
+
+            
+            &:hover {
+                text-decoration: underline;
+            }
+            .ic {
+                padding-right: 0.25em;
+                color: $slate; 
+            }
         }
     }
 }
