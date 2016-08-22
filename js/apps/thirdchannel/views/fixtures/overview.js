@@ -9,6 +9,7 @@ define(function(require){
 
 
         TypesCollection = Backbone.Collection.extend({
+            comparator: "name",
             parse: function (response) {
                 this.breakdown = response.breakdown;
                 return response.fixtures;
