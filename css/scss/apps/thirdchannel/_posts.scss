@@ -14,8 +14,15 @@
   }
 }
 
-.new-message p {
+.new-message {
   margin-bottom: 1em;
+  .cancel-link {
+    text-decoration: underline;
+    cursor: pointer;
+    vertical-align: middle;
+    color: inherit;
+    margin-left: 1em;
+  }
 }
 
 .editor-container {
