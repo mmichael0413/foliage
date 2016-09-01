@@ -210,14 +210,20 @@ define(function (require) {
         var hours = date.getHours();
 
         date.setHours(hours - offset);
-        return date.toLocaleTimeString(locale, {
+
+        var dateString = date.toLocaleDateString(locale, {
             year: "numeric",
-            month: "short",
-            day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-            timeZoneName: "short"
-        });
+            month: "long",
+            day: "numeric"
+        }),
+            timeString = date.toLocaleTimeString(locale, {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                timeZoneName: "short"
+            });
+
+        return dateString + ' at ' + timeString;
     });
 
     Handlebars.registerHelper('similarAccountClass', function(similarity) {
