@@ -35,8 +35,9 @@ define(function(require){
                        return;
                    }
                    var splitLabel = ui.item.originalText.split("\t");
-                   var currentText = $(e.target).html();
-                   $(e.target).html(currentText.substring(0, currentText.lastIndexOf('@')+1)+splitLabel[0]+' '+splitLabel[1]);
+                   var $target = $(e.target);
+                   var currentText = $target.html();
+                   $target.html(currentText.substring(0, currentText.lastIndexOf('@')+1)+splitLabel[0]+' '+splitLabel[1]);
 
                    // move cursor to the end
                    var range = document.createRange();
@@ -47,15 +48,15 @@ define(function(require){
                    selection.addRange(range);
 
                    var mentions = [];
-                   var previousMentions = $(e.target).data('mentions');
+                   var previousMentions = $target.data('mentions');
                    if (previousMentions) {
                        mentions = mentions.concat(previousMentions);
                    }
                    mentions.push(ui.item.value);
 
-                   $(e.target).data('mentions', mentions);
-                   $(e.target).trigger($.Event("keypress"));
-                   $(e.target).trigger($.Event("change"));
+                   $target.data('mentions', mentions);
+                   $target.trigger($.Event("keypress"));
+                   $target.trigger($.Event("change"));
                };
 
                $(".new-comment-field").autocomplete({
