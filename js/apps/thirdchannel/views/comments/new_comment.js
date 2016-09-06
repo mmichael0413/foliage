@@ -37,6 +37,15 @@ define(function(require){
                    var splitLabel = ui.item.originalText.split("\t");
                    var currentText = $(e.target).html();
                    $(e.target).html(currentText.substring(0, currentText.lastIndexOf('@')+1)+splitLabel[0]+' '+splitLabel[1]);
+
+                   // move cursor to the end
+                   var range = document.createRange();
+                   range.selectNodeContents(e.target);
+                   range.collapse(false);
+                   var selection = window.getSelection();
+                   selection.removeAllRanges();
+                   selection.addRange(range);
+
                    var mentions = [];
                    var previousMentions = $(e.target).data('mentions');
                    if (previousMentions) {
