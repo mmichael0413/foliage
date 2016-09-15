@@ -10,6 +10,13 @@ define(function(require) {
         //context = require('context'),
         FileView = require('shared/views/s3uploader/checkin_file');
 
+    var dtPickerOptions = {
+        timepicker: false,
+        format: 'Y-m-d',
+        closeOnDateSelect: true,
+        scrollInput: false
+    };
+
     /**
      * 
      * 
@@ -43,7 +50,7 @@ define(function(require) {
             var self = this;
 
             this.$('select').chosen({disable_search: true, width: "100%"});
-            this.$('.datetime').datetimepicker();
+            this.$('.datetime').datetimepicker(dtPickerOptions);
 
             // create a image file view to manage each image set
             this.$('.body.images').each(function() {

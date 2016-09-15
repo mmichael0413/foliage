@@ -4,6 +4,13 @@ define(function(require) {
         Chosen = require('chosen'),
         DateTimePicker = require('dateTimePicker');
 
+    var dtPickerOptions = {
+        timepicker: false,
+        format: 'Y-m-d',
+        closeOnDateSelect: true,
+        scrollInput: false
+    };
+
     return Backbone.View.extend({
         template: HandlebarsTemplates['singleNickel/survey/show'],
         events: {
@@ -12,7 +19,7 @@ define(function(require) {
         render: function() {
             this.$el.html(this.template(this.model));
             this.$('select').chosen({disable_search: true, width: "100%"});
-            this.$('.datetime').datetimepicker();
+            this.$('.datetime').datetimepicker(dtPickerOptions);
             this.$el.find(".survey-show-container").hide();
             return this;
         },
