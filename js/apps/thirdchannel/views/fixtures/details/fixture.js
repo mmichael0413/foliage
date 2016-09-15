@@ -9,10 +9,10 @@ define(function(require){
         className: 'fixture-instance-tile section',
 
         events: {
-            'click .details-toggle.ic_up': "showDetails",
+            'click .details-toggle.ic_down': "showDetails",
             'click .problems': "toggleDetails",
             'click .images': "toggleDetails",
-            'click .details-toggle.ic_down': 'hideDetails',
+            'click .details-toggle.ic_up': 'hideDetails',
             "click .arrow-left" : "prevSlide",
             "click .arrow-right" : "nextSlide"
         },
@@ -23,12 +23,12 @@ define(function(require){
             if (!this.carousel) {
                 this.initializeCarousel();
             }
-            this._swapArrows(this.$el.find('.details-toggle'), "ic_up", "ic_down");
+            this._swapArrows(this.$el.find('.details-toggle'), "ic_down", "ic_up");
         },
 
         hideDetails: function (e) {
             this.$el.find(".details").hide();
-            this._swapArrows(this.$el.find('.details-toggle'), "ic_down", "ic_up");
+            this._swapArrows(this.$el.find('.details-toggle'), "ic_up", "ic_down");
         },
 
         toggleDetails: function (e) {
