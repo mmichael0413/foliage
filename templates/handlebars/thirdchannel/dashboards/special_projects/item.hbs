@@ -11,10 +11,10 @@
         </div>
         <div class="col-1-1 special-project-overview">
             <div class="chart"></div>
-            <h2>{{ percent_of_stores_complete }}% Complete</h2>
+            <h2>{{ percent_of_stores_visited }}% Visited</h2>
             <h3>
                 {{#if target}}
-                    Target Completion: {{target}}%
+                    Target Visitation: {{target}}%
                 {{else}}
                     &nbsp
                 {{/if}}
@@ -23,18 +23,17 @@
         <div class="col-1-1 special-project-breakdown">
             <div class="pure-g">
                 <div class="col-1-3 special-project-breakdown-item">
-                    <div><a href="{{links.stores}}?status=Completed">{{ stores_completed }} Stores</a></div>
-                    <div>Jobs Completed</div>
+                    <div><a href="{{links.stores}}?status[]=Completed&status[]=Visited, But Incomplete">{{ stores_visited }} Stores</a></div>
+                    <div>Visited</div>
                 </div>
                 <div class="col-1-3 special-project-breakdown-item">
-                    <div><a href="{{links.stores}}?status=Revisit Needed">{{ stores_with_revisit_needed }} Stores</a></div>
-                    <div>Need Revisit</div>
-                </div>
-                <div class="col-1-3 special-project-breakdown-item">
-                    <div><a href="{{links.stores}}?status=Not Visited">{{ stores_not_visited }} Stores</a></div>
+                    <div><a href="{{links.stores}}?status[]=Not Visited">{{ stores_not_visited }} Stores</a></div>
                     <div>Not Visited</div>
                 </div>
-
+                <div class="col-1-3 special-project-breakdown-item">
+                    <div><a href="{{links.stores}}?status[]=Revisit Needed">{{ stores_with_revisit_needed }} Stores</a></div>
+                    <div>Need Revisit</div>
+                </div>
             </div>
         </div>
         <div class="col-1-1 special-project-latest-checkin">
