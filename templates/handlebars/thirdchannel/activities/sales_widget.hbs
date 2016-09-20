@@ -4,7 +4,13 @@ sales-widget pure-g" style="line-height: 2.25em;float: right;display: inline-blo
   {{#if message}}
     {{message}}
   {{else}}
-    QTD $ Sales: <a href={{salesUrl}} class="percentage-change {{ percentageChangeClass salesChange }}"><i class="ic {{percentageChangeIcon salesChange }}"></i> {{formatPercentageChange salesChange}}</a>
+    QTD $ Sales:
+    <div class="sales-value"
+        <a href={{salesUrl}} class="percentage-change {{ percentageChangeClass salesChange }}">
+            <i class="fa-angle-{{percentageChangeIcon salesChange }}"></i>
+            {{formatPercentageChange salesChange}}
+        </a>
+    </div>
   {{/if}}
   </p>
 </section>
