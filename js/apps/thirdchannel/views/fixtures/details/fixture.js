@@ -96,6 +96,7 @@ define(function(require){
             this.carousel = undefined;
             data.containsImages = data.imagesCount > 0;
             data.alert = data.problemsCount > 0;
+            data.imageErrorUrl = context.links.fixtures.image_error;
             if (data.attributes.pictures && data.attributes.pictures.length > 0) {
                 data.previewImageUrl = this._extractImageUrl(data.attributes.pictures[0], "small");   
                 data.pictures = [];
@@ -107,8 +108,10 @@ define(function(require){
                         data.pictures.push(link);
                     }
                 });
+            } else {
+                // this is being explicitly set because firefox does not trigger the onError event if the src is empty.
+                data.previewImageUrl = data.imageErrorUrl;
             }
-            data.imageErrorUrl = context.links.fixtures.image_error;
             data.storeUrl = this._buildStoreUrl(data);
             this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/fixture_detail_tile"](data));
             return this;
