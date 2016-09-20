@@ -19,7 +19,8 @@ require.config({
         'backboneValidatorPatch': '../libs/backbone-validator/viewCallbackPatch',
         'chosen': "../libs/bower_components/chosen/chosen.jquery",
         'jquery-mousewheel': "../libs/bower_components/jquery-mousewheel/jquery.mousewheel",
-        'dateTimePicker': "../libs/bower_components/datetimepicker/build/jquery.datetimepicker.full",
+        'php-date-formatter': "../libs/bower_components/php-date-formatter/js/php-date-formatter",
+        'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
         'noty': "../libs/bower_components/noty/js/noty/packaged/jquery.noty.packaged"
     },
     shim: {
@@ -69,6 +70,15 @@ require.config({
         },
         'noty': {
             deps: ['jquery']
+        },
+        'jquery-mousewheel': {
+            deps: ['jquery']
+        },
+        'php-date-formatter': {
+            deps: ['jquery']
+        },
+        'dateTimePicker': {
+            deps: ['jquery', 'php-date-formatter', 'jquery-mousewheel']
         }
     }
 });
