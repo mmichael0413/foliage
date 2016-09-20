@@ -31,7 +31,8 @@ require.config({
         'pikaday' : '../libs/bower_components/pikaday/pikaday',
         'd3': '../libs/bower_components/d3/d3',
         'c3': '../libs/bower_components/c3/c3',
-        'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
+        'jquery-mousewheel': "../libs/bower_components/jquery-mousewheel/jquery.mousewheel",
+        'dateTimePicker': "../libs/bower_components/datetimepicker/build/jquery.datetimepicker.full",
         'jquery.mask' : '../libs/bower_components/jquery-mask-plugin/dist/jquery.mask',
         'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min',
         'rxjs'          : '../libs/bower_components/rxjs/dist/rx.all.min',
@@ -109,9 +110,6 @@ require.config({
             deps: ['quill']
         },
         'chosen': {
-            deps: ["jquery"]
-        },
-        'dateTimePicker': {
             deps: ["jquery"]
         },
         'c3': {
