@@ -106,7 +106,7 @@ define(function(require){
                 $.ajax({
                     url: url,
                     method: 'POST'
-                })
+                });
             }
         },
 
