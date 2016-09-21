@@ -14,7 +14,8 @@ define(function(require){
             'click .images': "toggleDetails",
             'click .details-toggle.ic_up': 'hideDetails',
             "click .arrow-left" : "prevSlide",
-            "click .arrow-right" : "nextSlide"
+            "click .arrow-right" : "nextSlide",
+            "click .reprocess" : "reprocessImage"
         },
 
         showDetails: function (e) {
@@ -90,6 +91,25 @@ define(function(require){
             return storeUrl;
         },
 
+        reprocessImage: function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            console.log(context.links);
+            if (this.model.attributes.pictures && this.model.attributes.pictures.length > 0) {
+
+                var programUUID =  this.model.attributes.pictures[0].programUUID;
+                var imageUUID =  this.model.attributes.pictures[0].imageUUID;
+                var url = context.links.fixtures.reprocessing_base_url + '/reprocess/' + programUUID  +'/' + imageUUID;
+                console.log(url);
+
+                $.ajax({
+                    url: url,
+                    method: 'POST'
+                })
+            }
+        },
+
         render: function () {
             // the following is pretty gross. todo: clean this up
             var data = this.model;
@@ -97,6 +117,7 @@ define(function(require){
             data.containsImages = data.imagesCount > 0;
             data.alert = data.problemsCount > 0;
             data.imageErrorUrl = context.links.fixtures.image_error;
+            data.showReprocessingLink = false;
             if (data.attributes.pictures && data.attributes.pictures.length > 0) {
                 data.previewImageUrl = this._extractImageUrl(data.attributes.pictures[0], "small");   
                 data.pictures = [];
@@ -108,6 +129,9 @@ define(function(require){
                         data.pictures.push(link);
                     }
                 });
+                if(context.links.fixtures.reprocessing_base_url) {
+                    data.showReprocessingLink = true;
+                }
             } else {
                 // this is being explicitly set because firefox does not trigger the onError event if the src is empty.
                 data.previewImageUrl = data.imageErrorUrl;

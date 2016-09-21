@@ -1,6 +1,6 @@
 <div class="summary pure-g">
     <div class="col-1-12 preview-image-container">
-        <img class="preview-image" src="{{previewImageUrl}}" alt="{{name}}" onerror="this.src='{{imageErrorUrl}}'"></img>    
+        <img class="preview-image" src="{{previewImageUrl}}" alt="{{name}}" onerror="this.src='{{imageErrorUrl}}'"></img>
     </div>
 
 
@@ -20,7 +20,15 @@
         <p class="arrow"><i class="ic ic_down details-toggle"></i></p>
         <p class="problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{problemsCount}}</p>
     </div>
-    
+    {{#if showReprocessingLink}}
+    <div class="col-1-1">
+        <a class="reprocess" href="#">Reprocess Image</a>
+    </div>
+    {{else}}
+    <div class="col-1-1">
+        Image Not Present
+    </div>
+    {{/if}}
 </div>
 
 
