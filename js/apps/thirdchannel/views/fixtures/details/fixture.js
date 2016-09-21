@@ -129,13 +129,14 @@ define(function(require){
                         data.pictures.push(link);
                     }
                 });
-                if(context.links.fixtures.reprocessing_base_url) {
+                if(context.links.fixtures.reprocessing_base_url !== undefined) {
                     data.showReprocessingLink = true;
                 }
             } else {
                 // this is being explicitly set because firefox does not trigger the onError event if the src is empty.
                 data.previewImageUrl = data.imageErrorUrl;
             }
+            console.log(data.showReprocessingLink);
             data.storeUrl = this._buildStoreUrl(data);
             this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/fixture_detail_tile"](data));
             return this;
