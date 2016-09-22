@@ -1,4 +1,4 @@
-define(function(require){
+define(function (require) {
     var Backbone = require('backbone'),
         _ = require("underscore"),
         context = require('context'),
@@ -13,13 +13,13 @@ define(function(require){
             'click .problems': "toggleDetails",
             'click .images': "toggleDetails",
             'click .details-toggle.ic_up': 'hideDetails',
-            "click .arrow-left" : "prevSlide",
-            "click .arrow-right" : "nextSlide",
-            "click .reprocess" : "reprocessImage"
+            "click .arrow-left": "prevSlide",
+            "click .arrow-right": "nextSlide",
+            "click .reprocess": "reprocessImage"
         },
 
         showDetails: function (e) {
-            
+
             this.$el.find(".details").show();
             if (!this.carousel) {
                 this.initializeCarousel();
@@ -46,29 +46,29 @@ define(function(require){
         },
 
         _extractImageUrl: function (images, rel) {
-            var link = _.find(images.links, function (image) { 
+            var link = _.find(images.links, function (image) {
                 return image.rel === rel;
             });
-            if (link){
+            if (link) {
                 return link.href;
             }
         },
 
         // the following is copied from thirdchannel/views/activities/activity
-        prevSlide: function(e){
+        prevSlide: function (e) {
             e.preventDefault();
             this.carousel.slickPrev();
         },
-        nextSlide: function(e){
+        nextSlide: function (e) {
             e.preventDefault();
             this.carousel.slickNext();
         },
-        initializeCarousel: function(){
+        initializeCarousel: function () {
             var self = this;
             this.carousel = this.$el.find('.carousel').slick({
                 draggable: true,
                 arrows: false,
-                onInit: function() {
+                onInit: function () {
                     var $carousel = self.$('.carousel');
                     var width = $carousel.width();
 
@@ -78,34 +78,44 @@ define(function(require){
             });
         },
 
-        _buildStoreUrl: function(data) {
+        _buildStoreUrl: function (data) {
             var storeUrl = "",
                 fixturesTag = "/fixtures",
                 indexOfFixtures = location.pathname.indexOf(fixturesTag);
             // if we're already at the fixture page, go to the root
-            if (indexOfFixtures == location.pathname.length-fixturesTag.length) {
+            if (indexOfFixtures == location.pathname.length - fixturesTag.length) {
                 storeUrl = location.pathname.substr(0, indexOfFixtures);
             } else {
-                storeUrl = context.links.fixtures.program_store_base +"/" + data.programStoreUuid + fixturesTag;
+                storeUrl = context.links.fixtures.program_store_base + "/" + data.programStoreUuid + fixturesTag;
             }
             return storeUrl;
         },
 
-        reprocessImage: function(event) {
+        reprocessImage: function (event) {
             event.preventDefault();
             event.stopPropagation();
 
-            console.log(context.links);
             if (this.model.attributes.pictures && this.model.attributes.pictures.length > 0) {
 
-                var programUUID =  this.model.attributes.pictures[0].programUUID;
-                var imageUUID =  this.model.attributes.pictures[0].imageUUID;
-                var url = context.links.fixtures.reprocessing_base_url + '/reprocess/' + programUUID  +'/' + imageUUID;
-                console.log(url);
+                var programUUID = this.model.attributes.pictures[0].programUUID;
+                var imageUUID = this.model.attributes.pictures[0].imageUUID;
+                var url = context.links.fixtures.reprocessing_base_url + '/reprocess/' + programUUID + '/' + imageUUID;
 
+                var spinner = '<i class="fa fa-spinner fa-spin fa-fw"></i>';
+                this.$('.admin-links').append(spinner);
+                var self = this;
                 $.ajax({
                     url: url,
-                    method: 'POST'
+                    method: 'POST',
+                    crossDomain: true
+                }).done(function (a) {
+                    // alert('Processing has completed.');
+                    self.$('.fa-spinner').remove();
+                    //self.$('.admin-links').append('<i class="fa fa-check-square"></i>')
+                    self.render();
+                }).fail(function (err) {
+                    console.log('error');
+                    self.$('.fa-spinner').remove();
                 });
             }
         },
@@ -119,24 +129,23 @@ define(function(require){
             data.imageErrorUrl = context.links.fixtures.image_error;
             data.showReprocessingLink = false;
             if (data.attributes.pictures && data.attributes.pictures.length > 0) {
-                data.previewImageUrl = this._extractImageUrl(data.attributes.pictures[0], "small");   
+                data.previewImageUrl = this._extractImageUrl(data.attributes.pictures[0], "small");
                 data.pictures = [];
                 data.attributes.pictures.forEach(function (picture) {
-                    var link = _.find(picture.links, function (image) { 
+                    var link = _.find(picture.links, function (image) {
                         return image.rel === "medium";
                     });
                     if (link) {
                         data.pictures.push(link);
                     }
                 });
-                if(context.links.fixtures.reprocessing_base_url !== undefined) {
+                if (context.links.fixtures.reprocessing_base_url !== undefined) {
                     data.showReprocessingLink = true;
                 }
             } else {
                 // this is being explicitly set because firefox does not trigger the onError event if the src is empty.
                 data.previewImageUrl = data.imageErrorUrl;
             }
-            console.log(data.showReprocessingLink);
             data.storeUrl = this._buildStoreUrl(data);
             this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/fixture_detail_tile"](data));
             return this;
