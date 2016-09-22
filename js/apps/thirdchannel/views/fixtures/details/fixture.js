@@ -103,6 +103,7 @@ define(function (require) {
 
                 var spinner = '<i class="fa fa-spinner fa-spin fa-fw"></i>';
                 this.$('.admin-links').append(spinner);
+                this.$('.reprocess').remove();
                 var self = this;
                 $.ajax({
                     url: url,
@@ -111,8 +112,7 @@ define(function (require) {
                 }).done(function (a) {
                     // alert('Processing has completed.');
                     self.$('.fa-spinner').remove();
-                    //self.$('.admin-links').append('<i class="fa fa-check-square"></i>')
-                    self.render();
+                    self.$('.admin-links').append('<i class="fa fa-check-square"></i> Refresh the page to see the reprocessed image')
                 }).fail(function (err) {
                     console.log('error');
                     self.$('.fa-spinner').remove();
