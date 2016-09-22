@@ -20,11 +20,6 @@
         <p class="arrow"><i class="ic ic_down details-toggle"></i></p>
         <p class="problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{problemsCount}}</p>
     </div>
-    {{#if showReprocessingLink}}
-    <div class="col-1-1">
-        <a class="reprocess" href="#">Reprocess Image</a>
-    </div>
-    {{/if}}
 </div>
 
 
@@ -91,6 +86,10 @@
     {{/if}}
         
     </div>
-    
+    {{#if showReprocessingLink}}
+        <div class="col-1-1 admin-links">
+            <a class="reprocess" href="#">Reprocess Image</a>
+        </div>
+    {{/if}}
 
 </div>
