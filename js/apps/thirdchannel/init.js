@@ -31,6 +31,8 @@ require.config({
         'pikaday' : '../libs/bower_components/pikaday/pikaday',
         'd3': '../libs/bower_components/d3/d3',
         'c3': '../libs/bower_components/c3/c3',
+        'jquery-mousewheel': "../libs/bower_components/jquery-mousewheel/jquery.mousewheel",
+        'php-date-formatter': "../libs/bower_components/php-date-formatter/js/php-date-formatter",
         'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
         'jquery.mask' : '../libs/bower_components/jquery-mask-plugin/dist/jquery.mask',
         'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min',
@@ -111,9 +113,6 @@ require.config({
         'chosen': {
             deps: ["jquery"]
         },
-        'dateTimePicker': {
-            deps: ["jquery"]
-        },
         'c3': {
             deps: ["d3"]
         },
@@ -126,6 +125,15 @@ require.config({
         },
         'slidebars': {
             deps: ['jquery']
+        },
+        'jquery-mousewheel': {
+            deps: ['jquery']
+        },
+        'php-date-formatter': {
+            deps: ['jquery']
+        },
+        'dateTimePicker': {
+            deps: ['jquery', 'php-date-formatter', 'jquery-mousewheel']
         }
     }
 });
