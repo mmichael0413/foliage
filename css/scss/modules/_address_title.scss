@@ -1,11 +1,28 @@
 .address-title {
+
+	.title-status {
+		margin: 0.9em 0 0.5em 0;
+	}
+
 	.title {
 		margin-bottom: 0.25em;
 	}
+
+	.status {
+		font-size: 1.25em;
+	}
+
 	.address {
 		margin: 0 0 0 0;
 		@include swb-small {
 			margin: .3em 0 1em 1.1em;
 		}
+	}
+
+	.status.active {
+		color: $palette7;
+	}
+	.status.inactive {
+		color: $palette5;
 	}
 }
