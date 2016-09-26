@@ -1,16 +1,18 @@
-<section class="
-sales-widget pure-g" style="line-height: 2.25em;float: right;display: inline-block;">
-  <p class="text col-2-3" style="display: inline;">
+<section class="sales-widget pure-g">
+  <div class="text col-2-3" style="display: inline;">
   {{#if message}}
+  <span><i class="sales-message">
     {{message}}
+    </i>
+   </span>
   {{else}}
     QTD $ Sales:
-    <div class="sales-value"
+    <span class="sales-button">
         <a href={{salesUrl}} class="percentage-change {{ percentageChangeClass salesChange }}">
-            <i class="fa-angle-{{percentageChangeIcon salesChange }}"></i>
+            <i class="fa {{percentageChangeIcon salesChange }} change-icon"></i>
             {{formatPercentageChange salesChange}}
         </a>
-    </div>
+    </span>
   {{/if}}
-  </p>
+  </div>
 </section>

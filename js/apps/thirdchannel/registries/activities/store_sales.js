@@ -64,10 +64,10 @@ define(function(require) {
                 })
                 .subscribe(function (response) {
                     self.registry[response.uuid] = response.salesChange;
-                    response.salesUrl = context.links.stores +"/" + response.uuid+"/sales";
+                    response.salesUrl = context.links.stores + "/" + response.uuid+"/sales";
                     context.trigger("store.sales.update", response);
                 }, function () {
-                    context.trigger("store.sales.update", {uuid: "test", salesChange: "negative", value: 4.2563, salesUrl: "www.google.com"});
+                    context.trigger("store.sales.update", {uuid: "test", salesChange: -4.2563, value: -4.2563, salesUrl: "www.google.com"});
                     // console.error("Could not fetch Sales data", arguments);
                 }, function () {});
             }

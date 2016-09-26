@@ -2061,11 +2061,11 @@ function program56(depth0,data) {
   buffer += "\n                ";
   stack1 = (helper = helpers.if_eq || (depth0 && depth0.if_eq),options={hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data},helper ? helper.call(depth0, (depth0 && depth0.checkin_type), "special_project", options) : helperMissing.call(depth0, "if_eq", (depth0 && depth0.checkin_type), "special_project", options));
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                <p>\n                    <span data-livestamp=\"";
+  buffer += "\n                <p>\n                    <span><i class=\"timestamp\" data-livestamp=\"";
   if (helper = helpers.created_at) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.created_at); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\"></span> <span>("
+    + "\"></i></span> <span>("
     + escapeExpression((helper = helpers.formatSecondsToDate || (depth0 && depth0.formatSecondsToDate),options={hash:{},data:data},helper ? helper.call(depth0, (depth0 && depth0.created_at), options) : helperMissing.call(depth0, "formatSecondsToDate", (depth0 && depth0.created_at), options)))
     + ")</span>\n                    by\n                    <a href=\"/programs/";
   if (helper = helpers.current_program) { stack1 = helper.call(depth0, {hash:{},data:data}); }

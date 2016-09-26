@@ -18,7 +18,7 @@ $padding: 1.5em;
 
   .task-container {
     display: inline-block;
-    width: 90%;
+    width: 100%;
 
     @include swb-small {
       position: relative;
@@ -85,8 +85,6 @@ $padding: 1.5em;
     margin: 0 0 0 0;
   }
   background: white;
-  //border-top-left-radius: $border-radius-base;
-  //border-top-right-radius: $border-radius-base;
   border-radius: $border-radius-base;
   &.info {
     background-color: $palette1;
@@ -147,19 +145,27 @@ $padding: 1.5em;
   }
 }
 
-//.sales-widget {
-//  background-color: #0a0a0a;
-//}
 .activity-meta{
   border-bottom: 1px solid $border-color;
   padding-bottom: $padding;
   .sales-widget {
-    //width: 33%;
     vertical-align: top;
-    display: none;
-    //border: 1px solid $light-blue;
-    line-height: 3em;
+    display: inline-block;
+    line-height: 3.25em;
     float:right !important;
+
+    .sales-message {
+      line-height: 3.3em;
+      color: $medium-blue;
+    }
+
+    .sales-button {
+      padding-left: 1em;
+
+      .change-icon {
+        font-size: 1em;
+      }
+    }
 
     .pure-g {
       color: #0b93d5;
@@ -182,7 +188,6 @@ $padding: 1.5em;
     .text, .details {
       display: inline-block;
       text-align: center;
-      font-weight: bold;
     }
     .text {
       border-right: 1px solid $light-blue;
@@ -199,6 +204,10 @@ $padding: 1.5em;
 
   .bar-body {
     width: 55%;
+
+    .timestamp {
+      color: $medium-blue;
+    }
     @include swb-small {
       width: 100%;
     }

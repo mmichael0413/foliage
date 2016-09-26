@@ -9,11 +9,29 @@
 }
 
 .percentage-change {
+  color: white;
+  border-radius: .35em;
+  -webkit-border-radius: .35em;
+  -moz-border-radius: .35em;
+  width: 5em;
+  line-height: 24px;
+  display: inline-block;
   &.positive {
-    color: $palette7;
+    background-color: $palette10;
   }
 
   &.negative {
-    color: $palette5;
+    background-color: $palette8;
   }
+}
+
+.percentage-change:hover {
+  color: white;
+  &.positive {
+    background-color: $palette11;
+  }
+  &.negative {
+    background-color: $palette9;
+  }
+
 }
