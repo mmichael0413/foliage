@@ -14,7 +14,6 @@ $padding: 1.5em;
   @include clearfix();
   padding: $padding $padding 0 $padding;
   vertical-align: middle;
-  //border-bottom: 1px solid $border-color;
 
   .task-container {
     display: inline-block;
@@ -168,10 +167,6 @@ $padding: 1.5em;
       .change-icon {
         font-size: 1em;
       }
-    }
-
-    .pure-g {
-      color: #0b93d5;
     }
 
     @include swb-small {
