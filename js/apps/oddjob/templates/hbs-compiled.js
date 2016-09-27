@@ -2385,7 +2385,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
 
   stack1 = self.invokePartial(partials.user_image, 'user_image', ((stack1 = (depth0 && depth0.current_user)),stack1 == null || stack1 === false ? stack1 : stack1.user_image), helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n<div class=\"bar-body\">\n\n    <div contenteditable=\"true\" class=\"expanding new-comment-field\" placeholder=\"Write a comment...\"></div>\n\n    <button class=\"btn light solid add-comment\">Comment</button>\n</div>";
+  buffer += "\n\n<div class=\"bar-body\">\n\n    <div contenteditable=\"true\" class=\"expanding new-comment-field\"></div>\n\n    <button class=\"btn light solid add-comment\">Comment</button>\n</div>";
   return buffer;
   });
 

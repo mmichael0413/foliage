@@ -25,6 +25,7 @@
   }
 }
 
+//<<<<<<< HEAD
 .percentage-change:hover {
   color: white;
   &.positive {
@@ -33,41 +34,42 @@
   &.negative {
     background-color: $palette9;
   }
-}
 
-.sales-overview {
-  h2 {
-    display: inline-block;
-  }
-
-  .subnav {
-    text-align: right;
-  }
-
-  .overview-data {
-    h2 {
-      order: 1;
-    }
-
-    p {
-      order: 2;
-    }
-  }
-}
-
-@include swb-medium {
-  .sales-overview {
-    .overview-data {
-
-      h2 {
-        order: 2;
-        margin: 1em 0;
-        text-align: right;
-      }
-
-      p {
-        order: 1;
-      }
-    }
-  }
+//=======
+//.sales-overview {
+//  h2 {
+//    display: inline-block;
+//  }
+//
+//  .subnav {
+//    text-align: right;
+//  }
+//
+//  .overview-data {
+//    h2 {
+//      order: 1;
+//    }
+//
+//    p {
+//      order: 2;
+//    }
+//  }
+//}
+//
+//@include swb-medium {
+//  .sales-overview {
+//    .overview-data {
+//
+//      h2 {
+//        order: 2;
+//        margin: 1em 0;
+//        text-align: right;
+//      }
+//
+//      p {
+//        order: 1;
+//      }
+//    }
+//  }
+//>>>>>>> master
 }
