@@ -1,11 +1,11 @@
 {{#if hide_toggle}}
 	<div class="col-1-1 main"></div>
 {{else}}
-	<div class="col-4-5 col-md-2-3 main"></div>
-	<div class="col-1-5 col-md-1-3">
-		<a href="#" class="open toggle">
-			{{{toggle}}}
-		</a>
+	<div class="col-4-5 col-md-2-3 main open"></div>
+	<div class="col-1-5 col-md-1-3 right-align toggle open">
+        {{{toggle}}}
 	</div>
 {{/if}}
-<div class="subsection col-1-1 hide"></div>
+<div class="subsection col-1-1 hide">
+    <a href="/programs/Merchandising/stores/{{store_details.id}}">View Recent Activity</a>
+</div>

@@ -1,5 +1,11 @@
+#checkin > .store {
+  border-top: 1px solid $border-color;
+  &:first-child {
+    border-top: none;
+  }
+}
 .store {
-  border-bottom: 1px solid $border-color;
+  //border-bottom: 1px solid $border-color;
   margin-top: 1em;
 
   &:first-child {
@@ -25,21 +31,33 @@
     .pure-g:first-child {
         padding:1em;
     }
-
-    a.toggle {
-      color: $link-color;
-    }
   }
 
   .task-list {
     .task {
       button {
         margin-left: 0.5rem;
-
+        &.small {
+          margin-left: 0;
+        }
         @include swb-medium {
           margin-top: 0;
         }
       }
     }
+  }
+}
+.table {
+    //text-align: right;
+
+  .pure-g.complete-checkin-tasks {
+    border-top: none;
+  }
+}
+
+.checkin-form-btn.wide {
+  @include swb-small {
+    width: 100%;
+    height: 3em;
   }
 }

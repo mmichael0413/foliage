@@ -9,9 +9,6 @@ define(function (require) {
     var main = {
         init: function () {
             _.extend(context, window.bootstrap);
-
-            context.trigger('nav:collapse');
-
             var model = new SalesReport(window.bootstrap);
             new ReportLayout({el: '.content-holder', model: model}).render();
         }

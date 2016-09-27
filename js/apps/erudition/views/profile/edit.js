@@ -58,10 +58,17 @@ define(function (require) {
             if(context.content.requireValidation) {
                 this.beginValidation();
             }
+            this.attachSubmitHandlers();
             this.configureAutocomplete();
             this.initializeImageUpload();
 
             return this;
+        },
+
+        attachSubmitHandlers: function () {
+            $('.profile-form').submit(function (e) {
+                $.post(context.content.submissionActionsUrl);
+            });
         },
 
         beginValidation: function () {

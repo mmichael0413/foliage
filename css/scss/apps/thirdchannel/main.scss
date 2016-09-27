@@ -1,6 +1,8 @@
 @import '../../../../js/libs/bower_components/normalize-css/normalize';
 @import "../../lib/pure.grids-core";
 @import "../../lib/pure.responsive-grid";
+@import '../../lib/slidebars';
+@import "../../modules/side_navigation";
 @import "../../lib/chosen";
 @import "../../lib/quill.snow";
 @import '../../../../js/libs/bower_components/slick.js/slick/slick';
@@ -12,6 +14,7 @@
 @import "../../base/text";
 @import "../../base/forms";
 @import "../../base/buttons";
+@import "../../base/dropdowns";
 @import "../../layout/layout_utils";
 @import "../../layout/base_layout";
 
@@ -56,6 +59,8 @@
 @import "./admin";
 @import "./checkin";
 @import "./dashboards";
+@import "./fixtures";
+
 @import "./labs";
 @import "./notifications";
 @import "./posts";

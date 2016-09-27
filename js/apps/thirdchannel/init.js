@@ -9,6 +9,7 @@ require.config({
         'jquery-ui'     : "../libs/bower_components/jquery-ui/jquery-ui",
         'underscore': '../libs/bower_components/underscore/underscore',
         'backbone': '../libs/bower_components/backbone/backbone',
+        'buttons' : '../libs/buttons',
         'handlebars': '../libs/bower_components/handlebars/handlebars.min',
         'expanding': '../libs/expanding',
         'handlebarsTemplates': 'thirdchannel/templates/hbs-compiled',
@@ -30,13 +31,16 @@ require.config({
         'pikaday' : '../libs/bower_components/pikaday/pikaday',
         'd3': '../libs/bower_components/d3/d3',
         'c3': '../libs/bower_components/c3/c3',
+        'jquery-mousewheel': "../libs/bower_components/jquery-mousewheel/jquery.mousewheel",
+        'php-date-formatter': "../libs/bower_components/php-date-formatter/js/php-date-formatter",
         'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
         'jquery.mask' : '../libs/bower_components/jquery-mask-plugin/dist/jquery.mask',
         'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min',
         'rxjs'          : '../libs/bower_components/rxjs/dist/rx.all.min',
         'viewer'      : '../libs/viewer',
         'mresize' : '../libs/bower_components/mresize/mresize',
-        'qs' : '../libs/bower_components/ljharb-qs/dist/qs'
+        'qs' : '../libs/bower_components/ljharb-qs/dist/qs',
+        'slidebars': "../libs/bower_components/slidebars/development/slidebars"
     },
     shim: {
         "jquery": {
@@ -56,6 +60,9 @@ require.config({
         "backbone": {
             deps: ["underscore"],
             exports: "Backbone"
+        },
+        'buttons' : {
+            deps: ['jquery']
         },
         "handlebars": {
             deps: ["jquery"],
@@ -106,9 +113,6 @@ require.config({
         'chosen': {
             deps: ["jquery"]
         },
-        'dateTimePicker': {
-            deps: ["jquery"]
-        },
         'c3': {
             deps: ["d3"]
         },
@@ -118,6 +122,18 @@ require.config({
         },
         "rxjs": {
             deps: ["jquery"]
+        },
+        'slidebars': {
+            deps: ['jquery']
+        },
+        'jquery-mousewheel': {
+            deps: ['jquery']
+        },
+        'php-date-formatter': {
+            deps: ['jquery']
+        },
+        'dateTimePicker': {
+            deps: ['jquery', 'php-date-formatter', 'jquery-mousewheel']
         }
     }
 });

@@ -35,6 +35,7 @@ define(function(require) {
             // query execution event, the filter broadcasts the QueryString to use
             // for the active page
             this.listenTo(context, 'filter:query', this.applyFilter);
+            this.rowViews = [];
             return this;
         },
 
@@ -50,10 +51,41 @@ define(function(require) {
                 };
             _.extend(data, this.additionalData());
             $body.html(this.loadingHTML);
-
-            $body.html(HandlebarsTemplates[this.template](data));
+            if (typeof this.template === 'string') {
+                $body.html(HandlebarsTemplates[this.template](data));    
+            } else {
+                this._renderRows($body, data.rows);
+            }
+            
             this.afterRender();
             return this;
+        },
+
+        _renderRows: function ($container, rows) {
+            var self = this;
+            this._destroyRowViews();
+            $container.html("");
+            if (rows.constructor === Array && rows.length > 0) {
+                    rows.forEach(function (row) {
+                    var view = new self.template({model:row});
+                    $container.append(view.render().$el);
+                    self.rowViews.push(view);
+                });
+            } else {
+                console.warn("No results found for query");
+                this.renderEmptyResult($container);
+            }
+        },
+
+
+
+        _destroyRowViews: function () {
+            var size = this.rowViews.length;
+            while(size--){
+                this.rowViews[size].remove();
+            }
+            this.rowViews = [];
+
         },
 
         /**
@@ -63,6 +95,10 @@ define(function(require) {
          */
         renderCollection: function (data) {
             this.collection.reset(data);
+        },
+
+        renderEmptyResult: function ($container) {
+            $container.html("<p>No matching results</p>");
         },
 
         /**

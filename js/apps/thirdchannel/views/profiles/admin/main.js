@@ -3,14 +3,18 @@ define(function(require) {
         Chosen = require('chosen'),
         DateTimePicker = require('dateTimePicker');
 
+    var dtPickerOptions = {
+        timepicker: false,
+        format: 'Y-m-d',
+        closeOnDateSelect: true,
+        scrollInput: false
+    };
+
     return Backbone.View.extend({
         el: '.profile-admin',
         render: function() {
             this.$('select').chosen({disable_search: true, width: "100%"});
-            this.$('.datetime').datetimepicker({
-                timepicker:false,
-                format:'Y-m-d'
-            });
+            this.$('.datetime').datetimepicker(dtPickerOptions);
             return this;
         }
     });

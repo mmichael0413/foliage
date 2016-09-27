@@ -10,7 +10,7 @@ define(function(require){
         template: HandlebarsTemplates['thirdchannel/checkins/tasks'],
         events: {
             'click .task.grouped button' : 'submit',
-            'click .checkin-form-btn' : 'disableStart',
+            'submit form' : 'disableStart',
             "change select": "updateInputs"
         },
         render: function() {
@@ -33,9 +33,7 @@ define(function(require){
             }
         },
         disableStart: function(e) {
-            e.preventDefault();
-            $(e.currentTarget)[0].disabled = true;
-            this.$('form.checkin-action').submit();
+            $(e.currentTarget).find(".btn.primary").prop( "disabled", true );
         },
         updateInputs: function () {
             var selectedOption = this.$('select :selected'),
@@ -51,7 +49,9 @@ define(function(require){
                 this.$('form.task.grouped input[name=category_id]').val(categoryId);
                 this.hideError();
             } else {
-                this.showError();
+                if(selectedOption.value !== undefined) {
+                    this.showError();
+                }
             }
         },
         showError: function(e) {

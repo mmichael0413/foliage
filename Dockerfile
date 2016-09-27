@@ -14,4 +14,4 @@ COPY . /data
 
 RUN npm install
 
-CMD grunt
+CMD grunt nodemon

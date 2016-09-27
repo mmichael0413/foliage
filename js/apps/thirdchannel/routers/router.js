@@ -21,6 +21,7 @@ define(function(require){
         DashboardsAlertsStoresView = require('thirdchannel/views/dashboards/alerts/show/stores'),
         DashboardsSpecialProjectsView = require('thirdchannel/views/dashboards/special_projects/main'),
         DashboardsSpecialProjectStoresMain = require('thirdchannel/views/dashboards/special_projects/stores/main'),
+        FixturesMain = require('thirdchannel/views/fixtures/main'),
         ReportMain = require('thirdchannel/views/reports/index/main'),
         CheckinReportView = require('thirdchannel/views/reports/checkins/show/report'),
         ReportInfoMain = require('thirdchannel/views/reports/info/show/main'),
@@ -30,6 +31,7 @@ define(function(require){
         NotificationBadge = require('thirdchannel/views/notifications/notification_badge'),
         Labs = require('thirdchannel/views/labs/main'),
         ViewOpportunity = require('thirdchannel/views/opportunities/main'),
+        ViewOpportunities = require('thirdchannel/views/opportunities/list'),
         AnswersExportView = require('thirdchannel/views/exports/answers/main'),
         SalesStoresExportView = require('thirdchannel/views/exports/sales_stores/main'),
         SalesStoresAuditExportView = require('thirdchannel/views/exports/sales_stores_audit/main'),
@@ -54,6 +56,7 @@ define(function(require){
             'agents/profile/security(/)': 'programProfileSecurity',
 
             'login' : 'login',
+            'opportunities': 'ViewOpportunities',
             'opportunities/:id': 'viewOpportunity',
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
@@ -74,11 +77,14 @@ define(function(require){
             'programs/:program_id/stores/:store_id/product': 'storeProfileProduct',
             'programs/:program_id/stores/:store_id/product/edit': 'editStoreProfileProduct',
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
+            'programs/:program_id/stores/:store_id/fixtures': 'storeProfileFixtures',
             'programs/:program_id/stores/:store_id/sales': 'storeProfileSales',
             'programs/:program_id/checkins/:checkin_id/submissions/:id': 'submission',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
             'programs/:program_id/dashboards/special_projects/:special_project_id/stores': 'dashboardSpecialProjectStores',
+            'programs/:program_id/fixtures/overview(/)' : 'fixturesIndex',
+            'programs/:program_id/fixtures/overview/details(/)' : 'fixturesDetails',
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
@@ -150,6 +156,14 @@ define(function(require){
             CheckinsView.init();
         },
 
+        fixturesIndex: function () {
+            FixturesMain.index();
+        },
+        
+        fixturesDetails: function () {
+            FixturesMain.details();
+        },
+
         inProgress: function (){
             new CheckinInProgressView({ model: window.bootstrap });
         },
@@ -162,6 +176,10 @@ define(function(require){
             new ViewOpportunity();
         },
 
+        ViewOpportunities: function() {
+            new ViewOpportunities();
+        },
+
         stores: function () {
             StoresMain.init();
         },
@@ -172,6 +190,10 @@ define(function(require){
 
         storeProfileActivity: function () {
             StoreProfileMain.activity();
+        },
+
+        storeProfileFixtures: function () {
+            StoreProfileMain.fixtures();
         },
 
         storeProfileHistory: function () {
