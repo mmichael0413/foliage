@@ -9,23 +9,35 @@
 }
 
 .percentage-change {
-  color: white;
   border-radius: .35em;
   -webkit-border-radius: .35em;
   -moz-border-radius: .35em;
-  width: 5em;
+  min-width: 5em;
   line-height: 24px;
   display: inline-block;
-  &.positive {
-    background-color: $palette10;
+
+  &.activity-feed {
+    color: white;
+
+    &.positive {
+      background-color: $palette10;
+    }
+    &.negative {
+      background-color: $palette8;
+    }
   }
 
-  &.negative {
-    background-color: $palette8;
-  }
-}
+  &.overview {
 
-.percentage-change:hover {
+    &.positive {
+      color: $palette10
+    }
+    &.negative {
+      color: $palette8;
+    }
+  }
+
+.percentage-change.activity-feed:hover {
   color: white;
   &.positive {
     background-color: $palette11;
@@ -34,6 +46,7 @@
     background-color: $palette9;
   }
 }
+
 .sales-overview {
   h2 {
     display: inline-block;
