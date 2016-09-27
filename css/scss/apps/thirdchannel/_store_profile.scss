@@ -16,7 +16,7 @@
   line-height: 24px;
   display: inline-block;
 
-  &.activity-feed {
+  &.activity-feed-qtd {
     color: white;
 
     &.positive {
@@ -27,7 +27,7 @@
     }
   }
 
-  &.overview {
+  &.overview-qtd {
 
     &.positive {
       color: $palette10
@@ -38,7 +38,7 @@
   }
 }
 
-.percentage-change.activity-feed:hover {
+.percentage-change.activity-feed-qtd:hover {
   color: white;
   &.positive {
     background-color: $palette11;
