@@ -228,14 +228,13 @@ define(function(require) {
         },
         updateSalesWidget: function (event) {
             var location = this.model.get('location');
-            // if (location && location.hasOwnProperty('id') && location.id === event.uuid) {
+            if (location && location.hasOwnProperty('id') && location.id === event.uuid) {
                 // only show values with 0 or greater?
-                // var data = {salesChange: event.salesChange, showLabel: event.value ? true : false,
-                //     salesUrl: event.salesUrl, message: event.message};
-                var data = {message: "No sales data available"};
+                var data = {salesChange: event.salesChange, showLabel: event.value ? true : false,
+                    salesUrl: event.salesUrl, message: event.message};
                 this.$el.find('.activity-meta').append(HandlebarsTemplates['thirdchannel/activities/sales_widget'](data));
                 this.$el.find('.sales-widget').fadeIn(500).css("display","inline-block");
             }
-        // }
+        }
     });
 });
