@@ -34,7 +34,22 @@ define(function (require) {
         },
 
         events: {
-            "click .deleteImage": 'deleteImage'
+            "click .deleteImage": 'deleteImage',
+            "change #education-level": 'showOrHideAttendedCollegeFollowUp'
+        },
+
+        showOrHideAttendedCollegeFollowUp: function () {
+            var selectedEducationLevel = $('#education-level').val();
+            var attendedCollegeFollowUp = $('#attended-college-follow-up');
+            if(context.content.higherEducationLevels.includes(selectedEducationLevel)){
+                attendedCollegeFollowUp.removeClass("hide");
+            } else {
+                attendedCollegeFollowUp.addClass("hide");
+                $('#university').val('');
+                $('#universityText').val('');
+                $('#graduationYear').val('');
+
+            }
         },
 
         render: function () {
@@ -48,7 +63,8 @@ define(function (require) {
                 aboutImageCount: this.aboutImageCount,
                 saveUrl: context.content.saveUrl,
                 programUUID: context.content.programUUID,
-                validate: context.content.requireValidation
+                validate: context.content.requireValidation,
+                educationLevels: context.content.educationLevels
             };
 
             this.$el.append(this.template(model));

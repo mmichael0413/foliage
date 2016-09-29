@@ -40,7 +40,8 @@ define(function (require) {
                 s3: uploader,
                 programId: this.programId,
                 choices: choices,
-                cancelUrl: context.content.cancelUrl
+                cancelUrl: context.content.cancelUrl,
+                educationLevels: context.content.educationLevels
             };
 
             this.$el.append(this.template(model));
