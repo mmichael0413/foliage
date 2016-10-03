@@ -1,19 +1,4 @@
 <div class="activity-holder">
-    {{#if tasks}}
-        <div class="tasks clearfix">
-            <h3 class="tasks-label">Tasks:</h3>
-            <div class="task-container">
-                {{#tasks}}
-                <a class="task-item {{#active}}active{{/active}}" href="{{href}}">
-                    <div class="badge task-label col-md-1-2">{{title}}</div>
-                    {{#has_summary}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-summary"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_summary}}
-                    {{#has_photos}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-photos"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_photos}}
-                    {{#has_alerts}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-alerts"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_alerts}}
-                </a>
-                {{/tasks}}
-            </div>
-        </div>
-    {{/if}}
     <div class="activity">
         <div class="activity-meta">
             {{> user_image user_image}}
@@ -31,12 +16,28 @@
                 </p>
                 {{/if_eq}}
                 <p>
-                    <span data-livestamp="{{created_at}}"></span> <span>({{formatSecondsToDate created_at}})</span>
+                    <span><i class="timestamp" data-livestamp="{{created_at}}"></i></span> <span>({{formatSecondsToDate created_at}})</span>
                     by
                     <a href="/programs/{{current_program}}/profiles/{{user_id}}">{{user_name}}</a>
                 </p>
             </div>
         </div>
+
+        {{#if tasks}}
+            <div class="tasks clearfix">
+                <div class="task-container">
+                    {{#tasks}}
+                    <a class="task-item {{#active}}active{{/active}}" href="{{href}}">
+                        <div class="badge task-label col-md-1-2">{{title}}</div>
+                        {{#has_summary}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-summary"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_summary}}
+                        {{#has_photos}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-photos"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_photos}}
+                        {{#has_alerts}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-alerts"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_alerts}}
+                    </a>
+                    {{/tasks}}
+                </div>
+            </div>
+        {{/if}}
+
         <div class="activity-content">
             {{#if_eq type "Checkin"}}
             {{#if_gt issue_length 0}}

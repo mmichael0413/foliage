@@ -178,9 +178,9 @@ define(function (require) {
     Handlebars.registerHelper('percentageChangeIcon', function(change) {
         if (change !== undefined && change !== null) {
             if (change > 0) {
-                return 'ic_up';
+                return 'fa-angle-up';
             } else if (change < 0) {
-                return 'ic_down';
+                return 'fa-angle-down';
             }
         }
     });
