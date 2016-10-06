@@ -229,7 +229,9 @@ $padding: 1.5em;
 .ui-menu-item {
   width: 100%;
   background-color: #ffffff;
-  padding-left: .5em;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5em;
 }
 .ui-menu-item:hover {
   background: #f2fafc;
@@ -238,7 +240,7 @@ $padding: 1.5em;
   visibility: hidden;
 }
 .autocompleteColumn {
-  width: 25%;
+  flex-grow: 1;
   height: 1.5em;
   text-align: left;
   font-size: 1em;
@@ -248,14 +250,17 @@ $padding: 1.5em;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.autocompleteName {
+  width: 8em;
+}
 .autocompleteProgram {
-  width: 15%;
+  width: 3em;
 }
 .autocompleteState {
-  width: 10%;
+  width: 2em;
 }
 .autocompleteEmail {
-  width: 35%;
+  width: 7em;
 }
 
 .autocompleteSearchTerm {
