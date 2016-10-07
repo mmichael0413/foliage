@@ -177,7 +177,7 @@ define(function(require){
        commentFocus: function () {
            if(!this.activity.get('isMobile') || (this.activity.get('isMobile') && this.activity.get('singleActivity'))) {
                this.$(".new-comment-field").focus();
-              // $('.content-holder').scrollTo(this.$(".new-comment-field"),{duration:10000, offsetTop : '50'});
+               this.$(".new-comment-field").get(0).scrollIntoView;
            } else {
                window.location.assign ( "/programs/" + context.programId + "/activities/" + this.activity.get('activity_id'));
            }
