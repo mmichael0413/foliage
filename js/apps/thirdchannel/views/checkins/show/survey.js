@@ -80,7 +80,18 @@ define(function(require) {
             if ($elem !== undefined) {
                 var attributes = $elem.serializeObject();
                 if ($.isEmptyObject(attributes)) {
-                    attributes[$elem.attr('name')] = $elem.val();
+                    var selectedOptions = $elem.find('option:selected');
+                    if(selectedOptions.length == 1){
+                        attributes[$elem.attr('name')] = selectedOptions.text();
+                    } else if(selectedOptions.length > 1){
+                        attributes[$elem.attr('name')] = selectedOptions.toArray().map(
+                            function(x){
+                                return x.textContent;
+                            }
+                        );
+                    } else {
+                        attributes[$elem.attr('name')] = $elem.val();
+                    }
                 }
                 this.model.save(attributes, {patch: true});
             }
