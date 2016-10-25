@@ -239,6 +239,59 @@ function program11(depth0,data) {
   return buffer;
   }));
 
+this["oddjob"]["templates"]["shared/confirmation/error"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"status error\">\n    We have encountered an error.  Please contact <a href=\"mailto:techsupport@thirdchannel.com\">techsupport@thirdchannel.com</a>\n</div>";
+  });
+
+this["oddjob"]["templates"]["shared/confirmation/modal"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"confirmation-modal modal\">\n    <div class=\"bbm-button cancel-button pull-right\"><i class=\"ic ic_x\"></i></div>\n    <h2>";
+  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</h2>\n    <p class=\"danger\">";
+  if (helper = helpers.warning) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.warning); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n    <div>\n        <label for=\"input-confirmation\">Please type <strong>";
+  if (helper = helpers.validationText) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.validationText); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</strong> to confirm this action.</label>\n        <div><input type=\"text\" id=\"input-confirmation\"></div>\n    </div>\n    <div>\n        <button class=\"btn primary confirm-button\" disabled=\"disabled\">";
+  if (helper = helpers.submitText) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.submitText); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</button>\n        <button class=\"btn cancel-button\">Cancel</button>\n    </div>\n</div>";
+  return buffer;
+  });
+
+this["oddjob"]["templates"]["shared/confirmation/progress"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"status progress\">Processing Request...\n    <div><i class=\"ic ic_processing fa fa-spin\"></i></div>\n</div>";
+  });
+
+this["oddjob"]["templates"]["shared/confirmation/success"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"status success\">Successful!\n    <div><i class=\"ic ic_check\"></i></div>\n</div>";
+  });
+
 this["oddjob"]["templates"]["shared/layout/action_buttons"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
