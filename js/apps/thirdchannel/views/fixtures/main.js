@@ -3,33 +3,34 @@ define(function (require) {
         Filter = require('thirdchannel/views/filter/main'),
         context = require('context'),
         ReportsDropdown = require('thirdchannel/views/fixtures/reportsDropdown'),
-        Overview = require('thirdchannel/views/fixtures/overview'),
+        Summary = require('thirdchannel/views/fixtures/summary'),
+        TypesSummary = require('thirdchannel/views/fixtures/typesSummary'),
         DetailsView = require('thirdchannel/views/fixtures/details/list');
     
 
     return {
         init: function () {
             _.extend(context, window.bootstrap);
+
+            Filter.init();
+            new ReportsDropdown();
         },
 
         index: function() {
             this.init();
-            Filter.init();
-            new ReportsDropdown();
 
+            new Summary();
         },
 
         types: function () {
             this.init();
-            Filter.init();
-            new ReportsDropdown();
-            new Overview().fetch();
+
+            new TypesSummary().fetch();
         },
 
         details: function () {
             this.init();
-            Filter.init();
-            new ReportsDropdown();
+
             new DetailsView().bootstrapCollection(window.bootstrap);
         }
     };

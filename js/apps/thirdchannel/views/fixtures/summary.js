@@ -8,10 +8,10 @@ define(function(require){
 
 
         Summary = Backbone.View.extend({
-            el: "#",
+            el: '#fixtures-summary',
 
             initialize: function () {
-                this.listenTo(context, 'filter:query', this.fetch);
+                //this.listenTo(context, 'filter:query', this.fetch);
 
             },
 
@@ -27,7 +27,5 @@ define(function(require){
 
         });
 
-
     return Summary;
-
 });

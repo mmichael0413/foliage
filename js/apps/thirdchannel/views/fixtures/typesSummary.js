@@ -20,7 +20,7 @@ define(function(require){
         }),
 
 
-        Overview = Backbone.View.extend({
+        TypesSummary = Backbone.View.extend({
             el: "#fixturesList",
 
             initialize: function () {
@@ -67,7 +67,5 @@ define(function(require){
 
         });
 
-
-    return Overview;
-
+    return TypesSummary;
 });
