@@ -28,7 +28,7 @@
     
     <div class="col-3-12 checks">
         <div class="property-group">
-            <span>Visiblity</span>
+            <span class="bold">Visiblity</span>
             {{#visibility}}
                 <ul class="list">
                     <li class="list-item"><i class="ic fa fa-check checked"></i>{{this}}</li>    
@@ -39,7 +39,7 @@
         </div>
 
         <div class="property-group">
-            <span>Location</span>
+            <span class="bold">Location</span>
             <ul class="list">
             {{#locations}}
                 <li class="list-item"><i class="ic fa fa-check checked"></i>{{this}}</li>
@@ -53,6 +53,7 @@
     </div>
     <div class="col-6-12 problems-list">
         <div class="property-group">
+            <span class="bold">Issues</span>
             <ul class="list">
             {{#problems}}
                 <li class="list-item"><i class="ic fa fa-exclamation-circle alerted"></i>{{this}}</li>    
@@ -61,6 +62,13 @@
             {{/problems}}
             </ul>
         </div>
+
+        {{#if attributesSummary}}
+        <div class="property-group">
+            <span class="bold">Summary</span>
+            <div>{{attributesSummary}}</div>
+        </div>
+        {{/if}}
     </div>
 
 

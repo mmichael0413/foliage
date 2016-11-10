@@ -14,11 +14,10 @@ $padding: 1.5em;
   @include clearfix();
   padding: $padding $padding 0 $padding;
   vertical-align: middle;
-  border-bottom: 1px solid $border-color;
 
   .task-container {
     display: inline-block;
-    width: 90%;
+    width: 100%;
 
     @include swb-small {
       position: relative;
@@ -85,8 +84,6 @@ $padding: 1.5em;
     margin: 0 0 0 0;
   }
   background: white;
-  //border-top-left-radius: $border-radius-base;
-  //border-top-right-radius: $border-radius-base;
   border-radius: $border-radius-base;
   &.info {
     background-color: $palette1;
@@ -149,14 +146,29 @@ $padding: 1.5em;
     }
   }
 }
+
 .activity-meta{
+  border-bottom: 1px solid $border-color;
+  padding-bottom: $padding;
   .sales-widget {
-    width: 33%;
     vertical-align: top;
-    display: none;
-    border: 1px solid $light-blue;
-    line-height: 3em;
-    float:right;
+    display: inline-block;
+    line-height: 3.25em;
+    float:right !important;
+
+    .sales-message {
+      line-height: 3.3em;
+      color: $medium-blue;
+    }
+
+    .sales-button {
+      padding-left: 1em;
+
+      .change-icon {
+        font-size: 1em;
+      }
+    }
+
     @include swb-small {
       width: 100%;
       display: block;
@@ -174,7 +186,6 @@ $padding: 1.5em;
     .text, .details {
       display: inline-block;
       text-align: center;
-      font-weight: bold;
     }
     .text {
       border-right: 1px solid $light-blue;
@@ -191,6 +202,10 @@ $padding: 1.5em;
 
   .bar-body {
     width: 55%;
+
+    .timestamp {
+      color: $medium-blue;
+    }
     @include swb-small {
       width: 100%;
     }
@@ -214,7 +229,9 @@ $padding: 1.5em;
 .ui-menu-item {
   width: 100%;
   background-color: #ffffff;
-  padding-left: .5em;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5em;
 }
 .ui-menu-item:hover {
   background: #f2fafc;
@@ -223,7 +240,7 @@ $padding: 1.5em;
   visibility: hidden;
 }
 .autocompleteColumn {
-  width: 25%;
+  flex-grow: 1;
   height: 1.5em;
   text-align: left;
   font-size: 1em;
@@ -233,14 +250,17 @@ $padding: 1.5em;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.autocompleteName {
+  width: 9em;
+}
 .autocompleteProgram {
-  width: 15%;
+  width: 8em;
 }
 .autocompleteState {
-  width: 10%;
+  width: 2em;
 }
 .autocompleteEmail {
-  width: 35%;
+  width: 9em;
 }
 
 .autocompleteSearchTerm {
