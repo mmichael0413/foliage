@@ -12,7 +12,14 @@ define(function (require) {
             _.extend(context, window.bootstrap);
         },
 
-        index: function () {
+        index: function() {
+            this.init();
+            Filter.init();
+            new ReportsDropdown();
+
+        },
+
+        types: function () {
             this.init();
             Filter.init();
             new ReportsDropdown();
