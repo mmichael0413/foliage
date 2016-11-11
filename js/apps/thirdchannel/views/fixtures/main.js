@@ -5,7 +5,7 @@ define(function (require) {
         ReportsDropdown = require('thirdchannel/views/fixtures/reportsDropdown'),
         Summary = require('thirdchannel/views/fixtures/summary'),
         TypesSummary = require('thirdchannel/views/fixtures/typesSummary'),
-        DetailsView = require('thirdchannel/views/fixtures/details/list');
+        DetailsListView = require('thirdchannel/views/fixtures/details/list');
     
 
     return {
@@ -28,10 +28,10 @@ define(function (require) {
             new TypesSummary().fetch();
         },
 
-        details: function () {
+        detailsList: function () {
             this.init();
 
-            new DetailsView().bootstrapCollection(window.bootstrap);
+            new DetailsListView().bootstrapCollection(window.bootstrap);
         }
     };
 });

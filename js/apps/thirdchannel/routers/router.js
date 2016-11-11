@@ -84,8 +84,8 @@ define(function(require){
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
             'programs/:program_id/dashboards/special_projects/:special_project_id/stores': 'dashboardSpecialProjectStores',
             'programs/:program_id/fixture_tracking/summary(/)' : 'fixturesSummary',
-            'programs/:program_id/fixture_tracking/overview(/)' : 'fixturesTypes',
-            'programs/:program_id/fixture_tracking/details(/)' : 'fixturesDetails',
+            'programs/:program_id/fixture_tracking/types(/)' : 'fixturesTypes',
+            'programs/:program_id/fixture_tracking/fixtures(/)' : 'fixturesList',
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
@@ -165,8 +165,8 @@ define(function(require){
             FixturesMain.types();
         },
         
-        fixturesDetails: function () {
-            FixturesMain.details();
+        fixturesList: function () {
+            FixturesMain.detailsList();
         },
 
         inProgress: function (){
