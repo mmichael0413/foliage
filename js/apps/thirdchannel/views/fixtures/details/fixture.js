@@ -86,7 +86,7 @@ define(function (require) {
             if (indexOfFixtures == location.pathname.length - fixturesTag.length) {
                 storeUrl = location.pathname.substr(0, indexOfFixtures);
             } else {
-                storeUrl = context.links.fixtures.program_store_base + "/" + data.programStoreUuid + fixturesTag;
+                storeUrl = context.links.fixture_tracking.program_store_base + "/" + data.programStoreUuid + fixturesTag;
             }
             return storeUrl;
         },
@@ -99,7 +99,7 @@ define(function (require) {
 
                 var programUUID = this.model.attributes.pictures[0].programUUID;
                 var imageUUID = this.model.attributes.pictures[0].imageUUID;
-                var url = context.links.fixtures.reprocessing_base_url + '/reprocess/' + programUUID + '/' + imageUUID;
+                var url = context.links.fixture_tracking.reprocessing_base_url + '/reprocess/' + programUUID + '/' + imageUUID;
 
                 var spinner = '<i class="fa fa-spinner fa-spin fa-fw"></i>';
                 this.$('.admin-links').append(spinner);
@@ -126,7 +126,7 @@ define(function (require) {
             this.carousel = undefined;
             data.containsImages = data.imagesCount > 0;
             data.alert = data.problemsCount > 0;
-            data.imageErrorUrl = context.links.fixtures.image_error;
+            data.imageErrorUrl = context.links.fixture_tracking.image_error;
             data.showReprocessingLink = false;
             if (data.attributes.pictures && data.attributes.pictures.length > 0) {
                 data.previewImageUrl = this._extractImageUrl(data.attributes.pictures[0], "small");
@@ -139,7 +139,7 @@ define(function (require) {
                         data.pictures.push(link);
                     }
                 });
-                if (context.links.fixtures.reprocessing_base_url !== undefined) {
+                if (context.links.fixture_tracking.reprocessing_base_url !== undefined) {
                     data.showReprocessingLink = true;
                 }
             } else {
