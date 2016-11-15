@@ -1,27 +1,27 @@
 define(function(require){
     var Backbone = require('backbone'),
         buttons = require('buttons'),
-        $ = require('jquery'),
-        _ = require('underscore'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-
 
         Summary = Backbone.View.extend({
             el: '#fixtures-summary',
 
+            template: HandlebarsTemplates["thirdchannel/fixture_tracking/summary"],
+
             initialize: function () {
-                //this.listenTo(context, 'filter:query', this.fetch);
+                this.render();
 
+                this.listenTo(this.model, 'request', this.renderLoading);
+                this.listenTo(this.model, 'change', this.render);
             },
 
-            fetch: function () {
+            renderLoading: function() {
                 this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/overview_loading"]);
-
             },
 
-            render: function () {
-
+            render: function() {
+                this.$el.html(this.template(this.model.attributes));
                 return this;
             }
 

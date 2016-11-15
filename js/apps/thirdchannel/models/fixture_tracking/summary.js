@@ -5,13 +5,8 @@ define(function (require) {
         context = require('context');
 
     return Backbone.Model.extend({
-        containsFilter: false,
-        filters: [],
-
-        url: function () {
-            return '/programs/' + context.programId + '/fixture_tracking/';
-        },
-
-
+        url: function() {
+            return '/programs/' + this.get('programId') + '/fixture_tracking/summary';
+        }
     });
 });
