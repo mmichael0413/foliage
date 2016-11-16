@@ -283,5 +283,9 @@ define(function (require) {
         }
         return new Handlebars.SafeString(text);
     });
+
+    Handlebars.registerHelper('round', function(value) {
+        return Math.round(value);
+    });
 });
 
