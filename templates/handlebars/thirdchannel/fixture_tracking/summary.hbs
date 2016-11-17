@@ -31,10 +31,10 @@
                 <div class="col-2-3 col-md-1 fixture-summary-content">
                     <div class="pure-g">
                         <div class="col-1-3 col-md-1 fixture-summary-value-container"><span class="fixture-summary-value">{{numberOfFixtureTypes}}</span></div>
-                        <div class="col-2-3 col-md-1">Fixture/POP Types</div>
+                        <div class="col-2-3 col-md-1"><a href="/programs/{{programId}}/fixture_tracking/types{{queryString}}">Fixture/POP Types</a></div>
 
                         <div class="col-1-3 col-md-1 fixture-summary-value-container"><span class="fixture-summary-value">{{numberOfFixtures}}</span></div>
-                        <div class="col-2-3 col-md-1">Fixture/POPs</div>
+                        <div class="col-2-3 col-md-1"><a href="/programs/{{programId}}/fixture_tracking/fixtures{{queryString}}">Fixture/POPs</a></div>
 
                         <div class="col-1-3 col-md-1 fixture-summary-value-container {{#if_gt numberOfFixturesWithProblems 0}}fixture-summary-problems{{/if_gt}}">
                             {{#if_gt numberOfFixturesWithProblems 0}}
@@ -46,7 +46,7 @@
                                 {{numberOfFixturesWithProblems}}
                             </span>
                         </div>
-                        <div class="col-2-3 col-md-1">Fixture/POPs with Issues</div>
+                        <div class="col-2-3 col-md-1"><a href="/programs/{{programId}}/fixture_tracking/fixtures{{problemsQueryString}}">Fixture/POPs with Issues</a></div>
                     </div>
                 </div>
             </div>
