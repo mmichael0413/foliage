@@ -6,7 +6,6 @@ define(function (require) {
         Summary = require('thirdchannel/models/fixture_tracking/summary'),
         ReportsDropdown = require('thirdchannel/views/fixtures/reportsDropdown'),
         SummaryOverview = require('thirdchannel/views/fixtures/summary'),
-        CommonIssues = require('thirdchannel/views/fixtures/commonIssues'),
         TypesSummary = require('thirdchannel/views/fixtures/typesSummary'),
         DetailsListView = require('thirdchannel/views/fixtures/details/list');
 
@@ -43,10 +42,6 @@ define(function (require) {
         index: function() {
             this.init();
             this.initSummaryOverview();
-
-            var commonIssuesView = new CommonIssues();
-
-            commonIssuesView.render();
         },
 
         types: function () {
