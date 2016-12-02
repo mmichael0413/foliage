@@ -1,0 +1,67 @@
+{{#if tasks}}
+    <div class="tasks clearfix">
+        <div class="task-container">
+            {{#tasks}}
+            <a class="task-item {{#active}}active{{/active}}" href="{{href}}">
+                <div class="badge task-label col-md-1-2">{{title}}</div>
+                {{#has_summary}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-summary"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_summary}}
+                {{#has_photos}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-photos"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_photos}}
+                {{#has_alerts}}<div class="task-info badge col-md-1-7"><i class="ic ic_feed-alerts"/></div>{{else}}<span class="col-md-1-7"></span>{{/has_alerts}}
+            </a>
+            {{/tasks}}
+        </div>
+    </div>
+{{/if}}
+
+
+<div class="activity-content">
+    {{#if_eq type "Checkin"}}
+    {{#if_gt issue_length 0}}
+        <div class="issues-found">
+            <h3>{{issue_length}} {{pluralize issue_length 'New Issue Found' 'New Issues Found'}}</h3>
+            <ul class="unstyled">
+                {{#each issues}}
+                <li>- {{label}}</li>
+                {{/each}}
+            </ul>
+            {{#if_gt issue_length 3}}
+            <a href="{{report_url}}" target="_blank"><span class="indicator">showing 3 of {{issue_length}}</span></a>
+            {{/if_gt}}
+        </div>
+    {{/if_gt}}
+    {{/if_eq}}
+    <div class="summary">
+        {{#show_summary}}
+            <h3>{{../subject}}</h3>
+            <p>{{{../content}}}</p>
+        {{else}}
+            <h3>There is no Summary for this {{../name}}.</h3>
+        {{/show_summary}}
+    </div>
+
+</div>
+{{#if images}}
+<div class="activity-photos">
+
+    <div class="carousel">
+        {{#each images}}
+        <div>
+            <div class="helper">
+                <img src="{{url}}" alt="{{label}}" class="img-responsive" onerror="this.src='{{../content_image_error_url}}'"/>
+            </div>
+            <div class="img-label">{{image_type}}</div>
+        </div>
+
+        {{/each}}
+        {{#unless_eq images.length 1}}
+        <a href="#" class="arrow arrow-left">
+            <span class="ic ic_left"></span>
+        </a>
+        <a href="#" class="arrow arrow-right">
+            <span class="ic ic_right"></span>
+        </a>
+        {{/unless_eq}}
+    </div>
+
+</div>
+{{/if}}
