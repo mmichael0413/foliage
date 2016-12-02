@@ -17,6 +17,7 @@ define(function(require) {
     return Backbone.View.extend({
         className: 'activity',
         template: HandlebarsTemplates['thirdchannel/activity'],
+        taskTemplate: HandlebarsTemplates['thirdchannel/task'],
         events: {
             'click .activity_like_button': 'likeActivity',
             'click .activity_follow_button': 'followActivity',
@@ -77,7 +78,20 @@ define(function(require) {
             var c = this.$('.comments');
             this.comments = new CommentsView({el: c, activity: this.model, programId: this.programId, mentions: this.mentions, currentUserId: this.currentUserId, highlightWords: this.highlightWords}).render();
             this.newComment = new NewCommentView({el: this.$('.new-comment'), activity: this.model, collection: this.comments.collection}).render();
-            
+
+            this.renderTask();
+            return this;
+        },
+        renderTask: function() {
+            if(this.model.get('images')) {
+                this.model.set('imageCount', this.model.get('images').length);
+            } else {
+                this.model.set('imageCount', 0);
+            }
+
+            // render task html
+            this.$(".activity-details").html(this.taskTemplate(this.model.attributes));
+
             if (!this.model.get('isMobile')) {
                 var viewer = this.$el.find('.activity-photos').viewer({
                     inline: false,
@@ -99,7 +113,7 @@ define(function(require) {
             model.fetch()
             .done(function () {
                 self.model =  (model.get('activities') && model.get('activities').length > 0) ? new Backbone.Model(model.get('activities')[0]) : new Backbone.Model(model.get('activities')[0]);
-                self.render();
+                self.renderTask();
                 self.initializeCarousel();
             });
         },
