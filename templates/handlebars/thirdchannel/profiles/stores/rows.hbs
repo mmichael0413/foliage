@@ -8,6 +8,9 @@
       {{#if rows.0.distance}}
         <th>Distance</th>
       {{/if}}
+      {{#if rows.0.sales_data}}
+        <th>Sales</th>
+      {{/if}}
       </tr>
     </thead>
     <tbody>
@@ -22,6 +25,22 @@
         <td>{{address}}</td>
       {{#if distance}}
         <td>{{distance}} miles</td>
+      {{/if}}
+      {{#if sales_data}}
+        <td>
+        {{#if sales_data.message}}
+          <span>
+            <i class="medium-blue">{{sales_data.message}}</i>
+          </span>
+        {{else}}
+          <span class="sales-button">
+            <div class="percentage-change activity-feed-qtd {{ percentageChangeClass sales_data.sales_change }}">
+              <i class="fa {{percentageChangeIcon sales_data.sales_change }} change-icon"></i>
+              <div class="pull-right">{{formatPercentageChange sales_data.sales_change}}</div>
+            </div>
+          </span>
+        {{/if}}
+        </td>
       {{/if}}
       </tr>
     {{/rows}}

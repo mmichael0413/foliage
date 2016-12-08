@@ -1,6 +1,28 @@
 {{#rows}}
-<div class="item"><a href="{{links.profile}}">{{name}}</a>, {{address}}</div>
-
+<div class="item pure-g">
+    <div class="col-md-1 col-2-5">
+        <a href="{{links.profile}}">{{name}}</a>
+    </div>
+    <div class="col-md-1 col-2-5">
+        {{address}}
+    </div>
+    <div class="col-md-1 col-1-5">
+    {{#if sales_data}}
+        {{#if sales_data.message}}
+            <span>
+            <i class="medium-blue">{{sales_data.message}}</i>
+        </span>
+        {{else}}
+            <span class="sales-button">
+            <div class="percentage-change activity-feed-qtd {{ percentageChangeClass sales_data.sales_change }}">
+                <i class="fa {{percentageChangeIcon sales_data.sales_change }} change-icon"></i>
+                <div class="pull-right">{{formatPercentageChange sales_data.sales_change}}</div>
+            </div>
+        </span>
+        {{/if}}
+    {{/if}}
+    </div>
+</div>
 {{else}}
 	<p class="item">There are no stores for this query.</p>
 {{/rows}}
