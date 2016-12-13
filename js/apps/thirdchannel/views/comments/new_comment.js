@@ -35,18 +35,28 @@ define(function(require){
                        return;
                    }
                    var splitLabel = ui.item.originalText.split("\t");
-                   var currentText = $(e.target).html();
-                   $(e.target).html(currentText.substring(0, currentText.lastIndexOf('@')+1)+splitLabel[0]+' '+splitLabel[1]);
+                   var $target = $(e.target);
+                   var currentText = $target.html();
+                   $target.html(currentText.substring(0, currentText.lastIndexOf('@')+1)+splitLabel[0]+' '+splitLabel[1]);
+
+                   // move cursor to the end
+                   var range = document.createRange();
+                   range.selectNodeContents(e.target);
+                   range.collapse(false);
+                   var selection = window.getSelection();
+                   selection.removeAllRanges();
+                   selection.addRange(range);
+
                    var mentions = [];
-                   var previousMentions = $(e.target).data('mentions');
+                   var previousMentions = $target.data('mentions');
                    if (previousMentions) {
                        mentions = mentions.concat(previousMentions);
                    }
                    mentions.push(ui.item.value);
 
-                   $(e.target).data('mentions', mentions);
-                   $(e.target).trigger($.Event("keypress"));
-                   $(e.target).trigger($.Event("change"));
+                   $target.data('mentions', mentions);
+                   $target.trigger($.Event("keypress"));
+                   $target.trigger($.Event("change"));
                };
 
                $(".new-comment-field").autocomplete({
@@ -166,8 +176,9 @@ define(function(require){
        },
        commentFocus: function () {
            if(!this.activity.get('isMobile') || (this.activity.get('isMobile') && this.activity.get('singleActivity'))) {
-               this.$(".new-comment-field").focus();
-              // $('.content-holder').scrollTo(this.$(".new-comment-field"),{duration:10000, offsetTop : '50'});
+               var $newCommentField = this.$(".new-comment-field");
+               $newCommentField.focus();
+               $newCommentField.get(0).scrollIntoView();
            } else {
                window.location.assign ( "/programs/" + context.programId + "/activities/" + this.activity.get('activity_id'));
            }

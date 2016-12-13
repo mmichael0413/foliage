@@ -178,9 +178,9 @@ define(function (require) {
     Handlebars.registerHelper('percentageChangeIcon', function(change) {
         if (change !== undefined && change !== null) {
             if (change > 0) {
-                return 'ic_up';
+                return 'fa-angle-up';
             } else if (change < 0) {
-                return 'ic_down';
+                return 'fa-angle-down';
             }
         }
     });
@@ -210,14 +210,20 @@ define(function (require) {
         var hours = date.getHours();
 
         date.setHours(hours - offset);
-        return date.toLocaleTimeString(locale, {
+
+        var dateString = date.toLocaleDateString(locale, {
             year: "numeric",
-            month: "short",
-            day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-            timeZoneName: "short"
-        });
+            month: "long",
+            day: "numeric"
+        }),
+            timeString = date.toLocaleTimeString(locale, {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                timeZoneName: "short"
+            });
+
+        return dateString + ' at ' + timeString;
     });
 
     Handlebars.registerHelper('similarAccountClass', function(similarity) {
@@ -237,7 +243,7 @@ define(function (require) {
     });
 
     Handlebars.registerHelper("highlight", function (text, mentionedUsers, currentUserId, highlightWords, options) {
-        var highlightMatcher = new RegExp(/@(\w+\s{1,3}\w+(?:\sAgents)?\s{1,3})\[[^\[\t\n\r\]]+\]/g); // allow for 1-3 spaces between first, last
+        var highlightMatcher = new RegExp(/@(\w+\s{1,3}(?:\w+\s)?\w+(?:\sAgents)?\s{1,3})\[[^\[\t\n\r\]]+\]/g); // allow for 1-3 spaces between first, last
         var mentions = [];
         var names = [];
         var highlightWordsHash = {};
@@ -276,6 +282,10 @@ define(function (require) {
             text = text.replace(mentions[i], mentionLink[0].outerHTML);
         }
         return new Handlebars.SafeString(text);
+    });
+
+    Handlebars.registerHelper('round', function(value) {
+        return Math.round(value);
     });
 });
 

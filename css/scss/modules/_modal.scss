@@ -1,0 +1,31 @@
+.modal {
+  padding: 1.5em;
+}
+
+.confirmation-modal {
+  .danger {
+    font-weight: bold;
+    color: $red;
+  }
+
+  .status {
+    text-align: center;
+    padding: 4em;
+  }
+
+  .progress {
+    div:last-child {
+      padding-top: 1rem;
+      font-size: 3rem;
+      color: $red;
+    }
+  }
+
+  .success {
+    div:last-child {
+      padding-top: 1rem;
+      font-size: 3rem;
+      color: $palette11;
+    }
+  }
+}

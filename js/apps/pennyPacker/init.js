@@ -12,6 +12,7 @@ require.config({
         'serializeObject' : "../libs/bower_components/jquery-serialize-object/jquery.serialize-object",
         'underscore'    : '../libs/bower_components/underscore/underscore',
         'backbone'      : '../libs/bower_components/backbone/backbone',
+        'backbone.modal' : '../libs/bower_components/backbone-modal/backbone.modal',
         'handlebars'    : '../libs/bower_components/handlebars/handlebars.min',
         'handlebarsTemplates': 'pennyPacker/templates/hbs-compiled',
         'handlebarsHelpers' : 'shared/utils/handlebarsHelpers',
@@ -44,6 +45,9 @@ require.config({
         "backbone": {
             deps: ["underscore"],
             exports: "Backbone"
+        },
+        "backbone.modal" : {
+            deps: ["backbone"]
         },
         "handlebars": {
             deps: ["jquery"],

@@ -1,0 +1,55 @@
+<div class="section">
+    <div class="pure-g">
+        <div class="col-1-2 col-md-1">
+            <div class="pure-g">
+                <div class="col-1-3 col-md-1">
+                    <div class="fixture-summary-icon">
+                        <i class="ic ic_store" />
+                    </div>
+                </div>
+                <div class="col-2-3 col-md-1 fixture-summary-content">
+                    <div class="pure-g">
+                        <div class="col-1-3 col-md-1 fixture-summary-value-container"><span class="fixture-summary-value">{{numberOfStores}}</span></div>
+                        <div class="col-2-3 col-md-1">Stores</div>
+
+                        <div class="col-1-3 col-md-1 fixture-summary-value-container"><span class="fixture-summary-value">{{numberOfStoresWithFixtures}}</span></div>
+                        <div class="col-2-3 col-md-1">Stores with Fixtures</div>
+
+                        <div class="col-1-3 col-md-1 fixture-summary-value-container"><span class="fixture-summary-value">{{round averageNumberFixturesPerStore}}</span></div>
+                        <div class="col-2-3 col-md-1">Avg. # of Fixtures in Stores</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1-2 col-md-1">
+            <div class="pure-g">
+                <div class="col-1-3 col-md-1">
+                    <div class="fixture-summary-icon">
+                        <i class="ic ic_fixture-pop" />
+                    </div>
+                </div>
+                <div class="col-2-3 col-md-1 fixture-summary-content">
+                    <div class="pure-g">
+                        <div class="col-1-3 col-md-1 fixture-summary-value-container"><span class="fixture-summary-value">{{numberOfFixtureTypes}}</span></div>
+                        <div class="col-2-3 col-md-1"><a href="/programs/{{programId}}/fixture_tracking/types{{queryString}}">Fixture/POP Types</a></div>
+
+                        <div class="col-1-3 col-md-1 fixture-summary-value-container"><span class="fixture-summary-value">{{numberOfFixtures}}</span></div>
+                        <div class="col-2-3 col-md-1"><a href="/programs/{{programId}}/fixture_tracking/fixtures{{queryString}}">Fixture/POPs</a></div>
+
+                        <div class="col-1-3 col-md-1 fixture-summary-value-container {{#if_gt numberOfFixturesWithProblems 0}}fixture-summary-problems{{/if_gt}}">
+                            {{#if_gt numberOfFixturesWithProblems 0}}
+                                <span class="icon problems exist">
+                                    <i class="ic fa fa-exclamation-circle" />
+                                </span>
+                            {{/if_gt}}
+                            <span class="fixture-summary-value">
+                                {{numberOfFixturesWithProblems}}
+                            </span>
+                        </div>
+                        <div class="col-2-3 col-md-1"><a href="/programs/{{programId}}/fixture_tracking/fixtures{{problemsQueryString}}">Fixture/POPs with Issues</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

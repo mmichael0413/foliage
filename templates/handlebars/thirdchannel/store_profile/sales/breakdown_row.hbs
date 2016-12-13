@@ -2,21 +2,21 @@
 <td>{{formatSalesDollarValue salesInCents}}</td>
 <td>{{formatSalesDollarValue salesInCentsLY}}</td>
 <td>
-    <span class="percentage-change {{ percentageChangeClass salesChange }}">
-        <i class="ic {{ percentageChangeIcon salesChange }}"></i> {{formatPercentageChange salesChange}}
+    <span class="percentage-change overview-qtd {{ percentageChangeClass salesChange }}">
+        <i class="fa {{ percentageChangeIcon salesChange }}"></i> {{formatPercentageChange salesChange}}
     </span>
 </td>
 <td>{{formatSalesValue unitsSold}}</td>
 <td>{{formatSalesValue unitsSoldLY}}</td>
 <td>
-    <span class="percentage-change {{ percentageChangeClass unitsSoldChange }}">
+    <span class="percentage-change overview-qtd {{ percentageChangeClass unitsSoldChange }}">
         {{formatPercentageChange unitsSoldChange }}
     </span>
 </td>
 <td>{{formatSalesValue unitsOnHand}}</td>
 <td>{{formatSalesValue unitsOnHandLY}}</td>
 <td>
-    <span class="percentage-change {{ percentageChangeClass unitsOnHandChange }}">
+    <span class="percentage-change overview-qtd {{ percentageChangeClass unitsOnHandChange }}">
         {{formatPercentageChange unitsOnHandChange}}
     </span>
 </td>

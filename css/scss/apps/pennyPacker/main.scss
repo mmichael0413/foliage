@@ -3,6 +3,7 @@
 @import "../../lib/pure.responsive-grid";
 @import "../../lib/chosen";
 @import '../../../../js/libs/bower_components/slick.js/slick/slick';
+@import '../../lib/backbone.modal/modal';
 
 @import "../../base/fonts_all";
 @import "../../base/base";
@@ -23,6 +24,7 @@
 @import "../../modules/data_section";
 @import "../../modules/expanding_table_row";
 @import "../../modules/address_title";
+@import "../../modules/modal";
 @import "../../modules/atoms/alerts";
 
 @import "../../modules/store_profile_section";

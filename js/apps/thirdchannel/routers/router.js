@@ -83,8 +83,9 @@ define(function(require){
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
             'programs/:program_id/dashboards/special_projects/:special_project_id/stores': 'dashboardSpecialProjectStores',
-            'programs/:program_id/fixtures/overview(/)' : 'fixturesIndex',
-            'programs/:program_id/fixtures/overview/details(/)' : 'fixturesDetails',
+            'programs/:program_id/fixture_tracking/summary(/)' : 'fixturesSummary',
+            'programs/:program_id/fixture_tracking/types(/)' : 'fixturesTypes',
+            'programs/:program_id/fixture_tracking/fixtures(/)' : 'fixturesList',
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
@@ -156,12 +157,16 @@ define(function(require){
             CheckinsView.init();
         },
 
-        fixturesIndex: function () {
+        fixturesSummary: function() {
             FixturesMain.index();
         },
+
+        fixturesTypes: function () {
+            FixturesMain.types();
+        },
         
-        fixturesDetails: function () {
-            FixturesMain.details();
+        fixturesList: function () {
+            FixturesMain.detailsList();
         },
 
         inProgress: function (){

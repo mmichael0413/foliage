@@ -2,29 +2,31 @@ define(function(require) {
     var Backbone = require('backbone'),
         context = require('context'),
         $ = require('jquery'),
+        ConfirmationModal = require('pennyPacker/modals/confirmation'),
+        InvalidateModel = require('pennyPacker/models/invalidate');
 
-        /**
-         * Encapsulates the Actions Row in the Entries List View, specifically the buttons regarding report generation
-         * 
-         * @type {Object}
-         */
-        ActionsRowView = {
-            el: '.content',
+    return Backbone.View.extend({
+        el: '.content',
 
-            events: {
-                'click .paypal': 'paypal'
-            },
+        events: {
+            'click .paypal': 'paypal',
+            'click .invalidate': 'invalidate'
+        },
 
-            render: function () {
-                return this;
-            },
+        render: function () {
+            return this;
+        },
 
+        paypal: function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            window.location = context.content.links.paypal + window.location.search + "&format=csv";
+        },
 
-            paypal: function (e) {
-                e.stopPropagation();
-                e.preventDefault();
-                window.location = context.content.links.paypal + window.location.search + "&format=csv";
-            }
-        };
-    return Backbone.View.extend(ActionsRowView);
+        invalidate: function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            $("body").append(new ConfirmationModal({model: new InvalidateModel()}).render().el);
+        }
+    });
 });

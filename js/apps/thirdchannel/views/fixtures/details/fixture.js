@@ -1,4 +1,4 @@
-define(function(require){
+define(function (require) {
     var Backbone = require('backbone'),
         _ = require("underscore"),
         context = require('context'),
@@ -9,26 +9,27 @@ define(function(require){
         className: 'fixture-instance-tile section',
 
         events: {
-            'click .details-toggle.ic_up': "showDetails",
+            'click .details-toggle.ic_down': "showDetails",
             'click .problems': "toggleDetails",
             'click .images': "toggleDetails",
-            'click .details-toggle.ic_down': 'hideDetails',
-            "click .arrow-left" : "prevSlide",
-            "click .arrow-right" : "nextSlide"
+            'click .details-toggle.ic_up': 'hideDetails',
+            "click .arrow-left": "prevSlide",
+            "click .arrow-right": "nextSlide",
+            "click .reprocess": "reprocessImage"
         },
 
         showDetails: function (e) {
-            
+
             this.$el.find(".details").show();
             if (!this.carousel) {
                 this.initializeCarousel();
             }
-            this._swapArrows(this.$el.find('.details-toggle'), "ic_up", "ic_down");
+            this._swapArrows(this.$el.find('.details-toggle'), "ic_down", "ic_up");
         },
 
         hideDetails: function (e) {
             this.$el.find(".details").hide();
-            this._swapArrows(this.$el.find('.details-toggle'), "ic_down", "ic_up");
+            this._swapArrows(this.$el.find('.details-toggle'), "ic_up", "ic_down");
         },
 
         toggleDetails: function (e) {
@@ -56,20 +57,20 @@ define(function(require){
         },
 
         // the following is copied from thirdchannel/views/activities/activity
-        prevSlide: function(e){
+        prevSlide: function (e) {
             e.preventDefault();
             this.carousel.slickPrev();
         },
-        nextSlide: function(e){
+        nextSlide: function (e) {
             e.preventDefault();
             this.carousel.slickNext();
         },
-        initializeCarousel: function(){
+        initializeCarousel: function () {
             var self = this;
             this.carousel = this.$el.find('.carousel').slick({
                 draggable: true,
                 arrows: false,
-                onInit: function() {
+                onInit: function () {
                     var $carousel = self.$('.carousel');
                     var width = $carousel.width();
 
@@ -79,17 +80,46 @@ define(function(require){
             });
         },
 
-        _buildStoreUrl: function(data) {
+        _buildStoreUrl: function (data) {
             var storeUrl = "",
                 fixturesTag = "/fixtures",
                 indexOfFixtures = location.pathname.indexOf(fixturesTag);
             // if we're already at the fixture page, go to the root
-            if (indexOfFixtures == location.pathname.length-fixturesTag.length) {
+            if (indexOfFixtures == location.pathname.length - fixturesTag.length) {
                 storeUrl = location.pathname.substr(0, indexOfFixtures);
             } else {
-                storeUrl = context.links.fixtures.program_store_base +"/" + data.programStoreUuid + fixturesTag;
+                storeUrl = context.links.fixture_tracking.program_store_base + "/" + data.programStoreUuid + fixturesTag;
             }
             return storeUrl;
+        },
+
+        reprocessImage: function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (this.model.attributes.pictures && this.model.attributes.pictures.length > 0) {
+
+                var programUUID = this.model.attributes.pictures[0].programUUID;
+                var imageUUID = this.model.attributes.pictures[0].imageUUID;
+                var url = context.links.fixture_tracking.reprocessing_base_url + '/reprocess/' + programUUID + '/' + imageUUID;
+
+                var spinner = '<i class="fa fa-spinner fa-spin fa-fw"></i>';
+                this.$('.admin-links').append(spinner);
+                this.$('.reprocess').remove();
+                var self = this;
+                $.ajax({
+                    url: url,
+                    method: 'POST',
+                    crossDomain: true
+                }).done(function (a) {
+                    // alert('Processing has completed.');
+                    self.$('.fa-spinner').remove();
+                    self.$('.admin-links').append('<i class="fa fa-check-square"></i> Refresh the page to see the reprocessed image');
+                }).fail(function (err) {
+                    console.log('error');
+                    self.$('.fa-spinner').remove();
+                });
+            }
         },
 
         render: function () {
@@ -98,12 +128,18 @@ define(function(require){
             this.carousel = undefined;
             data.containsImages = data.imagesCount > 0;
             data.alert = data.problemsCount > 0;
+            data.imageErrorUrl = context.links.fixture_tracking.image_error;
+            data.showReprocessingLink = false;
             if (data.attributes.pictures && data.attributes.pictures.length > 0) {
-                data.previewImageUrl = this._extractImageUrl(data.attributes.pictures[0], "small");   
+                data.previewImageUrl = this._extractImageUrl(data.attributes.pictures[0], "small");
                 data.pictures = [];
                 data.attributes.pictures.forEach(function (picture) {
+<<<<<<< HEAD
                     if (picture && picture.links) {
                         var link = _.find(picture.links, function (image) { 
+=======
+                    var link = _.find(picture.links, function (image) {
+>>>>>>> origin/dev
                         return image.rel === "medium";
                         });
                         if (link) {
@@ -111,8 +147,13 @@ define(function(require){
                         }    
                     }
                 });
+                if (context.links.fixture_tracking.reprocessing_base_url !== undefined) {
+                    data.showReprocessingLink = true;
+                }
+            } else {
+                // this is being explicitly set because firefox does not trigger the onError event if the src is empty.
+                data.previewImageUrl = data.imageErrorUrl;
             }
-            data.imageErrorUrl = context.links.fixtures.image_error;
             data.storeUrl = this._buildStoreUrl(data);
             this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/fixture_detail_tile"](data));
             return this;

@@ -1,6 +1,6 @@
 <div class="summary pure-g">
     <div class="col-1-12 preview-image-container">
-        <img class="preview-image" src="{{previewImageUrl}}" alt="{{name}}" onerror="this.src='{{imageErrorUrl}}'"></img>    
+        <img class="preview-image" src="{{previewImageUrl}}" alt="{{name}}" onerror="this.src='{{imageErrorUrl}}'"></img>
     </div>
 
 
@@ -17,10 +17,9 @@
     </div>
     <div class="col-1-12">
         
-        <p class="arrow"><i class="ic ic_up details-toggle"></i></p>    
+        <p class="arrow"><i class="ic ic_down details-toggle"></i></p>
         <p class="problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{problemsCount}}</p>
     </div>
-    
 </div>
 
 
@@ -29,7 +28,7 @@
     
     <div class="col-3-12 checks">
         <div class="property-group">
-            <span>Visiblity</span>
+            <span class="bold">Visiblity</span>
             {{#visibility}}
                 <ul class="list">
                     <li class="list-item"><i class="ic fa fa-check checked"></i>{{this}}</li>    
@@ -40,7 +39,7 @@
         </div>
 
         <div class="property-group">
-            <span>Location</span>
+            <span class="bold">Location</span>
             <ul class="list">
             {{#locations}}
                 <li class="list-item"><i class="ic fa fa-check checked"></i>{{this}}</li>
@@ -54,6 +53,7 @@
     </div>
     <div class="col-6-12 problems-list">
         <div class="property-group">
+            <span class="bold">Issues</span>
             <ul class="list">
             {{#problems}}
                 <li class="list-item"><i class="ic fa fa-exclamation-circle alerted"></i>{{this}}</li>    
@@ -62,6 +62,13 @@
             {{/problems}}
             </ul>
         </div>
+
+        {{#if attributesSummary}}
+        <div class="property-group">
+            <span class="bold">Summary</span>
+            <div>{{attributesSummary}}</div>
+        </div>
+        {{/if}}
     </div>
 
 
@@ -87,6 +94,10 @@
     {{/if}}
         
     </div>
-    
+    {{#if showReprocessingLink}}
+        <div class="col-1-1 admin-links">
+            <a class="reprocess" href="#">Reprocess Image</a>
+        </div>
+    {{/if}}
 
 </div>

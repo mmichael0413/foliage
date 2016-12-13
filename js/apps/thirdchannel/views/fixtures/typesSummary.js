@@ -15,12 +15,12 @@ define(function(require){
                 return response.fixtures;
             },
             url: function () {
-                return context.links.fixtures.types + window.location.search;
+                return context.links.fixture_tracking.types + window.location.search;
             }
         }),
 
 
-        Overview = Backbone.View.extend({
+        TypesSummary = Backbone.View.extend({
             el: "#fixturesList",
 
             initialize: function () {
@@ -56,9 +56,9 @@ define(function(require){
                 self.$el.html("");
                 this.types.each(function(type) {
                     type.set({
-                        "imageError": context.links.fixtures.image_error,
+                        "imageError": context.links.fixture_tracking.image_error,
                         total: 0, matching: 0, stores: 0,
-                        "detailsUrl": context.links.fixtures.details
+                        "detailsUrl": context.links.fixture_tracking.details
                     });
                     self.alignBreakdown(type, self.types.breakdown);
                     self.$el.append((new TypeTile({model:type}).render()).el);
@@ -67,7 +67,5 @@ define(function(require){
 
         });
 
-
-    return Overview;
-
+    return TypesSummary;
 });

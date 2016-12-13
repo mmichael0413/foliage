@@ -4,7 +4,6 @@ define(function(require) {
         FixtureDetailsModal = require('thirdchannel/modals/fixtures/fixture_details'),
 
         TypeTile = {
-
             className: "fixture-type-tile",
 
             events: {
@@ -25,7 +24,6 @@ define(function(require) {
                 } else {
                     console.warn("Problems needs to be an array before it can be turned into a query string. instead, received a ", typeof data.problems);
                 }
-                
             },
 
             render: function () {
@@ -42,9 +40,11 @@ define(function(require) {
                 if (data.total > 0) {
                     data.hasTotal = true;
                 }
+
                 if (data.matching > 0) {
                     data.alert = true;
                 }
+
                 if (data.stores > 0) {
                     data.hasStores = true;
                 }
@@ -52,13 +52,13 @@ define(function(require) {
                 if (data.problems) {
                     this.buildProblemsQueryString(data);
                 }
-                
-                // tc-4583, truncates the name of the fixture if it's too long
+
                 if (data.name.length > nameMax) {
                     data.name = data.name.substring(0,nameMax-1) + "...";
                 }
 
                 this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/fixture_type_tile"](data));
+
                 return this;
             }
         };
