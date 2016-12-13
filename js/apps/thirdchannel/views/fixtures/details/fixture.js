@@ -81,15 +81,22 @@ define(function (require) {
         },
 
         _buildStoreUrl: function (data) {
+            // the trick here is to tweak the url based on whether or not we're in the store_profile page vs the fixtures_page
             var storeUrl = "",
                 fixturesTag = "/fixtures",
-                indexOfFixtures = location.pathname.indexOf(fixturesTag);
-            // if we're already at the fixture page, go to the root
-            if (indexOfFixtures == location.pathname.length - fixturesTag.length) {
+                indexOfFixtures = location.pathname.indexOf(fixturesTag),
+                isStoreProfile = function () {
+                    return indexOfFixtures == location.pathname.length - fixturesTag.length && data.programStoreUuid && location.pathname.indexOf(data.programStoreUuid) > 0;
+                };
+
+                
+            // // if we're already at the fixture page, go to the root
+            if (isStoreProfile()) {
                 storeUrl = location.pathname.substr(0, indexOfFixtures);
             } else {
                 storeUrl = context.links.fixture_tracking.program_store_base + "/" + data.programStoreUuid + fixturesTag;
             }
+
             return storeUrl;
         },
 
