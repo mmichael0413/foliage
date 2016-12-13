@@ -134,12 +134,10 @@ define(function (require) {
                 data.previewImageUrl = this._extractImageUrl(data.attributes.pictures[0], "small");
                 data.pictures = [];
                 data.attributes.pictures.forEach(function (picture) {
-<<<<<<< HEAD
+                    
                     if (picture && picture.links) {
                         var link = _.find(picture.links, function (image) { 
-=======
-                    var link = _.find(picture.links, function (image) {
->>>>>>> origin/dev
+
                         return image.rel === "medium";
                         });
                         if (link) {
