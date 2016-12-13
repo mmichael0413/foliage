@@ -219,12 +219,16 @@ $row-margin: 0.5em;
     .header-bar {
         display: flex;
         justify-content: space-between;
-        height: 4em;
+        //height: 4em;
+        
         line-height: 2em;
         padding: 1em 1em;
         background-color: lighten($light-blue, 30%);
         color: $medium-blue;
         border:1px solid $border-color;
+        h2 {
+            margin: 0;
+        }
         .name {
             font-weight: normal;
             width: 93%;
