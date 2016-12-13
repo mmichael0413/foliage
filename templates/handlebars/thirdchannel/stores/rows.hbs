@@ -14,10 +14,10 @@
         </span>
         {{else}}
             <span class="sales-button">
-            <div class="percentage-change activity-feed-qtd {{ percentageChangeClass sales_data.sales_change }}">
+            <a href="{{links.profile}}/sales" class="percentage-change activity-feed-qtd {{ percentageChangeClass sales_data.sales_change }}">
                 <i class="fa {{percentageChangeIcon sales_data.sales_change }} change-icon"></i>
                 <div class="pull-right">{{formatPercentageChange sales_data.sales_change}}</div>
-            </div>
+            </a>
         </span>
         {{/if}}
     {{/if}}
