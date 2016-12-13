@@ -29,7 +29,7 @@ define(function(require) {
             render: function () {
                 var attributes = this.model.get("attributes"),
                     data = this.model.toJSON(),
-                    nameMax = 45;
+                    nameMax = 38;
                    
                 if (attributes.hasOwnProperty("fixtureImages") && attributes.fixtureImages.length >= 1) {
                     //data.imageUrl = attributes.fixtureImages[attributes.fixtureImages.length-1].links[2].href
