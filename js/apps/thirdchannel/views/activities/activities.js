@@ -8,13 +8,11 @@ define(function (require) {
         Expanding = require('expanding'),
         Livestamp = require('livestamp'),
         InfiniteScrollView = require('thirdchannel/views/shared/infinite_scroll'),
-        LoadingView = require('thirdchannel/views/activities/loading'),
-        HandlebarsTemplates = require('handlebarsTemplates');
+        LoadingView = require('thirdchannel/views/activities/loading');
 
     var ActivitiesView = InfiniteScrollView.extend({
         el: '.activities-holder',
         infiniteCollectionClass: ActivityCollection,
-        loadingTemplate: HandlebarsTemplates['thirdchannel/loading'],
 
         endOfFeedHTML: "<div class='activity alert info'>You have reached the end of the feed!</div>",
         errorHTML: '<div class="activity alert error">Additional activities cannot be loaded due to an error on the server. Please contact Tech Support</div>',
@@ -86,7 +84,6 @@ define(function (require) {
 
         insertLoadingTemplate: function () {
           this.loadIndicator = new LoadingView();
-          this.loadIndicator.template = this.loadingTemplate;
           this.$el.prepend(this.loadIndicator.render().el);
         },
 
