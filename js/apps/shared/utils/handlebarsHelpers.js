@@ -219,7 +219,6 @@ define(function (require) {
             timeString = date.toLocaleTimeString(locale, {
                 hour: "2-digit",
                 minute: "2-digit",
-                second: "2-digit",
                 timeZoneName: "short"
             });
 
@@ -288,4 +287,3 @@ define(function (require) {
         return Math.round(value);
     });
 });
-
