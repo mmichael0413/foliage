@@ -7,8 +7,7 @@ define(function (require) {
         IncompleteActivity = require('thirdchannel/models/activities/incomplete_activity'),
         Expanding = require('expanding'),
         Livestamp = require('livestamp'),
-        InfiniteScrollView = require('thirdchannel/views/shared/infinite_scroll'),
-        LoadingView = require('thirdchannel/views/activities/loading');
+        InfiniteScrollView = require('thirdchannel/views/shared/infinite_scroll');
 
     var ActivitiesView = InfiniteScrollView.extend({
         el: '.activities-holder',
@@ -83,7 +82,6 @@ define(function (require) {
         },
 
         insertLoadingTemplate: function () {
-          this.loadIndicator = new LoadingView();
           this.$el.prepend(this.loadIndicator.render().el);
         },
 
