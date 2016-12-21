@@ -1,0 +1,36 @@
+.marketing {
+	.btn.primary {
+		color: $marketing-primary-color;
+		text-transform: uppercase;
+		text-decoration: none;
+		display: inline-block;
+		margin: auto;
+		min-width: $marketing-button-size;
+		border: $marketing-border-size solid $marketing-primary-color;
+		text-align: center;
+		line-height: $marketing-font-size;
+
+		i {
+			padding: $marketing-button-icon-padding;
+			font-size: $marketing-font-size;
+			line-height: $marketing-font-size;
+			float: left;
+			border-right: $marketing-border-size solid $marketing-primary-color;
+		}
+
+		span {
+			padding: 0 1em;
+		}
+
+		&:hover {
+			color: $marketing-secondary-color;
+			background: $marketing-primary-color;
+
+			i {
+				border-right-color: $marketing-secondary-color;
+			}
+		}
+	}
+}
+
+

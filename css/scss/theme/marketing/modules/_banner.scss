@@ -1,0 +1,46 @@
+.marketing {
+	.banner {
+		position: relative;
+		background-size: cover;
+		background-position: center center;
+
+		h1 {
+			position: relative;
+			color: $marketing-primary-color;
+			text-align: center;
+			margin: 0;
+			padding: 320px 30px 147px;
+			font-size: 78px;
+			line-height: 1;
+			max-width: 100%;
+			font-weight: 100;
+
+			span {
+				font-size: 28px;
+				white-space: nowrap;
+				font-weight: 400;
+			}
+
+			@include swb-medium {
+				padding-top: 110px;
+				padding-bottom: 40px;
+				font-size: 50px;
+
+				span {
+					font-size: 20px;
+				}
+			}
+
+		}
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background: rgba(0, 0, 0, 0.5);
+		}
+	}
+}
