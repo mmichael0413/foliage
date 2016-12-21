@@ -16,4 +16,14 @@
 	.no-nav-content {
 		margin: 0;
 	}
+
+	a {
+    text-decoration: none;
+    color: $marketing-link-color;
+
+    &:hover {
+      text-decoration: underline;
+      color: $marketing-link-color;
+    }
+  }
 }
