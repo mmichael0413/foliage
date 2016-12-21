@@ -3,13 +3,17 @@
     font-family: "roboto";
     font-weight: 100;
     width: 100%;
-    min-height: 100vh;
-    padding: 225px 0 60px;
     color: #fff;
-    background-size: cover;
     box-sizing: border-box;
     margin: 0;
-    background-image: url("http://marketing-new.thirdchannel.com/themes/custom/thirdchannel/images/content/login-background.png");
+
+
+    &.banner-image {
+      background-image: url("http://marketing-new.thirdchannel.com/themes/custom/thirdchannel/images/content/login-background.png");
+      background-size: cover;
+      min-height: 100vh;
+      padding: 225px 0 60px;
+    }
 
     h1 {
       font: 78px/1 "roboto",sans-serif;
