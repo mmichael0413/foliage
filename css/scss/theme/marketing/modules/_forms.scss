@@ -70,6 +70,20 @@
 
     .btn.primary {
       float: right;
+
+      & + .btn.primary {
+  			margin-right: 20px;
+  		}
+    }
+
+    .tooltip {
+      float: left;
+      color: $marketing-link-color;
+
+      & + .tip {
+        right: 0;
+        left: 10em;
+      }
     }
 
     input[type=text], input[type=password], input[type="email"] {

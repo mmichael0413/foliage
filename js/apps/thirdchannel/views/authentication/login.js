@@ -7,7 +7,7 @@ define(function (require) {
         templates = require('handlebarsTemplates');
 
     return ValidateRegistration.extend({
-        el: '.login-container',
+        el: '.form-container',
 
         registrationTemplate: templates['thirdchannel/authentication/register'],
         loginTemplate: templates['thirdchannel/authentication/login'],
