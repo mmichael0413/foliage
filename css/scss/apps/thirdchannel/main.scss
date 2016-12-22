@@ -71,3 +71,19 @@
 @import "./store_profile";
 @import "./special_projects";
 @import "./scheduled_visits";
+
+
+
+// Marketing Theme
+@import "../../theme/marketing/base/colors";
+@import "../../theme/marketing/base/variables";
+@import "../../theme/marketing/base/button";
+
+@import "../../theme/marketing/layouts/base_layout";
+
+@import "../../theme/marketing/modules/banner";
+@import "../../theme/marketing/modules/navigation";
+@import "../../theme/marketing/modules/forms";
+@import "../../theme/marketing/modules/footer";
+
+@import "../../theme/marketing/app/opportunities";
