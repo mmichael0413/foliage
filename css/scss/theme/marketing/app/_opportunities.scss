@@ -42,5 +42,13 @@
 	.body.apply {
 		margin: 0 auto;
 		position: relative;
+
+		.current-user {
+			text-align: center;
+			
+			.btn.primary {
+				float: none;
+			}
+		}
 	}
 }
