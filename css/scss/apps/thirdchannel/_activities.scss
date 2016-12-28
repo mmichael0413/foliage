@@ -82,7 +82,6 @@ $padding: 1.5em;
 .activity {
   p {
     margin: 0 0 0 0;
-    white-space: pre-wrap;
   }
   background: white;
   border-radius: $border-radius-base;
@@ -331,6 +330,10 @@ $padding: 1.5em;
 
 .activity-content img {
   max-width: 100%;
+}
+
+.activity-content p {
+  white-space: pre-wrap;
 }
 
 .action {

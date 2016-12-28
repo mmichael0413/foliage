@@ -295,6 +295,6 @@ define(function (require) {
         cause unnecessary length to the activity feed, so trim any 4+
         line breaks to 3.
       **/
-      return summary.replace(/\n\s*\n\s*\n\s*\n/g, '\n\n\n');
+      return summary.replace(/\n\s*\n\s*\n/g, '\n\n');
     });
 });
