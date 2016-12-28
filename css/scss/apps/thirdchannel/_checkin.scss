@@ -1,3 +1,16 @@
+.visit-header {
+  margin: 0 1em;
+
+  h2 {
+    display: inline;
+  }
+
+  .subtle-instruction {
+    float: right;
+  }
+}
+
+
 .subtle-instruction {
   color: $medium-blue;
   font-style: italic;
@@ -24,6 +37,7 @@
     padding-top: .75em;
   }
 }
+
 
 .expandable {
   .main {
