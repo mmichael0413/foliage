@@ -8,6 +8,9 @@
       {{#if rows.0.distance}}
         <th>Distance</th>
       {{/if}}
+      {{#if rows.0.links.schedule}}
+        <th>Schedule</th>
+      {{/if}}
       {{#if rows.0.sales_data}}
         <th>Sales</th>
       {{/if}}
@@ -18,13 +21,15 @@
       <tr>
         <td>
           <a href="{{ links.profile }}">{{name}}</a>
-        {{#if links.schedule}}
-          <a href="{{links.schedule}}" target="_blank" title="View Store Schedule"><i class="ic ic_calendar"></i></a>
-        {{/if}}
         </td>
         <td>{{address}}</td>
       {{#if distance}}
         <td>{{distance}} miles</td>
+      {{/if}}
+      {{#if links.schedule}}
+        <td>
+          <a href="{{links.schedule}}" target="_blank" title="View Store Schedule"><i class="ic ic_calendar"></i> Schedule</a>
+        </td>
       {{/if}}
       {{#if sales_data}}
         <td>
