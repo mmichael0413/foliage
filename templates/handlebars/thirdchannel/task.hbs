@@ -33,7 +33,11 @@
     <div class="summary">
         {{#show_summary}}
             <h3>{{../subject}}</h3>
-            <p>{{{../content}}}</p>
+            {{#if_eq type "Checkin"}}
+              <p>{{{trimActivitySummary ../content}}}</p>
+            {{else}}
+              <p>{{{../content}}}</p>
+            {{/if_eq}}
         {{else}}
             <h3>There is no Summary for this {{../name}}.</h3>
         {{/show_summary}}

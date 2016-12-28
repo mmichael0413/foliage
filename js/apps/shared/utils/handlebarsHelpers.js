@@ -286,4 +286,14 @@ define(function (require) {
     Handlebars.registerHelper('round', function(value) {
         return Math.round(value);
     });
+
+    Handlebars.registerHelper('trimActivitySummary', function(summary) {
+      /**
+        Agents want to be able to delineate sections of their summary with
+        line breaks. We don't want them to add too many line breaks and
+        cause unnecessary length to the activity feed, so trim any 4+
+        line breaks to 3.
+      **/
+      return summary.replace(/\n\s*\n\s*\n\s*\n/g, '\n\n\n');
+    });
 });
