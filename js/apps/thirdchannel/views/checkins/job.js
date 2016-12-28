@@ -1,13 +1,18 @@
 define(function(require) {
-    var ExpandableView = require('thirdchannel/views/checkins/expandable'),
-        TaskList = require('thirdchannel/views/checkins/task_list');
+    var Backbone = require('backbone'),
+        TaskList = require('thirdchannel/views/checkins/task_list'),
+        HandlebarsTemplates = require('handlebarsTemplates');
 
-    return ExpandableView.extend({
-        className: ExpandableView.prototype.className + " job",
-        openText: "",
-        closeText: "",
-        fillsubsection: function(){
-            var taskList = new TaskList({
+    return Backbone.View.extend({
+        className: "job pure-g",
+
+        template: HandlebarsTemplates["thirdchannel/checkins/activity"],
+
+        render: function() {
+            this.$el.html(this.template());
+            this.$('> .main').html(HandlebarsTemplates['thirdchannel/checkins/job'](this.model));
+
+            var taskListView = new TaskList({
                 model:{
                     job: this.model.job,
                     store: this.model.store,
@@ -15,8 +20,11 @@ define(function(require) {
                     auth_token: window.bootstrap.auth_token
                 }
             });
-            this.subsection.append(taskList.render().el);
-        },
-        rowTemplate: 'thirdchannel/checkins/job'
+
+            this.$('> .subsection').html(taskListView.render().el);
+
+            return this;
+        }
+
     });
 });

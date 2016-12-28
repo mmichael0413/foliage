@@ -26,8 +26,7 @@ define(function(require){
                             store: self.model.store.id,
                             pre_expand: job.pre_expand,
                             incomplete_tasks: data.incomplete
-                        },
-                        hide_toggle: true
+                        }
                     });
                     self.$el.append(jobView.render().$el);
                 });

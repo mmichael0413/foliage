@@ -17,7 +17,7 @@ define(function(require){
             this.$el.html(HandleBarsTemplates['thirdchannel/checkins/expandable']({
                 store_details: this.model.store_details,
                 toggle: this.openText + "&nbsp;<i class='ic ic_down'></i>",
-                hide_toggle: this.hide_toggle,
+                hide_toggle: this.hide_toggle
             }));
             this.main = this.$("> .main");
             this.main.html(HandleBarsTemplates[this.rowTemplate](this.model));
