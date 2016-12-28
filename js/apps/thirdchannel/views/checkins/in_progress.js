@@ -20,12 +20,15 @@ define(function(require){
                 }
 
                 _.each(self.model.jobs, function(job){
-                    var jobView = new JobView({model: {
-                        job: job,
-                        store: self.model.store.id,
-                        pre_expand: job.pre_expand,
-                        incomplete_tasks: data.incomplete
-                    }});
+                    var jobView = new JobView({
+                        model: {
+                            job: job,
+                            store: self.model.store.id,
+                            pre_expand: job.pre_expand,
+                            incomplete_tasks: data.incomplete
+                        },
+                        hide_toggle: true
+                    });
                     self.$el.append(jobView.render().$el);
                 });
             });

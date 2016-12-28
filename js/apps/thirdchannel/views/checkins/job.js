@@ -7,12 +7,14 @@ define(function(require) {
         openText: "",
         closeText: "",
         fillsubsection: function(){
-            var taskList = new TaskList({model:{
-                job: this.model.job,
-                store: this.model.store,
-                incomplete_tasks: this.model.incomplete_tasks,
-                auth_token: window.bootstrap.auth_token
-            }});
+            var taskList = new TaskList({
+                model:{
+                    job: this.model.job,
+                    store: this.model.store,
+                    incomplete_tasks: this.model.incomplete_tasks,
+                    auth_token: window.bootstrap.auth_token
+                }
+            });
             this.subsection.append(taskList.render().el);
         },
         rowTemplate: 'thirdchannel/checkins/job'
