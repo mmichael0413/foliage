@@ -332,6 +332,10 @@ $padding: 1.5em;
   max-width: 100%;
 }
 
+.activity-content p {
+  white-space: pre-wrap;
+}
+
 .action {
   padding-right: 1em;
 }
