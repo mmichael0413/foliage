@@ -52,6 +52,7 @@
 .sales-overview {
   h2 {
     display: inline-block;
+    margin-bottom: .25em;
   }
 
   .subnav {
@@ -64,7 +65,12 @@
     }
 
     p {
+      margin: .25em 0;
       order: 2;
+    }
+
+    &:first-child {
+      margin-top: 1em;
     }
   }
 }
@@ -74,9 +80,15 @@
     .overview-data {
 
       h2 {
+        margin: .25em 0;
         order: 2;
-        margin: 1em 0;
         text-align: right;
+
+        &.percentage-change {
+          margin-bottom: .5em;
+          padding: 0;
+          width: 100%;
+        }
       }
 
       p {

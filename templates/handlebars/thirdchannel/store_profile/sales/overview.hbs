@@ -1,11 +1,12 @@
 <section class="section data-section sales-overview">
     <div class="pure-g">
-        <h2 class="col-1-2">Overview</h2>
+        <h2 class="col-1-2 overview-header">Overview</h2>
         <span class="col-1-2 subnav">
             <a href="#" class="prev-quarter"> < <span class="hidden-md">Previous Quarter</span></a>
             Q{{current_time_period}} - {{current_year}}
             <a href="#" class="next-quarter"><span class="hidden-md">Next Quarter</span> > </a>
         </span>
+        <span class="sub-header col-1-1">Compared to this period last year</span>
         <div class="col-md-1 col-1-4">
             <div class="pure-g overview-data">
                 <h2 class="col-md-1-2 col-1">{{formatSalesDollarValue accountSalesInCents}}</h2>
@@ -15,7 +16,6 @@
                 <h2 class="col-md-1-2 col-1 percentage-change overview-qtd {{ percentageChangeClass accountSalesChange }}">
                     <i class="fa {{ percentageChangeIcon accountSalesChange }}"></i> {{formatPercentageChange accountSalesChange}}
                 </h2>
-                <p class="col-md-1-2 col-1">Compared to this period last year</p>
             </div>
         </div>
         <div class="col-md-1-1 col-1-4">
@@ -27,7 +27,6 @@
                 <h2 class="col-md-1-2 col-1 percentage-change overview-qtd {{ percentageChangeClass salesChange }}">
                     <i class="fa {{ percentageChangeIcon salesChange }}"></i> {{formatPercentageChange salesChange}}
                 </h2>
-                <p class="col-md-1-2 col-1">Compared to this period last year</p>
             </div>
         </div>
         <div class="col-md-1-1 col-1-4">
@@ -39,7 +38,6 @@
                 <h2 class="col-md-1-2 col-1 percentage-change overview-qtd {{ percentageChangeClass unitsSoldChange }}">
                     <i class="fa {{ percentageChangeIcon unitsSoldChange }}"></i> {{formatPercentageChange unitsSoldChange}}
                 </h2>
-                <p class="col-md-1-2 col-1">Compared to this period last year</p>
             </div>
         </div>
         <div class="col-md-1-1 col-1-4">
@@ -51,7 +49,6 @@
                 <h2 class="col-md-1-2 col-1 percentage-change overview-qtd {{ percentageChangeClass unitsOnHandChange }}">
                     <i class="fa {{ percentageChangeIcon unitsOnHandChange }}"></i> {{formatPercentageChange unitsOnHandChange}}
                 </h2>
-                <p class="col-md-1-2 col-1">Compared to this period last year</p>
             </div>
         </div>
     </div>
