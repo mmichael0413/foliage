@@ -20,9 +20,9 @@ define(function(require) {
         },
         renderChart: function() {
             var colors = {
-                'Need Revisit': '#ff0000',
+                'Need Revisit': '#F7B05B',
                 Completed: '#96d1b1',
-                'Visited, but incompleted': '#F7B05B'
+                'Visited, but incompleted': '#FF0000'
             };
 
             var data = [];
