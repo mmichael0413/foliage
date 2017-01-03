@@ -20,19 +20,22 @@ define(function(require) {
         },
         renderChart: function() {
             var colors = {
+                'Need Revisit': '#F7B05B',
                 Completed: '#96d1b1',
-                'Visited, but incompleted': '#F7B05B'
+                'Visited, but incompleted': '#FF0000'
             };
 
             var data = [];
 
             var percentComplete = this.model.get('percent_of_stores_complete');
             var percentIncomplete = this.model.get('percent_of_stores_incomplete');
+            var percentNeedRevisit = this.model.get('percent_of_stores_need_revisit');
             var target = this.model.get('target');
 
             var idValues = {
                 Completed: percentComplete,
                 'Visited, but incompleted': percentIncomplete,
+                'Need Revisit': percentNeedRevisit,
                 Target: target
             };
 
@@ -41,6 +44,7 @@ define(function(require) {
             data.push(['Target', target]);
             data.push(['Completed', percentComplete]);
             data.push(['Visited, but incompleted', percentIncomplete]);
+            data.push(['Need Revisit', percentNeedRevisit]);
 
             if(percentComplete <= target) {
                 colors.Completed = '#709d84';
