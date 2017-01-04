@@ -22,10 +22,15 @@ define(function(require) {
             var colors = {
                 'Need Revisit': '#F7B05B',
                 Completed: '#96d1b1',
-                'Visited, but incompleted': '#FF0000'
+                'Visited, but incompleted': '#FF0000',
+                Target:'#C0C0C0'
             };
 
-            var data = [];
+            var toolcolors = {
+                Completed: '#96d1b1',
+            };
+
+                var data = [];
 
             var percentComplete = this.model.get('percent_of_stores_complete');
             var percentIncomplete = this.model.get('percent_of_stores_incomplete');
@@ -39,17 +44,16 @@ define(function(require) {
                 Target: target
             };
 
-            percentComplete += percentIncomplete;
 
-            data.push(['Target', target]);
-            data.push(['Completed', percentComplete]);
-            data.push(['Visited, but incompleted', percentIncomplete]);
-            data.push(['Need Revisit', percentNeedRevisit]);
+            data.push(['Target',100]);
+            data.push(['Completed', percentIncomplete+percentComplete+percentNeedRevisit]);
+            data.push(['Need Revisit', percentIncomplete+percentNeedRevisit]);
+            data.push(['Visited, but incompleted',percentIncomplete ]);
 
-            if(percentComplete <= target) {
-                colors.Completed = '#709d84';
-                colors.Target = '#96d1b1';
-            }
+            // if(percentComplete <= target) {
+            //     colors.Completed = '#709d84';
+            //     colors.Target = '#96d1b1';
+            // }
 
             var chart = c3.generate({
                 bindto: this.$('.chart')[0],
@@ -80,7 +84,8 @@ define(function(require) {
                     format: {
                         value: function (value, ratio, id, index) {
                             return idValues[id] + '%'; }
-                    }
+                    },
+                    colors:toolcolors
                 }
             });
         }

@@ -1,0 +1,46 @@
+.marketing {
+  nav {
+    position: absolute;
+	z-index: 1;
+	width: 100%;
+	opacity: 0.8;
+
+	@include gradient-vertical($marketing-nav-background-color-1, $marketing-nav-background-color-2, 0%, 50%);
+
+    a {
+      color: $marketing-background-color;
+    }
+
+    img {
+      margin: 25px 20px;
+    }
+
+    p {
+      text-transform: uppercase;
+      text-decoration: none;
+      font-size: 16px;
+      margin: 25px;
+      padding: 15px 0;
+
+      &:hover {
+          border-bottom: 2px solid $marketing-nav-hover-border-color;
+      }
+    }
+
+		@include swb-medium {
+			height: 70px;
+
+			img {
+				width: 270px;
+				height: 45px;
+				margin: 12.5px 10px;
+			}
+
+			p {
+				margin: 5px 20px;
+				font-size: 30px;
+			}
+		}
+	}
+}
+

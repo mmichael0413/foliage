@@ -1,0 +1,69 @@
+.marketing-footer {
+  text-align: center;
+  font-family: "roboto";
+  clear: both;
+  font-size: 16px;
+  padding: 60px 0 46px;
+  position: relative;
+  background-color: #e4e4e4;
+
+  .inner-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+
+    &:after {
+      content: "";
+      height: 1px;
+      width: 100%;
+      border-bottom: 1px solid #cccccc;
+      display: block;
+      margin: 19px auto 0;
+      position: absolute;
+      right: 0;
+      left: 0;
+      bottom: -19px;
+    }
+  }
+
+  .title {
+    font-weight: 800;
+    letter-spacing: 0.8px;
+  }
+
+  .social-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+
+    li {
+      margin: 6px 0;
+      position: relative;
+      display: inline-block;
+    }
+
+    a {
+      display: block;
+      font-size: 36px;
+      color: #da291c;
+      transition: all 0.5s;
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+
+      &:hover {
+        color: #505759;
+      }
+    }
+  }
+
+  .copyright {
+    font-size: 12px;
+    margin: 50px 0 0;
+
+    a {
+      font-size: 12px;
+      text-decoration: underline;
+      color: #333;
+    }
+  }
+}

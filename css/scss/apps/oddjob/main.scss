@@ -53,14 +53,14 @@
 	&.primary {
 		.btn {
 			float:right;
-		}	
+		}
 	}
 
 	.right {
 		float:right;
 		margin-left: 3em;
 	}
-	
+
 }
 
 .row {
@@ -70,7 +70,7 @@
 .info {
 	font-style: italic;
 	color: $slate;
-	
+
 }
 
 .delete {
@@ -156,7 +156,7 @@
 	margin-bottom: 1em;
     padding-left: 0;
     list-style: none;
-	
+
 	li {
 		float: left;
     	margin-bottom: -1px;

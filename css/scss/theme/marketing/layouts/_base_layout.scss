@@ -1,0 +1,29 @@
+.marketing {
+	font-family: "roboto";
+
+	.content {
+		padding: 0;
+		background-color: $marketing-background-color;
+	}
+
+	.card {
+		color: $marketing-primary-color;
+		background-color: $marketing-background-color;
+		margin: 1em;
+		border: $marketing-border-size solid $marketing-primary-color;
+	}
+
+	.no-nav-content {
+		margin: 0;
+	}
+
+	a {
+    text-decoration: none;
+    color: $marketing-link-color;
+
+    &:hover {
+      text-decoration: underline;
+      color: $marketing-link-color;
+    }
+  }
+}
