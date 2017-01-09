@@ -60,7 +60,7 @@ define(function(require) {
             } else {
                 this.model.set('imageCount', 0);
             }
-            
+
             this.model.set('singleActivity', this.options.singleActivity);
             this.model.set('isMobile', helpers.isMobile.any());
 
@@ -245,7 +245,7 @@ define(function(require) {
             if (location && location.hasOwnProperty('id') && location.id === event.uuid) {
                 // only show values with 0 or greater?
                 var data = {salesChange: event.salesChange, showLabel: event.value ? true : false,
-                    salesUrl: event.salesUrl, message: event.message};
+                    salesUrl: event.salesUrl, message: event.message, mostRecent: event.mostRecent};
                 this.$el.find('.activity-meta').append(HandlebarsTemplates['thirdchannel/activities/sales_widget'](data));
                 this.$el.find('.sales-widget').fadeIn(500).css("display","inline-block");
             }
