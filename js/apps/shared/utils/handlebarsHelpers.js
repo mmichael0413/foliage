@@ -199,7 +199,7 @@ define(function (require) {
         });
     });
 
-    Handlebars.registerHelper('formatSecondsToDate', function(seconds, locale) {
+    Handlebars.registerHelper('formatSecondsToDateTime', function(seconds, locale) {
         if(locale === undefined) {
             locale = 'en-US';
         }
@@ -216,13 +216,35 @@ define(function (require) {
             month: "long",
             day: "numeric"
         }),
-            timeString = date.toLocaleTimeString(locale, {
-                hour: "2-digit",
-                minute: "2-digit",
-                timeZoneName: "short"
-            });
+
+        timeString = date.toLocaleTimeString(locale, {
+            hour: "2-digit",
+            minute: "2-digit",
+            timeZoneName: "short"
+        });
 
         return dateString + ' at ' + timeString;
+    });
+
+    Handlebars.registerHelper('formatDateToLongDate', function(utcDate, locale) {
+        if (locale === undefined) {
+            locale = 'en-US';
+        }
+
+        var date = new Date(utcDate);
+
+        var offset = date.getTimezoneOffset()  / 60;
+        var hours = date.getHours();
+
+        date.setHours(hours - offset);
+
+        var dateString = date.toLocaleDateString(locale, {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+
+        return dateString;
     });
 
     Handlebars.registerHelper('similarAccountClass', function(similarity) {
