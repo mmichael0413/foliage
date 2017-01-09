@@ -5,6 +5,17 @@ $padding: 1.5em;
   $padding: 1em;
 }
 
+.through-date {
+  color: $medium-blue;
+  font-size: .95em;
+  font-style: italic;
+  text-align: right;
+
+  @include swb-small {
+    text-align: left;
+  }
+}
+
 .activity-holder {
   margin-bottom: 1.5em;
   border-radius: $border-radius-base;
@@ -153,7 +164,7 @@ $padding: 1.5em;
   .sales-widget {
     vertical-align: top;
     display: inline-block;
-    line-height: 3.25em;
+    line-height: 1.75em;
     float:right !important;
 
     .sales-message {
@@ -163,6 +174,7 @@ $padding: 1.5em;
 
     .sales-button {
       padding-left: 1em;
+      float: right;
 
       .change-icon {
         font-size: 1em;

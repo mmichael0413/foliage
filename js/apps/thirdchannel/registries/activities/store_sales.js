@@ -6,7 +6,7 @@ define(function(require) {
 
         /**
          *  A Regisitry for storing sales figures for programStores. Responsible for receiving registration events
-         * 
+         *
          * @type {View}
          */
         StoreSalesRegistry = Backbone.View.extend({
@@ -21,10 +21,10 @@ define(function(require) {
                     return false;
                 }
                 this.feedUrl = context.links.sales;
-                
-                // watch the context event emitter, register each uuid, buffer them in groups by time, 
-                // then query for sales data 
-                
+
+                // watch the context event emitter, register each uuid, buffer them in groups by time,
+                // then query for sales data
+
                 rx.Observable.fromEvent(context, "store.sales.register")
                 .map(function(uuid) {return self.register(uuid); })
                 .buffer(function () { return Rx.Observable.timer(self.bufferFrequency); })
@@ -55,7 +55,7 @@ define(function(require) {
                 .map(function (data) {
                     var arr = [];
                     for (var uuid in data.sales) {
-                        arr.push({uuid: uuid, salesChange: data.sales[uuid].sales_change, message: data.sales[uuid].message});
+                        arr.push({uuid: uuid, salesChange: data.sales[uuid].sales_change, message: data.sales[uuid].message, mostRecent: data.sales[uuid].mostRecent});
                     }
                     return arr;
                 })
