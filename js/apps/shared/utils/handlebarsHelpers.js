@@ -227,7 +227,19 @@ define(function (require) {
     });
 
     Handlebars.registerHelper('formatDateToLongDate', function(utcDate, locale) {
-        return moment.utc(utcDate).format('MMMM D, YYYY');
+        if (locale === undefined) {
+            locale = 'en-US';
+        }
+
+        var dateString = utcDate.split(" ")[0];
+        var date = new Date(dateString);
+        date.setDate(date.getDate() + 1);
+
+        return date.toLocaleDateString(locale, {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
     });
 
     Handlebars.registerHelper('similarAccountClass', function(similarity) {
