@@ -29,9 +29,12 @@ define(function(require) {
             }
 
             breakdowns = _.map(breakdowns, function(data, key) {
-                data.label = key;
-                data.percentageOfSales = (data.salesInCents / store.salesInCents) * 100;
-                return data;
+                        //Title Case the labels
+                        data.label = key.split(' ').map(function(s){
+                            return s.length <=1 ? s.toUpperCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+                        }).join(" ");
+                        data.percentageOfSales = (data.salesInCents / store.salesInCents) * 100;
+                        return data;
             });
             breakdowns = _.filter(breakdowns, function(data) { return data.percentageOfSales !== null; });
             breakdowns = _.sortBy(breakdowns, 'percentageOfSales').reverse();
@@ -117,7 +120,9 @@ define(function(require) {
             }
 
             breakdowns = _.map(breakdowns, function(data, key) {
-                data.label = key;
+                data.label = key.split(' ').map(function(s){
+                    return s.length <=1 ? s.toUpperCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+                }).join(" ");
                 return data;
             });
             breakdowns = _.filter(breakdowns, function(data) { return data.percentageOfSales !== null; });
