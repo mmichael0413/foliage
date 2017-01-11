@@ -2,7 +2,8 @@ define(function (require) {
 
     var $ = require('jquery'),
         _ = require('underscore'),
-        Handlebars = require('handlebars');
+        Handlebars = require('handlebars'),
+        moment = require('moment');
 
     Handlebars.registerHelper('if_eq', function (a, b, opts) {
         if (a == b) // Or === depending on your needs
@@ -227,24 +228,7 @@ define(function (require) {
     });
 
     Handlebars.registerHelper('formatDateToLongDate', function(utcDate, locale) {
-        if (locale === undefined) {
-            locale = 'en-US';
-        }
-
-        var date = new Date(utcDate);
-
-        var offset = date.getTimezoneOffset()  / 60;
-        var hours = date.getHours();
-
-        date.setHours(hours - offset);
-
-        var dateString = date.toLocaleDateString(locale, {
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-        });
-
-        return dateString;
+        return moment.utc(utcDate).format('MMMM D, YYYY');
     });
 
     Handlebars.registerHelper('similarAccountClass', function(similarity) {
