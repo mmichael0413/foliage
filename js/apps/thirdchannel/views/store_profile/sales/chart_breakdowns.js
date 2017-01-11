@@ -201,13 +201,14 @@ define(function(require) {
 
         getMaxGraphHeight: function(itemLength) {
           /* 360 = default chart height
-           * 32 = the height of the bar chart (30) + 2 px on either side
-           * for the tick markers that the bars fit between
+           * 36 = the height of the bar chart (30) + 2 px on either side
+           * for the tick markers that the bars fit between, as well as 4px
+           * additional spacing between rows.
            *
            * This means that when charts get larger than 360px,
            * the bars will be back to back and not overlapping.
            */
-          return (itemLength * 32) > 360 ? (itemLength * 32) : 360;
+          return Math.max(itemLength * 36, 360);
         }
     });
 
