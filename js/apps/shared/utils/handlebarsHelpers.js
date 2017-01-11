@@ -2,8 +2,7 @@ define(function (require) {
 
     var $ = require('jquery'),
         _ = require('underscore'),
-        Handlebars = require('handlebars'),
-        moment = require('moment');
+        Handlebars = require('handlebars');
 
     Handlebars.registerHelper('if_eq', function (a, b, opts) {
         if (a == b) // Or === depending on your needs
