@@ -28,9 +28,27 @@ define(function (require) {
                 states = context.content.states,
                 uploader = context.content.uploader;
 
-            var choices = ['ThirdChannel Invite', 'Professor', 'Department Head', 'Activities Advisor', 'Greek Life President',
-                'Resident Assistant', 'Orientation Leader', 'Tour Guide', 'ThirdChannel Agent', 'LinkedIn', 'WayUp', 'Indeed',
-                'Craigslist', 'Facebook', 'Twitter', 'SnagAJob', 'AllRetailJobs', 'None of the above'];
+            var choices = [
+                'ThirdChannel Invite',
+                'Professor',
+                'Department Head',
+                'Activities Advisor',
+                'Greek Life President',
+                'Resident Assistant',
+                'Orientation Leader',
+                'Tour Guide',
+                'ThirdChannel Agent',
+                'LinkedIn',
+                'WayUp',
+                'Indeed',
+                'Craigslist',
+                'Facebook',
+                'Twitter',
+                'SnagAJob',
+                'AllRetailJobs',
+                'ZipRecruiter',
+                'None of the above'
+            ];
 
             var model = {
                 person: person,
