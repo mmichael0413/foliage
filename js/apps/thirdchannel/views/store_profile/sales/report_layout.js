@@ -22,7 +22,9 @@ define(function(require) {
         render: function() {
             this.renderOverview();
             this.renderCharts();
-            this.renderOverviewBreakdown();
+            if (this.model.get('view_sales_overview_breakdown')) {
+              this.renderOverviewBreakdown();
+            }
             this.renderBrandsBreakdown();
             return this;
         },
