@@ -231,20 +231,15 @@ define(function (require) {
             locale = 'en-US';
         }
 
-        var date = new Date(utcDate);
+        var dateString = utcDate.split(" ")[0];
+        var date = new Date(dateString);
+        date.setDate(date.getDate() + 1);
 
-        var offset = date.getTimezoneOffset()  / 60;
-        var hours = date.getHours();
-
-        date.setHours(hours - offset);
-
-        var dateString = date.toLocaleDateString(locale, {
+        return date.toLocaleDateString(locale, {
             year: "numeric",
             month: "long",
             day: "numeric"
         });
-
-        return dateString;
     });
 
     Handlebars.registerHelper('similarAccountClass', function(similarity) {
