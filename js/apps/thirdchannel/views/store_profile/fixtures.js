@@ -13,7 +13,7 @@ define(function(require) {
             var self = this,
                 fixtures = window.bootstrap.data;
             self.$el.html("");
-            if (fixtures && fixtures.length > 1) {
+            if (fixtures && fixtures.length > 0) {
                 fixtures.forEach(function (fixture) {
                     self.$el.append(new FixtureDetails({model:fixture}).render().$el);
                 });
