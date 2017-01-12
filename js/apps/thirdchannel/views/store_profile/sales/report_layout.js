@@ -134,7 +134,12 @@ define(function(require) {
             } else if(label === 'woman') {
                 label = "Women's";
             }
-            return label;
+
+
+            //Title Case the labels
+            return label.split(' ').map(function(s){
+                return s.length <=1 ? s.toUpperCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+            }).join(" ");
         }
     });
 
