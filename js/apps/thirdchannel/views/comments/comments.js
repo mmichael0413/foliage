@@ -17,37 +17,31 @@ define(function(require) {
             this.mentions = options.activity.get('mentions');
             this.currentUserId = options.currentUserId;
             this.highlightWords = options.highlightWords;
-
             this.commentUrl = '/programs/' + this.programId + '/activities/' + this.objId + '/comments';
-
             // initialize collection
             this.collection = new CommentsCollection([], {
                 url: this.commentUrl
             });
-
-            this.initializeModels();
-            this.collection.bind('add', this.onModelAdded, this);
+            this.showOriginalComments();
         },
         render: function() {
             var self = this;
+            self.$el.empty();
             _.each(this.collection.models, function(model) {
                 self.$el.append(new CommentView({
                     model: model,
-                    activityId: self.activityId,
+                    activityId: self.objId,
                     programId: self.programId,
                     mentions: self.mentions,
                     currentUserId: self.currentUserId,
                     highlightWords: self.highlightWords
                 }).render().el);
             });
-
             return this;
         },
-        initializeModels: function() {
-            var comments = this.activity.get('comments');
+        addComments: function(comments) {
             var mentions = this.activity.get('mentions');
             var commentModels = [];
-
             var self = this;
             _.each(comments, function(comment) {
                 commentModels.push(new Comment(comment, {
@@ -57,40 +51,24 @@ define(function(require) {
                     highlightWords: self.highlightWords
                 }));
             });
-
-            this.collection.add(commentModels);
-        },
-        onModelAdded: function(model) {
-            this.$el.append(new CommentView({
-                model: model,
-                activityId: this.activityId,
-                programId: this.programId,
-                mentions: model.get('mentions'),
-                currentUserId: model.get('currentUserId'),
-                highlightWords: model.get('highlightWords')
-            }).render().el);
-
-            return this;
+            this.collection.set(commentModels);
         },
         showAllComments: function() {
             var self = this;
-
             this.collection.fetch({
                 reset: true,
                 data: {
                     type: this.activity.get('type')
                 }
-            }).done(function(data, status) {
+            }).success(function(data, status) {
+                self.addComments(data);
                 self.render();
             });
         },
         showOriginalComments: function() {
-            var self = this;
-
-            this.collection.reset();
-            this.initializeModels();
-
-            // this.render();
+            var comments = this.activity.get('comments');
+            this.addComments(comments);
+            this.render();
         }
     });
 });

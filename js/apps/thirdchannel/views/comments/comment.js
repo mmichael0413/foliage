@@ -1,7 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates');
-
     return Backbone.View.extend({
         className: 'comment',
         template: HandlebarsTemplates['thirdchannel/comment'],
@@ -22,10 +21,8 @@ define(function(require) {
         deleteComment: function(e) {
             e.preventDefault();
             e.stopPropagation();
-
             var self = this;
-            var deleteUrl = this.model.url + '?comment_id=' + this.model.get('comment_id');
-
+            var deleteUrl = this.model.get('url') + '?comment_id=' + this.model.get('comment_id');
             this.model.collection.remove(this.model);
             this.model.destroy({
                 url: deleteUrl
