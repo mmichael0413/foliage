@@ -8,6 +8,12 @@ define(function(require) {
 
     var defaultLegendColors = ["#F15F51", "#585E60", "#9FB2C0", "#A9BC4D"];
 
+    var titleizeString = function(text) {
+        return text.split(' ').map(function(s){
+            return s.length <=1 ? s.toUpperCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+        }).join(" ");
+    };
+
     var View = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/store_profile/sales/chart_breakdowns'],
 
@@ -17,6 +23,8 @@ define(function(require) {
             this.renderChangeInSales();
             return this;
         },
+
+
 
         renderSalesPerBreakdown: function() {
             var store = this.model.get('store');
@@ -30,9 +38,10 @@ define(function(require) {
             }
 
             breakdowns = _.map(breakdowns, function(data, key) {
-                data.label = key;
-                data.percentageOfSales = (data.salesInCents / store.salesInCents) * 100;
-                return data;
+                        //Title Case the labels
+                        data.label = titleizeString(key);
+                        data.percentageOfSales = (data.salesInCents / store.salesInCents) * 100;
+                        return data;
             });
             breakdowns = _.filter(breakdowns, function(data) { return data.percentageOfSales !== null; });
             breakdowns = _.sortBy(breakdowns, 'percentageOfSales').reverse();
@@ -121,7 +130,7 @@ define(function(require) {
             }
 
             breakdowns = _.map(breakdowns, function(data, key) {
-                data.label = key;
+                data.label = titleizeString(key);
                 return data;
             });
             breakdowns = _.filter(breakdowns, function(data) { return data.percentageOfSales !== null; });
@@ -210,6 +219,7 @@ define(function(require) {
            */
           return Math.max(itemLength * 36, 360);
         }
+
     });
 
     return View;
