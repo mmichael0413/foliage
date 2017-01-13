@@ -22,13 +22,16 @@ define(function(require) {
             e.preventDefault();
             e.stopPropagation();
             var self = this;
-            var deleteUrl = this.model.get('url') + '?comment_id=' + this.model.get('comment_id');
-            this.model.collection.remove(this.model);
-            this.model.destroy({
-                url: deleteUrl
-            }).done(function() {
-                self.remove();
-            });
+            var userConfirmedDeletion = window.confirm("Are you sure you want to delete this comment?");
+            if(userConfirmedDeletion){
+                var deleteUrl = this.model.get('url') + '?comment_id=' + this.model.get('comment_id');
+                this.model.collection.remove(this.model);
+                this.model.destroy({
+                    url: deleteUrl
+                }).done(function() {
+                    self.remove();
+                });
+            }
         },
         removeFromDom: function() {
             this.remove();
