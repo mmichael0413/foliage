@@ -56,7 +56,7 @@ define(function(require) {
                 data: {
                     type: self.activity.get('type')
                 }
-            }).success(function(data, status) {
+            }).done(function(data, status) {
                 var mentions = self.activity.get('mentions');
                 var commentModels = [];
                 _.each(data, function(comment) {
