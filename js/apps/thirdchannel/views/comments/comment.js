@@ -31,6 +31,10 @@ define(function(require) {
                     collection.remove(this.model);
                     collection.trigger('redraw');
                     self.remove();
+                }).fail(function() {
+                    alert("Failed to delete comment! Please try again.");
+                    // Actually, the delete may have succeeded, and
+                    // the response just didn't make it back.
                 });
             }
         },
