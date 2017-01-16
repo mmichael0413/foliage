@@ -14,6 +14,9 @@ define(function(require) {
             if (attrs.comment === '') {
                 return 'error';
             }
+        },
+        url: function(){
+            return this.get('url');
         }
     });
 });

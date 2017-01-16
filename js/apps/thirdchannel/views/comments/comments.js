@@ -22,12 +22,21 @@ define(function(require) {
             this.collection = new CommentsCollection([], {
                 url: this.commentUrl
             });
+            this.collapsed = true;
+            this.visibleComments = 0;
+            this.collection.bind('redraw', this.reload, this);
             this.showOriginalComments();
         },
         render: function() {
             var self = this;
             self.$el.empty();
-            _.each(this.collection.models, function(model) {
+            var modelsToRender;
+            if(self.collapsed){
+                modelsToRender = _.last(self.collection.models, 3);
+            } else {
+                modelsToRender = self.collection.models;
+            }
+            _.each(modelsToRender, function(model) {
                 self.$el.append(new CommentView({
                     model: model,
                     activityId: self.objId,
@@ -37,38 +46,38 @@ define(function(require) {
                     highlightWords: self.highlightWords
                 }).render().el);
             });
+            self.visibleComments = modelsToRender.length;
+            self.trigger('commentsShown:changed');
             return this;
         },
-        addComments: function(comments) {
-            var mentions = this.activity.get('mentions');
-            var commentModels = [];
+        reload: function() {
             var self = this;
-            _.each(comments, function(comment) {
-                commentModels.push(new Comment(comment, {
-                    url: self.commentUrl,
-                    mentions: mentions,
-                    currentUserId: self.currentUserId,
-                    highlightWords: self.highlightWords
-                }));
-            });
-            this.collection.set(commentModels);
-        },
-        showAllComments: function() {
-            var self = this;
-            this.collection.fetch({
-                reset: true,
+            self.collection.fetch({
                 data: {
-                    type: this.activity.get('type')
+                    type: self.activity.get('type')
                 }
             }).success(function(data, status) {
-                self.addComments(data);
+                var mentions = self.activity.get('mentions');
+                var commentModels = [];
+                _.each(data, function(comment) {
+                    commentModels.push(new Comment(comment, {
+                        url: self.commentUrl,
+                        mentions: mentions,
+                        currentUserId: self.currentUserId,
+                        highlightWords: self.highlightWords
+                    }));
+                });
+                self.collection.reset(commentModels);
                 self.render();
             });
         },
         showOriginalComments: function() {
-            var comments = this.activity.get('comments');
-            this.addComments(comments);
-            this.render();
+            this.collapsed = true;
+            this.reload();
+        },
+        showAllComments: function(){
+            this.collapsed = false;
+            this.reload();
         }
     });
 });

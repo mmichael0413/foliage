@@ -9,7 +9,6 @@ define(function(require) {
             this.model.set('mentions', options.mentions);
             this.model.set('currentUserId', options.currentUserId);
             this.model.set('highlightWords', options.highlightWords);
-            this.model.collection.bind('reset', this.removeFromDom, this);
         },
         events: {
             'click .delete-comment': 'deleteComment'
@@ -25,10 +24,12 @@ define(function(require) {
             var userConfirmedDeletion = window.confirm("Are you sure you want to delete this comment?");
             if(userConfirmedDeletion){
                 var deleteUrl = this.model.get('url') + '?comment_id=' + this.model.get('comment_id');
-                this.model.collection.remove(this.model);
+                var collection = this.model.collection;
                 this.model.destroy({
                     url: deleteUrl
                 }).done(function() {
+                    collection.remove(this.model);
+                    collection.trigger('redraw');
                     self.remove();
                 });
             }
