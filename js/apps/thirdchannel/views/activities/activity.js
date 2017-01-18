@@ -64,10 +64,6 @@ define(function(require) {
             this.model.set('singleActivity', this.options.singleActivity);
             this.model.set('isMobile', helpers.isMobile.any());
 
-            if (this.model.get('comments_count') > 3) {
-                this.model.set('additional_comments', this.model.get('comments_count') - 3);
-            }
-
             if (this.model.get('editable') || this.model.get('hideable')) {
                 this.model.set('show-moderation', true);
             }
@@ -77,6 +73,7 @@ define(function(require) {
             // render the comments view
             var c = this.$('.comments');
             this.comments = new CommentsView({el: c, activity: this.model, programId: this.programId, mentions: this.mentions, currentUserId: this.currentUserId, highlightWords: this.highlightWords}).render();
+            this.listenTo(this.comments, 'commentsShown:changed', this.updateAdditionalCommentsLink);
             this.newComment = new NewCommentView({el: this.$('.new-comment'), activity: this.model, collection: this.comments.collection}).render();
 
             this.renderTask();
@@ -168,29 +165,31 @@ define(function(require) {
 
             this.newComment.commentFocus();
         },
+        updateAdditionalCommentsLink: function(){
+            var total = this.comments.collection.models.length;
+            var visible = this.comments.visibleComments;
+            var link = this.$(".more-comments,.less-comments");
+            if(total > 3){
+                if(total === visible){
+                    link.text('Hide Comments').removeClass('more-comments').addClass('less-comments');
+                } else {
+                    var diff = total - visible;
+                    var label = 'View ' + diff + ' More Comment'  + (diff === 1 ? '' : 's');
+                    link.text(label).removeClass('less-comments').addClass('more-comments');
+                }
+            } else {
+                link.text('');
+            }
+        },
         showAdditionalComments: function (e) {
             e.preventDefault();
             e.stopPropagation();
-
             this.comments.showAllComments();
-
-            $(e.target).text('Hide Comments').removeClass('more-comments').addClass('less-comments');
-
         },
         hideAdditionalComments: function (e) {
             e.preventDefault();
             e.stopPropagation();
-
             this.comments.showOriginalComments();
-
-            var commentLabel = ' More Comments';
-            if (this.model.get('additional_comments') === 1){
-                commentLabel = ' More Comment';
-            }
-
-            var label = 'View ' + this.model.get('additional_comments') + commentLabel;
-            $(e.target).text(label).removeClass('less-comments').addClass('more-comments');
-
         },
         hidePost: function(e) {
             e.preventDefault();
