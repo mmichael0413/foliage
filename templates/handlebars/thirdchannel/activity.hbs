@@ -94,13 +94,15 @@
                 <span class="like-count" data-likecount="{{like_count}}">{{like_count}}</span> <span class="like-label">{{pluralize like_count 'Like' 'Likes'}}</span>
             </span>
 
-            {{#if_gt comments_count 3}}
             <span class="action">
+            {{#if_gt comments_count 3}}
                 <a href="#" class="more-comments">View {{additional_comments}} More {{pluralize additional_comments
                     'Comment' 'Comments'}}
                 </a>
-            </span>
+            {{else}}
+                <a href="#" class="more-comments"></a>
             {{/if_gt}}
+            </span>
         </div>
         <div class="comments">
 
