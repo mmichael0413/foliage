@@ -46,7 +46,8 @@ define(function(require) {
                     var splitLabel = ui.item.originalText.split("\t");
                     var $target = $(e.target);
                     var currentText = $target.html();
-                    $target.html(currentText.substring(0, currentText.lastIndexOf('@') + 1) + splitLabel[0] + ' ' + splitLabel[1]);
+                    var mention = '@' + splitLabel[0] + ' ' + splitLabel[1]
+                    $target.html(currentText.substring(0, currentText.lastIndexOf('@')) + mention);
 
                     // move cursor to the end
                     var range = document.createRange();
@@ -56,12 +57,12 @@ define(function(require) {
                     selection.removeAllRanges();
                     selection.addRange(range);
 
-                    var mentions = [];
+                    var mentions = {};
+                    mentions[mention] = ui.item.value;
                     var previousMentions = $target.data('mentions');
                     if (previousMentions) {
-                        mentions = mentions.concat(previousMentions);
+                        mentions = $.extend({}, previousMentions, mentions);
                     }
-                    mentions.push(ui.item.value);
 
                     $target.data('mentions', mentions);
                     $target.trigger($.Event("keypress"));
@@ -173,10 +174,19 @@ define(function(require) {
             });
 
             if (comment.isValid()) {
+                var mentions = [];
+                var possibleMentions = this.$('.new-comment-field').data('mentions');
+                var text = this.$('.new-comment-field').text();
+                Object.keys(possibleMentions).forEach(function (key) {
+                    if (text.includes(key)) {
+                        mentions.push(possibleMentions[key]);
+                    }
+                });
+
                 comment.set({
                     type: this.activity.get('type'),
                     id: this.activity.get('id'),
-                    mentions: this.$('.new-comment-field').data('mentions')
+                    mentions: mentions
                 });
                 comment.save().done(function(obj, status) {
                     comment.set(obj.comment);
