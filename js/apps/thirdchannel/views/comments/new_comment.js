@@ -58,7 +58,7 @@ define(function(require) {
                     selection.addRange(range);
 
                     var mentions = {};
-                    mentions[mention] = ui.item.value;
+                    mentions[ui.item.value] = mention;
                     var previousMentions = $target.data('mentions');
                     if (previousMentions) {
                         mentions = $.extend({}, previousMentions, mentions);
@@ -178,8 +178,8 @@ define(function(require) {
                 var possibleMentions = this.$('.new-comment-field').data('mentions');
                 var text = this.$('.new-comment-field').text();
                 Object.keys(possibleMentions).forEach(function (key) {
-                    if (text.includes(key)) {
-                        mentions.push(possibleMentions[key]);
+                    if (text.includes(mentions[key])) {
+                        mentions.push(key);
                     }
                 });
 
