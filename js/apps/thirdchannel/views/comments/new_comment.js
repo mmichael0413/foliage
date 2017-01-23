@@ -46,7 +46,7 @@ define(function(require) {
                     var splitLabel = ui.item.originalText.split("\t");
                     var $target = $(e.target);
                     var currentText = $target.html();
-                    var mention = '@' + splitLabel[0] + ' ' + splitLabel[1]
+                    var mention = '@' + splitLabel[0] + ' ' + splitLabel[1];
                     $target.html(currentText.substring(0, currentText.lastIndexOf('@')) + mention);
 
                     // move cursor to the end
