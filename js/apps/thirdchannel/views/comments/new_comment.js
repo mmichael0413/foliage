@@ -43,6 +43,7 @@ define(function(require) {
                     if (ui.item.value == "placeholder") {
                         return;
                     }
+                    // extract the mention fields from what we see in the search bar
                     var splitLabel = ui.item.originalText.split("\t");
                     var $target = $(e.target);
                     var currentText = $target.html();
@@ -57,6 +58,7 @@ define(function(require) {
                     selection.removeAllRanges();
                     selection.addRange(range);
 
+                    // append new mention to existing set of mentions
                     var mentions = {};
                     mentions[ui.item.value] = mention;
                     var previousMentions = $target.data('mentions');
@@ -178,7 +180,7 @@ define(function(require) {
                 var possibleMentions = this.$('.new-comment-field').data('mentions');
                 var text = this.$('.new-comment-field').text();
                 Object.keys(possibleMentions).forEach(function (key) {
-                    if (text.includes(mentions[key])) {
+                    if (text.includes(possibleMentions[key])) {
                         mentions.push(key);
                     }
                 });
