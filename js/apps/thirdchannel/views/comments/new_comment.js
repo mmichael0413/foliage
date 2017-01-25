@@ -179,11 +179,14 @@ define(function(require) {
                 var mentions = [];
                 var possibleMentions = this.$('.new-comment-field').data('mentions');
                 var text = this.$('.new-comment-field').text();
-                Object.keys(possibleMentions).forEach(function (key) {
-                    if (text.includes(possibleMentions[key])) {
-                        mentions.push(key);
-                    }
-                });
+
+                if (possibleMentions) {
+                    Object.keys(possibleMentions).forEach(function (key) {
+                        if (text.includes(possibleMentions[key])) {
+                            mentions.push(key);
+                        }
+                    });
+                }
 
                 comment.set({
                     type: this.activity.get('type'),
