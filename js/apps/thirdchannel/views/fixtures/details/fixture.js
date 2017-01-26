@@ -1,11 +1,11 @@
 define(function (require) {
     var Backbone = require('backbone'),
         _ = require("underscore"),
+        Viewer = require('viewer'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-
         className: 'fixture-instance-tile section',
 
         events: {
@@ -19,12 +19,18 @@ define(function (require) {
         },
 
         showDetails: function (e) {
-
             this.$el.find(".details").show();
             if (!this.carousel) {
                 this.initializeCarousel();
             }
             this._swapArrows(this.$el.find('.details-toggle'), "ic_down", "ic_up");
+            this.viewer = this.$el.viewer({
+                inline: false,
+                rotatable: false,
+                transition: false,
+                scalable: false,
+                fullscreen: false
+            });
         },
 
         hideDetails: function (e) {
