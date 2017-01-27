@@ -22,14 +22,6 @@ define(function (require) {
             this.$el.find(".details").show();
             if (!this.carousel) {
                 this.initializeCarousel();
-
-                this.viewer = this.$('.details').viewer({
-                    inline: false,
-                    rotatable: false,
-                    transition: false,
-                    scalable: false,
-                    fullscreen: false
-                });
             }
             this._swapArrows(this.$el.find('.details-toggle'), "ic_down", "ic_up");
         },
@@ -62,7 +54,7 @@ define(function (require) {
                 }
             }
         },
-        
+
         prevSlide: function (e) {
             e.preventDefault();
             this.carousel.slickPrev();
@@ -168,6 +160,15 @@ define(function (require) {
             }
             data.storeUrl = this._buildStoreUrl(data);
             this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/fixture_detail_tile"](data));
+
+            this.viewer = this.$('.activity-photos').viewer({
+                inline: false,
+                rotatable: false,
+                transition: false,
+                scalable: false,
+                fullscreen: true
+            });
+
             return this;
         }
     });
