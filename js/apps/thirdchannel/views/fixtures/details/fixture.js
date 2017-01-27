@@ -166,6 +166,7 @@ define(function (require) {
                 rotatable: false,
                 transition: false,
                 scalable: false,
+                title: false,
                 fullscreen: true
             });
 
