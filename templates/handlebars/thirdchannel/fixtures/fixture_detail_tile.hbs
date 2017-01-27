@@ -3,7 +3,6 @@
         <img class="preview-image" src="{{previewImageUrl}}" alt="{{name}}" onerror="this.src='{{imageErrorUrl}}'"></img>
     </div>
 
-
     <p class="col-2-12 name">{{name}}</p>
 
     <div class="col-4-12"><a href="{{storeUrl}}">{{storeName}}</a><p class="address">{{storeAddress}}</p></div>
@@ -15,25 +14,22 @@
     <div class="col-1-12">
         <p class="images {{#containsImages}}has-images{{else}}calm{{/containsImages}}"><i class="ic fa fa-camera"></i>{{imagesCount}}</p>
     </div>
+
     <div class="col-1-12">
-        
         <p class="arrow"><i class="ic ic_down details-toggle"></i></p>
         <p class="problems {{#alert}}exist{{else}}calm{{/alert}}"><i class="ic fa fa-exclamation-circle"></i>{{problemsCount}}</p>
     </div>
 </div>
 
-
-
 <div class="details pure-g">
-    
     <div class="col-3-12 checks">
         <div class="property-group">
             <span class="bold">Visiblity</span>
-            {{#visibility}}
-                <ul class="list">
-                    <li class="list-item"><i class="ic fa fa-check checked"></i>{{this}}</li>    
-                </ul>
-            {{else}}
+                {{#visibility}}
+                    <ul class="list">
+                        <li class="list-item"><i class="ic fa fa-check checked"></i>{{this}}</li>
+                    </ul>
+                {{else}}
                 <p class="list-item no-properties">No Visibility Given</p>    
             {{/visibility}}
         </div>
@@ -41,16 +37,15 @@
         <div class="property-group">
             <span class="bold">Location</span>
             <ul class="list">
-            {{#locations}}
-                <li class="list-item"><i class="ic fa fa-check checked"></i>{{this}}</li>
-            {{else}}
-                <li class="list-item no-properties">No Desired Locations</li>    
-            {{/locations}}
+                {{#locations}}
+                    <li class="list-item"><i class="ic fa fa-check checked"></i>{{this}}</li>
+                {{else}}
+                    <li class="list-item no-properties">No Desired Locations</li>
+                {{/locations}}
             </ul>
         </div>
-
-        
     </div>
+
     <div class="col-6-12 problems-list">
         <div class="property-group">
             <span class="bold">Issues</span>
@@ -64,40 +59,37 @@
         </div>
 
         {{#if attributesSummary}}
-        <div class="property-group">
-            <span class="bold">Summary</span>
-            <div>{{attributesSummary}}</div>
-        </div>
+            <div class="property-group">
+                <span class="bold">Summary</span>
+                <div>{{attributesSummary}}</div>
+            </div>
         {{/if}}
     </div>
 
-
     <div class="col-2-12 activity-photos">
-    {{#if pictures}}
-        <div class="carousel">
-            {{#each pictures}}
-            <div>
-                <div class="helper">
-                    <img src="{{href}}" alt="{{../name}}" class="img-responsive" onerror="this.src='{{../imageErrorUrl}}'"/>
-                </div>
+        {{#if pictures}}
+            <div class="carousel">
+                {{#each pictures}}
+                    <div class="helper">
+                        <img src="{{href}}" alt="{{../name}}" class="img-responsive" onerror="this.src='{{../imageErrorUrl}}'"/>
+                    </div>
+                {{/each}}
+
+                {{#unless_eq pictures.length 1}}
+                <a href="#" class="arrow arrow-left">
+                    <span class="ic ic_left"></span>
+                </a>
+                <a href="#" class="arrow arrow-right">
+                    <span class="ic ic_right"></span>
+                </a>
+                {{/unless_eq}}
             </div>
-            {{/each}}
-            {{#unless_eq pictures.length 1}}
-            <a href="#" class="arrow arrow-left">
-                <span class="ic ic_left"></span>
-            </a>
-            <a href="#" class="arrow arrow-right">
-                <span class="ic ic_right"></span>
-            </a>
-            {{/unless_eq}}
-        </div>
-    {{/if}}
-        
+        {{/if}}
     </div>
+
     {{#if showReprocessingLink}}
         <div class="col-1-1 admin-links">
             <a class="reprocess" href="#">Reprocess Image</a>
         </div>
     {{/if}}
-
 </div>
