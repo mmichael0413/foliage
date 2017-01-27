@@ -46,11 +46,13 @@ define(function (require) {
         },
 
         _extractImageUrl: function (images, rel) {
-            var link = _.find(images.links, function (image) {
-                return image.rel === rel;
-            });
-            if (link) {
-                return link.href;
+            if (images && images.hasOwnProperty("links")) {
+                var link = _.find(images.links, function (image) { 
+                    return image.rel === rel;
+                });
+                if (link){
+                    return link.href;
+                }
             }
         },
 
@@ -79,15 +81,22 @@ define(function (require) {
         },
 
         _buildStoreUrl: function (data) {
+            // the trick here is to tweak the url based on whether or not we're in the store_profile page vs the fixtures_page
             var storeUrl = "",
                 fixturesTag = "/fixtures",
-                indexOfFixtures = location.pathname.indexOf(fixturesTag);
-            // if we're already at the fixture page, go to the root
-            if (indexOfFixtures == location.pathname.length - fixturesTag.length) {
+                indexOfFixtures = location.pathname.indexOf(fixturesTag),
+                isStoreProfile = function () {
+                    return indexOfFixtures == location.pathname.length - fixturesTag.length && data.programStoreUuid && location.pathname.indexOf(data.programStoreUuid) > 0;
+                };
+
+                
+            // // if we're already at the fixture page, go to the root
+            if (isStoreProfile()) {
                 storeUrl = location.pathname.substr(0, indexOfFixtures);
             } else {
-                storeUrl = context.links.fixtures.program_store_base + "/" + data.programStoreUuid + fixturesTag;
+                storeUrl = context.links.fixture_tracking.program_store_base + "/" + data.programStoreUuid + fixturesTag;
             }
+
             return storeUrl;
         },
 
@@ -99,7 +108,7 @@ define(function (require) {
 
                 var programUUID = this.model.attributes.pictures[0].programUUID;
                 var imageUUID = this.model.attributes.pictures[0].imageUUID;
-                var url = context.links.fixtures.reprocessing_base_url + '/reprocess/' + programUUID + '/' + imageUUID;
+                var url = context.links.fixture_tracking.reprocessing_base_url + '/reprocess/' + programUUID + '/' + imageUUID;
 
                 var spinner = '<i class="fa fa-spinner fa-spin fa-fw"></i>';
                 this.$('.admin-links').append(spinner);
@@ -126,20 +135,24 @@ define(function (require) {
             this.carousel = undefined;
             data.containsImages = data.imagesCount > 0;
             data.alert = data.problemsCount > 0;
-            data.imageErrorUrl = context.links.fixtures.image_error;
+            data.imageErrorUrl = context.links.fixture_tracking.image_error;
             data.showReprocessingLink = false;
             if (data.attributes.pictures && data.attributes.pictures.length > 0) {
                 data.previewImageUrl = this._extractImageUrl(data.attributes.pictures[0], "small");
                 data.pictures = [];
                 data.attributes.pictures.forEach(function (picture) {
-                    var link = _.find(picture.links, function (image) {
+                    
+                    if (picture && picture.links) {
+                        var link = _.find(picture.links, function (image) { 
+
                         return image.rel === "medium";
-                    });
-                    if (link) {
-                        data.pictures.push(link);
+                        });
+                        if (link) {
+                            data.pictures.push(link);
+                        }    
                     }
                 });
-                if (context.links.fixtures.reprocessing_base_url !== undefined) {
+                if (context.links.fixture_tracking.reprocessing_base_url !== undefined) {
                     data.showReprocessingLink = true;
                 }
             } else {

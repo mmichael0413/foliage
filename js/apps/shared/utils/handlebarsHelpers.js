@@ -178,9 +178,9 @@ define(function (require) {
     Handlebars.registerHelper('percentageChangeIcon', function(change) {
         if (change !== undefined && change !== null) {
             if (change > 0) {
-                return 'ic_up';
+                return 'fa-angle-up';
             } else if (change < 0) {
-                return 'ic_down';
+                return 'fa-angle-down';
             }
         }
     });
@@ -199,7 +199,7 @@ define(function (require) {
         });
     });
 
-    Handlebars.registerHelper('formatSecondsToDate', function(seconds, locale) {
+    Handlebars.registerHelper('formatSecondsToDateTime', function(seconds, locale) {
         if(locale === undefined) {
             locale = 'en-US';
         }
@@ -216,14 +216,30 @@ define(function (require) {
             month: "long",
             day: "numeric"
         }),
-            timeString = date.toLocaleTimeString(locale, {
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-                timeZoneName: "short"
-            });
+
+        timeString = date.toLocaleTimeString(locale, {
+            hour: "2-digit",
+            minute: "2-digit",
+            timeZoneName: "short"
+        });
 
         return dateString + ' at ' + timeString;
+    });
+
+    Handlebars.registerHelper('formatDateToLongDate', function(utcDate, locale) {
+        if (locale === undefined) {
+            locale = 'en-US';
+        }
+
+        var dateString = utcDate.split(" ")[0];
+        var date = new Date(dateString);
+        date.setDate(date.getDate() + 1);
+
+        return date.toLocaleDateString(locale, {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
     });
 
     Handlebars.registerHelper('similarAccountClass', function(similarity) {
@@ -283,5 +299,18 @@ define(function (require) {
         }
         return new Handlebars.SafeString(text);
     });
-});
 
+    Handlebars.registerHelper('round', function(value) {
+        return Math.round(value);
+    });
+
+    Handlebars.registerHelper('trimActivitySummary', function(summary) {
+      /**
+        Agents want to be able to delineate sections of their summary with
+        line breaks. We don't want them to add too many line breaks and
+        cause unnecessary length to the activity feed, so trim any 4+
+        line breaks to 3.
+      **/
+      return summary.replace(/\n\s*\n\s*\n/g, '\n\n');
+    });
+});

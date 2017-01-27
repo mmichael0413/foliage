@@ -1,3 +1,16 @@
+.visit-header {
+  margin: 0 1em;
+
+  h2 {
+    display: inline;
+  }
+
+  .subtle-instruction {
+    float: right;
+  }
+}
+
+
 .subtle-instruction {
   color: $medium-blue;
   font-style: italic;
@@ -25,6 +38,7 @@
   }
 }
 
+
 .expandable {
   .main {
     //margin-bottom: 0.5em;
@@ -40,8 +54,4 @@
 
 .jobs {
   margin-top: 0.5em;
-}
-
-.right-align {
-  text-align: right;
 }

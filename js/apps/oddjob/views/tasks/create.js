@@ -23,7 +23,7 @@ define(function (require) {
 		{value: 30,  displayName: ":30"},
 		{value: 45,  displayName: ":45"}
 	];
-	for (var i=60; i <= 480; i++) {
+	for (var i=60; i <= 1440; i++) {
 		if (i % 30 === 0) {
 			durations.push({ value: i, displayName: buildDurationDisplay(i) });
 		}

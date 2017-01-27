@@ -1,0 +1,54 @@
+.marketing {
+
+	.openings {
+		background-image: url('http://marketing-new.thirdchannel.com/sites/default/files/2016-11/openings-background.jpg');
+	}
+
+	.opportunity-link {
+		height: 20em;
+		border: 2px solid white;
+		margin: 0;
+
+		> div {
+			text-align: center;
+		}
+
+		img {
+			height: 14em;
+		}
+
+		&:hover {
+			background: #da291c;
+		}
+
+		@include swb-medium {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+
+	#opportunities-page {
+		padding-bottom: 1em;
+
+		.login-container {
+			text-align: center;
+
+			h1 {
+				max-width: 100%;
+			}
+		}
+	}
+
+	.body.apply {
+		margin: 0 auto;
+		position: relative;
+
+		.current-user {
+			text-align: center;
+			
+			.btn.primary {
+				float: none;
+			}
+		}
+	}
+}

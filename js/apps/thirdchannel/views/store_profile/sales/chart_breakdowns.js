@@ -8,6 +8,12 @@ define(function(require) {
 
     var defaultLegendColors = ["#F15F51", "#585E60", "#9FB2C0", "#A9BC4D"];
 
+    var titleizeString = function(text) {
+        return text.split(' ').map(function(s){
+            return s.length <=1 ? s.toUpperCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+        }).join(" ");
+    };
+
     var View = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/store_profile/sales/chart_breakdowns'],
 
@@ -18,9 +24,12 @@ define(function(require) {
             return this;
         },
 
+
+
         renderSalesPerBreakdown: function() {
             var store = this.model.get('store');
             var breakdowns = [];
+            var graphHeight;
 
             if(this.model.get('breakdown_by') === 'category') {
                 breakdowns = store.categories;
@@ -29,12 +38,15 @@ define(function(require) {
             }
 
             breakdowns = _.map(breakdowns, function(data, key) {
-                data.label = key;
-                data.percentageOfSales = (data.salesInCents / store.salesInCents) * 100;
-                return data;
+                        //Title Case the labels
+                        data.label = titleizeString(key);
+                        data.percentageOfSales = (data.salesInCents / store.salesInCents) * 100;
+                        return data;
             });
             breakdowns = _.filter(breakdowns, function(data) { return data.percentageOfSales !== null; });
             breakdowns = _.sortBy(breakdowns, 'percentageOfSales').reverse();
+
+            graphHeight = this.getMaxGraphHeight(breakdowns.length);
 
             this.salesPerCategoryChart = c3.generate({
                 bindto: this.$('#brand-percent-of-sales > .chart')[0],
@@ -101,7 +113,7 @@ define(function(require) {
                     show: false
                 },
                 size: {
-                    height: 360
+                    height: graphHeight
                 }
             });
         },
@@ -109,6 +121,7 @@ define(function(require) {
         renderChangeInSales: function() {
             var store = this.model.get('store');
             var breakdowns = [];
+            var graphHeight;
 
             if(this.model.get('breakdown_by') === 'category') {
                 breakdowns = store.categories;
@@ -117,11 +130,13 @@ define(function(require) {
             }
 
             breakdowns = _.map(breakdowns, function(data, key) {
-                data.label = key;
+                data.label = titleizeString(key);
                 return data;
             });
             breakdowns = _.filter(breakdowns, function(data) { return data.percentageOfSales !== null; });
             breakdowns = _.sortBy(breakdowns, 'percentageOfSales').reverse();
+
+            graphHeight = this.getMaxGraphHeight(breakdowns.length);
 
             this.changeInSalesChart = c3.generate({
                 bindto: this.$('#brand-change-in-sales > .chart')[0],
@@ -188,10 +203,23 @@ define(function(require) {
                     show: false
                 },
                 size: {
-                    height: 360
+                    height: graphHeight
                 }
             });
+        },
+
+        getMaxGraphHeight: function(itemLength) {
+          /* 360 = default chart height
+           * 36 = the height of the bar chart (30) + 2 px on either side
+           * for the tick markers that the bars fit between, as well as 4px
+           * additional spacing between rows.
+           *
+           * This means that when charts get larger than 360px,
+           * the bars will be back to back and not overlapping.
+           */
+          return Math.max(itemLength * 36, 360);
         }
+
     });
 
     return View;

@@ -21,7 +21,9 @@ define(function(require) {
 
         renderBreakdownGroups: function() {
             var $body = this.$('.body');
-            this.collection.each(function(breakdownGroup) {
+            var sortedCollection = new Backbone.Collection(this.collection.sortBy('brand'));
+
+            sortedCollection.each(function(breakdownGroup) {
                 breakdownGroup.breakdowns.each(function(breakdown, index) {
                     breakdown.set('index', index);
                     var view = new BreakdownRow({model: breakdown});

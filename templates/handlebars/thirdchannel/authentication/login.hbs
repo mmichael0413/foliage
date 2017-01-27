@@ -1,28 +1,35 @@
-<h2>Login</h2>
-<form accept-charset="UTF-8" action="/login" class="new_user" id="new_user" method="post">
-    <div style="display:none">
-        <input name="utf8" type="hidden" value="✓">
-        <input name="authenticity_token" type="hidden" value="{{authToken}}">
-    </div>
-    <div class="form-group">
-        <input autofocus="autofocus" class="large low-margin dark" id="user_email" name="user[email]" placeholder="Email" type="email">
-    </div>
+<div class="inner-wrapper">
+  <h1>Sign Up</h1>
+  <form accept-charset="UTF-8" action="/login" class="new_user" id="new_user" method="post">
+      <div style="display:none">
+          <input name="utf8" type="hidden" value="✓">
+          <input name="authenticity_token" type="hidden" value="{{authToken}}">
+      </div>
+      <h2>Log In to move forward</h2>
+      <div class="form-group">
+          <input autofocus="autofocus" class="large low-margin dark" id="user_email" name="user[email]" placeholder="Email" type="email">
+      </div>
 
-    <div class="form-group">
-        <input class="large low-margin dark" id="user_password" name="user[password]" placeholder="Password" type="password">
-    </div>
+      <div class="form-group">
+          <input class="large low-margin dark" id="user_password" name="user[password]" placeholder="Password" type="password">
+      </div>
 
-    <div class="checkbox">
-        <input name="user[remember_me]" type="hidden" value="0"><input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1">
-        <label for="user_remember_me">Keep me logged in</label></div>
+      <div class="checkbox">
+          <input name="user[remember_me]" type="hidden" value="0"><input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1">
+          <label for="user_remember_me">Keep me logged in</label></div>
 
-    <div class="help-block">
-        <a href="/secret/new">Forgot your password?</a><br>
-    </div>
-    <div class="clear"></div>
-    <input class="btn primary solid" name="commit" type="submit" value="Login">
-</form>
+      <div class="help-block">
+          <a href="/secret/new">Forgot your password?</a><br>
+      </div>
+      <div class="clear"></div>
+      <button class="btn primary" name="commit">
+        <i class="fa fa-angle-double-right"></i>
+        <span>Login</span>
+      </button>
+      <div class="clear"></div>
+  </form>
 
-<div>
-    Don't have an account? <a href="#" class="sign-up">Sign up!</a>
+  <div class="no-account">
+      Don't have an account? <a href="#" class="sign-up">Sign up!</a>
+  </div>
 </div>

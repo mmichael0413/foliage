@@ -9,18 +9,50 @@
 }
 
 .percentage-change {
-  &.positive {
-    color: $palette7;
+  border-radius: .35em;
+  -webkit-border-radius: .35em;
+  -moz-border-radius: .35em;
+  min-width: 5.5em;
+  line-height: 24px;
+  display: inline-block;
+  padding: 0 0.35em;
+
+  &.activity-feed-qtd {
+    color: white;
+
+    &.positive {
+      background-color: $palette10;
+    }
+    &.negative {
+      background-color: $palette8;
+    }
   }
 
+  &.overview-qtd {
+
+    &.positive {
+      color: $palette10
+    }
+    &.negative {
+      color: $palette8;
+    }
+  }
+}
+
+.percentage-change.activity-feed-qtd:hover {
+  color: white;
+  &.positive {
+    background-color: $palette11;
+  }
   &.negative {
-    color: $palette5;
+    background-color: $palette9;
   }
 }
 
 .sales-overview {
   h2 {
     display: inline-block;
+    margin-bottom: .25em;
   }
 
   .subnav {
@@ -33,7 +65,12 @@
     }
 
     p {
+      margin: .25em 0;
       order: 2;
+    }
+
+    &:first-child {
+      margin-top: 1em;
     }
   }
 }
@@ -43,9 +80,15 @@
     .overview-data {
 
       h2 {
+        margin: .25em 0;
         order: 2;
-        margin: 1em 0;
         text-align: right;
+
+        &.percentage-change {
+          margin-bottom: .5em;
+          padding: 0;
+          width: 100%;
+        }
       }
 
       p {

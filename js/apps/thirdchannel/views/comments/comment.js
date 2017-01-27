@@ -1,37 +1,44 @@
-define(function(require){
+define(function(require) {
     var Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates');
-        
     return Backbone.View.extend({
         className: 'comment',
         template: HandlebarsTemplates['thirdchannel/comment'],
-        initialize: function (options) {
+        initialize: function(options) {
             this.model = options.model;
             this.model.set('mentions', options.mentions);
             this.model.set('currentUserId', options.currentUserId);
             this.model.set('highlightWords', options.highlightWords);
-            this.model.collection.bind('reset', this.removeFromDom, this);
         },
         events: {
             'click .delete-comment': 'deleteComment'
         },
-        render: function () {
+        render: function() {
             this.$el.html(this.template(this.model.attributes));
             return this;
         },
-        deleteComment: function (e) {
+        deleteComment: function(e) {
             e.preventDefault();
             e.stopPropagation();
-
             var self = this;
-            var deleteUrl = this.model.url + '?comment_id=' + this.model.get('comment_id');
-
-            this.model.collection.remove(this.model);
-            this.model.destroy({url: deleteUrl}).done(function () {
-                self.remove();
-            });
+            var userConfirmedDeletion = window.confirm("Are you sure you want to delete this comment?");
+            if(userConfirmedDeletion){
+                var deleteUrl = this.model.get('url') + '?comment_id=' + this.model.get('comment_id');
+                var collection = this.model.collection;
+                this.model.destroy({
+                    url: deleteUrl
+                }).done(function() {
+                    collection.remove(this.model);
+                    collection.trigger('redraw');
+                    self.remove();
+                }).fail(function() {
+                    alert("Failed to delete comment! Please try again.");
+                    // Actually, the delete may have succeeded, and
+                    // the response just didn't make it back.
+                });
+            }
         },
-        removeFromDom: function () {
+        removeFromDom: function() {
             this.remove();
         }
     });

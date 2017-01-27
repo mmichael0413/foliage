@@ -3,6 +3,7 @@
 @import "../../lib/pure.responsive-grid";
 @import "../../lib/chosen";
 @import '../../../../js/libs/bower_components/slick.js/slick/slick';
+@import '../../lib/backbone.modal/modal';
 
 @import "../../base/fonts_all";
 @import "../../base/base";
@@ -23,6 +24,7 @@
 @import "../../modules/data_section";
 @import "../../modules/expanding_table_row";
 @import "../../modules/address_title";
+@import "../../modules/modal";
 @import "../../modules/atoms/alerts";
 
 @import "../../modules/store_profile_section";
@@ -35,7 +37,7 @@
     padding-left: 2.5em;
     white-space: normal;
     .link {
-        padding-left: 0;    
+        padding-left: 0;
     }
 }
 
@@ -125,7 +127,7 @@
             width: 5em;
             margin: 0em 1em 0em 0em;
             padding: 0.25em;
-        } 
+        }
     }
 
 
@@ -134,7 +136,7 @@
             position: inherit;
             max-height: 999em;
         }
-    } 
+    }
 
     .comments-list {
         margin-bottom: 2em;

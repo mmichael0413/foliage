@@ -22,13 +22,14 @@ define(function (require) {
 
             this.incompleteActivityUrl = options.incompleteActivityUrl;
 
+            this.listenTo(context, 'filter:query', this.insertLoadingTemplate);
             this.listenToOnce(context, 'page:height', this.checkPageHeight);
             $(window).resize(function () {
                 self.resizeCarousel();
             });
             ActivitiesView.__super__.initialize.apply(this, arguments);
         },
-        
+
 
         fetch: function () {
             var self = this;
@@ -46,7 +47,7 @@ define(function (require) {
 
             return this;
         },
-        
+
 
         renderModel: function (model) {
             for (var i = 0; i<model.attributes.length; i++) {
@@ -71,7 +72,7 @@ define(function (require) {
                 this.getContentElement().append(this.endOfFeedHTML);
             }
         },
-        
+
         resizeCarousel: function () {
             var $carousel = self.$('.carousel');
             var width = $carousel.width();
@@ -79,6 +80,11 @@ define(function (require) {
             self.$('.slick-slide').height(width);
             $carousel.find('img').css({'max-width': width, 'max-height': width});
         },
+
+        insertLoadingTemplate: function () {
+          this.$el.prepend(this.loadIndicator.render().el);
+        },
+
         getContentElement: function () {
             return this.$('.complete');
         }

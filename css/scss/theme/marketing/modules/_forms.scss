@@ -1,0 +1,174 @@
+.marketing {
+  .form-container {
+    font-family: "roboto";
+    font-weight: 100;
+    width: 100%;
+    color: #fff;
+    box-sizing: border-box;
+    margin: 0;
+
+
+    &.banner-image {
+      background-image: url("http://marketing-new.thirdchannel.com/themes/custom/thirdchannel/images/content/login-background.png");
+      background-size: cover;
+      min-height: 100vh;
+      padding: 225px 0 60px;
+    }
+
+    h1 {
+      font: 78px/1 "roboto",sans-serif;
+      margin: 0.67em 0;
+      font-weight: 100;
+    }
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-family: "roboto", sans-serif;
+      font-weight: 800;
+    }
+
+    .inner-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    form {
+      margin-top: 70px;
+      position: relative;
+      padding: 25px 30px;
+      border: 1px solid #fff;
+    }
+
+    .help-block {
+      display: inline-block;
+      float: right;
+    }
+
+    .options {
+      font-size: 16px;
+      margin: 12px 0;
+    }
+
+    .no-account {
+      position: relative;
+      padding: 22px 30px;
+      font-size: 18px;
+    }
+
+    .btn.primary {
+      float: right;
+
+      & + .btn.primary {
+  			margin-right: 20px;
+  		}
+    }
+
+    .tooltip {
+      float: left;
+      color: $marketing-link-color;
+
+      & + .tip {
+        right: 0;
+        left: 10em;
+      }
+    }
+
+    input[type=text], input[type=password], input[type="email"] {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 12px;
+      padding: 3px 10px;
+      font-size: 24px;
+      font-weight: 100;
+      line-height: 24px;
+      border: 1px solid;
+      border-radius: 0;
+      background: none;
+      box-sizing: border-box;
+      border-color: #fff;
+      color: #fff;
+
+      &:focus {
+        outline: 0;
+      }
+
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: #fff;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        color: #fff;
+      }
+      &:-ms-input-placeholder { /* IE 10+ */
+        color: #fff;
+      }
+      &:-moz-placeholder { /* Firefox 18- */
+        color: #fff;
+      }
+    }
+
+    input[type="checkbox"] {
+      display: none;
+
+      + label {
+        position: relative;
+        font-size: 16px;
+        line-height: 16px;
+        cursor: pointer;
+
+
+        &:before {
+          content: "";
+          display: block;
+          float: left;
+          position: relative;
+          width: 15px;
+          height: 15px;
+          top: 4px;
+          margin-right: 15px;
+          border: 1px solid #fff;
+          box-sizing: border-box;
+          -webkit-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+        }
+
+        &:after {
+          content: "";
+          display: block;
+          border-bottom: 2px solid #fff;
+          border-right: 2px solid #fff;
+          width: 5px;
+          height: 10px;
+          margin-top: -4px;
+          pointer-events: none;
+          position: absolute;
+          top: 7px;
+          left: -26px;
+          opacity: 0;
+          -webkit-transform-origin: 66% 66%;
+          transform-origin: 66% 66%;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+          -webkit-transition: opacity 0.2s;
+          transition: opacity 0.2s;
+        }
+      }
+
+      &:checked + label:after {
+        opacity: 1;
+      }
+    }
+  }
+}

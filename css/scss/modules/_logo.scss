@@ -3,33 +3,22 @@
   background-color: white;
   white-space: nowrap;
 
-  .tc-logo, .third {
-    $size: 1em;
-    height: $size;
-    line-height: $size;
-    vertical-align: super;
-    text-decoration: none;
-  }
-
   .ic_logo {
     font-size: 2em;
-  }
-
-  .third, .channel {
-    font-size: 1.1em;
-  }
-
-  .ic_logo, .channel {
-    color: $palette3;
-  }
-
-  .third {
     color: $link-color;
-    font-family: 'Nexa Light';
+    vertical-align: middle;
   }
 
-  .channel {
-    font-family: 'Nexa Bold';
-    font-size: 1em;
+  .company-name {
+    color: $palette3;
+    font-family: 'Nexa Light';
+    font-size: 1.25em;
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: 0.2em;
+
+    strong {
+      font-family: 'Nexa Bold';
+    }
   }
 }

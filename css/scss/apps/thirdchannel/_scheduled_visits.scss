@@ -4,3 +4,9 @@
 .scheduled-visit-cell {
 	padding: 0 0.5em;
 }
+.view-schedule {
+	@include swb-medium {
+		display: inline-block;
+		padding: 1em 0 1.5em;
+	}
+}

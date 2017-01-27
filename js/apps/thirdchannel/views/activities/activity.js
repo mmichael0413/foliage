@@ -17,6 +17,7 @@ define(function(require) {
     return Backbone.View.extend({
         className: 'activity',
         template: HandlebarsTemplates['thirdchannel/activity'],
+        taskTemplate: HandlebarsTemplates['thirdchannel/task'],
         events: {
             'click .activity_like_button': 'likeActivity',
             'click .activity_follow_button': 'followActivity',
@@ -59,13 +60,9 @@ define(function(require) {
             } else {
                 this.model.set('imageCount', 0);
             }
-            
+
             this.model.set('singleActivity', this.options.singleActivity);
             this.model.set('isMobile', helpers.isMobile.any());
-
-            if (this.model.get('comments_count') > 3) {
-                this.model.set('additional_comments', this.model.get('comments_count') - 3);
-            }
 
             if (this.model.get('editable') || this.model.get('hideable')) {
                 this.model.set('show-moderation', true);
@@ -76,8 +73,22 @@ define(function(require) {
             // render the comments view
             var c = this.$('.comments');
             this.comments = new CommentsView({el: c, activity: this.model, programId: this.programId, mentions: this.mentions, currentUserId: this.currentUserId, highlightWords: this.highlightWords}).render();
+            this.listenTo(this.comments, 'commentsShown:changed', this.updateAdditionalCommentsLink);
             this.newComment = new NewCommentView({el: this.$('.new-comment'), activity: this.model, collection: this.comments.collection}).render();
-            
+
+            this.renderTask();
+            return this;
+        },
+        renderTask: function() {
+            if(this.model.get('images')) {
+                this.model.set('imageCount', this.model.get('images').length);
+            } else {
+                this.model.set('imageCount', 0);
+            }
+
+            // render task html
+            this.$(".activity-details").html(this.taskTemplate(this.model.attributes));
+
             if (!this.model.get('isMobile')) {
                 var viewer = this.$el.find('.activity-photos').viewer({
                     inline: false,
@@ -99,7 +110,7 @@ define(function(require) {
             model.fetch()
             .done(function () {
                 self.model =  (model.get('activities') && model.get('activities').length > 0) ? new Backbone.Model(model.get('activities')[0]) : new Backbone.Model(model.get('activities')[0]);
-                self.render();
+                self.renderTask();
                 self.initializeCarousel();
             });
         },
@@ -154,29 +165,31 @@ define(function(require) {
 
             this.newComment.commentFocus();
         },
+        updateAdditionalCommentsLink: function(){
+            var total = this.comments.collection.models.length;
+            var visible = this.comments.visibleComments;
+            var link = this.$(".more-comments,.less-comments");
+            if(total > 3){
+                if(total === visible){
+                    link.text('Hide Comments').removeClass('more-comments').addClass('less-comments');
+                } else {
+                    var diff = total - visible;
+                    var label = 'View ' + diff + ' More Comment'  + (diff === 1 ? '' : 's');
+                    link.text(label).removeClass('less-comments').addClass('more-comments');
+                }
+            } else {
+                link.text('');
+            }
+        },
         showAdditionalComments: function (e) {
             e.preventDefault();
             e.stopPropagation();
-
             this.comments.showAllComments();
-
-            $(e.target).text('Hide Comments').removeClass('more-comments').addClass('less-comments');
-
         },
         hideAdditionalComments: function (e) {
             e.preventDefault();
             e.stopPropagation();
-
             this.comments.showOriginalComments();
-
-            var commentLabel = ' More Comments';
-            if (this.model.get('additional_comments') === 1){
-                commentLabel = ' More Comment';
-            }
-
-            var label = 'View ' + this.model.get('additional_comments') + commentLabel;
-            $(e.target).text(label).removeClass('less-comments').addClass('more-comments');
-
         },
         hidePost: function(e) {
             e.preventDefault();
@@ -231,7 +244,7 @@ define(function(require) {
             if (location && location.hasOwnProperty('id') && location.id === event.uuid) {
                 // only show values with 0 or greater?
                 var data = {salesChange: event.salesChange, showLabel: event.value ? true : false,
-                    salesUrl: event.salesUrl, message: event.message};
+                    salesUrl: event.salesUrl, message: event.message, mostRecent: event.mostRecent};
                 this.$el.find('.activity-meta').append(HandlebarsTemplates['thirdchannel/activities/sales_widget'](data));
                 this.$el.find('.sales-widget').fadeIn(500).css("display","inline-block");
             }

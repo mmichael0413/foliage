@@ -53,7 +53,7 @@
       #site-menu {
         width: $collapsed-nav-width;
         @include transition(transform linear .3s, width .3s);
-        .third {
+        .company-name {
           display: none;
         }
         .link {
