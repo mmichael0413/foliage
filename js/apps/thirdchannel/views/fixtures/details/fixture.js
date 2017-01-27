@@ -1,11 +1,11 @@
 define(function (require) {
     var Backbone = require('backbone'),
         _ = require("underscore"),
+        Viewer = require('viewer'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-
         className: 'fixture-instance-tile section',
 
         events: {
@@ -19,7 +19,6 @@ define(function (require) {
         },
 
         showDetails: function (e) {
-
             this.$el.find(".details").show();
             if (!this.carousel) {
                 this.initializeCarousel();
@@ -56,15 +55,16 @@ define(function (require) {
             }
         },
 
-        // the following is copied from thirdchannel/views/activities/activity
         prevSlide: function (e) {
             e.preventDefault();
             this.carousel.slickPrev();
         },
+
         nextSlide: function (e) {
             e.preventDefault();
             this.carousel.slickNext();
         },
+
         initializeCarousel: function () {
             var self = this;
             this.carousel = this.$el.find('.carousel').slick({
@@ -141,15 +141,14 @@ define(function (require) {
                 data.previewImageUrl = this._extractImageUrl(data.attributes.pictures[0], "small");
                 data.pictures = [];
                 data.attributes.pictures.forEach(function (picture) {
-                    
                     if (picture && picture.links) {
-                        var link = _.find(picture.links, function (image) { 
-
-                        return image.rel === "medium";
+                        var link = _.find(picture.links, function (image) {
+                            return image.rel === "large";
                         });
+
                         if (link) {
                             data.pictures.push(link);
-                        }    
+                        }
                     }
                 });
                 if (context.links.fixture_tracking.reprocessing_base_url !== undefined) {
@@ -161,6 +160,16 @@ define(function (require) {
             }
             data.storeUrl = this._buildStoreUrl(data);
             this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/fixture_detail_tile"](data));
+
+            this.viewer = this.$('.activity-photos').viewer({
+                inline: false,
+                rotatable: false,
+                transition: false,
+                scalable: false,
+                title: false,
+                fullscreen: true
+            });
+
             return this;
         }
     });
