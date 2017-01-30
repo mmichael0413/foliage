@@ -35,6 +35,19 @@
     padding: 0.5em 0;
     margin: 0;
   }
+
+  a {
+    color: $report-link;
+    text-decoration: underline;
+  }
+
+
+  & > div:not(.overview) {
+    a {
+      font-size: 0.75em;
+      vertical-align: top;
+    }
+  }
 }
 
 .widget {
@@ -187,7 +200,7 @@
 
 .metric-icon {
   h2 {
-    color: $red;
+    color: $report-palette4;
   }
 
   &.min {
