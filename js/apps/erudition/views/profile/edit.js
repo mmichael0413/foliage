@@ -39,7 +39,11 @@ define(function (require) {
         },
 
         showOrHideAttendedCollegeFollowUp: function () {
+            //console.log("showOrHideAttendedCollegeFollowUp");
             var selectedEducationLevel = $('#education-level').val();
+            //console.log("options");
+            //console.log(context.content.higherEducationLevels);
+            //console.log("selected " + selectedEducationLevel);
             var attendedCollegeFollowUp = $('#attended-college-follow-up');
             if(context.content.higherEducationLevels.includes(selectedEducationLevel)){
                 attendedCollegeFollowUp.removeClass("hide");
@@ -108,6 +112,7 @@ define(function (require) {
                 }
 
 
+                console.log("valid: " + valid);
                 return valid;
             }, "This field is required.");
 

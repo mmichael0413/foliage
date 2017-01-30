@@ -11,14 +11,14 @@
 
         <div class="hide" id="attended-college-follow-up">
             <div class="pure-g">
-                <label class="col-1-1">Where did you attend school?</label>
+                <label class="col-1-1">College/University</label>
                 <input id="universityText" type="text" class="typeahead" name="university.name" placeholder="Select College/University"
                        value="{{person.university.name}}" />
                 <input type="hidden" name="university.id" id="university" value="{{person.university.id}}"/>
             </div>
 
-            <label for="graduationYear">When did you graduate</label>
-            <select name="graduationYear" data-placeholder="When did you graduate?" id="graduationYear">
+            <label for="graduationYear">Final/Graduation Year (Actual/Expected)</label>
+            <select name="graduationYear" data-placeholder="Select Year" id="graduationYear">
                 <option></option>
                 {{#each graduationYears}}
                     {{#select ../person.graduationYear}}
