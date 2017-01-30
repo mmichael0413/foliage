@@ -139,9 +139,13 @@ define(function(require) {
 
 
             //Title Case the labels
-            return label? label.split(' ').map(function(s){
-                return s.length <=1 ? s.toUpperCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
-            }).join(" ") : '';
+            if (label) {
+                return label.split(' ').map(function (s) {
+                    return s.length <= 1 ? s.toUpperCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+                }).join(" ");
+            } else {
+                return "";
+            }
         }
     });
 
