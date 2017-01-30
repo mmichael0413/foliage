@@ -8,8 +8,7 @@ define(function(require) {
         context = require('context'),
         mresize = require('mresize');
 
-    var defaultLegendColors = ["#F15F51", "#585E60", "#9FB2C0", "#A9BC4D"];
-
+    var defaultLegendColors = ["#2FB44A", "#4D87C6", "#3D459C", "#515759", "#BDC5C4"];
 
     var view = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/bar_chart'],
