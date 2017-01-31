@@ -60,7 +60,7 @@ define(function(require) {
                         }
                     },
                     color: function(color, d) {
-                        return defaultLegendColors[d.index % defaultLegendColors.length];
+                        return context.defaultLegendColors[d.index % context.defaultLegendColors.length];
                     },
                     type: 'bar'
                 },
