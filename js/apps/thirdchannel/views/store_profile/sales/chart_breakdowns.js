@@ -7,8 +7,6 @@ define(function(require) {
         string_utils = require('thirdchannel/utils/string_utils'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
-    var defaultLegendColors = ["#F15F51", "#585E60", "#9FB2C0", "#A9BC4D"];
-
     var View = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/store_profile/sales/chart_breakdowns'],
 
@@ -61,7 +59,7 @@ define(function(require) {
                         }
                     },
                     color: function(color, d) {
-                        return defaultLegendColors[d.index % defaultLegendColors.length];
+                        return context.defaultLegendColors[d.index % context.defaultLegendColors.length];
                     },
                     type: 'bar'
                 },
@@ -151,7 +149,7 @@ define(function(require) {
                         }
                     },
                     color: function(color, d) {
-                        return defaultLegendColors[d.index % defaultLegendColors.length];
+                        return context.defaultLegendColors[d.index % context.defaultLegendColors.length];
                     },
                     type: 'bar'
                 },
