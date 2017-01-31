@@ -10,11 +10,16 @@ define(function(require) {
         
 
         render: function () {
-            var self = this;
+            var self = this,
+                fixtures = window.bootstrap.data;
             self.$el.html("");
-            window.bootstrap.data.forEach(function (fixture) {
-                self.$el.append(new FixtureDetails({model:fixture}).render().$el);
-            });
+            if (fixtures && fixtures.length > 0) {
+                fixtures.forEach(function (fixture) {
+                    self.$el.append(new FixtureDetails({model:fixture}).render().$el);
+                });
+            } else {
+                self.$el.append("<p>There are currently no tracked Assets for this store</p>");
+            }
         }
     });
 

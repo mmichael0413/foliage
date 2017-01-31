@@ -1,4 +1,4 @@
-define(function(require){
+define(function(require) {
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
@@ -8,64 +8,76 @@ define(function(require){
         Comment = require('thirdchannel/models/comments/comment'),
         CommentsCollection = require('thirdchannel/collections/comments/comments');
 
-   return Backbone.View.extend({
-       el: '.comments',
-       initialize: function (options) {
-           this.activity = options.activity;
-           this.programId = options.programId;
-           this.objId = this.activity.get('id');
-           this.mentions = options.activity.get('mentions');
-           this.currentUserId = options.currentUserId;
-           this.highlightWords = options.highlightWords;
-
-           this.commentUrl = '/programs/' + this.programId + '/activities/' + this.objId + '/comments';
-
-           // initialize collection
-           this.collection = new CommentsCollection([], {url: this.commentUrl });
-
-           this.initializeModels();
-           this.collection.bind('add', this.onModelAdded, this);
-       },
-       render: function () {
-           var self = this;
-           _.each(this.collection.models, function (model) {
-               self.$el.append(new CommentView({model: model, activityId: self.activityId, programId: self.programId,
-                   mentions: self.mentions, currentUserId: self.currentUserId, highlightWords: self.highlightWords}).render().el);
-           });
-
-           return this;
-       },
-       initializeModels: function () {
-           var comments = this.activity.get('comments');
-           var mentions = this.activity.get('mentions');
-           var commentModels = [];
-
-           var self = this;
-           _.each(comments, function (comment) {
-               commentModels.push(new Comment(comment, {url: self.commentUrl, mentions: mentions, currentUserId: self.currentUserId, highlightWords: self.highlightWords}));
-           });
-
-           this.collection.add(commentModels);
-       },
-       onModelAdded: function (model) {
-           this.$el.append(new CommentView({model: model, activityId: this.activityId, programId: this.programId, mentions: model.get('mentions'), currentUserId: model.get('currentUserId'), highlightWords: model.get('highlightWords')}).render().el);
-
-           return this;
-       },
-       showAllComments: function () {
-           var self = this;
-
-           this.collection.fetch({reset: true, data: {type: this.activity.get('type')}}).done(function(data, status){
-               self.render();
-           });
-       },
-       showOriginalComments: function () {
-           var self = this;
-
-           this.collection.reset();
-           this.initializeModels();
-
-           // this.render();
-       }
-   });
+    return Backbone.View.extend({
+        el: '.comments',
+        initialize: function(options) {
+            this.activity = options.activity;
+            this.programId = options.programId;
+            this.objId = this.activity.get('id');
+            this.mentions = options.activity.get('mentions');
+            this.currentUserId = options.currentUserId;
+            this.highlightWords = options.highlightWords;
+            this.commentUrl = '/programs/' + this.programId + '/activities/' + this.objId + '/comments';
+            // initialize collection
+            this.collection = new CommentsCollection([], {
+                url: this.commentUrl
+            });
+            this.collapsed = true;
+            this.visibleComments = 0;
+            this.collection.bind('redraw', this.reload, this);
+            this.showOriginalComments();
+        },
+        render: function() {
+            var self = this;
+            self.$el.empty();
+            var modelsToRender;
+            if(self.collapsed){
+                modelsToRender = _.last(self.collection.models, 3);
+            } else {
+                modelsToRender = self.collection.models;
+            }
+            _.each(modelsToRender, function(model) {
+                self.$el.append(new CommentView({
+                    model: model,
+                    activityId: self.objId,
+                    programId: self.programId,
+                    mentions: self.mentions,
+                    currentUserId: self.currentUserId,
+                    highlightWords: self.highlightWords
+                }).render().el);
+            });
+            self.visibleComments = modelsToRender.length;
+            self.trigger('commentsShown:changed');
+            return this;
+        },
+        reload: function() {
+            var self = this;
+            self.collection.fetch({
+                data: {
+                    type: self.activity.get('type')
+                }
+            }).done(function(data, status) {
+                var mentions = self.activity.get('mentions');
+                var commentModels = [];
+                _.each(data, function(comment) {
+                    commentModels.push(new Comment(comment, {
+                        url: self.commentUrl,
+                        mentions: mentions,
+                        currentUserId: self.currentUserId,
+                        highlightWords: self.highlightWords
+                    }));
+                });
+                self.collection.reset(commentModels);
+                self.render();
+            });
+        },
+        showOriginalComments: function() {
+            this.collapsed = true;
+            this.reload();
+        },
+        showAllComments: function(){
+            this.collapsed = false;
+            this.reload();
+        }
+    });
 });
