@@ -6,7 +6,9 @@
             Q{{current_time_period}} - {{current_year}}
             <a href="#" class="next-quarter"><span class="hidden-md">Next Quarter</span> > </a>
         </span>
-        <span class="sub-header col-1-1">Compared to this period last year through {{formatDateToLongDate mostRecent}}</span>
+        {{#if mostRecent}}
+            <span class="sub-header col-1-1">Compared to this period last year through {{formatDateToLongDate mostRecent}}</span>
+        {{/if}}
         <div class="col-md-1 col-1-4">
             <div class="pure-g overview-data">
                 <h2 class="col-md-1-2 col-1">{{formatSalesDollarValue accountSalesInCents}}</h2>

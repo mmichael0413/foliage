@@ -4,13 +4,9 @@ define(function(require) {
         context = require('context'),
         c3 = require('c3'),
         Handlebars = require('handlebars'),
+        string_utils = require('thirdchannel/utils/string_utils'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
-    var titleizeString = function(text) {
-        return text.split(' ').map(function(s){
-            return s.length <=1 ? s.toUpperCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
-        }).join(" ");
-    };
 
     var View = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/store_profile/sales/chart_breakdowns'],
@@ -37,7 +33,7 @@ define(function(require) {
 
             breakdowns = _.map(breakdowns, function(data, key) {
                         //Title Case the labels
-                        data.label = titleizeString(key);
+                        data.label = string_utils.titleize(key);
                         data.percentageOfSales = (data.salesInCents / store.salesInCents) * 100;
                         return data;
             });
@@ -64,7 +60,7 @@ define(function(require) {
                         }
                     },
                     color: function(color, d) {
-                        return context.defaultLegendColors[d.index % context.defaultLegendColors.length];
+                        return defaultLegendColors[d.index % defaultLegendColors.length];
                     },
                     type: 'bar'
                 },
@@ -128,7 +124,7 @@ define(function(require) {
             }
 
             breakdowns = _.map(breakdowns, function(data, key) {
-                data.label = titleizeString(key);
+                data.label = string_utils.titleize(key);
                 return data;
             });
             breakdowns = _.filter(breakdowns, function(data) { return data.percentageOfSales !== null; });

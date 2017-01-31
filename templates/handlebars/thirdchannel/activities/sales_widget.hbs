@@ -13,7 +13,9 @@
             {{formatPercentageChange salesChange}}
         </a>
     </span>
-    <div class="through-date">through {{formatDateToLongDate mostRecent}}</div>
+    {{#if mostRecent}}
+        <div class="through-date">through {{formatDateToLongDate mostRecent}}</div>
+    {{/if}}
   {{/if}}
   </div>
 </section>
