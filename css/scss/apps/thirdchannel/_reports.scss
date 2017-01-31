@@ -35,6 +35,23 @@
     padding: 0.5em 0;
     margin: 0;
   }
+
+  a {
+    color: $report-link;
+    text-decoration: underline;
+
+    &:hover {
+      color: lighten($report-link, 15%);
+    }
+  }
+
+
+  & > div:not(.overview) {
+    a {
+      font-size: 0.75em;
+      vertical-align: top;
+    }
+  }
 }
 
 .widget {
@@ -76,6 +93,13 @@
 
   .donut-chart {
     margin-left: auto;
+
+    .c3-chart-arc:nth-child(4) {
+      text {
+        fill: white;
+        text-shadow: 0 0 10px $report-palette4;
+      }
+    }
   }
 
   .legend {
@@ -187,7 +211,7 @@
 
 .metric-icon {
   h2 {
-    color: $red;
+    color: $report-palette4;
   }
 
   &.min {
