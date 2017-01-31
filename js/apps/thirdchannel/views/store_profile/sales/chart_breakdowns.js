@@ -6,8 +6,6 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
-    var defaultLegendColors = ["#F15F51", "#585E60", "#9FB2C0", "#A9BC4D"];
-
     var titleizeString = function(text) {
         return text.split(' ').map(function(s){
             return s.length <=1 ? s.toUpperCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
@@ -66,7 +64,7 @@ define(function(require) {
                         }
                     },
                     color: function(color, d) {
-                        return defaultLegendColors[d.index % defaultLegendColors.length];
+                        return context.defaultLegendColors[d.index % context.defaultLegendColors.length];
                     },
                     type: 'bar'
                 },
@@ -156,7 +154,7 @@ define(function(require) {
                         }
                     },
                     color: function(color, d) {
-                        return defaultLegendColors[d.index % defaultLegendColors.length];
+                        return context.defaultLegendColors[d.index % context.defaultLegendColors.length];
                     },
                     type: 'bar'
                 },
