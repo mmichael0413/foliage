@@ -8,8 +8,6 @@ define(function(require) {
         context = require('context'),
         mresize = require('mresize');
 
-    var defaultLegendColors = ["#2FB44A", "#4D87C6", "#3D459C", "#515759", "#BDC5C4"];
-
     var view = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/reports/widgets/bar_chart'],
         initialize: function (options) {
@@ -41,7 +39,7 @@ define(function(require) {
                     bar_postfix = (this.model.config.bar_postfix !== undefined) ? " " + this.model.config.bar_postfix : '',
                     y_prefix  = (this.model.config.y_prefix  !== undefined) ? this.model.config.y_prefix + " "  : '',
                     y_postfix = (this.model.config.y_postfix !== undefined) ? " " + this.model.config.y_postfix : '',
-                    colors = this.model.config.colors || defaultLegendColors,
+                    colors = this.model.config.colors || context.defaultLegendColors,
                     chartConfig = {
                         axis: {
                             rotated: true,
