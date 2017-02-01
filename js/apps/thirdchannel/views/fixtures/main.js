@@ -6,6 +6,7 @@ define(function (require) {
         Summary = require('thirdchannel/models/fixture_tracking/summary'),
         ReportsDropdown = require('thirdchannel/views/fixtures/reportsDropdown'),
         SummaryOverview = require('thirdchannel/views/fixtures/summary'),
+        ProblemsSummary = require('thirdchannel/views/fixtures/problemsSummary'),
         TypesSummary = require('thirdchannel/views/fixtures/typesSummary'),
         DetailsListView = require('thirdchannel/views/fixtures/details/list');
 
@@ -42,6 +43,11 @@ define(function (require) {
         index: function() {
             this.init();
             this.initSummaryOverview();
+
+            // problem list collection (async paged collection)
+            // problemsSummaryView
+            // render problemsSummaryView (possibly just have the view self-render)
+            // fetch collection
         },
 
         types: function () {
