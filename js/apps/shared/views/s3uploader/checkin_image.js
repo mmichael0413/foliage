@@ -8,7 +8,7 @@ define(function(require) {
         events: {
             "blur input": 'updated',
             'change select': 'updated',
-            "click button": 'deleted'
+            "click .delete-image-btn": 'deleted'
         },
         initialize: function() {
             if(this.model.get('image_type') === 'after') {
