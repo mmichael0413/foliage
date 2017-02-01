@@ -11,7 +11,8 @@ define(function(require){
 
             template: HandlebarsTemplates["thirdchannel/fixture_tracking/problems_summary"],
 
-            initialize: function () {
+            initialize: function() {
+                this.render();
             },
 
             render: function() {
