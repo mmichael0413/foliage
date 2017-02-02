@@ -48,8 +48,6 @@ define(function (require) {
             var problems = new Problems([], {programId: context.programId});
 
             new ProblemsSummary({collection: problems});
-
-            problems.fetch({reset: true});
         },
 
         types: function () {
