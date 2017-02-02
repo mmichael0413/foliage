@@ -5,7 +5,6 @@ define(function(require){
         buttons = require('buttons'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        FilterableComponent = require('shared/views/utils/filterable_component'),
         ProblemItemView = require('thirdchannel/views/fixtures/problems/item'),
 
         Summary = Backbone.View.extend({
