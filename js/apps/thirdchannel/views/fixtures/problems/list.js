@@ -8,7 +8,6 @@ define(function(require) {
             template: '',
             initialize: function () {
                 this.listenTo(this.collection, 'reset', this.render);
-                this.listenTo(context, 'filter:query', this.applyFilter);
             },
             render: function() {
 

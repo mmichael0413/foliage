@@ -7,10 +7,12 @@ define(function(require){
         HandlebarsTemplates = require('handlebarsTemplates'),
 
         ProblemItem = Backbone.View.extend({
-            template: HandlebarsTemplates["thirdchannel/fixture_tracking/problem_item"],
+            className: 'item pure-g',
+
+            template: HandlebarsTemplates["thirdchannel/fixtures/problem_item"],
 
             render: function() {
-                this.$el.html(this.template(model.toJSON()));
+                this.$el.html(this.template(this.model.toJSON()));
                 return this;
             }
 
