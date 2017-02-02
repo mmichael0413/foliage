@@ -36,9 +36,13 @@ define(function(require){
             renderCollection: function() {
                 var $body = this.$('.body');
                 $body.html('');
-                this.collection.each(function(problem) {
-                    $body.append(new ProblemItemView({model: problem}).render().el);
-                });
+                if(this.collection.length > 0) {
+                    this.collection.each(function(problem) {
+                        $body.append(new ProblemItemView({model: problem}).render().el);
+                    });
+                } else {
+                    $body.html('No issues to display');
+                }
             },
 
             applyFilter: function() {
