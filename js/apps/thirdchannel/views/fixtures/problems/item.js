@@ -10,7 +10,9 @@ define(function(require){
             template: HandlebarsTemplates["thirdchannel/fixtures/problem_item"],
 
             render: function() {
-                this.$el.html(this.template(this.model.toJSON()));
+                var data = this.model.toJSON();
+                data.programId = context.programId;
+                this.$el.html(this.template(data));
                 return this;
             }
 
