@@ -86,6 +86,7 @@ define(function(require){
             'programs/:program_id/fixture_tracking/summary(/)' : 'fixturesSummary',
             'programs/:program_id/fixture_tracking/types(/)' : 'fixturesTypes',
             'programs/:program_id/fixture_tracking/fixtures(/)' : 'fixturesList',
+            'programs/:program_id/fixture_tracking/problems(/)': 'problemsList',
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
@@ -168,6 +169,8 @@ define(function(require){
         fixturesList: function () {
             FixturesMain.detailsList();
         },
+
+        problemsList: function() { FixturesMain.problemsList(); },
 
         inProgress: function (){
             new CheckinInProgressView({ model: window.bootstrap });

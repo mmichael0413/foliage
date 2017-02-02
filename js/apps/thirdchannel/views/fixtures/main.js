@@ -8,6 +8,7 @@ define(function (require) {
         ReportsDropdown = require('thirdchannel/views/fixtures/reportsDropdown'),
         SummaryOverview = require('thirdchannel/views/fixtures/summary'),
         ProblemsSummary = require('thirdchannel/views/fixtures/problemsSummary'),
+        ProblemsList = require('thirdchannel/views/fixtures/problems/list'),
         TypesSummary = require('thirdchannel/views/fixtures/typesSummary'),
         DetailsListView = require('thirdchannel/views/fixtures/details/list');
 
@@ -61,6 +62,13 @@ define(function (require) {
             this.init();
 
             new DetailsListView().bootstrapCollection(window.bootstrap);
+        },
+
+        problemsList: function() {
+            this.init();
+
+            var problems = new Problems(window.bootstrap, {programId: context.programId, parse: true});
+            var problemsListView = new ProblemsList({collection: problems});
         }
     });
 });

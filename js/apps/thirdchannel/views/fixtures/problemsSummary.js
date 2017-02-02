@@ -24,7 +24,7 @@ define(function(require){
             },
 
             render: function() {
-                this.$el.html(this.template({}));
+                this.$el.html(this.template({programId: context.programId}));
                 this.renderLoading();
                 return this;
             },

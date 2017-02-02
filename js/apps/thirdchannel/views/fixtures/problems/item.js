@@ -1,7 +1,5 @@
 define(function(require){
-    var _ = require('underscore'),
-        $ = require('jquery'),
-        Backbone = require('backbone'),
+    var Backbone = require('backbone'),
         buttons = require('buttons'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
