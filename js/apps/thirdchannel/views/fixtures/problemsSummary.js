@@ -1,7 +1,5 @@
 define(function(require){
-    var _ = require('underscore'),
-        $ = require('jquery'),
-        Backbone = require('backbone'),
+    var Backbone = require('backbone'),
         buttons = require('buttons'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
@@ -15,7 +13,7 @@ define(function(require){
 
             initialize: function() {
                 this.listenTo(context, 'filter:query', this.applyFilter);
-                this.listenTo(this.collection, 'reset', this.renderCollection);
+                this.listenTo(this.collection, 'reset', this.render);
                 this.listenTo(this.collection, 'request', this.renderLoading);
 
                 this.render();
@@ -24,7 +22,7 @@ define(function(require){
 
             render: function() {
                 this.$el.html(this.template({programId: context.programId}));
-                this.renderLoading();
+                this.renderCollection();
                 return this;
             },
 
@@ -34,8 +32,9 @@ define(function(require){
 
             renderCollection: function() {
                 var $body = this.$('.body');
-                $body.html('');
+
                 if(this.collection.length > 0) {
+                    $body.html('');
                     this.collection.each(function(problem) {
                         $body.append(new ProblemItemView({model: problem}).render().el);
                     });
@@ -49,7 +48,7 @@ define(function(require){
                 if(search.length > 0) {
                     search = search.substring(1, search.length);
                 }
-                this.$('.body').html(this.loadingHTML);
+                this.renderLoading();
                 this.collection.setQueryString(search);
                 this.collection.fetch({reset: true});
             }
