@@ -68,7 +68,7 @@ define(function (require) {
             this.init();
 
             var problems = new Problems(window.bootstrap, {programId: context.programId, parse: true});
-            var problemsListView = new ProblemsList({collection: problems});
+            new ProblemsList({collection: problems});
         }
     });
 });
