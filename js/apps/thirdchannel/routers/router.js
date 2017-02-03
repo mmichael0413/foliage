@@ -5,6 +5,7 @@ define(function(require){
         Backbone = require('backbone'),
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
+        FilterParams = require('shared/models/filterParams'),
         MainLayout = require('shared/views/layout/main'),
         ActivitiesMain = require('thirdchannel/views/activities/main'),
         CheckinsView = require('thirdchannel/views/checkins/checkin'),
@@ -54,7 +55,6 @@ define(function(require){
             'agents/profile(/)' : 'programProfile',
             'agents/profile/edit(/)': 'programProfileEdit',
             'agents/profile/security(/)': 'programProfileSecurity',
-
             'login' : 'login',
             'opportunities': 'ViewOpportunities',
             'opportunities/:id': 'viewOpportunity',
@@ -355,6 +355,7 @@ define(function(require){
         MainLayout.init();
         context.router = new AppRouter();
         context.instances = {};
+        context.filterParams = new FilterParams();
     };
     return {
         initialize: initialize

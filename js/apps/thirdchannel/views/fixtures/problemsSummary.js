@@ -21,7 +21,7 @@ define(function(require){
             },
 
             render: function() {
-                this.$el.html(this.template({programId: context.programId}));
+                this.$el.html(this.template({programId: context.programId, queryString: context.filterParams.toQueryString()}));
                 this.renderCollection();
                 return this;
             },
