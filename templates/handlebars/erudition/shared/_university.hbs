@@ -2,30 +2,45 @@
     <div class="header">Education</div>
     <div class="body">
 
-        <label>What is your highest level of education completed?</label>
-        <select id="education-level">
-            {{#each educationLevels}}
-                <option value="{{@key}}">{{this}}</option>
-            {{/each}}
-        </select>
+				<div id="educationLevelSection">
+								<label>What is your highest level of education?</label>
+								<select id="educationLevel" name="educationLevel" required>
+												{{#each educationLevels}}
+												<option value="{{@key}}">{{this}}</option>
+												{{/each}}
+								</select>
+				</div>
 
-        <div class="hide" id="attended-college-follow-up">
-            <div class="pure-g">
-                <label class="col-1-1">College/University</label>
-                <input id="universityText" type="text" class="typeahead" name="university.name" placeholder="Select College/University"
-                       value="{{person.university.name}}" />
-                <input type="hidden" name="university.id" id="university" value="{{person.university.id}}"/>
-            </div>
+				<div id="startYearSection">
+								<label for="startYear">Final/start Year (Actual/Expected)</label>
+								<select name="startYear" data-placeholder="Select Year" id="startYear" required>
+								<option></option>
+								{{#each graduationYears}}
+												{{#select ../person.startYear}}
+												<option value="{{this}}">{{this}}</option>
+												{{/select}}
+								{{/each}}
+								</select>
+				</div>
 
-            <label for="graduationYear">Final/Graduation Year (Actual/Expected)</label>
-            <select name="graduationYear" data-placeholder="Select Year" id="graduationYear">
-                <option></option>
-                {{#each graduationYears}}
-                    {{#select ../person.graduationYear}}
-                        <option value="{{this}}">{{this}}</option>
-                    {{/select}}
-                {{/each}}
-            </select>
-        </div>
+				<div id="graduationYearSection">
+								<label for="graduationYear">Final/Graduation Year (Actual/Expected)</label>
+								<select name="graduationYear" data-placeholder="Select Year" id="graduationYear">
+								<option></option>
+								{{#each graduationYears}}
+												{{#select ../person.graduationYear}}
+												<option value="{{this}}">{{this}}</option>
+												{{/select}}
+								{{/each}}
+								</select>
+				</div>
+
+				<div id="universitySection" class="pure-g">
+								<label class="col-1-1">College/University</label>
+								<input id="universityText" type="text" class="typeahead" name="university.name" placeholder="Select College/University"
+												value="{{person.university.name}}" />
+								<input type="hidden" name="university.id" id="university" value="{{person.university.id}}"/>
+				</div>
+
     </div>
 </div>

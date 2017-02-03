@@ -35,25 +35,55 @@ define(function (require) {
 
         events: {
             "click .deleteImage": 'deleteImage',
-            "change #education-level": 'showOrHideAttendedCollegeFollowUp'
+            "change #educationLevel": 'enableOrDisableEducationFields'
         },
 
-        showOrHideAttendedCollegeFollowUp: function () {
-            //console.log("showOrHideAttendedCollegeFollowUp");
-            var selectedEducationLevel = $('#education-level').val();
-            //console.log("options");
-            //console.log(context.content.higherEducationLevels);
-            //console.log("selected " + selectedEducationLevel);
-            var attendedCollegeFollowUp = $('#attended-college-follow-up');
-            if(context.content.higherEducationLevels.includes(selectedEducationLevel)){
-                attendedCollegeFollowUp.removeClass("hide");
-            } else {
-                attendedCollegeFollowUp.addClass("hide");
-                $('#university').val('');
-                $('#universityText').val('');
-                $('#graduationYear').val('');
+        setEducationField: function() {
+            $('#graduationYear').val(this.person.graduationYear);
+            $('#startYear').val(this.person.startYear);
+            $('#university').val(this.person.university ? this.person.university.id : null);
+            $('#universityText').val(this.person.university ? this.person.university.name : null);
+            $('#educationLevel').val(this.person.educationLevel);
+        },
 
+        enableOrDisableEducationFields: function () {
+            var selectedEducationLevel = $('#educationLevel').val();
+            var isHigherEd = context.content.higherEducationLevels.includes(selectedEducationLevel);
+            var isCompleted = context.content.completedEducationLevels.includes(selectedEducationLevel);
+            if(isCompleted) {
+                if(isHigherEd){
+                    this.unblockUniversity();
+                } else {
+                    this.blockUniversity();
+                }
+                this.unblockGraduationYear();
+            } else {
+                this.blockGraduationYear();
+                this.blockUniversity();
             }
+        },
+
+        blockUniversity: function(){
+            $('#universitySection').addClass('disabled');
+            $('#university').prop('required', false);
+            $('#university').val('');
+            $('#universityText').val('');
+        },
+
+        unblockUniversity: function(){
+            $('#universitySection').removeClass('disabled');
+            $('#university').prop('required', true);
+        },
+
+        blockGraduationYear: function(){
+            $('#graduationYearSection').addClass('disabled');
+            $('#graduationYear').prop('required', false);
+            $('#graduationYear').val('');
+        },
+
+        unblockGraduationYear: function(){
+            $('#graduationYearSection').removeClass('disabled');
+            $('#graduationYear').prop('required', true);
         },
 
         render: function () {
@@ -81,6 +111,8 @@ define(function (require) {
             this.attachSubmitHandlers();
             this.configureAutocomplete();
             this.initializeImageUpload();
+            this.setEducationField();
+            this.enableOrDisableEducationFields();
 
             return this;
         },
@@ -97,36 +129,13 @@ define(function (require) {
                 return self.$('div.aboutImageInput').find('img').length > 0;
             }, "Please upload at least one image");
 
-            $.validator.addMethod("attendedCollege", function(value, element){
-                var valid = false;
-                // get the value of input[name='attendedCollege']
-                var attendedCollege = self.$('input[name=attendedCollege]:checked').val();
-
-                // if attendedCollege is null or yes then check if the field value exists;
-                if(attendedCollege === undefined || attendedCollege === 'Yes') {
-                    if(value) {
-                        valid = true;
-                    }
-                } else {
-                    valid = true;
-                }
-
-
-                console.log("valid: " + valid);
-                return valid;
-            }, "This field is required.");
-
             $('.profile-form').validate({
                 rules: {
                     aboutImageInput: {
                         validateAboutImages: true
                     },
-                    graduationYear: {
-                        attendedCollege: true
-                    }
                 },
                 errorPlacement: function (error, element) {
-
                     if ($(element).attr('type') == 'checkbox' || $(element).attr('type') == 'radio') {
                         $(element).closest('.radio-input-group').after(error);
                     } else if ($(element).is("textarea")){
@@ -135,9 +144,7 @@ define(function (require) {
                     } else if ($(element).attr('type') == 'file'){
                         $(error).addClass('clear');
                         $(element).parent().after(error);
-                    }
-
-                    else {
+                    } else {
                         $(element).after(error);
                     }
                 }

@@ -66,6 +66,8 @@ define(function (require) {
             this.beginValidation();
             this.configureAutocomplete();
             this.initializeImageUpload();
+            this.setEducationField();
+            this.enableOrDisableEducationFields();
 
             this.$("textarea").expanding();
             return this;
