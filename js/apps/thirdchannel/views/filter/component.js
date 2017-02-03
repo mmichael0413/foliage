@@ -112,10 +112,12 @@ define(function(require) {
             $icon.toggleClass(this.openClassName);
             $list.toggleClass(this.openClassName);
         },
+
         closeFilter: function() {
             this.$('.expand-indicator').removeClass(this.openClassName);
             this.$('.filter-list').removeClass(this.openClassName);
         },
+
         /**
          * Handler for the click event
          * 
@@ -160,7 +162,6 @@ define(function(require) {
 
         _buildFilterItemLink: function(value) {
             return ".filter-list-item[data-value='" + value +"']";
-
         },
 
         restoreFilter: function (data) {
@@ -169,8 +170,6 @@ define(function(require) {
             $link.removeClass('filtered');
         }
     };
-
-
 
     return Backbone.View.extend(component);
 });

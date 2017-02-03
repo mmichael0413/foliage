@@ -6,7 +6,7 @@ define(function(require) {
         Handlebars = require('handlebars'),
         string_utils = require('thirdchannel/utils/string_utils'),
         HandlebarsTemplates = require('handlebarsTemplates');
-
+    
     var View = Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/store_profile/sales/chart_breakdowns'],
 

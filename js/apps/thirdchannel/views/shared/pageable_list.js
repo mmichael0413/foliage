@@ -19,7 +19,7 @@ define(function(require) {
             bodySelector: '.body',
             template: '',
 
-            afterRender: function () {   
+            afterRender: function () {
                 this.renderPagination();
             }
         };
