@@ -12,6 +12,14 @@ define(function(require){
             render: function() {
                 var data = this.model.toJSON();
                 data.programId = context.programId;
+
+                var problemParams = {
+                    types: [this.model.get('entityTypeUuid')],
+                    problems: [this.model.get('problemUuid')]
+                };
+
+                data.queryString = context.filterParams.toQueryString(problemParams);
+
                 this.$el.html(this.template(data));
                 return this;
             }
