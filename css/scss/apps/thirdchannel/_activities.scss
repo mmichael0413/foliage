@@ -158,14 +158,33 @@ $padding: 1.5em;
   }
 }
 
-.activity-meta{
+.activity-meta {
   border-bottom: 1px solid $border-color;
   padding-bottom: $padding;
+
+  .sales-marquee {
+    float: right;
+  }
+
+  .sales-figure {
+    display: inline-block;
+    padding: 0 .25em;
+    vertical-align: middle;
+  }
+
+  .marquee-nav {
+    background-color: transparent;
+    border: 0;
+    color: $medium-blue;
+
+    &.hidden {
+      visibility: hidden;
+    }
+  }
+
   .sales-widget {
-    vertical-align: top;
     display: inline-block;
     line-height: 1.75em;
-    float:right !important;
 
     .sales-message {
       line-height: 3.3em;
@@ -200,7 +219,6 @@ $padding: 1.5em;
       text-align: center;
     }
     .text {
-      border-right: 1px solid $light-blue;
       width: 70%;
       &.full {
         width: 100%;

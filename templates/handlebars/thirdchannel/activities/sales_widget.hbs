@@ -1,16 +1,16 @@
 <section class="sales-widget pure-g">
   <div class="text col-2-3" style="display: inline;">
-  {{#if message}}
+  {{#if showMessage}}
   <span><i class="sales-message">
     {{message}}
     </i>
    </span>
   {{else}}
-    QTD $ Sales:
+    {{widget.label}}:
     <span class="sales-button">
-        <a href={{salesUrl}} class="percentage-change activity-feed-qtd {{ percentageChangeClass salesChange }}">
-            <i class="fa {{percentageChangeIcon salesChange }} change-icon"></i>
-            {{formatPercentageChange salesChange}}
+        <a href={{salesUrl}} class="percentage-change activity-feed-qtd {{ percentageChangeClass widget.change }}">
+            <i class="fa {{percentageChangeIcon widget.change }} change-icon"></i>
+            {{formatPercentageChange widget.change}}
         </a>
     </span>
     {{#if mostRecent}}
