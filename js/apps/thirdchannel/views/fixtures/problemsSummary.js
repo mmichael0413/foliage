@@ -21,7 +21,7 @@ define(function(require){
             },
 
             render: function() {
-                this.$el.html(this.template({programId: context.programId, queryString: context.filterParams.toQueryString()}));
+                this.$el.html(this.template({programId: context.programId, queryString: context.filterParams.toQueryString({page: 1, per: 50})}));
                 this.renderCollection();
                 return this;
             },
@@ -44,10 +44,7 @@ define(function(require){
             },
 
             applyFilter: function() {
-                var search = window.location.search;
-                if(search.length > 0) {
-                    search = search.substring(1, search.length);
-                }
+                var search = context.filterParams.toQueryString({per: 10});
                 this.renderLoading();
                 this.collection.setQueryString(search);
                 this.collection.fetch({reset: true});
