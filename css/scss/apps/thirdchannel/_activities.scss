@@ -11,8 +11,8 @@ $padding: 1.5em;
   font-style: italic;
   text-align: right;
 
-  @include swb-small {
-    text-align: left;
+  @include swb-medium {
+    text-align: center;
   }
 }
 
@@ -164,6 +164,13 @@ $padding: 1.5em;
 
   .sales-marquee {
     float: right;
+
+    @include swb-medium{
+      float: none;
+      width: 100%;
+      text-align: center;
+      padding-top: 1em;
+    }
   }
 
   .sales-figure {
@@ -185,6 +192,8 @@ $padding: 1.5em;
   .sales-widget {
     display: inline-block;
     line-height: 1.75em;
+    min-width: 12.5em;
+    text-align: right;
 
     .sales-message {
       line-height: 3.3em;
@@ -200,20 +209,6 @@ $padding: 1.5em;
       }
     }
 
-    @include swb-small {
-      width: 100%;
-      display: block;
-      float:none;
-      margin-top: 1.5rem;
-
-      p {
-        font-size: 0.85rem;
-        vertical-align: middle;
-      }
-      a {
-        font-size: 0.85rem;
-      }
-    }
     .text, .details {
       display: inline-block;
       text-align: center;
@@ -228,6 +223,10 @@ $padding: 1.5em;
       width: 28%;
       vertical-align: middle;
     }
+
+    @include swb-small {
+      text-align: center;
+    }
   }
 
   .bar-body {
@@ -236,7 +235,7 @@ $padding: 1.5em;
     .timestamp {
       color: $medium-blue;
     }
-    @include swb-small {
+    @include swb-medium {
       width: 100%;
     }
   }
