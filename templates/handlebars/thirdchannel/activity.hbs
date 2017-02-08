@@ -1,27 +1,29 @@
 <div class="activity-holder">
     <div class="activity">
-        <div class="activity-meta">
-            {{> user_image user_image}}
+        <div class="activity-header">
+          <div class="activity-meta">
+              {{> user_image user_image}}
 
-            <div class="bar-body">
-                {{#if_eq type "Checkin"}}
-                <p>
-                    <a href="{{location.profile_url}}">{{location.store}}</a>
-                    , {{location.address}}
-                </p>
-                {{/if_eq}}
-                {{#if_eq checkin_type "special_project"}}
-                <p class="activity-special-project">
-                    {{survey_title}}
-                </p>
-                {{/if_eq}}
-                <p>
-                    <span><i class="timestamp" data-livestamp="{{created_at}}"></i></span> <span>({{formatSecondsToDateTime created_at}})</span>
-                    by
-                    <a href="/programs/{{current_program}}/profiles/{{user_id}}">{{user_name}}</a>
-                </p>
-            </div>
-            <div class="sales-marquee"></div>
+              <div class="bar-body">
+                  {{#if_eq type "Checkin"}}
+                  <p>
+                      <a href="{{location.profile_url}}">{{location.store}}</a>
+                      , {{location.address}}
+                  </p>
+                  {{/if_eq}}
+                  {{#if_eq checkin_type "special_project"}}
+                  <p class="activity-special-project">
+                      {{survey_title}}
+                  </p>
+                  {{/if_eq}}
+                  <p>
+                      <span><i class="timestamp" data-livestamp="{{created_at}}"></i></span> <span>({{formatSecondsToDateTime created_at}})</span>
+                      by
+                      <a href="/programs/{{current_program}}/profiles/{{user_id}}">{{user_name}}</a>
+                  </p>
+              </div>
+          </div>
+          <div class="sales-marquee"></div>
         </div>
 
         <div class="activity-details"></div>

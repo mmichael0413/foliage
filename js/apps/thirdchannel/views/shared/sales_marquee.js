@@ -3,10 +3,7 @@ define(function(require) {
         _ = require('underscore'),
         Backbone = require('backbone'),
         Handlebars = require('handlebars'),
-        HandlebarsTemplates = require('handlebarsTemplates'),
-        HandlebarsHelpers = require('handlebarsHelpers'),
-        context = require('context'),
-        helpers = require('helpers');
+        HandlebarsTemplates = require('handlebarsTemplates');
 
 
     return Backbone.View.extend({
@@ -24,6 +21,8 @@ define(function(require) {
           this.salesWidgets = this.formatSalesWidgets(this.salesData);
           this.canNavBack = false;
           this.canNavForward = false;
+
+          this.render();
         },
 
         render: function () {
@@ -37,10 +36,9 @@ define(function(require) {
             salesUrl: this.salesData.salesUrl,
             mostRecent: this.salesData.mostRecent
           };
+
           this.$el.html(this.template({canNavForward: this.canNavForward, canNavBack: this.canNavBack}));
           this.$el.find('.sales-figure').append(this.salesTemplate(templateData));
-          // TODO: Don't inline these styles
-          this.$el.find('.sales-marquee').fadeIn(500).css({"display": "inline-block", "float": "right"});
         },
 
         formatSalesWidgets: function(salesData) {
