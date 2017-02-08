@@ -11,8 +11,8 @@ $padding: 1.5em;
   font-style: italic;
   text-align: right;
 
-  @include swb-small {
-    text-align: left;
+  @include swb-medium {
+    text-align: center;
   }
 }
 
@@ -30,7 +30,7 @@ $padding: 1.5em;
     display: inline-block;
     width: 100%;
 
-    @include swb-small {
+    @include swb-medium {
       position: relative;
       width: 100%;
 
@@ -64,9 +64,9 @@ $padding: 1.5em;
       background-color: $border-color;
     }
 
-    @include swb-small {
+    @include swb-medium {
+      margin: 0;
       width: 100%;
-      margin: 0em;
     }
   }
 
@@ -158,69 +158,103 @@ $padding: 1.5em;
   }
 }
 
-.activity-meta{
+.activity-header {
+  align-items: center;
   border-bottom: 1px solid $border-color;
-  padding-bottom: $padding;
-  .sales-widget {
-    vertical-align: top;
-    display: inline-block;
-    line-height: 1.75em;
-    float:right !important;
+  display: flex;
+  justify-content: space-between;
 
-    .sales-message {
-      line-height: 3.3em;
-      color: $medium-blue;
-    }
-
-    .sales-button {
-      padding-left: 1em;
-      float: right;
-
-      .change-icon {
-        font-size: 1em;
-      }
-    }
-
-    @include swb-small {
-      width: 100%;
-      display: block;
-      float:none;
-      margin-top: 1.5rem;
-
-      p {
-        font-size: 0.85rem;
-        vertical-align: middle;
-      }
-      a {
-        font-size: 0.85rem;
-      }
-    }
-    .text, .details {
-      display: inline-block;
-      text-align: center;
-    }
-    .text {
-      border-right: 1px solid $light-blue;
-      width: 70%;
-      &.full {
-        width: 100%;
-      }
-    }
-    .details {
-      width: 28%;
-      vertical-align: middle;
-    }
+  @include swb-medium {
+    border: 0;
+    flex-direction: column;
   }
+}
+
+.activity-meta {
+  padding-bottom: $padding;
+  width: 100%;
 
   .bar-body {
-    width: 55%;
+    width: 85%;
 
     .timestamp {
       color: $medium-blue;
     }
-    @include swb-small {
+  }
+}
+
+.sales-marquee {
+  min-width: 18.5em;
+
+  @include swb-medium {
+    border-top: 1px solid $border-color;
+    padding-top: 1.5em;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.sales-figure {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 .25em;
+}
+
+.marquee-nav {
+  background-color: transparent;
+  border: 0;
+  color: $medium-blue;
+
+  &.next {
+    padding: 0 1em;
+  }
+
+  &.hidden {
+    visibility: hidden;
+  }
+}
+
+.sales-widget {
+  display: inline-block;
+  line-height: 1.75em;
+  min-width: 12.5em;
+  text-align: right;
+
+  .sales-message {
+    color: $medium-blue;
+    line-height: 3.3em;
+  }
+
+  .sales-button {
+    float: right;
+    padding-left: 1em;
+
+    .change-icon {
+      font-size: 1em;
+    }
+  }
+
+  .text, .details {
+    display: inline-block;
+    text-align: center;
+  }
+
+  .text {
+    display: inline;
+    width: 70%;
+
+    &.full {
       width: 100%;
     }
+  }
+
+  .details {
+    vertical-align: middle;
+    width: 28%;
+  }
+
+  @include swb-small {
+    text-align: center;
   }
 }
 
