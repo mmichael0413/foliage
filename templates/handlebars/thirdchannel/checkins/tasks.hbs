@@ -78,7 +78,7 @@
                 {{#each job.grouped_tasks}}
                     <optgroup label="{{name}}">
                         {{#each tasks}}
-                            <option data-survey="{{surveyUUID}}" data-packet="{{packet_uuid}}" data-task="{{uuid}}" data-category="{{category_id}}">
+                            <option data-survey="{{surveyUUID}}" data-packet="{{packet_uuid}}" data-task="{{uuid}}" data-category="{{category_id}}" data-path="{{form_url}}"">
                                 {{name}}{{#if category_name}} - {{category_name}}{{/if}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}
                             </option>
                         {{/each}}
