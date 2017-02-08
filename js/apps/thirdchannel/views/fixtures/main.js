@@ -4,8 +4,11 @@ define(function (require) {
         Filter = require('thirdchannel/views/filter/main'),
         context = require('context'),
         Summary = require('thirdchannel/models/fixture_tracking/summary'),
+        Problems = require('thirdchannel/collections/fixture_tracking/problems'),
         ReportsDropdown = require('thirdchannel/views/fixtures/reportsDropdown'),
         SummaryOverview = require('thirdchannel/views/fixtures/summary'),
+        ProblemsSummary = require('thirdchannel/views/fixtures/problemsSummary'),
+        ProblemsList = require('thirdchannel/views/fixtures/problems/list'),
         TypesSummary = require('thirdchannel/views/fixtures/typesSummary'),
         DetailsListView = require('thirdchannel/views/fixtures/details/list');
 
@@ -42,6 +45,10 @@ define(function (require) {
         index: function() {
             this.init();
             this.initSummaryOverview();
+
+            var problems = new Problems([], {programId: context.programId});
+
+            new ProblemsSummary({collection: problems});
         },
 
         types: function () {
@@ -55,6 +62,13 @@ define(function (require) {
             this.init();
 
             new DetailsListView().bootstrapCollection(window.bootstrap);
+        },
+
+        problemsList: function() {
+            this.init();
+
+            var problems = new Problems(window.bootstrap, {programId: context.programId, parse: true});
+            new ProblemsList({collection: problems});
         }
     });
 });

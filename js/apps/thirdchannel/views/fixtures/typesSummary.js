@@ -7,7 +7,6 @@ define(function(require){
         TypeTile = require('thirdchannel/views/fixtures/typeTile'),
         HandlebarsTemplates = require('handlebarsTemplates'),
 
-
         TypesCollection = Backbone.Collection.extend({
             comparator: "name",
             parse: function (response) {
@@ -18,7 +17,6 @@ define(function(require){
                 return context.links.fixture_tracking.types + window.location.search;
             }
         }),
-
 
         TypesSummary = Backbone.View.extend({
             el: "#fixturesList",

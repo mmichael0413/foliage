@@ -5,6 +5,7 @@ define(function(require){
         Backbone = require('backbone'),
         context = require('context'),
         namespacer = require('shared/utils/namespacer'),
+        FilterParams = require('shared/models/filterParams'),
         MainLayout = require('shared/views/layout/main'),
         ActivitiesMain = require('thirdchannel/views/activities/main'),
         CheckinsView = require('thirdchannel/views/checkins/checkin'),
@@ -54,7 +55,6 @@ define(function(require){
             'agents/profile(/)' : 'programProfile',
             'agents/profile/edit(/)': 'programProfileEdit',
             'agents/profile/security(/)': 'programProfileSecurity',
-
             'login' : 'login',
             'opportunities': 'ViewOpportunities',
             'opportunities/:id': 'viewOpportunity',
@@ -86,6 +86,7 @@ define(function(require){
             'programs/:program_id/fixture_tracking/summary(/)' : 'fixturesSummary',
             'programs/:program_id/fixture_tracking/types(/)' : 'fixturesTypes',
             'programs/:program_id/fixture_tracking/fixtures(/)' : 'fixturesList',
+            'programs/:program_id/fixture_tracking/problems(/)': 'problemsList',
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
@@ -121,7 +122,7 @@ define(function(require){
         before: function (parameters) {
             // in addition, the router stuffs all arguments as a list on context.requestParameters;
             context.programId = parameters[0];
-            context.defaultLegendColors = ["#F15F51", "#9FB2C0", "#585E60", "#A9BC4D", "#8079b8", "#85c194", "#deb99a", "#bce4f9", "#f69d6d", "#8ab2ca", "#a53426", "#8c8d8e", "#00a55a", "#deb99a", "#ef6222", "#4cc3f1", "#025832"];
+            context.defaultLegendColors = ["#2FB44A", "#4D87C6", "#3D459C", "#515759", "#BDC5C4"];
 
             // stuff the bootstrap into the context
             _.extend(context, window.bootstrap);
@@ -168,6 +169,8 @@ define(function(require){
         fixturesList: function () {
             FixturesMain.detailsList();
         },
+
+        problemsList: function() { FixturesMain.problemsList(); },
 
         inProgress: function (){
             new CheckinInProgressView({ model: window.bootstrap });
@@ -352,6 +355,7 @@ define(function(require){
         MainLayout.init();
         context.router = new AppRouter();
         context.instances = {};
+        context.filterParams = new FilterParams();
     };
     return {
         initialize: initialize

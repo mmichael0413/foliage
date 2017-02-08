@@ -43,10 +43,12 @@ define(function(require) {
                     if (ui.item.value == "placeholder") {
                         return;
                     }
+                    // extract the mention fields from what we see in the search bar
                     var splitLabel = ui.item.originalText.split("\t");
                     var $target = $(e.target);
                     var currentText = $target.html();
-                    $target.html(currentText.substring(0, currentText.lastIndexOf('@') + 1) + splitLabel[0] + ' ' + splitLabel[1]);
+                    var mention = '@' + splitLabel[0] + ' ' + splitLabel[1];
+                    $target.html(currentText.substring(0, currentText.lastIndexOf('@')) + mention);
 
                     // move cursor to the end
                     var range = document.createRange();
@@ -56,12 +58,13 @@ define(function(require) {
                     selection.removeAllRanges();
                     selection.addRange(range);
 
-                    var mentions = [];
+                    // append new mention to existing set of mentions
+                    var mentions = {};
+                    mentions[ui.item.value] = mention;
                     var previousMentions = $target.data('mentions');
                     if (previousMentions) {
-                        mentions = mentions.concat(previousMentions);
+                        mentions = $.extend({}, previousMentions, mentions);
                     }
-                    mentions.push(ui.item.value);
 
                     $target.data('mentions', mentions);
                     $target.trigger($.Event("keypress"));
@@ -167,16 +170,28 @@ define(function(require) {
             e.stopPropagation();
             var self = this;
             var comment = new Comment({
-                comment: this.$('.new-comment-field').text()
-            }, {
+                comment: this.$('.new-comment-field').text(),
+            },{
                 url: this.collection.url
             });
 
             if (comment.isValid()) {
+                var mentions = [];
+                var possibleMentions = this.$('.new-comment-field').data('mentions');
+                var text = this.$('.new-comment-field').text();
+
+                if (possibleMentions) {
+                    Object.keys(possibleMentions).forEach(function (key) {
+                        if (text.includes(possibleMentions[key])) {
+                            mentions.push(key);
+                        }
+                    });
+                }
+
                 comment.set({
                     type: this.activity.get('type'),
                     id: this.activity.get('id'),
-                    mentions: this.$('.new-comment-field').data('mentions')
+                    mentions: mentions
                 });
                 comment.save().done(function(obj, status) {
                     comment.set(obj.comment);
@@ -186,6 +201,7 @@ define(function(require) {
                         highlightWords: obj.highlight_words
                     });
                     self.collection.add([comment]);
+                    self.collection.trigger('redraw');
                     self.$('.new-comment-field').html('');
                     self.$('.new-comment-field').removeData();
                     var followButton = $(".activity_follow_button[data-id=" + self.activity.get('activity_id') + "]");
@@ -194,7 +210,9 @@ define(function(require) {
                     followButton.addClass('activity_unfollow_button');
                     followButton.removeClass('activity_follow_button');
                 }).fail(function() {
-
+                    alert("Failed to save comment! Please try again.");
+                    // Actually, the save may have succeeded, and
+                    // the response just didn't make it back.
                 });
             }
         },

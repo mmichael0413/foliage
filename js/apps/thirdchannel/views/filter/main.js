@@ -2,6 +2,7 @@ define(function(require) {
     var $ = require('jquery'),
         Backbone = require('backbone'),
         context = require('context'),
+        FilterParams = require('shared/models/filterParams'),
         FilterControl = require('thirdchannel/views/filter/filterControl');
     
     /**
@@ -29,9 +30,14 @@ define(function(require) {
             if (!collection && window.filterBootstrap) {
                 collection = new Backbone.Collection(window.filterBootstrap.filters);
                 url = window.filterBootstrap.filters_url;
-            } 
+            }
+
+            // model for keeping track of the current params set
+            if(!context.filterParams) {
+                context.filterParams = new FilterParams();
+            }
             
-            return new FilterControl({collection: collection, url:url});
+            return new FilterControl({collection: collection, model: context.filterParams, url: url});
         }
     };
 

@@ -26,6 +26,10 @@ define(function(require) {
             },
             queryString: "",
 
+            setQueryString: function(qs) {
+                this.queryString = qs;
+            },
+
             url : function () {
                 return window.location.pathname + '.json?' + this.queryString;
             }

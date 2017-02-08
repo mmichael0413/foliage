@@ -74,7 +74,6 @@ define(function(require) {
             var self = this;
 
             if (data.url) {
-
                 var $spinner = $(spinnerTemplate()),
                     asyncFilters = new (Backbone.Collection.extend({
                         url: data.url
@@ -143,6 +142,7 @@ define(function(require) {
             var self = this,
                 shouldTrigger = false,
                 view;
+
             filterCollection.each(function (filterModel) {
                 if (filterModel.get('name') !== undefined) {
                     context.stores.filter.setFilterState(filterModel.get('name'), undefined);
@@ -244,25 +244,25 @@ define(function(require) {
          *
          * @param data
          */
-        setFromExternal: function (fields) {
+        setFromExternal: function(fields) {
             var threshold = this.setData(fields);
             if (threshold > 0) {
                 this.broadCastQueryString();
             }
         },
 
-        setFromExternalQuiet: function(fields){
+        setFromExternalQuiet: function(fields) {
             this.setData(fields);
         },
 
-        setData: function(fields){
+        setData: function(fields) {
             var $input,
                 threshold = 0,
                 i = 0;
             for (i = 0; i < fields.length; i++) {
                 $input = this.$el.find('input[name="' + fields[i].name + '"]');
-                if ($input) {
 
+                if ($input) {
                     $input.val(fields[i].value);
                     threshold++;
                 }
@@ -281,13 +281,13 @@ define(function(require) {
         parseQueryString: function () {
             var vars = decodeURI(window.location.search.substring(1)).split("&"),
                 data = {};
+
             for (var i = 0; i < vars.length; i++) {
                 var pair = vars[i].split("=");
                 if (!data[pair[0]]) {
                     data[pair[0]] = [];
                 }
                 data[pair[0]].push(pair[1]);
-
             }
 
             return data;
@@ -301,8 +301,10 @@ define(function(require) {
             this.excludeFields = excludeFields;
         },
 
-        serializeForm: function(){
-            return qslib.stringify(this.$el.serializeObject(), { arrayFormat: 'brackets', filter: this.filterExcludedFields });
+        serializeForm: function() {
+            var formData = this.$el.serializeObject();
+            this.model.set(formData);
+            return qslib.stringify(formData, { arrayFormat: 'brackets', filter: this.filterExcludedFields });
         },
 
         filterExcludedFields: function(prefix, value) {
