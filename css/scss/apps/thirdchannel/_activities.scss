@@ -229,9 +229,10 @@ $padding: 1.5em;
   text-align: right;
 
   .sales-message {
-    color: $medium-blue;
     border: 1px solid $medium-blue;
     border-radius: .35em;
+    color: $medium-blue;
+    display: block;
 
     &:hover {
       background-color: $medium-blue;
