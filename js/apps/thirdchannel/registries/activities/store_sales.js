@@ -72,7 +72,6 @@ define(function(require) {
                 })
                 .subscribe(function (response) {
                     self.registry[response.uuid] = response.salesChange;
-                    response.salesUrl = context.links.stores +"/" + response.uuid+"/sales";
                     context.trigger("store.sales.update", response);
                 }, function () {
                     console.error("Could not fetch Sales data", arguments);
