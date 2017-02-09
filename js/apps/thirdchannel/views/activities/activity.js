@@ -243,21 +243,9 @@ define(function(require) {
         updateSalesWidget: function (event) {
             var location = this.model.get('location');
             if (location && location.hasOwnProperty('id') && location.id === event.uuid) {
-                var data = this.getSalesWidgetData(event);
-                new SalesMarquee({el: this.$el.find('.sales-marquee'), salesData: data});
+                new SalesMarquee({el: this.$el.find('.sales-marquee'), salesData: event});
                 this.$el.find('.sales-widget').fadeIn(500).css("display","inline-block");
             }
-        },
-
-        getSalesWidgetData: function(salesData) {
-          return {
-            salesChange: salesData.salesChange,
-            unitsOnHandChange: salesData.unitsOnHandChange,
-            unitsSoldChange: salesData.unitsSoldChange,
-            message: salesData.message,
-            mostRecent: salesData.mostRecent,
-            salesUrl: salesData.salesUrl
-          };
         }
     });
 });
