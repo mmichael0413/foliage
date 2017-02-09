@@ -61,7 +61,8 @@ define(function(require) {
                           message: data.sales[uuid].message,
                           mostRecent: data.sales[uuid].mostRecent,
                           unitsOnHandChange: data.sales[uuid].unitsOnHandChange,
-                          unitsSoldChange: data.sales[uuid].unitsSoldChange
+                          unitsSoldChange: data.sales[uuid].unitsSoldChange,
+                          salesUrl: data.sales[uuid].salesUrl
                         });
                     }
                     return arr;
