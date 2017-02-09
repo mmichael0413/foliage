@@ -53,7 +53,7 @@ define(function(require) {
             },
             {
               label: 'Units OH',
-              change: salesData.unitsOHChange
+              change: salesData.unitsOnHandChange
             }
           ];
 

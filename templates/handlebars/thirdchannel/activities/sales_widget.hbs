@@ -7,8 +7,8 @@
   {{else}}
     {{widget.label}}:
     <span class="sales-button">
-        <a href={{salesUrl}} class="percentage-change activity-feed-qtd {{ percentageChangeClass widget.change }}">
-            <i class="fa {{percentageChangeIcon widget.change }} change-icon"></i>
+        <a {{#if salesUrl}}href={{salesUrl}}{{/if}} class="percentage-change activity-feed-qtd {{percentageChangeClass widget.change}}">
+            <i class="fa {{percentageChangeIcon widget.change}} change-icon"></i>
             {{formatPercentageChange widget.change}}
         </a>
     </span>

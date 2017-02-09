@@ -252,9 +252,8 @@ define(function(require) {
         getSalesWidgetData: function(salesData) {
           return {
             salesChange: salesData.salesChange,
-            unitsOHChange: salesData.unitsOnHandChange,
+            unitsOnHandChange: salesData.unitsOnHandChange,
             unitsSoldChange: salesData.unitsSoldChange,
-            showLabel: salesData.value ? true : false,
             salesUrl: salesData.salesUrl,
             message: salesData.message,
             mostRecent: salesData.mostRecent

@@ -3,10 +3,41 @@
 	.pagination-holder {
 		min-height: 2em;
 	}
+
+  @include swb-large {
+    .item {
+      position: relative;
+    }
+
+    .col-md-1 {
+      width: 51%;
+      word-wrap: break-word;
+    }
+
+    .sales-marquee {
+      border-top: 0;
+      padding-top: .75em;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: initial;
+    }
+  }
+
+  @include swb-small {
+    .col-md-1 {
+      width: 100%;
+    }
+
+    .sales-marquee {
+      position: relative;
+      width: 100%;
+    }
+  }
 }
 
 .store-profile-section {
-	
+
 	.activity-meta {
 		padding: 0em;
 	}
@@ -26,7 +57,7 @@
 			.expand-indicator {
 				@extend .ic_up;
 			}
-		}				
+		}
 	}
 
 	.carousel {
@@ -81,4 +112,3 @@
 		width: 100%;
 	}
 }
-
