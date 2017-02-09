@@ -230,7 +230,13 @@ $padding: 1.5em;
 
   .sales-message {
     color: $medium-blue;
-    line-height: 3.3em;
+    border: 1px solid $medium-blue;
+    border-radius: .35em;
+
+    &:hover {
+      background-color: $medium-blue;
+      color: #fff;
+    }
   }
 
   .sales-button {

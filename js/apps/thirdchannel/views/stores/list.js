@@ -21,7 +21,7 @@ define(function(require) {
 
               this.collection.forEach(function(model) {
                 if (model.get('sales_data')) {
-                  new SalesMarquee({el: self.$el.find('.sales-marquee#' + model.get('id')), salesData: model.get('sales_data')});
+                  new SalesMarquee({el: self.$el.find('.sales-marquee#' + model.get('id')), salesData: model.get('sales_data'), storeUuid: model.get('uuid')});
                 }
               });
             }
