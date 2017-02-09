@@ -18,6 +18,7 @@ define(function(require) {
         initialize: function (data) {
           this.currentWidget = 0;
           this.salesData = data.salesData;
+          this.storeUuid = data.storeUuid;
           this.salesWidgets = this.formatSalesWidgets(this.salesData);
           this.canNavBack = false;
           this.canNavForward = false;
@@ -33,7 +34,7 @@ define(function(require) {
             showMessage: this.salesData.message && this.salesWidgets.length === 0,
             message: this.salesData.message,
             widget: this.salesWidgets[this.currentWidget],
-            salesUrl: this.salesData.salesUrl,
+            salesUrl: '/programs/Merchandising/stores/' + this.storeUuid + '/sales',
             mostRecent: this.salesData.mostRecent
           };
 

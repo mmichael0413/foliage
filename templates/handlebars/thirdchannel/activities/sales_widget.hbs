@@ -2,12 +2,12 @@
   <div class="text col-2-3">
   {{#if showMessage}}
   <span>
-    <i class="sales-message">{{message}}</i>
+    <a href={{salesUrl}} class="btn sales-message">{{message}}</a>
    </span>
   {{else}}
     {{widget.label}}:
     <span class="sales-button">
-        <a {{#if salesUrl}}href={{salesUrl}}{{/if}} class="percentage-change activity-feed-qtd {{percentageChangeClass widget.change}}">
+        <a href={{salesUrl}} class="percentage-change activity-feed-qtd {{percentageChangeClass widget.change}}">
             <i class="fa {{percentageChangeIcon widget.change}} change-icon"></i>
             {{formatPercentageChange widget.change}}
         </a>
