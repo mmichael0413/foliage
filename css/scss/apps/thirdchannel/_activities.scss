@@ -229,8 +229,15 @@ $padding: 1.5em;
   text-align: right;
 
   .sales-message {
+    border: 1px solid $medium-blue;
+    border-radius: .35em;
     color: $medium-blue;
-    line-height: 3.3em;
+    display: block;
+
+    &:hover {
+      background-color: $medium-blue;
+      color: #fff;
+    }
   }
 
   .sales-button {

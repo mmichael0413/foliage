@@ -33,10 +33,10 @@ define(function(require) {
             showMessage: this.salesData.message && this.salesWidgets.length === 0,
             message: this.salesData.message,
             widget: this.salesWidgets[this.currentWidget],
-            salesUrl: this.salesData.salesUrl,
-            mostRecent: this.salesData.mostRecent
+            mostRecent: this.salesData.mostRecent,
+            salesUrl: this.salesData.salesUrl
           };
-
+          
           this.$el.html(this.template({canNavForward: this.canNavForward, canNavBack: this.canNavBack}));
           this.$el.find('.sales-figure').append(this.salesTemplate(templateData));
         },
