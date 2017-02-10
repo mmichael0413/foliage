@@ -1,0 +1,18 @@
+<div class="filter-component mono-filter-component">
+				{{#if checked}}
+								<div class="btn default ic_check fake-checkbox"></div>
+				{{else}}
+								<div class="btn default ic_blank fake-checkbox"></div>
+				{{/if}}
+				<span class="label">{{label}}</span>
+				<a href={{linkUrl}}>{{linkText}}</a>
+				<input
+								type="checkbox"
+								name={{filterParam}}
+								value={{value}}
+								class="hide"
+								{{#if checked}}
+												checked
+								{{/if}}
+				>
+</div>

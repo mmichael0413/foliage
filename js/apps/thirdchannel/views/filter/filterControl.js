@@ -9,6 +9,7 @@ define(function(require) {
         HiddenComponentView = require('thirdchannel/views/filter/hiddenComponent'),
         FilterableComponentView = require('thirdchannel/views/filter/filterableComponent'),
         ComponentView = require('thirdchannel/views/filter/component'),
+        MonoComponentView = require('thirdchannel/views/filter/mono_component'),
         FilterStore = require('thirdchannel/views/filter/filterStore'),
         qslib = require('qs'),
         SerializeObject = require('serializeObject'),
@@ -174,6 +175,9 @@ define(function(require) {
             }
             else if (filterModel.get('type') === 'hidden') {
                 view = HiddenComponentView;
+            }
+            else if (filterModel.get('type') === 'single-checkbox') {
+                view = MonoComponentView;
             }
             else if (filterModel.get('type') === 'filterable') {
                 view = FilterableComponentView;
