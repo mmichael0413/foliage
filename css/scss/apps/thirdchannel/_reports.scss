@@ -62,6 +62,20 @@
     padding-top: 0.5em;
     padding-bottom: 0.5em;
   }
+
+  &.min {
+    padding-top: 0;
+    margin-top: -2rem;
+
+    > * {
+      display: inline-block;
+    }
+    h2 {
+      color: $text-color;
+      font-weight: normal;
+      font-size: 1em;
+    }
+  }
 }
 
 .overview {
@@ -212,20 +226,6 @@
 .metric-icon {
   h2 {
     color: $report-palette4;
-  }
-
-  &.min {
-    padding-top: 0;
-    margin-top: -2rem;
-
-    > * {
-      display: inline-block;
-    }
-    h2 {
-      color: $text-color;
-      font-weight: normal;
-      font-size: 1em;
-    }
   }
 }
 
