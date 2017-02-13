@@ -19,6 +19,7 @@ define(function(require){
             this.$('.chosen-search input[type=text]').attr('placeholder', 'Search for task');
             this.valid = false;
             this.$formError = this.$('form .error');
+            this.$groupedTaskForm = this.$('form.task.grouped');
             return this;
         },
         submit: function(e) {
@@ -38,15 +39,20 @@ define(function(require){
         updateInputs: function () {
             var selectedOption = this.$('select :selected'),
                 surveyId = selectedOption.data('survey'),
+                packetId = selectedOption.data('packet'),
                 taskId = selectedOption.data('task'),
-                categoryId = selectedOption.data('category');
+                categoryId = selectedOption.data('category'),
+                path = selectedOption.data('path');
 
-            this.valid = surveyId && taskId;
+            this.valid = (surveyId || packetId) && taskId;
 
             if (this.valid) {
-                this.$('form.task.grouped input[name=survey_uuid]').val(surveyId);
-                this.$('form.task.grouped input[name=task_uuid]').val(taskId);
-                this.$('form.task.grouped input[name=category_id]').val(categoryId);
+                this.$groupedTaskForm.attr('action', path);
+                this.$groupedTaskForm.find('input[name=survey_uuid]').val(surveyId);
+                this.$groupedTaskForm.find('input[name=task_uuid]').val(taskId);
+                this.$groupedTaskForm.find('input[name=category_id]').val(categoryId);
+                this.$groupedTaskForm.find('input[name=packet_uuid]').val(packetId);
+
                 this.hideError();
             } else {
                 if(selectedOption.value !== undefined) {

@@ -66,7 +66,7 @@ define(function(require) {
             this._destroyRowViews();
             $container.html("");
             if (rows.constructor === Array && rows.length > 0) {
-                    rows.forEach(function (row) {
+                rows.forEach(function (row) {
                     var view = new self.template({model:row});
                     $container.append(view.render().$el);
                     self.rowViews.push(view);

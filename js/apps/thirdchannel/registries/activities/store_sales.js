@@ -55,7 +55,15 @@ define(function(require) {
                 .map(function (data) {
                     var arr = [];
                     for (var uuid in data.sales) {
-                        arr.push({uuid: uuid, salesChange: data.sales[uuid].sales_change, message: data.sales[uuid].message, mostRecent: data.sales[uuid].mostRecent});
+                        arr.push({
+                          uuid: uuid,
+                          salesChange: data.sales[uuid].sales_change,
+                          message: data.sales[uuid].message,
+                          mostRecent: data.sales[uuid].mostRecent,
+                          unitsOnHandChange: data.sales[uuid].unitsOnHandChange,
+                          unitsSoldChange: data.sales[uuid].unitsSoldChange,
+                          salesUrl: data.sales[uuid].salesUrl
+                        });
                     }
                     return arr;
                 })
@@ -64,7 +72,6 @@ define(function(require) {
                 })
                 .subscribe(function (response) {
                     self.registry[response.uuid] = response.salesChange;
-                    response.salesUrl = context.links.stores +"/" + response.uuid+"/sales";
                     context.trigger("store.sales.update", response);
                 }, function () {
                     console.error("Could not fetch Sales data", arguments);

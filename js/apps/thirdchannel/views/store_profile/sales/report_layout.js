@@ -3,6 +3,7 @@ define(function(require) {
         _ = require('underscore'),
         Backbone = require('backbone'),
         context = require('context'),
+        string_utils = require('thirdchannel/utils/string_utils'),
         OverviewView = require('thirdchannel/views/store_profile/sales/overview'),
         BreakdownView = require('thirdchannel/views/store_profile/sales/breakdown'),
         ChartBreakdowns = require('thirdchannel/views/store_profile/sales/chart_breakdowns');
@@ -138,10 +139,7 @@ define(function(require) {
             }
 
 
-            //Title Case the labels
-            return label.split(' ').map(function(s){
-                return s.length <=1 ? s.toUpperCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
-            }).join(" ");
+           return string_utils.titleize(label);
         }
     });
 

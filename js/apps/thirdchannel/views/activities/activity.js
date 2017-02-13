@@ -12,7 +12,8 @@ define(function(require) {
         NewCommentView = require('thirdchannel/views/comments/new_comment'),
         Like = require('thirdchannel/models/activities/like'),
         Follow = require('thirdchannel/models/activities/follow'),
-        Viewer = require('viewer');
+        Viewer = require('viewer'),
+        SalesMarquee = require('thirdchannel/views/shared/sales_marquee');
 
     return Backbone.View.extend({
         className: 'activity',
@@ -242,10 +243,7 @@ define(function(require) {
         updateSalesWidget: function (event) {
             var location = this.model.get('location');
             if (location && location.hasOwnProperty('id') && location.id === event.uuid) {
-                // only show values with 0 or greater?
-                var data = {salesChange: event.salesChange, showLabel: event.value ? true : false,
-                    salesUrl: event.salesUrl, message: event.message, mostRecent: event.mostRecent};
-                this.$el.find('.activity-meta').append(HandlebarsTemplates['thirdchannel/activities/sales_widget'](data));
+                new SalesMarquee({el: this.$el.find('.sales-marquee'), salesData: event});
                 this.$el.find('.sales-widget').fadeIn(500).css("display","inline-block");
             }
         }
