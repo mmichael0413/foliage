@@ -9,6 +9,7 @@ define(function(require) {
         HiddenComponentView = require('thirdchannel/views/filter/hiddenComponent'),
         FilterableComponentView = require('thirdchannel/views/filter/filterableComponent'),
         ComponentView = require('thirdchannel/views/filter/component'),
+        SingleCheckboxComponentView = require('thirdchannel/views/filter/single_checkbox_component'),
         FilterStore = require('thirdchannel/views/filter/filterStore'),
         qslib = require('qs'),
         SerializeObject = require('serializeObject'),
@@ -59,6 +60,8 @@ define(function(require) {
             //
             var qsHash = this.parseQueryString(),
                 shouldTrigger = false;
+
+            this.handleMyStoresUserMismatch(qsHash);
 
             if (!data || !data.collection) {
                 console.error("We need at least a data.collection to get started with the filter");
@@ -174,6 +177,9 @@ define(function(require) {
             }
             else if (filterModel.get('type') === 'hidden') {
                 view = HiddenComponentView;
+            }
+            else if (filterModel.get('type') === 'single-checkbox') {
+                view = SingleCheckboxComponentView;
             }
             else if (filterModel.get('type') === 'filterable') {
                 view = FilterableComponentView;
@@ -320,6 +326,27 @@ define(function(require) {
                 return;
             }
             return value;
+        },
+
+        // If a my_stores filter is received with a user uuid that does not
+        // match the current user, we should put that uuid into the
+        // territory_owner filter instead, so that the filters appear
+        // correctly. This would typically occur because a user sent a link
+        // with my_stores to a different user.
+        handleMyStoresUserMismatch: function(qsHash){
+            var currentUserUUID = context.current_user_uuid || window.current_user_uuid;
+            if(
+                qsHash["my_stores[]"] &&
+                qsHash["my_stores[]"].length !== 0 &&
+                qsHash["my_stores[]"][0] !== currentUserUUID
+            ){
+                var old = qsHash["my_stores[]"][0];
+                delete qsHash["my_stores[]"];
+                if(!qsHash["territory_owner[]"]){
+                    qsHash["territory_owner[]"] = [];
+                }
+                qsHash["territory_owner[]"].push(old);
+            }
         }
     };
 
