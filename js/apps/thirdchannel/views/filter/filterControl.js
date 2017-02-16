@@ -328,6 +328,11 @@ define(function(require) {
             return value;
         },
 
+        // If a my_stores filter is received with a user uuid that does not
+        // match the current user, we should put that uuid into the
+        // territory_owner filter instead, so that the filters appear
+        // correctly. This would typically occur because a user sent a link
+        // with my_stores to a different user.
         handleMyStoresUserMismatch: function(qsHash){
             var currentUserUUID = context.current_user_uuid || window.current_user_uuid;
             if(
