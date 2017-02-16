@@ -5,7 +5,7 @@ define(function(require) {
         handlebarsTemplates = require('handlebarsTemplates'),
     component = {
         className: "filter-component",
-        templateName: 'thirdchannel/filters/mono_component',
+        templateName: 'thirdchannel/filters/single_checkbox_component',
 
         checked: false,
         filterParam: null, // querystring param for the component
