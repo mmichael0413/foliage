@@ -71,6 +71,7 @@ define(function(require){
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
             'programs/:program_id/stores/:store_id(/)': 'storeProfile',
+            'programs/:program_id/stores/:store_id/intel': 'storeProfileIntel',
             'programs/:program_id/stores/:store_id/activity': 'storeProfileActivity',
             'programs/:program_id/stores/:store_id/history': 'storeProfileHistory',
             'programs/:program_id/stores/:store_id/gallery': 'storeProfileGallery',
@@ -116,7 +117,7 @@ define(function(require){
          *
          * For more indepth usage we'd need to split the routers up so that each one has a more fine-grained before function (e.g., a 'stores'
          * router that knows the second parameter is always storeID, and a reports router that knows the second param is always report_id)
-         * 
+         *
          * @param  {string} program_id [description]
          */
         before: function (parameters) {
@@ -165,7 +166,7 @@ define(function(require){
         fixturesTypes: function () {
             FixturesMain.types();
         },
-        
+
         fixturesList: function () {
             FixturesMain.detailsList();
         },
@@ -194,6 +195,10 @@ define(function(require){
 
         storeProfile: function () {
             StoreProfileMain.init();
+        },
+
+        storeProfileIntel: function () {
+            StoreProfileMain.intel();
         },
 
         storeProfileActivity: function () {
