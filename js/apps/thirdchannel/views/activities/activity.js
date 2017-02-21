@@ -158,6 +158,16 @@ define(function(require) {
                     $(e.target).addClass('activity_follow_button');
                     $(e.target).removeClass('activity_unfollow_button');
                 }
+
+                var updatedCount = self.model.get('follow_count') + 1;
+                self.$('.follow-count').text(updatedCount);
+
+                var followLabel = self.$('.follow-label');
+                if (updatedCount == 1) {
+                  followLabel.text(' Follow');
+                } else {
+                  followLabel.text(' Follows');
+                }
             });
         },
         focusComment: function (e) {
@@ -170,16 +180,20 @@ define(function(require) {
             var total = this.comments.collection.models.length;
             var visible = this.comments.visibleComments;
             var link = this.$(".more-comments,.less-comments");
-            if(total > 3){
-                if(total === visible){
-                    link.text('Hide Comments').removeClass('more-comments').addClass('less-comments');
-                } else {
-                    var diff = total - visible;
-                    var label = 'View ' + diff + ' More Comment'  + (diff === 1 ? '' : 's');
-                    link.text(label).removeClass('less-comments').addClass('more-comments');
-                }
+
+            if (total > 3){
+              if (total === visible){
+                link.text('Hide Comments').removeClass('more-comments').addClass('less-comments');
+              } else {
+                var diff = total - visible;
+                var label = 'View ' + diff + ' More Comment'  + (diff === 1 ? '' : 's');
+                link.text(label).removeClass('less-comments').addClass('more-comments');
+              }
+
+              link.parent.show();
             } else {
-                link.text('');
+              link.text('');
+              link.parent().hide();
             }
         },
         showAdditionalComments: function (e) {
