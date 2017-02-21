@@ -124,17 +124,10 @@ define(function(require) {
             // create like model and save it to the server
             var like = new Like({id: this.objId}, {programId: this.programId});
             like.save().done(function () {
-                var updatedCount = self.model.get('like_count') + 1;
-                self.$('.like-count').text(updatedCount);
+              var updatedCount = self.model.get('like_count') + 1;
+              self.incrementLabel(updatedCount, '.like-count', '.like-label', 'Like');
 
-                var likeLabel = self.$('.like-label');
-                if (updatedCount == 1) {
-                    likeLabel.text(' Like');
-                } else {
-                    likeLabel.text(' Likes');
-                }
-
-                $(e.target).replaceWith('Liked');
+              $(e.target).replaceWith('Liked');
             });
         },
         followActivity: function (e) {
@@ -160,15 +153,18 @@ define(function(require) {
                 }
 
                 var updatedCount = self.model.get('follow_count') + 1;
-                self.$('.follow-count').text(updatedCount);
-
-                var followLabel = self.$('.follow-label');
-                if (updatedCount == 1) {
-                  followLabel.text(' Follow');
-                } else {
-                  followLabel.text(' Follows');
-                }
+                self.incrementLabel(updatedCount, '.follow-count', '.follow-label', 'Follow');
             });
+        },
+        incrementLabel: function(count, countSelector, labelSelector, label) {
+          this.$(countSelector).text(count);
+
+          var labelText = this.$(labelSelector);
+          if (count == 1) {
+            labelText.text(' ' + label);
+          } else {
+            labelText.text(' ' + label + 's');
+          }
         },
         focusComment: function (e) {
             e.preventDefault();
