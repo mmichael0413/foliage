@@ -150,6 +150,7 @@ $padding: 1.5em;
 
     textarea, button {
       display: inline-block;
+      padding: .15em 1em;
       vertical-align: top;
     }
     @include swb-small {
@@ -360,7 +361,6 @@ $padding: 1.5em;
   width: 5em;
   display: inline-block;
   text-align: center;
-  margin-bottom: .4em;
 }
 
 .activity_unfollow_button:hover {
@@ -371,8 +371,6 @@ $padding: 1.5em;
 .activity-content, .activity-actions {
   display: inline-block;
   vertical-align: top;
-  width: 70%;
-  /*width: 100%;*/
   padding: 0 $padding 0 $padding;
   .issues-found {
     .indicator {
@@ -389,12 +387,68 @@ $padding: 1.5em;
   }
 }
 
-.activity-content img {
-  max-width: 100%;
+.activity-actions {
+  border-top: 1px solid #ececec;
+  font-size: .9em;
+  padding: 1em 1.5em;
+  width: 100%;
+
+  @include swb-small {
+    border-top: 0;
+    display: flex;
+    padding: 0;
+    flex-direction: column-reverse;
+  }
+
+  .activity-actions-social {
+    float: left;
+
+    @include swb-small {
+      border-top: 1px solid #ececec;
+      display: flex;
+      justify-content: space-around;
+      padding: 1.25em 0;
+      text-align: center;
+
+      .action {
+        padding: 0;
+      }
+    }
+  }
+
+  .activity-actions-admin {
+    float: right;
+
+    @include swb-small {
+      padding: 1.25em 0;
+      text-align: center;
+
+      .action {
+        line-height: 1.2em;
+        padding: 0 1em;
+
+        &:not(:first-child) {
+          border-left: 1px solid $link-color;
+        }
+
+        &.bold {
+          font-weight: 400;
+        }
+      }
+    }
+  }
 }
 
-.activity-content p {
-  white-space: pre-wrap;
+.activity-content {
+  width: 70%;
+
+  img {
+    max-width: 100%;
+  }
+
+  p {
+    white-space: pre-wrap;
+  }
 }
 
 .action {
@@ -529,9 +583,16 @@ $img-height: 3em;
   background-color: $border-color;
   //$palette1;
   .activity-status {
-    padding: 0.5em $padding;
     border-bottom: 1px solid $main-background;
+    font-size: .9em;
+    padding: 1em $padding;
+
+    .action:not(:first-child) {
+      border-left: 1px solid #434748;
+      padding: 0 1em;
+    }
   }
+
   .comments {
     .activity-bar:last-of-type {
       margin-bottom: 0;
@@ -557,7 +618,7 @@ $img-height: 3em;
 }
 
 @include swb-large {
-  .activity-content, .activity-actions {
+  .activity-content {
     width: 65%;
   }
   .activity-photos {
@@ -579,10 +640,6 @@ $img-height: 3em;
   .activity-content, .activity-photos, .activity-actions {
     width: 100%;
     margin-bottom: 0;
-  }
-
-  .activity-actions {
-    margin: $padding 0;
   }
 
   .activity-content img {

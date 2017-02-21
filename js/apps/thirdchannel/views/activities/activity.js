@@ -124,17 +124,10 @@ define(function(require) {
             // create like model and save it to the server
             var like = new Like({id: this.objId}, {programId: this.programId});
             like.save().done(function () {
-                var updatedCount = self.model.get('like_count') + 1;
-                self.$('.like-count').text(updatedCount);
+              var updatedCount = self.model.get('like_count') + 1;
+              self.incrementLabel(updatedCount, '.like-count', '.like-label', 'Like');
 
-                var likeLabel = self.$('.like-label');
-                if (updatedCount == 1) {
-                    likeLabel.text(' Like');
-                } else {
-                    likeLabel.text(' Likes');
-                }
-
-                $(e.target).replaceWith('Liked');
+              $(e.target).replaceWith('Liked');
             });
         },
         followActivity: function (e) {
@@ -158,7 +151,20 @@ define(function(require) {
                     $(e.target).addClass('activity_follow_button');
                     $(e.target).removeClass('activity_unfollow_button');
                 }
+
+                var updatedCount = self.model.get('follow_count') + 1;
+                self.incrementLabel(updatedCount, '.follow-count', '.follow-label', 'Follow');
             });
+        },
+        incrementLabel: function(count, countSelector, labelSelector, label) {
+          this.$(countSelector).text(count);
+
+          var labelText = this.$(labelSelector);
+          if (count == 1) {
+            labelText.text(' ' + label);
+          } else {
+            labelText.text(' ' + label + 's');
+          }
         },
         focusComment: function (e) {
             e.preventDefault();
@@ -170,16 +176,20 @@ define(function(require) {
             var total = this.comments.collection.models.length;
             var visible = this.comments.visibleComments;
             var link = this.$(".more-comments,.less-comments");
-            if(total > 3){
-                if(total === visible){
-                    link.text('Hide Comments').removeClass('more-comments').addClass('less-comments');
-                } else {
-                    var diff = total - visible;
-                    var label = 'View ' + diff + ' More Comment'  + (diff === 1 ? '' : 's');
-                    link.text(label).removeClass('less-comments').addClass('more-comments');
-                }
+
+            if (total > 3){
+              if (total === visible){
+                link.text('Hide Comments').removeClass('more-comments').addClass('less-comments');
+              } else {
+                var diff = total - visible;
+                var label = 'View ' + diff + ' More Comment'  + (diff === 1 ? '' : 's');
+                link.text(label).removeClass('less-comments').addClass('more-comments');
+              }
+
+              link.parent.show();
             } else {
-                link.text('');
+              link.text('');
+              link.parent().hide();
             }
         },
         showAdditionalComments: function (e) {

@@ -28,106 +28,87 @@
 
         <div class="activity-details"></div>
 
-        <div class="activity-status visible-xs">
-            <span class="action">
-                <span class="like-count" data-likecount="{{like_count}}">{{like_count}}</span> <span class="like-label">{{pluralize like_count 'Like' 'Likes'}}</span>
-            </span>
-
-
-            <span class="action">
-                <span> {{comments_count}}  {{pluralize comments_count
-                    'Comment' 'Comments'}}
-                </span>
-            </span>
-
-        </div>
-
         <div class="activity-actions">
-                <span class="action bold">
-                    {{#if show_like_button}}
-                    <a class="activity_like_button gray" data-id="{{activity_id}}" href="#">
-                        Like
-                    </a>
-                    {{else}}
-                     Liked
-                    {{/if}}
-                </span>
-            <span class="action bold">
-                {{#if is_following}}
-                    <a class="activity_unfollow_button" data-id="{{activity_id}}" data-following="{{is_following}}" href="#">
-                        Unfollow
-                    </a>
-                {{else}}
-                    <a class="activity_follow_button" data-id="{{activity_id}}" data-following="{{is_following}}" href="#">
-                        Follow
-                    </a>
-                {{/if}}
-            </span>
-            <span class="action bold">
-                <a href="#" class="start-comment">Comment</a>
-            </span>
-            <span class="action bold link-color">
-                 |
-            </span>
-            {{#if_eq type "Checkin"}}
-                <span class="action bold">
-                    <a href="{{report_url}}" target="_blank">Full Report</a>
-                </span>
-            {{/if_eq}}
-            <span class="action bold">
-            <a href="/programs/{{current_program}}/activities/{{activity_id}}" class="hidden-xs">View Activity</a>
-                </span>
-        </div>
-
-        {{#if show-moderation}}
-            <div class="moderation-actions  visible-xs">
+            <div class="activity-actions-social">
+              <span class="action bold">
+                  {{#if show_like_button}}
+                  <a class="activity_like_button gray" data-id="{{activity_id}}" href="#">
+                      Like
+                  </a>
+                  {{else}}
+                   Liked
+                  {{/if}}
+              </span>
+              <span class="action bold">
+                  {{#if is_following}}
+                      <a class="activity_unfollow_button" data-id="{{activity_id}}" data-following="{{is_following}}" href="#">
+                          Unfollow
+                      </a>
+                  {{else}}
+                      <a class="activity_follow_button" data-id="{{activity_id}}" data-following="{{is_following}}" href="#">
+                          Follow
+                      </a>
+                  {{/if}}
+              </span>
+              <span class="action bold">
+                  <a href="#" class="start-comment">Comment</a>
+              </span>
+            </div>
+            <div class="activity-actions-admin">
+              {{#if show-moderation}}
                 {{#if editable}}
-                    <span class="action"><a href="{{editable}}">Edit Visit</a></span>
+                    <span class="action bold"><a href="{{editable}}">Edit Visit</a></span>
                 {{/if}}
 
                 {{#if hideable}}
-                    <span class="action"><a href="#" class="hide-post">Hide Post</a></span>
+                    <span class="action bold"><a href="#" class="hide-post">Hide Post</a></span>
                 {{/if}}
+                <span class="action bold link-color hidden-xs">
+                     |
+                </span>
+              {{/if}}
+
+              {{#if_eq type "Checkin"}}
+                  <span class="action bold">
+                      <a href="{{report_url}}" target="_blank">Full Report</a>
+                  </span>
+              {{/if_eq}}
+              <span class="action bold">
+                <a href="/programs/{{current_program}}/activities/{{activity_id}}">View Activity</a>
+              </span>
             </div>
-        {{/if}}
+        </div>
+
+
     </div>
-    <div class="comment-holder {{#if_eq singleActivity false}}hidden-xs{{/if_eq}}">
+    <div class="comment-holder">
         <div class="activity-status">
             <span class="action">
-                <span class="like-count" data-likecount="{{like_count}}">{{like_count}}</span> <span class="like-label">{{pluralize like_count 'Like' 'Likes'}}</span>
+                <span class="like-count" data-likecount="{{like_count}}">{{like_count}}</span>
+                <span class="like-label">{{pluralize like_count 'Like' 'Likes'}}</span>
+            </span>
+            <span class="action">
+                <span class="follow-count" data-likecount="{{follow_count}}">{{follow_count}}</span>
+                <span class="follow-label">{{pluralize follow_count 'Follow' 'Follows'}}</span>
+            </span>
+            <span class="action">
+              <span>{{comments_count}}  {{pluralize comments_count 'Comment' 'Comments'}}</span>
             </span>
 
-            <span class="action">
-            {{#if_gt comments_count 3}}
+            <span class="action {{#if_eq singleActivity false}}hidden-xs{{/if_eq}}">
+              {{#if_gt comments_count 3}}
                 <a href="#" class="more-comments">View {{additional_comments}} More {{pluralize additional_comments
                     'Comment' 'Comments'}}
                 </a>
-            {{else}}
+              {{else}}
                 <a href="#" class="more-comments"></a>
-            {{/if_gt}}
+              {{/if_gt}}
             </span>
         </div>
-        <div class="comments">
-
-        </div>
+        <div class="comments {{#if_eq singleActivity false}}hidden-xs{{/if_eq}}"></div>
 
         {{#if current_user}}
-        <div class="comment new-comment">
-
-
-        </div>
-        {{/if}}
-
-        {{#if show-moderation}}
-        <div class="moderation-actions">
-            {{#if editable}}
-            <span class="action"><a href="{{editable}}">Edit Visit</a></span>
-            {{/if}}
-
-            {{#if hideable}}
-            <span class="action"><a href="#" class="hide-post">Hide Post</a></span>
-            {{/if}}
-        </div>
+          <div class="comment new-comment"></div>
         {{/if}}
     </div>
 </div>
