@@ -139,20 +139,22 @@ define(function(require) {
 
             // create model and save it to the server
             var follow = new Follow({id: this.objId}, {programId: this.programId, following: isFollowing});
+            var updatedCount;
             follow.save().done(function () {
                 if (!isFollowing) {
                     $(e.target).text('Unfollow');
                     $(e.target).data("following", true);
                     $(e.target).addClass('activity_unfollow_button');
                     $(e.target).removeClass('activity_follow_button');
+                    updatedCount = self.model.get('follow_count') + 1;
                 } else {
                     $(e.target).text('Follow');
                     $(e.target).data("following", false);
                     $(e.target).addClass('activity_follow_button');
                     $(e.target).removeClass('activity_unfollow_button');
+                    updatedCount = self.model.get('follow_count');
                 }
 
-                var updatedCount = self.model.get('follow_count') + 1;
                 self.incrementLabel(updatedCount, '.follow-count', '.follow-label', 'Follow');
             });
         },
