@@ -1,5 +1,5 @@
 {{#if_eq type 'link'}}
-    <a href="{{link}}" {{#if bypass}}data-bypass="true"{{/if}} class="btn {{className}}">
+    <a href="{{link}}?{{qs}}" {{#if bypass}}data-bypass="true"{{/if}} class="btn {{className}}">
         {{> 'action_content'}}
     </a>
 {{/if_eq}}
