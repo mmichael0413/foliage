@@ -29,6 +29,25 @@
       position: relative;
     }
 
+    .single-checkbox-filter-component {
+        padding: 1em;
+        .fake-checkbox {
+            margin-right: 0.25em;
+        }
+        .label {
+            margin-right: 0.5em;
+        }
+        a {
+            font-size: 70%;
+            color: $report-link;
+            text-decoration: underline;
+            &:hover {
+                color: lighten($report-link, 15%);
+            }
+        }
+        border-bottom: 1px solid $border-color;
+    }
+
     .filter-item {
         width: 100%;
         display: block;
