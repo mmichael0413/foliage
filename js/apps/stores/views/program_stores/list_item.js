@@ -16,8 +16,17 @@ define(function(require) {
             'click .remove': 'displayRemoveDialog'
         },
         render: function() {
-            var data = this.model.attributes;
-            data.programStoreStatuses = context.programStoreStatuses;
+            var labels = this.model.attributes.labels
+                .map(function(x){ return x.content; })
+                .join(", ");
+            var data = {
+                storeUUID: this.model.attributes.storeUUID,
+                address: this.model.attributes.address,
+                name: this.model.attributes.name,
+                latitude: this.model.attributes.latitude,
+                longitude: this.model.attributes.longitude,
+                labels: labels,
+            };
             this.$el.html(this.template(data));
             return this;
         },
