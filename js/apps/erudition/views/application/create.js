@@ -47,6 +47,7 @@ define(function (require) {
                 'SnagAJob',
                 'AllRetailJobs',
                 'ZipRecruiter',
+                'Vega Demo Program',
                 'None of the above'
             ];
 
