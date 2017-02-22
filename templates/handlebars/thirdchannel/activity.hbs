@@ -88,11 +88,12 @@
                 <span class="like-label">{{pluralize like_count 'Like' 'Likes'}}</span>
             </span>
             <span class="action">
-                <span class="follow-count" data-likecount="{{follow_count}}">{{follow_count}}</span>
+                <span class="follow-count" data-folllowcount="{{follow_count}}">{{follow_count}}</span>
                 <span class="follow-label">{{pluralize follow_count 'Follow' 'Follows'}}</span>
             </span>
             <span class="action">
-              <span>{{comments_count}}  {{pluralize comments_count 'Comment' 'Comments'}}</span>
+                <span class="comment-count" data-commentcount="{{comments_count}}">{{comments_count}}</span>
+                <span class="comment-label">{{pluralize comments_count 'Comment' 'Comments'}}</span>
             </span>
 
             <span class="action {{#if_eq singleActivity false}}hidden-xs{{/if_eq}}">
