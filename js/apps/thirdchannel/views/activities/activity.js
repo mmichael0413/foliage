@@ -191,6 +191,8 @@ define(function(require) {
               link.text('');
               link.parent().hide();
             }
+
+            this.incrementLabel(total, '.comment-count', '.comment-label', 'Comment');
         },
         showAdditionalComments: function (e) {
             e.preventDefault();

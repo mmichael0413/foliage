@@ -22,7 +22,7 @@ define(function(require) {
             e.stopPropagation();
             var self = this;
             var userConfirmedDeletion = window.confirm("Are you sure you want to delete this comment?");
-            if(userConfirmedDeletion){
+            if (userConfirmedDeletion) {
                 var deleteUrl = this.model.get('url') + '?comment_id=' + this.model.get('comment_id');
                 var collection = this.model.collection;
                 this.model.destroy({
