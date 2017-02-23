@@ -92,8 +92,17 @@
                 <span class="follow-label">{{pluralize follow_count 'Follow' 'Follows'}}</span>
             </span>
             <span class="action">
+              {{#if_gt comments_count 0}}
+                <a class="visible-xs comments-link" href="/programs/{{current_program}}/activities/{{activity_id}}">
+                  <span class="comment-count" data-commentcount="{{comments_count}}">{{comments_count}}</span>
+                  <span class="comment-label">{{pluralize comments_count 'Comment' 'Comments'}}</span>
+                </a>
+              {{/if_gt}}
+
+              <span class="{{#if_gt comments_count 0}}hidden-xs{{/if_gt}}">
                 <span class="comment-count" data-commentcount="{{comments_count}}">{{comments_count}}</span>
                 <span class="comment-label">{{pluralize comments_count 'Comment' 'Comments'}}</span>
+              </span>
             </span>
 
             <span class="action {{#if_eq singleActivity false}}hidden-xs{{/if_eq}}">

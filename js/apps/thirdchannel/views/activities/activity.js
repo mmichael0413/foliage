@@ -188,7 +188,7 @@ define(function(require) {
                 link.text(label).removeClass('less-comments').addClass('more-comments');
               }
 
-              link.parent.show();
+              link.parent().show();
             } else {
               link.text('');
               link.parent().hide();

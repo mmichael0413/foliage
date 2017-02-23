@@ -598,6 +598,12 @@ $img-height: 3em;
       margin-bottom: 0;
     }
   }
+
+  @include swb-small {
+    .comments-link {
+      display: inline;
+    }
+  }
 }
 
 .moderation-actions {
