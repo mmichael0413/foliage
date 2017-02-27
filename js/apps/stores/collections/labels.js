@@ -1,16 +1,16 @@
 define(function(require){
     var _ = require('underscore'),
         Backbone = require('backbone'),
-        Tag = require('stores/models/tag');
+        Label = require('stores/models/label');
 
     return Backbone.Collection.extend({
-        model: Tag,
+        model: Label,
         comparator: 'name',
         initialize: function(models, options) {
             this.programStore = options.programStore;
         },
         url: function() {
-            return '/api/programs/' + this.programStore.get('programUUID') + '/program_stores/' + this.programStore.get('id') + '/tags';
+            return '/api/programs/' + this.programStore.get('programUUID') + '/program_stores/' + this.programStore.get('id') + '/labels';
         }
     });
 });

@@ -6,9 +6,14 @@ define(function(require) {
     var View = Backbone.View.extend({
         el: '.actions',
         template: Templates['stores/action'],
-        render: function() {
+        initialize: function(){
+            this.listenTo(context, 'filter:query', this.render);
+        },
+        render: function(qs) {
             var self = this;
+            this.$el.empty();
             this.collection.each(function(action) {
+                action.attributes.qs = qs;
                 self.$el.append(self.template(action.attributes));
             });
             return this;
