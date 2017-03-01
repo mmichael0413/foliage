@@ -1,7 +1,24 @@
-<h3 class="title">{{count}} Possible Stores</h3>
+<h3 class="title"><span id="storeCount">{{count}}</span> Stores</h3>
 <div class="pagination-holder"></div>
+<table>
+<thead>
+<tr class="stores-header-row">
+<th></th>
+<th>Store</th>
+<th>Address</th>
+<th>Labels</th>
+</tr>
+</thead>
 {{#programStores}}
-<p class="store-row"><input type="checkbox" name="ids" value="{{id}}" class="check" {{#selected}}checked{{/selected}}><span class="name">{{name}}</span> {{address}}</p>
-{{else}}
-<p class="info">No stores match your query</p>
+<tr class="store-row">
+        <td><input type="checkbox" name="ids" value="{{id}}" class="check" {{#selected}}checked{{/selected}}></td>
+        <td class="name">{{name}}</td>
+        <td class="address">{{address}}</td>
+        <td class="labels">
+        {{#labels}}
+        <span>{{content}}</span>
+        {{/labels}}
+        </td>
+</tr>
 {{/programStores}}
+</table>
