@@ -11,14 +11,14 @@
 </thead>
 {{#programStores}}
 <tr class="store-row">
-				<td class="col-1-8"><input type="checkbox" name="ids" value="{{id}}" class="check" {{#selected}}checked{{/selected}}></td>
-								<td class="name col-2-8">{{name}}</td>
-								<td class="address col-3-8">{{address}}</td>
-								<td class="labels col-2-8">
-								{{#labels}}
-								<span>{{content}}</span>
-								{{/labels}}
-								</td>
+        <td><input type="checkbox" name="ids" value="{{id}}" class="check" {{#selected}}checked{{/selected}}></td>
+        <td class="name">{{name}}</td>
+        <td class="address">{{address}}</td>
+        <td class="labels">
+        {{#labels}}
+        <span>{{content}}</span>
+        {{/labels}}
+        </td>
 </tr>
 {{/programStores}}
 </table>
