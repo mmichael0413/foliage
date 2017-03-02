@@ -3,6 +3,7 @@ define(function(require) {
         context = require('context'),
         PageableListView = require('thirdchannel/views/shared/pageable_list'),
         SalesMarquee = require('thirdchannel/views/shared/sales_marquee'),
+        SalesProvidersView = require('thirdchannel/views/sales_providers'),
 
         /**
          *
@@ -24,6 +25,8 @@ define(function(require) {
                   new SalesMarquee({el: self.$el.find('.sales-marquee#' + model.get('id')), salesData: model.get('sales_data')});
                 }
               });
+              
+              new SalesProvidersView({salesProviders: window.bootstrap.salesProviders});
             }
         });
     return StoreListView;

@@ -53,6 +53,8 @@ define(function(require) {
 
                 rx.Observable.fromPromise(promise)
                 .map(function (data) {
+                    context.trigger("store.sales.providers", data.salesProviders);
+
                     var arr = [];
                     for (var uuid in data.sales) {
                         arr.push({
@@ -65,6 +67,7 @@ define(function(require) {
                           salesUrl: data.sales[uuid].salesUrl
                         });
                     }
+
                     return arr;
                 })
                 .flatMap(function (data) {
