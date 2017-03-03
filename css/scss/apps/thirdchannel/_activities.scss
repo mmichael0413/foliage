@@ -45,10 +45,17 @@ $padding: 1.5em;
     right: 0;
     text-align: center;
     top: 3em;
-    width: 12.75em;
-    
-    img {
+    width: 13.5em;
+
+    i {
       display: block;
+      font-size: 4em;
+      margin-left: -1em;
+      width: 100%;
+    }
+
+    .sp_thc {
+      margin-left: 0;
     }
 
     &:before {

@@ -1,5 +1,6 @@
 define(function (require) {
     var $ = require('jquery'),
+        _ = require('underscore'),
         Backbone = require('backbone'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
@@ -8,8 +9,10 @@ define(function (require) {
         template: HandlebarsTemplates['thirdchannel/sales_providers'],
 
         initialize: function (options) {
-          this.providers = options.salesProviders;
-          if (this.providers) {
+          if (options.salesProviders) {
+            this.providers = _.map(options.salesProviders, function(provider) {
+              return provider.toLowerCase();
+            });
             this.render();
           }
         },

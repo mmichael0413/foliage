@@ -43,6 +43,18 @@ module.exports = function(grunt) {
         },
         {
             dest: 'dist/shared/fonts/tc-icons_13271346428e88c9d2b2e9445373c21d.woff'
+        },
+        {
+            dest: 'dist/shared/fonts/tpcicons_17c256bff985f337b3bbf51a6da4645e.woff'
+        },
+        {
+            dest: 'dist/shared/fonts/sc-icons_17c256bff985f337b3bbf51a6da4645e.woff'
+        },
+        {
+            dest: 'dist/shared/fonts/sp-icons_17c256bff985f337b3bbf51a6da4645e.woff'
+        },
+        {
+            dest: 'dist/shared/fonts/sp-icons_17c256bff985f337b3bbf51a6da4645e.woff'
         }
     ];
 
