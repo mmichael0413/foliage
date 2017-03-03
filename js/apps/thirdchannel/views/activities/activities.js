@@ -7,7 +7,8 @@ define(function (require) {
         IncompleteActivity = require('thirdchannel/models/activities/incomplete_activity'),
         Expanding = require('expanding'),
         Livestamp = require('livestamp'),
-        InfiniteScrollView = require('thirdchannel/views/shared/infinite_scroll');
+        InfiniteScrollView = require('thirdchannel/views/shared/infinite_scroll'),
+        SalesProvidersView = require('thirdchannel/views/sales_providers');
 
     var ActivitiesView = InfiniteScrollView.extend({
         el: '.activities-holder',
@@ -24,6 +25,7 @@ define(function (require) {
 
             this.listenTo(context, 'filter:query', this.insertLoadingTemplate);
             this.listenToOnce(context, 'page:height', this.checkPageHeight);
+            this.listenTo(context, 'store.sales.providers', this.updateSalesProviders);
             $(window).resize(function () {
                 self.resizeCarousel();
             });
@@ -87,6 +89,10 @@ define(function (require) {
 
         getContentElement: function () {
             return this.$('.complete');
+        },
+
+        updateSalesProviders: function(event) {
+          new SalesProvidersView({salesProviders: event});
         }
     });
 
