@@ -36,7 +36,9 @@ define(function(require) {
             "click .question [data-hide-element]" : 'hideElement',
             "change .question input[type=hidden], change .question select": "validate",
             "change .question select[class*=question-]": "displayQuestionExtraIfTriggered",
-            "change:nosave .question input[type=hidden]": "validate"
+            "change:nosave .question input[type=hidden]": "validate",
+            "click .number-minus" : 'decreaseNumber',
+            "click .number-plus" : 'increaseNumber'
         },
         initialize: function() {
             _.bindAll(this, 'errorPlacement', 'validateSuccess', 'highlight', 'unhighlight');
@@ -237,6 +239,21 @@ define(function(require) {
         },
         validateSuccess: function(error) {
             $("#" + error.attr("id")).remove();
+        },
+        decreaseNumber: function(e) {
+            this.updateNumber(e, -1);
+        },
+        increaseNumber: function(e) {
+            this.updateNumber(e, 1);
+        },
+        updateNumber: function(e, increase) {
+            var input = this.$(e.currentTarget).siblings("input[type=number]"),
+                value = Number(input.val());
+
+            if (value !== Number(input.attr("min"))) {
+                input.val(value + increase).trigger("blur");
+            }
         }
+
     });
 });

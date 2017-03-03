@@ -26,6 +26,25 @@
     margin-bottom: 0;
   }
 
+  input[type=number] {
+    max-width: 8em;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .number-plus, .number-minus {
+    margin-top: 0.55em;
+    vertical-align: top;
+  }
+
+  .number-plus {
+    margin-left: 0.5em;
+  }
+
+  .number-minus {
+    margin-right: 0.5em;
+  }
+
   .body {
     margin-top: 1em;
     border-top: 1px solid $light-blue;
