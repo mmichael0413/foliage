@@ -7,6 +7,7 @@ define(function(require){
         namespacer = require('shared/utils/namespacer'),
         FilterParams = require('shared/models/filterParams'),
         MainLayout = require('shared/views/layout/main'),
+        AdminActivitiesTopicsView = require('thirdchannel/views/admin/activities/topics'),
         ActivitiesMain = require('thirdchannel/views/activities/main'),
         CheckinsView = require('thirdchannel/views/checkins/checkin'),
         CheckinInProgressView = require('thirdchannel/views/checkins/in_progress'),
@@ -58,6 +59,8 @@ define(function(require){
             'login' : 'login',
             'opportunities': 'ViewOpportunities',
             'opportunities/:id': 'viewOpportunity',
+            'programs/:program_id/admin/activities/topics(/)' : 'adminActivitiesTopics',
+            'programs/:program_id/admin/activities/topics/*path' : 'adminActivitiesTopics',
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
@@ -138,6 +141,10 @@ define(function(require){
 
         login: function () {
             new LoginView();
+        },
+
+        adminActivitiesTopics: function(){
+            new AdminActivitiesTopicsView().render();
         },
 
         activitiesFeed: function(){
