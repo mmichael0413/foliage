@@ -29,15 +29,23 @@ $padding: 1.5em;
 }
 
 .sales-data-show-providers {
-  @extend %sales-data-box;
   align-items: flex-end;
-  background: #FFF;
+  color: $medium-blue;
   display: inline-flex;
   margin-bottom: 1.5em;
-  padding: .15em 1.25em;
+  padding-right: .5em;
+
+  .providers-tooltip {
+    border-bottom: 1px dashed $medium-blue;
+  }
+
+  .fa-caret-down {
+    padding-bottom: .25em;
+    padding-left: .25em;
+  }
 
   + .provider-logos {
-    background: $palette12;
+    background: $medium-blue;
     color: #FFF;
     display: none;
     padding: 1em;
@@ -45,11 +53,11 @@ $padding: 1.5em;
     right: 0;
     text-align: center;
     top: 3em;
-    width: 13.5em;
+    width: 10.5em;
 
     i {
       display: block;
-      font-size: 4em;
+      font-size: 3em;
       margin-left: -1em;
       width: 100%;
     }
@@ -59,7 +67,7 @@ $padding: 1.5em;
     }
 
     &:before {
-      color: $palette12;
+      color: $medium-blue;
       font-size: 2em;
       position: absolute;
       top: -0.6em;
@@ -68,9 +76,11 @@ $padding: 1.5em;
 
   &:hover,
   &:focus {
-    background: $palette12;
-    border-color: $palette12;
-    color: #FFF;
+    color: $dark-slate;
+
+    .providers-tooltip {
+      border-color: $dark-slate;
+    }
 
      + .provider-logos {
       display: block;
