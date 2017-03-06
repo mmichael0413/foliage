@@ -1,5 +1,12 @@
 @import '../../lib/backbone.modal/modal';
 
+%sales-data-box {
+  border: 1px solid $medium-blue;
+  border-radius: .35em;
+  color: $medium-blue;
+  display: block;
+}
+
 $padding: 1.5em;
 @include swb-small {
   $padding: 1em;
@@ -13,6 +20,62 @@ $padding: 1.5em;
 
   @include swb-medium {
     text-align: center;
+  }
+}
+
+.sales-data-providers {
+  position: relative;
+  visibility: hidden;
+}
+
+.sales-data-show-providers {
+  @extend %sales-data-box;
+  align-items: flex-end;
+  background: #FFF;
+  display: inline-flex;
+  margin-bottom: 1.5em;
+  padding: .15em 1.25em;
+
+  + .provider-logos {
+    background: $palette12;
+    color: #FFF;
+    display: none;
+    padding: 1em;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 3em;
+    width: 13.5em;
+
+    i {
+      display: block;
+      font-size: 4em;
+      margin-left: -1em;
+      width: 100%;
+    }
+
+    .sp_thc {
+      margin-left: 0;
+    }
+
+    &:before {
+      color: $palette12;
+      font-size: 2em;
+      position: absolute;
+      top: -0.6em;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background: $palette12;
+    border-color: $palette12;
+    color: #FFF;
+
+     + .provider-logos {
+      display: block;
+      z-index: 3;
+    }
   }
 }
 
@@ -164,6 +227,7 @@ $padding: 1.5em;
   border-bottom: 1px solid $border-color;
   display: flex;
   justify-content: space-between;
+  width: 100%;
 
   @include swb-medium {
     border: 0;
@@ -230,9 +294,7 @@ $padding: 1.5em;
   text-align: right;
 
   .sales-message {
-    border: 1px solid $medium-blue;
-    border-radius: .35em;
-    color: $medium-blue;
+    @extend %sales-data-box;
     display: block;
 
     &:hover {
