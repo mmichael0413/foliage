@@ -30,7 +30,8 @@ define(function(require) {
                 }
                 this.collection = new this.infiniteCollectionClass({url: this.infiniteURL});
                 this.listenTo(this.collection, 'reset', this.clearAndRender);
-                this.listenTo(this.collection, 'nextPage', this.render);
+                this.listenTo(this.collection, 'nextPage', function(){this.render(false);});
+                this.listenTo(this.collection, 'lastPage', function(){this.render(true);});
                 this.listenTo(this.collection, 'error', this.stopOnError);
 
                 this.loadIndicator = new LoadingView();
@@ -76,10 +77,10 @@ define(function(require) {
                 return this;
             },
             
-            render: function () {
+            render: function (end) {
                 var self = this;
                 
-                if (this.collection.models.length === 0) {
+                if (end) {
                     self.allModelsLoaded = true;
                     self.endOfFeed();
                 } else {

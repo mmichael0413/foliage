@@ -33,8 +33,12 @@ define(function (require) {
                 this.currentPage++;
                 this.queryString =  this.queryString.replace(/[page]*(\d+)/, this.currentPage);
 
-                this.fetch().success(function(){
-                    self.trigger('nextPage');
+                this.fetch().success(function(data){
+                    if(data.activities.length === 0){
+                        self.trigger('lastPage');
+                    } else {
+                        self.trigger('nextPage');
+                    }
                 }).fail(function () {
                     self.trigger('error');
                 });
