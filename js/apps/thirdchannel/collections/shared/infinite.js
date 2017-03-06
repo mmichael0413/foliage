@@ -35,7 +35,7 @@ define(function (require) {
 
                 this.fetch().success(function(data){
                     if(data.activities.length === 0){
-                        self.trigger('lastPage');
+                        self.trigger('reachedEnd');
                     } else {
                         self.trigger('nextPage');
                     }

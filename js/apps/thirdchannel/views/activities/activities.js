@@ -65,16 +65,6 @@ define(function (require) {
             }
         },
 
-        endOfFeed: function () {
-            // if collection has no models, tell user no activities yet
-            this.loadIndicator.removeFromDOM();
-            if (this.collection.currentPage === 1 && this.collection.models.length === 0) {
-                this.getContentElement().append("<div class='activity alert info'>No Activity was found, please try different search criteria.</div>");
-            } else {
-                this.getContentElement().append(this.endOfFeedHTML);
-            }
-        },
-
         resizeCarousel: function () {
             var $carousel = self.$('.carousel');
             var width = $carousel.width();

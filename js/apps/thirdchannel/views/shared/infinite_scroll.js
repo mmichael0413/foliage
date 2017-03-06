@@ -30,8 +30,8 @@ define(function(require) {
                 }
                 this.collection = new this.infiniteCollectionClass({url: this.infiniteURL});
                 this.listenTo(this.collection, 'reset', this.clearAndRender);
-                this.listenTo(this.collection, 'nextPage', function(){this.render(false);});
-                this.listenTo(this.collection, 'lastPage', function(){this.render(true);});
+                this.listenTo(this.collection, 'nextPage', this.render);
+                this.listenTo(this.collection, 'reachedEnd', this.endOfFeed);
                 this.listenTo(this.collection, 'error', this.stopOnError);
 
                 this.loadIndicator = new LoadingView();
@@ -43,13 +43,13 @@ define(function(require) {
                     this.singleActivity = options.singleActivity;
                 }
 
-                
+
                 // configure the filter to ignore some specific fields which the infinite scroll will control
                 context.trigger('configure:excludeFields', ['page', 'per', 'sort', 'direction']);
                 // assumes the presence of the filter, of course
                 // todo: the value should come from the collection
                 context.trigger('filter:set', [{name: 'per', value: this.per}]);
-                
+
                 if (!window.filterBootstrap) {
                     this.collection.fetch({reset:true});
                 }
@@ -61,7 +61,7 @@ define(function(require) {
                             $contentHolder.off('scroll.wall');
                             return false;
                         }
-                        
+
                         if (!self.loadIndicator.active && $contentHolder.scrollTop() > ( self.getContentElement().height()) - 1500) {
                             self.$el.append(self.loadIndicator.render().el);
                             self.collection.getNextPage();
@@ -71,28 +71,19 @@ define(function(require) {
                     });
                 }
             },
-            
+
             fetch: function () {
                 // todo: should return jqxhr
                 return this;
             },
-            
-            render: function (end) {
+
+            render: function() {
                 var self = this;
-                
-                if (end) {
-                    self.allModelsLoaded = true;
-                    self.endOfFeed();
-                } else {
-                    //this.collection.currentPage += 1;
-                    
-                    _.each(this.collection.models, function () {
-                        self.renderModel.apply(self, arguments);
-                     });
-                    
-                    self.loadIndicator.removeFromDOM();
-                    context.trigger('page:height');
-                }
+                _.each(this.collection.models, function () {
+                    self.renderModel.apply(self, arguments);
+                });
+                self.loadIndicator.removeFromDOM();
+                context.trigger('page:height');
             },
 
             clearAndRender: function() {
@@ -106,8 +97,11 @@ define(function(require) {
             },
 
             endOfFeed: function () {
-                this.loadIndicator.removeFromDOM();
-                this.getContentElement().append(this.endOfFeedHTML);
+                if(!this.allModelsLoaded){
+                    this.allModelsLoaded = true;
+                    this.loadIndicator.removeFromDOM();
+                    this.getContentElement().append(this.endOfFeedHTML);
+                }
             },
 
             stopOnError: function () {
@@ -116,7 +110,7 @@ define(function(require) {
                 this.getContentElement().append(this.errorHTML);
                 $(window).off('scroll.wall');
             },
-           
+
             checkPageHeight: function () {
                 // handles case where only one item is shown and the screen doesn't scroll so triggering
                 // next page won't occur. This forces at least one scroll.
