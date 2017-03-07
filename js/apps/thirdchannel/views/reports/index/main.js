@@ -2,7 +2,8 @@ define(function(require) {
     var $ = require('jquery'),
         _ = require('underscore'),
         ExportView = require('thirdchannel/views/utils/report_export_button'),
-        ReportView = require('thirdchannel/views/reports/index/report'),
+        // ReportView = require('thirdchannel/views/reports/index/report'),
+        FieldActivitiesReportView = require('thirdchannel/views/reports/field_activity/report'),
         Filter = require('thirdchannel/views/filter/main'),
         ReportExportModel = require('thirdchannel/models/reports/export');
 
@@ -14,7 +15,8 @@ define(function(require) {
                 new ExportView({model: model}).render(this);
             });
             Filter.init();
-            new ReportView(options).render();
+            new FieldActivitiesReportView(options).render();
+            // new ReportView(options).render();
         }
     };
 });

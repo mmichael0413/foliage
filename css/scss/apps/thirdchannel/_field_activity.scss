@@ -1,0 +1,26 @@
+$cornflower: #4684c5;
+
+.metric {
+  line-height: normal;
+  padding: 1em;
+  text-align: center;
+
+  .metric-figure {
+    color: $cornflower;
+    display: block;
+    font-size: 2em;
+    text-decoration: underline;
+  }
+
+  .metric-label {
+    color: $slate;
+    display: block;
+    font-size: .8em;
+  }
+}
+
+.overview-kpis {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+}
