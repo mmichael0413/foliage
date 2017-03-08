@@ -22,11 +22,9 @@ define(function(require) {
       render: function() {
         this.$el.html(this.template(this.model.attributes));
         new ActivityReportsView({model: this.model.get('activityReport'), el: '.consumer-engagement-activity-reports'});
-
         _.each(this.model.get('metrics'), function(metric) {
           new KPIView({model: metric, el: '.consumer-engagement-kpis'});
         });
-
         return this;
       }
     });
