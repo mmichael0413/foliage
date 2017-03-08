@@ -55,6 +55,13 @@ $cornflower: #4684c5;
 .activity-reports {
   padding: 1em;
 
+  &-toggle {
+    background: none;
+    border: none;
+    color: $palette2;
+    margin-right: .25em;
+  }
+
   &-rollup {
     @extend %even-height-row;
     padding-bottom: 1em;
