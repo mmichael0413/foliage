@@ -15,6 +15,7 @@ define(function (require) {
         infiniteCollectionClass: ActivityCollection,
 
         endOfFeedHTML: "<div class='activity alert info'>You have reached the end of the feed!</div>",
+        noResultsHTML: "<div class='activity alert info'>No Activity was found, please try different search criteria.</div>",
         errorHTML: '<div class="activity alert error">Additional activities cannot be loaded due to an error on the server. Please contact Tech Support</div>',
 
 
@@ -62,16 +63,6 @@ define(function (require) {
                     activity.$("textarea").expanding();
                     activity.initializeCarousel();
                 }
-            }
-        },
-
-        endOfFeed: function () {
-            // if collection has no models, tell user no activities yet
-            this.loadIndicator.removeFromDOM();
-            if (this.collection.currentPage === 1 && this.collection.models.length === 0) {
-                this.getContentElement().append("<div class='activity alert info'>No Activity was found, please try different search criteria.</div>");
-            } else {
-                this.getContentElement().append(this.endOfFeedHTML);
             }
         },
 
