@@ -1,15 +1,48 @@
 $cornflower: #4684c5;
 
+%spaced-row {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+%even-height-row {
+  display: flex;
+  align-items: stretch;
+}
+
+%metrics-values {
+  color: $cornflower;
+  text-align: center;
+  text-decoration: underline;
+}
+
+%row-header {
+  align-self: center;
+  font-weight: 800;
+}
+
+.metrics {
+  @extend %spaced-row;
+}
+
 .metric {
+  align-self: center;
+  flex-grow: 1;
+  flex-basis: 20%;
   line-height: normal;
   padding: 1em;
   text-align: center;
 
   .metric-figure {
-    color: $cornflower;
-    display: block;
+    @extend %metrics-values;
     font-size: 2em;
-    text-decoration: underline;
+
+    &-empty {
+      color: $slate;
+      line-height: 2.7em;
+      text-decoration: none;
+    }
   }
 
   .metric-label {
@@ -19,8 +52,45 @@ $cornflower: #4684c5;
   }
 }
 
-.overview-kpis {
-  display: inline-flex;
-  justify-content: space-between;
-  width: 100%;
+.activity-reports {
+  padding: 1em;
+
+  &-rollup {
+    @extend %even-height-row;
+  }
+
+  &-rollup-header {
+    @extend %row-header;
+    align-self: flex-end;
+    font-size: .9em;
+    padding-bottom: 1em;
+    text-transform: uppercase;
+  }
+
+  &-surveys-row {
+    @extend %even-height-row;
+    border-top: 1px solid $light-blue;
+    padding: 1.5em 0;
+
+    &-header {
+      @extend %row-header;
+      align-self: center;
+
+      a {
+        color: $cornflower;
+      }
+    }
+
+    &-value {
+      @extend %metrics-values;
+
+      &-empty {
+        color: $slate;
+        line-height: 2.7em;
+        padding: 1em 2em;
+        text-decoration: none;
+        text-align: center;
+      }
+    }
+  }
 }
