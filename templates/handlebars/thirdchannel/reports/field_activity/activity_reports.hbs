@@ -8,6 +8,9 @@
       <div class="metrics">
         {{#each rollups}}
           <div class="metric">
+            {{#if this.icon}}
+              <i class="metric-icon ic {{this.icon}}"></i>
+            {{/if}}
             {{#if this.value}}
               <a class="metric-figure" href="#">
                 {{this.value}}

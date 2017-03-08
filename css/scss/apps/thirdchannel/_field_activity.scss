@@ -34,7 +34,13 @@ $cornflower: #4684c5;
   padding: 1em;
   text-align: center;
 
-  .metric-figure {
+  .ic.metric-icon {
+    color: $slate;
+    font-size: 1.65em;
+    margin-right: .5em;
+  }
+
+  &-figure {
     @extend %metrics-values;
     font-size: 2em;
 
@@ -90,6 +96,8 @@ $cornflower: #4684c5;
 
       a {
         color: $cornflower;
+        font-weight: 400;
+        text-decoration: underline;
       }
     }
 
