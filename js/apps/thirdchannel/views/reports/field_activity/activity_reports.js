@@ -19,6 +19,10 @@ define(function(require) {
         'click .activity-reports-toggle': 'toggleActivityReportsList'
       },
 
+      events: {
+        'click .activity-reports-toggle': 'toggleActivityReportsList'
+      },
+
       initialize: function() {
         var self = this;
 
