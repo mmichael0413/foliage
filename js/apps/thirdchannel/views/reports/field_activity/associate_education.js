@@ -27,7 +27,6 @@ define(function(require) {
         _.each(this.model.get('metrics'), function(metric) {
           new KPIView({model: metric, el: '.associate-education-kpis'});
         });
-
         return this;
       }
     });
