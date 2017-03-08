@@ -3,10 +3,11 @@ define(function(require) {
         Backbone = require('backbone'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        AssociateEducationModel = require('thirdchannel/models/reports/field_Activity/associate_education');
+        AssociateEducationModel = require('thirdchannel/models/reports/field_Activity/associate_education'),
+        ActivityReportsView = require('thirdchannel/views/reports/field_activity/activity_reports');
 
     return Backbone.View.extend({
-      el: ".report",
+      el: ".associate-education",
       template: HandlebarsTemplates['thirdchannel/reports/field_activity/associate_education'],
 
       initialize: function() {
@@ -18,7 +19,8 @@ define(function(require) {
       },
 
       render: function() {
-        this.$el.append(this.template(this.model.attributes));
+        this.$el.html(this.template(this.model.attributes));
+        new ActivityReportsView({model: this.model.get('activityReport'), el: '.associate-education-activity-reports'});
         return this;
       }
     });

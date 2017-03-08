@@ -2,50 +2,5 @@
   <h2>{{label}}</h2>
   <div class="associate-education-kpis">
   </div>
-  <div class="activity-reports">
-    <div class="activity-reports-rollup">
-      <div class="col-1-6 activity-reports-rollup-header">Activity Report</div>
-      <div class="col-4-5">
-        <div class="metrics">
-          {{#each this.activityReport.rollups}}
-            <div class="metric">
-              {{#if this.value}}
-                <a class="metric-figure" href="#">
-                  {{this.value}}
-                </a>
-              {{else}}
-                <span class="metric-figure-empty">--</span>
-              {{/if}}
-              <span class="metric-label">{{this.label}}</span>
-            </div>
-          {{/each}}
-        </div>
-      </div>
-    </div>
-    <div class="activity-reports-surveys">
-      {{#each this.activityReport.surveys}}
-        <div class="activity-reports-surveys-row">
-          <div class="col-1-6 activity-reports-surveys-row-header">
-            <a href="{{this.href}}">{{this.label}}</a>
-          </div>
-          <div class="col-4-5">
-            <div class="metrics">
-              {{#each this.metrics}}
-                <div class="metric">
-                  {{#if this.value}}
-                    <a class="activity-reports-surveys-row-value" href="{{this.href}}">
-                      {{this.value}}
-                    </a>
-                  {{else}}
-                    <span class="activity-reports-surveys-row-value-empty">--</span>
-                  {{/if}}
-                </div>
-              {{/each}}
-            </div>
-          </div>
-        </div>
-      {{/each}}
-    </div>
-  </div>
-
+  <div class="associate-education-activity-reports"><!-- Rendered later --></div>
 </div>
