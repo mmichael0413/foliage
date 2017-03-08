@@ -6,7 +6,7 @@ define(function(require) {
         OverviewModel = require('thirdchannel/models/reports/field_Activity/overview');
 
     return Backbone.View.extend({
-      el: ".report",
+      el: ".field-activities-overview",
       template: HandlebarsTemplates['thirdchannel/reports/field_activity/overview'],
 
       initialize: function() {
@@ -18,7 +18,7 @@ define(function(require) {
       },
 
       render: function() {
-        this.$el.append(this.template(this.model.get('fieldActivities')));
+        this.$el.html(this.template(this.model.get('fieldActivities')));
         return this;
       }
     });

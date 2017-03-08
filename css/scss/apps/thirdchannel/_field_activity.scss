@@ -57,6 +57,7 @@ $cornflower: #4684c5;
 
   &-rollup {
     @extend %even-height-row;
+    padding-bottom: 1em;
   }
 
   &-rollup-header {
@@ -71,6 +72,10 @@ $cornflower: #4684c5;
     @extend %even-height-row;
     border-top: 1px solid $light-blue;
     padding: 1.5em 0;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
 
     &-header {
       @extend %row-header;
