@@ -15,6 +15,7 @@ define(function (require) {
         infiniteCollectionClass: ActivityCollection,
 
         endOfFeedHTML: "<div class='activity alert info'>You have reached the end of the feed!</div>",
+        noResultsHTML: "<div class='activity alert info'>No Activity was found, please try different search criteria.</div>",
         errorHTML: '<div class="activity alert error">Additional activities cannot be loaded due to an error on the server. Please contact Tech Support</div>',
 
 

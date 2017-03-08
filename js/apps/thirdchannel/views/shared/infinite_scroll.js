@@ -18,6 +18,7 @@ define(function(require) {
             infiniteCollectionClass: undefined,
             per: 5,
             endOfFeedHTML: "<div class='alert info'>You have reached the end of the feed!</div>",
+            noResultsHTML: "<div class='alert info'>No results were found, please try different search criteria.</div>",
             errorHTML: '<div class="alert error">Additional items cannot be loaded due to an error on the server. Please contact Tech Support</div>',
 
             initialize: function (options) {
@@ -38,6 +39,7 @@ define(function(require) {
                 this.loadIndicator.template = this.loadingTemplate;
                 this.getContentElement().append(this.loadIndicator.render().el);
                 this.allModelsLoaded = false;
+                this.renderedModels = 0;
 
                 if (options && options.singleActivity !== undefined) {
                     this.singleActivity = options.singleActivity;
@@ -81,6 +83,7 @@ define(function(require) {
                 var self = this;
                 _.each(this.collection.models, function () {
                     self.renderModel.apply(self, arguments);
+                    self.renderedModels += arguments[0].attributes.length;
                 });
                 self.loadIndicator.removeFromDOM();
                 context.trigger('page:height');
@@ -89,6 +92,7 @@ define(function(require) {
             clearAndRender: function() {
                 this.getContentElement().html('');
                 this.allModelsLoaded = false;
+                this.renderedModels = 0;
                 this.render();
             },
 
@@ -100,13 +104,16 @@ define(function(require) {
                 if(!this.allModelsLoaded){
                     this.allModelsLoaded = true;
                     this.loadIndicator.removeFromDOM();
-                    this.getContentElement().append(this.endOfFeedHTML);
+                    if(this.renderedModels === 0){
+                        this.getContentElement().append(this.noResultsHTML);
+                    } else {
+                        this.getContentElement().append(this.endOfFeedHTML);
+                    }
                 }
             },
 
             stopOnError: function () {
                 this.loadIndicator.removeFromDOM();
-                //self.$('.complete').append('<div class="activity alert error">Additional activities cannot be loaded due to an error on the server. Please contact Tech Support</div>');
                 this.getContentElement().append(this.errorHTML);
                 $(window).off('scroll.wall');
             },
@@ -116,7 +123,6 @@ define(function(require) {
                 // next page won't occur. This forces at least one scroll.
                 var windowHeight = $(window).height();
                 this.$el.css('min-height', windowHeight + 'px' );
-
             },
 
             /**
