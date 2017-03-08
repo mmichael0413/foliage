@@ -8,8 +8,11 @@ define(function(require) {
     return Backbone.View.extend({
       template: HandlebarsTemplates['thirdchannel/reports/field_activity/activity_reports'],
       iconMapping: {
-        "Visits Completed": "ic_visit",
-        "Stores Visited": "ic_store"
+        "Visits Completed": "ic ic_visit",
+        "Stores Visited": "ic ic_store",
+        "States Visited": "fa fa-hand-lizard-o",
+        "ThirdChannel Agents": "fa fa-hand-lizard-o",
+        "In-Store Support/FMRs": "fa fa-hand-lizard-o"
       },
 
       events: {

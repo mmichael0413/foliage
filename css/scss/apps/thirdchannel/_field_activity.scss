@@ -34,7 +34,8 @@ $cornflower: #4684c5;
   padding: 1em;
   text-align: center;
 
-  .ic.metric-icon {
+  .ic.metric-icon,
+  .fa.metric-icon {
     color: $slate;
     font-size: 1.65em;
     margin-right: .5em;
