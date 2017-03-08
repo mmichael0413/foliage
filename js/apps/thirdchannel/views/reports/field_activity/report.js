@@ -3,7 +3,8 @@ define(function(require) {
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         OverviewView = require('thirdchannel/views/reports/field_activity/overview'),
-        AssociateEducationView = require('thirdchannel/views/reports/field_activity/associate_education');
+        AssociateEducationView = require('thirdchannel/views/reports/field_activity/associate_education'),
+        ConsumerEngagementView = require('thirdchannel/views/reports/field_activity/consumer_engagement');
 
     return Backbone.View.extend({
         el: '.report',
@@ -13,6 +14,7 @@ define(function(require) {
           this.$el.html(this.template());
           new OverviewView();
           new AssociateEducationView();
+          new ConsumerEngagementView();
         }
     });
 });
