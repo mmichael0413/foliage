@@ -13,6 +13,7 @@ define(function(require) {
 
         initialize: function() {
           this.$el.html(this.template());
+          
           new OverviewView();
           new AssociateEducationView();
           new ConsumerEngagementView();
