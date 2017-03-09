@@ -10,9 +10,12 @@ define(function(require) {
       template: HandlebarsTemplates['thirdchannel/reports/field_activity/overview'],
 
       initialize: function() {
+        var self = this;
+
         this.model = new OverviewModel(/* Probably pass program params */);
 
         this.model.fetch().done(function(response) {
+          this.model.mapIconToMetric();
           this.render();
         }.bind(this));
       },

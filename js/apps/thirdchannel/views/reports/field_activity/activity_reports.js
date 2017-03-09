@@ -10,9 +10,9 @@ define(function(require) {
       iconMapping: {
         "Visits Completed": "ic ic_visit",
         "Stores Visited": "ic ic_store",
-        "States Visited": "fa fa-hand-lizard-o",
-        "ThirdChannel Agents": "fa fa-hand-lizard-o",
-        "In-Store Support/FMRs": "fa fa-hand-lizard-o"
+        "States Visited": "ic ic_states",
+        "ThirdChannel Agents": "ic ic_person agent",
+        "In-Store Support/FMRs": "ic ic_person fmr"
       },
 
       events: {
