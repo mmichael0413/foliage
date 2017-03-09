@@ -48,7 +48,8 @@ define(function(require){
         FlashView = require('thirdchannel/views/shared/flash'),
         LoginView = require('thirdchannel/views/authentication/login'),
         ScheduledVisitsView = require('thirdchannel/views/scheduled_visits/scheduled_visits'),
-        ContractView = require('thirdchannel/views/legal/contract');
+        ContractView = require('thirdchannel/views/legal/contract'),
+        ManageJobsMain = require('thirdchannel/views/manage/jobs/main');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
@@ -61,6 +62,7 @@ define(function(require){
             'opportunities/:id': 'viewOpportunity',
             'programs/:program_id/admin/activities/topics(/)' : 'adminActivitiesTopics',
             'programs/:program_id/admin/activities/topics/*path' : 'adminActivitiesTopics',
+            'programs/:program_id/manage/jobs': 'createJobRequest',
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
@@ -343,6 +345,10 @@ define(function(require){
         viewApplication: function(programId, id) {
             context.programId = programId;
             new ApplicationView({applicationId: id});
+        },
+
+        createJobRequest: function() {
+            ManageJobsMain.create();
         },
 
         defaultPath: function(programId) {
