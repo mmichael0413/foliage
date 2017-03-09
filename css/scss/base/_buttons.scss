@@ -21,6 +21,8 @@
     &:disabled, &.disabled {
       border-color: lighten($color, 20%);
       color: lighten($color, 20%);
+      cursor: default;
+
       &:hover {
         background-color: inherit;
         border-color: lighten($color, 20%);
@@ -31,12 +33,15 @@
     &.solid {
         background-color: $color;
         color: white;
-      @include swa-small() {
-        min-width: 5em;
-        text-align: center;
-      }
+
+        @include swa-small() {
+          min-width: 5em;
+          text-align: center;
+        }
+
         &:disabled {
           background-color: lighten($color, 20%);
+          cursor: default;
         }
 
         &:hover:not(:disabled) {

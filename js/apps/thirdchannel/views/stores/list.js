@@ -22,6 +22,12 @@ define(function(require) {
                 'click .select-store': 'selectStore'
             },
 
+            initialize: function() {
+                this.$requestVisitLink = $('.request-visit-link');
+                this.$requestVisitLink.on('click', this.handleRequestVisitClick.bind(this));
+                StoreListView.__super__.initialize.apply(this, arguments);
+            },
+
             /**
              *
              * We're exposing the ability for account managers/fmrs to request jobs (driven by the Vega program).
@@ -41,15 +47,26 @@ define(function(require) {
 
                 if(e.target.checked) {
                     selectedStores.push(e.target.value);
+                    this.$requestVisitLink.removeClass('disabled');
                 } else {
                     var index = selectedStores.indexOf(e.target.value);
                     if(index !== -1) {
                         selectedStores.splice(index, 1);
                     }
+
+                    if(selectedStores.length === 0) {
+                        this.$requestVisitLink.addClass('disabled');
+                    }
                 }
 
                 // save back to localStorage
                 window.localStorage.setItem(selectedStoresKey, JSON.stringify(selectedStores));
+            },
+
+            handleRequestVisitClick: function() {
+                if(this.$requestVisitLink.hasClass('disabled')) {
+                    return false;
+                }
             },
 
             afterRender: function(options) {
@@ -64,6 +81,10 @@ define(function(require) {
                     selectedStores.forEach(function(id) {
                         this.$('#select-store-' + id).prop('checked', true);
                     }.bind(this));
+
+                    if(selectedStores.length > 0) {
+                        this.$requestVisitLink.removeClass('disabled');
+                    }
                 }
 
                 this.collection.forEach(function(model) {
