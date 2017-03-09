@@ -32,7 +32,7 @@ define(function(require) {
              *
              * We're exposing the ability for account managers/fmrs to request jobs (driven by the Vega program).
              * Part of the form is to select the stores for the job to be performed at, which is being done by this page.
-             * Select stores -> click start -> fill out form
+             * Select stores -> click "Request Visit" action button -> fill out abridged job/task form
              * However, this page wasn't intended to be bundled with the workflow in conjunction with other pages (typically this would be done as a module to round out the UX workflow)
              * In order to get information from this page to the form local storage is being used until we find the time to build out the request job workflow properly...
              */
