@@ -4,7 +4,8 @@ define(function(require) {
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         ConsumerEngagementModel = require('thirdchannel/models/reports/field_Activity/consumer_engagement'),
-        ActivityReportsView = require('thirdchannel/views/reports/field_activity/activity_reports');
+        ActivityReportsView = require('thirdchannel/views/reports/field_activity/activity_reports'),
+        KPIView = require('thirdchannel/views/reports/field_activity/KPI');
 
     return Backbone.View.extend({
       el: ".consumer-engagement",
@@ -21,6 +22,11 @@ define(function(require) {
       render: function() {
         this.$el.html(this.template(this.model.attributes));
         new ActivityReportsView({model: this.model.get('activityReport'), el: '.consumer-engagement-activity-reports'});
+
+        _.each(this.model.get('metrics'), function(metric) {
+          new KPIView({model: metric, el: '.consumer-engagement-kpis'});
+        });
+
         return this;
       }
     });

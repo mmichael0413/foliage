@@ -3,9 +3,11 @@
   <div class="metrics">
     {{#each metrics}}
       <div class="metric">
-        <a class="metric-figure" href="#">{{this.data.total}}</a>
+        <a class="metric-figure link" href="#">{{this.data.total}}</a>
         <span class="metric-label">{{this.label}}</span>
-        <div><!-- Related infographic things --></div>
+        <div class="metric-infograph">
+          <i class="fa fa-hand-lizard-o"></i>
+        </div>
       </div>
     {{/each}}
   </div>
