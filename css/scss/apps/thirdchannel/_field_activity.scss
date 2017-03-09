@@ -11,7 +11,7 @@ $cornflower: #4684c5;
   align-items: stretch;
 }
 
-%metrics-values {
+%metrics-link {
   color: $cornflower;
   text-align: center;
   text-decoration: underline;
@@ -38,12 +38,23 @@ $cornflower: #4684c5;
   .fa.metric-icon {
     color: $slate;
     font-size: 1.65em;
-    margin-right: .5em;
+    margin-right: .75em;
+  }
+
+  &-infograph {
+    padding: 3em 0 1em;
+
+    .fa {
+      font-size: 5em;
+    }
   }
 
   &-figure {
-    @extend %metrics-values;
     font-size: 2em;
+
+    &.link {
+      @extend %metrics-link;
+    }
 
     &-empty {
       color: $slate;
@@ -55,7 +66,57 @@ $cornflower: #4684c5;
   .metric-label {
     color: $slate;
     display: block;
-    font-size: .8em;
+    font-size: .9em;
+    margin-top: .25em;
+  }
+}
+
+.kpi {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 50%;
+  justify-content: center;
+  margin: 1.5em 0 1.75em;
+  padding: 0 4em;
+
+  &:not(:first-child) {
+    border-left: 1px solid $light-blue;
+  }
+
+  i.fa {
+    font-size: 7em;
+    margin-right: .25em;
+  }
+
+
+  .metrics {
+    flex-direction: column;
+    width: initial;
+
+    .metric {
+      align-self: flex-start;
+      text-align: left;
+
+      &-figure,
+      &-label {
+        text-align: left;
+      }
+    }
+  }
+
+  &.column {
+    flex-direction: column;
+    justify-content: flex-start;
+
+    i.fa {
+      font-size: 5em;
+    }
+
+    .metric {
+      align-self: center;
+      text-align: center;
+    }
   }
 }
 
@@ -103,7 +164,7 @@ $cornflower: #4684c5;
     }
 
     &-value {
-      @extend %metrics-values;
+      @extend %metrics-link;
 
       &-empty {
         color: $slate;
@@ -114,4 +175,13 @@ $cornflower: #4684c5;
       }
     }
   }
+}
+
+
+.kpi-container {
+  display: flex;
+  flex-basis: 50%;
+  flex-grow: 1;
+  justify-content: space-around;
+  border-bottom: 1px solid $palette2;
 }
