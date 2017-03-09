@@ -27,7 +27,7 @@ $cornflower: #4684c5;
 }
 
 .metric {
-  align-self: center;
+  align-self: flex-start;
   flex-grow: 1;
   flex-basis: 20%;
   line-height: normal;
@@ -37,15 +37,29 @@ $cornflower: #4684c5;
   .ic.metric-icon,
   .fa.metric-icon {
     color: $slate;
-    font-size: 1.65em;
+    font-size: 1.75em;
     margin-right: .75em;
+  }
+
+  .ic_person.agent {
+    color: $palette10;
+  }
+
+  .ic_person.fmr {
+    color: $palette2;
   }
 
   &-infograph {
     padding: 3em 0 1em;
 
-    .fa {
-      font-size: 5em;
+    .ic, .fa {
+      font-size: 7em;
+
+      &.ic_states {
+        color: $palette10;
+        font-size: 10em;
+        line-height: 0;
+      }
     }
   }
 
