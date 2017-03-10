@@ -13,7 +13,7 @@ define(function (require) {
             return url;
         },
         defaults: {
-            duration: 180
+            duration: 180 // 3 hours will be the default
         }
     });
 });
