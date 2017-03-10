@@ -1,11 +1,32 @@
 .job-request-container {
+  h4 {
+    margin: 0 0 0.75em 0;
+  }
+
+  .form-group {
+    margin-bottom: 1em;
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.75em;
+
+      &.inline-label {
+        font-weight: normal;
+      }
+    }
+
+    // overwriting the timepicker library style
+    .start_time {
+      margin: 0;
+    }
+  }
 
   .store-item {
     margin-bottom: 1em;
 
     .store-info {
       width: 100%;
-      border: 1px solid $medium-blue;
+      border: 1px solid $light-blue;
       border-radius: 5px;
       padding: 0.25em;
     }
