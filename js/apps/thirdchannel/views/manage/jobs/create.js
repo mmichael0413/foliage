@@ -95,6 +95,7 @@ define(function(require) {
 
             var programStoreIds = this.stores.map(function(s) { return s.get('uuid'); });
 
+            // filter out any incomplete start/end date ranges
             var ranges = this.ranges
                 .filter(function(r) {
                     var start = r.get('start'),

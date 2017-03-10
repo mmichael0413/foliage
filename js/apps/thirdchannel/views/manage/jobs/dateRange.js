@@ -66,12 +66,10 @@ define(function(require) {
 
         handleStartChange: function(e) {
             this.model.set('start', this.$start.val());
-            console.log(this.model);
         },
 
         handleEndChange: function(e) {
             this.model.set('end', this.$end.val());
-            console.log(this.model);
         }
     });
 
