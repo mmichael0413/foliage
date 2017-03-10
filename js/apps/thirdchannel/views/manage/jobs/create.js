@@ -154,6 +154,15 @@ define(function(require) {
                 this.$('.date-range-container').addClass('error');
             }
 
+            if(data.timezone && data.timezone !== "") {
+                // find the offset value...
+                var tz = _.findWhere(this.timezones, function(tz) {
+                    return tz.name == data.timezone;
+                });
+
+                data.timezone_offset = tz.offset;
+            }
+
             if(!errors) {
                 this.model
                     .save(data)
