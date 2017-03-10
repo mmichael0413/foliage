@@ -44,6 +44,7 @@ define(function(require) {
                 surveyTopics: this.surveyTopics,
                 timezones: this.timezones
             };
+            // merge model attributes
             this.$el.html(this.template(data));
             this.$('.survey_uuid, .duration, .survey_topic_uuids').chosen({disable_search: true, width: "100%"});
             this.$('.timezone').chosen({width: "100%"});
@@ -119,7 +120,7 @@ define(function(require) {
                 survey_topic_uuids: this.$('.survey_topic_uuids').val(),
                 notes: this.$('.notes').val(),
                 program_store_uuids: programStoreIds,
-                ranges: ranges
+                schedulable_ranges : ranges
             };
 
             var errors = false;
@@ -148,24 +149,22 @@ define(function(require) {
                 this.$('.store-list-container').addClass('error');
             }
 
-            if(!data.ranges || data.ranges.length === 0) {
+            if(!data.schedulable_ranges || data.schedulable_ranges.length === 0) {
                 errors = true;
                 this.$('.date-range-container').addClass('error');
             }
 
             if(!errors) {
-                console.log('submit!');
-                /*
                 this.model
                     .save(data)
                     .then(function(response) {
                         window.sessionStorage.removeItem('selected-stores');
-                        // redirect to stores page
+                        window.location = '/programs/' + context.programId + '/manage/jobs/' + response.id;
                     })
                     .fail(function(model) {
-                        // alert that there was an error
+                        console.log(model);
+                        // TODO handle errors
                     });
-                */
             }
         },
 
