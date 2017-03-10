@@ -24,7 +24,7 @@ define(function(require) {
             new CurrencyAndUnitsView({model: this.model, el: this.el});
             break;
           default:
-            console.log('KPI view not found: ' + type)
+            console.log('KPI view not found: ' + type);
             break;
         }
       }
