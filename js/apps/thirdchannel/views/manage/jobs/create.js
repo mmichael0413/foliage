@@ -12,6 +12,34 @@ define(function(require) {
         StoreItem = require('thirdchannel/views/manage/jobs/store_item'),
         DateRangeView = require('thirdchannel/views/manage/jobs/dateRange');
 
+    /*
+     <option value="">Select Duration</option>
+     <option value="60">1 Hour</option>
+     <option value="120">2 Hours</option>
+     <option value="180">3 Hours</option>
+     <option value="240">4 Hours</option>
+     <option value="300">5 Hours</option>
+     <option value="360">6 Hours</option>
+     <option value="420">7 Hours</option>
+     <option value="480">8 Hours</option>
+     <option value="540">9 Hours</option>
+     <option value="600">10 Hours</option>
+     */
+
+    var durationOptions = [
+        { name: "Select Duration",  value: "" },
+        { name: "1 Hour", value: "60" },
+        { name: "2 Hours", value: "120" },
+        { name: "3 Hours", value: "180" },
+        { name: "4 Hours", value: "240" },
+        { name: "5 Hours", value: "300" },
+        { name: "6 Hours", value: "360" },
+        { name: "7 Hours", value: "420" },
+        { name: "8 Hours", value: "480" },
+        { name: "9 Hours", value: "540" },
+        { name: "10 Hours", value: "600" }
+    ];
+
     var JobCreate = Backbone.View.extend({
         el: '.job-request-container',
 
@@ -42,7 +70,8 @@ define(function(require) {
             var data = {
                 surveys: this.surveys,
                 surveyTopics: this.surveyTopics,
-                timezones: this.timezones
+                timezones: this.timezones,
+                durationOptions: durationOptions
             };
             // merge model attributes
             this.$el.html(this.template(data));
