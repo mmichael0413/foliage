@@ -83,20 +83,29 @@ define(function(require) {
         handleSubmit: function(e) {
             e.preventDefault();
 
+            // Remove all errors first
+            $('.job-request-form .error').removeClass('error');
+
             var programStoreIds = this.stores.map(function(s) { return s.get('uuid'); });
 
-            // TODO map ranges and add to model data
-            var ranges = this.ranges.map(function(r) {
-                return {
-                    start: r.get('start'),
-                    end: r.get('end')
-                };
-            });
+            var ranges = this.ranges
+                .filter(function(r) {
+                    var start = r.get('start'),
+                        end = r.get('end');
+
+                    return start && start !== "" && end && end !== "";
+                })
+                .map(function(r) {
+                    return {
+                        start: r.get('start'),
+                        end: r.get('end')
+                    };
+                });
 
             var data = {
                 survey_uuid: this.$('.survey_uuid').val(),
                 duration: this.$('.duration').val(),
-                recommended_start_time: this.$('.recommend_start_time').val(),
+                recommended_start_time: this.$('.recommend_start_time').is(':checked'),
                 start_time: this.$('.start_time').val(),
                 timezone: this.$('.timezone').val(),
                 survey_topic_uuids: this.$('.survey_topic_uuids').val(),
@@ -105,29 +114,51 @@ define(function(require) {
                 ranges: ranges
             };
 
-            console.log()
+            var errors = false;
+            if(!data.survey_uuid || data.survey_uuid === "") {
+                errors = true;
+                this.$('.survey_uuid').parent().addClass('error');
+            }
 
-            // validate form
-            // Required:
-            // * surveyUuid (aka visit type)
-            // * duration
-            // * if recommended start time
-            //   * startTime
-            // * surveyTopicUuids (at least one)
-            // * programStoreUuids (at least one)
-            // * ranges (at least one, also need to ensure that they make sense...)
+            if(!data.duration || data.duration === "") {
+                errors = true;
+                this.$('.duration').parent().addClass('error');
+            }
 
-            /*
-            this.model
-                .save(data)
-                .then(function(response) {
-                    window.sessionStorage.removeItem('selected-stores');
-                    // redirect to stores page
-                })
-                .fail(function(model) {
-                    // alert that there was an error
-                });
-            */
+            if(data.recommended_start_time && (!data.start_time || data.start_time === "")) {
+                errors = true;
+                this.$('.start_time').parent().addClass('error');
+            }
+
+            if(!data.survey_topic_uuids || data.survey_topic_uuids.length === 0) {
+                errors = true;
+                this.$('.survey_topic_uuids').parent().addClass('error');
+            }
+
+            if(!data.program_store_uuids || data.program_store_uuids.length === 0) {
+                errors = true;
+                this.$('.store-list-container').addClass('error');
+            }
+
+            if(!data.ranges || data.ranges.length === 0) {
+                errors = true;
+                this.$('.date-range-container').addClass('error');
+            }
+
+            if(!errors) {
+                console.log('submit!');
+                /*
+                this.model
+                    .save(data)
+                    .then(function(response) {
+                        window.sessionStorage.removeItem('selected-stores');
+                        // redirect to stores page
+                    })
+                    .fail(function(model) {
+                        // alert that there was an error
+                    });
+                */
+            }
         },
 
         handleCancel: function(e) {
