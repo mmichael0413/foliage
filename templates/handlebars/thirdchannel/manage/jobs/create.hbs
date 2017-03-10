@@ -8,41 +8,47 @@
         <div class="form-group">
             <label>Visit Type</label>
             <select class="survey_uuid" name="survey_uuid" required="required">
-                {{#each surveys}}
-                    <option name="survey_uuid" class="survey_uuid" value="{{this.uuid}}">{{this.title}}</option>
-                {{/each}}
+                {{#select survey_uuid}}
+                    {{#each surveys}}
+                        <option name="survey_uuid" class="survey_uuid" value="{{this.uuid}}">{{this.title}}</option>
+                    {{/each}}
+                {{/select}}
             </select>
         </div>
 
         <div class="form-group">
             <label>Duration</label>
             <select name="duration" class="duration">
-                {{#each durationOptions}}
-                    <option value="{{this.value}}">{{this.name}}</option>
-                {{/each}}
+                {{#select duration}}
+                    {{#each durationOptions}}
+                        <option value="{{this.value}}">{{this.name}}</option>
+                    {{/each}}
+                {{/select}}
             </select>
         </div>
 
         <div class="form-group">
             <label class="inline-label">
-                <input type="checkbox" class="recommend_start_time" />
+                <input type="checkbox" class="recommend_start_time" checked="{{recommendedStartTime}}" />
                 Recommended Start Time
             </label>
         </div>
 
-        <div class="start-time-container hide">
+        <div class="start-time-container {{recommendedStartTimeFieldsClass}}">
             <div class="form-group">
                 <label>Start Time</label>
-                <input type="text" name="start_time" class="start_time" />
+                <input type="text" name="start_time" class="start_time" value="{{start_time}}" />
             </div>
 
             <div class="form-group">
                 <label>Timezone</label>
                 <select name="timezone" class="timezone">
                     <option value="">Select timezone</option>
-                    {{#each timezones}}
-                        <option value="{{this.name}}">(GMT{{this.offset}}) {{this.name}}</option>
-                    {{/each}}
+                    {{#select timezone}}
+                        {{#each timezones}}
+                            <option value="{{this.name}}">(GMT{{this.offset}}) {{this.name}}</option>
+                        {{/each}}
+                    {{/select}}
                 </select>
             </div>
         </div>
@@ -56,9 +62,11 @@
         <div class="form-group">
             <label>Featured Products <span>(Standard Vega demos feature one product)</span></label>
             <select class="survey_topic_uuids" name="survey_topic_uuids" multiple="multiple">
-                {{#each surveyTopics}}
-                    <option value="{{this.id}}">{{this.name}}</option>
-                {{/each}}
+                {{#select survey_topic_uuids}}
+                    {{#each surveyTopics}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                {{/select}}
             </select>
         </div>
 
