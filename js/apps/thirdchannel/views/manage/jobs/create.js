@@ -3,17 +3,81 @@ define(function(require) {
         Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
+        Chosen = require('chosen'),
+        TimePicker = require('timepicker'),
+        DateTimePicker = require('dateTimePicker'),
         context = require('context'),
+        StoreItem = require('thirdchannel/views/manage/jobs/store_item');
 
-        JobCreate = Backbone.View.extend({
+    var dtPickerOptions = {
+        timepicker: false,
+        format: 'Y-m-d',
+        closeOnDateSelect: true,
+        scrollInput: false
+    };
 
-            template: HandlebarsTemplates['thirdchannel/manage/jobs/create'],
+    var JobCreate = Backbone.View.extend({
+        el: '.job-request-container',
 
-            render: function() {
-                this.$el.html(this.template());
-                return this;
+        events: {
+            'click .recommend_start_time': 'toggleRecommendedTimeFields',
+            'click .submit-job-request': 'handleSubmit',
+            'click .cancel-job-request': 'handleCancel'
+        },
+
+        template: HandlebarsTemplates['thirdchannel/manage/jobs/create'],
+
+        initialize: function(options) {
+            this.stores = options.stores;
+            this.surveys = options.surveys;
+            this.surveyTopics = options.surveyTopics;
+            this.timezones = options.timezones;
+
+            this.listenTo(this.stores, 'reset', this.renderStores);
+        },
+
+        render: function() {
+            var data = {
+                surveys: this.surveys,
+                surveyTopics: this.surveyTopics,
+                timezones: this.timezones
+            };
+            this.$el.html(this.template(data));
+            this.$('select').chosen({width: "100%"});
+            this.$('.start_time').timepicker();
+            return this;
+        },
+
+        renderStores: function() {
+            var $storeList = this.$('.store-list');
+            this.stores.each(function(store) {
+                var storeItem = new StoreItem({model: store});
+                $storeList.append(storeItem.render().el);
+            }.bind(this));
+        },
+
+        toggleRecommendedTimeFields: function(e) {
+            if(e.target.checked) {
+                this.$('.start-time-container').removeClass('hide');
+            } else {
+                this.$('.start-time-container').addClass('hide');
+                this.$('.start_time').val("");
+                this.$('.timezone').val("");
             }
-        });
+        },
+
+        handleSubmit: function(e) {
+
+        },
+
+        handleCancel: function(e) {
+            e.preventDefault();
+            if(confirm("Are you sure you want to cancel request?")) {
+                window.sessionStorage.removeItem('selected-stores');
+                window.location = '/programs/' + context.programId + '/stores';
+            }
+        }
+    });
 
     return JobCreate;
 });

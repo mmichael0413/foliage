@@ -34,10 +34,10 @@ define(function(require) {
              * Part of the form is to select the stores for the job to be performed at, which is being done by this page.
              * Select stores -> click "Request Visit" action button -> fill out abridged job/task form
              * However, this page wasn't intended to be bundled with the workflow in conjunction with other pages (typically this would be done as a module to round out the UX workflow)
-             * In order to get information from this page to the form local storage is being used until we find the time to build out the request job workflow properly...
+             * In order to get information from this page to the form session storage (similar to localStorage except it expires) is being used until we find the time to build out the request job workflow properly...
              */
             selectStore: function(e) {
-                var selectedStores = window.localStorage.getItem(selectedStoresKey);
+                var selectedStores = window.sessionStorage.getItem(selectedStoresKey);
 
                 if(selectedStores) {
                     selectedStores = JSON.parse(selectedStores);
@@ -59,8 +59,8 @@ define(function(require) {
                     }
                 }
 
-                // save back to localStorage
-                window.localStorage.setItem(selectedStoresKey, JSON.stringify(selectedStores));
+                // save back to sessionStorage
+                window.sessionStorage.setItem(selectedStoresKey, JSON.stringify(selectedStores));
             },
 
             handleRequestVisitClick: function() {
@@ -74,7 +74,7 @@ define(function(require) {
                 PageableListView.prototype.afterRender.apply(this, [options]);
 
                 // If there are any selected stores check them off
-                var selectedStores = window.localStorage.getItem(selectedStoresKey);
+                var selectedStores = window.sessionStorage.getItem(selectedStoresKey);
                 if(selectedStores) {
                     selectedStores = JSON.parse(selectedStores);
 

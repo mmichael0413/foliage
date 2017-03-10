@@ -62,7 +62,7 @@ define(function(require){
             'opportunities/:id': 'viewOpportunity',
             'programs/:program_id/admin/activities/topics(/)' : 'adminActivitiesTopics',
             'programs/:program_id/admin/activities/topics/*path' : 'adminActivitiesTopics',
-            'programs/:program_id/manage/jobs': 'createJobRequest',
+            'programs/:program_id/manage/jobs/new': 'createJobRequest',
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',

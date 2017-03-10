@@ -34,6 +34,7 @@ require.config({
         'jquery-mousewheel': "../libs/bower_components/jquery-mousewheel/jquery.mousewheel",
         'php-date-formatter': "../libs/bower_components/php-date-formatter/js/php-date-formatter",
         'dateTimePicker': "../libs/bower_components/datetimepicker/jquery.datetimepicker",
+        'timepicker': "../libs/bower_components/jquery-timepicker-jt/jquery.timepicker",
         'jquery.mask' : '../libs/bower_components/jquery-mask-plugin/dist/jquery.mask',
         'typeahead'     : '../libs/bower_components/typeahead.js/dist/typeahead.jquery.min',
         'rxjs'          : '../libs/bower_components/rxjs/dist/rx.all.min',

@@ -1,0 +1,17 @@
+.job-request-container {
+
+  .store-item {
+    margin-bottom: 1em;
+
+    .store-info {
+      width: 100%;
+      border: 1px solid $medium-blue;
+      border-radius: 5px;
+      padding: 0.25em;
+    }
+
+    .store-remove {
+      padding: 0.25em;
+    }
+  }
+}

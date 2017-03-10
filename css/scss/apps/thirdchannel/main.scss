@@ -5,6 +5,7 @@
 @import "../../modules/side_navigation";
 @import "../../lib/chosen";
 @import "../../lib/quill.snow";
+@import "../../lib/jquery.timepicker";
 @import '../../../../js/libs/bower_components/slick.js/slick/slick';
 @import '../../../../js/libs/bower_components/datetimepicker/jquery.datetimepicker';
 @import '../../../../js/libs/bower_components/c3/c3';
@@ -52,6 +53,7 @@
 @import "../../modules/task_list";
 @import "../../modules/top_navigation";
 @import "../../modules/tooltip";
+@import "../../modules/request_job";
 
 @import "../../lib/viewer";
 @import "../../modules/viewerjs_extension";

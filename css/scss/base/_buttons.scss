@@ -160,6 +160,10 @@ a.light {
   color: $medium-blue;
 }
 
+a.underline {
+  text-decoration: underline;
+}
+
 .fileUpload {
   position: relative;
   overflow: hidden;
