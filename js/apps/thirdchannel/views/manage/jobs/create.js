@@ -12,13 +12,6 @@ define(function(require) {
         StoreItem = require('thirdchannel/views/manage/jobs/store_item'),
         DateRangeView = require('thirdchannel/views/manage/jobs/dateRange');
 
-    var dtPickerOptions = {
-        timepicker: false,
-        format: 'Y-m-d',
-        closeOnDateSelect: true,
-        scrollInput: false
-    };
-
     var JobCreate = Backbone.View.extend({
         el: '.job-request-container',
 

@@ -30,7 +30,9 @@
 
     // overwriting the timepicker library style
     .start_time {
+      display: block;
       margin: 0;
+      width: auto;
     }
   }
 
