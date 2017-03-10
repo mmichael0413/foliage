@@ -48,6 +48,7 @@ define(function(require){
         FlashView = require('thirdchannel/views/shared/flash'),
         LoginView = require('thirdchannel/views/authentication/login'),
         ScheduledVisitsView = require('thirdchannel/views/scheduled_visits/scheduled_visits'),
+        JobRequestsView = require('thirdchannel/views/job_requests/job_requests'),
         ContractView = require('thirdchannel/views/legal/contract'),
         ManageJobsMain = require('thirdchannel/views/manage/jobs/main');
 
@@ -108,6 +109,7 @@ define(function(require){
             'programs/:program_id/exports/sales_stores': 'salesStoresExports',
             'programs/:program_id/exports/sales_stores_audits': 'salesStoresAuditExports',
             'programs/:program_id/visits': 'visits',
+            'programs/:program_id/manage/jobs': 'jobRequests',
 
             'admin/data_clips(/)': 'dataClipsExports',
             'admin/*path' : 'adminView',
@@ -365,6 +367,10 @@ define(function(require){
 
         visits: function(){
             new ScheduledVisitsView({model: window.bootstrap});
+        },
+
+        jobRequests: function () {
+          new JobRequestsView({model: window.bootstrap});
         }
     });
 
