@@ -12,20 +12,6 @@ define(function(require) {
         StoreItem = require('thirdchannel/views/manage/jobs/store_item'),
         DateRangeView = require('thirdchannel/views/manage/jobs/dateRange');
 
-    /*
-     <option value="">Select Duration</option>
-     <option value="60">1 Hour</option>
-     <option value="120">2 Hours</option>
-     <option value="180">3 Hours</option>
-     <option value="240">4 Hours</option>
-     <option value="300">5 Hours</option>
-     <option value="360">6 Hours</option>
-     <option value="420">7 Hours</option>
-     <option value="480">8 Hours</option>
-     <option value="540">9 Hours</option>
-     <option value="600">10 Hours</option>
-     */
-
     var durationOptions = [
         { name: "Select Duration",  value: "" },
         { name: "1 Hour", value: "60" },
@@ -60,8 +46,15 @@ define(function(require) {
             this.surveyTopics = options.surveyTopics;
             this.timezones = options.timezones;
 
-            var initialRange = new DateRange();
-            this.ranges = new Backbone.Collection([initialRange]);
+            var initialRange = [];
+            if(this.model.get('schedulable_ranges')) {
+                initialRange = _.map(this.model.get('schedulable_ranges'), function(sr) {
+                    return new DateRange(sr);
+                });
+            } else {
+                initialRange = [new DateRange()];
+            }
+            this.ranges = new Backbone.Collection(initialRange);
 
             this.listenTo(this.stores, 'reset', this.renderStores);
         },
@@ -74,6 +67,12 @@ define(function(require) {
                 durationOptions: durationOptions
             };
             data = _.extend(data, this.model.attributes);
+
+            var hasStartTime = data.start_time && data.start_time !== "";
+
+            data.recommendedStartTime = hasStartTime ? "checked" : "";
+            data.recommendedStartTimeFieldsClass = hasStartTime ? "" : "hide";
+
             console.log(data);
             this.$el.html(this.template(data));
             this.$('.survey_uuid, .duration, .survey_topic_uuids').chosen({disable_search: true, width: "100%"});

@@ -6,7 +6,14 @@ define(function (require) {
 
     return Backbone.Model.extend({
         url: function () {
-            return '/programs/' + context.programId + '/manage/jobs';
+            var url = '/programs/' + context.programId + '/manage/jobs';
+            if(this.id) {
+                url += '/' + this.id;
+            }
+            return url;
+        },
+        defaults: {
+            duration: 180
         }
     });
 });
