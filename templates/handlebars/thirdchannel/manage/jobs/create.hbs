@@ -17,17 +17,9 @@
         <div class="form-group">
             <label>Duration</label>
             <select name="duration" class="duration">
-                <option value="">Select Duration</option>
-                <option value="60">1 Hour</option>
-                <option value="120">2 Hours</option>
-                <option value="180">3 Hours</option>
-                <option value="240">4 Hours</option>
-                <option value="300">5 Hours</option>
-                <option value="360">6 Hours</option>
-                <option value="420">7 Hours</option>
-                <option value="480">8 Hours</option>
-                <option value="540">9 Hours</option>
-                <option value="600">10 Hours</option>
+                {{#each durationOptions}}
+                    <option value="{{this.value}}">{{this.name}}</option>
+                {{/each}}
             </select>
         </div>
 
@@ -49,7 +41,7 @@
                 <select name="timezone" class="timezone">
                     <option value="">Select timezone</option>
                     {{#each timezones}}
-                        <option value="{{this.offset}}">(GMT{{this.offset}}) {{this.name}}</option>
+                        <option value="{{this.name}}">(GMT{{this.offset}}) {{this.name}}</option>
                     {{/each}}
                 </select>
             </div>
@@ -72,7 +64,7 @@
 
         <div class="form-group">
             <label>Notes</label>
-            <textarea class="notes" name="notes"></textarea>
+            <textarea class="notes" name="notes">{{notes}}</textarea>
         </div>
     </section>
 

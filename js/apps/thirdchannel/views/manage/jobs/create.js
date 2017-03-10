@@ -12,6 +12,34 @@ define(function(require) {
         StoreItem = require('thirdchannel/views/manage/jobs/store_item'),
         DateRangeView = require('thirdchannel/views/manage/jobs/dateRange');
 
+    /*
+     <option value="">Select Duration</option>
+     <option value="60">1 Hour</option>
+     <option value="120">2 Hours</option>
+     <option value="180">3 Hours</option>
+     <option value="240">4 Hours</option>
+     <option value="300">5 Hours</option>
+     <option value="360">6 Hours</option>
+     <option value="420">7 Hours</option>
+     <option value="480">8 Hours</option>
+     <option value="540">9 Hours</option>
+     <option value="600">10 Hours</option>
+     */
+
+    var durationOptions = [
+        { name: "Select Duration",  value: "" },
+        { name: "1 Hour", value: "60" },
+        { name: "2 Hours", value: "120" },
+        { name: "3 Hours", value: "180" },
+        { name: "4 Hours", value: "240" },
+        { name: "5 Hours", value: "300" },
+        { name: "6 Hours", value: "360" },
+        { name: "7 Hours", value: "420" },
+        { name: "8 Hours", value: "480" },
+        { name: "9 Hours", value: "540" },
+        { name: "10 Hours", value: "600" }
+    ];
+
     var JobCreate = Backbone.View.extend({
         el: '.job-request-container',
 
@@ -42,9 +70,11 @@ define(function(require) {
             var data = {
                 surveys: this.surveys,
                 surveyTopics: this.surveyTopics,
-                timezones: this.timezones
+                timezones: this.timezones,
+                durationOptions: durationOptions
             };
-            // merge model attributes
+            data = _.extend(data, this.model.attributes);
+            console.log(data);
             this.$el.html(this.template(data));
             this.$('.survey_uuid, .duration, .survey_topic_uuids').chosen({disable_search: true, width: "100%"});
             this.$('.timezone').chosen({width: "100%"});
@@ -154,6 +184,15 @@ define(function(require) {
                 this.$('.date-range-container').addClass('error');
             }
 
+            if(data.timezone && data.timezone !== "") {
+                // find the offset value...
+                var tz = _.findWhere(this.timezones, function(tz) {
+                    return tz.name == data.timezone;
+                });
+
+                data.timezone_offset = tz.offset;
+            }
+
             if(!errors) {
                 this.model
                     .save(data)
@@ -164,6 +203,7 @@ define(function(require) {
                     .fail(function(model) {
                         console.log(model);
                         // TODO handle errors
+                        alert('Oops, there was a problem with your request, please try again.');
                     });
             }
         },
@@ -172,7 +212,11 @@ define(function(require) {
             e.preventDefault();
             if(confirm("Are you sure you want to cancel request?")) {
                 window.sessionStorage.removeItem('selected-stores');
-                window.location = '/programs/' + context.programId + '/stores';
+                if(this.model.id) {
+                    window.location = '/programs/' + context.programId + '/manage/jobs/' + this.model.id;
+                } else {
+                    window.location = '/programs/' + context.programId + '/stores';
+                }
             }
         }
     });
