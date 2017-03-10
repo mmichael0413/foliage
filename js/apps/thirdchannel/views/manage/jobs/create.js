@@ -73,7 +73,8 @@ define(function(require) {
                 timezones: this.timezones,
                 durationOptions: durationOptions
             };
-            // merge model attributes
+            data = _.extend(data, this.model.attributes);
+            console.log(data);
             this.$el.html(this.template(data));
             this.$('.survey_uuid, .duration, .survey_topic_uuids').chosen({disable_search: true, width: "100%"});
             this.$('.timezone').chosen({width: "100%"});
@@ -202,6 +203,7 @@ define(function(require) {
                     .fail(function(model) {
                         console.log(model);
                         // TODO handle errors
+                        alert('Oops, there was a problem with your request, please try again.');
                     });
             }
         },
@@ -210,7 +212,11 @@ define(function(require) {
             e.preventDefault();
             if(confirm("Are you sure you want to cancel request?")) {
                 window.sessionStorage.removeItem('selected-stores');
-                window.location = '/programs/' + context.programId + '/stores';
+                if(this.model.id) {
+                    window.location = '/programs/' + context.programId + '/manage/jobs/' + this.model.id;
+                } else {
+                    window.location = '/programs/' + context.programId + '/stores';
+                }
             }
         }
     });
