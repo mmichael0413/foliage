@@ -48,7 +48,7 @@ define(function(require){
         FlashView = require('thirdchannel/views/shared/flash'),
         LoginView = require('thirdchannel/views/authentication/login'),
         ScheduledVisitsView = require('thirdchannel/views/scheduled_visits/scheduled_visits'),
-        JobRequestsView = require('thirdchannel/views/job_requests/job_requests'),
+        JobRequestsView = require('thirdchannel/views/manage/jobs/job_requests/list'),
         ContractView = require('thirdchannel/views/legal/contract'),
         ManageJobsMain = require('thirdchannel/views/manage/jobs/main');
 

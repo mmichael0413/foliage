@@ -1,12 +1,12 @@
 define(function(require) {
     var context = require('context'),
         handlebarsTemplates = require('handlebarsTemplates'),
-        JobRequest = require('thirdchannel/views/job_requests/job_request'),
+        JobRequest = require('thirdchannel/views/manage/jobs/job_requests/list_item'),
         Filter = require('thirdchannel/views/filter/main');
 
     return Backbone.View.extend({
         el: "#scheduled-visits",
-        template: 'thirdchannel/job_requests/job_requests',
+        template: 'thirdchannel/manage/jobs/job_requests/list',
         loading: handlebarsTemplates["thirdchannel/loading_icon"](),
         initialize: function(){
             this.listenTo(context, 'filter:query', this.applyFilter);
