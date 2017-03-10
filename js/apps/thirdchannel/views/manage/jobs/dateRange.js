@@ -6,13 +6,6 @@ define(function(require) {
         DateTimePicker = require('dateTimePicker'),
         context = require('context');
 
-    var dtPickerOptions = {
-        timepicker: false,
-        format: 'Y-m-d',
-        closeOnDateSelect: true,
-        scrollInput: false
-    };
-
     var StoreItem = Backbone.View.extend({
         className: 'pure-g date-range-item',
 
