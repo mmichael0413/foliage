@@ -49,7 +49,7 @@
                 <select name="timezone" class="timezone">
                     <option value="">Select timezone</option>
                     {{#each timezones}}
-                        <option value="(GMT{{this.offset}}) {{this.name}}">(GMT{{this.offset}}) {{this.name}}</option>
+                        <option value="{{this.offset}}">(GMT{{this.offset}}) {{this.name}}</option>
                     {{/each}}
                 </select>
             </div>
