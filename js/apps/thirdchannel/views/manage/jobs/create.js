@@ -33,6 +33,9 @@ define(function(require) {
             this.surveyTopics = options.surveyTopics;
             this.timezones = options.timezones;
 
+            var initialRange = new Backbone.Model();
+            this.ranges = new Backbone.Collection([initialRange]);
+
             this.listenTo(this.stores, 'reset', this.renderStores);
         },
 
@@ -45,6 +48,7 @@ define(function(require) {
             this.$el.html(this.template(data));
             this.$('select').chosen({width: "100%"});
             this.$('.start_time').timepicker();
+            this.renderRanges();
             return this;
         },
 
@@ -54,6 +58,14 @@ define(function(require) {
                 var storeItem = new StoreItem({model: store});
                 $storeList.append(storeItem.render().el);
             }.bind(this));
+        },
+
+        renderRanges: function() {
+            this.ranges.each(this.renderRange.bind(this));
+        },
+
+        renderRange: function(range) {
+
         },
 
         toggleRecommendedTimeFields: function(e) {

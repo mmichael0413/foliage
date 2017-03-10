@@ -1,4 +1,8 @@
 .job-request-container {
+  .section {
+    margin-bottom: 1em;
+  }
+
   h4 {
     margin: 0 0 0.75em 0;
   }
@@ -13,10 +17,14 @@
       &.inline-label {
         font-weight: normal;
       }
+
+      span {
+        font-weight: normal;
+      }
     }
 
     textarea {
-      height: 250px;
+      height: 175px;
       margin: 0;
     }
 
@@ -26,18 +34,27 @@
     }
   }
 
-  .store-item {
-    margin-bottom: 1em;
+  .store-list-container {
+    margin-bottom: 3em;
 
-    .store-info {
-      width: 100%;
-      border: 1px solid $light-blue;
-      border-radius: 5px;
-      padding: 0.25em;
-    }
+    .store-item {
+      margin-bottom: 1em;
 
-    .store-remove {
-      padding: 0.25em;
+      .store-info {
+        width: 100%;
+        border: 1px solid $light-blue;
+        border-radius: 5px;
+        padding: 0.25em;
+      }
+
+      .store-remove {
+        padding: 0.25em;
+      }
     }
+  }
+
+  .submit-job-request {
+    width: 5em;
+    margin-right: 1em;
   }
 }
