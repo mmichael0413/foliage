@@ -1,11 +1,13 @@
 define(function(require) {
     var $ = require('jquery'),
+        _ = require('underscore'),
         Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         Chosen = require('chosen'),
         TimePicker = require('timepicker'),
         DateTimePicker = require('dateTimePicker'),
+        SerializeObject = require('serializeObject')
         context = require('context'),
         StoreItem = require('thirdchannel/views/manage/jobs/store_item');
 
@@ -65,7 +67,7 @@ define(function(require) {
         },
 
         renderRange: function(range) {
-
+            console.log(range);
         },
 
         toggleRecommendedTimeFields: function(e) {
@@ -79,7 +81,53 @@ define(function(require) {
         },
 
         handleSubmit: function(e) {
+            e.preventDefault();
 
+            var programStoreIds = this.stores.map(function(s) { return s.get('uuid'); });
+
+            // TODO map ranges and add to model data
+            var ranges = this.ranges.map(function(r) {
+                return {
+                    start: r.get('start'),
+                    end: r.get('end')
+                };
+            });
+
+            var data = {
+                survey_uuid: this.$('.survey_uuid').val(),
+                duration: this.$('.duration').val(),
+                recommended_start_time: this.$('.recommend_start_time').val(),
+                start_time: this.$('.start_time').val(),
+                timezone: this.$('.timezone').val(),
+                survey_topic_uuids: this.$('.survey_topic_uuids').val(),
+                notes: this.$('.notes').val(),
+                program_store_uuids: programStoreIds,
+                ranges: ranges
+            };
+
+            console.log()
+
+            // validate form
+            // Required:
+            // * surveyUuid (aka visit type)
+            // * duration
+            // * if recommended start time
+            //   * startTime
+            // * surveyTopicUuids (at least one)
+            // * programStoreUuids (at least one)
+            // * ranges (at least one, also need to ensure that they make sense...)
+
+            /*
+            this.model
+                .save(data)
+                .then(function(response) {
+                    window.sessionStorage.removeItem('selected-stores');
+                    // redirect to stores page
+                })
+                .fail(function(model) {
+                    // alert that there was an error
+                });
+            */
         },
 
         handleCancel: function(e) {
