@@ -16,7 +16,8 @@ define(function(require) {
             if(visits.length === 0){
                 this.$el.html("No scheduled visits were found that match your filter selections.");
             } else {
-                this.$el.html(handlebarsTemplates[this.template]());
+                var supervisor_role = visits[0].supervisor_role;
+                this.$el.html(handlebarsTemplates[this.template]({supervisor_role: supervisor_role}));
                 _.each(visits, function(v){
                     this.$el.append(new Visit({model: v}).render().$el);
                 }.bind(this));
