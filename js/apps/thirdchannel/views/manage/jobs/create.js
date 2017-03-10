@@ -7,7 +7,6 @@ define(function(require) {
         Chosen = require('chosen'),
         TimePicker = require('timepicker'),
         DateTimePicker = require('dateTimePicker'),
-        SerializeObject = require('serializeObject')
         context = require('context'),
         StoreItem = require('thirdchannel/views/manage/jobs/store_item');
 
