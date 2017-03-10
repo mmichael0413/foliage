@@ -113,7 +113,15 @@ define(function (require) {
 
     Handlebars.registerHelper('select', function (value, options) {
         var $el = $('<select />').html(options.fn(this));
-        $el.find('[value="' + value + '"]').attr({'selected': 'selected'});
+        if(typeof(value) === "object") {
+            var len = value.length;
+            for(var i = 0; i < len; i++) {
+                var v = value[i];
+                $el.find('[value="' + v + '"]').attr({'selected': 'selected'});
+            }
+        } else {
+            $el.find('[value="' + value + '"]').attr({'selected': 'selected'});
+        }
         return $el.html();
     });
 
