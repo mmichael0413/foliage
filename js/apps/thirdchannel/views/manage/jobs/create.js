@@ -8,7 +8,9 @@ define(function(require) {
         TimePicker = require('timepicker'),
         DateTimePicker = require('dateTimePicker'),
         context = require('context'),
-        StoreItem = require('thirdchannel/views/manage/jobs/store_item');
+        DateRange = require('thirdchannel/models/manage/dateRange'),
+        StoreItem = require('thirdchannel/views/manage/jobs/store_item'),
+        DateRangeView = require('thirdchannel/views/manage/jobs/dateRange');
 
     var dtPickerOptions = {
         timepicker: false,
@@ -22,6 +24,7 @@ define(function(require) {
 
         events: {
             'click .recommend_start_time': 'toggleRecommendedTimeFields',
+            'click .add-date-range': 'addDateRange',
             'click .submit-job-request': 'handleSubmit',
             'click .cancel-job-request': 'handleCancel'
         },
@@ -29,12 +32,14 @@ define(function(require) {
         template: HandlebarsTemplates['thirdchannel/manage/jobs/create'],
 
         initialize: function(options) {
+            _.bindAll(this, 'renderRanges', 'renderRange');
+
             this.stores = options.stores;
             this.surveys = options.surveys;
             this.surveyTopics = options.surveyTopics;
             this.timezones = options.timezones;
 
-            var initialRange = new Backbone.Model();
+            var initialRange = new DateRange();
             this.ranges = new Backbone.Collection([initialRange]);
 
             this.listenTo(this.stores, 'reset', this.renderStores);
@@ -47,7 +52,8 @@ define(function(require) {
                 timezones: this.timezones
             };
             this.$el.html(this.template(data));
-            this.$('select').chosen({width: "100%"});
+            this.$('.survey_uuid, .duration, .survey_topic_uuids').chosen({disable_search: true, width: "100%"});
+            this.$('.timezone').chosen({width: "100%"});
             this.$('.start_time').timepicker();
             this.renderRanges();
             return this;
@@ -66,7 +72,8 @@ define(function(require) {
         },
 
         renderRange: function(range) {
-            console.log(range);
+            var view = new DateRangeView({model: range});
+            this.$('.date-range-list').append(view.render().el);
         },
 
         toggleRecommendedTimeFields: function(e) {
@@ -77,6 +84,14 @@ define(function(require) {
                 this.$('.start_time').val("");
                 this.$('.timezone').val("");
             }
+        },
+
+        addDateRange: function(e) {
+            e.preventDefault();
+
+            var range = new DateRange();
+            this.ranges.add(range);
+            this.renderRange(range);
         },
 
         handleSubmit: function(e) {

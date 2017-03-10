@@ -53,6 +53,20 @@
     }
   }
 
+  .date-range-list {
+    input {
+      width: auto;
+      margin-bottom: 0.75em;
+    }
+
+    .date-range-item {
+
+      .date-range-remove {
+        padding: 0.25em;
+      }
+    }
+  }
+
   .submit-job-request {
     width: 5em;
     margin-right: 1em;
