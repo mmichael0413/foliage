@@ -4,6 +4,7 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         DateTimePicker = require('dateTimePicker'),
+        moment = require('moment'),
         context = require('context');
 
     var StoreItem = Backbone.View.extend({
@@ -20,12 +21,16 @@ define(function(require) {
         render: function() {
             var self = this;
 
+            var nextMonth = moment().add(1, 'month');
+            var startDate = moment([nextMonth.year(), nextMonth.month()]).format('YYYY-MM-DD');
+
             this.$el.html(this.template(this.model.attributes));
             this.$start = this.$('.start').datetimepicker({
                 timepicker: false,
                 format: 'Y-m-d',
                 closeOnDateSelect: true,
                 scrollInput: false,
+                startDate: startDate,
                 onShow: function(ct) {
                     var end = self.$('.end').val();
                     this.setOptions({
@@ -38,6 +43,7 @@ define(function(require) {
                 format: 'Y-m-d',
                 closeOnDateSelect: true,
                 scrollInput: false,
+                startDate: startDate,
                 onShow: function(ct) {
                     var start = self.$('.start').val();
                     this.setOptions({
