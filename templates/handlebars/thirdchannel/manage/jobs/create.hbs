@@ -1,0 +1,84 @@
+<form class="job-request-form">
+    <section class="section">
+        <div class="store-list-container">
+            <h4>Store(s)</h4>
+            <div class="store-list"></div>
+            {{#unless id}}
+                <a href="#" class="store-add underline">+ Add Store</a>
+            {{/unless}}
+        </div>
+
+        <div class="form-group">
+            <label>Visit Type</label>
+            <select class="survey_uuid" name="survey_uuid" required="required">
+                {{#select survey_uuid}}
+                    {{#each surveys}}
+                        <option name="survey_uuid" class="survey_uuid" value="{{this.uuid}}">{{this.title}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Duration</label>
+            <select name="duration" class="duration">
+                {{#select duration}}
+                    {{#each durationOptions}}
+                        <option value="{{this.value}}">{{this.name}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="inline-label">
+                <input type="checkbox" class="recommend_start_time" {{recommendedStartTime}} />
+                Recommended Start Time
+            </label>
+        </div>
+
+        <div class="start-time-container {{recommendedStartTimeFieldsClass}}">
+            <div class="form-group">
+                <label>Start Time</label>
+                <input type="text" name="start_time" class="start_time" value="{{start_time}}" />
+            </div>
+
+            <div class="form-group">
+                <label>Timezone</label>
+                <select name="timezone" class="timezone">
+                    <option value="">Select timezone</option>
+                    {{#select timezone}}
+                        {{#each timezones}}
+                            <option value="{{this.name}}">(GMT{{this.offset}}) {{this.name}}</option>
+                        {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group date-range-container">
+            <label>Date Range <span>(To be performed on or within selected dates)</span></label>
+            <div class="date-range-list"></div>
+            <a href="#" class="add-date-range underline">+ Add Date Range</a>
+        </div>
+
+        <div class="form-group">
+            <label>Featured Products <span>(Standard Vega demos feature one product)</span></label>
+            <select class="survey_topic_uuids" name="survey_topic_uuids" multiple="multiple">
+                {{#select survey_topic_uuids}}
+                    {{#each surveyTopics}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Notes</label>
+            <textarea class="notes" name="notes">{{notes}}</textarea>
+        </div>
+    </section>
+
+    <button type="submit" class="btn primary submit-job-request">Save</button>
+    <a href="#" class="cancel-job-request light underline">Cancel</a>
+</form>
