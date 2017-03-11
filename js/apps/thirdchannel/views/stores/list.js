@@ -64,6 +64,7 @@ define(function(require) {
                 }
 
                 this.maybeEnableRequestVisitLink(selectedStores);
+                this.updateSelectStoresCount(selectedStores.length);
 
                 // save back to sessionStorage
                 window.sessionStorage.setItem(selectedStoresKey, JSON.stringify(selectedStores));
@@ -96,6 +97,7 @@ define(function(require) {
                 }
 
                 this.maybeEnableRequestVisitLink(selectedStores);
+                this.updateSelectStoresCount(selectedStores.length);
 
                 window.sessionStorage.setItem(selectedStoresKey, JSON.stringify(selectedStores));
             },
@@ -114,6 +116,14 @@ define(function(require) {
                 }
             },
 
+            updateSelectStoresCount: function(selectedStoresCount) {
+                if(selectedStoresCount > 0) {
+                    this.$('.stores-selected').html(selectedStoresCount + ' Stores Selected');
+                } else {
+                    this.$('.stores-selected').html('');
+                }
+            },
+
             afterRender: function(options) {
                 var self = this;
                 PageableListView.prototype.afterRender.apply(this, [options]);
@@ -128,6 +138,8 @@ define(function(require) {
                     }.bind(this));
 
                     this.maybeEnableRequestVisitLink(selectedStores);
+
+                    this.updateSelectStoresCount(selectedStores.length);
 
                     // if all of the stores are selected, check the select all store checkbox
                     var checkedLength = this.$('.select-store:checked').length;
