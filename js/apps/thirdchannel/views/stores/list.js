@@ -81,15 +81,17 @@ define(function(require) {
                     selectedStores = [];
                 }
 
-                if(e.target.checked) {
-                    selectedStores = _.map($selectStore, function(s) {
-                        return s.value;
-                    });
+                var allStoresIds = _.map($selectStore, function(s) {
+                    return s.value;
+                });
 
-                    selectedStores = _.uniq(selectedStores);
+                if(e.target.checked) {
+                    selectedStores = _.union(selectedStores, allStoresIds);
 
                     $selectStore.prop('checked', true);
                 } else {
+                    selectedStores = _.difference(selectedStores, allStoresIds);
+
                     $selectStore.prop('checked', false);
                 }
 
@@ -131,6 +133,8 @@ define(function(require) {
                     var checkedLength = this.$('.select-store:checked').length;
                     if(checkedLength > 0 && checkedLength === this.$('.select-store').length) {
                         this.$selectStores.prop('checked', true);
+                    } else {
+                        this.$selectStores.prop('checked', false);
                     }
                 }
 
