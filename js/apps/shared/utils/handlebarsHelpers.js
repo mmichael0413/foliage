@@ -323,4 +323,8 @@ define(function (require) {
       **/
       return summary.replace(/\n\s*\n\s*\n/g, '\n\n');
     });
+
+    Handlebars.registerHelper('capitalize', function(value) {
+        return value.charAt(0).toUpperCase() + value.slice(1);
+    });
 });

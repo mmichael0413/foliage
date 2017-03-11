@@ -13,7 +13,7 @@
             <select class="survey_uuid" name="survey_uuid" required="required">
                 {{#select survey_uuid}}
                     {{#each surveys}}
-                        <option name="survey_uuid" class="survey_uuid" value="{{this.uuid}}">{{this.title}}</option>
+                        <option name="survey_uuid" class="survey_uuid" value="{{this.uuid}}">{{capitalize this.survey_type}}</option>
                     {{/each}}
                 {{/select}}
             </select>
