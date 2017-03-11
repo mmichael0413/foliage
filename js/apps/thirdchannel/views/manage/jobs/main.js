@@ -51,9 +51,10 @@ define(function(require) {
             if(selectedStoreIds) {
                 selectedStoreIds = JSON.parse(selectedStoreIds);
             } else {
+                // otherwise get the list from the model, or if that doesn't exist default to empty array
                 selectedStoreIds = jobRequest.get('program_store_uuids') || [];
             }
-            
+
             // Set the selected stores in case the users needs to change them during the create/update processes
             window.sessionStorage.setItem('selected-stores', JSON.stringify(selectedStoreIds));
 

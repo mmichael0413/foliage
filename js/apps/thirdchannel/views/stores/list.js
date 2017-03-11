@@ -87,6 +87,16 @@ define(function(require) {
                     }
                 }
 
+                // If there's a persisted job request (one that's being updated), change the link to the edit view instead of the create
+                var jobRequest = window.sessionStorage.getItem('job-request');
+                if(jobRequest) {
+                    jobRequest = JSON.parse(jobRequest);
+                    if(jobRequest.id || jobRequest.id !== "") {
+                        this.$requestVisitLink.find('span').html('Update Visit Request');
+                        this.$requestVisitLink.attr('href', '/programs/' + context.programId + '/manage/jobs/' + jobRequest.id + '/edit');
+                    }
+                }
+
                 this.collection.forEach(function(model) {
                     if (model.get('sales_data')) {
                         new SalesMarquee({el: self.$el.find('.sales-marquee#' + model.get('id')), salesData: model.get('sales_data')});
