@@ -76,7 +76,7 @@ define(function(require) {
             this.$el.html(this.template(data));
             this.$('.survey_uuid, .duration, .survey_topic_uuids').chosen({disable_search: true, width: "100%"});
             this.$('.timezone').chosen({width: "100%"});
-            this.$('.start_time').timepicker();
+            this.$('.start_time').timepicker({scrollDefault: '08:00'});
             this.renderRanges();
             return this;
         },
