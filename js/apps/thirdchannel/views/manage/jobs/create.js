@@ -225,17 +225,23 @@ define(function(require) {
                 data.timezone_offset = tz.offset;
             }
 
+            var id = this.model.id;
+
             if(!errors) {
                 this.model
                     .save(data)
-                    .then(function(response) {
+                    .then(function() {
                         window.sessionStorage.removeItem('selected-stores');
                         window.sessionStorage.removeItem('job-request');
-                        window.location = '/programs/' + context.programId + '/manage/jobs/' + response.id;
+
+                        // If the user is updating a single job request (not bulk create) we can redirect to the show view
+                        if(id) {
+                            window.location = '/programs/' + context.programId + '/manage/jobs/' + id;
+                        } else {
+                            window.location = '/programs/' + context.programId + '/manage/jobs';
+                        }
                     })
-                    .fail(function(model) {
-                        console.log(model);
-                        // TODO handle errors
+                    .fail(function() {
                         alert('Oops, there was a problem with your request, please try again.');
                     });
             }
