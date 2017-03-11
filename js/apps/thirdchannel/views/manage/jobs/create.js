@@ -73,8 +73,6 @@ define(function(require) {
             data.recommendedStartTime = hasStartTime ? "checked" : "";
             data.recommendedStartTimeFieldsClass = hasStartTime ? "" : "hide";
 
-            console.log(data);
-
             this.$el.html(this.template(data));
             this.$('.survey_uuid, .duration, .survey_topic_uuids').chosen({disable_search: true, width: "100%"});
             this.$('.timezone').chosen({width: "100%"});
