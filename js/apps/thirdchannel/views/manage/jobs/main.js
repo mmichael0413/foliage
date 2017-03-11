@@ -5,6 +5,15 @@ define(function(require) {
         JobRequest = require('thirdchannel/models/manage/job'),
         CreateView = require('thirdchannel/views/manage/jobs/create');
 
+    var initJobRequestFromSessionStore = function(jobRequest) {
+        var jobRequestSessionData = window.sessionStorage.getItem('job-request');
+        if(jobRequestSessionData) {
+            jobRequestSessionData = JSON.parse(jobRequestSessionData);
+            jobRequest.set(jobRequestSessionData);
+            window.sessionStorage.removeItem('job-request');
+        }
+    };
+
     return {
         create: function() {
             var selectedStoreIds = window.sessionStorage.getItem('selected-stores');
@@ -14,7 +23,9 @@ define(function(require) {
                 selectedStoreIds = [];
             }
 
-            // TODO restore job request from sessionStorage if there and clear it afterward (this is just to bridge the gap between store page and the job request form)
+            var jobRequest = new JobRequest();
+
+            initJobRequestFromSessionStore(jobRequest);
 
             var stores = new Stores();
 
@@ -23,7 +34,7 @@ define(function(require) {
                 surveys: context.surveys,
                 surveyTopics: context.survey_topics,
                 timezones: context.timezones,
-                model: new JobRequest()
+                model: jobRequest
             });
 
             createView.render();
@@ -34,10 +45,15 @@ define(function(require) {
         update: function(id) {
             var jobRequest = new JobRequest(context.job_request);
 
-            // TODO Retrieve selected stores, merge lists between what's on the model and what's in sessionStorage (since things could get added)
+            initJobRequestFromSessionStore(jobRequest);
 
-            var selectedStoreIds = jobRequest.get('program_store_uuids');
-
+            var selectedStoreIds = window.sessionStorage.getItem('selected-stores');
+            if(selectedStoreIds) {
+                selectedStoreIds = JSON.parse(selectedStoreIds);
+            } else {
+                selectedStoreIds = jobRequest.get('program_store_uuids') || [];
+            }
+            
             // Set the selected stores in case the users needs to change them during the create/update processes
             window.sessionStorage.setItem('selected-stores', JSON.stringify(selectedStoreIds));
 

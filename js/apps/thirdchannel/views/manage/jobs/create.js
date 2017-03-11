@@ -30,6 +30,7 @@ define(function(require) {
         el: '.job-request-container',
 
         events: {
+            'click .store-add': 'handleStoreAdd',
             'click .recommend_start_time': 'toggleRecommendedTimeFields',
             'click .add-date-range': 'addDateRange',
             'click .submit-job-request': 'handleSubmit',
@@ -74,6 +75,7 @@ define(function(require) {
             data.recommendedStartTimeFieldsClass = hasStartTime ? "" : "hide";
 
             console.log(data);
+
             this.$el.html(this.template(data));
             this.$('.survey_uuid, .duration, .survey_topic_uuids').chosen({disable_search: true, width: "100%"});
             this.$('.timezone').chosen({width: "100%"});
@@ -115,6 +117,37 @@ define(function(require) {
             var range = new DateRange();
             this.ranges.add(range);
             this.renderRange(range);
+        },
+
+        handleStoreAdd: function(e) {
+            e.preventDefault();
+
+            var ranges = this.ranges
+                .map(function(r) {
+                    return {
+                        start: r.get('start'),
+                        end: r.get('end')
+                    };
+                });
+
+            var data = {
+                id: this.model.id,
+                survey_uuid: this.$('.survey_uuid').val(),
+                duration: this.$('.duration').val(),
+                recommended_start_time: this.$('.recommend_start_time').is(':checked'),
+                start_time: this.$('.start_time').val(),
+                timezone: this.$('.timezone').val(),
+                survey_topic_uuids: this.$('.survey_topic_uuids').val(),
+                notes: this.$('.notes').val(),
+                schedulable_ranges : ranges
+            };
+
+            console.log('data', data);
+
+            // save current state
+            window.sessionStorage.setItem('job-request', JSON.stringify(data));
+
+            window.location = '/programs/' + context.programId + '/stores';
         },
 
         handleSubmit: function(e) {
@@ -197,6 +230,7 @@ define(function(require) {
                     .save(data)
                     .then(function(response) {
                         window.sessionStorage.removeItem('selected-stores');
+                        window.sessionStorage.removeItem('job-request');
                         window.location = '/programs/' + context.programId + '/manage/jobs/' + response.id;
                     })
                     .fail(function(model) {
@@ -211,6 +245,7 @@ define(function(require) {
             e.preventDefault();
             if(confirm("Are you sure you want to cancel request?")) {
                 window.sessionStorage.removeItem('selected-stores');
+                window.sessionStorage.removeItem('job-request');
                 if(this.model.id) {
                     window.location = '/programs/' + context.programId + '/manage/jobs/' + this.model.id;
                 } else {
