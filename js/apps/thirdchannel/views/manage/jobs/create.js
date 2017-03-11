@@ -13,7 +13,6 @@ define(function(require) {
         DateRangeView = require('thirdchannel/views/manage/jobs/dateRange');
 
     var durationOptions = [
-        { name: "Select Duration",  value: "" },
         { name: "1 Hour", value: "60" },
         { name: "2 Hours", value: "120" },
         { name: "3 Hours", value: "180" },
