@@ -87,7 +87,7 @@ define(function(require) {
         renderStores: function() {
             var $storeList = this.$('.store-list');
             this.stores.each(function(store) {
-                var storeItem = new StoreItem({model: store});
+                var storeItem = new StoreItem({model: store, jobRequestId: this.model.id});
                 $storeList.append(storeItem.render().el);
             }.bind(this));
         },

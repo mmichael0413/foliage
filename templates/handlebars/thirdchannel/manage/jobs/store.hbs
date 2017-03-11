@@ -2,5 +2,7 @@
     <div class="store-info">{{name}}, {{address}}</div>
 </div>
 <div class="col-1-4">
-    <div class="store-remove"><a href="#" class="store-remove-link light underline"><i class="ic_delete" /> Delete</a></div>
+    {{#unless jobRequestId}}
+        <div class="store-remove"><a href="#" class="store-remove-link light underline"><i class="ic_delete" /> Delete</a></div>
+    {{/unless}}
 </div>
