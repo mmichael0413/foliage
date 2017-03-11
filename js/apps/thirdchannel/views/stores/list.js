@@ -128,7 +128,8 @@ define(function(require) {
                     this.maybeEnableRequestVisitLink(selectedStores);
 
                     // if all of the stores are selected, check the select all store checkbox
-                    if(this.$('.select-store:checked').length === this.$('.select-store').length) {
+                    var checkedLength = this.$('.select-store:checked').length;
+                    if(checkedLength > 0 && checkedLength === this.$('.select-store').length) {
                         this.$selectStores.prop('checked', true);
                     }
                 }
