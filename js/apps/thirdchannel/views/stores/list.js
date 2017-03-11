@@ -1,5 +1,6 @@
 define(function(require) {
     var $ = require('jquery'),
+        _ = require('underscore'),
         context = require('context'),
         PageableListView = require('thirdchannel/views/shared/pageable_list'),
         SalesMarquee = require('thirdchannel/views/shared/sales_marquee'),
@@ -19,12 +20,16 @@ define(function(require) {
             template: 'thirdchannel/stores/rows',
 
             events: {
+                'click .select-stores': 'selectStores',
                 'click .select-store': 'selectStore'
             },
 
             initialize: function() {
                 this.$requestVisitLink = $('.request-visit-link');
                 this.$requestVisitLink.on('click', this.handleRequestVisitClick.bind(this));
+
+                this.$selectStores = this.$('.select-stores');
+
                 StoreListView.__super__.initialize.apply(this, arguments);
             },
 
@@ -47,20 +52,58 @@ define(function(require) {
 
                 if(e.target.checked) {
                     selectedStores.push(e.target.value);
-                    this.$requestVisitLink.removeClass('disabled');
                 } else {
                     var index = selectedStores.indexOf(e.target.value);
                     if(index !== -1) {
                         selectedStores.splice(index, 1);
                     }
 
-                    if(selectedStores.length === 0) {
-                        this.$requestVisitLink.addClass('disabled');
+                    if(this.$selectStores.is(':checked')) {
+                        this.$selectStores.prop('checked', false);
                     }
                 }
 
+                this.maybeEnableRequestVisitLink(selectedStores);
+
                 // save back to sessionStorage
                 window.sessionStorage.setItem(selectedStoresKey, JSON.stringify(selectedStores));
+            },
+
+            selectStores: function(e) {
+                var $selectStore = this.$('.select-store');
+
+                // Get the selected stores from session storage (could include some from different page...)
+                var selectedStores = window.sessionStorage.getItem(selectedStoresKey);
+
+                if(selectedStores) {
+                    selectedStores = JSON.parse(selectedStores);
+                } else {
+                    selectedStores = [];
+                }
+
+                if(e.target.checked) {
+                    selectedStores = _.map($selectStore, function(s) {
+                        return s.value;
+                    });
+
+                    selectedStores = _.uniq(selectedStores);
+
+                    $selectStore.prop('checked', true);
+                } else {
+                    $selectStore.prop('checked', false);
+                }
+
+                this.maybeEnableRequestVisitLink(selectedStores);
+
+                window.sessionStorage.setItem(selectedStoresKey, JSON.stringify(selectedStores));
+            },
+
+            maybeEnableRequestVisitLink: function(selectedStores) {
+                if(selectedStores.length === 0) {
+                    this.$requestVisitLink.addClass('disabled');
+                } else {
+                    this.$requestVisitLink.removeClass('disabled');
+                }
             },
 
             handleRequestVisitClick: function() {
@@ -82,8 +125,11 @@ define(function(require) {
                         this.$('#select-store-' + id).prop('checked', true);
                     }.bind(this));
 
-                    if(selectedStores.length > 0) {
-                        this.$requestVisitLink.removeClass('disabled');
+                    this.maybeEnableRequestVisitLink(selectedStores);
+
+                    // if all of the stores are selected, check the select all store checkbox
+                    if(this.$('.select-store:checked').length === this.$('.select-store').length) {
+                        this.$selectStores.prop('checked', true);
                     }
                 }
 
