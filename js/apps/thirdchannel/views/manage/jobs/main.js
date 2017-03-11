@@ -50,6 +50,9 @@ define(function(require) {
             var selectedStoreIds = window.sessionStorage.getItem('selected-stores');
             if(selectedStoreIds) {
                 selectedStoreIds = JSON.parse(selectedStoreIds);
+                if(selectedStoreIds.length === 0 && jobRequest.get('program_store_uuids')) {
+                    selectedStoreIds = jobRequest.get('program_store_uuids');
+                }
             } else {
                 // otherwise get the list from the model, or if that doesn't exist default to empty array
                 selectedStoreIds = jobRequest.get('program_store_uuids') || [];
