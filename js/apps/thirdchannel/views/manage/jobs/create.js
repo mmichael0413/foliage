@@ -139,8 +139,6 @@ define(function(require) {
                 schedulable_ranges : ranges
             };
 
-            console.log('data', data);
-
             // save current state
             window.sessionStorage.setItem('job-request', JSON.stringify(data));
 
