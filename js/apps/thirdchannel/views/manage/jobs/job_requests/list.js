@@ -2,6 +2,7 @@ define(function(require) {
     var context = require('context'),
         handlebarsTemplates = require('handlebarsTemplates'),
         JobRequest = require('thirdchannel/views/manage/jobs/job_requests/list_item'),
+        PaginationView = require('thirdchannel/views/utils/pagination'),
         Filter = require('thirdchannel/views/filter/main');
 
     return Backbone.View.extend({
@@ -13,11 +14,12 @@ define(function(require) {
             Filter.init();
         },
         render: function(jobRequest){
-            if(jobRequest.length === 0){
+            if(jobRequest.data.length === 0){
                 this.$el.html("No requests were found that match your filter selections.");
             } else {
                 this.$el.html(handlebarsTemplates[this.template]());
-                _.each(jobRequest, function(v){
+                this.addPages(jobRequest);
+                _.each(jobRequest.data, function(v){
                     this.$el.append(new JobRequest({model: v}).render().$el);
                 }.bind(this));
             }
@@ -30,6 +32,9 @@ define(function(require) {
             }.bind(this)).fail(function(){
                 this.$el.html("Unable to fetch requests at this time. Check your connection and please try again.");
             }.bind(this));
+        },
+        addPages: function (jobRequest) {
+            this.$el.prepend(new PaginationView(jobRequest.pagination).render().$el);
         }
     });
 });
