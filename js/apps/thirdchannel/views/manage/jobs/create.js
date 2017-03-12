@@ -13,7 +13,6 @@ define(function(require) {
         DateRangeView = require('thirdchannel/views/manage/jobs/dateRange');
 
     var durationOptions = [
-        { name: "Select Duration",  value: "" },
         { name: "1 Hour", value: "60" },
         { name: "2 Hours", value: "120" },
         { name: "3 Hours", value: "180" },
@@ -30,6 +29,7 @@ define(function(require) {
         el: '.job-request-container',
 
         events: {
+            'click .store-add': 'handleStoreAdd',
             'click .recommend_start_time': 'toggleRecommendedTimeFields',
             'click .add-date-range': 'addDateRange',
             'click .submit-job-request': 'handleSubmit',
@@ -73,11 +73,10 @@ define(function(require) {
             data.recommendedStartTime = hasStartTime ? "checked" : "";
             data.recommendedStartTimeFieldsClass = hasStartTime ? "" : "hide";
 
-            console.log(data);
             this.$el.html(this.template(data));
             this.$('.survey_uuid, .duration, .survey_topic_uuids').chosen({disable_search: true, width: "100%"});
             this.$('.timezone').chosen({width: "100%"});
-            this.$('.start_time').timepicker();
+            this.$('.start_time').timepicker({scrollDefault: '08:00'});
             this.renderRanges();
             return this;
         },
@@ -85,7 +84,7 @@ define(function(require) {
         renderStores: function() {
             var $storeList = this.$('.store-list');
             this.stores.each(function(store) {
-                var storeItem = new StoreItem({model: store});
+                var storeItem = new StoreItem({model: store, jobRequestId: this.model.id});
                 $storeList.append(storeItem.render().el);
             }.bind(this));
         },
@@ -115,6 +114,35 @@ define(function(require) {
             var range = new DateRange();
             this.ranges.add(range);
             this.renderRange(range);
+        },
+
+        handleStoreAdd: function(e) {
+            e.preventDefault();
+
+            var ranges = this.ranges
+                .map(function(r) {
+                    return {
+                        start: r.get('start'),
+                        end: r.get('end')
+                    };
+                });
+
+            var data = {
+                id: this.model.id,
+                survey_uuid: this.$('.survey_uuid').val(),
+                duration: this.$('.duration').val(),
+                recommended_start_time: this.$('.recommend_start_time').is(':checked'),
+                start_time: this.$('.start_time').val(),
+                timezone: this.$('.timezone').val(),
+                survey_topic_uuids: this.$('.survey_topic_uuids').val(),
+                notes: this.$('.notes').val(),
+                schedulable_ranges : ranges
+            };
+
+            // save current state
+            window.sessionStorage.setItem('job-request', JSON.stringify(data));
+
+            window.location = '/programs/' + context.programId + '/stores';
         },
 
         handleSubmit: function(e) {
@@ -192,16 +220,23 @@ define(function(require) {
                 data.timezone_offset = tz.offset;
             }
 
+            var id = this.model.id;
+
             if(!errors) {
                 this.model
                     .save(data)
-                    .then(function(response) {
+                    .then(function() {
                         window.sessionStorage.removeItem('selected-stores');
-                        window.location = '/programs/' + context.programId + '/manage/jobs/' + response.id;
+                        window.sessionStorage.removeItem('job-request');
+
+                        // If the user is updating a single job request (not bulk create) we can redirect to the show view
+                        if(id) {
+                            window.location = '/programs/' + context.programId + '/manage/jobs/' + id;
+                        } else {
+                            window.location = '/programs/' + context.programId + '/manage/jobs';
+                        }
                     })
-                    .fail(function(model) {
-                        console.log(model);
-                        // TODO handle errors
+                    .fail(function() {
                         alert('Oops, there was a problem with your request, please try again.');
                     });
             }
@@ -211,6 +246,7 @@ define(function(require) {
             e.preventDefault();
             if(confirm("Are you sure you want to cancel request?")) {
                 window.sessionStorage.removeItem('selected-stores');
+                window.sessionStorage.removeItem('job-request');
                 if(this.model.id) {
                     window.location = '/programs/' + context.programId + '/manage/jobs/' + this.model.id;
                 } else {

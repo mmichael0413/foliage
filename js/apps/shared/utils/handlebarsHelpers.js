@@ -114,10 +114,12 @@ define(function (require) {
     Handlebars.registerHelper('select', function (value, options) {
         var $el = $('<select />').html(options.fn(this));
         if(typeof(value) === "object") {
-            var len = value.length;
-            for(var i = 0; i < len; i++) {
-                var v = value[i];
-                $el.find('[value="' + v + '"]').attr({'selected': 'selected'});
+            if(value) {
+                var len = value.length;
+                for(var i = 0; i < len; i++) {
+                    var v = value[i];
+                    $el.find('[value="' + v + '"]').attr({'selected': 'selected'});
+                }
             }
         } else {
             $el.find('[value="' + value + '"]').attr({'selected': 'selected'});
@@ -320,5 +322,9 @@ define(function (require) {
         line breaks to 3.
       **/
       return summary.replace(/\n\s*\n\s*\n/g, '\n\n');
+    });
+
+    Handlebars.registerHelper('capitalize', function(value) {
+        return value.charAt(0).toUpperCase() + value.slice(1);
     });
 });

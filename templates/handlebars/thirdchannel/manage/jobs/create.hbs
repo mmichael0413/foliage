@@ -3,6 +3,9 @@
         <div class="store-list-container">
             <h4>Store(s)</h4>
             <div class="store-list"></div>
+            {{#unless id}}
+                <a href="#" class="store-add underline">+ Add Store</a>
+            {{/unless}}
         </div>
 
         <div class="form-group">
@@ -10,7 +13,7 @@
             <select class="survey_uuid" name="survey_uuid" required="required">
                 {{#select survey_uuid}}
                     {{#each surveys}}
-                        <option name="survey_uuid" class="survey_uuid" value="{{this.uuid}}">{{this.title}}</option>
+                        <option name="survey_uuid" class="survey_uuid" value="{{this.uuid}}">{{capitalize this.survey_type}}</option>
                     {{/each}}
                 {{/select}}
             </select>
@@ -29,7 +32,7 @@
 
         <div class="form-group">
             <label class="inline-label">
-                <input type="checkbox" class="recommend_start_time" checked="{{recommendedStartTime}}" />
+                <input type="checkbox" class="recommend_start_time" {{recommendedStartTime}} />
                 Recommended Start Time
             </label>
         </div>

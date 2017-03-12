@@ -15,8 +15,14 @@ define(function(require) {
             'click .store-remove-link': 'handleRemove'
         },
 
+        initialize: function(options) {
+            this.jobRequestId = options.jobRequestId;
+        },
+
         render: function() {
-            this.$el.html(this.template(this.model.attributes));
+            var data = this.model.attributes;
+            data.jobRequestId = this.jobRequestId;
+            this.$el.html(this.template(data));
             return this;
         },
 

@@ -1,7 +1,9 @@
 {{#rows}}
 <div class="item pure-g">
     <div class="col-md-1 col-1-3">
-        <input type="checkbox" class="select-store" id="select-store-{{id}}" value="{{id}}" />
+        {{#if can_request_job}}
+            <input type="checkbox" class="select-store" id="select-store-{{id}}" value="{{id}}" />
+        {{/if}}
         <a href="{{links.profile}}">{{name}}</a>
     </div>
     <div class="col-md-1 col-1-3">
