@@ -7,6 +7,7 @@ define(function(require) {
         Chosen = require('chosen'),
         TimePicker = require('timepicker'),
         DateTimePicker = require('dateTimePicker'),
+        Select2 = require('select2'),
         context = require('context'),
         DateRange = require('thirdchannel/models/manage/dateRange'),
         StoreItem = require('thirdchannel/views/manage/jobs/store_item'),
