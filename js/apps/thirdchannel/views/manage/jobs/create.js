@@ -213,11 +213,12 @@ define(function(require) {
 
             if(data.timezone && data.timezone !== "") {
                 // find the offset value...
-                var tz = _.findWhere(this.timezones, function(tz) {
-                    return tz.name == data.timezone;
-                });
+                var tzIndex = _.findIndex(this.timezones, {name: data.timezone});
 
-                data.timezone_offset = tz.offset;
+                if(tzIndex !== -1) {
+                    var selectedTz = this.timezones[tzIndex];
+                    data.timezone_offset = selectedTz.offset;
+                }
             }
 
             var id = this.model.id;
