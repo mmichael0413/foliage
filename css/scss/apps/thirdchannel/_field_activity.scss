@@ -103,7 +103,6 @@ $cornflower: #4684c5;
     margin-right: .25em;
   }
 
-
   .metrics {
     flex-direction: column;
     width: initial;
@@ -198,15 +197,23 @@ $cornflower: #4684c5;
   flex-grow: 1;
   justify-content: space-around;
   border-bottom: 1px solid $palette2;
-}
 
-.merchandising-kpis {
-  display: block;
+  .widget {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: .9em;
+    width: 40%;
+  }
 }
 
 .units-and-capacity {
   border-right: 1px solid $light-blue;
-  width: 40%;
+  width: 60%;
+
+  i.fa {
+    font-size: 5em;
+  }
 
   .kpi {
     border: 0;
