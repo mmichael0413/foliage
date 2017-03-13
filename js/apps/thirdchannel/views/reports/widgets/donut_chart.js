@@ -44,17 +44,25 @@ define(function(require) {
         renderChart: function () {
             if (this.chart === undefined) {
                 var self = this;
+                var element = self.$('.chart.donut-chart')[0];
+
+                if (this.model.config.additionalClasses) {
+                  $(element).parents('.donut').addClass(this.model.config.additionalClasses);
+                }
+
                 this.chart = c3.generate($.extend(true, this.config, {
-                    bindto: self.$('.chart.donut-chart')[0],
+                    bindto: element,
                     tooltip: {
                         format: {
                             value: function (value, ratio, id, index) {
-                                var label = value;
-                                label += ' ' + (self.model.config.count_text ? self.model.config.count_text : 'stores');
-                                if (ratio !== undefined) {
-                                    label = d3.format('.1%')(ratio) + "<br>" + label;
+                                if (!self.model.config.hideTooltip) {
+                                  var label = value;
+                                  label += ' ' + (self.model.config.count_text ? self.model.config.count_text : 'stores');
+                                  if (ratio !== undefined) {
+                                      label = d3.format('.1%')(ratio) + "<br>" + label;
+                                  }
+                                  return label;
                                 }
-                                return label;
                             }
                         }
                     }
@@ -63,7 +71,7 @@ define(function(require) {
                 this.$el.on('mresize', this.resizeChart);
             }
         },
-        
+
         resizeChart: function() {
             if (this.chart !== undefined) {
                 this.chart.resize();
