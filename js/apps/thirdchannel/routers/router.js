@@ -48,7 +48,9 @@ define(function(require){
         FlashView = require('thirdchannel/views/shared/flash'),
         LoginView = require('thirdchannel/views/authentication/login'),
         ScheduledVisitsView = require('thirdchannel/views/scheduled_visits/scheduled_visits'),
-        ContractView = require('thirdchannel/views/legal/contract');
+        JobRequestsView = require('thirdchannel/views/manage/jobs/job_requests/list'),
+        ContractView = require('thirdchannel/views/legal/contract'),
+        ManageJobsMain = require('thirdchannel/views/manage/jobs/main');
 
     var AppRouter = require('shared/routers/contextAwareBaseRouter').extend({
         routes: {
@@ -61,6 +63,8 @@ define(function(require){
             'opportunities/:id': 'viewOpportunity',
             'programs/:program_id/admin/activities/topics(/)' : 'adminActivitiesTopics',
             'programs/:program_id/admin/activities/topics/*path' : 'adminActivitiesTopics',
+            'programs/:program_id/manage/jobs/new': 'createJobRequest',
+            'programs/:program_id/manage/jobs/:id/edit': 'updateJobRequest',
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
@@ -106,6 +110,7 @@ define(function(require){
             'programs/:program_id/exports/sales_stores': 'salesStoresExports',
             'programs/:program_id/exports/sales_stores_audits': 'salesStoresAuditExports',
             'programs/:program_id/visits': 'visits',
+            'programs/:program_id/manage/jobs': 'jobRequests',
 
             'admin/data_clips(/)': 'dataClipsExports',
             'admin/*path' : 'adminView',
@@ -345,10 +350,15 @@ define(function(require){
             new ApplicationView({applicationId: id});
         },
 
-        defaultPath: function(programId) {
-
-
+        createJobRequest: function() {
+            ManageJobsMain.create();
         },
+
+        updateJobRequest: function(programId, id) {
+            ManageJobsMain.update(id);
+        },
+
+        defaultPath: function(programId) { },
 
         notFound: function(){
             // This maybe because we're generating a pdf
@@ -359,6 +369,10 @@ define(function(require){
 
         visits: function(){
             new ScheduledVisitsView({model: window.bootstrap});
+        },
+
+        jobRequests: function () {
+          new JobRequestsView({model: window.bootstrap});
         }
     });
 

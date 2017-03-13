@@ -113,7 +113,17 @@ define(function (require) {
 
     Handlebars.registerHelper('select', function (value, options) {
         var $el = $('<select />').html(options.fn(this));
-        $el.find('[value="' + value + '"]').attr({'selected': 'selected'});
+        if(typeof(value) === "object") {
+            if(value) {
+                var len = value.length;
+                for(var i = 0; i < len; i++) {
+                    var v = value[i];
+                    $el.find('[value="' + v + '"]').attr({'selected': 'selected'});
+                }
+            }
+        } else {
+            $el.find('[value="' + value + '"]').attr({'selected': 'selected'});
+        }
         return $el.html();
     });
 
@@ -312,5 +322,9 @@ define(function (require) {
         line breaks to 3.
       **/
       return summary.replace(/\n\s*\n\s*\n/g, '\n\n');
+    });
+
+    Handlebars.registerHelper('capitalize', function(value) {
+        return value.charAt(0).toUpperCase() + value.slice(1);
     });
 });
