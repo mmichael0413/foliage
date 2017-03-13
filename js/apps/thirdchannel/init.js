@@ -41,8 +41,7 @@ require.config({
         'viewer'      : '../libs/viewer',
         'mresize' : '../libs/bower_components/mresize/mresize',
         'qs' : '../libs/bower_components/ljharb-qs/dist/qs',
-        'slidebars': "../libs/bower_components/slidebars/development/slidebars",
-        'select2': '../libs/bower_components/select2/dist/js/select2'
+        'slidebars': "../libs/bower_components/slidebars/development/slidebars"
     },
     shim: {
         "jquery": {
@@ -136,9 +135,6 @@ require.config({
         },
         'dateTimePicker': {
             deps: ['jquery', 'php-date-formatter', 'jquery-mousewheel']
-        },
-        'select2': {
-            deps: ['jquery']
         }
     }
 });
