@@ -1,0 +1,29 @@
+<div class="units-and-capacity">
+  <div class="kpi">
+    <i class="fa fa-hand-lizard-o"></i>
+    <div class="metrics">
+        <div class="metric">
+          <span class="metric-figure">
+            {{format_number data.unitsMoved.total}}
+          </span>
+          <span class="metric-label">
+            {{data.unitsMoved.label}}
+          </span>
+        </div>
+    </div>
+  </div>
+
+  <div class="kpi">
+    <i class="fa fa-hand-lizard-o"></i>
+    <div class="metrics">
+        <div class="metric">
+          <span class="metric-figure">
+            {{format_number data.caseCapacityDedicated.percentage}}
+          </span>
+          <span class="metric-label">
+            {{data.caseCapacityDedicated.label}}
+          </span>
+        </div>
+    </div>
+  </div>
+</div>
