@@ -5,7 +5,8 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates'),
         TotalAndAverageView = require('thirdchannel/views/reports/field_activity/kpis/total_and_average'),
         TotalView = require('thirdchannel/views/reports/field_activity/kpis/total'),
-        CurrencyAndUnitsView = require('thirdchannel/views/reports/field_activity/kpis/currency_and_units');
+        CurrencyAndUnitsView = require('thirdchannel/views/reports/field_activity/kpis/currency_and_units'),
+        UnitsAndCapacityView = require('thirdchannel/views/reports/field_activity/kpis/units_and_capacity');
 
     return Backbone.View.extend({
       initialize: function(options) {
@@ -22,6 +23,9 @@ define(function(require) {
             break;
           case "CurrencyAndUnits":
             new CurrencyAndUnitsView({model: this.model, el: this.el});
+            break;
+          case "UnitsMovedAndCapacity":
+            new UnitsAndCapacityView({model: this.model, el: this.el});
             break;
           default:
             console.log('KPI view not found: ' + type);

@@ -199,3 +199,17 @@ $cornflower: #4684c5;
   justify-content: space-around;
   border-bottom: 1px solid $palette2;
 }
+
+.merchandising-kpis {
+  display: block;
+}
+
+.units-and-capacity {
+  border-right: 1px solid $light-blue;
+  width: 40%;
+
+  .kpi {
+    border: 0;
+    justify-content: flex-start;
+  }
+}
