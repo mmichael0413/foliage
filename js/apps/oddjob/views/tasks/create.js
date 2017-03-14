@@ -1,6 +1,6 @@
 define(function (require) {
 	var Backbone = require('backbone'),
-		_		= require('underscore'),
+		_ = require('underscore'),
 		Templates = require('handlebarsTemplates'),
 		context = require('context'),
 		ActivityPacketStore = require('oddjob/stores/activityPackets'),
