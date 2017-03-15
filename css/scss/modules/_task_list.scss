@@ -32,21 +32,22 @@
         padding:1em;
     }
   }
+}
 
-  .task-list {
-    .task {
-      button {
-        margin-left: 0.5rem;
-        &.small {
-          margin-left: 0;
-        }
-        @include swb-medium {
-          margin-top: 0;
-        }
-      }
-    }
+.task {
+  cursor: pointer;
+
+  .indicator {
+    float: right;
+    margin-top: 0.25em;
+  }
+
+  &:hover {
+    background-color: $light-gray;
   }
 }
+
+
 .table {
     //text-align: right;
 

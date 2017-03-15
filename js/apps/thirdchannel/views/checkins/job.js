@@ -4,14 +4,8 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-        className: "job pure-g",
-
-        template: HandlebarsTemplates["thirdchannel/checkins/activity"],
 
         render: function() {
-            this.$el.html(this.template());
-            this.$('> .main').html(HandlebarsTemplates['thirdchannel/checkins/job'](this.model));
-
             var taskListView = new TaskList({
                 model:{
                     job: this.model.job,
@@ -21,7 +15,7 @@ define(function(require) {
                 }
             });
 
-            this.$('> .subsection').html(taskListView.render().el);
+            this.$el.append(taskListView.render().el);
 
             return this;
         }

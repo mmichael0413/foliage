@@ -1,103 +1,32 @@
-
+<div class="header">
+    Visit Activity - {{job.name}}
+    <div class="subtle-instruction pull-right">* Required</div>
+</div>
 {{#each job.required_tasks}}
-    <div class="task pure-g">
-        <div class="col-4-5">
-            {{name}}{{#if category_name}} - {{category_name}}{{/if}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}
-            {{^contains uuid ../incomplete_tasks}}
+<div class="body task">
 
-                <form accept-charset="UTF-8" action="{{form_url}}" method="post" class="inline">
-                    <input id="store_uuid" name="store_uuid" type="hidden" value="{{../../store}}">
-                    <input id="survey_uuid" name="survey_uuid" type="hidden" value="{{surveyUUID}}">
-                    <input id="task_uuid" name="task_uuid" type="hidden" value="{{uuid}}">
-                    <input id="job_uuid" name="job_uuid" type="hidden" value="{{../../job.uuid}}">
-                    <input id="category_id" name="category_id" type="hidden" value="{{category_id}}">
-                    <input id="packet_uuid" name="packet_uuid" type="hidden" value="{{../packet_uuid}}"/>
-                    <input name="authenticity_token" value="{{../../auth_token}}" type="hidden">
-                    <button class="link light small underline">Edit</button>
-                </form>
-
-            {{/contains}}
-        </div>
-        <form accept-charset="UTF-8" action="{{form_url}}" method="post" class="checkin-action col-1-5 right-align">
-            <input id="store_uuid" name="store_uuid" type="hidden" value="{{../store}}">
-            <input id="survey_uuid" name="survey_uuid" type="hidden" value="{{surveyUUID}}">
-            <input id="task_uuid" name="task_uuid" type="hidden" value="{{uuid}}">
-            <input id="job_uuid" name="job_uuid" type="hidden" value="{{../job.uuid}}">
-            <input id="category_id" name="category_id" type="hidden" value="{{category_id}}">
-            <input id="packet_uuid" name="packet_uuid" type="hidden" value="{{packet_uuid}}"/>
-            <input name="authenticity_token" value="{{../auth_token}}" type="hidden">
-            {{#contains uuid ../incomplete_tasks}}
-                <button class="checkin-form-btn btn primary" name="commit">
-
-                {{#if submission}}
-                    {{#if ../packet_uuid}}
-                        <i class="ic ic_playlist"></i>
-                    {{else}}
-                        <i class="ic ic_start"></i>
-                    {{/if}}
-
-                    <span>{{submission}}</span>
-                {{else}}
-                    {{#if ../packet_uuid}}
-                        <i class="ic ic_playlist"></i>
-                    {{else}}
-                        <i class="ic ic_start"></i>
-                    {{/if}}
-
-                    <span>Start</span>
-                </button>
-                {{/if}}
-            {{else}}
-                <button class="btn light">
-                    <i class="ic_check"></i>
-                    <span>{{submission}} </span>
-                </button>
-            {{/contains}}
-        </form>
+    <div class="indicator">
+        <i class="ic ic_right"></i>
     </div>
+
+    {{#if_eq submission 'complete'}}
+        <i class="light-blue ic ic_check"></i>
+    {{else}}
+        <i class="red ic ic_feed-alerts"></i>
+    {{/if_eq}}
+
+    {{name}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}
+
+    <form accept-charset="UTF-8" action="{{form_url}}" method="post" class="checkin-action pull-right">
+        <input id="authenticity_token" name="authenticity_token" value="{{../auth_token}}" type="hidden">
+        <input id="job_uuid" name="job_uuid" type="hidden" value="{{../job.uuid}}">
+        <input id="task_uuid" name="task_uuid" type="hidden" value="{{uuid}}">
+        <input id="survey_uuid" name="survey_uuid" type="hidden" value="{{survey_uuid}}">
+        <input id="topic_survey_id" name="topic_survey_id" type="hidden" value="{{topic_survey_id}}">
+        <input id="packet_uuid" name="packet_uuid" type="hidden" value="{{packet_uuid}}"/>
+    </form>
+</div>
+<div class="divider"></div>
 {{/each}}
 
-{{#if job.grouped_tasks.length}}
-    <form accept-charset="UTF-8" action="{{job.form_url}}" method="post" class="task grouped pure-g">
-        <input name="store_uuid" type="hidden" value="{{store}}">
-        <input name="job_uuid" type="hidden" value="{{job.uuid}}">
-        <input name="survey_uuid" type="hidden">
-        <input name="task_uuid" type="hidden">
-        <input name="category_id" type="hidden">
-        <input name="packet_uuid" type="hidden">
-        <input name="authenticity_token" value="{{auth_token}}" type="hidden">
-        <div class="col-1-1">
-            <label>Optional Activities:</label>
-        </div>
-
-        <div class="col-4-5">
-            <select name="selectedTask" data-placeholder="Choose a task to complete">
-                <optgroup>
-                    <option value="">Select</option>
-                </optgroup>
-                {{#each job.grouped_tasks}}
-                    <optgroup label="{{name}}">
-                        {{#each tasks}}
-                            <option data-survey="{{surveyUUID}}" data-packet="{{packet_uuid}}" data-task="{{uuid}}" data-category="{{category_id}}" data-path="{{form_url}}"">
-                                {{name}}{{#if category_name}} - {{category_name}}{{/if}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}
-                            </option>
-                        {{/each}}
-                    </optgroup>
-                {{/each}}
-            </select>
-            <div class="error hide">Please select a task to complete.</div>
-        </div>
-        <div class="col-1-5 right-align">
-            <button class="btn primary" name="commit">
-                {{#if submission}}
-                    <i class="ic ic_start"></i>
-                    <span>{{submission}}</span>
-                {{else}}
-                    <i class="ic_start"></i>
-                    <span>Start</span>
-                {{/if}}
-            </button>
-        </div>
-    </form>
-{{/if}}
 
