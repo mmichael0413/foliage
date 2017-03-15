@@ -224,6 +224,10 @@ define(function(require) {
             var id = this.model.id;
 
             if(!errors) {
+                this.$(".submit-job-request").prop('disabled', true);
+                this.$(".submit-job-request i").removeClass('ic ic_check').addClass("fa fa-spin fa-spinner");
+                this.$(".cancel-job-request").addClass('hide');
+
                 this.model
                     .save(data)
                     .then(function() {
@@ -239,7 +243,10 @@ define(function(require) {
                     })
                     .fail(function() {
                         alert('Oops, there was a problem with your request, please try again.');
-                    });
+                        this.$(".submit-job-request").prop('disabled', false);
+                        this.$(".submit-job-request i").removeClass("fa fa-spin fa-spinner").addClass('ic ic_check');
+                        this.$(".cancel-job-request").removeClass('hide');
+                    }.bind(this));
             }
         },
 
