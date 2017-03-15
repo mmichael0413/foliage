@@ -1,7 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone'),
-        TaskList = require('thirdchannel/views/checkins/task_list'),
-        HandlebarsTemplates = require('handlebarsTemplates');
+        TaskList = require('thirdchannel/views/checkins/task_list');
 
     return Backbone.View.extend({
 
@@ -19,6 +18,5 @@ define(function(require) {
 
             return this;
         }
-
     });
 });

@@ -6,9 +6,9 @@ define(function(require){
 
     return Backbone.View.extend({
         className: 'task-list',
-        loadingHTML: HandlebarsTemplates['thirdchannel/loading_icon'],
         template: HandlebarsTemplates['thirdchannel/checkins/tasks'],
         events: {
+            'click .task' : 'submit',
             'click .task.grouped button' : 'submit',
             'submit form' : 'disableStart',
             "change select": "updateInputs"
@@ -16,7 +16,7 @@ define(function(require){
         render: function() {
             this.$el.html(this.template(this.model));
             this.$('select').chosen({disable_search: false, width: "100%"});
-            this.$('.chosen-search input[type=text]').attr('placeholder', 'Search for task');
+            this.$('.chosen-search input[type=text]').attr('placeholder', 'Search for activity');
             this.valid = false;
             this.$formError = this.$('form .error');
             this.$groupedTaskForm = this.$('form.task.grouped');
@@ -25,13 +25,7 @@ define(function(require){
         submit: function(e) {
             e.stopPropagation();
             e.preventDefault();
-
-            if (this.valid) {
-                this.hideError();
-                this.$('form.task.grouped').submit();
-            } else {
-                this.showError(e);
-            }
+            this.$(e.currentTarget).find('form').submit();
         },
         disableStart: function(e) {
             $(e.currentTarget).find(".btn.primary").prop( "disabled", true );
