@@ -4,6 +4,7 @@ define(function(require) {
         Backbone = require('backbone'),
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
+        typeahead = require('typeahead'),
         Chosen = require('chosen'),
         TimePicker = require('timepicker'),
         DateTimePicker = require('dateTimePicker'),
