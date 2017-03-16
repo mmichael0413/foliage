@@ -5,8 +5,6 @@ define(function(require) {
   return Backbone.Model.extend({
 
     iconMapping: {
-      "Visits Completed": "fa fa-hand-lizard-o",
-      "Stores Visited": "fa fa-hand-lizard-o",
       "States Visited": "ic ic_states",
       "ThirdChannel Agents": "ic ic_person agent",
       "In-Store Support/FMRs": "ic ic_person fmr"
@@ -24,6 +22,9 @@ define(function(require) {
       var model = _.clone(this.get('fieldActivities'));
       model.metrics = _.map(model.metrics, function(metric) {
         metric.icon = this.iconMapping[metric.label];
+        metric.reverse = true;
+        metric.url = "#"; // TODO: Generate URLs
+
         return metric;
       }.bind(this));
 

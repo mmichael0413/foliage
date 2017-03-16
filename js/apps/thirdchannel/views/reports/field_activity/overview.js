@@ -4,6 +4,8 @@ define(function(require) {
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         OverviewModel = require('thirdchannel/models/reports/field_activity/overview');
+        KPIView = require('thirdchannel/views/reports/field_activity/KPI');
+
 
     return Backbone.View.extend({
       el: ".field-activities-overview",
@@ -20,7 +22,10 @@ define(function(require) {
 
       render: function() {
         this.$el.html(this.template(this.model.get('fieldActivities')));
-        return this;
+
+        _.each(this.model.get('fieldActivities').metrics, function(metric) {
+          new KPIView({model: metric, el: '.overview-kpis'});
+        });
       }
     });
 });
