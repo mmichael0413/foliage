@@ -9,8 +9,8 @@ define(function(require){
         MainLayout = require('shared/views/layout/main'),
         AdminActivitiesTopicsView = require('thirdchannel/views/admin/activities/topics'),
         ActivitiesMain = require('thirdchannel/views/activities/main'),
-        CheckinsView = require('thirdchannel/views/checkins/checkin'),
-        CheckinInProgressView = require('thirdchannel/views/checkins/in_progress'),
+        CheckinsListView = require('thirdchannel/views/checkins/list'),
+        CheckinsEditView = require('thirdchannel/views/checkins/edit'),
         TeamsMain = require('thirdchannel/views/teams/main'),
         StoresMain = require('thirdchannel/views/stores/main'),
         StoreProfileMain = require('thirdchannel/views/store_profile/main'),
@@ -73,8 +73,8 @@ define(function(require){
             'programs/:program_id/profiles/:user_id/admin': 'programProfileAdmin',
             'programs/:program_id/profiles/:user_id/edit': 'programProfileEdit',
             'programs/:program_id/profiles/:user_id/security': 'programProfileSecurity',
-            'programs/:program_id/checkins(/)' : 'checkinList',
-            'programs/:program_id/checkins/:id(/)' : 'inProgress',
+            'programs/:program_id/checkins(/)' : 'checkinsList',
+            'programs/:program_id/checkins/:id(/)' : 'checkinsEdit',
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
             'programs/:program_id/stores/:store_id(/)': 'storeProfile',
@@ -167,8 +167,8 @@ define(function(require){
             new FlashView();
         },
 
-        checkinList: function (){
-            CheckinsView.init();
+        checkinsList: function (){
+            CheckinsListView.init();
         },
 
         fixturesSummary: function() {
@@ -185,8 +185,8 @@ define(function(require){
 
         problemsList: function() { FixturesMain.problemsList(); },
 
-        inProgress: function (){
-            new CheckinInProgressView({ model: window.bootstrap });
+        checkinsEdit: function (){
+            new CheckinsEditView({model: window.bootstrap}).render();
         },
 
         teams: function () {

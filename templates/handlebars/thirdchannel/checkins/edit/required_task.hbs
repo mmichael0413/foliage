@@ -1,0 +1,31 @@
+<div class="body task">
+
+    <div>
+        <span class="status">
+        {{#if_eq submission.status 'complete'}}
+            <i class="green ic ic_check"></i>
+        {{else}}
+            <i class="ic ic_blank"></i>
+        {{/if_eq}}
+        </span>
+
+        {{name}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}
+
+        <form accept-charset="UTF-8" action="{{submission.url}}" method="post" class="checkin-action pull-right">
+            <input id="authenticity_token" name="authenticity_token" value="{{auth_token}}" type="hidden">
+            <input id="job_uuid" name="job_uuid" type="hidden" value="{{job_uuid}}">
+            <input id="task_uuid" name="task_uuid" type="hidden" value="{{uuid}}">
+            <input id="survey_uuid" name="survey_uuid" type="hidden" value="{{survey_uuid}}">
+            <input id="topic_survey_id" name="topic_survey_id" type="hidden" value="{{topic_survey_id}}">
+            <input id="packet_uuid" name="packet_uuid" type="hidden" value="{{packet_uuid}}"/>
+        </form>
+    </div>
+
+    <div class="indicator">
+        <i class="ic ic_right"></i>
+    </div>
+
+</div>
+<div class="divider"></div>
+
+

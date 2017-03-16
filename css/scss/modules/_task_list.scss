@@ -1,49 +1,45 @@
-#checkin > .store {
-  border-top: 1px solid $border-color;
-  &:first-child {
-    border-top: none;
-  }
-}
-.store {
-  //border-bottom: 1px solid $border-color;
-  margin-top: 1em;
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  &:last-child {
-    border-bottom: none;
-  }
-
-  .pure-g:first-child {
-      text-transform: none;
-  }
-
+.stores {
   .job-list {
-    margin: 0 1em 1em 1em;
-    @include swb-small {
-      margin: 0 0 1em 0;
-    }
-    border: 1px solid $border-color;
-    border-radius: $border-radius-base;
+    padding: 1em;
+    border-bottom: 1px solid $border-color;
+    background-color: $main-background;
 
-    .pure-g:first-child {
-        padding:1em;
+    .store-job {
+      background-color: white;
+      border-top: 1px solid $border-color;
+      border-left: 1px solid $border-color;
+      border-right: 1px solid $border-color;
+
+      h3 {
+        margin: 0;
+      }
     }
   }
 }
 
-.task {
-  cursor: pointer;
 
-  .indicator {
-    float: right;
-    margin-top: 0.25em;
+.store, .task, .store-job {
+  cursor: pointer;
+  @include flexbox;
+  @include align-items;
+
+  &.body{
+    > div {
+      margin-bottom: 0;
+    }
   }
 
-  .status {
-    margin-right: 0.5em;
+  > div {
+    display: inline-block;
+
+    &:first-child {
+      width: calc(100% - 3em);
+    }
+
+    &:last-child {
+      text-align: center;
+      width: 3em;
+    }
   }
 
   &:hover {
@@ -51,18 +47,10 @@
   }
 }
 
+.task {
 
-.table {
-    //text-align: right;
-
-  .pure-g.complete-checkin-tasks {
-    border-top: none;
+  .status {
+    margin-right: 0.5em;
   }
-}
 
-.checkin-form-btn.wide {
-  @include swb-small {
-    width: 100%;
-    height: 3em;
-  }
 }

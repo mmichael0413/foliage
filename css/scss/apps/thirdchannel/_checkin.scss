@@ -10,6 +10,14 @@
 .store {
   padding: 0.5em 0;
   margin: 0;
+
+  .address {
+    font-size: 0.9em;
+  }
+}
+
+.no-stores {
+  text-align: center;
 }
 
 .visit {
