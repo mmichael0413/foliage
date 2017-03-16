@@ -1,7 +1,7 @@
 define(function(require) {
     var Backbone = require('backbone'),
         Templates = require('handlebarsTemplates'),
-        RequiredTaskView = require('thirdchannel/views/checkins/edit/required_task');
+        TaskView = require('thirdchannel/views/checkins/edit/task');
 
     return Backbone.View.extend({
         className: 'card',
@@ -10,7 +10,7 @@ define(function(require) {
         render: function() {
             this.$el.append(this.template(this.model));
             this.model.required_tasks.forEach(function(task) {
-                this.$el.append(new RequiredTaskView({model: task}).render().$el);
+                this.$el.append(new TaskView({model: task}).render().$el);
             }, this);
             return this;
         }

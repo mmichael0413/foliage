@@ -17,7 +17,6 @@
   }
 }
 
-
 .store, .task, .store-job {
   cursor: pointer;
   @include flexbox;
@@ -49,8 +48,30 @@
 
 .task {
 
-  .status {
-    margin-right: 0.5em;
+  .details {
+    display: inline-block;
+
+    > div{
+      &:first-child {
+        text-transform: uppercase;
+        color: $medium-gray;
+        font-size: 0.8em;
+      }
+      &:last-child {
+        font-style: italic;
+        color: $medium-gray;
+        font-size: 0.8em;
+      }
+    }
   }
 
+  .requirements {
+    display: inline-block;
+    width: 10em;
+
+    > div{
+      color: $medium-gray;
+      font-size: 0.8em;
+    }
+  }
 }

@@ -4,7 +4,7 @@ define(function(require){
 
     return Backbone.View.extend({
 
-        template: Templates['thirdchannel/checkins/edit/required_task'],
+        template: Templates['thirdchannel/checkins/edit/task'],
 
         events: {
             'click' : 'submit'

@@ -8,11 +8,16 @@
        </div>
     </div>
 
+    <form accept-charset="UTF-8" method="post">
+        <input name="program_store_id" type="hidden" value="{{program_store_id}}">
+        <input name="date" type="hidden" value="{{date}}">
+        <input name="authenticity_token" value="{{auth_token}}" type="hidden">
+    </form>
+
     <div class="indicator">
         <button class="btn primary">
             <i class="ic ic_start"></i>
         </button>
     </div>
-
 </div>
 <div class="divider"></div>

@@ -15,7 +15,7 @@ define(function(require){
         },
 
         startJob: function () {
-            alert('test');
+            this.$('form').submit();
         }
     });
 });
