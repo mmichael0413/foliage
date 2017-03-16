@@ -9,10 +9,10 @@ define(function(require) {
       el: ".field-activities-overview",
       template: HandlebarsTemplates['thirdchannel/reports/field_activity/overview'],
 
-      initialize: function() {
+      initialize: function(options) {
         var self = this;
 
-        this.model = new OverviewModel(/* Probably pass program params */);
+        this.model = new OverviewModel(options);
 
         this.model.fetch().done(function(response) {
           this.model.mapIconToMetric();
