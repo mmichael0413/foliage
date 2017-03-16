@@ -43,8 +43,13 @@ define(function(require) {
           case "SalesAndUnitsPercentage":
             new SalesAndUnitsPercentageView({model: this.model, el: this.el});
             break;
+          case "TotalWithBreakdown":
+            // types:
+            // donut, bar, icon
+            // new TotalWithBreakdownView({model: this.model; el: this.el; breakdownType: "donut"});
+            break;
           default:
-            console.log('KPI view not found: ' + type);
+            console.warn('KPI view not found: ' + type);
             break;
         }
       },
