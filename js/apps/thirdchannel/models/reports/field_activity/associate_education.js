@@ -8,9 +8,7 @@ define(function(require) {
     },
 
     url: function () {
-      // return '/programs/' + this.options.programId + "/reports/" + this.options.surveyType + "/" + this.options.typeId + "/question/" + this.options.questionId + "?format=json";
-
-      return '/programs/Merchandising/reports/field_activities/associate_education';
+      return '/programs/' + this.options.programId + '/reports/field_activities/associate_education';
     }
 
   });

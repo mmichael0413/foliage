@@ -17,9 +17,7 @@ define(function(require) {
     },
 
     url: function () {
-      // return '/programs/' + this.options.programId + "/reports/" + this.options.surveyType + "/" + this.options.typeId + "/question/" + this.options.questionId + "?format=json";
-
-      return '/programs/Merchandising/reports/field_activities';
+      return '/programs/' + this.options.programId + '/reports/field_activities';
     },
 
     mapIconToMetric: function() {

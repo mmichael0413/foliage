@@ -8,6 +8,7 @@ define(function(require) {
         TotalView = require('thirdchannel/views/reports/field_activity/kpis/total'),
         CurrencyAndUnitsView = require('thirdchannel/views/reports/field_activity/kpis/currency_and_units'),
         UnitsAndCapacityView = require('thirdchannel/views/reports/field_activity/kpis/units_and_capacity'),
+        SalesAndUnitsPercentageView = require('thirdchannel/views/reports/field_activity/kpis/sales_and_unit_percentage'),
         WidgetView = require('thirdchannel/views/reports/index/widget');
 
     return Backbone.View.extend({
@@ -38,6 +39,9 @@ define(function(require) {
             var donutChartModel = this._getDonutChartModel(this.model);
             this.$el.append(new WidgetView(donutChartModel).render().$el);
             context.trigger("report post render");
+            break;
+          case "SalesAndUnitsPercentage":
+            new SalesAndUnitsPercentageView({model: this.model, el: this.el});
             break;
           default:
             console.log('KPI view not found: ' + type);

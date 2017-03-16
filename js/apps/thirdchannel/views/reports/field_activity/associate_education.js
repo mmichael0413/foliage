@@ -12,8 +12,8 @@ define(function(require) {
       el: '.associate-education',
       template: HandlebarsTemplates['thirdchannel/reports/field_activity/associate_education'],
 
-      initialize: function() {
-        this.model = new AssociateEducationModel(/* Probably pass program params */);
+      initialize: function(options) {
+        this.model = new AssociateEducationModel(options);
 
         this.model.fetch().done(function(response) {
           this.render();

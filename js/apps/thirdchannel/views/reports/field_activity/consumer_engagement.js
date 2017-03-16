@@ -11,8 +11,8 @@ define(function(require) {
       el: ".consumer-engagement",
       template: HandlebarsTemplates['thirdchannel/reports/field_activity/consumer_engagement'],
 
-      initialize: function() {
-        this.model = new ConsumerEngagementModel(/* Probably pass program params */);
+      initialize: function(options) {
+        this.model = new ConsumerEngagementModel(options);
 
         this.model.fetch().done(function(response) {
           this.render();

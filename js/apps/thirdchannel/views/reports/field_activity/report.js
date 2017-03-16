@@ -11,13 +11,13 @@ define(function(require) {
         el: '.report',
         template: HandlebarsTemplates['thirdchannel/reports/field_activity/main'],
 
-        initialize: function() {
+        initialize: function(options) {
           this.$el.html(this.template());
 
-          new OverviewView();
-          new AssociateEducationView();
-          new ConsumerEngagementView();
-          new MerchandisingView();
+          new OverviewView(options);
+          new AssociateEducationView(options);
+          new ConsumerEngagementView(options);
+          new MerchandisingView(options);
         }
     });
 });

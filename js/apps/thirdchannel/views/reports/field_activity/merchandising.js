@@ -11,8 +11,8 @@ define(function(require) {
       el: ".merchandising",
       template: HandlebarsTemplates['thirdchannel/reports/field_activity/merchandising'],
 
-      initialize: function() {
-        this.model = new MerchandisingModel(/* Probably pass program params */);
+      initialize: function(options) {
+        this.model = new MerchandisingModel(options);
 
         this.model.fetch().done(function(response) {
           this.render();
