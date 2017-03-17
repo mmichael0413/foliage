@@ -1,0 +1,14 @@
+<div class="section field-activity-section">
+  <h2>{{label}}</h2>
+  <div class="metrics">
+    {{#each metrics}}
+      <div class="metric">
+        <a class="metric-figure link" href="#">{{this.data.total}}</a>
+        <span class="metric-label">{{this.label}}</span>
+        <div class="metric-infograph">
+          <i class="{{this.icon}}"></i>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

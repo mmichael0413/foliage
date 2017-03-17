@@ -4,11 +4,11 @@
 
 @font-face {
   font-family: "tc-icons";
-  src: url("../../shared/fonts/tc-icons_b7e691b9a4b396946511c1c8e5cb804b.eot");
-  src: url("../../shared/fonts/tc-icons_b7e691b9a4b396946511c1c8e5cb804b.eot?#iefix") format("embedded-opentype"),
-       url("../../shared/fonts/tc-icons_b7e691b9a4b396946511c1c8e5cb804b.woff") format("woff"),
-       url("../../shared/fonts/tc-icons_b7e691b9a4b396946511c1c8e5cb804b.ttf") format("truetype"),
-       url("../../shared/fonts/tc-icons_b7e691b9a4b396946511c1c8e5cb804b.svg#tc-icons") format("svg");
+  src: url("./tc-icons_b7e691b9a4b396946511c1c8e5cb804b.eot");
+  src: url("./tc-icons_b7e691b9a4b396946511c1c8e5cb804b.eot?#iefix") format("embedded-opentype"),
+       url("./tc-icons_b7e691b9a4b396946511c1c8e5cb804b.woff") format("woff"),
+       url("./tc-icons_b7e691b9a4b396946511c1c8e5cb804b.ttf") format("truetype"),
+       url("./tc-icons_b7e691b9a4b396946511c1c8e5cb804b.svg#tc-icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -16,7 +16,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: "tc-icons";
-    src: url("../../shared/fonts/tc-icons_b7e691b9a4b396946511c1c8e5cb804b.svg#tc-icons") format("svg");
+    src: url("./tc-icons_b7e691b9a4b396946511c1c8e5cb804b.svg#tc-icons") format("svg");
   }
 }
 

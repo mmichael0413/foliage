@@ -1,0 +1,311 @@
+$cornflower: #4684c5;
+
+%spaced-row {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+%even-height-row {
+  display: flex;
+  align-items: stretch;
+}
+
+%metrics-link {
+  color: $cornflower;
+  text-align: center;
+  text-decoration: underline;
+}
+
+%row-header {
+  align-self: center;
+  font-weight: 800;
+}
+
+.metrics {
+  @extend %spaced-row;
+}
+
+.metric {
+  align-self: center;
+  flex-grow: 1;
+  flex-basis: 20%;
+  line-height: normal;
+  padding: 1em;
+  text-align: center;
+
+  .ic.metric-icon,
+  .fa.metric-icon {
+    color: $slate;
+    font-size: 1.75em;
+    margin-right: .75em;
+  }
+
+  .ic_person.agent {
+    color: $palette10;
+  }
+
+  .ic_person.fmr {
+    color: $palette2;
+  }
+
+  &-infograph {
+    padding: 3em 0 1em;
+
+    .ic, .fa {
+      font-size: 7em;
+
+      &.ic_states {
+        color: $palette10;
+        font-size: 10em;
+        line-height: 0;
+      }
+    }
+  }
+
+  &-figure {
+    font-size: 2em;
+
+    &.link {
+      @extend %metrics-link;
+    }
+
+    &-empty {
+      color: $slate;
+      line-height: 2.7em;
+      text-decoration: none;
+    }
+  }
+
+  .metric-label {
+    color: $slate;
+    display: block;
+    font-size: .9em;
+    margin-top: .25em;
+  }
+}
+
+.activity-reports {
+  padding: 1em;
+
+  &-toggle {
+    background: none;
+    border: none;
+    color: $palette2;
+    margin-right: .25em;
+  }
+
+  &-rollup {
+    @extend %even-height-row;
+    padding-bottom: 1em;
+  }
+
+  &-rollup-header {
+    @extend %row-header;
+    align-self: flex-end;
+    font-size: .9em;
+    padding-bottom: 1em;
+    text-transform: uppercase;
+  }
+
+  &-surveys-row {
+    @extend %even-height-row;
+    border-top: 1px solid $light-blue;
+    padding: 1.5em 0;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    &-header {
+      @extend %row-header;
+      align-self: center;
+
+      a {
+        color: $cornflower;
+        font-weight: 400;
+        text-decoration: underline;
+      }
+    }
+
+    &-value {
+      @extend %metrics-link;
+
+      &-empty {
+        color: $slate;
+        line-height: 2.7em;
+        padding: 1em 2em;
+        text-decoration: none;
+        text-align: center;
+      }
+    }
+  }
+}
+
+
+.kpi-container {
+  display: flex;
+  flex-basis: 50%;
+  flex-grow: 1;
+  justify-content: space-around;
+  border-bottom: 1px solid $palette2;
+
+  .kpi {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 50%;
+    justify-content: center;
+    margin: 1.5em 0 1.75em;
+    padding: 0 4em;
+
+    &:not(:first-child) {
+      border-left: 1px solid $light-blue;
+    }
+
+    i.fa {
+      font-size: 7em;
+      margin-right: .25em;
+    }
+
+    .metrics {
+      flex-direction: column;
+      width: initial;
+
+      .metric {
+        align-self: flex-start;
+        text-align: left;
+
+        &-figure,
+        &-label {
+          text-align: left;
+        }
+      }
+    }
+
+    &.column {
+      flex-direction: column;
+      justify-content: flex-start;
+
+      i.fa {
+        font-size: 5em;
+      }
+
+      .metric {
+        align-self: center;
+        text-align: center;
+        padding: 1.5em .5em;
+      }
+    }
+  }
+
+  .widget {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: .9em;
+    width: 40%;
+  }
+}
+
+.units-and-capacity {
+  width: 75%;
+
+  i.fa {
+    font-size: 5em;
+  }
+
+  .kpi {
+    border: 0;
+    justify-content: flex-start;
+  }
+}
+
+.sales-and-units {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2em;
+}
+
+.kpi.gauge {
+  align-items: flex-end;
+  margin-bottom: 1em;
+  flex-grow: 0;
+  flex-basis: 20%;
+
+  &:not(:first-child) {
+    border-left: 0;
+  }
+
+  .gauge-container {
+    margin-right: 1em;
+
+    .c3-gauge-value {
+      display: none;
+    }
+  }
+
+  .metrics {
+    width: 13em;
+  }
+}
+
+.chart.gauge-chart.c3:after {
+  width: 11.5em;
+  height: 1px;
+  content: "";
+  position: absolute;
+  background-color: $light-blue;
+  bottom: .25em;
+  left: -.5em;
+}
+
+.kpi-image {
+  background-repeat: no-repeat;
+  height: 7.2em;
+
+  &.capacity {
+    background-image: url('../images/g_productsshelf.svg');
+    margin-right: .5em;
+    width: 7em;
+  }
+  &.units {
+    background-image: url('../images/g_boxes.svg');
+    margin-right: .5em;
+    width: 10em;
+  }
+  &.customers-engaged {
+    background-image: url('../images/g_handshake.svg');
+    width: 7em;
+  }
+  &.numberAttendees {
+    background-image: url('../images/g_cliptotals.svg');
+    margin-right: .5em;
+    width: 7em;
+  }
+  &.storeAssocatesEducated {
+    background-image: url('../images/g_educated.svg');
+    margin-right: .5em;
+    width: 7em;
+  }
+  &.targetSalesGoals {
+    background-image: url('../images/g_targetdollar.svg');
+    margin-right: .5em;
+    width: 7em;
+  }
+  &.actualSales {
+    background-image: url('../images/g_money.svg');
+    margin-right: .5em;
+    width: 7em;
+  }
+}
+
+.kpi-units {
+  background-image: url('../images/g_boxes.svg');
+  background-repeat: no-repeat;
+  width: 10em;
+  height: 7.2em;
+}

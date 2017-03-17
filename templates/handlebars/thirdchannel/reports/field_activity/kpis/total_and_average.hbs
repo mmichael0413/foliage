@@ -1,0 +1,16 @@
+<div class="kpi">
+  <div class="kpi-image {{name}}"></div>
+
+  <div class="metrics">
+    {{#each data}}
+      <div class="metric">
+        <span class="metric-figure">
+          {{format_number this.value}}
+        </span>
+        <span class="metric-label">
+          {{this.label}}
+        </span>
+      </div>
+    {{/each}}
+  </div>
+</div>

@@ -19,7 +19,8 @@ define(function(require) {
         LineChartView = require('thirdchannel/views/reports/widgets/line_chart'),
         HeatmapView = require('thirdchannel/views/reports/widgets/heatmap'),
         TotalsAveragesTableView = require('thirdchannel/views/reports/widgets/totals_averages_table'),
-        LegendView = require('thirdchannel/views/reports/widgets/legend');
+        LegendView = require('thirdchannel/views/reports/widgets/legend'),
+        GaugeView = require('thirdchannel/views/reports/widgets/gauge_chart');
 
     return Backbone.View.extend({
         tagName: "span",
@@ -68,6 +69,8 @@ define(function(require) {
                 widget = this.createTotalsAveragesTable();
             } else if (this.model.display_type == 19) {
                 widget = this.createLegend();
+            } else if (this.model.display_type == 20) {
+                widget = this.createGauge();
             }
 
             this.setElement(widget);
@@ -123,6 +126,9 @@ define(function(require) {
         },
         createLegend: function() {
             return new LegendView(this.model).render().$el;
+        },
+        createGauge: function() {
+            return new GaugeView(this.model).render().$el;
         }
     });
 });
