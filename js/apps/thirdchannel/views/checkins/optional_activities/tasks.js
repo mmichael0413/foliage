@@ -9,12 +9,13 @@ define(function(require) {
         template: Templates['thirdchannel/checkins/optional_activities/tasks'],
 
         events: {
-            'click button' : 'submit'
+            'click .complete-task-selection button' : 'submit'
         },
 
         render: function() {
-            this.$el.empty();
-            this.$el.html(this.template());
+            this.$activities = this.$('.activities-list');
+            this.$activities.empty();
+            this.$activities.html(this.template());
             this.$list = this.$('.card');
             this.collection.forEach(function(task) {
                 this.$list.append(new TaskView({model: task}).render().$el);
@@ -22,8 +23,12 @@ define(function(require) {
             return this;
         },
 
-        submit: function () {
-            alert('test');
+        submit: function (e) {
+            e.preventDefault();
+            this.$(".complete-task-selection button").prop('disabled', true);
+            this.$(".complete-task-selection button i").removeClass('ic_add').addClass("ic-spin ic_processing");
+            this.$el.submit();
         }
+
     });
 });

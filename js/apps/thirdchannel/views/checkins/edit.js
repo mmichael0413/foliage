@@ -3,14 +3,26 @@ define(function(require){
         JobView = require('thirdchannel/views/checkins/edit/job');
 
     return Backbone.View.extend({
-        el: "#jobs",
+        el: ".visit-activities",
+
+        events: {
+            "click .checkin-form-btn": "submit"
+        },
 
         render: function() {
-            this.$el.empty();
+            this.$jobs = this.$('#jobs');
+            this.$jobs.empty();
             this.model.jobs.forEach(function(job) {
-                this.$el.append(new JobView({model: job}).render().$el);
+                this.$jobs.append(new JobView({model: job}).render().$el);
             }, this);
             return this;
+        },
+
+        submit: function (e) {
+            e.preventDefault();
+            this.$(".checkin-form-btn").prop('disabled', true);
+            this.$(".checkin-form-btn i").removeClass('ic_check').addClass("ic-spin ic_processing");
+            this.$('.complete-checkin-tasks form').submit();
         }
     });
 });

@@ -14,8 +14,11 @@ define(function(require){
             return this;
         },
 
-        startJob: function () {
-            this.$('form').submit();
+        startJob: function (e) {
+            e.preventDefault();
+            this.$(".checkin-form-btn").prop('disabled', true);
+            this.$(".checkin-form-btn i").removeClass('ic ic_check').addClass("ic ic-spin ic_processing");
+            this.$form.submit();
         }
     });
 });

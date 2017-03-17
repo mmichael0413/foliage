@@ -123,7 +123,7 @@ define(function(require) {
             e.preventDefault();
             if (this.valid()) {
                 this.$(".checkin-form-btn").prop('disabled', true);
-                this.$(".checkin-form-btn i").removeClass('ic ic_check').addClass("fa fa-spin fa-spinner");
+                this.$(".checkin-form-btn i").removeClass('ic ic_check').addClass("ic ic-spin ic_processing");
                 this.$form.submit();
             } else {
                 $('.content-holder').animate({
