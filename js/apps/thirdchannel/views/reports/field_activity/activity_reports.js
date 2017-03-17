@@ -20,12 +20,10 @@ define(function(require) {
       },
 
       initialize: function() {
-        var self = this;
-
         this.model.rollups = _.map(this.model.rollups, function(rollup) {
-          rollup.icon = self.iconMapping[rollup.label];
+          rollup.icon = this.iconMapping[rollup.label];
           return rollup;
-        });
+        }.bind(this));
 
         this.render();
       },
