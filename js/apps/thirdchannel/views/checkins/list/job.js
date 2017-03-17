@@ -16,9 +16,10 @@ define(function(require){
 
         startJob: function (e) {
             e.preventDefault();
-            this.$(".checkin-form-btn").prop('disabled', true);
-            this.$(".checkin-form-btn i").removeClass('ic ic_check').addClass("ic ic-spin ic_processing");
-            this.$form.submit();
+            if (!this.inprogress) {
+                this.inprogress = true;
+                this.$('form').submit();
+            }
         }
     });
 });
