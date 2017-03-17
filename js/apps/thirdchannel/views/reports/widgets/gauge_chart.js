@@ -52,10 +52,8 @@ define(function(require) {
                       width: 25
                     },
                     color: {
-                        pattern: ['#2FB44A', '#2FB44A', '#2FB44A', '#2FB44A'], // the three color levels for the percentage values.
+                        pattern: ['#2FB44A', '#2FB44A', '#2FB44A', '#2FB44A'],
                         threshold: {
-                //            unit: 'value', // percentage is default
-                //            max: 200, // 100 is default
                             values: [30, 60, 90, 100]
                         }
                     },
