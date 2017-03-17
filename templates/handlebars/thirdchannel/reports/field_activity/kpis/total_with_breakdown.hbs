@@ -1,0 +1,25 @@
+<div class="kpi column reverse">
+
+  {{#if_eq chartType "icon"}}
+    <div>
+      {{#each data.breakdown}}
+        {{this.percentage.value}}% {{this.percentage.label}} ({{this.subtotal.value}} {{this.subtotal.label}})
+      {{/each}}
+    </div>
+    <div class="metric-infograph">
+      <i class="{{chartIcon}}"></i>
+    </div>
+  {{else}}
+    <div class="chart {{name}}"></div>
+  {{/if_eq}}
+
+  <div class="metrics">
+      <div class="metric">
+        <a class="metric-figure link" href="#">{{data.total}}</a>
+
+        <span class="metric-label">
+          {{label}}
+        </span>
+      </div>
+  </div>
+</div>

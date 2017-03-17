@@ -5,6 +5,7 @@ define(function(require) {
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         TotalAndAverageView = require('thirdchannel/views/reports/field_activity/kpis/total_and_average'),
+        TotalWithBreakdownView = require('thirdchannel/views/reports/field_activity/kpis/total_with_breakdown'),
         TotalView = require('thirdchannel/views/reports/field_activity/kpis/total'),
         CurrencyAndUnitsView = require('thirdchannel/views/reports/field_activity/kpis/currency_and_units'),
         UnitsAndCapacityView = require('thirdchannel/views/reports/field_activity/kpis/units_and_capacity'),
@@ -43,8 +44,11 @@ define(function(require) {
           case "SalesAndUnitsPercentage":
             new SalesAndUnitsPercentageView({model: this.model, el: this.el});
             break;
+          case "TotalWithBreakdown":
+            new TotalWithBreakdownView({model: this.model, el: this.el});
+            break;
           default:
-            console.log('KPI view not found: ' + type);
+            console.warn('KPI view not found: ' + type);
             break;
         }
       },

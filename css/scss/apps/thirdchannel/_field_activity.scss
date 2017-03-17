@@ -187,6 +187,10 @@ $cornflower: #4684c5;
       flex-direction: column;
       justify-content: flex-start;
 
+      &.reverse {
+        flex-direction: column-reverse;
+      }
+
       i.fa {
         font-size: 5em;
       }
@@ -308,4 +312,32 @@ $cornflower: #4684c5;
   background-repeat: no-repeat;
   width: 10em;
   height: 7.2em;
+}
+
+.field-activity-section {
+  .overview-kpis {
+    align-items: flex-start;
+    border-bottom: 0;
+  }
+
+ .kpi {
+   padding: 0;
+
+   &:not(:first-child) {
+     border: 0;
+   }
+ }
+
+ .chart.visitsCompleted {
+   width: 100%;
+
+   .widget {
+     padding: 0;
+     width: 100%;
+   }
+
+   .legend {
+     width: 70%;
+   }
+ }
 }

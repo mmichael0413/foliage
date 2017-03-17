@@ -5,11 +5,27 @@ define(function(require) {
   return Backbone.Model.extend({
 
     iconMapping: {
-      "Visits Completed": "fa fa-hand-lizard-o",
-      "Stores Visited": "fa fa-hand-lizard-o",
-      "States Visited": "ic ic_states",
-      "ThirdChannel Agents": "ic ic_person agent",
-      "In-Store Support/FMRs": "ic ic_person fmr"
+      "States Visited": "ic ic_states"
+    },
+
+    chartMapping: {
+      "Visits Completed": {
+        type: "donut",
+        icon: "icon.ref"
+      },
+      "Stores Visited": {
+        type: "bar",
+        direction: "vertical",
+        icon: "icon.ref"
+      },
+      "ThirdChannel Agents": {
+        type: "icon",
+        icon: "ic ic_person agent"
+      },
+      "In-Store Support/FMRs": {
+        type: "icon",
+        icon: "ic ic_person fmr"
+      }
     },
 
     initialize: function (options) {
@@ -23,7 +39,17 @@ define(function(require) {
     mapIconToMetric: function() {
       var model = _.clone(this.get('fieldActivities'));
       model.metrics = _.map(model.metrics, function(metric) {
+
+      if (this.iconMapping[metric.label]) {
         metric.icon = this.iconMapping[metric.label];
+      } else {
+        metric.chartType = this.chartMapping[metric.label].type;
+        metric.chartIcon = this.chartMapping[metric.label].icon;
+      }
+
+        metric.reverse = true;
+        metric.url = "#"; // TODO: Generate URLs
+
         return metric;
       }.bind(this));
 
