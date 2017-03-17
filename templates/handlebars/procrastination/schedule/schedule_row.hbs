@@ -2,9 +2,9 @@
     <p class="bold">{{storeName}}</p>
     <p>{{address}}</p>
     <p>{{jobDetails.name}}</p>
-    {{#if isScheduleUnlocked}}
+    {{#if canUnschedule}}
         <div><a href="#" class="unschedule">Unschedule Visit</a></div>
-    {{/if}
+    {{/if}}
     {{#if canUnassign}}
         <div><a href="#" class='unassign'>Unassign Visit</a></div>
         <div><a href="#" class='remove'>Remove this store from this job</a></div>

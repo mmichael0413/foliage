@@ -13,6 +13,7 @@ define(function (require) {
         initialize: function(options) {
             this.model = options.model;
             this.showCompleted = options.showCompleted;
+            this.isScheduleUnlocked = options.isScheduleUnlocked;
         },
 
         events: {
@@ -26,10 +27,13 @@ define(function (require) {
         render: function() {
             var dateCompleted = this.model.get('dateCompleted') || null;
 
+            var canUnschedule = this.isScheduleUnlocked && !dateCompleted;
+
             var attrs = {
                 address: this.model.get('address'),
                 city: this.model.get('city'),
                 customerStoreUUID: this.model.get('programStoreUUID'),
+                canUnschedule: canUnschedule,
                 dateCompleted: dateCompleted,
                 dateScheduled: this.model.get('dateScheduled'),
                 state: this.model.get('state'),
