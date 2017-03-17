@@ -20,13 +20,12 @@ define(function(require) {
 
       render: function() {
         this.$el.append(this.template(this.model));
-        debugger
+
         if (this.model.chartType === "donut") {
           var donutChartModel = this._generateDonutChartModel(this.model);
           this.$el.find('.chart.' + this.model.name).append(new WidgetView(donutChartModel).render().$el);
         } else if (this.model.chartType === "bar") {
           this.$el.find('.chart.' + this.model.name).html('<div>boop! needs a chart!</div>');
-          console.log("do the bar")
         }
         return this;
       },
