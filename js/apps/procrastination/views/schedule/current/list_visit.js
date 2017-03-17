@@ -61,7 +61,15 @@ define(function (require) {
             var dateScheduled = moment.utc(this.model.get('dateScheduled')).format("l");
 
             if(confirm("Are you sure you want to unschedule this visit to " + this.model.get('storeName') + " on " + dateScheduled)) {
-                this.model.destroy({wait:true, data: {id: this.model.id, unschedule: true, remove: false, aggregateId: context.aggregateId}});
+                this.model.destroy({
+                    wait:true,
+                    data: {
+                        id: this.model.id,
+                        unschedule: true,
+                        remove: false,
+                        aggregateId: context.aggregateId
+                    }
+                });
             }
         },
 
