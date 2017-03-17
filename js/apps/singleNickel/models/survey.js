@@ -18,7 +18,9 @@ define(function(require){
             survey_type: {
                 store_visit: "Checkin",
                 store_profile: "Store Intel",
-                special_project: "Special Project"
+                special_project: "Special Project",
+                demo: 'Demo',
+                event: 'Event'
             },
             show_images: {
                 "true": "Yes",
