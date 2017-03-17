@@ -4,7 +4,7 @@ define(function(require) {
         Backbone = require('backbone'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        AssociateEducationModel = require('thirdchannel/models/reports/field_Activity/associate_education'),
+        AssociateEducationModel = require('thirdchannel/models/reports/field_activity/associate_education'),
         ActivityReportsView = require('thirdchannel/views/reports/field_activity/activity_reports'),
         KPIView = require('thirdchannel/views/reports/field_activity/KPI');
 
