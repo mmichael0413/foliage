@@ -3,7 +3,7 @@ define(function(require) {
         Backbone = require('backbone'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        OverviewModel = require('thirdchannel/models/reports/field_Activity/overview');
+        OverviewModel = require('thirdchannel/models/reports/field_activity/overview');
 
     return Backbone.View.extend({
       el: ".field-activities-overview",
