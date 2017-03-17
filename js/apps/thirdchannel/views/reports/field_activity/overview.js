@@ -10,8 +10,6 @@ define(function(require) {
       template: HandlebarsTemplates['thirdchannel/reports/field_activity/overview'],
 
       initialize: function(options) {
-        var self = this;
-
         this.model = new OverviewModel(options);
 
         this.model.fetch().done(function(response) {
