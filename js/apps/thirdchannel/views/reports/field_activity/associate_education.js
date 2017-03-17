@@ -21,9 +21,10 @@ define(function(require) {
       },
 
       render: function() {
-        this.$el.html(this.template(this.model.attributes));
-        new ActivityReportsView({model: this.model.get('activityReport'), el: '.associate-education-activity-reports'});
-        _.each(this.model.get('metrics'), function(metric) {
+        var fieldActivities = this.model.get('fieldActivities');
+        this.$el.html(this.template(fieldActivities));
+        new ActivityReportsView({model: fieldActivities.sections.activityReport, el: '.associate-education-activity-reports'});
+        _.each(fieldActivities.metrics, function(metric) {
           new KPIView({model: metric, el: '.associate-education-kpis'});
         });
         return this;

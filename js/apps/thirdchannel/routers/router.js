@@ -25,6 +25,7 @@ define(function(require){
         DashboardsSpecialProjectStoresMain = require('thirdchannel/views/dashboards/special_projects/stores/main'),
         FixturesMain = require('thirdchannel/views/fixtures/main'),
         ReportMain = require('thirdchannel/views/reports/index/main'),
+        FieldActivitiesMain = require('thirdchannel/views/reports/field_activity/index/main'),
         CheckinReportView = require('thirdchannel/views/reports/checkins/show/report'),
         ReportInfoMain = require('thirdchannel/views/reports/info/show/main'),
         ContentView = require('thirdchannel/views/global/content_view'),
@@ -97,6 +98,7 @@ define(function(require){
             'programs/:program_id/fixture_tracking/problems(/)': 'problemsList',
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
+            'programs/:program_id/reports/field_activities': 'fieldActivities',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
             'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
             'programs/:program_id/legal/new(/)': 'signContract',
@@ -288,6 +290,10 @@ define(function(require){
 
         reports: function(programId){
             ReportMain.init({programId: programId});
+        },
+
+        fieldActivities: function(programId){
+            FieldActivitiesMain.init({programId: programId});
         },
 
         submission: function(programId, checkinId, submissionId) {
