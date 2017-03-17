@@ -1,5 +1,4 @@
 <div class="body task">
-
     <div class="details">
         <div>{{type}}</div>
         <div>{{name}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}</div>
@@ -14,15 +13,6 @@
     {{/if}}
 {{/if}}
 
-    <form accept-charset="UTF-8" action="{{submission.url}}" method="post" class="checkin-action pull-right">
-        <input id="authenticity_token" name="authenticity_token" value="{{auth_token}}" type="hidden">
-        <input id="job_uuid" name="job_uuid" type="hidden" value="{{job_uuid}}">
-        <input id="task_uuid" name="task_uuid" type="hidden" value="{{uuid}}">
-        <input id="survey_uuid" name="survey_uuid" type="hidden" value="{{survey_uuid}}">
-        <input id="topic_survey_id" name="topic_survey_id" type="hidden" value="{{topic_survey_id}}">
-        <input id="packet_uuid" name="packet_uuid" type="hidden" value="{{packet_uuid}}"/>
-    </form>
-
     <div class="indicator">
     {{#if_eq submission.status 'complete'}}
         <button class="btn light">
@@ -35,7 +25,6 @@
     {{/if_eq}}
 
     </div>
-
 </div>
 <div class="divider"></div>
 

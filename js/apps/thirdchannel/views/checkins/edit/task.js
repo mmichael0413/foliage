@@ -7,7 +7,7 @@ define(function(require){
         template: Templates['thirdchannel/checkins/edit/task'],
 
         events: {
-            'click' : 'submit'
+            'click' : 'show'
         },
 
         render: function() {
@@ -15,8 +15,8 @@ define(function(require){
             return this;
         },
 
-        submit: function(e) {
-            this.$('form').submit();
+        show: function(e) {
+            window.location.href = this.model.submission.url;
         }
     });
 });
