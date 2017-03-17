@@ -42,8 +42,10 @@ define(function(require) {
 
             createSchedule: function(customerSlug, programSlug, personId, aggregateId) {
                 new SetSchedule({aggregateId: aggregateId});
-                var model = new CostEstimate({id: aggregateId});
-                new CostEstimateView({model: model}).fetch();
+                if(programSlug !== 'vega'){
+                    var model = new CostEstimate({id: aggregateId});
+                    new CostEstimateView({model: model}).fetch();
+                }
             },
 
             editSchedule: function() {
@@ -52,8 +54,10 @@ define(function(require) {
 
             showSchedule: function(customerSlug, programSlug, personId, aggregateId) {
                 new ListSchedule({aggregateId: aggregateId, showCompleted: true}).fetch();
-                var model = new CostEstimate({id: aggregateId});
-                new CostEstimateView({model: model}).fetch();
+                if(programSlug !== 'vega'){
+                    var model = new CostEstimate({id: aggregateId});
+                    new CostEstimateView({model: model}).fetch();
+                }
             },
 
             listSchedulingCycles: function() {
