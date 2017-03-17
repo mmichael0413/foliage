@@ -21,13 +21,11 @@ define(function(require) {
     },
 
     mapIconToMetric: function() {
-      var self = this;
-
       var model = _.clone(this.get('fieldActivities'));
       model.metrics = _.map(model.metrics, function(metric) {
-        metric.icon = self.iconMapping[metric.label];
+        metric.icon = this.iconMapping[metric.label];
         return metric;
-      });
+      }.bind(this));
 
       this.set('fieldActivities', model);
     }
