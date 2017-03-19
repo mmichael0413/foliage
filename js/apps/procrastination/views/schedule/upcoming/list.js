@@ -62,7 +62,7 @@ define(function (require) {
                     // Called when an unscheduled visit from the sidebar is dropped onto the calendar
                     self.updateSchedule(event.start, event.id, function(){ self.calendar.fullCalendar('removeEvents', event.id); });
                 },
-                eventDrop: function(event, delta, revertFunc, jsEvent, ui, view){
+                eventDrop: function(event, delta, revertFunc, jsEvent, ui, view) {
                     // Called when a visit already on the calendar gets moved to another day
                     self.updateSchedule(event.start, event.id, revertFunc);
                 },

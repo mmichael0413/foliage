@@ -1,0 +1,17 @@
+.select2-container--default {
+  @import "single";
+  @import "multiple";
+
+  width: 100% !important;
+
+  .select2-results__option {
+    &[aria-selected=true] {
+      display: none;
+    }
+  }
+
+  .select2-results__option--highlighted[aria-selected] {
+    background-color: $filter-selected-bg;
+    color: $filter-selected-color;
+  }
+}
