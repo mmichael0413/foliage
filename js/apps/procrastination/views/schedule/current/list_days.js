@@ -23,10 +23,10 @@ define(function (require) {
             return this;
         },
 
-        attachVisits: function(){
+        attachVisits: function() {
             var self = this;
             _.each(this.visits, function(visit){
-                var visits = new ScheduledVisits({model: visit, showCompleted: self.showCompleted});
+                var visits = new ScheduledVisits({model: visit, showCompleted: self.showCompleted, isScheduleUnlocked: context.isScheduleUnlocked});
                 self.$('.body.main').append(visits.render().el);
             });
 

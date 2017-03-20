@@ -13,9 +13,11 @@ define(function (require) {
         initialize: function(options) {
             this.model = options.model;
             this.showCompleted = options.showCompleted;
+            this.isScheduleUnlocked = options.isScheduleUnlocked;
         },
 
         events: {
+            'click .unschedule': 'unschedule',
             'click .unassign' : 'unassign',
             'click .remove' : 'remove',
             'click .expand' : 'expand',
@@ -25,10 +27,13 @@ define(function (require) {
         render: function() {
             var dateCompleted = this.model.get('dateCompleted') || null;
 
+            var canUnschedule = this.isScheduleUnlocked && !dateCompleted;
+
             var attrs = {
                 address: this.model.get('address'),
                 city: this.model.get('city'),
                 customerStoreUUID: this.model.get('programStoreUUID'),
+                canUnschedule: canUnschedule,
                 dateCompleted: dateCompleted,
                 dateScheduled: this.model.get('dateScheduled'),
                 state: this.model.get('state'),
@@ -47,6 +52,25 @@ define(function (require) {
             this.$el.html(this.template(attrs));
 
             return this;
+        },
+
+        unschedule: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            var dateScheduled = moment.utc(this.model.get('dateScheduled')).format("l");
+
+            if(confirm("Are you sure you want to unschedule this visit to " + this.model.get('storeName') + " on " + dateScheduled)) {
+                this.model.destroy({
+                    wait:true,
+                    data: {
+                        id: this.model.id,
+                        unschedule: true,
+                        remove: false,
+                        aggregateId: context.aggregateId
+                    }
+                });
+            }
         },
 
         unassign: function(e) {
@@ -73,8 +97,6 @@ define(function (require) {
 
             this.$('.additional-content').show('fast');
             $(e.target).addClass('collapse').removeClass('expand');
-
-
         },
 
         collapse: function(e) {
