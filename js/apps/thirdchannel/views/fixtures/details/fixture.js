@@ -8,6 +8,8 @@ define(function (require) {
     return Backbone.View.extend({
         className: 'fixture-instance-tile section',
 
+        template: HandlebarsTemplates["thirdchannel/fixtures/fixture_detail_tile"],
+
         events: {
             'click .details-toggle.ic_down': "showDetails",
             'click .problems': "toggleDetails",
@@ -159,7 +161,7 @@ define(function (require) {
                 data.previewImageUrl = data.imageErrorUrl;
             }
             data.storeUrl = this._buildStoreUrl(data);
-            this.$el.html(HandlebarsTemplates["thirdchannel/fixtures/fixture_detail_tile"](data));
+            this.$el.html(this.template(data));
 
             this.viewer = this.$('.activity-photos').viewer({
                 inline: false,
