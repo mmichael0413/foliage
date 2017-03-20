@@ -21,7 +21,7 @@ define(function(require) {
       },
 
       render: function() {
-        this.$el.html(this.template(this.model.get('fieldActivities')));
+        this.$el.html(this.template(this.model.attributes));
 
         _.each(this.model.get('fieldActivities').metrics, function(metric) {
           new KPIView({model: metric, el: '.overview-kpis'});

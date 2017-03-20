@@ -10,8 +10,6 @@ define(function(require) {
     return {
         init: function (options) {
 
-            var showFieldActivitesReport = true;
-
             $(".actions .export").each(function() {
                 var data = {baseUrl: "/programs/" + options.programId + "/reports/export"};
                 var model = new ReportExportModel(_.extend(data, options));
@@ -19,11 +17,7 @@ define(function(require) {
             });
             Filter.init();
 
-            if (showFieldActivitesReport) {
-              new FieldActivitiesReportView(options).render();
-            } else {
-              new ReportView(options).render();
-            }
+            new ReportView(options).render();
         }
     };
 });
