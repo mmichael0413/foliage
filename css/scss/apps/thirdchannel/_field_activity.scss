@@ -290,7 +290,7 @@ $cornflower: #4684c5;
     margin-right: .5em;
     width: 7em;
   }
-  &.storeAssocatesEducated {
+  &.storeAssociatesEducated {
     background-image: url('../images/g_educated.svg');
     margin-right: .5em;
     width: 7em;
@@ -331,13 +331,25 @@ $cornflower: #4684c5;
  .chart.visitsCompleted {
    width: 100%;
 
-   .widget {
-     padding: 0;
-     width: 100%;
-   }
+  .widget {
+    padding: 0;
+    width: 100%;
+  }
 
-   .legend {
-     width: 70%;
-   }
+  .legend {
+    width: 70%;
+  }
  }
+}
+
+.chart.storesVisited {
+  width: 100%;
+
+  .legend {
+    width: 75%;
+  }
+}
+
+.widget.vbar {
+  width: 100%;
 }
