@@ -23,6 +23,7 @@
 
 <div class="details pure-g">
     <div class="col-3-12 checks">
+        {{#if hasVisibility}}
         <div class="property-group">
             <span class="bold">Visibility</span>
             {{#visibility}}
@@ -33,6 +34,7 @@
                 <p class="list-item no-properties">No Visibility Given</p>    
             {{/visibility}}
         </div>
+        {{/if}}
 
         <div class="property-group">
             <span class="bold">Location</span>

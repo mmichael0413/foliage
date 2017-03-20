@@ -161,6 +161,7 @@ define(function (require) {
                 data.previewImageUrl = data.imageErrorUrl;
             }
             data.storeUrl = this._buildStoreUrl(data);
+            data.hasVisibility = data.visibility && data.visibility !== "";
             this.$el.html(this.template(data));
 
             this.viewer = this.$('.activity-photos').viewer({
