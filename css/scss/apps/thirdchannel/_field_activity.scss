@@ -294,7 +294,7 @@ $cornflower: #4684c5;
     margin-right: .5em;
     width: 7em;
   }
-  &.storeAssocatesEducated {
+  &.storeAssociatesEducated {
     background-image: url('../images/g_educated.svg');
     margin-right: .5em;
     width: 7em;
@@ -334,7 +334,7 @@ $cornflower: #4684c5;
 
   .chart.visitsCompleted {
     width: 70%;
-    // 
+    //
     // content: "\f159";
     // font-family: "tc-icons";
     // position: absolute;
@@ -367,4 +367,16 @@ $cornflower: #4684c5;
       width: 70%;
     }
   }
+}
+
+.chart.storesVisited {
+  width: 100%;
+
+  .legend {
+    width: 75%;
+  }
+}
+
+.widget.vbar {
+  width: 100%;
 }

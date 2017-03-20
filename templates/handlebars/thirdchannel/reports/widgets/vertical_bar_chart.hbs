@@ -1,0 +1,20 @@
+<div class="widget vbar {{config.widget_class}}">
+    {{#if title}}
+      <p>{{{title}}}</p>
+    {{/if}}
+
+    <div class="vertical-bar pure-g column">
+      <div class="col-md-1 col-3-5">
+        <div class="chart vertical-bar"></div>
+      </div>
+
+      <div class="col-md-1 col-1-2 legend">
+          {{#each results.legend.items}}
+              <div class="legend-item" data-chart-id="{{label}}">
+                  <span class="legend-box" style="background-color: {{color}}"></span>
+                  {{label}}
+              </div>
+          {{/each}}
+      </div>
+    </div>
+</div>
