@@ -22,6 +22,27 @@ $cornflower: #4684c5;
   font-weight: 800;
 }
 
+.header-index {
+  border-bottom: 1px solid $light-blue;
+  display: flex;
+  justify-content: space-between;
+  padding: .25em .5em;
+  margin: 0 .25em;
+
+  h2, div {
+    display: inline-block;
+  }
+
+  h2 {
+    text-transform: uppercase;
+  }
+
+  a {
+    color: $cornflower;
+    text-decoration: underline;
+  }
+}
+
 .metrics {
   @extend %spaced-row;
 }
