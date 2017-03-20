@@ -23,16 +23,18 @@
 
 <div class="details pure-g">
     <div class="col-3-12 checks">
+        {{#if hasVisibility}}
         <div class="property-group">
-            <span class="bold">Visiblity</span>
-                {{#visibility}}
-                    <ul class="list">
-                        <li class="list-item"><i class="ic fa fa-check checked"></i>{{this}}</li>
-                    </ul>
-                {{else}}
+            <span class="bold">Visibility</span>
+            {{#visibility}}
+                <ul class="list">
+                    <li class="list-item"><i class="ic fa fa-check checked"></i>{{this}}</li>
+                </ul>
+            {{else}}
                 <p class="list-item no-properties">No Visibility Given</p>    
             {{/visibility}}
         </div>
+        {{/if}}
 
         <div class="property-group">
             <span class="bold">Location</span>
