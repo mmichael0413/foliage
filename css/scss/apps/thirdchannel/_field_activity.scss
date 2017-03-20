@@ -60,6 +60,10 @@ $cornflower: #4684c5;
         font-size: 10em;
         line-height: 0;
       }
+
+      &.ic_person.agent {
+        color: $palette10;
+      }
     }
   }
 
@@ -328,16 +332,39 @@ $cornflower: #4684c5;
    }
  }
 
- .chart.visitsCompleted {
-   width: 100%;
+  .chart.visitsCompleted {
+    width: 70%;
+    // 
+    // content: "\f159";
+    // font-family: "tc-icons";
+    // position: absolute;
+    // left: 40%;
+    // top: 40%;
+    // font-size: 2.5em;
 
-   .widget {
-     padding: 0;
-     width: 100%;
-   }
+    .widget {
+      padding: 0;
+      position: relative;
+      width: 100%;
 
-   .legend {
-     width: 70%;
-   }
- }
+      .col-md-1.col-1-2 {
+        width: 100%;
+      }
+
+      .donut-chart {
+        min-width: 150px;
+      }
+
+      .ic {
+        position: absolute;
+        top: 34%;
+        left: 41%;
+        font-size: 2.75em;
+      }
+    }
+
+    .legend {
+      width: 70%;
+    }
+  }
 }
