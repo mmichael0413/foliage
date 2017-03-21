@@ -1,11 +1,11 @@
 define(function(require) {
     var View = require('thirdchannel/views/checkins/optional_activities/tasks'),
-        Filter = require('thirdchannel/views/filter/main');
+        Search = require('thirdchannel/views/shared/search');
 
     return {
         init: function () {
             new View({collection: window.bootstrap}).render();
-            Filter.init();
+            new Search().render();
         }
     };
 });

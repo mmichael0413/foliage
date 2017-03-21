@@ -1,5 +1,6 @@
 define(function(require){
-    var Backbone = require('backbone'),
+    var context = require('context'),
+        Backbone = require('backbone'),
         Templates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
@@ -11,10 +12,15 @@ define(function(require){
             'click' : 'select'
         },
 
+        initialize: function () {
+            this.listenTo(context, 'list:search:update', this.search);
+        },
+
         render: function() {
             this.$input = this.inputTemplate(this.model);
             this.$el.html(this.template(this.model));
             this.$task = this.$('.task');
+            this.metadata = this.$task.data('search').toLowerCase();
             this.$icon = this.$('> div i');
             this.$inputs = this.$('.inputs');
             return this;
@@ -28,6 +34,14 @@ define(function(require){
                 this.$inputs.append(this.$input);
             } else {
                 this.$inputs.empty();
+            }
+        },
+
+        search: function(result) {
+            if (this.metadata.indexOf(result.toLowerCase()) >= 0) {
+                this.$el.removeClass('hide');
+            } else {
+                this.$el.addClass('hide');
             }
         }
     });

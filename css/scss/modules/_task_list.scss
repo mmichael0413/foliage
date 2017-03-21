@@ -10,8 +10,8 @@
       border-left: 1px solid $border-color;
       border-right: 1px solid $border-color;
 
-      h3 {
-        margin: 0;
+      &:hover {
+        background-color: $light-gray;
       }
     }
   }

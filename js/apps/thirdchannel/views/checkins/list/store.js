@@ -15,11 +15,12 @@ define(function(require) {
         render: function() {
             this.$el.html(this.template(this.model.toJSON()));
             this.$jobs = this.$('.job-list');
+            this.$card = this.$('.job-list .card');
             this.$store = this.$('.store');
             this.$link = this.$('.view-activities');
             this.$indicator = this.$('.indicator .ic');
             this.model.get('jobs').forEach(function(job) {
-                this.$jobs.append(new JobView({model: job}).render().el);
+                this.$card.append(new JobView({model: job}).render().el);
             }, this);
 
             return this;
