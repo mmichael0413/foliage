@@ -10,9 +10,11 @@ define(function(require) {
 
         render: function() {
             this.$el.append(this.template(this.model));
-            this.model.required_tasks.forEach(function(task) {
-                this.$el.append(new TaskView({model: task}).render().$el);
-            }, this);
+            if (this.model.required_tasks) {
+                this.model.required_tasks.forEach(function(task) {
+                    this.$el.append(new TaskView({model: task}).render().$el);
+                }, this);
+            }
             this.$el.append(this.actionsTemplate(this.model.actions));
             return this;
         }
