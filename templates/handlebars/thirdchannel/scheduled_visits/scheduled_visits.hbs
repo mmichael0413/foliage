@@ -1,8 +1,30 @@
-<div class="pure-g header">
-	<h3 class="col-2-12 scheduled-visit-cell">Store</h3>
-	<h3 class="col-2-12 scheduled-visit-cell">Job</h3>
-	<h3 class="col-2-12 scheduled-visit-cell">Scheduled</h3>
-	<h3 class="col-2-12 scheduled-visit-cell">Completed</h3>
-	<h3 class="col-2-12 scheduled-visit-cell">Agent</h3>
-	<h3 class="col-2-12 scheduled-visit-cell">{{supervisor_role}}</h3>
-</div>
+<table>
+<thead>
+    <tr>
+        <th>
+            <h3 class="scheduled-visit-cell">Store</h3>
+        </th>
+        <th>
+            <h3 class="scheduled-visit-cell">Job</h3>
+        </th>
+        <th>
+            <h3 class="scheduled-visit-cell">Scheduled</h3>
+        </th>
+        <th>
+            <h3 class="scheduled-visit-cell">Completed</h3>
+        </th>
+        <th>
+            <h3 class="scheduled-visit-cell">Agent</h3>
+        </th>
+        <th>
+            <h3 class="scheduled-visit-cell">{{supervisor_role}}</h3>
+        </th>
+        {{#if show_requestors}}
+            <th>
+                <h3 class="scheduled-visit-cell">Requested By</h3>
+            </th>
+        {{/if}}
+    </tr>
+</thead>
+<tbody></tbody>
+</table>
