@@ -72,8 +72,10 @@
         @include transform(-$standard-collapse-difference);
       }
       .content-holder {
-        padding-left: $collapsed-nav-width;
-        @include transition(padding .3s);
+        @include swa-small {
+          padding-left: $collapsed-nav-width;
+          @include transition(padding .3s);
+        }
       }
     }
   }
