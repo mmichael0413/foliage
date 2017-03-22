@@ -1,5 +1,5 @@
 define(function(require) {
-    var View = require('thirdchannel/views/checkins/optional_activities/tasks'),
+    var View = require('thirdchannel/views/checkins/activities/add/tasks'),
         Search = require('thirdchannel/views/shared/search');
 
     return {

@@ -7,11 +7,12 @@ define(function(require){
         namespacer = require('shared/utils/namespacer'),
         FilterParams = require('shared/models/filterParams'),
         MainLayout = require('shared/views/layout/main'),
+        ActionsDropDown = require('thirdchannel/views/shared/actions'),
         AdminActivitiesTopicsView = require('thirdchannel/views/admin/activities/topics'),
         ActivitiesMain = require('thirdchannel/views/activities/main'),
         CheckinsListView = require('thirdchannel/views/checkins/list'),
         CheckinsEditView = require('thirdchannel/views/checkins/edit'),
-        OptionalActivitiesView = require('thirdchannel/views/checkins/optional_activities/list'),
+        AddActivitiesView = require('thirdchannel/views/checkins/activities/add'),
         TeamsMain = require('thirdchannel/views/teams/main'),
         StoresMain = require('thirdchannel/views/stores/main'),
         StoreProfileMain = require('thirdchannel/views/store_profile/main'),
@@ -76,7 +77,7 @@ define(function(require){
             'programs/:program_id/profiles/:user_id/security': 'programProfileSecurity',
             'programs/:program_id/checkins(/)' : 'checkinsList',
             'programs/:program_id/checkins/:id(/)' : 'checkinsEdit',
-            'programs/:program_id/checkins/:checkin_id/optional_activities/:id(/)' : 'optionalActivities',
+            'programs/:program_id/checkins/:checkin_id/activities/add/:id(/)' : 'addActivities',
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
             'programs/:program_id/stores/:store_id(/)': 'storeProfile',
@@ -188,11 +189,12 @@ define(function(require){
         problemsList: function() { FixturesMain.problemsList(); },
 
         checkinsEdit: function (){
+            new ActionsDropDown().render();
             new CheckinsEditView({model: window.bootstrap}).render();
         },
 
-        optionalActivities: function (){
-            OptionalActivitiesView.init();
+        addActivities: function (){
+            AddActivitiesView.init();
         },
 
         teams: function () {

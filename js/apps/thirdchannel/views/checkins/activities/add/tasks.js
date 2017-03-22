@@ -1,15 +1,15 @@
 define(function(require) {
     var Backbone = require('backbone'),
         Templates = require('handlebarsTemplates'),
-        TaskView = require('thirdchannel/views/checkins/optional_activities/task');
+        TaskView = require('thirdchannel/views/checkins/activities/add/task');
 
     return Backbone.View.extend({
         el: '.optional-activities',
 
-        template: Templates['thirdchannel/checkins/optional_activities/tasks'],
+        template: Templates['thirdchannel/checkins/activities/add/tasks'],
 
         events: {
-            'click .complete-task-selection button' : 'submit'
+            'click button' : 'submit'
         },
 
         render: function() {
@@ -25,8 +25,8 @@ define(function(require) {
 
         submit: function (e) {
             e.preventDefault();
-            this.$(".complete-task-selection button").prop('disabled', true);
-            this.$(".complete-task-selection button i").removeClass('ic_add').addClass("ic-spin ic_processing");
+            this.$("button").prop('disabled', true);
+            this.$("button i").removeClass('ic_add').addClass("ic-spin ic_processing");
             this.$el.submit();
         }
 

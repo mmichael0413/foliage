@@ -1,8 +1,15 @@
-<div class="body task">
+<div class="body task right-col">
     <div class="details">
+
         <div>{{type}}</div>
+    {{#if topics}}
+        <div>{{topics}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}</div>
+        <div>{{name}}</div>
+    {{else}}
         <div>{{name}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}</div>
-        <div>{{topics}}</div>
+        <div></div>
+    {{/if}}
+
     </div>
 
 {{#if false}}
@@ -20,7 +27,7 @@
         </button>
     {{else}}
         <button class="btn primary">
-            <i class="ic ic_start"></i>
+            <i class="ic ic_start"></i> <span class="hidden-xs">Start Activity</span>
         </button>
     {{/if_eq}}
 

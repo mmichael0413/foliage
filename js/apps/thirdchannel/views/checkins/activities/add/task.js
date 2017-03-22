@@ -5,8 +5,8 @@ define(function(require){
 
     return Backbone.View.extend({
 
-        template: Templates['thirdchannel/checkins/optional_activities/task'],
-        inputTemplate: Templates['thirdchannel/checkins/optional_activities/input'],
+        template: Templates['thirdchannel/checkins/activities/add/task'],
+        inputTemplate: Templates['thirdchannel/checkins/activities/add/input'],
 
         events: {
             'click' : 'select'

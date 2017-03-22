@@ -1,5 +1,6 @@
 define(function(require) {
-    var Backbone = require('backbone'),
+    var _ = require('underscore'),
+        Backbone = require('backbone'),
         Templates = require('handlebarsTemplates'),
         JobView = require('thirdchannel/views/checkins/list/job');
 
@@ -14,30 +15,27 @@ define(function(require) {
 
         render: function() {
             this.$el.html(this.template(this.model.toJSON()));
-            this.$jobs = this.$('.job-list');
-            this.$card = this.$('.job-list .card');
-            this.$store = this.$('.store');
-            this.$link = this.$('.view-activities');
+            this.$body = this.$('.subsection .card');
+            this.$expander = this.$('.expander');
+            this.$expansions = this.$('.expansions');
             this.$indicator = this.$('.indicator .ic');
-            this.model.get('jobs').forEach(function(job) {
-                this.$card.append(new JobView({model: job}).render().el);
+            _.chain(this.model.get('jobs')).groupBy('date').each(function(jobs, date) {
+                this.$body.append(new JobView({model: {title: (date == 'null') ? '' : date, collection: jobs}}).render().el);
             }, this);
 
             return this;
         },
 
         showJobs: function() {
-            this.$store.removeClass('closed').addClass('open');
+            this.$expander.removeClass('closed').addClass('open');
             this.$indicator.removeClass('ic_down').addClass('ic_up');
-            this.$jobs.slideDown();
-            this.$link.slideDown();
+            this.$expansions.slideDown();
         },
 
         hideJobs: function() {
-            this.$store.removeClass('open').addClass('closed');
+            this.$expander.removeClass('open').addClass('closed');
             this.$indicator.removeClass('ic_up').addClass('ic_down');
-            this.$jobs.slideUp();
-            this.$link.slideUp();
+            this.$expansions.slideUp();
         }
 
     });

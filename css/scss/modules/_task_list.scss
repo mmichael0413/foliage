@@ -1,55 +1,74 @@
-.stores {
-  .job-list {
-    padding: 1em;
+.clickable {
+  cursor: pointer;
+
+  &:hover {
+    background-color: $filter-selected-bg;
+  }
+}
+
+.card {
+  .subsection {
+    padding: 0.45em 1.25em 0 1.25em;
     border-bottom: 1px solid $border-color;
     background-color: $main-background;
+  }
 
-    .store-job {
-      background-color: white;
-      border-top: 1px solid $border-color;
-      border-left: 1px solid $border-color;
-      border-right: 1px solid $border-color;
+  ol {
+    li {
+      padding-bottom: 0.5em;
 
-      &:hover {
-        background-color: $light-gray;
+      &:last-child {
+        padding-bottom: 0;
       }
     }
   }
 }
 
-.store, .task, .store-job {
-  cursor: pointer;
+.right-col {
   @include flexbox;
   @include align-items;
-
-  &.body{
-    > div {
-      margin-bottom: 0;
-    }
-  }
 
   > div {
     display: inline-block;
 
     &:first-child {
-      width: calc(100% - 3em);
-    }
-
-    &:last-child {
-      text-align: center;
-      width: 3em;
+      width: calc(100% - 10em);
     }
   }
+}
 
-  &:hover {
-    background-color: $light-gray;
+.expansions {
+  display: none;
+}
+
+.indicator {
+  text-align: right;
+  padding-right: 1em;
+  width: 10em;
+
+  &.shrink {
+    width: 3em;
+  }
+}
+
+.visit-header {
+  margin-top: 1.5em;
+
+  h2 {
+    margin-bottom: 0.25em;
+  }
+}
+
+.visit-activities {
+  .indicator {
+    padding-right: 0;
   }
 }
 
 .task {
 
   &.selected {
-    background-color: $light-gray;
+    background-color: $filter-selected-bg;
   }
 
   .details {
@@ -68,38 +87,45 @@
       }
     }
   }
+}
 
-  .requirements {
-    display: inline-block;
-    width: 10em;
-
-    > div{
-      color: $medium-gray;
-      font-size: 0.8em;
+.activities-list {
+  .task {
+    .details {
+      width: calc(100% - 3em);
     }
+
   }
 }
 
-.task {
-  .box {
-    width: 1.5em;
-    height: 1.5em;
-    border: 1px solid $medium-blue;
-  }
+.box {
+  width: 1.5em;
+  height: 1.5em;
+  border: 1px solid $medium-blue;
+  text-align: center;
 }
 
-.additional-tasks {
-  &:hover {
-    background-color: $light-gray;
-  }
+.actions-section {
+  text-align: right;
+  margin-bottom: 1.5em;
 }
 
-.complete-checkin-tasks, .complete-task-selection {
-  margin-bottom: 1em;
-}
 
 @include swb-medium {
-  .additional-tasks {
-    text-align: center;
+  .right-col {
+    > div {
+      &:first-child {
+        width: calc(100% - 3em);
+      }
+    }
+  }
+
+  .indicator {
+    width: 3em;
+    padding-right: 0.25em;
+  }
+
+  .visit-header {
+    margin: 1em;
   }
 }
