@@ -334,13 +334,6 @@ $cornflower: #4684c5;
 
   .chart.visitsCompleted {
     width: 70%;
-    // 
-    // content: "\f159";
-    // font-family: "tc-icons";
-    // position: absolute;
-    // left: 40%;
-    // top: 40%;
-    // font-size: 2.5em;
 
     .widget {
       padding: 0;
@@ -349,17 +342,24 @@ $cornflower: #4684c5;
 
       .col-md-1.col-1-2 {
         width: 100%;
+
+        &.with-icon {
+          display: flex;
+          align-items: center;
+          align-content: center;
+          justify-content: center;
+        }
       }
 
       .donut-chart {
         min-width: 150px;
+        margin: 0;
       }
 
       .ic {
         position: absolute;
-        top: 34%;
-        left: 41%;
         font-size: 2.75em;
+        color: $slate;
       }
     }
 
