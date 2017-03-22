@@ -13,6 +13,7 @@ define(function(require){
         CheckinsListView = require('thirdchannel/views/checkins/list'),
         CheckinsEditView = require('thirdchannel/views/checkins/edit'),
         AddActivitiesView = require('thirdchannel/views/checkins/activities/add'),
+        ManageActivitiesView = require('thirdchannel/views/checkins/activities/manage'),
         TeamsMain = require('thirdchannel/views/teams/main'),
         StoresMain = require('thirdchannel/views/stores/main'),
         StoreProfileMain = require('thirdchannel/views/store_profile/main'),
@@ -78,6 +79,7 @@ define(function(require){
             'programs/:program_id/checkins(/)' : 'checkinsList',
             'programs/:program_id/checkins/:id(/)' : 'checkinsEdit',
             'programs/:program_id/checkins/:checkin_id/activities/add/:id(/)' : 'addActivities',
+            'programs/:program_id/checkins/:checkin_id/activities/manage(/)' : 'manageActivities',
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
             'programs/:program_id/stores/:store_id(/)': 'storeProfile',
@@ -195,6 +197,10 @@ define(function(require){
 
         addActivities: function (){
             AddActivitiesView.init();
+        },
+
+        manageActivities: function (){
+            ManageActivitiesView.init();
         },
 
         teams: function () {

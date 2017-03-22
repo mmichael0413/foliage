@@ -1,7 +1,7 @@
 <div class="body right-col clickable">
     <div>
     {{#if title}}
-        <div>{{title}}</div>
+        <h3>{{dateFormat title "dddd, MMMM D, YYYY"}}</h3>
         <ul>
             {{#each collection}}
                 <li>{{job.name}}</li>

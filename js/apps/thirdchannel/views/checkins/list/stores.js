@@ -11,8 +11,8 @@ define(function(require) {
         loadingHTML: Templates['thirdchannel/loading'],
 
         render: function () {
-            this.$el.empty();
             if (this.collection.queryString) {
+                this.$el.empty();
                 if(this.collection.length === 0) {
                     this.$el.append(this.emptyTemplate());
                 } else {

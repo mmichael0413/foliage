@@ -14,7 +14,6 @@ define(function(require) {
         },
 
         broadcast: function(e, data) {
-            console.log(this.$el.val());
             context.trigger('list:search:update', this.$el.val());
         }
     });

@@ -98,6 +98,10 @@
 
       &.not-active {
         @include btn-details(lighten($link-color, 15%));
+
+        &:hover {
+          background: none;
+        }
       }
     }
     &.light {

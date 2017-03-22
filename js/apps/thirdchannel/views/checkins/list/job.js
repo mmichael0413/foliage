@@ -1,6 +1,7 @@
 define(function(require){
     var Backbone = require('backbone'),
-        Templates = require('handlebarsTemplates');
+        Templates = require('handlebarsTemplates'),
+        Helpers = require('handlebarsHelpersExt');
 
     return Backbone.View.extend({
 
