@@ -393,6 +393,19 @@ $cornflower: #4684c5;
 .chart.storesVisited {
   width: 100%;
 
+  .with-icon {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .ic {
+    font-size: 2em;
+    border-bottom: 1px solid $light-blue;
+    color: $slate;
+    padding-left: .25em;
+  }
+
   .legend {
     width: 75%;
   }

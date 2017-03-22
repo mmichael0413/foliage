@@ -16,7 +16,7 @@ define(function(require) {
       "Stores Visited": {
         type: "bar",
         direction: "vertical",
-        icon: "icon.ref"
+        icon: "ic ic_store"
       },
       "ThirdChannel Agents": {
         type: "icon",
