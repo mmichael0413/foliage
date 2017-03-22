@@ -11,7 +11,7 @@ define(function(require) {
     chartMapping: {
       "Visits Completed": {
         type: "donut",
-        icon: "icon.ref"
+        icon: "ic ic_visit"
       },
       "Stores Visited": {
         type: "bar",

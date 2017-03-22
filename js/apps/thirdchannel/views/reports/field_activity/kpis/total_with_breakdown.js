@@ -93,7 +93,8 @@ define(function(require) {
         model.display_type = 1;
         model.config = {
           hideTooltip: true,
-          additionalClasses: 'column'
+          additionalClasses: 'column',
+          staticSize: true
         };
 
         model.results = {

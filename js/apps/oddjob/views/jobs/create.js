@@ -10,6 +10,7 @@ define(function(require) {
         Task = require('oddjob/models/task'),
         ActivityPacketStore = require("oddjob/stores/activityPackets"),
         SurveysStore = require('oddjob/stores/surveys'),
+        TopicSurveysStore = require('oddjob/stores/topicSurveys'),
 
         TaskCollection = Backbone.Collection.extend({
             model: Task
@@ -46,7 +47,7 @@ define(function(require) {
         },
 
         fetch: function () {
-            return $.when(SurveysStore.fetch(), ActivityPacketStore.fetch());
+            return $.when(SurveysStore.fetch(), ActivityPacketStore.fetch(), TopicSurveysStore.fetch());
         },
 
         render: function () {
