@@ -30,7 +30,7 @@ define(function(require) {
             bindto: element,
             bar: {
               width: {
-                ratio: 0.4
+                ratio: 0.6
               }
             },
             size: {

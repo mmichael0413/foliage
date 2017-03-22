@@ -4,8 +4,11 @@
     {{/if}}
 
     <div class="vertical-bar pure-g column">
-      <div class="col-md-1 col-3-5">
+      <div class="col-md-1 col-1-3 {{#if chartIcon}}with-icon{{/if}}">
         <div class="chart vertical-bar"></div>
+        {{#if chartIcon}}
+          <i class="{{chartIcon}}"></i>
+        {{/if}}
       </div>
 
       <div class="col-md-1 col-1-2 legend">
