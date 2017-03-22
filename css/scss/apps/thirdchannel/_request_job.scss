@@ -1,0 +1,82 @@
+.job-request-container {
+  .section {
+    margin-bottom: 1em;
+  }
+
+  h4 {
+    margin: 0 0 0.75em 0;
+  }
+
+  .form-group {
+    margin-bottom: 1em;
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.75em;
+
+      &.inline-label {
+        font-weight: normal;
+      }
+
+      span {
+        font-weight: normal;
+      }
+    }
+
+    textarea {
+      height: 5em;
+      margin: 0;
+    }
+
+    // overwriting the timepicker library style
+    .start_time {
+      display: block;
+      margin: 0;
+      width: auto;
+    }
+  }
+
+  .store-list-container {
+    margin-bottom: 1.75em;
+
+    .store-item {
+      margin-bottom: 1em;
+
+      .store-info {
+        width: 100%;
+        border: 1px solid $light-blue;
+        border-radius: 5px;
+        padding: 0.25em;
+      }
+
+      .store-remove {
+        padding: 0.25em;
+      }
+    }
+  }
+
+  .date-range-list {
+    input {
+      width: auto;
+      margin-bottom: 0.75em;
+    }
+
+    .date-range-item {
+
+      .date-range-remove {
+        padding: 0.25em;
+      }
+    }
+  }
+
+  .submit-job-request {
+    width: 5em;
+    margin-right: 1em;
+  }
+}
+
+.job-request-details {
+  h4 {
+    margin: 0.55em 0 0.15em 0;
+  }
+}

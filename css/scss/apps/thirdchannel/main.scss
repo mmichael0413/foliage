@@ -5,6 +5,7 @@
 @import "../../modules/side_navigation";
 @import "../../lib/chosen";
 @import "../../lib/quill.snow";
+@import "../../lib/jquery.timepicker";
 @import '../../../../js/libs/bower_components/slick.js/slick/slick';
 @import '../../../../js/libs/bower_components/datetimepicker/jquery.datetimepicker';
 @import '../../../../js/libs/bower_components/c3/c3';
@@ -72,8 +73,7 @@
 @import "./store_profile";
 @import "./special_projects";
 @import "./scheduled_visits";
-
-
+@import "./request_job";
 
 // Marketing Theme
 @import "../../theme/marketing/base/colors";

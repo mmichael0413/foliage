@@ -1,10 +1,11 @@
 define(function (require) {
 	var Backbone = require('backbone'),
-		_		= require('underscore'),
+		_ = require('underscore'),
 		Templates = require('handlebarsTemplates'),
 		context = require('context'),
 		ActivityPacketStore = require('oddjob/stores/activityPackets'),
-		SurveysStore = require('oddjob/stores/surveys');
+		SurveysStore = require('oddjob/stores/surveys'),
+		TopicSurveysStore = require('oddjob/stores/topicSurveys');
 
 	function buildDurationDisplay(value) {
 		var label ="";
@@ -141,6 +142,7 @@ define(function (require) {
 			//this.model.set('types', context.taskTypes);
 			var surveys = SurveysStore.toJSON(),
 				activityPackets = ActivityPacketStore.toJSON(),
+				topicSurveys = TopicSurveysStore.toJSON(),
 				data = this.model.toJSON(),
 				types = JSON.parse(JSON.stringify(context.taskTypes));
 
@@ -157,6 +159,10 @@ define(function (require) {
 				data.trackableItems = activityPackets;
 				this.markSelected(activityPackets, "id");
 				types[1].selected = true;
+			} else if (data.type.id === types[2].id) {
+				data.trackableItems = topicSurveys;
+				this.markSelected(topicSurveys, "id");
+				types[2].selected = true;
 			}
 
 			data.types = types;

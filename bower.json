@@ -48,7 +48,9 @@
     "rxjs": "4.0.6",
     "javascript-state-machine": "~2.3.5",
     "blockui": "",
-    "ljharb-qs": "6.2.0"
+    "ljharb-qs": "6.2.0",
+    "jquery-timepicker-jt": "~1.11.10",
+    "select2": "4.0.3"
   },
   "resolutions": {
     "jquery": "~2.0.3",

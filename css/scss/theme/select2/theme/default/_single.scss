@@ -1,0 +1,17 @@
+.select2-selection--single {
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+
+  line-height: 1.25em;
+
+  margin-bottom: 0.5em;
+
+  min-height: 2em;
+}
+
+&.select2-container--focus {
+  .select2-selection--single {
+    border: 1px solid $border-color;
+  }
+}
+
