@@ -22,7 +22,7 @@ define(function(require){
             e.preventDefault();
             this.$(".checkin-form-btn").prop('disabled', true);
             this.$(".checkin-form-btn i").removeClass('ic_check').addClass("ic-spin ic_processing");
-            this.$('.complete-checkin-tasks form').submit();
+            this.$('.actions-section form').submit();
         }
     });
 });
