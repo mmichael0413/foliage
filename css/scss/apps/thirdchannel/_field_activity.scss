@@ -71,7 +71,7 @@ $cornflower: #4684c5;
   }
 
   &-infograph {
-    padding: 3em 0 1em;
+    padding: 1em 0 1em;
 
     .ic, .fa {
       font-size: 7em;
@@ -181,7 +181,7 @@ $cornflower: #4684c5;
     flex-grow: 1;
     flex-basis: 50%;
     justify-content: center;
-    margin: 1.5em 0 1.75em;
+    margin: .25em 0 1.25em;
     padding: 0 4em;
 
     &:not(:first-child) {
@@ -353,6 +353,10 @@ $cornflower: #4684c5;
    }
  }
 
+ .legend {
+   text-align: center;
+ }
+
   .chart.visitsCompleted {
     width: 70%;
 
@@ -404,6 +408,7 @@ $cornflower: #4684c5;
     border-bottom: 1px solid $light-blue;
     color: $slate;
     padding-left: .25em;
+    padding-right: .25em;
   }
 
   .legend {
@@ -413,4 +418,5 @@ $cornflower: #4684c5;
 
 .widget.vbar {
   width: 100%;
+  padding: 0;
 }

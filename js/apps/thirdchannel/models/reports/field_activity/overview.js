@@ -20,11 +20,13 @@ define(function(require) {
       },
       "ThirdChannel Agents": {
         type: "icon",
-        icon: "ic ic_person agent"
+        icon: "ic ic_person agent",
+        color: "#2FB44A",
       },
       "In-Store Support/FMRs": {
         type: "icon",
-        icon: "ic ic_person fmr"
+        icon: "ic ic_person fmr",
+        color: "#BDC5C4"
       }
     },
 
@@ -45,6 +47,7 @@ define(function(require) {
       } else {
         metric.chartType = this.chartMapping[metric.label].type;
         metric.chartIcon = this.chartMapping[metric.label].icon;
+        metric.chartColor = this.chartMapping[metric.label].color;
       }
 
         metric.reverse = true;

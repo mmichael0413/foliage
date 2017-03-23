@@ -123,6 +123,29 @@
   }
 }
 
+.legend {
+  padding-top: 1rem;
+  padding-left: 2rem;
+
+  .unselected, .unhighlighed {
+    opacity: 0.5;
+  }
+
+  .legend-item {
+    font-size: 0.8em;
+    cursor: pointer;
+
+    .legend-box {
+      margin-left: -1rem;
+      margin-right: 0.15rem;
+      height: 0.625rem;
+      width: 0.625rem;
+      display: inline-block;
+      border-radius: 100%;
+    }
+  }
+}
+
 .donut,
 .vertical-bar {
 
@@ -130,29 +153,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .legend {
-    padding-top: 1rem;
-    padding-left: 2rem;
-
-    .unselected, .unhighlighed {
-      opacity: 0.5;
-    }
-
-    .legend-item {
-      font-size: 0.8em;
-      cursor: pointer;
-
-      .legend-box {
-        margin-left: -1rem;
-        margin-right: 0.15rem;
-        height: 0.625rem;
-        width: 0.625rem;
-        display: inline-block;
-        border-radius: 100%;
-      }
-    }
   }
 }
 
