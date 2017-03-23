@@ -34,7 +34,7 @@ define(function(require) {
               }
             },
             size: {
-              height: 165
+              height: 150
             },
             axis: {
               x: {
