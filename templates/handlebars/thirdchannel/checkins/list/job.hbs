@@ -1,0 +1,30 @@
+<div class="body right-col clickable">
+    <div>
+    {{#if title}}
+        <h3>{{dateFormat title "dddd, MMMM D, YYYY"}}</h3>
+        <ul>
+            {{#each collection}}
+                <li>{{job.name}}</li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <div>Additional Activities</div>
+        <ol>
+            <li>Create an Activity List for this view.</li>
+            <li>Complete each activity you add.</li>
+        </ol>
+    {{/if}}
+    </div>
+
+    <div class="indicator">
+        <form accept-charset="UTF-8" method="post">
+            <input name="program_store_id" type="hidden" value="{{collection.0.program_store_id}}">
+            <input name="date" type="hidden" value="{{title}}">
+            <input name="authenticity_token" value="{{collection.0.auth_token}}" type="hidden">
+            <button class="btn primary">
+                <i class="ic ic_visit"></i> <span class="hidden-xs">Start Visit</span>
+            </button>
+        </form>
+    </div>
+</div>
+<div class="divider"></div>

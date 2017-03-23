@@ -1,0 +1,38 @@
+<div class="body task right-col">
+    <div class="details">
+
+        <div>{{type}}</div>
+    {{#if topics}}
+        <div>{{topics}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}</div>
+        <div>{{name}}</div>
+    {{else}}
+        <div>{{name}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}</div>
+        <div></div>
+    {{/if}}
+
+    </div>
+
+{{#if false}}
+    {{#if duration}}
+        <div class="requirements">
+            <div><i class="ic ic_o-hours"></i> {{duration}} hrs</div>
+        </div>
+    {{/if}}
+{{/if}}
+
+    <div class="indicator">
+    {{#if_eq submission.status 'complete'}}
+        <button class="btn light">
+            <i class="ic ic_check"></i> <span class="hidden-xs">Completed</span>
+        </button>
+    {{else}}
+        <button class="btn primary">
+            <i class="ic ic_start"></i> <span class="hidden-xs">Start Activity</span>
+        </button>
+    {{/if_eq}}
+
+    </div>
+</div>
+<div class="divider"></div>
+
+

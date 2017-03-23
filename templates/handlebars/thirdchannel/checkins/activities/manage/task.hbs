@@ -1,0 +1,34 @@
+<div class="body task clickable right-col" data-search="{{type}} {{name}} {{topics}} {{duration}}">
+
+    <div class="details">
+
+        <div>{{type}}</div>
+        {{#if topics}}
+            <div>{{topics}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}</div>
+            <div>{{name}}</div>
+        {{else}}
+            <div>{{name}}{{#required}}<span class="subtle-instruction">*</span>{{/required}}</div>
+            <div></div>
+        {{/if}}
+
+    </div>
+
+{{#if false}}
+    {{#if duration}}
+        <div class="requirements">
+            <div><i class="ic ic_o-hours"></i> {{duration}} hrs</div>
+        </div>
+    {{/if}}
+{{/if}}
+
+    <div class="inputs"></div>
+
+    <div class="indicator shrink">
+        <div class="box">
+            <i class="medium-blue ic ic_blank"></i>
+        </div>
+    </div>
+</div>
+<div class="divider"></div>
+
+

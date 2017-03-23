@@ -1,27 +1,23 @@
-.visit-header {
-  margin: 0 1em;
-
-  h2 {
-    display: inline;
-  }
-
-  .subtle-instruction {
-    float: right;
-  }
-}
-
-
 .subtle-instruction {
   color: $medium-blue;
   font-style: italic;
   font-size: 0.8rem;
   vertical-align: super;
   text-align: right;
+  font-weight: 100;
 }
 
 .store {
   padding: 0.5em 0;
   margin: 0;
+
+  .address {
+    font-size: 0.9em;
+  }
+}
+
+.no-stores {
+  text-align: center;
 }
 
 .visit {
