@@ -1,11 +1,50 @@
 {{#if dateCompleted}}
-    * Completed jobs cannot be rescheduled<br/>
+  <div class="section">
+    * Completed jobs cannot be rescheduled
+  </div>
 {{/if}}
-<p class="bold">{{storeName}}</p>
-<p>{{address}}</p>
-<p class="bold">{{jobDetails.name}}</p>
-<ul class="unstyled">
-    {{#each tasks}}
-        <li>- {{name}}</li>
+
+<div class="section">
+  <h3>Store</h3>
+  <p>
+    {{storeName}}
+  </p>
+  <p>
+    {{address}}
+  </p>
+</div>
+
+{{#if jobDetails.startTime}}
+  <div class="section">
+    <h3>Start Time</h3>
+    {{jobDetails.startTime}}
+    {{jobDetails.timezone}}
+  </div>
+{{/if}}
+
+{{#if jobDetails.notes}}
+  <div class="section">
+    <h3>Notes</h3>
+    {{jobDetails.notes}}
+  </div>
+{{/if}}
+
+<div class="section">
+  <h3>Job</h3>
+  {{jobDetails.name}}
+</div>
+
+<div class="section">
+  <h3>Tasks</h3>
+  <i>(a "<span style="color:orange;font-size:150%">&#10034;</span>" indicates a required task)</i>
+  <ul>
+    {{#each jobDetails.tasks}}
+      <li>
+        {{name}} 
+        {{#if required}}
+          <span style="color:orange;font-size:150%">&#10034;</span>
+        {{/if}}
+      </li>
     {{/each}}
-</ul>
+  </ul>
+</div>
