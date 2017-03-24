@@ -4,6 +4,13 @@
     <div class="col-1-12 scheduled-visit-cell">{{store_address}}</div>
 	<div class="col-1-12 scheduled-visit-cell">{{requested_by}}</div>
     <div class="col-1-12 scheduled-visit-cell">{{visit_type}}</div>
-    <div class="col-6-12 scheduled-visit-cell">{{visit_details}}</div>
+    <div class="col-3-12 scheduled-visit-cell">{{visit_details}}</div>
     <div class="col-1-12 scheduled-visit-cell">{{duration}} hours</div>
+    <div class="col-1-12 scheduled-visit-cell">
+        {{#if assignee_id}}
+            <a href="{{assignee_profile_url}}" target="_blank">{{assignee_name}}</a>
+        {{/if}}
+    </div>
+    <div class="col-1-12 scheduled-visit-cell">{{date_scheduled}}</div>
+    <div class="col-1-12 scheduled-visit-cell">{{date_completed}}</div>
 </div>
