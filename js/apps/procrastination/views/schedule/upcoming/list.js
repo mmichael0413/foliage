@@ -6,6 +6,7 @@ define(function (require) {
         ScheduleCollection = require('procrastination/collections/schedule/upcoming/create_schedules'),
         StateMachine = require('state-machine'),
         StoreSchedule = require('procrastination/views/schedule/upcoming/show'),
+        DetailsModal = require('procrastination/views/schedule/upcoming/details_modal'),
         context = require('context'),
         blockui = require('blockui'),
         jquery = require('jquery'),
@@ -13,7 +14,6 @@ define(function (require) {
         moment = require('moment');
     return Backbone.View.extend({
         el: '.main-content',
-        template: HandlebarsTemplates['procrastination/schedule/upcoming/visit_label'],
         events: {
             "click #restrictions-toggle": "toggleRestrictions",
         },
@@ -45,11 +45,10 @@ define(function (require) {
                         return dateScheduled !== undefined && dateScheduled !== null;
                     });
                     _.each(scheduledVisits, function (model) {
-                        var label = self.template(model.attributes);
                         events.push({
                             id: model.get('id'),
                             title: model.get('storeName'),
-                            store: label,
+                            details: model.attributes,
                             start: model.get('dateScheduled'),
                             allDay: true,
                             className: model.get('jobColor'),
@@ -72,21 +71,8 @@ define(function (require) {
                 eventDragStop: function(event, jsEvent, ui, view) {
                     context.trigger('blackoutdates:hide');
                 },
-                eventMouseover: function (calEvent, jsEvent) {
-                    self.$('.schedule-container .unscheduled .instructions').fadeTo(100,0.5);
-                    var $restrictions = self.$('#restrictions');
-                    if($restrictions.is(":visible")){
-                        $restrictions.fadeTo(100,0.5);
-                    }
-                    self.$('.tooltipevent').hide().html(calEvent.store).fadeIn(100);
-                },
-                eventMouseout: function (calEvent, jsEvent) {
-                    self.$('.schedule-container .unscheduled .instructions').fadeTo(100,1);
-                    var $restrictions = self.$('#restrictions');
-                    if($restrictions.is(":visible")){
-                        $restrictions.fadeTo(100,1);
-                    }
-                    self.$('.tooltipevent').fadeOut(100);
+                eventClick: function (calEvent, jsEvent) {
+                    new DetailsModal({model: calEvent.details}).render();
                 },
                 aspectRatio: 1
             });
