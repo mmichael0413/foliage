@@ -25,7 +25,7 @@ module.exports = function(grunt) {
                     dest: 'dist/procrastination/',
                 },
                 {
-                    src: 'js/libs/bower_components/jquery-ui/themes/base/images/**/*',
+                    src: 'js/libs/bower_components/jquery-ui/themes/base/**/*',
                     dest: 'dist/procrastination/',
                 },
             ]
