@@ -45,6 +45,16 @@
       {{jobDetails.notes}}
     </div>
   {{/if}}
+  {{#if jobDetails.products}}
+    <div class="section">
+        <h3>Products</h3>
+        <ul>
+        {{#each jobDetails.products}}
+            <li>{{this}}</li>
+        {{/each}}
+        </ul>
+    </div>
+  {{/if}}
 </div>
 {{#if dateCompleted}}
   <span class="subtle-instruction">NOTE: Completed jobs cannot be rescheduled</span>

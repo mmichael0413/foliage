@@ -7,6 +7,7 @@ define(function (require) {
         className: 'details-modal',
         render: function () {
             this.model.showOptionalTasks = this.model.jobDetails.programUUID !== '219f1927-7997-4c03-a5c9-4a6b4d792d3e'; // vega
+            console.log(this.model.jobDetails);
             this.$el.html(this.template(this.model));
             this.$el.dialog({
                 modal: true,
