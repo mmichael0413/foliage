@@ -27,7 +27,7 @@ define(function (require) {
         render: function() {
             var dateCompleted = this.model.get('dateCompleted') || null;
 
-            var canUnschedule = this.isScheduleUnlocked && !dateCompleted;
+            var canUnschedule = this.isScheduleUnlocked && !dateCompleted && (this.model.get('jobDetails').programUUID === '219f1927-7997-4c03-a5c9-4a6b4d792d3e');
 
             var attrs = {
                 address: this.model.get('address'),
