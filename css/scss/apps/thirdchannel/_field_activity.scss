@@ -1,4 +1,62 @@
+@import url('http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+
 $cornflower: #4684c5;
+// TODO: Get this outta heeeeeere
+
+.date-slider {
+  background: #FFF;
+  border-radius: 15px;
+  margin: 1em 0 2em;
+  padding: 0 0 0 1.5em;
+}
+
+#dateSlider {
+  border: 0;
+  width: 93%;
+  height: 0;
+}
+
+#custom-handle {
+  width: 6.5em;
+  text-align: center;
+  margin-top: -1.95em;
+  height: 2.75em;
+  border-radius: 20px;
+  background-color: #575d5f;
+  border: 0;
+  color: #FFF;
+  padding-top: .5em;
+  font-size: .9em;
+
+  &.ui-state-hover {
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+    cursor: grab;
+  }
+
+  &.ui-state-active {
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+  }
+}
+
+.ui-slider-range {
+  opacity: 0;
+}
+
+.date-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: .9em;
+  color: $light-blue;
+
+  span {
+    display: inline-block;
+    width: 5em;
+  }
+}
+
 
 %spaced-row {
   display: inline-flex;
@@ -211,6 +269,7 @@ $cornflower: #4684c5;
     &.column {
       flex-direction: column;
       justify-content: flex-start;
+      margin-top: 1em;
 
       &.reverse {
         flex-direction: column-reverse;
@@ -419,4 +478,10 @@ $cornflower: #4684c5;
 .widget.vbar {
   width: 100%;
   padding: 0;
+}
+
+.merchandising-kpis {
+  .widget p {
+    margin: 0;
+  }
 }
