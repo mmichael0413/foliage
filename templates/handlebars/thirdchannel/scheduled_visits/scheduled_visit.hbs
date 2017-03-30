@@ -15,7 +15,9 @@
     <td>{{localizedUTCDate visit_date_completed}}</td>
 {{/if}}
 <td><a href="{{agent_link}}">{{agent_name}}</a></td>
-<td><a href="{{supervisor_link}}">{{supervisor_name}}</a></td>
+{{#if supervisor_role}}
+    <td><a href="{{supervisor_link}}">{{supervisor_name}}</a></td>
+{{/if}}
 {{#if show_requestors}}
     <td><a href="{{requestor_link}}">{{requestor_name}}</a></td>
 {{/if}}
