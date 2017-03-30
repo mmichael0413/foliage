@@ -16,9 +16,11 @@
         <th>
             <h3 class="scheduled-visit-cell">Agent</h3>
         </th>
-        <th>
-            <h3 class="scheduled-visit-cell">{{supervisor_role}}</h3>
-        </th>
+        {{#if supervisor_role}}
+            <th>
+                <h3 class="scheduled-visit-cell">{{supervisor_role}}</h3>
+            </th>
+        {{/if}}
         {{#if show_requestors}}
             <th>
                 <h3 class="scheduled-visit-cell">Requested By</h3>
