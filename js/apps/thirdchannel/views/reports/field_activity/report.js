@@ -15,10 +15,9 @@ define(function(require) {
         initialize: function(options) {
           this.$el.html(this.template());
 
-          new DateSliderView({el: '.date-slider-container'});
+          new DateSliderView({el: '.date-slider-container', startPoint: 5});
 
           this.listenTo(context, 'filter:query', this.handleFilter);
-
 
           this.overview = new OverviewView(options);
           this.associateEducation = new AssociateEducationView(options);
@@ -27,10 +26,7 @@ define(function(require) {
         },
 
         handleFilter: function(params) {
-          this.overview.update(params);
-          this.associateEducation.update(params);
-          this.consumerEngagement.update(params);
-          this.merchandising.update(params);
+          context.trigger('fieldActivity:update', params);
         }
     });
 });

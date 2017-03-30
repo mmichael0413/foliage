@@ -18,6 +18,8 @@ define(function(require) {
 
         this.model = new MerchandisingModel(options);
         this.fetchReport();
+
+        this.listenTo(context, 'fieldActivity:update', this.update);
       },
 
       fetchReport: function() {

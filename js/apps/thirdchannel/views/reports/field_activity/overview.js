@@ -17,6 +17,8 @@ define(function(require) {
         this.$el.html(this.loadingView.render().$el);
         this.model = new OverviewModel(options);
         this.fetchReport();
+
+        this.listenTo(context, 'fieldActivity:update', this.update);
       },
 
       render: function() {
