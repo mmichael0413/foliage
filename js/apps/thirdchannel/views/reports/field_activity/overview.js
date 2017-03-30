@@ -3,7 +3,7 @@ define(function(require) {
         Backbone = require('backbone'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        OverviewModel = require('thirdchannel/models/reports/field_activity/overview');
+        OverviewModel = require('thirdchannel/models/reports/field_activity/overview'),
         KPIView = require('thirdchannel/views/reports/field_activity/KPI'),
         LoadingView = require('thirdchannel/views/utils/loading');
 
