@@ -3,7 +3,6 @@ define(function(require) {
         _ = require('underscore'),
         ExportView = require('thirdchannel/views/utils/report_export_button'),
         ReportView = require('thirdchannel/views/reports/index/report'),
-        FieldActivitiesReportView = require('thirdchannel/views/reports/field_activity/report'),
         Filter = require('thirdchannel/views/filter/main'),
         ReportExportModel = require('thirdchannel/models/reports/export');
 

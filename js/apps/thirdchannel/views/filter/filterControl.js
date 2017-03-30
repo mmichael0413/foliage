@@ -16,13 +16,13 @@ define(function(require) {
         helpers = require('helpers');
 
     /**
-     * The 3C Filter is simply an interactable wrapper built around a form. This form can be 
+     * The 3C Filter is simply an interactable wrapper built around a form. This form can be
      * serialized into a query string, which can then be used by the current Content View
      * to issue a query to the server.
      *
      * It also supports 'deep linking', meaning that if parameters are in the current url, they will be
      * understood
-     * 
+     *
      * The filter will emit the event 'filter:query' and pass along the query string to be used
      * by the current View.
      *
@@ -31,9 +31,9 @@ define(function(require) {
      *
      * The filter will look in window for a 'filterBootstrap' object, which should contain a collection
      * of filter objects, or a url to fetch filters from
-     * 
      *
-     * 
+     *
+     *
      *
      * @exports thirdchannel/views/filter/filterControl
      */
@@ -49,7 +49,7 @@ define(function(require) {
         enableDeepLinks: true,
 
         excludeFields: [],
-        
+
         initialize: function (data) {
             _.bindAll(this, 'filterExcludedFields');
 
@@ -65,12 +65,12 @@ define(function(require) {
 
             if (!data || !data.collection) {
                 console.error("We need at least a data.collection to get started with the filter");
-                
+
                 return false;
             }
             this.store = FilterStore;
             this._registerStore(this.store);
-            
+
 
             shouldTrigger = this.renderFilterCollection(data.collection, qsHash);
 
@@ -82,7 +82,7 @@ define(function(require) {
                         url: data.url
                     }))();
                 self.$el.append($spinner);
-                
+
                 asyncFilters.fetch()
                 .then(function () {
                     $spinner.remove();
@@ -164,11 +164,11 @@ define(function(require) {
         },
 
         /**
-         * Determines which ComponentView to use base on the existing markup. 
-         * 
+         * Determines which ComponentView to use base on the existing markup.
+         *
          * @param  {Backbone.Model} filterModel A Backbone Model containing the filter information
          * @return {Backbone.View} view
-         * 
+         *
          */
         selectComponentView: function (filterModel) {
             var view = ComponentView;
@@ -189,15 +189,15 @@ define(function(require) {
             }
             return new view({model: filterModel});
         },
-        
+
         /**
          * Examples the component views to see if one matches the parameter in the query string hash.
          *
          * @private
-         * @param  {View} view 
+         * @param  {View} view
          * @param  {object} qsHash A hash of the queryString arguments currently in the url
          * @return {boolean}
-         * 
+         *
          */
         _applyQS: function(view, qsHash) {
             var success = false;
@@ -270,6 +270,7 @@ define(function(require) {
 
                 if ($input) {
                     $input.val(fields[i].value);
+                    $input.siblings('.active-filter-label').text(fields[i].value);
                     threshold++;
                 }
             }

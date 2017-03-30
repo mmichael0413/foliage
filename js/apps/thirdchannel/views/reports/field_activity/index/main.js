@@ -14,6 +14,7 @@ define(function(require) {
                 var model = new ReportExportModel(_.extend(data, options));
                 new ExportView({model: model}).render(this);
             });
+
             Filter.init();
 
             new FieldActivitiesReportView(options).render();

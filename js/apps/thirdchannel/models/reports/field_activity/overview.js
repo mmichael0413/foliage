@@ -4,6 +4,8 @@ define(function(require) {
 
   return Backbone.Model.extend({
 
+    params: '',
+
     iconMapping: {
       "States Visited": "ic ic_states"
     },
@@ -35,7 +37,11 @@ define(function(require) {
     },
 
     url: function () {
-      return '/programs/' + this.options.programId + '/reports/field_activities';
+      return '/programs/' + this.options.programId + '/reports/field_activities?' + this.params;
+    },
+
+    updateFilters: function(params) {
+      this.params = params;
     },
 
     mapIconToMetric: function() {
