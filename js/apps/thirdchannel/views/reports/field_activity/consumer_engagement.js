@@ -19,6 +19,7 @@ define(function(require) {
         this.model = new ConsumerEngagementModel(options);
 
         this.fetchReport();
+        this.listenTo(context, 'fieldActivity:update', this.update);
       },
 
       fetchReport: function() {

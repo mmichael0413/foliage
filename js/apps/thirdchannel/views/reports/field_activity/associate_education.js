@@ -20,6 +20,7 @@ define(function(require) {
         this.model = new AssociateEducationModel(options);
 
         this.fetchReport();
+        this.listenTo(context, 'fieldActivity:update', this.update);
       },
 
       fetchReport: function() {
