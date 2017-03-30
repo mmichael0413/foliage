@@ -58,9 +58,9 @@ define(function(require) {
           this.$el.html(this.template({dates: this.dateMap}));
 
           var self = this;
-          var handle = this.$el.find("#custom-handle");
+          var handle = this.$el.find(".date-slider-handle");
 
-          $(this.$el.find('#dateSlider')).slider({
+          $(this.$el.find('.date-slider-component')).slider({
             range: "max",
             min: 0,
             max: _.size(this.dateMap) - 1,
@@ -76,13 +76,17 @@ define(function(require) {
               handle.text(self.dateMap[ui.value].label);
             },
             stop: function(event, ui) {
-              if (ui.value === 7) {
-                self.focusDateFilters();
-              } else {
-                self.triggerFilterSet(ui.value);
-              }
+              self.handleSliderUpdate(ui.value);
             }
           });
+        },
+
+        handleSliderUpdate: function(value) {
+          if (value === (_.size(this.dateMap) - 1)) {
+            this.focusDateFilters();
+          } else {
+            this.triggerFilterSet(value);
+          }
         },
 
         jumpToDate: function(e) {
@@ -90,9 +94,9 @@ define(function(require) {
 
           var point = $(e.target).data('point');
 
-          $(this.$el.find('#dateSlider')).slider("value", point);
+          $(this.$el.find('.date-slider-component')).slider("value", point);
 
-          this.triggerFilterSet(point);
+          this.handleSliderUpdate(point);
         },
 
         triggerFilterSet: function(value) {
