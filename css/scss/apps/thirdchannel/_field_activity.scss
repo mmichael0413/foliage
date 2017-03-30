@@ -51,8 +51,9 @@ $cornflower: #4684c5;
   font-size: .9em;
   color: $light-blue;
 
-  span {
+  a {
     display: inline-block;
+    color: $medium-blue;
     width: 5em;
   }
 }

@@ -10,35 +10,38 @@ define(function(require) {
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/filters/date_slider'],
         endDate: moment().format("YYYY-MM-DD"),
-        startPoint: 1,
+        startPoint: 0,
         defaultDateMap: {
-          1: {
+          0: {
             label: "Max",
             start_date: ""
           },
-          2: {
+          1: {
             label: "1 Year",
             start_date: moment().subtract(1, 'y').format("YYYY-MM-DD")
           },
-          3: {
+          2: {
             label: "6 Months",
             start_date: moment().subtract(6, 'M').format("YYYY-MM-DD")
           },
-          4: {
+          3: {
             label: "3 Months",
             start_date: moment().subtract(3, 'M').format("YYYY-MM-DD")
           },
-          5: {
+          4: {
             label: "1 Month",
             start_date: moment().subtract(1, 'M').format("YYYY-MM-DD")
           },
-          6: {
+          5: {
             label: "1 Day",
             start_date: moment().subtract(1, 'd').format("YYYY-MM-DD")
           },
-          7: {
+          6: {
             label: "Custom"
           },
+        },
+        events: {
+          "click .slider-label": "jumpToDate"
         },
 
         initialize: function(options) {
@@ -59,12 +62,12 @@ define(function(require) {
 
           $(this.$el.find('#dateSlider')).slider({
             range: "max",
-            min: 1,
-            max: _.size(this.dateMap),
+            min: 0,
+            max: _.size(this.dateMap) - 1,
             value: this.startPoint,
             step: 1,
             create: function() {
-              handle.text(self.dateMap[5].label);
+              handle.text(self.dateMap[self.startPoint].label);
             },
             change: function(event, ui) {
               handle.text(self.dateMap[ui.value].label);
@@ -76,13 +79,27 @@ define(function(require) {
               if (ui.value === 7) {
                 self.focusDateFilters();
               } else {
-                context.trigger('filter:set', [
-                  {name: "start_date", value: self.dateMap[ui.value].start_date},
-                  {name: "end_date", value: self.endDate}
-                ]);
+                self.triggerFilterSet(ui.value);
               }
             }
           });
+        },
+
+        jumpToDate: function(e) {
+          e.preventDefault();
+
+          var point = $(e.target).data('point');
+
+          $(this.$el.find('#dateSlider')).slider("value", point);
+
+          this.triggerFilterSet(point);
+        },
+
+        triggerFilterSet: function(value) {
+          context.trigger('filter:set', [
+            {name: "start_date", value: this.dateMap[value].start_date},
+            {name: "end_date", value: this.endDate}
+          ]);
         },
 
         focusDateFilters: function() {
@@ -90,11 +107,11 @@ define(function(require) {
 
           $('#site-filter').animate({
             scrollTop: dateFilters.offset().top
-          }, 500)
+          }, 500);
 
-          dateFilters.find('.filter-item').animate({ backgroundColor: "#4684c5" }, 150)
-                     .animate({ backgroundColor: "#FFFFFF" }, 150)
-                     .animate({ backgroundColor: "#4684c5" }, 150)
+          dateFilters.find('.filter-item').animate({ backgroundColor: "#73afef" }, 150)
+                     .animate({ backgroundColor: "#e3eef9" }, 150)
+                     .animate({ backgroundColor: "#73afef" }, 150)
                      .animate({ backgroundColor: "rgba(255,255,255,0)" }, 150);
         }
     });
