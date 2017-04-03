@@ -52,6 +52,33 @@
 {{#if showAllFields}}
     <div class="card">
         <div class="header">Additional Information</div>
+
+        {{#if showExtendedFields}}
+            <div class="body pure-g">
+                <div class="col-1-4">Gender:</div>
+                <div class="col-3-4">
+                    {{#if person.gender}}
+                        {{person.gender}}
+                    {{else}}
+                        Not Available
+                    {{/if}}
+                </div>
+            </div>
+            <div class="divider"></div>
+
+            <div class="body pure-g">
+                <div class="col-1-4">How Did You Hear About Us?:</div>
+                <div class="col-3-4">
+                    {{#if person.heardAboutUs}}
+                        {{person.heardAboutUs}}
+                    {{else}}
+                        Not Available
+                    {{/if}}
+                </div>
+            </div>
+            <div class="divider"></div>
+        {{/if}}
+
         <div class="body pure-g">
             <div class="col-1-4">Shirt Size:</div>
             <div class="col-3-4">
@@ -73,6 +100,20 @@
                 {{/if}}
             </div>
         </div>
+
+        {{#if showExtendedFields}}
+            <div class="divider"></div>
+            <div class="body pure-g">
+                <div class="col-1-4">Owns Car:</div>
+                <div class="col-3-4">
+                    {{#if person.ownsCar}}
+                        {{person.ownsCar}}
+                    {{else}}
+                        Not Available
+                    {{/if}}
+                </div>
+            </div>
+        {{/if}}
     </div>
 {{/if}}
 
@@ -80,7 +121,6 @@
     <div class="card">
         <div class="body pure-g">
             <div class="col-1-5 col-sm-1-1 about-images">
-
                 {{#each person.aboutImages}}
                     <img src="{{this.large}}" onerror="this.src='/assets/missing.jpg'"/>
                 {{/each}}
