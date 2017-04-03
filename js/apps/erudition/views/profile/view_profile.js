@@ -44,7 +44,7 @@ define(function(require){
             }
 
             var showGeneralInfo = false;
-            if(this.person.gender || this.person.attendedCollege == 'Yes') {
+            if(this.person.gender || this.person.attendedCollege === 'Yes') {
                 showGeneralInfo = true;
             }
 

@@ -117,6 +117,136 @@
     </div>
 {{/if}}
 
+{{#if showExtendedFields}}
+    <div class="card">
+        <div class="header">{{person.programName}}</div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Status:</div>
+            <div class="col-3-4">
+                {{#if person.status}}
+                    {{person.status}}
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Applied On:</div>
+            <div class="col-3-4">
+                {{#if person.appliedOn}}
+                    {{person.appliedOn}}
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Role:</div>
+            <div class="col-3-4">
+                {{#if person.role}}
+                    {{person.role}}
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Hours:</div>
+            <div class="col-3-4">
+                {{#if minHours}}
+                    {{minHours}}
+                    {{#if maxHours}}
+                    - {{maxHours}}
+                    {{/if}}
+                {{else}}
+                    {{#if maxHours}}
+                        {{maxHours}}
+                    {{else}}
+                        Not Available
+                    {{/if}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Relevant Experience:</div>
+            <div class="col-3-4">
+                {{#if person.relevantExperience}}
+                    {{person.relevantExperience}}
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Brands:</div>
+            <div class="col-3-4">
+                {{#if brand1}}
+                    <div>{{brand1}}</div>
+                {{/if}}
+                {{#if brand2}}
+                    <div>{{brand2}}</div>
+                {{/if}}
+                {{#if brand3}}
+                    <div>{{brand3}}</div>
+                {{/if}}
+                {{#unless brand1}}
+                    {{#unless brand2}}
+                        {{#unless brand3}}
+                            Not Available
+                        {{/unless}}
+                    {{/unless}}
+                {{/unless}}
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Trends:</div>
+            <div class="col-3-4">
+                {{#if trend1}}
+                    <div>{{trend1}}</div>
+                {{/if}}
+                {{#if trend2}}
+                    <div>{{trend2}}</div>
+                {{/if}}
+                {{#if trend3}}
+                    <div>{{trend3}}</div>
+                {{/if}}
+                {{#unless trend1}}
+                    {{#unless trend2}}
+                        {{#unless trend3}}
+                            Not Available
+                        {{/unless}}
+                    {{/unless}}
+                {{/unless}}
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Owns Brand Product:</div>
+            <div class="col-3-4">
+                {{#if person.ownsProduct}}
+                    {{person.ownsProduct}}
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
+    </div>
+{{/if}}
+
 {{#if_gt aboutImageCount 0}}
     <div class="card">
         <div class="body pure-g">
