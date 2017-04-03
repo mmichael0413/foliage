@@ -24,29 +24,28 @@
       <div class="form-group">
           <input type="text" id="zip" class="large dark low-margin" placeholder="ZIP/Postal Code" name="user[zip]">
           <span class="error-message" style="display: none;"></span>
+
+          <span class="tooltip">
+              <span class="visible-xs"><i class="fa fa-info-circle"></i></span> <span class="hidden-xs">Why are we asking for your ZIP/postal code?</span>
+          </span>
+
+          <div class="tip">
+              This allows us to match you with current opportunities in your geographic location.
+          </div>
       </div>
 
-
-      <span class="tooltip">
-          <span class="visible-xs"><i class="fa fa-info-circle"></i></span> <span class="hidden-xs">Why are we asking for your ZIP/postal code?</span>
-      </span>
-
-      <div class="tip">
-          This allows us to match you with current opportunities in your geographic location.
-      </div>
 
 
       <div class="clear"></div>
       <div class="form-group">
-        <button class="btn primary">
-          <i class="fa fa-angle-double-right"></i>
-          <span>Create Account</span>
+        <button class="btn primary wide reverse">
+          <i class="fa fa-angle-double-right"></i> Create Account
         </button>
-        <a href="#" class="btn primary login">
-          <i class="fa fa-angle-double-right"></i>
-          <span>Already have an account?</span>
-        </a>
         <div class="clear"></div>
       </div>
   </form>
+
+  <div class="no-account">
+      Already have an account? <a href="#" class="login">Login here!</a>
+  </div>
 </div>

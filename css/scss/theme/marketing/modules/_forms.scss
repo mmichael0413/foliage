@@ -7,16 +7,15 @@
     box-sizing: border-box;
     margin: 0;
 
-
     &.banner-image {
-      background-image: url("http://marketing-new.thirdchannel.com/themes/custom/thirdchannel/images/content/login-background.png");
+      background-image: url("http://marketing-new.thirdchannel.com/themes/custom/thirdchannel/images/content/login-background.jpg");
       background-size: cover;
       min-height: 100vh;
-      padding: 225px 0 60px;
+      padding-top: 8em;
     }
 
     h1 {
-      font: 78px/1 "roboto",sans-serif;
+      font: 60px/1 "roboto",sans-serif;
       margin: 0.67em 0;
       font-weight: 100;
     }
@@ -46,7 +45,6 @@
     }
 
     form {
-      margin-top: 70px;
       position: relative;
       padding: 25px 30px;
       border: 1px solid #fff;
@@ -168,6 +166,58 @@
 
       &:checked + label:after {
         opacity: 1;
+      }
+    }
+  }
+}
+
+
+@include swb-medium {
+  .marketing {
+    .form-container {
+      &.banner-image {
+        padding: 3em 1em;
+      }
+
+      h1 {
+        font: 36px/1 "roboto",sans-serif;
+        margin: 0;
+        margin-top: 1.5em;
+      }
+
+      h2 {
+        margin: 0.5em 0;
+      }
+
+      form {
+        margin-top: 2em;
+        padding: 1em;
+      }
+
+      .options {
+        height: 3em;
+      }
+
+      .no-account {
+        padding: 2em 0 0 0;
+        text-align: center;
+      }
+
+
+      #zip {
+        width: calc(100% - 1em);
+      }
+
+      .tooltip {
+        float: right;
+        line-height: 4.5em;
+        margin-bottom: 1em;
+
+        & + .tip {
+          left: inherit;
+          right: 2.5em;
+          margin-top: -6.5em;
+        }
       }
     }
   }
