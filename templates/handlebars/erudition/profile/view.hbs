@@ -160,14 +160,14 @@
         <div class="body pure-g">
             <div class="col-1-4">Hours:</div>
             <div class="col-3-4">
-                {{#if minHours}}
-                    {{minHours}}
-                    {{#if maxHours}}
-                    - {{maxHours}}
+                {{#if person.min_hours}}
+                    {{person.min_hours}}
+                    {{#if person.max_hours}}
+                    - {{person.max_hours}}
                     {{/if}}
                 {{else}}
-                    {{#if maxHours}}
-                        {{maxHours}}
+                    {{#if person.max_hours}}
+                        {{person.max_hours}}
                     {{else}}
                         Not Available
                     {{/if}}
@@ -179,8 +179,8 @@
         <div class="body pure-g">
             <div class="col-1-4">Relevant Experience:</div>
             <div class="col-3-4">
-                {{#if person.relevantExperience}}
-                    {{person.relevantExperience}}
+                {{#if person.relevant_experience}}
+                    {{person.relevant_experience}}
                 {{else}}
                     Not Available
                 {{/if}}
@@ -191,18 +191,18 @@
         <div class="body pure-g">
             <div class="col-1-4">Brands:</div>
             <div class="col-3-4">
-                {{#if brand1}}
-                    <div>{{brand1}}</div>
+                {{#if person.brand_1}}
+                    <div>{{person.brand_1}}</div>
                 {{/if}}
-                {{#if brand2}}
-                    <div>{{brand2}}</div>
+                {{#if person.brand_2}}
+                    <div>{{person.brand_2}}</div>
                 {{/if}}
-                {{#if brand3}}
-                    <div>{{brand3}}</div>
+                {{#if person.brand_3}}
+                    <div>{{person.brand_3}}</div>
                 {{/if}}
-                {{#unless brand1}}
-                    {{#unless brand2}}
-                        {{#unless brand3}}
+                {{#unless person.brand_1}}
+                    {{#unless person.brand_2}}
+                        {{#unless person.brand_3}}
                             Not Available
                         {{/unless}}
                     {{/unless}}
@@ -214,18 +214,18 @@
         <div class="body pure-g">
             <div class="col-1-4">Trends:</div>
             <div class="col-3-4">
-                {{#if trend1}}
-                    <div>{{trend1}}</div>
+                {{#if person.trend_1}}
+                    <div>{{person.trend_1}}</div>
                 {{/if}}
-                {{#if trend2}}
-                    <div>{{trend2}}</div>
+                {{#if person.trend_2}}
+                    <div>{{person.trend_2}}</div>
                 {{/if}}
-                {{#if trend3}}
-                    <div>{{trend3}}</div>
+                {{#if person.trend_3}}
+                    <div>{{person.trend_3}}</div>
                 {{/if}}
-                {{#unless trend1}}
-                    {{#unless trend2}}
-                        {{#unless trend3}}
+                {{#unless person.trend_1}}
+                    {{#unless person.trend_2}}
+                        {{#unless person.trend_3}}
                             Not Available
                         {{/unless}}
                     {{/unless}}
@@ -237,13 +237,38 @@
         <div class="body pure-g">
             <div class="col-1-4">Owns Brand Product:</div>
             <div class="col-3-4">
-                {{#if person.ownsProduct}}
-                    {{person.ownsProduct}}
+                {{#if person.owns_product}}
+                    {{person.owns_product}}
                 {{else}}
                     Not Available
                 {{/if}}
             </div>
         </div>
+        <div class="divider"></div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Why we should choose you:</div>
+            <div class="col-3-4">
+                {{#if person.haiku}}
+                    {{person.haiku}}
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Like to Share:</div>
+            <div class="col-3-4">
+                {{#if person.like_to_share}}
+                    {{person.like_to_share}}
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
+        <div class="divider"></div>
     </div>
 {{/if}}
 
