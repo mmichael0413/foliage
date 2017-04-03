@@ -1,48 +1,48 @@
 {{#if showAllFields}}
-<div class="card">
-    <div class="header">Contact Information</div>
-    <div class="body pure-g">
-        <div class="col-1-4">Email:</div>
-        <div class="col-3-4">{{person.email}}</div>
-    </div>
-    <div class="divider"></div>
-    <div class="body pure-g">
-        <div class="col-1-4">Phone Number:</div>
-        <div class="col-3-4">{{person.phone}}</div>
-    </div>
-    <div class="divider"></div>
-    <div class="body pure-g">
-        <div class="col-1-4">Paypal Email:</div>
-        <div class="col-3-4">{{person.paypalEmail}}</div>
-    </div>
-</div>
-
-
-<div class="card">
-    <div class="header">Address</div>
-
-    <div class="body pure-g">
-        <div class="col-sm-1-1 col-1-4">Residential Address:</div>
-        <div class="col-sm-1-1 col-3-4">
-            {{#if displayResidential}}
-                {{> address person.residentialAddress}}
-            {{else}}
-                Not Available
-            {{/if}}
+    <div class="card">
+        <div class="header">Contact Information</div>
+        <div class="body pure-g">
+            <div class="col-1-4">Email:</div>
+            <div class="col-3-4">{{person.email}}</div>
+        </div>
+        <div class="divider"></div>
+        <div class="body pure-g">
+            <div class="col-1-4">Phone Number:</div>
+            <div class="col-3-4">{{person.phone}}</div>
+        </div>
+        <div class="divider"></div>
+        <div class="body pure-g">
+            <div class="col-1-4">Paypal Email:</div>
+            <div class="col-3-4">{{person.paypalEmail}}</div>
         </div>
     </div>
-    <div class="divider"></div>
-    <div class="body pure-g">
-        <div class="col-sm-1-1 col-1-4">Shipping Address:</div>
-        <div class="col-sm-1-1 col-3-4">
-            {{#if displayShipping}}
-                {{> address person.shippingAddress}}
-            {{else}}
-                Not Available
-            {{/if}}
+
+
+    <div class="card">
+        <div class="header">Address</div>
+
+        <div class="body pure-g">
+            <div class="col-sm-1-1 col-1-4">Residential Address:</div>
+            <div class="col-sm-1-1 col-3-4">
+                {{#if displayResidential}}
+                    {{> address person.residentialAddress}}
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="body pure-g">
+            <div class="col-sm-1-1 col-1-4">Shipping Address:</div>
+            <div class="col-sm-1-1 col-3-4">
+                {{#if displayShipping}}
+                    {{> address person.shippingAddress}}
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
         </div>
     </div>
-</div>
 {{/if}}
 
 {{#if person.interests}}
@@ -50,30 +50,30 @@
 {{/if}}
 
 {{#if showAllFields}}
-<div class="card">
-    <div class="header">Additional Information</div>
-    <div class="body pure-g">
-        <div class="col-1-4">Shirt Size:</div>
-        <div class="col-3-4">
-            {{#if person.shirtSize}}
-                {{person.shirtSize}}
-            {{else}}
-                Not Available
-            {{/if}}
+    <div class="card">
+        <div class="header">Additional Information</div>
+        <div class="body pure-g">
+            <div class="col-1-4">Shirt Size:</div>
+            <div class="col-3-4">
+                {{#if person.shirtSize}}
+                    {{person.shirtSize}}
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="body pure-g">
+            <div class="col-1-4">Shoe Size:</div>
+            <div class="col-3-4">
+                {{#if person.shoeSize}}
+                    {{person.shoeSize}}
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
         </div>
     </div>
-    <div class="divider"></div>
-    <div class="body pure-g">
-        <div class="col-1-4">Shoe Size:</div>
-        <div class="col-3-4">
-            {{#if person.shoeSize}}
-                {{person.shoeSize}}
-            {{else}}
-                Not Available
-            {{/if}}
-        </div>
-    </div>
-</div>
 {{/if}}
 
 {{#if_gt aboutImageCount 0}}
