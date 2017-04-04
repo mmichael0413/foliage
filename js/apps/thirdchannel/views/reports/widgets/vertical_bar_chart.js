@@ -60,6 +60,8 @@ define(function(require) {
             }
           }));
 
+          this.$el.show();
+
           return this;
         }
     });
