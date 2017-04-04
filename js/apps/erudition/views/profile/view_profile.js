@@ -53,8 +53,6 @@ define(function(require){
                 aboutImageCount = this.person.aboutImages.length;
             }
 
-            console.log('Person', this.person);
-
 			this.$el.append(this.template({
                 person: this.person,
                 interests: this.interests,
