@@ -1,4 +1,4 @@
-<div class="body task clickable right-col" data-search="{{type}} {{name}} {{topics}} {{duration}}">
+<div class="body task clickable right-col" data-search="{{type}} {{name}} {{topics}} {{duration}}" data-topics="{{topics}}" data-survey_type="{{type}}">
 
     <div class="details">
 
@@ -23,9 +23,11 @@
 
     <div class="inputs"></div>
 
-    <div class="indicator shrink">
-        <div class="box">
-            <i class="medium-blue ic ic_blank"></i>
+    <div class="indicator">
+        <div class="hide">
+            <button class="btn primary">
+                <i class="ic ic_start"></i> <span class="hidden-xs">Start Activity</span>
+            </button>
         </div>
     </div>
 </div>

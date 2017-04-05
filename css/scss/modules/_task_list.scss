@@ -79,24 +79,68 @@
   }
 }
 
-.task {
+.filter-activities {
+  @include placeholder(lighten($medium-blue, 15%));
 
-  &.selected {
-    background-color: $filter-selected-bg;
+  #topics {
+    float: right;
+    width: auto;
+  }
 
-    &.removal {
-      background-color: $removal-color-bg;
+  span {
+    white-space: nowrap;
 
-      .box {
-        border-color: $red;
+    label{
+      display: inline-block;
+      margin: 1em 2em 0 0.25em;
+    }
+  }
 
-        .ic {
-          color: $red;
+  .chosen-container {
+    float: right;
+    margin-top: 0.65em;
+    min-width: 15em;
+
+    a.chosen-single {
+
+      span {
+        font-size: 0.9em;
+      }
+
+      div {
+        background: white;
+        border-radius: 5px;
+
+        b:before {
+          font-family: 'FontAwesome', 'Open Sans', 'sans-serif';
+          content: "\f0d7";
+          font-size: 0.9em;
+          color: $medium-blue;
         }
       }
     }
   }
 
+  .advanced-filters {
+    a {
+
+    }
+  }
+
+  #search {
+    font-family: 'FontAwesome', 'Open Sans', 'sans-serif';
+  }
+}
+
+.selected {
+  background-color: $filter-selected-bg;
+
+  &.removal {
+    background-color: $removal-color-bg;
+  }
+}
+
+.task {
   .details {
     display: inline-block;
 
@@ -115,33 +159,14 @@
   }
 }
 
-.activities-list, .manage-activities {
-  .task {
-    .details {
-      width: calc(100% - 3em);
-    }
-
-  }
-}
-
 .manage-activities {
   .clickable {
     &:hover {
       background-color: $removal-color-bg;
-
-      .box {
-        border-color: $red;
-      }
     }
   }
 }
 
-.box {
-  width: 1.5em;
-  height: 1.5em;
-  border: 1px solid $medium-blue;
-  text-align: center;
-}
 
 .actions-section {
   text-align: right;
@@ -165,5 +190,30 @@
 
   .visit-header {
     margin: 0.5em;
+  }
+
+  .filter-activities {
+    .chosen-container {
+      float: none;
+      min-width: 100%;
+    }
+
+    span {
+      display: block;
+    }
+
+    #topics {
+      float: none;
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    h5 {
+      margin: 0;
+    }
+
+    #survey-types {
+      margin-top: 1em;
+    }
   }
 }

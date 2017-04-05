@@ -16,7 +16,6 @@ define(function(require) {
                     this.$el.append(new TaskView({model: task}).render().$el);
                 }, this);
             }
-            this.$header.append(this.actionsTemplate(this.model.actions));
             return this;
         }
     });

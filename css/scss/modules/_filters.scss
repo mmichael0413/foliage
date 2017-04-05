@@ -1,7 +1,10 @@
 .filter-container {
-  background-color: $light-blue;
-  margin-bottom: 1em;
-  padding: 1em;
+
+  form {
+    background-color: $light-blue;
+    margin-bottom: 1em;
+    padding: 1em;
+  }
 
   input {
     margin: 0;
@@ -10,5 +13,27 @@
   label {
     display: block;
     font-size: 0.85em;
+  }
+}
+
+.advanced-filters {
+  cursor: pointer;
+  text-align: center;
+  margin-top: calc(-1.5em);
+  color: $medium-blue;
+
+  i {
+    background:$light-blue;
+    padding: 0 1em;
+    line-height: 2.25em;
+    font-size: 0.9em;
+    border-radius: 0 0 1em 1em;
+    vertical-align: top;
+  }
+}
+
+@include swb-medium {
+  .mobile-collapsed {
+    display: none;
   }
 }
