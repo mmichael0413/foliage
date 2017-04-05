@@ -17,13 +17,6 @@ define(function(require) {
         render: function () {
             this.setElement(this.template(this.model));
 
-            if (this.model.show_view_list !== undefined) {
-                this.listenTo(context, 'filter:queryString', function (qs) {
-                    this.updateViewBreakDownLink(qs, this.model);
-                });
-                context.trigger('filter:request:queryString');
-            }
-
             if (this.model.uuid) {
                 this.listenTo(context, 'report post render widget_' + this.model.uuid, this.renderChart);
             } else {
@@ -40,7 +33,7 @@ define(function(require) {
                     bindto: element,
                     data: {
                         columns: [
-                            ['data', 85]
+                            ['data', this.model.value]
                         ],
                         type: 'gauge',
                         labels: false
@@ -52,10 +45,7 @@ define(function(require) {
                       width: 25
                     },
                     color: {
-                        pattern: ['#2FB44A', '#2FB44A', '#2FB44A', '#2FB44A'],
-                        threshold: {
-                            values: [30, 60, 90, 100]
-                        }
+                      pattern: ['#2FB44A']
                     },
                     size: {
                         width: 150,

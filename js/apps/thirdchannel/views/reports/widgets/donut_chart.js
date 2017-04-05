@@ -68,7 +68,11 @@ define(function(require) {
                     }
                 }));
 
-                this.$el.on('mresize', this.resizeChart);
+                this.$el.show();
+
+                if (!this.model.config.staticSize) {
+                  this.$el.on('mresize', this.resizeChart);
+                }
             }
         },
 

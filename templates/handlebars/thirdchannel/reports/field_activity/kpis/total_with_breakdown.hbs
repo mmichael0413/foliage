@@ -1,9 +1,11 @@
 <div class="kpi column reverse">
-
   {{#if_eq chartType "icon"}}
-    <div>
+    <div class="col-md-1 col-4-5 legend">
       {{#each data.breakdown}}
-        {{this.percentage.value}}% {{this.percentage.label}} ({{this.subtotal.value}} {{this.subtotal.label}})
+        <div class="legend-item" data-chart-id="28% Agents (136 Stores)">
+          <span class="legend-box" style="background-color: {{../chartColor}}"></span>
+          {{this.percentage.value}}% {{this.percentage.label}} ({{this.subtotal.value}} {{this.subtotal.label}})
+        </div>
       {{/each}}
     </div>
     <div class="metric-infograph">
@@ -15,8 +17,7 @@
 
   <div class="metrics">
       <div class="metric">
-        <a class="metric-figure link" href="#">{{data.total}}</a>
-
+        <a class="metric-figure link" href="#">{{format_number data.total}}</a>
         <span class="metric-label">
           {{label}}
         </span>

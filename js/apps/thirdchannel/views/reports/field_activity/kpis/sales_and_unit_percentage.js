@@ -22,7 +22,7 @@ define(function(require) {
       renderGauges: function() {
         _.each(this.model.data, function(model, key) {
           model.display_type = 20;
-          this.$el.find('.kpi[data-metric=' + key + '] .gauge-container').append(new WidgetView(model).render().$el);
+          this.$el.find('.kpi[data-metric="gauge-' + key + '"] .gauge-container').append(new WidgetView(model).render().$el);
         }.bind(this));
 
         context.trigger("report post render");

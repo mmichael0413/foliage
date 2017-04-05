@@ -3,9 +3,9 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         HandlebarsHelpers = require('handlebarsHelpers'),
-        BarChartView = require('thirdchannel/views/reports/widgets/bar_chart'),
         DonutChartView = require('thirdchannel/views/reports/widgets/donut_chart'),
         HorizontalBarChartView = require('thirdchannel/views/reports/widgets/horizontal_bar_chart'),
+        VerticalBarChartView = require('thirdchannel/views/reports/widgets/vertical_bar_chart'),
         LeadingRowView = require('thirdchannel/views/reports/widgets/leading_row'),
         ListIconView = require('thirdchannel/views/reports/widgets/list_icon'),
         MetricIconView = require('thirdchannel/views/reports/widgets/metric_icon'),
@@ -71,6 +71,8 @@ define(function(require) {
                 widget = this.createLegend();
             } else if (this.model.display_type == 20) {
                 widget = this.createGauge();
+            } else if (this.model.display_type == 21) {
+              widget = this.createVerticalbarChart();
             }
 
             this.setElement(widget);
@@ -129,6 +131,9 @@ define(function(require) {
         },
         createGauge: function() {
             return new GaugeView(this.model).render().$el;
+        },
+        createVerticalbarChart: function() {
+            return new VerticalBarChartView(this.model).render().$el;
         }
     });
 });

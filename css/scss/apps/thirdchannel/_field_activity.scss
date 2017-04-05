@@ -1,3 +1,5 @@
+@import url('http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+
 $cornflower: #4684c5;
 
 %spaced-row {
@@ -20,6 +22,29 @@ $cornflower: #4684c5;
 %row-header {
   align-self: center;
   font-weight: 800;
+}
+
+.header-index {
+  border-bottom: 1px solid $light-blue;
+  display: flex;
+  justify-content: space-between;
+  padding: .25em .5em;
+  margin: 0 .25em;
+
+  h2 {
+    display: inline-block;
+    text-transform: uppercase;
+  }
+
+  div {
+    display: inline-block;
+    text-align: right;
+  }
+
+  a {
+    color: $cornflower;
+    text-decoration: underline;
+  }
 }
 
 .metrics {
@@ -50,15 +75,19 @@ $cornflower: #4684c5;
   }
 
   &-infograph {
-    padding: 3em 0 1em;
+    padding: 1em 0 1em;
 
     .ic, .fa {
       font-size: 7em;
 
       &.ic_states {
         color: $palette10;
-        font-size: 10em;
+        font-size: 11.4em;
         line-height: 0;
+      }
+
+      &.ic_person.agent {
+        color: $palette10;
       }
     }
   }
@@ -140,6 +169,12 @@ $cornflower: #4684c5;
       }
     }
   }
+
+  @include swb-medium {
+    .metric-icon {
+      display: none;
+    }
+  }
 }
 
 
@@ -150,13 +185,17 @@ $cornflower: #4684c5;
   justify-content: space-around;
   border-bottom: 1px solid $palette2;
 
+  @include swb-medium {
+    font-size: .8em;
+  }
+
   .kpi {
     align-items: center;
     display: flex;
     flex-grow: 1;
     flex-basis: 50%;
     justify-content: center;
-    margin: 1.5em 0 1.75em;
+    margin: .25em 0 1.25em;
     padding: 0 4em;
 
     &:not(:first-child) {
@@ -179,6 +218,11 @@ $cornflower: #4684c5;
         &-figure,
         &-label {
           text-align: left;
+
+          @include swb-medium {
+            text-align: center;
+            display: block;
+          }
         }
       }
     }
@@ -186,6 +230,7 @@ $cornflower: #4684c5;
     &.column {
       flex-direction: column;
       justify-content: flex-start;
+      margin-top: 1em;
 
       &.reverse {
         flex-direction: column-reverse;
@@ -208,7 +253,7 @@ $cornflower: #4684c5;
     flex-direction: column;
     justify-content: space-between;
     font-size: .9em;
-    width: 40%;
+    width: 25%;
   }
 }
 
@@ -238,10 +283,11 @@ $cornflower: #4684c5;
   align-items: flex-end;
   margin-bottom: 1em;
   flex-grow: 0;
-  flex-basis: 20%;
+  flex-basis: 35%;
 
   &:not(:first-child) {
     border-left: 0;
+    margin-bottom: 0;
   }
 
   .gauge-container {
@@ -270,40 +316,36 @@ $cornflower: #4684c5;
 .kpi-image {
   background-repeat: no-repeat;
   height: 7.2em;
+  // margin-right: .5em;
+  width: 7em;
 
-  &.capacity {
+  @include swb-medium {
+    margin: 0 auto;
+  }
+
+  &.caseCapacityDedicated {
     background-image: url('../images/g_productsshelf.svg');
-    margin-right: .5em;
-    width: 7em;
   }
-  &.units {
+  &.unitsMoved {
     background-image: url('../images/g_boxes.svg');
-    margin-right: .5em;
     width: 10em;
+    margin-right: 0;
   }
-  &.customers-engaged {
+  &.customersEngaged {
     background-image: url('../images/g_handshake.svg');
-    width: 7em;
+    height: 6em;
   }
   &.numberAttendees {
     background-image: url('../images/g_cliptotals.svg');
-    margin-right: .5em;
-    width: 7em;
   }
-  &.storeAssocatesEducated {
+  &.storeAssociatesEducated {
     background-image: url('../images/g_educated.svg');
-    margin-right: .5em;
-    width: 7em;
   }
   &.targetSalesGoals {
     background-image: url('../images/g_targetdollar.svg');
-    margin-right: .5em;
-    width: 7em;
   }
   &.actualSales {
     background-image: url('../images/g_money.svg');
-    margin-right: .5em;
-    width: 7em;
   }
 }
 
@@ -318,6 +360,12 @@ $cornflower: #4684c5;
   .overview-kpis {
     align-items: flex-start;
     border-bottom: 0;
+
+    @include swb-medium {
+      flex-direction: column;
+      display: inline-block;
+      text-align: center;
+    }
   }
 
  .kpi {
@@ -326,18 +374,135 @@ $cornflower: #4684c5;
    &:not(:first-child) {
      border: 0;
    }
- }
 
- .chart.visitsCompleted {
-   width: 100%;
-
-   .widget {
-     padding: 0;
-     width: 100%;
-   }
-
-   .legend {
-     width: 70%;
+   @include swb-medium {
+     display: inline-flex;
+     width: 32%;
    }
  }
+
+ .legend {
+   text-align: center;
+ }
+
+  .chart.visitsCompleted {
+    width: 70%;
+
+    .widget {
+      padding: 0;
+      position: relative;
+      width: 100%;
+
+      .col-md-1.col-1-2 {
+        width: 100%;
+
+        &.with-icon {
+          display: flex;
+          align-items: center;
+          align-content: center;
+          justify-content: center;
+        }
+      }
+
+      .donut-chart {
+        min-width: 150px;
+        margin: 0;
+      }
+
+      .ic {
+        position: absolute;
+        font-size: 2.75em;
+        color: $slate;
+      }
+    }
+
+    .legend {
+      width: 70%;
+    }
+  }
+}
+
+.chart.storesVisited {
+  width: 100%;
+
+  .with-icon {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    max-width: 12em;
+  }
+
+  .ic {
+    font-size: 2em;
+    border-bottom: 1px solid $light-blue;
+    color: $slate;
+    padding-left: .25em;
+    padding-right: .25em;
+  }
+
+  .legend {
+    width: 75%;
+  }
+}
+
+.widget.vbar {
+  width: 100%;
+  padding: 0;
+}
+
+.merchandising-kpis {
+
+  .widget p {
+    margin: 0;
+  }
+
+  .widgets .kpi {
+    justify-content: flex-start;
+  }
+
+  @include swb-medium {
+    display: block;
+
+    .units-and-capacity {
+      width: 100%;
+      display: block;
+      margin-bottom: 1em;
+      border-bottom: 1px solid $light-blue;
+
+      .kpi {
+        width: 49%;
+        display: inline-block;
+      }
+    }
+
+    .widget {
+      display: inline-block;
+      width: 33%;
+    }
+  }
+}
+
+.consumer-engagement-kpis {
+  @include swb-medium {
+    flex-wrap: wrap;
+
+    .kpi {
+      border-bottom: 1px solid $light-blue;
+      padding: 0 3em 1em;
+      flex-basis: 35%;
+
+      &:nth-child(3) {
+        border: 0;
+      }
+    }
+
+    .sales-and-units {
+      width: 64%;
+
+      .kpi {
+        border: 0;
+        flex-basis: 25%;
+      }
+    }
+  }
 }

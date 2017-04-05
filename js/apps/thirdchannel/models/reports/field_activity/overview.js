@@ -4,6 +4,8 @@ define(function(require) {
 
   return Backbone.Model.extend({
 
+    params: '',
+
     iconMapping: {
       "States Visited": "ic ic_states"
     },
@@ -11,20 +13,22 @@ define(function(require) {
     chartMapping: {
       "Visits Completed": {
         type: "donut",
-        icon: "icon.ref"
+        icon: "ic ic_visit"
       },
       "Stores Visited": {
         type: "bar",
         direction: "vertical",
-        icon: "icon.ref"
+        icon: "ic ic_store"
       },
       "ThirdChannel Agents": {
         type: "icon",
-        icon: "ic ic_person agent"
+        icon: "ic ic_person agent",
+        color: "#2FB44A",
       },
       "In-Store Support/FMRs": {
         type: "icon",
-        icon: "ic ic_person fmr"
+        icon: "ic ic_person fmr",
+        color: "#BDC5C4"
       }
     },
 
@@ -33,7 +37,11 @@ define(function(require) {
     },
 
     url: function () {
-      return '/programs/' + this.options.programId + '/reports/field_activities';
+      return '/programs/' + this.options.programId + '/reports/field_activities?' + this.params;
+    },
+
+    updateFilters: function(params) {
+      this.params = params;
     },
 
     mapIconToMetric: function() {
@@ -45,6 +53,7 @@ define(function(require) {
       } else {
         metric.chartType = this.chartMapping[metric.label].type;
         metric.chartIcon = this.chartMapping[metric.label].icon;
+        metric.chartColor = this.chartMapping[metric.label].color;
       }
 
         metric.reverse = true;
