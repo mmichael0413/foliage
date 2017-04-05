@@ -9,8 +9,8 @@ define(function(require) {
         template: Templates['thirdchannel/checkins/list/store'],
 
         events: {
-            "click .closed": "showJobs",
-            "click .open": "hideJobs"
+            "click .closed:not(.expansions)": "showJobs",
+            "click .open:not(.expansions)": "hideJobs"
         },
 
         render: function() {

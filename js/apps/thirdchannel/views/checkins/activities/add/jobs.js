@@ -18,7 +18,8 @@ define(function(require) {
         render: function() {
             this.$activities = this.$('.activities-list');
             if (this.collection.length === 0) {
-                this.noResults();
+                this.$activities.empty();
+                this.$activities.append(this.noResultsTemplate());
             } else {
                 this.$activities.empty();
                 this.collection.forEach(function (model) {

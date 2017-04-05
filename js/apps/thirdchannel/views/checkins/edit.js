@@ -1,12 +1,20 @@
 define(function(require){
-    var Backbone = require('backbone'),
+    var context = require('context'),
+        Backbone = require('backbone'),
+        Templates = require('handlebarsTemplates'),
         JobView = require('thirdchannel/views/checkins/edit/job');
 
     return Backbone.View.extend({
         el: ".visit-activities",
 
+        template: Templates['thirdchannel/checkins/edit/starting'],
+
         events: {
             "click .checkin-form-btn": "submit"
+        },
+
+        initialize: function () {
+            this.listenTo(context, 'list:activity:started', this.starting);
         },
 
         render: function() {
@@ -23,6 +31,10 @@ define(function(require){
             this.$(".checkin-form-btn").prop('disabled', true);
             this.$(".checkin-form-btn i").removeClass('ic_check').addClass("ic-spin ic_processing");
             this.$('.actions-section form').submit();
+        },
+
+        starting: function (e) {
+            this.$jobs.empty().append(this.template());
         }
     });
 });
