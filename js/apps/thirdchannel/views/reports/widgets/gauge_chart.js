@@ -33,7 +33,7 @@ define(function(require) {
                     bindto: element,
                     data: {
                         columns: [
-                            ['data', 85]
+                            ['data', this.model.value]
                         ],
                         type: 'gauge',
                         labels: false
@@ -45,10 +45,7 @@ define(function(require) {
                       width: 25
                     },
                     color: {
-                        pattern: ['#2FB44A', '#2FB44A', '#2FB44A', '#2FB44A'],
-                        threshold: {
-                            values: [30, 60, 90, 100]
-                        }
+                      pattern: ['#2FB44A']
                     },
                     size: {
                         width: 150,

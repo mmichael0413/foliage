@@ -1,11 +1,11 @@
-<div class="kpi">
+<div class="kpi {{displayDirection}}">
   <div class="kpi-image {{name}}"></div>
 
   <div class="metrics">
     {{#each data}}
       <div class="metric">
         <span class="metric-figure">
-          {{format_number this.value}}
+          {{this.prefix}}{{format_number this.value}}{{this.postfix}}
         </span>
         <span class="metric-label">
           {{this.label}}

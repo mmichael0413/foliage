@@ -1,29 +1,17 @@
 <div class="sales-and-units">
-  <div class="kpi gauge" data-metric="sales">
-    <div class="gauge-container"></div>
-    <div class="metrics">
-        <div class="metric">
-          <span class="metric-figure">
-            {{format_number data.sales.percentage}}%
-          </span>
-          <span class="metric-label">
-            {{data.sales.label}}
-          </span>
-        </div>
+  {{#each data}}
+    <div class="kpi gauge" data-metric="gauge-{{@index}}">
+      <div class="gauge-container"></div>
+      <div class="metrics">
+          <div class="metric">
+            <span class="metric-figure">
+              {{format_number this.value}}{{this.postfix}}
+            </span>
+            <span class="metric-label">
+              {{this.label}}
+            </span>
+          </div>
+      </div>
     </div>
-  </div>
-
-  <div class="kpi gauge" data-metric="units">
-    <div class="gauge-container"></div>
-    <div class="metrics">
-        <div class="metric">
-          <span class="metric-figure">
-            {{format_number data.units.total}}%
-          </span>
-          <span class="metric-label">
-            {{data.units.label}}
-          </span>
-        </div>
-    </div>
-  </div>
+  {{/each}}
 </div>

@@ -27,9 +27,9 @@ define(function(require) {
         } else if (this.model.chartType === "bar") {
           var barChartModel = this._generateBarChartModel(this.model);
           barChartModel.display_type = 21;
-          // this.$el.find('.chart.' + this.model.name).html('<div>boop! needs a chart!</div>');
           this.$el.find('.chart.' + this.model.name).append(new WidgetView(barChartModel).render().$el);
         }
+
         return this;
       },
 

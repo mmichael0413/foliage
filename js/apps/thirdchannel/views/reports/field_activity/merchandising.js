@@ -25,17 +25,28 @@ define(function(require) {
       fetchReport: function() {
         this.model.fetch().done(function(response) {
           this.render();
+          context.trigger("report post render");
         }.bind(this));
       },
 
       render: function() {
         var fieldActivities = this.model.get('fieldActivities');
+        var metrics = _.map(fieldActivities.metrics, function(metric) {
+
+        });
+
+
+
         this.$el.html(this.template(fieldActivities));
         new ActivityReportsView({model: fieldActivities.sections.activityReport, el: '.merchandising-activity-reports'});
 
         _.each(fieldActivities.metrics, function(metric) {
-          new KPIView({model: metric, el: '.merchandising-kpis'});
+          var el = (metric.name == "unitsMoved" || metric.name == "caseCapacityDedicated") ? '.widgets' : '.merchandising-kpis';
+
+          new KPIView({model: metric, el: el});
         });
+
+        context.trigger("report post render");
 
         return this;
       },
