@@ -5,7 +5,7 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-      template: HandlebarsTemplates['thirdchannel/reports/field_activity/kpis/units_and_capacity'],
+      template: HandlebarsTemplates['thirdchannel/reports/field_activity/kpis/generic_metric'],
 
       initialize: function() {
         this.render();

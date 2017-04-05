@@ -27,6 +27,8 @@ define(function(require) {
         _.each(this.model.get('fieldActivities').metrics, function(metric) {
           new KPIView({model: metric, el: '.overview-kpis'});
         });
+
+        context.trigger("report post render");
       },
 
       fetchReport: function() {

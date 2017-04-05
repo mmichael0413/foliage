@@ -4,11 +4,9 @@ define(function(require) {
         Backbone = require('backbone'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        TotalAndAverageView = require('thirdchannel/views/reports/field_activity/kpis/total_and_average'),
+        GenericMetric = require('thirdchannel/views/reports/field_activity/kpis/generic_metric'),
         TotalWithBreakdownView = require('thirdchannel/views/reports/field_activity/kpis/total_with_breakdown'),
         TotalView = require('thirdchannel/views/reports/field_activity/kpis/total'),
-        CurrencyAndUnitsView = require('thirdchannel/views/reports/field_activity/kpis/currency_and_units'),
-        UnitsAndCapacityView = require('thirdchannel/views/reports/field_activity/kpis/units_and_capacity'),
         SalesAndUnitsPercentageView = require('thirdchannel/views/reports/field_activity/kpis/sales_and_unit_percentage'),
         WidgetView = require('thirdchannel/views/reports/index/widget');
 
@@ -19,53 +17,51 @@ define(function(require) {
       ],
 
       initialize: function(options) {
-        this.renderKPI(this.model.type);
+        if (this.model.type) {
+          this.renderKPI(this.model.type);
+        } else {
+          this.renderKPI(this.model.name);
+        }
       },
 
       renderKPI: function(type) {
         switch(type) {
-          case "TotalAndAverage":
-            new TotalAndAverageView({model: this.model, el: this.el});
-            break;
           case "Total":
             new TotalView({model: this.model, el: this.el});
             break;
-          case "CurrencyAndUnits":
-            new CurrencyAndUnitsView({model: this.model, el: this.el});
-            break;
-          case "UnitsMovedAndCapacity":
-            new UnitsAndCapacityView({model: this.model, el: this.el});
-            break;
-          case "PercentageAndBreakdown":
+          case "isPrimeLocation":
+          case "areCollectionsAdjacent":
+          case "areCollectionsTogether":
             var donutChartModel = this._getDonutChartModel(this.model);
             this.$el.append(new WidgetView(donutChartModel).render().$el);
-            context.trigger("report post render");
             break;
-          case "SalesAndUnitsPercentage":
+          case "averagePercentOfTargetMet":
             new SalesAndUnitsPercentageView({model: this.model, el: this.el});
             break;
           case "TotalWithBreakdown":
             new TotalWithBreakdownView({model: this.model, el: this.el});
             break;
           default:
-            console.warn('KPI view not found: ' + type);
+            // TODO: Rename to GenericMetric
+            new GenericMetric({model: this.model, el: this.el, displayDirection: this.model.displayDirection || 'row'});
             break;
         }
       },
 
       _getDonutChartModel: function(model) {
-        var breakdowns = model.data.breakdown;
-        var percentage = (breakdowns[0].instances / [breakdowns[0].instances + breakdowns[1].instances] * 100).toFixed(0) + "%";
+        var breakdowns = model.breakdown;
+        var percentage = (model.data[0].value * 100) + model.data[0].postfix;
         var columnBreakdown = _.map(breakdowns, function(breakdown) {
+          var label = this._generateLabelFromBreakdown(breakdown);
           var result = [
-            breakdown.value + " (" + breakdown.instances + " " + breakdown.label + ")",
-            breakdown.instances
+            label,
+            breakdown[1].value
           ];
           return result;
-        });
+        }.bind(this));
         var labelBreakdown = _.map(breakdowns, function(breakdown, key) {
           var result = {
-            label: breakdown.value + " (" + breakdown.instances + " " + breakdown.label + ")",
+            label: this._generateLabelFromBreakdown(breakdown),
             color: this.colors[key]
           };
           return result;
@@ -102,6 +98,10 @@ define(function(require) {
         };
 
         return model;
+      },
+
+      _generateLabelFromBreakdown: function(breakdown) {
+        return breakdown[0].label + " (" + breakdown[1].value + " " + breakdown[1].label +  ")";
       }
     });
 });

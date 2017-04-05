@@ -9,7 +9,7 @@ define(function(require) {
     },
 
     url: function () {
-      return '/programs/' + this.options.programId + '/reports/field_activities/consumer_engagement_selling?' + this.params;
+      return '/programs/' + this.options.programId + '/reports/field_activities/consumer_engagement_&_selling?' + this.params;
     },
 
     updateFilters: function(params) {

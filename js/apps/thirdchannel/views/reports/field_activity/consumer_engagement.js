@@ -30,11 +30,16 @@ define(function(require) {
 
       render: function() {
         var fieldActivities = this.model.get('fieldActivities');
+
         this.$el.html(this.template(fieldActivities));
+
         new ActivityReportsView({model: fieldActivities.sections.activityReport, el: '.consumer-engagement-activity-reports'});
+
         _.each(fieldActivities.metrics, function(metric) {
+          metric.displayDirection = "column";
           new KPIView({model: metric, el: '.consumer-engagement-kpis'});
         });
+        
         return this;
       },
 

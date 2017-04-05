@@ -23,6 +23,8 @@ define(function(require) {
           this.associateEducation = new AssociateEducationView(options);
           this.consumerEngagement = new ConsumerEngagementView(options);
           this.merchandising = new MerchandisingView(options);
+
+          // context.trigger("report post render");
         },
 
         handleFilter: function(params) {

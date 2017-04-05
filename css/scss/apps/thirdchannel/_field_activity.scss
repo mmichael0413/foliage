@@ -253,7 +253,7 @@ $cornflower: #4684c5;
     flex-direction: column;
     justify-content: space-between;
     font-size: .9em;
-    width: 40%;
+    width: 25%;
   }
 }
 
@@ -316,22 +316,22 @@ $cornflower: #4684c5;
 .kpi-image {
   background-repeat: no-repeat;
   height: 7.2em;
-  margin-right: .5em;
+  // margin-right: .5em;
   width: 7em;
 
   @include swb-medium {
     margin: 0 auto;
   }
 
-  &.capacity {
+  &.caseCapacityDedicated {
     background-image: url('../images/g_productsshelf.svg');
   }
-  &.units {
+  &.unitsMoved {
     background-image: url('../images/g_boxes.svg');
     width: 10em;
     margin-right: 0;
   }
-  &.customers-engaged {
+  &.customersEngaged {
     background-image: url('../images/g_handshake.svg');
     height: 6em;
   }
@@ -451,8 +451,13 @@ $cornflower: #4684c5;
 }
 
 .merchandising-kpis {
+
   .widget p {
     margin: 0;
+  }
+
+  .widgets .kpi {
+    justify-content: flex-start;
   }
 
   @include swb-medium {
