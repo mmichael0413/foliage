@@ -95,10 +95,8 @@ define(function(require) {
                     processResults: function (data) {
                         return {
                             results: data.map(function (item) {
-                                return {
-                                    id: item.id,
-                                    text: item.email ? item.name + ' <' + item.email + '>' : item.name
-                                }
+                                item.text = item.name + ' <' + item.email + '> - ' + item.address;
+                                return item;
                             })
                         };
                     },
