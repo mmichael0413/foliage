@@ -7,6 +7,7 @@ define(function(require) {
         Chosen = require('chosen'),
         TimePicker = require('timepicker'),
         DateTimePicker = require('dateTimePicker'),
+        Select2 = require('select2'),
         context = require('context'),
         DateRange = require('thirdchannel/models/manage/dateRange'),
         StoreItem = require('thirdchannel/views/manage/jobs/store_item'),
@@ -74,9 +75,40 @@ define(function(require) {
             data.recommendedStartTimeFieldsClass = hasStartTime ? "" : "hide";
 
             this.$el.html(this.template(data));
+
             this.$('.survey_uuid, .duration, .survey_topic_uuids').chosen({disable_search: true, width: "100%"});
             this.$('.timezone').chosen({width: "100%"});
             this.$('.start_time').timepicker({scrollDefault: '08:00'});
+
+            this.$('.assignee_id').select2({
+                ajax: {
+                    url: '/programs/' + context.programId + '/manage/users_search',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            format: 'json',
+                            name: params.term,
+                            per: 25
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: data.map(function (item) {
+                                return {
+                                    id: item.id,
+                                    text: item.email ? item.name + ' <' + item.email + '>' : item.name
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                },
+                minimumInputLength: 3,
+                placeholder: "Select...",
+                allowClear: true
+            });
+
             this.renderRanges();
             return this;
         },
@@ -136,6 +168,7 @@ define(function(require) {
                 timezone: this.$('.timezone').val(),
                 survey_topic_uuids: this.$('.survey_topic_uuids').val(),
                 notes: this.$('.notes').val(),
+                assignee_id: this.$('.assignee_id').val(),
                 schedulable_ranges : ranges
             };
 
@@ -176,6 +209,7 @@ define(function(require) {
                 timezone: this.$('.timezone').val(),
                 survey_topic_uuids: this.$('.survey_topic_uuids').val(),
                 notes: this.$('.notes').val(),
+                assignee_id: this.$('.assignee_id').val(),
                 program_store_uuids: programStoreIds,
                 schedulable_ranges : ranges
             };
