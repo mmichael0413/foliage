@@ -1,7 +1,7 @@
 define(function(require) {
     var context = require('context'),
         Backbone = require('backbone'),
-        Chosen = require('chosen');
+        Select2 = require('select2');
 
     return Backbone.View.extend({
         el: '.filter-container',
@@ -13,7 +13,7 @@ define(function(require) {
         },
 
         render: function () {
-            this.$('select').chosen({disable_search: true, width: '33%'});
+            this.$('select').select2();
             this.$form = this.$('form');
             this.$expander = this.$('.filter-group-expanded');
             this.$indicator = this.$('.advanced-filters i');
@@ -27,6 +27,7 @@ define(function(require) {
 
         broadcast: function(e, data) {
             context.trigger('list:search:update', this.$form.serializeObject());
+            context.trigger('list:search:updated');
         },
 
         expand: function () {

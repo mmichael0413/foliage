@@ -13,7 +13,7 @@ define(function(require){
             this.$jobs = this.$('#jobs');
             this.$jobs.empty();
             this.model.jobs.forEach(function(job) {
-                this.$jobs.append(new JobView({model: job}).render().$el);
+                this.$jobs.append(new JobView({model: job, collection: job.required_tasks}).render().$el);
             }, this);
             return this;
         },

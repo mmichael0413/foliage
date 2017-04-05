@@ -9,6 +9,7 @@
 @import '../../../../js/libs/bower_components/slick.js/slick/slick';
 @import '../../../../js/libs/bower_components/datetimepicker/jquery.datetimepicker';
 @import '../../../../js/libs/bower_components/c3/c3';
+@import '../../../../js/libs/bower_components/select2/src/scss/core';
 
 @import "../../base/fonts_all";
 @import "../../base/base";
@@ -76,6 +77,8 @@
 @import "./special_projects";
 @import "./scheduled_visits";
 @import "./request_job";
+
+@import "../../theme/select2/override";
 
 // Marketing Theme
 @import "../../theme/marketing/base/colors";

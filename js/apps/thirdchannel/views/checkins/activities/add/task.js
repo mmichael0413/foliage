@@ -6,45 +6,41 @@ define(function(require){
     return Backbone.View.extend({
 
         template: Templates['thirdchannel/checkins/activities/add/task'],
-        inputTemplate: Templates['thirdchannel/checkins/activities/add/input'],
 
         events: {
-            'click :not(button)' : 'select'
+            'click .clickable:not(.selected)' : 'select',
+            'click .selected': 'submit'
         },
 
         initialize: function () {
+            this.model.action = window.location.href;
             this.listenTo(context, 'list:search:update', this.search);
             this.listenTo(context, 'list:item:selected', this.deselect);
         },
 
         render: function() {
-            this.$input = this.inputTemplate(this.model);
             this.$el.html(this.template(this.model));
             this.$task = this.$('.task');
-            this.$indicator = this.$('.indicator div');
-            this.$icon = this.$('> div i');
-            this.$inputs = this.$('.inputs');
+            this.$form = this.$('form');
+            this.$button = this.$('button');
             return this;
         },
 
         select: function() {
             context.trigger('list:item:selected');
-
-            this.$task.toggleClass('selected');
-            this.$icon.toggleClass('ic_blank').toggleClass('ic_check');
-            this.$indicator.toggleClass('hide');
-
-            if (this.$task.hasClass('selected')) {
-                this.$inputs.append(this.$input);
-            } else {
-                this.$inputs.empty();
-            }
+            this.$task.addClass('selected');
+            this.$button.removeClass('hide');
         },
 
         deselect: function() {
-            this.$task.removeClass('selected removal');
-            this.$indicator.addClass('hide');
-            this.$inputs.empty();
+            this.$task.removeClass('selected');
+            this.$button.addClass('hide');
+        },
+
+        submit: function(e) {
+            e.preventDefault();
+            this.$form.submit();
+            context.trigger('list:create:activity');
         },
 
         search: function(result) {

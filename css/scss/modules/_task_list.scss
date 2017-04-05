@@ -70,65 +70,26 @@
 
   h2 {
     margin-bottom: 0.25em;
+    display: inline-block;
+  }
+
+  .tooltip {
+    float: none;
+    color: $text-color;
+    text-align: left;
+    cursor: help;
+
+    & + .tip {
+      right: auto;
+      z-index: 1;
+      max-width: 34em;
+    }
   }
 }
 
 .visit-activities {
   .indicator {
     padding-right: 0;
-  }
-}
-
-.filter-activities {
-  @include placeholder(lighten($medium-blue, 15%));
-
-  #topics {
-    float: right;
-    width: auto;
-  }
-
-  span {
-    white-space: nowrap;
-
-    label{
-      display: inline-block;
-      margin: 1em 2em 0 0.25em;
-    }
-  }
-
-  .chosen-container {
-    float: right;
-    margin-top: 0.65em;
-    min-width: 15em;
-
-    a.chosen-single {
-
-      span {
-        font-size: 0.9em;
-      }
-
-      div {
-        background: white;
-        border-radius: 5px;
-
-        b:before {
-          font-family: 'FontAwesome', 'Open Sans', 'sans-serif';
-          content: "\f0d7";
-          font-size: 0.9em;
-          color: $medium-blue;
-        }
-      }
-    }
-  }
-
-  .advanced-filters {
-    a {
-
-    }
-  }
-
-  #search {
-    font-family: 'FontAwesome', 'Open Sans', 'sans-serif';
   }
 }
 
@@ -191,29 +152,14 @@
   .visit-header {
     margin: 0.5em;
   }
+}
 
-  .filter-activities {
-    .chosen-container {
-      float: none;
-      min-width: 100%;
-    }
-
-    span {
-      display: block;
-    }
-
-    #topics {
-      float: none;
-      width: 100%;
-      margin-bottom: 0;
-    }
-
-    h5 {
-      margin: 0;
-    }
-
-    #survey-types {
-      margin-top: 1em;
+@include swb-small {
+  .visit-header {
+    .tooltip {
+      + .tip {
+        max-width: 20.5em;
+      }
     }
   }
 }

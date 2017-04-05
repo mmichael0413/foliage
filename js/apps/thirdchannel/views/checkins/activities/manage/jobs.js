@@ -7,8 +7,7 @@ define(function(require){
     return Backbone.View.extend({
         el: ".manage-activities",
 
-        template: Templates['thirdchannel/checkins/activities/manage/no_tasks'],
-
+        template: Templates['thirdchannel/checkins/activities/no_results'],
 
         initialize: function() {
             this.listenTo(context, 'list:item:removed', this.noResults);
