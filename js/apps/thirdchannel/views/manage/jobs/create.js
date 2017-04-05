@@ -46,6 +46,7 @@ define(function(require) {
             this.surveys = options.surveys;
             this.surveyTopics = options.surveyTopics;
             this.timezones = options.timezones;
+            this.assignee = options.assignee;
 
             var initialRange = [];
             if(this.model.get('schedulable_ranges')) {
@@ -80,7 +81,9 @@ define(function(require) {
             this.$('.timezone').chosen({width: "100%"});
             this.$('.start_time').timepicker({scrollDefault: '08:00'});
 
-            this.$('.assignee_id').select2({
+            var $assigneeIdEl = this.$('.assignee_id');
+
+            $assigneeIdEl.select2({
                 ajax: {
                     url: '/programs/' + context.programId + '/manage/users_search',
                     dataType: 'json',
@@ -106,6 +109,15 @@ define(function(require) {
                 placeholder: "Select...",
                 allowClear: true
             });
+
+            if(data.assignee_id) {
+                var display = this.assignee.name + ' <' + this.assignee.email + '> - ' + this.assignee.address;
+                $assigneeIdEl.append($("<option selected></option>").val(data.assignee_id).text(display));
+            }
+
+            if(data.date_scheduled) {
+                $assigneeIdEl.attr('disabled', true);
+            }
 
             this.renderRanges();
             return this;
