@@ -1,4 +1,5 @@
 @import '../../../../js/libs/bower_components/normalize-css/normalize';
+@import 'js/libs/bower_components/jquery-ui/themes/base/jquery-ui.min.css';
 @import "../../lib/pure.grids-core";
 @import "../../lib/pure.responsive-grid";
 
@@ -34,6 +35,7 @@
 @import "../../modules/notifications";
 @import "../../modules/fullcalendar";
 @import "../../modules/calendar";
+@import "../../modules/subtle_instruction";
 
 div.schedule-layout {
 	display:inline-block;
@@ -103,4 +105,25 @@ div.schedule-layout {
 
 .instructions {
 	margin-bottom: 1em;
+}
+
+.details-modal {
+  padding-top: 1em !important;
+  .group {
+    display: flex;
+    .section {
+      // this combination causes siblings to flex-grow to the same size,
+      // consuming all available width
+      flex-grow: 1;
+      flex-basis: 1em;
+
+      margin-bottom: 1em;
+      .require-legend {
+        float: right;
+      }
+      .subtle-instruction {
+        vertical-align: inherit;
+      }
+    }
+  }
 }

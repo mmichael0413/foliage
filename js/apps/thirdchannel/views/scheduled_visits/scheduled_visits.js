@@ -17,9 +17,12 @@ define(function(require) {
                 this.$el.html("No scheduled visits were found that match your filter selections.");
             } else {
                 var supervisor_role = visits[0].supervisor_role;
-                this.$el.html(handlebarsTemplates[this.template]({supervisor_role: supervisor_role}));
+                var show_requestors = _.some(visits, function(v) { return v.requestor_name; });
+                this.$el.html(handlebarsTemplates[this.template]({supervisor_role: supervisor_role, show_requestors: show_requestors}));
+                var $tbody = this.$el.find('tbody');
                 _.each(visits, function(v){
-                    this.$el.append(new Visit({model: v}).render().$el);
+                    v.show_requestors = show_requestors;
+                    $tbody.append(new Visit({model: v}).render().$el);
                 }.bind(this));
             }
         },

@@ -1,11 +1,61 @@
-{{#if dateCompleted}}
-    * Completed jobs cannot be rescheduled<br/>
-{{/if}}
-<p class="bold">{{storeName}}</p>
-<p>{{address}}</p>
-<p class="bold">{{jobDetails.name}}</p>
-<ul class="unstyled">
-    {{#each tasks}}
-        <li>- {{name}}</li>
+<div class="group">
+  <div class="section">
+    <h3>Type</h3>
+    {{jobDetails.name}}
+  </div>
+  {{#if jobDetails.startTime}}
+    <div class="section">
+      <h3>Start Time</h3>
+      {{jobDetails.startTime}}
+      {{jobDetails.timezone}}
+    </div>
+  {{/if}}
+  <div class="section">
+    <h3>Store</h3>
+    <div>
+      {{storeName}}
+    </div>
+    <div>
+      {{address}}
+    </div>
+  </div>
+</div>
+<div class="group">
+  <div class="section">
+    <span class="bold">Tasks</span>
+    <span class="subtle-instruction require-legend">* Required</span>
+    {{#each jobDetails.tasks}}
+        {{#if required}}
+          <div>
+            {{name}}
+            <span class="subtle-instruction">*</span>
+          </div>
+        {{else}}
+          {{#if ../../showOptionalTasks}}
+          <div>
+            {{name}}
+          </div>
+          {{/if}}
+        {{/if}}
     {{/each}}
-</ul>
+  </div>
+  {{#if jobDetails.notes}}
+    <div class="section">
+      <h3>Notes</h3>
+      {{jobDetails.notes}}
+    </div>
+  {{/if}}
+  {{#if jobDetails.products}}
+    <div class="section">
+        <h3>Products</h3>
+        <ul>
+        {{#each jobDetails.products}}
+            <li>{{this}}</li>
+        {{/each}}
+        </ul>
+    </div>
+  {{/if}}
+</div>
+{{#if dateCompleted}}
+  <span class="subtle-instruction">NOTE: Completed jobs cannot be rescheduled</span>
+{{/if}}

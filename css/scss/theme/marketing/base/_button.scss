@@ -34,3 +34,17 @@
 }
 
 
+@include swb-medium {
+	.marketing {
+		.btn.primary {
+			&.reverse {
+				color: $marketing-secondary-color;
+				border: $marketing-border-size solid $marketing-secondary-color;
+				i {
+					border-right: $marketing-border-size solid $marketing-secondary-color;
+				}
+
+			}
+		}
+	}
+}

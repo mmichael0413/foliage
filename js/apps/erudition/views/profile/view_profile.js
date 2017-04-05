@@ -2,7 +2,6 @@ define(function(require){
 	var Backbone = require('backbone'),
 		context = require('context'),
 		template = require('handlebarsTemplates');
-        //BannerView = require('erudition/views/profile/banner');
 
 	return Backbone.View.extend({
         el: '.content',
@@ -35,7 +34,7 @@ define(function(require){
 
 		render: function() {
             var universityLabel = "";
-            if(this.person.attendedCollege == 'Yes') {
+            if(this.person.attendedCollege === 'Yes') {
                 universityLabel = this.person.university;
                 if(this.person.graduationYear) {
                     universityLabel += " '" + this.person.graduationYear.substring(2, 4) + ", ";
@@ -45,7 +44,7 @@ define(function(require){
             }
 
             var showGeneralInfo = false;
-            if(this.person.gender || this.person.attendedCollege == 'Yes') {
+            if(this.person.gender || this.person.attendedCollege === 'Yes') {
                 showGeneralInfo = true;
             }
 
@@ -54,9 +53,8 @@ define(function(require){
                 aboutImageCount = this.person.aboutImages.length;
             }
 
-			//new BannerView({person: this.person}).render();
 			this.$el.append(this.template({
-                person:this.person,
+                person: this.person,
                 interests: this.interests,
                 canEdit: context.content.canEdit,
                 editUrl: context.content.editUrl,
@@ -68,9 +66,11 @@ define(function(require){
                 universityLabel:universityLabel,
                 showGeneralInfo:showGeneralInfo,
                 showAllFields: context.content.showAllFields,
+                showExtendedFields: context.content.showExtendedFields,
                 storeUrl: context.content.storeUrl,
                 notificationUrl: context.content.notificationUrl
             }));
+
 			return this;
 		}
 	});

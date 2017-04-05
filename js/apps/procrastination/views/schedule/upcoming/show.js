@@ -1,6 +1,7 @@
 define(function (require) {
     var Backbone = require('backbone'),
         context = require('context'),
+        DetailsModal = require('procrastination/views/schedule/upcoming/details_modal'),
         HandlebarsTemplates = require('handlebarsTemplates');
 
     ScheduleView = Backbone.View.extend({
@@ -13,7 +14,8 @@ define(function (require) {
             "change input": "updateScheduledDate",
             "click .unassign" : "unassign",
             "click .remove" : "remove",
-            "click .task-count": "toggleTaskList"
+            "click .task-count": "toggleTaskList",
+            "click": "showDetails",
         },
         render: function () {
             var data = this.model.toJSON();
@@ -82,7 +84,13 @@ define(function (require) {
             } else {
                 $taskList.show();
             }
-        }
+        },
+
+        showDetails: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            new DetailsModal({model: this.model.attributes}).render();
+        },
     });
 
     return ScheduleView;

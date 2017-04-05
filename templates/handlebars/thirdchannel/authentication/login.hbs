@@ -1,5 +1,5 @@
 <div class="inner-wrapper">
-  <h1>Sign Up</h1>
+  <h1>Sign In</h1>
   <form accept-charset="UTF-8" action="/login" class="new_user" id="new_user" method="post">
       <div style="display:none">
           <input name="utf8" type="hidden" value="✓">
@@ -14,17 +14,18 @@
           <input class="large low-margin dark" id="user_password" name="user[password]" placeholder="Password" type="password">
       </div>
 
-      <div class="checkbox">
-          <input name="user[remember_me]" type="hidden" value="0"><input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1">
-          <label for="user_remember_me">Keep me logged in</label></div>
+    <div class="options">
+        <input name="user[remember_me]" type="hidden" value="0"><input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1">
+        <label for="user_remember_me">Keep me logged in</label>
 
-      <div class="help-block">
-          <a href="/secret/new">Forgot your password?</a><br>
-      </div>
+        <div class="help-block">
+            <a href="/secret/new">Forgot password?</a><br>
+        </div>
+    </div>
+
       <div class="clear"></div>
-      <button class="btn primary" name="commit">
-        <i class="fa fa-angle-double-right"></i>
-        <span>Login</span>
+      <button class="btn primary wide reverse">
+        <i class="fa fa-angle-double-right"></i> Login
       </button>
       <div class="clear"></div>
   </form>
