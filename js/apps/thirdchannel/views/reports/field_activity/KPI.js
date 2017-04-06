@@ -25,6 +25,7 @@ define(function(require) {
       },
 
       renderKPI: function(type) {
+        // debugger
         switch(type) {
           case "Total":
             new TotalView({model: this.model, el: this.el});
@@ -42,7 +43,6 @@ define(function(require) {
             new TotalWithBreakdownView({model: this.model, el: this.el});
             break;
           default:
-            // TODO: Rename to GenericMetric
             new GenericMetric({model: this.model, el: this.el, displayDirection: this.model.displayDirection || 'row'});
             break;
         }

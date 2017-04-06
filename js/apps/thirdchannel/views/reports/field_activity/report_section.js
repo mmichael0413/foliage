@@ -4,20 +4,21 @@ define(function(require) {
         Backbone = require('backbone'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        AssociateEducationModel = require('thirdchannel/models/reports/field_activity/associate_education'),
+        ReportSectionModel = require('thirdchannel/models/reports/field_activity/report_section'),
         ActivityReportsView = require('thirdchannel/views/reports/field_activity/activity_reports'),
         KPIView = require('thirdchannel/views/reports/field_activity/KPI'),
         LoadingView = require('thirdchannel/views/utils/loading');
 
     return Backbone.View.extend({
-      el: '.associate-education',
-      template: HandlebarsTemplates['thirdchannel/reports/field_activity/associate_education'],
 
       initialize: function(options) {
+        this.options = options;
+        this.template = HandlebarsTemplates['thirdchannel/reports/field_activity/report_section'];
+
         this.loadingView = new LoadingView();
         this.$el.html(this.loadingView.render().$el);
 
-        this.model = new AssociateEducationModel(options);
+        this.model = new ReportSectionModel(options);
 
         this.fetchReport();
         this.listenTo(context, 'fieldActivity:update', this.update);
@@ -33,13 +34,19 @@ define(function(require) {
         var fieldActivities = this.model.get('fieldActivities');
         this.$el.html(this.template(fieldActivities));
 
-        // TODO: This will eventually be its own API call
-        // We will have to track if this exists in this view and either update or create a new one
-        new ActivityReportsView({model: fieldActivities.sections.activityReport, el: '.associate-education-activity-reports'});
+        new ActivityReportsView({
+          el: this.$el.find('.activity-reports-container'),
+          model: fieldActivities.sections.activityReport,
+          section: this.options.section,
+          programId: this.options.programId,
+          params: this.model.params
+        });
 
         _.each(fieldActivities.metrics, function(metric) {
-          new KPIView({model: metric, el: '.associate-education-kpis'});
-        });
+          new KPIView({model: metric, el: this.$el.find('.kpi-container')});
+        }.bind(this));
+
+        context.trigger("report post render");
 
         return this;
       },
