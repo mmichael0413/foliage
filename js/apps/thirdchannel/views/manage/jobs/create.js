@@ -7,6 +7,7 @@ define(function(require) {
         Chosen = require('chosen'),
         TimePicker = require('timepicker'),
         DateTimePicker = require('dateTimePicker'),
+        Select2 = require('select2'),
         context = require('context'),
         DateRange = require('thirdchannel/models/manage/dateRange'),
         StoreItem = require('thirdchannel/views/manage/jobs/store_item'),
@@ -45,6 +46,7 @@ define(function(require) {
             this.surveys = options.surveys;
             this.surveyTopics = options.surveyTopics;
             this.timezones = options.timezones;
+            this.assignee = options.assignee;
 
             var initialRange = [];
             if(this.model.get('schedulable_ranges')) {
@@ -74,9 +76,49 @@ define(function(require) {
             data.recommendedStartTimeFieldsClass = hasStartTime ? "" : "hide";
 
             this.$el.html(this.template(data));
+
             this.$('.survey_uuid, .duration, .survey_topic_uuids').chosen({disable_search: true, width: "100%"});
             this.$('.timezone').chosen({width: "100%"});
             this.$('.start_time').timepicker({scrollDefault: '08:00'});
+
+            var $assigneeIdEl = this.$('.assignee_id');
+
+            $assigneeIdEl.select2({
+                ajax: {
+                    url: '/programs/' + context.programId + '/manage/users_search',
+                    dataType: 'json',
+                    delay: 200,
+                    data: function (params) {
+                        return {
+                            format: 'json',
+                            name: params.term,
+                            per: 25
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: data.map(function (item) {
+                                item.text = item.name + ' <' + item.email + '> - ' + item.address;
+                                return item;
+                            })
+                        };
+                    },
+                    cache: true
+                },
+                minimumInputLength: 3,
+                placeholder: "Select...",
+                allowClear: true
+            });
+
+            if(data.assignee_id) {
+                var display = this.assignee.name + ' <' + this.assignee.email + '> - ' + this.assignee.address;
+                $assigneeIdEl.append($("<option selected></option>").val(data.assignee_id).text(display));
+            }
+
+            if(data.date_scheduled) {
+                $assigneeIdEl.attr('disabled', true);
+            }
+
             this.renderRanges();
             return this;
         },
@@ -136,6 +178,7 @@ define(function(require) {
                 timezone: this.$('.timezone').val(),
                 survey_topic_uuids: this.$('.survey_topic_uuids').val(),
                 notes: this.$('.notes').val(),
+                assignee_id: this.$('.assignee_id').val(),
                 schedulable_ranges : ranges
             };
 
@@ -176,6 +219,7 @@ define(function(require) {
                 timezone: this.$('.timezone').val(),
                 survey_topic_uuids: this.$('.survey_topic_uuids').val(),
                 notes: this.$('.notes').val(),
+                assignee_id: this.$('.assignee_id').val(),
                 program_store_uuids: programStoreIds,
                 schedulable_ranges : ranges
             };
