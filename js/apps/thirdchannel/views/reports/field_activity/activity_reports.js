@@ -3,10 +3,13 @@ define(function(require) {
         _ = require('underscore'),
         Backbone = require('backbone'),
         context = require('context'),
-        HandlebarsTemplates = require('handlebarsTemplates');
+        HandlebarsTemplates = require('handlebarsTemplates'),
+        ActivitySurveysModel = require('thirdchannel/models/reports/field_activity/activitySurveys'),
+        LoadingView = require('thirdchannel/views/utils/loading');
 
     return Backbone.View.extend({
       template: HandlebarsTemplates['thirdchannel/reports/field_activity/activity_reports'],
+      rowTemplate: HandlebarsTemplates['thirdchannel/reports/field_activity/activity_reports_row'],
       iconMapping: {
         "Visits Completed": "ic ic_visit",
         "Stores Visited": "ic ic_store",
@@ -19,7 +22,12 @@ define(function(require) {
         'click .activity-reports-toggle': 'toggleActivityReportsList'
       },
 
-      initialize: function() {
+      initialize: function(options) {
+        this.options = options;
+
+        this.loadingView = new LoadingView();
+        this.$el.html(this.loadingView.render().$el);
+
         this.model.rollups = _.map(this.model.rollups, function(rollup) {
           rollup.icon = this.iconMapping[rollup.label];
           return rollup;
@@ -29,7 +37,13 @@ define(function(require) {
       },
 
       render: function() {
-        this.$el.html(this.template(this.model));
+        this.$el.prepend(this.template(this.model));
+
+        this.surveys = new ActivitySurveysModel({section: this.options.section, programId: this.options.programId, params: this.options.params});
+        this.surveys.fetch().done(function(response) {
+          this.loadingView.remove();
+          this.$el.find('.activity-reports-surveys').append(this.rowTemplate(response));
+        }.bind(this));
       },
 
       toggleActivityReportsList: function(event) {

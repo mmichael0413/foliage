@@ -25,9 +25,14 @@ define(function(require) {
       },
 
       renderKPI: function(type) {
+        // debugger
         switch(type) {
           case "Total":
             new TotalView({model: this.model, el: this.el});
+            break;
+          case "unitsMoved":
+          case "caseCapacityDedicated":
+            new GenericMetric({model: this.model, el: this.$el.find('.widgets')});
             break;
           case "isPrimeLocation":
           case "areCollectionsAdjacent":
@@ -42,7 +47,6 @@ define(function(require) {
             new TotalWithBreakdownView({model: this.model, el: this.el});
             break;
           default:
-            // TODO: Rename to GenericMetric
             new GenericMetric({model: this.model, el: this.el, displayDirection: this.model.displayDirection || 'row'});
             break;
         }
