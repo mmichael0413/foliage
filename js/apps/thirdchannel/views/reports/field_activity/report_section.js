@@ -32,7 +32,7 @@ define(function(require) {
 
       render: function() {
         var fieldActivities = this.model.get('fieldActivities');
-        this.$el.html(this.template(fieldActivities));
+        this.$el.html(this.template({label: fieldActivities.sections.label, section: this.options.section}));
 
         new ActivityReportsView({
           el: this.$el.find('.activity-reports-container'),

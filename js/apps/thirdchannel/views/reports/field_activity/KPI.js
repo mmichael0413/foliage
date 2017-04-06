@@ -30,6 +30,10 @@ define(function(require) {
           case "Total":
             new TotalView({model: this.model, el: this.el});
             break;
+          case "unitsMoved":
+          case "caseCapacityDedicated":
+            new GenericMetric({model: this.model, el: this.$el.find('.widgets')});
+            break;
           case "isPrimeLocation":
           case "areCollectionsAdjacent":
           case "areCollectionsTogether":
