@@ -450,58 +450,62 @@ $cornflower: #4684c5;
   padding: 0;
 }
 
-.merchandising-kpis {
+#merchandising {
+  .kpi-container {
 
-  .widget p {
-    margin: 0;
-  }
-
-  .widgets .kpi {
-    justify-content: flex-start;
-  }
-
-  @include swb-medium {
-    display: block;
-
-    .units-and-capacity {
-      width: 100%;
-      display: block;
-      margin-bottom: 1em;
-      border-bottom: 1px solid $light-blue;
-
-      .kpi {
-        width: 49%;
-        display: inline-block;
-      }
+    .widget p {
+      margin: 0;
     }
 
-    .widget {
-      display: inline-block;
-      width: 33%;
+    .widgets .kpi {
+      justify-content: flex-start;
+    }
+
+    @include swb-medium {
+      display: block;
+
+      .units-and-capacity {
+        width: 100%;
+        display: block;
+        margin-bottom: 1em;
+        border-bottom: 1px solid $light-blue;
+
+        .kpi {
+          width: 49%;
+          display: inline-block;
+        }
+      }
+
+      .widget {
+        display: inline-block;
+        width: 33%;
+      }
     }
   }
 }
 
-.consumer-engagement-kpis {
-  @include swb-medium {
-    flex-wrap: wrap;
-
-    .kpi {
-      border-bottom: 1px solid $light-blue;
-      padding: 0 3em 1em;
-      flex-basis: 35%;
-
-      &:nth-child(3) {
-        border: 0;
-      }
-    }
-
-    .sales-and-units {
-      width: 64%;
+#consumer_engagement_education {
+  .kpi-container {
+    @include swb-medium {
+      flex-wrap: wrap;
 
       .kpi {
-        border: 0;
-        flex-basis: 25%;
+        border-bottom: 1px solid $light-blue;
+        padding: 0 3em 1em;
+        flex-basis: 35%;
+
+        &:nth-child(3) {
+          border: 0;
+        }
+      }
+
+      .sales-and-units {
+        width: 64%;
+
+        .kpi {
+          border: 0;
+          flex-basis: 25%;
+        }
       }
     }
   }
