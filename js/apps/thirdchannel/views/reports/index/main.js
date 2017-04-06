@@ -8,14 +8,12 @@ define(function(require) {
 
     return {
         init: function (options) {
-
             $(".actions .export").each(function() {
                 var data = {baseUrl: "/programs/" + options.programId + "/reports/export"};
                 var model = new ReportExportModel(_.extend(data, options));
                 new ExportView({model: model}).render(this);
             });
             Filter.init();
-
             new ReportView(options).render();
         }
     };

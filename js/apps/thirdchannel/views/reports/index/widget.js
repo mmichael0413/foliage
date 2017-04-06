@@ -3,6 +3,7 @@ define(function(require) {
         Handlebars = require('handlebars'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         HandlebarsHelpers = require('handlebarsHelpers'),
+        BarChartView = require('thirdchannel/views/reports/widgets/bar_chart'),
         DonutChartView = require('thirdchannel/views/reports/widgets/donut_chart'),
         HorizontalBarChartView = require('thirdchannel/views/reports/widgets/horizontal_bar_chart'),
         VerticalBarChartView = require('thirdchannel/views/reports/widgets/vertical_bar_chart'),
