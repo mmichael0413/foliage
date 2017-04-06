@@ -87,7 +87,7 @@ define(function(require) {
                 ajax: {
                     url: '/programs/' + context.programId + '/manage/users_search',
                     dataType: 'json',
-                    delay: 250,
+                    delay: 200,
                     data: function (params) {
                         return {
                             format: 'json',
