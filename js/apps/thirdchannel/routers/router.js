@@ -196,10 +196,12 @@ define(function(require){
         },
 
         addActivities: function (){
+            new ActionsDropDown().render();
             AddActivitiesView.init();
         },
 
         manageActivities: function (){
+            new ActionsDropDown().render();
             ManageActivitiesView.init();
         },
 
@@ -305,6 +307,7 @@ define(function(require){
         },
 
         submission: function(programId, checkinId, submissionId) {
+            new ActionsDropDown().render();
             new SurveyView({model: new SurveyModel({programId: programId, checkinId: checkinId, submissionId: submissionId})}).render();
         },
 

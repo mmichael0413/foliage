@@ -9,12 +9,22 @@ define(function(require) {
             'click .action-dropdown-content a': 'toggleDropdown',
             'click .action-dropdown-content a.external-event': 'triggerEvent'
         },
+        initialize: function () {
+            _.bindAll(this, 'toggleDropdown')
+        },
         render: function(qs) {
+            this.$outside = $('.content');
             this.$dropdown = this.$('.action-dropdown-content');
             return this;
         },
-        toggleDropdown: function() {
+        toggleDropdown: function(e) {
             this.$dropdown.toggleClass('action-dropdown-open');
+            if (this.$dropdown.hasClass('action-dropdown-open')) {
+                e.stopPropagation();
+                this.$outside.on('click', this.toggleDropdown);
+            } else {
+                this.$outside.off('click');
+            }
         },
         triggerEvent: function(e) {
             e.preventDefault();
