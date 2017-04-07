@@ -10,7 +10,7 @@ define(function(require) {
             'click .action-dropdown-content a.external-event': 'triggerEvent'
         },
         initialize: function () {
-            _.bindAll(this, 'toggleDropdown')
+            _.bindAll(this, 'toggleDropdown');
         },
         render: function(qs) {
             this.$outside = $('.content');
