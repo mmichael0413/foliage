@@ -4,7 +4,8 @@ define(function(require){
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.Modal.extend({
-        cancelEl: '.bbm-button',
+        submitEl: '.bbm-submit',
+        cancelEl: '.bbm-cancel',
 
         template: function () {
             return HandlebarsTemplates['thirdchannel/modals/confirmation'](this.getTemplateData());
@@ -12,6 +13,10 @@ define(function(require){
 
         getTemplateData: function () {
             return this.model.toJSON();
+        },
+
+        submit: function() {
+            this.$('form').submit();
         }
     });
 });

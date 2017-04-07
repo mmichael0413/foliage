@@ -35,7 +35,7 @@ define(function(require) {
         confirm: function(e) {
             e.preventDefault();
             e.stopPropagation();
-            var model = new Backbone.Model({type: 'Visit'});
+            var model = new Backbone.Model(this.$(e.currentTarget).data());
             this.$outside.append(new ConfirmationModal({model: model}).render().el);
         }
     });
