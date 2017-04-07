@@ -1,13 +1,15 @@
 define(function(require) {
     var context = require('context'),
-        Backbone = require('backbone');
+        Backbone = require('backbone'),
+        ConfirmationModal = require('thirdchannel/modals/confirmation');
 
     return Backbone.View.extend({
         el: '.actions-container',
         events: {
             'click .action-dropdown button': 'toggleDropdown',
             'click .action-dropdown-content a': 'toggleDropdown',
-            'click .action-dropdown-content a.external-event': 'triggerEvent'
+            'click .action-dropdown-content a.external-event': 'triggerEvent',
+            'click .action-dropdown-content a[data-confirm]': 'confirm'
         },
         initialize: function () {
             _.bindAll(this, 'toggleDropdown');
@@ -29,6 +31,12 @@ define(function(require) {
         triggerEvent: function(e) {
             e.preventDefault();
             context.trigger(this.$(e.target).data('event'));
+        },
+        confirm: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var model = new Backbone.Model({type: 'Visit'});
+            this.$outside.append(new ConfirmationModal({model: model}).render().el);
         }
     });
 });
