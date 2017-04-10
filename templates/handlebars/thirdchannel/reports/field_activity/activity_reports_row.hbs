@@ -7,13 +7,13 @@
       <div class="metrics">
         {{#each this.metrics}}
           <div class="metric">
-            {{#if this.value}}
+            {{#if_gt this.value 0}}
               <a class="activity-reports-surveys-row-value" href="{{this.href}}">
                 {{this.value}}
               </a>
             {{else}}
-              <span class="activity-reports-surveys-row-value-empty">--</span>
-            {{/if}}
+              <span class="activity-reports-surveys-row-value-empty">{{this.value}}</span>
+            {{/if_gt}}
           </div>
         {{/each}}
       </div>

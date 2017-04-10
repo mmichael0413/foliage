@@ -56,7 +56,7 @@ $cornflower: #4684c5;
   flex-grow: 1;
   flex-basis: 20%;
   line-height: normal;
-  padding: 1em;
+  padding: .75em 1em;
   text-align: center;
 
   .ic.metric-icon,
@@ -99,9 +99,8 @@ $cornflower: #4684c5;
       @extend %metrics-link;
     }
 
-    &-empty {
+    &.empty {
       color: $slate;
-      line-height: 2.7em;
       text-decoration: none;
     }
   }
@@ -162,7 +161,6 @@ $cornflower: #4684c5;
 
       &-empty {
         color: $slate;
-        line-height: 1.7em;
         padding: 1em 2em;
         text-decoration: none;
         text-align: center;
@@ -275,14 +273,14 @@ $cornflower: #4684c5;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 2em;
+  padding-top: 4em;
 }
 
 .kpi.gauge {
   align-items: flex-end;
   margin-bottom: 1em;
   flex-basis: 35%;
-  max-height: 8em;
+  max-height: 5.5em;
 
   &:not(:first-child) {
     border-left: 0;
@@ -501,7 +499,7 @@ $cornflower: #4684c5;
       .metric {
         align-self: center;
         text-align: center;
-        padding: 1.5em .5em;
+        padding: .75em .5em;
       }
     }
 
