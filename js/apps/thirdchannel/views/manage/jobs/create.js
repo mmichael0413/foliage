@@ -87,7 +87,7 @@ define(function(require) {
                 ajax: {
                     url: '/programs/' + context.programId + '/manage/users_search',
                     dataType: 'json',
-                    delay: 250,
+                    delay: 200,
                     data: function (params) {
                         return {
                             format: 'json',
@@ -96,6 +96,10 @@ define(function(require) {
                         };
                     },
                     processResults: function (data) {
+                        if(!data) {
+                            return { results: [] };
+                        }
+
                         return {
                             results: data.map(function (item) {
                                 item.text = item.name + ' <' + item.email + '> - ' + item.address;
