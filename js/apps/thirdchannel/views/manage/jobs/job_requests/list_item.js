@@ -4,6 +4,8 @@ define(function(require) {
 
     return Backbone.View.extend({
         template: HandlebarsTemplates['thirdchannel/manage/jobs/job_requests/list_item'],
+        tagName: 'tr',
+        className: 'scheduled-visit-row',
 
         render: function() {
             var data = this.model;
