@@ -6,7 +6,7 @@ define(function(require) {
         Filter = require('thirdchannel/views/filter/main');
 
     return Backbone.View.extend({
-        el: "#scheduled-visits",
+        el: "#job-requests",
         template: 'thirdchannel/manage/jobs/job_requests/list',
         loading: handlebarsTemplates["thirdchannel/loading_icon"](),
         initialize: function(){
@@ -17,11 +17,14 @@ define(function(require) {
             if(jobRequest.data.length === 0){
                 this.$el.html("No requests were found that match your filter selections.");
             } else {
-                this.$el.html(handlebarsTemplates[this.template]());
+                this.$el.empty();
                 this.addPages(jobRequest);
+                var $table = $(document.createElement('table'));
+                $table.append(handlebarsTemplates[this.template]());
                 _.each(jobRequest.data, function(v){
-                    this.$el.append(new JobRequest({model: v}).render().$el);
+                    $table.append(new JobRequest({model: v}).render().$el);
                 }.bind(this));
+                this.$el.append($table);
             }
         },
         applyFilter: function (qs) {

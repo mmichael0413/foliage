@@ -1,16 +1,16 @@
-<div class="pure-g scheduled-visit-row">
-    <div class="col-1-12 scheduled-visit-cell"><a href="{{details_url}}">View</a></div>
-    <div class="col-1-12 scheduled-visit-cell">{{store_name}}</div>
-    <div class="col-1-12 scheduled-visit-cell">{{store_address}}</div>
-	<div class="col-1-12 scheduled-visit-cell">{{requested_by}}</div>
-    <div class="col-1-12 scheduled-visit-cell">{{visit_type}}</div>
-    <div class="col-3-12 scheduled-visit-cell">{{visit_details}}</div>
-    <div class="col-1-12 scheduled-visit-cell">{{duration}} hours</div>
-    <div class="col-1-12 scheduled-visit-cell">
-        {{#if assignee_id}}
-            <a href="{{assignee_profile_url}}" target="_blank">{{assignee_name}}</a>
-        {{/if}}
-    </div>
-    <div class="col-1-12 scheduled-visit-cell">{{date_scheduled}}</div>
-    <div class="col-1-12 scheduled-visit-cell">{{date_completed}}</div>
-</div>
+<td><a href="{{details_url}}">View</a></td>
+<td>{{store_name}}</td>
+<td>{{store_address}}</td>
+<td>{{requested_by}}</td>
+<td>{{visit_type}}</td>
+<td>{{duration}} hours</td>
+<td>
+{{#if assignee_id}}
+  <a href="{{assignee_profile_url}}" target="_blank">{{assignee_name}}</a>
+{{/if}}
+</td>
+<td>{{date_scheduled}}</td>
+<td>{{date_completed}}</td>
+<td>{{earliest_date}}</td>
+<td>{{latest_date}}</td>
+<td>{{start_time}}</td>
