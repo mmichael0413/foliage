@@ -1,0 +1,20 @@
+<form class="modal" action="{{action}}" method="post">
+    <input type="hidden" name="_method" value="{{method}}"/>
+    <div class="bbm-cancel pull-right">
+        <i class="ic ic_x"></i>
+    </div>
+    <div class="warning pull-left">
+      !
+    </div>
+    <div>
+        <h2>{{confirm}}</h2>
+        <p>Warning: This cannot be undone.</p>
+        <p>Deleting will permanently erase all information collected for this {{type}}.</p>
+        <div class="modal-action">
+            <button type="submit" class="bbm-submit btn primary">Yes, {{confirm}}</button>
+        </div>
+        <div class="modal-action">
+            <button type="button" class="bbm-cancel btn light">Cancel, {{reject}}</button>
+        </div>
+    </div>
+</form>

@@ -151,7 +151,7 @@ define(function(require) {
                     context.stores.filter.setFilterState(filterModel.get('name'), undefined);
                     view = self.selectComponentView(filterModel).render();
                     self.$el.append(view.$el);
-                    self.components[view.filterParam] = view;
+                    self.components[view.filterParam + (new Date().getTime())] = view;
                     // apply the query string to any components in the filter.
                     // capture the response to know if we should toggle open the filter later
                     if (self._applyQS(view, qsHash) === true) {
