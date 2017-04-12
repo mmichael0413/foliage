@@ -1,13 +1,13 @@
 define(function(require) {
     var context = require('context'),
         handlebarsTemplates = require('handlebarsTemplates'),
-        JobRequest = require('thirdchannel/views/manage/jobs/job_requests/list_item'),
+        JobRequest = require('thirdchannel/views/manage/jobs/list_item'),
         PaginationView = require('thirdchannel/views/utils/pagination'),
         Filter = require('thirdchannel/views/filter/main');
 
     return Backbone.View.extend({
         el: "#scheduled-visits",
-        template: 'thirdchannel/manage/jobs/job_requests/list',
+        template: handlebarsTemplates['thirdchannel/manage/jobs/list'],
         loading: handlebarsTemplates["thirdchannel/loading_icon"](),
         initialize: function(){
             this.listenTo(context, 'filter:query', this.applyFilter);
@@ -17,7 +17,7 @@ define(function(require) {
             if(jobRequest.data.length === 0){
                 this.$el.html("No requests were found that match your filter selections.");
             } else {
-                this.$el.html(handlebarsTemplates[this.template]());
+                this.$el.html(this.template());
                 this.addPages(jobRequest);
                 _.each(jobRequest.data, function(v){
                     this.$el.append(new JobRequest({model: v}).render().$el);
