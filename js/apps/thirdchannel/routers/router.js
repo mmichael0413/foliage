@@ -352,7 +352,7 @@ define(function(require){
 
         jobRequests: function () {
             new JobRequestsView({model: window.bootstrap});
-        }
+        },
 
         createJobRequest: function() {
             ManageJobsMain.create();
