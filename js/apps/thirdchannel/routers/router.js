@@ -350,6 +350,10 @@ define(function(require){
             new ApplicationView({applicationId: id});
         },
 
+        jobRequests: function () {
+            new JobRequestsView({model: window.bootstrap});
+        }
+
         createJobRequest: function() {
             ManageJobsMain.create();
         },
@@ -369,10 +373,6 @@ define(function(require){
 
         visits: function(){
             new ScheduledVisitsView({model: window.bootstrap});
-        },
-
-        jobRequests: function () {
-          new JobRequestsView({model: window.bootstrap});
         }
     });
 
