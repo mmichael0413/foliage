@@ -100,9 +100,9 @@ define(function(require) {
             this.$('.job-target').prop('disabled', !enabled);
             this.$('.job-report').prop('disabled', !enabled);
         },
-	
+        
         jobTrackingHandler: function (e) {
-	    this.setJobTrackingEnabled($(e.currentTarget).is(':checked'));
+            this.setJobTrackingEnabled($(e.currentTarget).is(':checked'));
         },
         
         _toggleJobTrackingText: function (value) {
