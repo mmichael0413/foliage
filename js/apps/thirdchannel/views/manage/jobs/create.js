@@ -103,7 +103,7 @@ define(function(require) {
                             })
                         };
                     },
-                    cache: false
+                    cache: "false"
                 },
                 minimumInputLength: 3,
                 placeholder: "Select...",
