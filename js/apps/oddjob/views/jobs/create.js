@@ -40,7 +40,12 @@ define(function(require) {
                 this.tasks.add(new Task());
             }
 
+	    this.listenTo(this.tasks, 'change', function() {
+		this.checkSpecialProjectTracking();
+            }.bind(this));
+
             this.listenTo(this.tasks, 'remove', function() {
+		this.checkSpecialProjectTracking();
                 this.renderChildViews();
             }.bind(this));
 
@@ -50,6 +55,18 @@ define(function(require) {
             return $.when(SurveysStore.fetch(), ActivityPacketStore.fetch(), TopicSurveysStore.fetch());
         },
 
+	checkSpecialProjectTracking: function() {
+	    var input = $('#jobTracked');
+	    if (this.tasks.models[0].attributes.type.id === 'activity_packet') {
+		input.prop('checked', false);
+		input.prop('disabled', true);
+		this.setJobTrackingEnabled(false);
+	    }
+	    else {
+		input.prop('disabled', false);
+	    }
+	},
+
         render: function () {
             var data = this.model.toJSON();
             this.summary = new SummaryView({tasks: this.tasks});
@@ -57,9 +74,8 @@ define(function(require) {
             data.roles = context.roles;
             
             this.loadRole(data.role, data.roles);
-            
             this.$el.html(Templates[this.templateName](data));
-            this._toggleJobTrackingText(data.tracked);
+	    this._toggleJobTrackingText(data.tracked);
             this._configureTextEditor();
             this.$tasksContainer = this.$el.find('.tasks-container');
             // create the first view
@@ -78,13 +94,17 @@ define(function(require) {
             });
         },
 
-        jobTrackingHandler: function (e) {
-            var enabled = $(e.currentTarget).is(':checked');
+        setJobTrackingEnabled: function (enabled) {
             this._toggleJobTrackingText(enabled);
 
             this.$('.job-target').prop('disabled', !enabled);
             this.$('.job-report').prop('disabled', !enabled);
         },
+	
+        jobTrackingHandler: function (e) {
+	    this.setJobTrackingEnabled($(e.currentTarget).is(':checked'));
+        },
+        
         _toggleJobTrackingText: function (value) {
             var $text = this.$el.find("#jobTrackingText");
             if (value) {
@@ -93,6 +113,7 @@ define(function(require) {
                 $text.fadeOut();
             }
         },
+        
         _configureTextEditor: function() {
             var completionInstructions = $('#completionInstructions');
 
