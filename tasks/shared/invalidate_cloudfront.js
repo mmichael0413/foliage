@@ -33,16 +33,16 @@ module.exports = function(grunt) {
             dest: 'dist/shared/fonts/nexa_light-webfont.woff'
         },
         {
-            dest: 'dist/shared/fonts/tc-icons_13271346428e88c9d2b2e9445373c21d.eot'
+            dest: 'dist/shared/fonts/tc-icons_b7e691b9a4b396946511c1c8e5cb804b.eot'
         },
         {
-            dest: 'dist/shared/fonts/tc-icons_13271346428e88c9d2b2e9445373c21d.svg'
+            dest: 'dist/shared/fonts/tc-icons_b7e691b9a4b396946511c1c8e5cb804b.svg'
         },
         {
-            dest: 'dist/shared/fonts/tc-icons_13271346428e88c9d2b2e9445373c21d.ttf'
+            dest: 'dist/shared/fonts/tc-icons_b7e691b9a4b396946511c1c8e5cb804b.ttf'
         },
         {
-            dest: 'dist/shared/fonts/tc-icons_13271346428e88c9d2b2e9445373c21d.woff'
+            dest: 'dist/shared/fonts/tc-icons_b7e691b9a4b396946511c1c8e5cb804b.woff'
         },
         {
             dest: 'dist/shared/fonts/tpcicons_17c256bff985f337b3bbf51a6da4645e.woff'

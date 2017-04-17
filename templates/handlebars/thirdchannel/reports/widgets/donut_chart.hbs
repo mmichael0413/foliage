@@ -1,13 +1,18 @@
-<div class="widget {{config.widget_class}}">
-    <p>{{title}}</p>
-    <div>
-        {{#if show_view_list}}
-            <a href="#" class="breakdown-link" tag="View Breakdown" target="_blank">Breakdown</a>
-        {{/if}}
-    </div>
+<div class="widget {{config.widget_class}}" style="display: none;">
+    {{#if title}}
+      <p>{{title}}</p>
+    {{/if}}
+      {{#if show_view_list}}
+        <div>
+          <a href="#" class="breakdown-link" tag="View Breakdown" target="_blank">Breakdown</a>
+        </div>
+      {{/if}}
     <div class="donut pure-g">
-        <div class="col-md-1 col-1-2">
+        <div class="col-md-1 col-1-2 {{#if chartIcon}}with-icon{{/if}}">
             <div class="chart donut-chart"></div>
+            {{#if chartIcon}}
+              <i class="{{chartIcon}}"></i>
+            {{/if}}
         </div>
         <div class="col-md-1 col-1-2 legend">
             {{#each results.legend.items}}

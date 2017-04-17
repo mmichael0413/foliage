@@ -1,0 +1,532 @@
+@import url('http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+
+$cornflower: #4684c5;
+
+%spaced-row {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+%even-height-row {
+  display: flex;
+  align-items: stretch;
+}
+
+%metrics-link {
+  color: $cornflower;
+  text-align: center;
+  text-decoration: underline;
+}
+
+%row-header {
+  align-self: center;
+  font-weight: 800;
+}
+
+.header-index {
+  border-bottom: 1px solid $light-blue;
+  display: flex;
+  justify-content: space-between;
+  padding: .25em .5em;
+  margin: 0 .25em;
+
+  h2 {
+    display: inline-block;
+    text-transform: uppercase;
+  }
+
+  div {
+    display: inline-block;
+    text-align: right;
+  }
+
+  a {
+    color: $cornflower;
+    text-decoration: underline;
+  }
+}
+
+.metrics {
+  @extend %spaced-row;
+}
+
+.metric {
+  align-self: center;
+  flex-grow: 1;
+  flex-basis: 20%;
+  line-height: normal;
+  padding: .75em 1em;
+  text-align: center;
+
+  .ic.metric-icon,
+  .fa.metric-icon {
+    color: $slate;
+    font-size: 1.75em;
+    margin-right: .75em;
+  }
+
+  .ic_person.agent {
+    color: $palette10;
+  }
+
+  .ic_person.fmr {
+    color: $palette2;
+  }
+
+  &-infograph {
+    padding: 1em 0 1em;
+
+    .ic, .fa {
+      font-size: 7em;
+
+      &.ic_states {
+        color: $palette10;
+        font-size: 11.4em;
+        line-height: 0;
+      }
+
+      &.ic_person.agent {
+        color: $palette10;
+      }
+    }
+  }
+
+  &-figure {
+    font-size: 1.75em;
+
+    &.link {
+      @extend %metrics-link;
+    }
+
+    &.empty {
+      color: $slate;
+      text-decoration: none;
+    }
+  }
+
+  .metric-label {
+    color: $slate;
+    display: block;
+    font-size: .9em;
+    margin-top: .25em;
+  }
+}
+
+.activity-reports {
+  padding: .5em 1em;
+
+  &-toggle {
+    background: none;
+    border: none;
+    color: $palette2;
+    margin-right: .25em;
+  }
+
+  &-rollup {
+    @extend %even-height-row;
+    padding-bottom: .5em;
+  }
+
+  &-rollup-header {
+    @extend %row-header;
+    align-self: flex-end;
+    font-size: .9em;
+    padding-bottom: 1em;
+    text-transform: uppercase;
+  }
+
+  &-surveys-row {
+    @extend %even-height-row;
+    border-top: 1px solid $light-blue;
+    padding: .75em 0;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    &-header {
+      @extend %row-header;
+      align-self: center;
+
+      a {
+        color: $cornflower;
+        font-weight: 400;
+        text-decoration: underline;
+      }
+    }
+
+    &-value {
+      @extend %metrics-link;
+
+      &-empty {
+        color: $slate;
+        padding: 1em 2em;
+        text-decoration: none;
+        text-align: center;
+      }
+    }
+  }
+
+  @include swb-medium {
+    .metric-icon {
+      display: none;
+    }
+  }
+}
+
+
+.kpi-container {
+  display: flex;
+  flex-basis: 50%;
+  flex-grow: 1;
+  justify-content: space-around;
+  border-bottom: 1px solid $palette2;
+
+  @include swb-medium {
+    font-size: .8em;
+  }
+
+  .kpi {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 50%;
+    justify-content: center;
+    margin: .25em 0 1.25em;
+    padding: 0 4em;
+
+    &:not(:first-child) {
+      border-left: 1px solid $light-blue;
+    }
+
+    i.fa {
+      font-size: 7em;
+      margin-right: .25em;
+    }
+
+    .metrics {
+      flex-direction: column;
+      width: initial;
+
+      .metric {
+        align-self: flex-start;
+        text-align: left;
+
+        &-figure,
+        &-label {
+          text-align: left;
+
+          @include swb-medium {
+            text-align: center;
+            display: block;
+          }
+        }
+      }
+    }
+
+    &.column {
+      flex-direction: column;
+      justify-content: flex-start;
+
+      &.reverse {
+        flex-direction: column-reverse;
+      }
+
+      i.fa {
+        font-size: 5em;
+      }
+
+      .metric {
+        align-self: center;
+        text-align: center;
+        padding: 1.5em .5em;
+      }
+    }
+  }
+
+  .widget {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: .9em;
+    width: 25%;
+  }
+}
+
+.units-and-capacity {
+  width: 75%;
+
+  i.fa {
+    font-size: 5em;
+  }
+
+  .kpi {
+    border: 0;
+    justify-content: flex-start;
+  }
+}
+
+.sales-and-units {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4em;
+}
+
+.kpi.gauge {
+  align-items: flex-end;
+  margin-bottom: 1em;
+  flex-basis: 35%;
+  max-height: 5.5em;
+
+  &:not(:first-child) {
+    border-left: 0;
+    margin-bottom: 0;
+  }
+
+  .gauge-container {
+    margin-right: 1em;
+
+    .c3-gauge-value {
+      display: none;
+    }
+  }
+
+  .metrics {
+    width: 13em;
+  }
+}
+
+.chart.gauge-chart.c3:after {
+  width: 11.5em;
+  height: 1px;
+  content: "";
+  position: absolute;
+  background-color: $light-blue;
+  bottom: .25em;
+  left: -.5em;
+}
+
+.kpi-image {
+  background-repeat: no-repeat;
+  height: 6.2em;
+  width: 6em;
+
+  @include swb-medium {
+    margin: 0 auto;
+  }
+
+  &.caseCapacityDedicated {
+    background-image: url('../images/g_productsshelf.svg');
+  }
+  &.unitsMoved {
+    background-image: url('../images/g_boxes.svg');
+    width: 10em;
+    margin-right: 0;
+  }
+  &.customersEngaged {
+    background-image: url('../images/g_handshake.svg');
+    height: 6em;
+  }
+  &.numberAttendees {
+    background-image: url('../images/g_cliptotals.svg');
+  }
+  &.storeAssociatesEducated {
+    background-image: url('../images/g_educated.svg');
+  }
+  &.targetSalesGoals {
+    background-image: url('../images/g_targetdollar.svg');
+  }
+  &.actualSales {
+    background-image: url('../images/g_money.svg');
+  }
+}
+
+.kpi-units {
+  background-image: url('../images/g_boxes.svg');
+  background-repeat: no-repeat;
+  width: 10em;
+  height: 7.2em;
+}
+
+.field-activity-section {
+  .overview-kpis {
+    align-items: flex-start;
+    border-bottom: 0;
+
+    @include swb-medium {
+      flex-direction: column;
+      display: inline-block;
+      text-align: center;
+    }
+  }
+
+ .kpi {
+   padding: 0;
+
+   &:not(:first-child) {
+     border: 0;
+   }
+
+   @include swb-medium {
+     display: inline-flex;
+     width: 32%;
+   }
+ }
+
+ .legend {
+   text-align: center;
+ }
+
+  .chart.visitsCompleted {
+    width: 70%;
+
+    .widget {
+      padding: 0;
+      position: relative;
+      width: 100%;
+
+      .col-md-1.col-1-2 {
+        width: 100%;
+
+        &.with-icon {
+          display: flex;
+          align-items: center;
+          align-content: center;
+          justify-content: center;
+        }
+      }
+
+      .donut-chart {
+        min-width: 150px;
+        margin: 0;
+      }
+
+      .ic {
+        position: absolute;
+        font-size: 2.75em;
+        color: $slate;
+      }
+    }
+
+    .legend {
+      width: 70%;
+    }
+  }
+}
+
+.chart.storesVisited {
+  width: 100%;
+
+  .with-icon {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    max-width: 12em;
+  }
+
+  .ic {
+    font-size: 2em;
+    border-bottom: 1px solid $light-blue;
+    color: $slate;
+    padding-left: .25em;
+    padding-right: .25em;
+  }
+
+  .legend {
+    width: 75%;
+  }
+}
+
+.widget.vbar {
+  width: 100%;
+  padding: 0;
+}
+
+#merchandising {
+  .kpi-container {
+
+    .widget p {
+      margin: 0;
+    }
+
+    .widgets .kpi {
+      justify-content: flex-start;
+    }
+
+    @include swb-medium {
+      display: block;
+
+      .units-and-capacity {
+        width: 100%;
+        display: block;
+        margin-bottom: 1em;
+        border-bottom: 1px solid $light-blue;
+
+        .kpi {
+          width: 49%;
+          display: inline-block;
+        }
+      }
+
+      .widget {
+        display: inline-block;
+        width: 33%;
+      }
+    }
+  }
+}
+
+#consumer_engagement_selling {
+  .kpi-container {
+
+    .kpi:not(.gauge) {
+      flex-direction: column;
+      justify-content: flex-start;
+      margin-top: 1em;
+
+      &.reverse {
+        flex-direction: column-reverse;
+      }
+
+      i.fa {
+        font-size: 5em;
+      }
+
+      .metric {
+        align-self: center;
+        text-align: center;
+        padding: .75em .5em;
+      }
+    }
+
+    @include swb-medium {
+      flex-wrap: wrap;
+
+      .kpi {
+        border-bottom: 1px solid $light-blue;
+        padding: 0 3em 1em;
+        flex-basis: 35%;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-top: 1em;
+
+        &:nth-child(3) {
+          border: 0;
+        }
+      }
+
+      .sales-and-units {
+        width: 64%;
+
+        .kpi {
+          border: 0;
+          flex-basis: 25%;
+        }
+      }
+    }
+  }
+}
