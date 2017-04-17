@@ -36,7 +36,8 @@ define(function(require) {
             "click .question [data-hide-element]" : 'hideElement',
             "change .question input[type=hidden], change .question select": "validate",
             "change .question select[class*=question-]": "displayQuestionExtraIfTriggered",
-            "change:nosave .question input[type=hidden]": "validate"
+            "change:nosave .question input[type=hidden]": "validate",
+            "mousewheel input[type=number]": "disableScroll"
         },
         initialize: function() {
             _.bindAll(this, 'errorPlacement', 'validateSuccess', 'highlight', 'unhighlight');
@@ -237,6 +238,11 @@ define(function(require) {
         },
         validateSuccess: function(error) {
             $("#" + error.attr("id")).remove();
+        },
+        disableScroll: function(e) {
+            if ($(e.currentTarget).is(':focus')) {
+                e.preventDefault();
+            }
         }
     });
 });
