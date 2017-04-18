@@ -34,6 +34,7 @@ define(function(require) {
                 surveys: context.surveys,
                 surveyTopics: context.survey_topics,
                 timezones: context.timezones,
+                assignee: null,
                 model: jobRequest
             });
 
@@ -57,6 +58,7 @@ define(function(require) {
                 surveys: context.surveys,
                 surveyTopics: context.survey_topics,
                 timezones: context.timezones,
+                assignee: context.assignee,
                 model: jobRequest
             });
 

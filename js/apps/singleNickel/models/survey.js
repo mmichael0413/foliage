@@ -20,7 +20,13 @@ define(function(require){
                 store_profile: "Store Intel",
                 special_project: "Special Project",
                 demo: 'Demo',
-                event: 'Event'
+                event: 'Event',
+                'Merchandising': 'Merchandising',
+                'Consumer Engagement & Selling': 'Consumer Engagement & Selling',
+                'Associate Education': 'Associate Education',
+                'Inventory Management': 'Inventory Management',
+                'Competitive Profiling': 'Competitive Profiling',
+                'Store Intel': "Store Intel (New)"
             },
             show_images: {
                 "true": "Yes",
