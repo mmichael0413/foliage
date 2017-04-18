@@ -127,7 +127,7 @@ define(function(require) {
                 this.$form.submit();
             } else {
                 $('.content-holder').animate({
-                    scrollTop: Math.abs(this.$form.offset().top - this.$('div.error:first').offset().top + this.$('div.error:first').height() / 2)
+                    scrollTop: Math.abs(this.$form.offset().top - this.$('.error:first').offset().top + this.$('.error:first').height() / 2)
                 }, 500);
             }
         },
