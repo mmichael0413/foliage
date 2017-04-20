@@ -177,6 +177,8 @@ define(function (require) {
         showInvalidDates: function(visit) {
             $.ajax(context.base_url + '/schedule/' + context.aggregateId + '/invalidSchedulingDates', {
                 method: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
                 data: {
                     visitId: visit.id,
                     jobId: visit.jobId
