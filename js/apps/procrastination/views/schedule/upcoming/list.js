@@ -67,7 +67,7 @@ define(function (require) {
                     self.updateSchedule(event.start, event.id, revertFunc);
                 },
                 eventDragStart: function(event, jsEvent, ui, view) {
-                    context.trigger('blackoutdates:show', event.id);
+                    context.trigger('blackoutdates:show', event.details);
                 },
                 eventDragStop: function(event, jsEvent, ui, view) {
                     context.trigger('blackoutdates:hide');
@@ -174,13 +174,13 @@ define(function (require) {
             }.bind(this));
         },
 
-        showInvalidDates: function(id){
-            $.getJSON(context.base_url + '/schedule/' + context.aggregateId + '/invalidSchedulingDates/' + id).done(function (dates) {
+        showInvalidDates: function(visit) {
+            $.getJSON(context.base_url + '/schedule/' + context.aggregateId + '/invalidSchedulingDates/' + visit.id).done(function (dates) {
                 _.each(dates, function(date){
                     var dateString = moment.utc(date).format("YYYY-MM-DD"); // format used in fullcalendar data-date
                     this.calendar.find(".fc-day[data-date=" + dateString + "]").addClass("blackout-date");
                 }.bind(this));
-                var model = this.collection.findWhere({id:id});
+
                 // Endpoint doesn't check dates in the past, or outside of the cycle, so we mark them here
                 this.calendar.find(".fc-past").add(".fc-other-month").addClass("blackout-date");
             }.bind(this));

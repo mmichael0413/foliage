@@ -38,7 +38,7 @@ define(function (require) {
                 revertDuration: 0,
                 start: function (event, object) {
                     $(event.target).addClass('drag-active');
-                    context.trigger('blackoutdates:show', data.id);
+                    context.trigger('blackoutdates:show', data);
                 },
                 stop: function(event, object) {
                     $(event.target).removeClass('drag-active');
