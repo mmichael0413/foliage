@@ -1,5 +1,5 @@
-<div class="group pure-g">
-  <div class="section col-sm-1 {{#if jobDetails.startTime}}col-1-3{{else}}col-1-2{{/if}}">
+<div class="group">
+  <div class="section">
     <h3>Type</h3>
     {{jobDetails.name}}
   </div>
@@ -10,7 +10,7 @@
       {{jobDetails.timezone}}
     </div>
   {{/if}}
-  <div class="section col-sm-1 {{#if jobDetails.startTime}}col-1-3{{else}}col-1-2{{/if}}">
+  <div class="section">
     <h3>Store</h3>
     <div>
       {{storeName}}
@@ -56,6 +56,23 @@
     </div>
   {{/if}}
 </div>
+{{#if jobDetails.createdByPersonDetails}}
+    <div class="group">
+      <div class="section">
+        <h3>Requested By</h3>
+        <div>
+            {{jobDetails.createdByPersonDetails.firstName}}
+            {{jobDetails.createdByPersonDetails.lastName}}
+        </div>
+        <div>
+            {{jobDetails.createdByPersonDetails.email}}
+        </div>
+        <div>
+            {{jobDetails.createdByPersonDetails.phone}}
+        </div>
+      </div>
+    </div>
+{{/if}}
 {{#if dateCompleted}}
   <span class="subtle-instruction">NOTE: Completed jobs cannot be rescheduled</span>
 {{/if}}
