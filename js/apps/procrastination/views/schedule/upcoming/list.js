@@ -128,7 +128,6 @@ define(function (require) {
 
         fetch: function (callback) {
             this.collection.fetch().done(function (collection) {
-                console.log(collection);
                 this.collection.generateLegend();
                 if(callback){
                     callback();
