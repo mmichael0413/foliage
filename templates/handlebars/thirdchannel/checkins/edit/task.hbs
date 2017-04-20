@@ -1,4 +1,4 @@
-<div class="body task right-col">
+<div class="body task clickable right-col">
     <div class="details">
 
         <div>{{type}}</div>
@@ -26,9 +26,15 @@
             <i class="ic ic_check"></i> <span class="hidden-xs">Completed</span>
         </button>
     {{else}}
-        <button class="btn primary">
-            <i class="ic ic_start"></i> <span class="hidden-xs">Start Activity</span>
-        </button>
+        {{#if packet_uuid}}
+            <button class="btn primary">
+                <i class="ic ic_playlist"></i> <span class="hidden-xs">Start Activities</span>
+            </button>
+        {{else}}
+            <button class="btn primary">
+                <i class="ic ic_start"></i> <span class="hidden-xs">Start Activity</span>
+            </button>
+        {{/if}}
     {{/if_eq}}
 
     </div>

@@ -3,6 +3,10 @@
 
   &:hover {
     background-color: $filter-selected-bg;
+
+    .btn {
+      background: white;
+    }
   }
 }
 
@@ -70,6 +74,20 @@
 
   h2 {
     margin-bottom: 0.25em;
+    display: inline-block;
+  }
+
+  .tooltip {
+    float: none;
+    color: $text-color;
+    text-align: left;
+    cursor: help;
+
+    & + .tip {
+      right: auto;
+      z-index: 1;
+      max-width: 34em;
+    }
   }
 }
 
@@ -79,24 +97,19 @@
   }
 }
 
-.task {
+.selected {
+  background-color: $filter-selected-bg;
 
-  &.selected {
-    background-color: $filter-selected-bg;
-
-    &.removal {
-      background-color: $removal-color-bg;
-
-      .box {
-        border-color: $red;
-
-        .ic {
-          color: $red;
-        }
-      }
-    }
+  &.removal {
+    background-color: $removal-color-bg;
   }
 
+  .btn {
+    background: white;
+  }
+}
+
+.task {
   .details {
     display: inline-block;
 
@@ -115,33 +128,14 @@
   }
 }
 
-.activities-list, .manage-activities {
-  .task {
-    .details {
-      width: calc(100% - 3em);
-    }
-
-  }
-}
-
 .manage-activities {
   .clickable {
     &:hover {
       background-color: $removal-color-bg;
-
-      .box {
-        border-color: $red;
-      }
     }
   }
 }
 
-.box {
-  width: 1.5em;
-  height: 1.5em;
-  border: 1px solid $medium-blue;
-  text-align: center;
-}
 
 .actions-section {
   text-align: right;
@@ -165,5 +159,15 @@
 
   .visit-header {
     margin: 0.5em;
+  }
+}
+
+@include swb-small {
+  .visit-header {
+    .tooltip {
+      + .tip {
+        max-width: 20.5em;
+      }
+    }
   }
 }

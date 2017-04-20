@@ -303,16 +303,16 @@
   .body {
     padding: 1em;
     > div {
-      margin-bottom: .25em;
       &.spacer {
         margin-bottom: 1.5em;
       }
     }
     &+.divider {
       border-top: 1px solid $border-color;
-      //&:last-of-type {
-      //  border: none;
-      //}
+    }
+
+    h3 {
+      margin: 0;
     }
   }
 

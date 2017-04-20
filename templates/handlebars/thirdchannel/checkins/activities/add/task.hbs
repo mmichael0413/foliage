@@ -1,4 +1,4 @@
-<div class="body task clickable right-col" data-search="{{type}} {{name}} {{topics}} {{duration}}">
+<div class="body task clickable right-col" data-search="{{type}} {{name}} {{topics}} {{duration}}" data-topics="{{topics}}" data-survey_type="{{type}}">
 
     <div class="details">
 
@@ -21,12 +21,17 @@
     {{/if}}
 {{/if}}
 
-    <div class="inputs"></div>
-
-    <div class="indicator shrink">
-        <div class="box">
-            <i class="medium-blue ic ic_blank"></i>
-        </div>
+    <div class="indicator">
+        <form action="{{action}}" method="post">
+            <input type="hidden" name="task[][uuid]" value="{{uuid}}" />
+            <input type="hidden" name="task[][survey_uuid]" value="{{survey_uuid}}" />
+            <input type="hidden" name="task[][job_uuid]" value="{{job_uuid}}" />
+            <input type="hidden" name="task[][topic_survey_id]" value="{{topic_survey_id}}" />
+            <input type="hidden" name="task[][packet_uuid]" value="{{packet_uuid}}" />
+            <button class="btn primary hide">
+                <i class="ic ic_start"></i> <span class="hidden-xs">Start Activity</span>
+            </button>
+        </form>
     </div>
 </div>
 <div class="divider"></div>

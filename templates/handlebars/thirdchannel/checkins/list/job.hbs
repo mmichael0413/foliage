@@ -8,11 +8,9 @@
             {{/each}}
         </ul>
     {{else}}
-        <div>Additional Activities</div>
-        <ol>
-            <li>Create an Activity List for this view.</li>
-            <li>Complete each activity you add.</li>
-        </ol>
+        {{#each collection}}
+            <h3>{{job.name}}</h3>
+        {{/each}}
     {{/if}}
     </div>
 

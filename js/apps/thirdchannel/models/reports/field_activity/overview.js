@@ -7,7 +7,7 @@ define(function(require) {
     params: '',
 
     iconMapping: {
-      "States Visited": "ic ic_states"
+      "States/Provinces Visited": "ic ic_states"
     },
 
     chartMapping: {

@@ -5,7 +5,7 @@ define(function(require) {
 
     return Backbone.View.extend({
         className: 'card',
-        template: Templates['thirdchannel/checkins/edit/job'],
+        template: Templates['thirdchannel/checkins/activities/manage/job'],
 
         render: function() {
             this.$el.append(this.template(this.model));

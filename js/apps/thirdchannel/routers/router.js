@@ -79,7 +79,7 @@ define(function(require){
             'programs/:program_id/profiles/:user_id/security': 'programProfileSecurity',
             'programs/:program_id/checkins(/)' : 'checkinsList',
             'programs/:program_id/checkins/:id(/)' : 'checkinsEdit',
-            'programs/:program_id/checkins/:checkin_id/activities/add/:id(/)' : 'addActivities',
+            'programs/:program_id/checkins/:checkin_id/activities/add(/)' : 'addActivities',
             'programs/:program_id/checkins/:checkin_id/activities/manage(/)' : 'manageActivities',
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
@@ -198,10 +198,12 @@ define(function(require){
         },
 
         addActivities: function (){
+            new ActionsDropDown().render();
             AddActivitiesView.init();
         },
 
         manageActivities: function (){
+            new ActionsDropDown().render();
             ManageActivitiesView.init();
         },
 
@@ -311,6 +313,7 @@ define(function(require){
         },
 
         submission: function(programId, checkinId, submissionId) {
+            new ActionsDropDown().render();
             new SurveyView({model: new SurveyModel({programId: programId, checkinId: checkinId, submissionId: submissionId})}).render();
         },
 

@@ -4,19 +4,17 @@ define(function(require) {
         TaskView = require('thirdchannel/views/checkins/edit/task');
 
     return Backbone.View.extend({
-        className: 'card',
+
         template: Templates['thirdchannel/checkins/edit/job'],
-        actionsTemplate: Templates['thirdchannel/checkins/edit/actions'],
 
         render: function() {
-            this.$el.append(this.template(this.model));
-            this.$header = this.$('.header');
-            if (this.model.required_tasks) {
-                this.model.required_tasks.forEach(function(task) {
-                    this.$el.append(new TaskView({model: task}).render().$el);
+            if (this.collection && this.collection.length >= 0) {
+                this.$el.append(this.template(this.model));
+                this.$list = this.$('.list');
+                this.collection.forEach(function(task) {
+                    this.$list.append(new TaskView({model: task}).render().$el);
                 }, this);
             }
-            this.$header.append(this.actionsTemplate(this.model.actions));
             return this;
         }
     });

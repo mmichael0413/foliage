@@ -1,15 +1,10 @@
-@import "../../modules/subtle_instruction";
-
-.visit-header {
-  margin: 0 1em;
-
-  h2 {
-    display: inline;
-  }
-
-  .subtle-instruction {
-    float: right;
-  }
+.subtle-instruction {
+  color: $medium-blue;
+  font-style: italic;
+  font-size: 0.8rem;
+  vertical-align: super;
+  text-align: right;
+  font-weight: 100;
 }
 
 .store {

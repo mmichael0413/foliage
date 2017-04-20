@@ -27,6 +27,7 @@
 @import "../../modules/charts";
 @import "../../modules/dropdowns";
 @import "../../modules/filters";
+@import "../../modules/modal";
 @import "../../modules/pagination";
 @import "../../modules/site_filter";
 @import "../../modules/s3_uploader";
@@ -80,18 +81,6 @@
 @import "./scheduled_visits";
 @import "./request_job";
 
-// Marketing Theme
-@import "../../theme/marketing/base/colors";
-@import "../../theme/marketing/base/variables";
-@import "../../theme/marketing/base/button";
-
-@import "../../theme/marketing/layouts/base_layout";
-
-@import "../../theme/marketing/modules/atoms/alerts";
-
-@import "../../theme/marketing/modules/banner";
-@import "../../theme/marketing/modules/navigation";
-@import "../../theme/marketing/modules/forms";
-@import "../../theme/marketing/modules/footer";
-
-@import "../../theme/marketing/app/opportunities";
+// Themes
+@import "../../theme/marketing/override";
+@import "../../theme/select2/override";

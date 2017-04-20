@@ -1,7 +1,15 @@
 .filter-container {
-  background-color: $light-blue;
-  margin-bottom: 1em;
-  padding: 1em;
+
+  font-family: 'FontAwesome', 'Open Sans', 'sans-serif';
+  margin-top: 2em;
+
+  @include placeholder(lighten($medium-blue, 15%));
+
+  form {
+    background-color: $light-blue;
+    margin-bottom: 1em;
+    padding: 1em;
+  }
 
   input {
     margin: 0;
@@ -10,5 +18,69 @@
   label {
     display: block;
     font-size: 0.85em;
+  }
+
+  input[type=checkbox] {
+    vertical-align: middle;
+  }
+
+  .checkbox-group {
+    padding: 0.5em 1em 0.05em 0;
+
+    > * {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    label{
+      display: inline-block;
+      margin: 0.5em;
+    }
+  }
+
+  .select2 {
+    margin-top: 0.65em;
+    min-width: 15em;
+    width: auto !important;
+  }
+}
+
+.advanced-filters {
+  cursor: pointer;
+  text-align: center;
+  margin-top: calc(-1.8em);
+  margin-bottom: 1em;
+  color: $medium-blue;
+
+  span {
+    background:white;
+    border: 1px solid $light-blue;
+    border-radius: 50%;
+    padding: 0.5em;
+    font-size: 0.9em;
+  }
+}
+
+@include swb-medium {
+  .mobile-collapsed {
+    display: none;
+  }
+
+  .filter-container {
+    margin-top: 0;
+
+    .pull-right {
+      float: none;
+    }
+
+    .select2 {
+      width: 100% !important;
+    }
+
+    .checkbox-group {
+      > * {
+        display: block;
+      }
+    }
   }
 }

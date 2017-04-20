@@ -11,13 +11,13 @@
             {{#if this.icon}}
               <i class="metric-icon {{this.icon}}"></i>
             {{/if}}
-            {{#if this.value}}
+            {{#if_gt this.value 0}}
               <a class="metric-figure link" href="#">
                 {{format_number this.value}}
               </a>
             {{else}}
-              <span class="metric-figure-empty">--</span>
-            {{/if}}
+              <span class="metric-figure empty">0</span>
+            {{/if_gt}}
             <span class="metric-label">{{this.label}}</span>
           </div>
         {{/each}}

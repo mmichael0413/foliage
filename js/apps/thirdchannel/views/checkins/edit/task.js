@@ -8,11 +8,7 @@ define(function(require){
         template: Templates['thirdchannel/checkins/edit/task'],
 
         events: {
-            'click' : 'show'
-        },
-
-        initialize: function() {
-            this.listenTo(context, 'visit:activities:edit', this.editMode);
+            'click' : 'start'
         },
 
         render: function() {
@@ -21,12 +17,9 @@ define(function(require){
             return this;
         },
 
-        show: function(e) {
+        start: function(e) {
+            context.trigger('list:activity:started');
             window.location.href = this.model.submission.url;
-        },
-
-        editMode: function(e) {
-            this.$indicator.removeClass('ic_start ic_checked').addClass('fa fa-trash');
         }
     });
 });

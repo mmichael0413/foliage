@@ -6,31 +6,48 @@ define(function(require){
     return Backbone.View.extend({
 
         template: Templates['thirdchannel/checkins/activities/manage/task'],
-        inputTemplate: Templates['thirdchannel/checkins/activities/manage/input'],
 
         events: {
-            'click' : 'select'
+            'click .clickable:not(.removal)' : 'select',
+            'click .removal': 'submit'
+        },
+
+        initialize: function() {
+            _.bindAll(this, 'hide', 'remove');
+            this.submission = new (Backbone.Model.extend({urlRoot: window.location.href}))({id: this.model.submission.id});
+            this.listenTo(context, 'list:item:selected', this.deselect);
         },
 
         render: function() {
-            this.$input = this.inputTemplate(this.model);
             this.$el.html(this.template(this.model));
             this.$task = this.$('.task');
-            this.metadata = this.$task.data('search').toLowerCase();
-            this.$icon = this.$('> div i');
-            this.$inputs = this.$('.inputs');
+            this.$button = this.$('button');
             return this;
         },
 
         select: function() {
-            this.$task.toggleClass('selected').toggleClass('removal');
-            this.$icon.toggleClass('ic_blank').toggleClass('ic_x');
+            context.trigger('list:item:selected');
+            this.$task.addClass('selected removal');
+            this.$button.removeClass('hide');
+        },
 
-            if (this.$task.hasClass('selected')) {
-                this.$inputs.append(this.$input);
-            } else {
-                this.$inputs.empty();
-            }
+        deselect: function() {
+            this.$task.removeClass('selected removal');
+            this.$button.addClass('hide');
+        },
+
+        submit: function(e) {
+            e.preventDefault();
+            this.submission.destroy({success: this.hide});
+        },
+
+        hide: function() {
+            this.$el.slideUp('fast', this.remove);
+        },
+
+        remove: function() {
+            Backbone.View.prototype.remove.call(this);
+            context.trigger('list:item:removed');
         }
     });
 });

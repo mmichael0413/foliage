@@ -10,7 +10,7 @@ define(function(require) {
     },
 
     url: function () {
-      var section = (this.options.section == 'consumer_engagement_education') ? 'consumer_engagement_&_education' : this.options.section;
+      var section = (this.options.section == 'consumer_engagement_selling') ? 'consumer_engagement_&_selling' : this.options.section;
 
       return '/programs/' + this.options.programId + '/reports/field_activities/' + section + '?' + this.params;
     },

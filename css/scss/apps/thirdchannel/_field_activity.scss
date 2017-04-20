@@ -1,4 +1,4 @@
-@import url('https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+@import url('http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
 
 $cornflower: #4684c5;
 
@@ -56,7 +56,7 @@ $cornflower: #4684c5;
   flex-grow: 1;
   flex-basis: 20%;
   line-height: normal;
-  padding: 1em;
+  padding: .75em 1em;
   text-align: center;
 
   .ic.metric-icon,
@@ -93,15 +93,14 @@ $cornflower: #4684c5;
   }
 
   &-figure {
-    font-size: 2em;
+    font-size: 1.75em;
 
     &.link {
       @extend %metrics-link;
     }
 
-    &-empty {
+    &.empty {
       color: $slate;
-      line-height: 2.7em;
       text-decoration: none;
     }
   }
@@ -115,7 +114,7 @@ $cornflower: #4684c5;
 }
 
 .activity-reports {
-  padding: 1em;
+  padding: .5em 1em;
 
   &-toggle {
     background: none;
@@ -126,7 +125,7 @@ $cornflower: #4684c5;
 
   &-rollup {
     @extend %even-height-row;
-    padding-bottom: 1em;
+    padding-bottom: .5em;
   }
 
   &-rollup-header {
@@ -140,7 +139,7 @@ $cornflower: #4684c5;
   &-surveys-row {
     @extend %even-height-row;
     border-top: 1px solid $light-blue;
-    padding: 1.5em 0;
+    padding: .75em 0;
 
     &:last-child {
       padding-bottom: 0;
@@ -162,7 +161,6 @@ $cornflower: #4684c5;
 
       &-empty {
         color: $slate;
-        line-height: 2.7em;
         padding: 1em 2em;
         text-decoration: none;
         text-align: center;
@@ -230,7 +228,6 @@ $cornflower: #4684c5;
     &.column {
       flex-direction: column;
       justify-content: flex-start;
-      margin-top: 1em;
 
       &.reverse {
         flex-direction: column-reverse;
@@ -276,14 +273,14 @@ $cornflower: #4684c5;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 2em;
+  padding-top: 4em;
 }
 
 .kpi.gauge {
   align-items: flex-end;
   margin-bottom: 1em;
-  flex-grow: 0;
   flex-basis: 35%;
+  max-height: 5.5em;
 
   &:not(:first-child) {
     border-left: 0;
@@ -315,9 +312,8 @@ $cornflower: #4684c5;
 
 .kpi-image {
   background-repeat: no-repeat;
-  height: 7.2em;
-  // margin-right: .5em;
-  width: 7em;
+  height: 6.2em;
+  width: 6em;
 
   @include swb-medium {
     margin: 0 auto;
@@ -484,8 +480,29 @@ $cornflower: #4684c5;
   }
 }
 
-#consumer_engagement_education {
+#consumer_engagement_selling {
   .kpi-container {
+
+    .kpi:not(.gauge) {
+      flex-direction: column;
+      justify-content: flex-start;
+      margin-top: 1em;
+
+      &.reverse {
+        flex-direction: column-reverse;
+      }
+
+      i.fa {
+        font-size: 5em;
+      }
+
+      .metric {
+        align-self: center;
+        text-align: center;
+        padding: .75em .5em;
+      }
+    }
+
     @include swb-medium {
       flex-wrap: wrap;
 
@@ -493,6 +510,9 @@ $cornflower: #4684c5;
         border-bottom: 1px solid $light-blue;
         padding: 0 3em 1em;
         flex-basis: 35%;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-top: 1em;
 
         &:nth-child(3) {
           border: 0;

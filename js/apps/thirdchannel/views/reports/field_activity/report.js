@@ -10,7 +10,7 @@ define(function(require) {
     return Backbone.View.extend({
         el: '.report',
         template: HandlebarsTemplates['thirdchannel/reports/field_activity/main'],
-        sections: ['associate_education', 'consumer_engagement_education', 'merchandising'],
+        sections: ['associate_education', 'consumer_engagement_selling', 'merchandising'],
 
         initialize: function(options) {
           this.$el.html(this.template({sections: this.sections}));
