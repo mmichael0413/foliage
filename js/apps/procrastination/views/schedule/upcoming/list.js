@@ -175,7 +175,13 @@ define(function (require) {
         },
 
         showInvalidDates: function(visit) {
-            $.getJSON(context.base_url + '/schedule/' + context.aggregateId + '/invalidSchedulingDates/' + visit.id).done(function (dates) {
+            $.ajax(context.base_url + '/schedule/' + context.aggregateId + '/invalidSchedulingDates', {
+                method: 'post',
+                data: {
+                    visitId: visit.id,
+                    jobId: visit.jobId
+                }
+            }).done(function (dates) {
                 _.each(dates, function(date){
                     var dateString = moment.utc(date).format("YYYY-MM-DD"); // format used in fullcalendar data-date
                     this.calendar.find(".fc-day[data-date=" + dateString + "]").addClass("blackout-date");
