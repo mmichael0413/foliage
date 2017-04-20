@@ -19,7 +19,7 @@ define(function(require) {
         },
 
         initialize: function(options) {
-            this.isAdmin = options.isAdmin;
+            this.requiresLeadTime = options.requiresLeadTime;
         },
 
         render: function() {
@@ -28,7 +28,7 @@ define(function(require) {
             var nextMonth = moment().add(1, 'month');
             var startDate = moment();
 
-            if(!this.isAdmin) {
+            if(this.requiresLeadTime) {
                 startDate = startDate.add(4, 'week');
             }
             startDate = startDate.format('YYYY-MM-DD');
