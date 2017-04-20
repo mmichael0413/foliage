@@ -42,6 +42,7 @@ define(function(require) {
         initialize: function(options) {
             _.bindAll(this, 'renderRanges', 'renderRange');
 
+            this.isAdmin = options.isAdmin;
             this.stores = options.stores;
             this.surveys = options.surveys;
             this.surveyTopics = options.surveyTopics;
@@ -136,7 +137,7 @@ define(function(require) {
         },
 
         renderRange: function(range) {
-            var view = new DateRangeView({model: range});
+            var view = new DateRangeView({model: range, isAdmin: this.isAdmin});
             this.$('.date-range-list').append(view.render().el);
         },
 

@@ -18,11 +18,21 @@ define(function(require) {
             'change .end': 'handleEndChange'
         },
 
+        initialize: function(options) {
+            this.isAdmin = options.isAdmin;
+        },
+
         render: function() {
             var self = this;
 
             var nextMonth = moment().add(1, 'month');
-            var startDate = moment().format('YYYY-MM-DD');
+            var startDate = moment();
+
+            if(!this.isAdmin) {
+                startDate = startDate.add(4, 'week');
+            }
+            startDate = startDate.format('YYYY-MM-DD');
+
             var maxDate = moment([nextMonth.year(), nextMonth.month()]).add(2, 'month').endOf('month').format('YYYY-MM-DD');
 
             this.$el.html(this.template(this.model.attributes));
