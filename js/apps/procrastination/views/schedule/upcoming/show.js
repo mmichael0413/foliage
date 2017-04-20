@@ -7,9 +7,11 @@ define(function (require) {
     ScheduleView = Backbone.View.extend({
         className: 'item pure-g',
         template: HandlebarsTemplates['procrastination/schedule/upcoming/visit'],
+
         initialize: function() {
             this.listenTo(this.model, 'change', this.render);
         },
+
         events: {
             "change input": "updateScheduledDate",
             "click .unassign" : "unassign",
@@ -17,6 +19,7 @@ define(function (require) {
             "click .task-count": "toggleTaskList",
             "click": "showDetails",
         },
+
         render: function () {
             var data = this.model.toJSON();
             data.taskCount = data.tasks.length;
@@ -42,10 +45,12 @@ define(function (require) {
                     context.trigger('blackoutdates:hide');
                 }
             });
+
             this.$el.addClass(this.model.get('jobColor'));
 
             return this;
         },
+
         updateScheduledDate: function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -58,6 +63,7 @@ define(function (require) {
                 }
             }
         },
+
         unassign: function(e){
             e.preventDefault();
             e.stopPropagation();

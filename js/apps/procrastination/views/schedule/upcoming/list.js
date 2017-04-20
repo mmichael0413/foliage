@@ -77,10 +77,13 @@ define(function (require) {
                 },
                 aspectRatio: 1
             });
+
             this.listenTo(this.collection, 'destroy', this.destroy);
+
             var initialState;
-            this.fetch(function(){
-                if(!context.isScheduleUnlocked){
+
+            this.fetch(function() {
+                if(!context.isScheduleUnlocked) {
                     initialState = 'finalized';
                 } else if(this.groupedJobsByScheduled().unscheduled.length > 0){
                     initialState = 'unlocked';
@@ -113,6 +116,7 @@ define(function (require) {
             }.bind(this));
             return this;
         },
+
         render: function () {
             this.$('.schedule-container .unscheduled .schedules').html('');
             _.each(this.groupedJobsByScheduled().unscheduled, this.renderModel);
@@ -121,8 +125,10 @@ define(function (require) {
             this.$('#restrictions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/restrictions'](context));
             return this;
         },
+
         fetch: function (callback) {
             this.collection.fetch().done(function (collection) {
+                console.log(collection);
                 this.collection.generateLegend();
                 if(callback){
                     callback();
@@ -133,6 +139,7 @@ define(function (require) {
                 alert("Your schedule could not be loaded due to a network error. Please try again.");
             }.bind(this));
         },
+
         renderModel: function (model) {
             var storeSchedule = new StoreSchedule({
                 model: model
@@ -143,6 +150,7 @@ define(function (require) {
                 this.$('.schedule-container .scheduled .schedules').append(storeSchedule.render().el);
             }
         },
+
         updateSchedule: function (date, id, revertFunc) {
             var model = this.collection.findWhere({id:id});
             date = moment.utc(date).format("YYYY-MM-DD");
@@ -166,6 +174,7 @@ define(function (require) {
                 this.$el.unblock();
             }.bind(this));
         },
+
         showInvalidDates: function(id){
             $.getJSON(context.base_url + '/schedule/' + context.aggregateId + '/invalidSchedulingDates/' + id).done(function (dates) {
                 _.each(dates, function(date){
@@ -177,9 +186,11 @@ define(function (require) {
                 this.calendar.find(".fc-past").add(".fc-other-month").addClass("blackout-date");
             }.bind(this));
         },
+
         hideInvalidDates: function(){
             this.calendar.find(".blackout-date").removeClass("blackout-date");
         },
+
         destroy: function(model) {
             var m = this.collection.get(model.id);
             if(m) {
@@ -188,6 +199,7 @@ define(function (require) {
             }
             this.fetch(function(){this.render();}.bind(this));
         },
+
         groupedJobsByScheduled: function(){
             var grouped = this.collection.groupBy(function(schedule){
                 return schedule.get('dateScheduled') !== null;
@@ -197,6 +209,7 @@ define(function (require) {
                 unscheduled: grouped.false || [],
             };
         },
+
         finalizeSchedule: function(e) {
             e.preventDefault();
             e.stopPropagation();
@@ -218,6 +231,7 @@ define(function (require) {
                 this.$el.unblock();
             }
         },
+
         unlockSchedule: function(e){
             e.preventDefault();
             e.stopPropagation();
@@ -232,6 +246,7 @@ define(function (require) {
                 this.unlockButton.prop("disabled",false);
             }.bind(this));
         },
+
         toggleRestrictions: function(e){
             e.preventDefault();
             this.$('#restrictions').slideToggle(200);
