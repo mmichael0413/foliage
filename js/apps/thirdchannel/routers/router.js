@@ -27,6 +27,7 @@ define(function(require){
         ReportMain = require('thirdchannel/views/reports/index/main'),
         FieldActivitiesMain = require('thirdchannel/views/reports/field_activity/index/main'),
         CheckinReportView = require('thirdchannel/views/reports/checkins/show/report'),
+        ReportBreakdownMain = require('thirdchannel/views/reports/breakdown/show/main'),
         ReportInfoMain = require('thirdchannel/views/reports/info/show/main'),
         ContentView = require('thirdchannel/views/global/content_view'),
         NotificationSectionView = require('thirdchannel/views/notifications/notification_section'),
@@ -99,6 +100,7 @@ define(function(require){
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
             'programs/:program_id/reports/field_activities': 'fieldActivities',
+            'programs/:program_id/reports/field_activities/breakdown/:type': 'reportBreakdown',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
             'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
             'programs/:program_id/legal/new(/)': 'signContract',
@@ -302,6 +304,10 @@ define(function(require){
 
         checkinReport: function(programId, id){
             new CheckinReportView({programId: programId, id: id}).render();
+        },
+
+        reportBreakdown: function(programId, type){
+            ReportBreakdownMain.init({ programId: programId, type: type, filters: location.search });
         },
 
         reportInfo: function(programId, reportId, infoId){
