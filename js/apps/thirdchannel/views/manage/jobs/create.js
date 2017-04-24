@@ -70,7 +70,8 @@ define(function(require) {
                 surveys: this.surveys,
                 surveyTopics: this.surveyTopics,
                 timezones: this.timezones,
-                durationOptions: durationOptions
+                durationOptions: durationOptions,
+                hasAssignmentsHistory: !(_.isEmpty(this.assignmentsHistory))
             };
             data = _.extend(data, this.model.attributes);
 
