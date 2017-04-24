@@ -68,6 +68,7 @@ define(function(require){
             'programs/:program_id/admin/activities/topics/*path' : 'adminActivitiesTopics',
             'programs/:program_id/manage/jobs/new': 'createJobRequest',
             'programs/:program_id/manage/jobs/:id/edit': 'updateJobRequest',
+            'programs/:program_id/manage/jobs/:id(/)': 'viewJobRequest',
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
@@ -373,6 +374,10 @@ define(function(require){
 
         updateJobRequest: function(programId, id) {
             ManageJobsMain.update(id);
+        },
+
+        viewJobRequest: function(programId, id) {
+            ManageJobsMain.show(id);
         },
 
         defaultPath: function(programId) { },

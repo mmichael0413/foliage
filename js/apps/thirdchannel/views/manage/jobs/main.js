@@ -4,6 +4,7 @@ define(function(require) {
         context = require('context'),
         Stores = require('thirdchannel/collections/stores'),
         JobRequest = require('thirdchannel/models/manage/job'),
+        ShowView = require('thirdchannel/views/manage/jobs/show'),
         CreateView = require('thirdchannel/views/manage/jobs/create');
 
     var initJobRequestFromSessionStore = function(jobRequest) {
@@ -44,6 +45,12 @@ define(function(require) {
             createView.render();
 
             stores.fetch({reset: true, data: $.param({store_ids: selectedStoreIds, per: selectedStoreIds.length})});
+        },
+
+        show: function(id) {
+            new ShowView({
+                assignmentsHistory: new Backbone.Collection(context.assignments_history)
+            }).render()
         },
 
         update: function(id) {
