@@ -200,6 +200,9 @@ define(function(require) {
                         currentUserId: obj.current_user_id,
                         highlightWords: obj.highlight_words
                     });
+                    self.mentions = obj.mentions;
+                    self.collection.mentions = obj.mentions;
+                    self.collection.highlightWords = obj.highlight_words;
                     self.collection.add([comment]);
                     self.collection.trigger('redraw');
                     self.$('.new-comment-field').html('');

@@ -41,7 +41,7 @@ define(function(require) {
                     model: model,
                     activityId: self.objId,
                     programId: self.programId,
-                    mentions: self.mentions,
+                    mentions: self.collection.mentions || self.mentions,
                     currentUserId: self.currentUserId,
                     highlightWords: self.highlightWords
                 }).render().el);
