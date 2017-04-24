@@ -273,7 +273,8 @@ define(function (require) {
         var pattern = "@("+
             mentionedUsers.map(function(mentionedUser) { return mentionedUser.user_name; })
                 .concat(
-                    highlightWords.map(function (highlightWord) {return highlightWord.replace('[', '\\[').replace(']', '\\]')})) // for now we only need to wory about brackets for @All brand Agents [Agent] case
+                    highlightWords.map(function (highlightWord) {return highlightWord
+                        .replace('[', '\\[').replace(']', '\\]'); })) // for now we only need to wory about brackets for @All brand Agents [Agent] case
                 .join("|") + ")\\s*(?:\\[[^\\[\t\\n\\r\\]]+\\])?";
         var highlightMatcher = new RegExp(pattern, 'g');
 
