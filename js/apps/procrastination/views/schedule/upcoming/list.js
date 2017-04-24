@@ -31,12 +31,13 @@ define(function (require) {
             var self = this;
             this.calendar = this.$('#calendar').fullCalendar({
                 defaultDate: context.startDate,
+                height: 'auto',
                 droppable: true,
                 eventLimit: 4,
                 header: {
                     left: null,
                     center: 'title',
-                    right: null,
+                    right: null
                 },
                 events: function (start, end, timezone, callback) {
                     var events = [];

@@ -2,7 +2,7 @@
     Development / non testing RequireJS config / main file
 */
 require.config({
-    baseUrl: 'http://www.thirdchannel.dev:3031/js/apps',
+    baseUrl: 'http://www.thirdchannel.dev:3031/js/apps/',
     waitSeconds: 0,
     paths: {
         'jquery': "../libs/bower_components/jquery/jquery.min",

@@ -1,63 +1,173 @@
-#checkin > .store {
-  border-top: 1px solid $border-color;
-  &:first-child {
-    border-top: none;
+.clickable {
+  cursor: pointer;
+
+  &:hover {
+    background-color: $filter-selected-bg;
+
+    .btn {
+      background: white;
+    }
   }
 }
-.store {
-  //border-bottom: 1px solid $border-color;
-  margin-top: 1em;
 
-  &:first-child {
-    margin-top: 0;
+.card {
+  .subsection {
+    padding: 0.45em 1.25em 0 1.25em;
+    border-bottom: 1px solid $border-color;
+    background-color: $main-background;
   }
 
-  &:last-child {
-    border-bottom: none;
-  }
+  ol {
+    li {
+      padding-bottom: 0.5em;
 
-  .pure-g:first-child {
-      text-transform: none;
-  }
-
-  .job-list {
-    margin: 0 1em 1em 1em;
-    @include swb-small {
-      margin: 0 0 1em 0;
-    }
-    border: 1px solid $border-color;
-    border-radius: $border-radius-base;
-
-    .pure-g:first-child {
-        padding:1em;
+      &:last-child {
+        padding-bottom: 0;
+      }
     }
   }
 
-  .task-list {
-    .task {
-      button {
-        margin-left: 0.5rem;
-        &.small {
-          margin-left: 0;
-        }
-        @include swb-medium {
-          margin-top: 0;
-        }
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+
+    li {
+      padding-bottom: 0.5em;
+
+      &:last-child {
+        padding-bottom: 0;
       }
     }
   }
 }
-.table {
-    //text-align: right;
 
-  .pure-g.complete-checkin-tasks {
-    border-top: none;
+.right-col {
+  @include flexbox;
+  @include align-items;
+
+  > div {
+    display: inline-block;
+
+    &:first-child {
+      width: calc(100% - 10em);
+    }
   }
 }
 
-.checkin-form-btn.wide {
-  @include swb-small {
-    width: 100%;
-    height: 3em;
+.expansions {
+  display: none;
+}
+
+.indicator {
+  text-align: right;
+  padding-right: 1em;
+  width: 10em;
+
+  &.shrink {
+    width: 3em;
+  }
+}
+
+.visit-header {
+  margin-top: 1.5em;
+
+  h2 {
+    margin-bottom: 0.25em;
+    display: inline-block;
+  }
+
+  .tooltip {
+    float: none;
+    color: $text-color;
+    text-align: left;
+    cursor: help;
+
+    & + .tip {
+      right: auto;
+      z-index: 1;
+      max-width: 34em;
+    }
+  }
+}
+
+.visit-activities {
+  .indicator {
+    padding-right: 0;
+  }
+}
+
+.selected {
+  background-color: $filter-selected-bg;
+
+  &.removal {
+    background-color: $removal-color-bg;
+  }
+
+  .btn {
+    background: white;
+  }
+}
+
+.task {
+  .details {
+    display: inline-block;
+
+    > div{
+      &:first-child {
+        text-transform: uppercase;
+        color: $medium-gray;
+        font-size: 0.8em;
+      }
+      &:last-child {
+        font-style: italic;
+        color: $medium-gray;
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+
+.manage-activities {
+  .clickable {
+    &:hover {
+      background-color: $removal-color-bg;
+    }
+  }
+}
+
+
+.actions-section {
+  text-align: right;
+  margin-bottom: 1.5em;
+}
+
+
+@include swb-medium {
+  .right-col {
+    > div {
+      &:first-child {
+        width: calc(100% - 3em);
+      }
+    }
+  }
+
+  .indicator {
+    width: 3em;
+    padding-right: 0.25em;
+  }
+
+  .visit-header {
+    margin: 0.5em;
+  }
+}
+
+@include swb-small {
+  .visit-header {
+    .tooltip {
+      + .tip {
+        max-width: 20.5em;
+      }
+    }
   }
 }

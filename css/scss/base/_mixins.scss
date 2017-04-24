@@ -37,6 +37,13 @@
   flex-flow: $values;
 }
 
+@mixin align-items($value: (center)) {
+  -webkit-align-items: $value;
+  -webkit-box-align: $value;
+  -ms-flex-align: $value;
+  align-items: $value;
+}
+
 @mixin gradient-vertical($start-color: #000, $end-color: #fff, $start-percent: 0%, $end-percent: 100%) {
   background: $start-color;
   background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Safari 5.1-6, Chrome 10+
@@ -81,6 +88,11 @@
      -moz-border-radius: $radius;
       -ms-border-radius: $radius;
           border-radius: $radius;
+}
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow;
+  box-shadow: $shadow;
 }
 
 @mixin box-shadow-inset($h-shadow, $v-shadow, $blur, $spread, $color) {
