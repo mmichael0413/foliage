@@ -1,5 +1,6 @@
 define(function(require) {
     var $ = require('jquery'),
+        Backbone = require('backbone'),
         context = require('context'),
         Stores = require('thirdchannel/collections/stores'),
         JobRequest = require('thirdchannel/models/manage/job'),
@@ -36,6 +37,7 @@ define(function(require) {
                 surveyTopics: context.survey_topics,
                 timezones: context.timezones,
                 assignee: null,
+                assignmentsHistory: new Backbone.Collection(),
                 model: jobRequest
             });
 
@@ -61,6 +63,7 @@ define(function(require) {
                 surveyTopics: context.survey_topics,
                 timezones: context.timezones,
                 assignee: context.assignee,
+                assignmentsHistory: new Backbone.Collection(context.assignments_history),
                 model: jobRequest
             });
 

@@ -11,7 +11,8 @@ define(function(require) {
         context = require('context'),
         DateRange = require('thirdchannel/models/manage/dateRange'),
         StoreItem = require('thirdchannel/views/manage/jobs/store_item'),
-        DateRangeView = require('thirdchannel/views/manage/jobs/dateRange');
+        DateRangeView = require('thirdchannel/views/manage/jobs/dateRange'),
+        AssignmentHistoryModal = require('thirdchannel/views/manage/jobs/assignmentHistory');
 
     var durationOptions = [
         { name: "1 Hour", value: "60" },
@@ -34,7 +35,8 @@ define(function(require) {
             'click .recommend_start_time': 'toggleRecommendedTimeFields',
             'click .add-date-range': 'addDateRange',
             'click .submit-job-request': 'handleSubmit',
-            'click .cancel-job-request': 'handleCancel'
+            'click .cancel-job-request': 'handleCancel',
+            'click .display-assignment-history': 'loadModal'
         },
 
         template: HandlebarsTemplates['thirdchannel/manage/jobs/create'],
@@ -48,6 +50,7 @@ define(function(require) {
             this.surveyTopics = options.surveyTopics;
             this.timezones = options.timezones;
             this.assignee = options.assignee;
+            this.assignmentsHistory = options.assignmentsHistory;
 
             var initialRange = [];
             if(this.model.get('schedulable_ranges')) {
@@ -139,6 +142,12 @@ define(function(require) {
         renderRange: function(range) {
             var view = new DateRangeView({model: range, requiresLeadTime: this.requiresLeadTime});
             this.$('.date-range-list').append(view.render().el);
+        },
+
+        loadModal: function(e) {
+            e.preventDefault();
+            this.modal = new AssignmentHistoryModal({collection: this.assignmentsHistory});
+            this.$el.append(this.modal.render().$el);
         },
 
         toggleRecommendedTimeFields: function(e) {

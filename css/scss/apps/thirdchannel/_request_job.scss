@@ -81,6 +81,43 @@
   }
 }
 
+.job-request-assignment-history {
+  padding: 0.5em;
+
+  .header-bar {
+    display: flex;
+    justify-content: space-between;
+
+    line-height: 2em;
+    padding: 1em 1em;
+    background-color: lighten($light-blue, 30%);
+    color: $medium-blue;
+    border: 1px solid $border-color;
+
+    h2 {
+      margin: 0;
+    }
+
+    .name {
+      font-weight: normal;
+      width: 93%;
+    }
+
+    .close-container {
+      text-align: right;
+    }
+
+    .fa {
+      font-size: 1.25em;
+      cursor: pointer;
+    }
+  }
+
+  .content {
+    padding: 1em;
+  }
+}
+
 #job-requests {
   overflow-x: scroll;
 }
