@@ -19,7 +19,7 @@
                         - {{this.changed_by_email}}
                     {{/if}}
                 </div>
-                <div><strong>Assigned On:</strong> {{this.changed_on}}</div>
+                <div><strong>Assigned On:</strong> {{ dateFormat this.changed_on "MMMM Do YYYY, h:mm:ss a" }}</div>
             </div>
         </div>
     {{/each}}
