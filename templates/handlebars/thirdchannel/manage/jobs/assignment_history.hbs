@@ -8,18 +8,18 @@
         <div class="assignment-record">
             <div>
                 <div>
-                    Assignee: {{this.assignee}}
+                    <strong>Assignee:</strong> {{this.assignee}}
                     {{#if this.assignee_email}}
                         - {{this.assignee_email}}
                     {{/if}}
                 </div>
                 <div>
-                    Assigned By: {{this.changed_by}}
+                    <strong>Assigned By:</strong> {{this.changed_by}}
                     {{#if this.changed_by_email}}
                         - {{this.changed_by_email}}
                     {{/if}}
                 </div>
-                <div>Assigned On: {{this.changed_on}}</div>
+                <div><strong>Assigned On:</strong> {{this.changed_on}}</div>
             </div>
         </div>
     {{/each}}

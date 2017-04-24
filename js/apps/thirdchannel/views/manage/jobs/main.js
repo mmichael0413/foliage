@@ -50,7 +50,7 @@ define(function(require) {
         show: function(id) {
             new ShowView({
                 assignmentsHistory: new Backbone.Collection(context.assignments_history)
-            }).render()
+            }).render();
         },
 
         update: function(id) {

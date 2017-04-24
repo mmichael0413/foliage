@@ -115,6 +115,12 @@
 
   .content {
     padding: 1em;
+
+    .assignment-record {
+      padding: 0.5em;
+      margin-bottom: 0.5em;
+      border-bottom: 1px solid $border-color;
+    }
   }
 }
 
