@@ -11,6 +11,7 @@
       background-image: url("http://marketing-new.thirdchannel.com/themes/custom/thirdchannel/images/content/login-background.jpg");
       background-size: cover;
       min-height: 100vh;
+      padding: 2em;
       padding-top: 8em;
     }
 
@@ -218,6 +219,18 @@
           right: 2.5em;
           margin-top: -6.5em;
         }
+      }
+    }
+  }
+}
+
+
+@include swb-medium {
+  .marketing {
+    .form-container {
+      .btn.primary {
+        float: none;
+        margin-top: 1em;
       }
     }
   }

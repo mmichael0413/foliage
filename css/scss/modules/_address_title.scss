@@ -14,8 +14,9 @@
 
 	.address {
 		margin: 0 0 0 0;
+		margin-bottom: 1em;
 		@include swb-small {
-			margin: .3em 0 1em 1.1em;
+			margin-left: 0.5em
 		}
 	}
 
