@@ -13,30 +13,26 @@ define(function(require) {
         startPoint: 0,
         defaultDateMap: {
           0: {
-            label: "Max",
-            start_date: ""
-          },
-          1: {
             label: "1 Year",
             start_date: moment().subtract(1, 'y').format("YYYY-MM-DD")
           },
-          2: {
+          1: {
             label: "6 Months",
             start_date: moment().subtract(6, 'M').format("YYYY-MM-DD")
           },
-          3: {
+          2: {
             label: "3 Months",
             start_date: moment().subtract(3, 'M').format("YYYY-MM-DD")
           },
-          4: {
+          3: {
             label: "1 Month",
             start_date: moment().subtract(1, 'M').format("YYYY-MM-DD")
           },
-          5: {
+          4: {
             label: "1 Day",
             start_date: moment().subtract(1, 'd').format("YYYY-MM-DD")
           },
-          6: {
+          5: {
             label: "Custom"
           },
         },
@@ -61,7 +57,7 @@ define(function(require) {
           var handle = this.$el.find(".date-slider-handle");
 
           $(this.$el.find('.date-slider-component')).slider({
-            range: "max",
+            range: "1 Year",
             min: 0,
             max: _.size(this.dateMap) - 1,
             value: this.startPoint,
