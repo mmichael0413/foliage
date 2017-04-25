@@ -21,7 +21,7 @@ define(function(require) {
         var display = hours + " Hour" + (hours > 1 ? "s " : " ");
 
         if(minutes > 0) {
-            display += minutes + " Minutes"
+            display += minutes + " Minutes";
         }
 
         durationOptions.push(
