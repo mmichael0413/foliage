@@ -66,11 +66,11 @@ $cornflower: #4684c5;
     margin-right: .75em;
   }
 
-  .ic_person.agent {
+  .ic_torso.agent {
     color: $palette10;
   }
 
-  .ic_person.fmr {
+  .ic_torso.fmr {
     color: $palette2;
   }
 
@@ -86,7 +86,7 @@ $cornflower: #4684c5;
         line-height: 0;
       }
 
-      &.ic_person.agent {
+      &.ic_torso.agent {
         color: $palette10;
       }
     }

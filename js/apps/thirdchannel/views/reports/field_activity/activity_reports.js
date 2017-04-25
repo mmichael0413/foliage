@@ -13,9 +13,9 @@ define(function(require) {
       iconMapping: {
         "Visits Completed": "ic ic_visit",
         "Stores Visited": "ic ic_store",
-        "States/Provinces Visited": "ic ic_states",
-        "ThirdChannel Agents": "ic ic_person agent",
-        "In-Store Support/FMRs": "ic ic_person fmr"
+        "States Visited": "ic ic_states",
+        "ThirdChannel Agents": "ic ic_torso agent",
+        "In-Store Support/FMRs": "ic ic_torso fmr"
       },
 
       events: {

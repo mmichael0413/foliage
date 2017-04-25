@@ -22,12 +22,12 @@ define(function(require) {
       },
       "ThirdChannel Agents": {
         type: "icon",
-        icon: "ic ic_person agent",
+        icon: "ic ic_torso agent",
         color: "#2FB44A",
       },
       "In-Store Support/FMRs": {
         type: "icon",
-        icon: "ic ic_person fmr",
+        icon: "ic ic_torso fmr",
         color: "#BDC5C4"
       }
     },
