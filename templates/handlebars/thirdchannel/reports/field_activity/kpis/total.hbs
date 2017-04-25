@@ -1,11 +1,13 @@
 <div class="kpi column {{#if reverse}}reverse{{/if}}">
 
-  {{#if icon}}
+  {{#if image}}
+    <div class="metric-infograph">
+      <div class="{{image}}"></div>
+    </div>
+  {{else}}
     <div class="metric-infograph">
       <i class="{{icon}}"></i>
     </div>
-  {{else}}
-    <div class="kpi-image customers-engaged"></div>
   {{/if}}
 
   <div class="metrics">

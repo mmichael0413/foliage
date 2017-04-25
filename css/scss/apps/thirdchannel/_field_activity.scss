@@ -74,17 +74,32 @@ $cornflower: #4684c5;
     color: $palette2;
   }
 
+  .g_flags {
+    background: url('../images/g_flags.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 3em;
+    height: 1.5em;
+    display: inline-block;
+    margin-right: 1em;
+  }
+
   &-infograph {
     padding: 1em 0 1em;
 
+    .g_flags {
+      height: 6em;
+      background: url('../images/g_flags.svg');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-top: 1em;
+      width: 13em;
+    }
+
     .ic, .fa {
       font-size: 7em;
-
-      &.ic_states {
-        color: $palette10;
-        font-size: 11.4em;
-        line-height: 0;
-      }
 
       &.ic_torso.agent {
         color: $palette10;

@@ -11,6 +11,9 @@
             {{#if this.icon}}
               <i class="metric-icon {{this.icon}}"></i>
             {{/if}}
+            {{#if this.image}}
+              <div class="metric-icon {{this.image}}"></div>
+            {{/if}}
             {{#if_gt this.value 0}}
               <a class="metric-figure link" href="{{this.href}}">
                 {{format_number this.value}}

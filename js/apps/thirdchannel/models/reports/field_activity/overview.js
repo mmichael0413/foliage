@@ -6,8 +6,8 @@ define(function(require) {
 
     params: '',
 
-    iconMapping: {
-      "States/Provinces Visited": "ic ic_states"
+    imageMapping: {
+      "States/Provinces Visited": "g_flags"
     },
 
     chartMapping: {
@@ -48,8 +48,8 @@ define(function(require) {
       var model = _.clone(this.get('fieldActivities'));
       model.metrics = _.map(model.metrics, function(metric) {
 
-      if (this.iconMapping[metric.label]) {
-        metric.icon = this.iconMapping[metric.label];
+      if (this.imageMapping[metric.label]) {
+        metric.image = this.imageMapping[metric.label];
       } else {
         metric.chartType = this.chartMapping[metric.label].type;
         metric.chartIcon = this.chartMapping[metric.label].icon;

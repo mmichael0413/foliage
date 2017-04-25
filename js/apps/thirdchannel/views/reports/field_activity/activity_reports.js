@@ -13,9 +13,12 @@ define(function(require) {
       iconMapping: {
         "Visits Completed": "ic ic_visit",
         "Stores Visited": "ic ic_store",
-        "States Visited": "ic ic_states",
         "ThirdChannel Agents": "ic ic_torso agent",
         "In-Store Support/FMRs": "ic ic_torso fmr"
+      },
+
+      imageMapping: {
+        "States/Provinces Visited": "g_flags",
       },
 
       events: {
@@ -29,7 +32,12 @@ define(function(require) {
         this.$el.html(this.loadingView.render().$el);
 
         this.model.rollups = _.map(this.model.rollups, function(rollup) {
-          rollup.icon = this.iconMapping[rollup.label];
+          if (this.imageMapping[rollup.label]) {
+            rollup.image = this.imageMapping[rollup.label];
+          } else {
+            rollup.icon = this.iconMapping[rollup.label]
+          }
+          
           return rollup;
         }.bind(this));
 
