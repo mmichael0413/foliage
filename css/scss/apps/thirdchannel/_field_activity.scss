@@ -357,7 +357,7 @@ $cornflower: #4684c5;
     align-items: flex-start;
     border-bottom: 0;
 
-    @include swb-medium {
+    @include swb-large {
       flex-direction: column;
       display: inline-block;
       text-align: center;
@@ -371,7 +371,7 @@ $cornflower: #4684c5;
      border: 0;
    }
 
-   @include swb-medium {
+   @include swb-large {
      display: inline-flex;
      width: 32%;
    }
@@ -457,7 +457,7 @@ $cornflower: #4684c5;
       justify-content: flex-start;
     }
 
-    @include swb-medium {
+    @include swb-xlarge {
       display: block;
 
       .units-and-capacity {
@@ -503,7 +503,7 @@ $cornflower: #4684c5;
       }
     }
 
-    @include swb-medium {
+    @include swb-xlarge {
       flex-wrap: wrap;
 
       .kpi {
@@ -525,6 +525,7 @@ $cornflower: #4684c5;
         .kpi {
           border: 0;
           flex-basis: 25%;
+          flex-direction: row;
         }
       }
     }
