@@ -98,6 +98,10 @@
 
       &.not-active {
         @include btn-details(lighten($link-color, 15%));
+
+        &:hover {
+          background: none;
+        }
       }
     }
     &.light {
@@ -197,5 +201,13 @@ button.link {
   }
   &.underline {
     text-decoration: underline;
+  }
+}
+
+@include swb-medium {
+  .wide {
+    width: 100%;
+    min-height: 3em;
+    margin-bottom: 1em;
   }
 }

@@ -25,16 +25,11 @@ define(function (require) {
         },
 
         render: function() {
-            var dateCompleted = this.model.get('dateCompleted') || null;
-
-            var canUnschedule = this.isScheduleUnlocked && !dateCompleted && (this.model.get('jobDetails').programUUID === '219f1927-7997-4c03-a5c9-4a6b4d792d3e');
-
             var attrs = {
                 address: this.model.get('address'),
                 city: this.model.get('city'),
                 customerStoreUUID: this.model.get('programStoreUUID'),
-                canUnschedule: canUnschedule,
-                dateCompleted: dateCompleted,
+                dateCompleted: this.model.get('dateCompleted') || null,
                 dateScheduled: this.model.get('dateScheduled'),
                 state: this.model.get('state'),
                 storeName: this.model.get('storeName'),
@@ -42,6 +37,7 @@ define(function (require) {
                 visitUUID: this.model.get('visitUUID'),
                 zip: this.model.get('zip'),
                 canUnassign: this.model.get('canUnassign'),
+                canUnschedule: this.model.get('canUnschedule'),
                 showCompleted: this.showCompleted,
                 totalDuration: this.model.get('totalDuration'),
                 tasks: this.model.get('tasks'),

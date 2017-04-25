@@ -19,6 +19,12 @@
     right: .5em;
     max-width: 250px;
     border-radius: $border-radius-base;
+    text-align: justify;
+    @include box-shadow(1px 1px 5px $palette4-rgba);
+
+    p {
+      margin: 0.35em 0;
+    }
   }
   &:hover + .tip {
     display: block;

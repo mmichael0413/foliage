@@ -30,6 +30,7 @@ define(function(require) {
             var stores = new Stores();
 
             var createView = new CreateView({
+                requiresLeadTime: context.requiresLeadTime,
                 stores: stores,
                 surveys: context.surveys,
                 surveyTopics: context.survey_topics,
@@ -54,6 +55,7 @@ define(function(require) {
             var stores = new Stores();
 
             var createView = new CreateView({
+                requiresLeadTime: context.requiresLeadTime,
                 stores: stores,
                 surveys: context.surveys,
                 surveyTopics: context.survey_topics,

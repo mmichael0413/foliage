@@ -7,10 +7,13 @@ define(function(require){
         namespacer = require('shared/utils/namespacer'),
         FilterParams = require('shared/models/filterParams'),
         MainLayout = require('shared/views/layout/main'),
+        ActionsDropDown = require('thirdchannel/views/shared/actions'),
         AdminActivitiesTopicsView = require('thirdchannel/views/admin/activities/topics'),
         ActivitiesMain = require('thirdchannel/views/activities/main'),
-        CheckinsView = require('thirdchannel/views/checkins/checkin'),
-        CheckinInProgressView = require('thirdchannel/views/checkins/in_progress'),
+        CheckinsListView = require('thirdchannel/views/checkins/list'),
+        CheckinsEditView = require('thirdchannel/views/checkins/edit'),
+        AddActivitiesView = require('thirdchannel/views/checkins/activities/add'),
+        ManageActivitiesView = require('thirdchannel/views/checkins/activities/manage'),
         TeamsMain = require('thirdchannel/views/teams/main'),
         StoresMain = require('thirdchannel/views/stores/main'),
         StoreProfileMain = require('thirdchannel/views/store_profile/main'),
@@ -27,6 +30,7 @@ define(function(require){
         ReportMain = require('thirdchannel/views/reports/index/main'),
         FieldActivitiesMain = require('thirdchannel/views/reports/field_activity/index/main'),
         CheckinReportView = require('thirdchannel/views/reports/checkins/show/report'),
+        ReportBreakdownMain = require('thirdchannel/views/reports/breakdown/show/main'),
         ReportInfoMain = require('thirdchannel/views/reports/info/show/main'),
         ContentView = require('thirdchannel/views/global/content_view'),
         NotificationSectionView = require('thirdchannel/views/notifications/notification_section'),
@@ -74,8 +78,10 @@ define(function(require){
             'programs/:program_id/profiles/:user_id/admin': 'programProfileAdmin',
             'programs/:program_id/profiles/:user_id/edit': 'programProfileEdit',
             'programs/:program_id/profiles/:user_id/security': 'programProfileSecurity',
-            'programs/:program_id/checkins(/)' : 'checkinList',
-            'programs/:program_id/checkins/:id(/)' : 'inProgress',
+            'programs/:program_id/checkins(/)' : 'checkinsList',
+            'programs/:program_id/checkins/:id(/)' : 'checkinsEdit',
+            'programs/:program_id/checkins/:checkin_id/activities/add(/)' : 'addActivities',
+            'programs/:program_id/checkins/:checkin_id/activities/manage(/)' : 'manageActivities',
             'programs/:program_id/teams(/)': 'teams',
             'programs/:program_id/stores(/)': 'stores',
             'programs/:program_id/stores/:store_id(/)': 'storeProfile',
@@ -99,6 +105,7 @@ define(function(require){
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
             'programs/:program_id/reports/field_activities': 'fieldActivities',
+            'programs/:program_id/reports/field_activities/breakdown/:type': 'reportBreakdown',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
             'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
             'programs/:program_id/legal/new(/)': 'signContract',
@@ -169,8 +176,8 @@ define(function(require){
             new FlashView();
         },
 
-        checkinList: function (){
-            CheckinsView.init();
+        checkinsList: function (){
+            CheckinsListView.init();
         },
 
         fixturesSummary: function() {
@@ -187,8 +194,19 @@ define(function(require){
 
         problemsList: function() { FixturesMain.problemsList(); },
 
-        inProgress: function (){
-            new CheckinInProgressView({ model: window.bootstrap });
+        checkinsEdit: function (){
+            new ActionsDropDown().render();
+            new CheckinsEditView({model: window.bootstrap}).render();
+        },
+
+        addActivities: function (){
+            new ActionsDropDown().render();
+            AddActivitiesView.init();
+        },
+
+        manageActivities: function (){
+            new ActionsDropDown().render();
+            ManageActivitiesView.init();
         },
 
         teams: function () {
@@ -297,11 +315,16 @@ define(function(require){
         },
 
         submission: function(programId, checkinId, submissionId) {
+            new ActionsDropDown().render();
             new SurveyView({model: new SurveyModel({programId: programId, checkinId: checkinId, submissionId: submissionId})}).render();
         },
 
         checkinReport: function(programId, id){
             new CheckinReportView({programId: programId, id: id}).render();
+        },
+
+        reportBreakdown: function(programId, type){
+            ReportBreakdownMain.init({ programId: programId, type: type, filters: location.search });
         },
 
         reportInfo: function(programId, reportId, infoId){
