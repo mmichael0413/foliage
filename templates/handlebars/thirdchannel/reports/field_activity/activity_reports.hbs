@@ -12,7 +12,7 @@
               <i class="metric-icon {{this.icon}}"></i>
             {{/if}}
             {{#if_gt this.value 0}}
-              <a class="metric-figure link" href="#">
+              <a class="metric-figure link" href="{{this.href}}">
                 {{format_number this.value}}
               </a>
             {{else}}

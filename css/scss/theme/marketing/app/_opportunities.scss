@@ -37,6 +37,15 @@
 				max-width: 100%;
 			}
 		}
+
+		.card {
+			img {
+				width: 100% !important;
+				height: 100% !important;
+				object-fit: cover;
+				overflow: hidden;
+			}
+		}
 	}
 
 	.body.apply {

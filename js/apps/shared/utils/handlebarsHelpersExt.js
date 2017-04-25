@@ -10,5 +10,9 @@ define(function (require) {
             return "";
         }
     });
+
+    Handlebars.registerHelper('dateFormat', function(date, format) {
+        return moment(date).format(format);
+    });
 });
 
