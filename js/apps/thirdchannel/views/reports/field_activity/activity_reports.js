@@ -35,7 +35,7 @@ define(function(require) {
           if (this.imageMapping[rollup.label]) {
             rollup.image = this.imageMapping[rollup.label];
           } else {
-            rollup.icon = this.iconMapping[rollup.label]
+            rollup.icon = this.iconMapping[rollup.label];
           }
           
           return rollup;
