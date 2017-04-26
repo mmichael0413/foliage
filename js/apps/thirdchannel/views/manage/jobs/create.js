@@ -14,18 +14,25 @@ define(function(require) {
         DateRangeView = require('thirdchannel/views/manage/jobs/dateRange'),
         AssignmentHistoryModal = require('thirdchannel/views/manage/jobs/assignmentHistory');
 
-    var durationOptions = [
-        { name: "1 Hour", value: "60" },
-        { name: "2 Hours", value: "120" },
-        { name: "3 Hours", value: "180" },
-        { name: "4 Hours", value: "240" },
-        { name: "5 Hours", value: "300" },
-        { name: "6 Hours", value: "360" },
-        { name: "7 Hours", value: "420" },
-        { name: "8 Hours", value: "480" },
-        { name: "9 Hours", value: "540" },
-        { name: "10 Hours", value: "600" }
-    ];
+    var durationOptions = [];
+    var currentDuration = 60;
+    while(currentDuration <= 600) {
+        var hours = Math.floor(currentDuration / 60);
+        var minutes = currentDuration % 60;
+        var display = hours + " Hour" + (hours > 1 ? "s " : " ");
+
+        if(minutes > 0) {
+            display += minutes + " Minutes";
+        }
+
+        durationOptions.push(
+            {
+                name:  display,
+                value: currentDuration + ""
+            }
+        );
+        currentDuration += 15;
+    }
 
     var JobCreate = Backbone.View.extend({
         el: '.job-request-container',

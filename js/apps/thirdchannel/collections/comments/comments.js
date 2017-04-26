@@ -7,6 +7,7 @@ define(function(require){
     return Backbone.Collection.extend({
         initialize: function (models, options) {
             this.url = options.url;
+            this.mentions = options.mentions;
             this.currentUserId = options.currentUserId;
             this.highlightWords = options.highlightWords;
         },

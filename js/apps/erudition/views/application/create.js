@@ -49,6 +49,7 @@ define(function (require) {
                 'ZipRecruiter',
                 'Vega Demo Program',
                 'CareerBuilder',
+                'Google Ad',
                 'None of the above'
             ];
 
