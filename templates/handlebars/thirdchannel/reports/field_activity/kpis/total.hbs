@@ -13,7 +13,7 @@
   <div class="metrics">
       <div class="metric">
         {{#if url}}
-          <a class="metric-figure link" href="#">{{data.total}}</a>
+          <a class="metric-figure link" href="{{href}}">{{data.total}}</a>
         {{else}}
           <span class="metric-figure">
             {{format_number data.total}}

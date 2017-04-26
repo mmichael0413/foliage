@@ -2,7 +2,7 @@
   {{#if_eq chartType "icon"}}
     <div class="col-md-1 col-4-5 legend">
       {{#each data.breakdown}}
-        <div class="legend-item" data-chart-id="28% Agents (136 Stores)">
+        <div class="legend-item">
           <span class="legend-box" style="background-color: {{../chartColor}}"></span>
           {{this.percentage.value}}% {{this.percentage.label}} ({{this.subtotal.value}} {{this.subtotal.label}})
         </div>
@@ -17,7 +17,7 @@
 
   <div class="metrics">
       <div class="metric">
-        <a class="metric-figure link" href="#">{{format_number data.total}}</a>
+        <a class="metric-figure link" href="{{href}}">{{format_number data.total}}</a>
         <span class="metric-label">
           {{label}}
         </span>
