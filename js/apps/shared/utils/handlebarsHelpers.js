@@ -271,10 +271,9 @@ define(function (require) {
     Handlebars.registerHelper("highlight", function (text, mentionedUsers, currentUserId, highlightWords, options) {
 
         var pattern = "@("+
-            mentionedUsers.map(function(mentionedUser) { return mentionedUser.user_name; })
+            mentionedUsers.map(function(mentionedUser) { return mentionedUser.user_name.replace(/([.*+?^=!:${}()"|\[\]\/\\])/g, "\\$1"); })
                 .concat(
-                    highlightWords.map(function (highlightWord) {return highlightWord
-                        .replace('[', '\\[').replace(']', '\\]'); })) // for now we only need to wory about brackets for @All brand Agents [Agent] case
+                    highlightWords.map(function (highlightWord) {return highlightWord.replace(/([.*+?^=!:${}()"|\[\]\/\\])/g, "\\$1"); }) ) // for now we only need to wory about brackets for @All brand Agents [Agent] case
                 .join("|") + ")\\s*(?:\\[[^\\[\t\\n\\r\\]]+\\])?";
         var highlightMatcher = new RegExp(pattern, 'g');
 
