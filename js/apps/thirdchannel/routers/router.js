@@ -281,8 +281,8 @@ define(function(require){
             ActivitiesMain.init(url, null, false);
         },
 
-        programProfileStores: function() {
-            new ProfileStoreListView().bootstrapCollection(window.bootstrap);
+        programProfileStores: function(programId, userId) {
+            new ProfileStoreListView().init({programId: programId, userId: userId}).bootstrapCollection(window.bootstrap);
         },
 
         programProfileAdmin: function() {
