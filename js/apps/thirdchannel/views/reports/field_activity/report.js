@@ -15,7 +15,7 @@ define(function(require) {
         initialize: function(options) {
           this.$el.html(this.template({sections: this.sections}));
 
-          new DateSliderView({el: '.date-slider-container', startPoint: 4});
+          new DateSliderView({el: '.date-slider-container', startPoint: 3});
 
           this.listenTo(context, 'filter:query', this.handleFilter);
 
