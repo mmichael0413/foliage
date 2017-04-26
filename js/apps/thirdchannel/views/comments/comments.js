@@ -16,7 +16,7 @@ define(function(require) {
             this.objId = this.activity.get('id');
             this.mentions = options.activity.get('mentions');
             this.currentUserId = options.currentUserId;
-            this.highlightWords = options.highlightWords;
+            this.highlightWords = options.activity.get('highlight_words');
             this.commentUrl = '/programs/' + this.programId + '/activities/' + this.objId + '/comments';
             // initialize collection
             this.collection = new CommentsCollection([], {
@@ -41,7 +41,7 @@ define(function(require) {
                     model: model,
                     activityId: self.objId,
                     programId: self.programId,
-                    mentions: self.mentions,
+                    mentions: self.collection.mentions || self.mentions,
                     currentUserId: self.currentUserId,
                     highlightWords: self.highlightWords
                 }).render().el);
@@ -58,13 +58,14 @@ define(function(require) {
                 }
             }).done(function(data, status) {
                 var mentions = self.activity.get('mentions');
+                var highlightWords = self.activity.get('highlight_words');
                 var commentModels = [];
                 _.each(data, function(comment) {
                     commentModels.push(new Comment(comment, {
                         url: self.commentUrl,
                         mentions: mentions,
                         currentUserId: self.currentUserId,
-                        highlightWords: self.highlightWords
+                        highlightWords: highlightWords
                     }));
                 });
                 self.collection.reset(commentModels);
