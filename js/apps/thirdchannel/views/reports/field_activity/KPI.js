@@ -25,7 +25,6 @@ define(function(require) {
       },
 
       renderKPI: function(type) {
-        // debugger
         switch(type) {
           case "Total":
             new TotalView({model: this.model, el: this.el});

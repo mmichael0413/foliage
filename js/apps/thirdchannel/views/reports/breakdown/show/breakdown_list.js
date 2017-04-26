@@ -6,21 +6,29 @@ define(function(require) {
       PaginationView         = require('thirdchannel/views/utils/pagination'),
       BreakdownListModel     = require('thirdchannel/models/reports/breakdown/breakdown_list'),
       BreakdownVisitsView    = require('thirdchannel/views/reports/breakdown/show/visits'),
-      BreakdownListItemView  = require('thirdchannel/views/reports/breakdown/show/list_item');
+      BreakdownListItemView  = require('thirdchannel/views/reports/breakdown/show/list_item'),
+      FilterCollection       = require('thirdchannel/collections/reports/info/filters'),
+      Filter = require('thirdchannel/views/filter/main');
 
   return Backbone.View.extend({
     el: ".report-breakdown",
     template: HandlebarsTemplates['thirdchannel/reports/breakdown/show/breakdown_list'],
     initialize: function (options) {
       this.model = new BreakdownListModel(options);
-      this.listenTo(context, 'filter:set', this.applyItem);
+      this.filters = new FilterCollection(options);
+      this.listenTo(context, 'filter:query', this.applyItem);
+      // this.listenTo(context, 'filter:set', this.applyItem);
       this.loadingView = new LoadingView();
     },
     render: function () {
       var self = this;
       this.$el.html(this.loadingView.render().$el);
       this.applyItem();
+      this.addFilters(this.filters);
       return this;
+    },
+    addFilters: function (value) {
+        Filter.init(value);
     },
     addPages: function (value) {
       this.$el.find('.pages').empty().append(new PaginationView(value).render().$el);

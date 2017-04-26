@@ -8,7 +8,7 @@ define(function(require) {
       this.filters = options.filters;
     },
     url: function () {
-      return '/programs/' + this.programId + '/reports/field_activities/breakdown/' + this.type + '.json' + this.filters;
+      return '/programs/' + this.programId + '/reports/field_activities/breakdown/' + this.type + '.json' + location.search;
     }
   });
 });
