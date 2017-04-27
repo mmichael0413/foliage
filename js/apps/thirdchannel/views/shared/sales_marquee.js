@@ -18,6 +18,7 @@ define(function(require) {
         initialize: function (data) {
           this.currentWidget = 0;
           this.salesData = data.salesData;
+          this.display = data.display;
           this.salesWidgets = this.formatSalesWidgets(this.salesData);
           this.canNavBack = false;
           this.canNavForward = false;
@@ -26,29 +27,32 @@ define(function(require) {
         },
 
         render: function () {
+          var templateData;
+
           this.canNavBack = (this.salesWidgets.length !== 0 && this.currentWidget !== 0);
           this.canNavForward = (this.salesWidgets.length !== 0 && this.currentWidget !== this.salesWidgets.length - 1);
 
-          var templateData = {
+          templateData = {
             showMessage: this.salesData.message && this.salesWidgets.length === 0,
             message: this.salesData.message,
-            widget: this.salesWidgets[this.currentWidget],
+            widgets: this.salesWidgets,
             mostRecent: this.salesData.mostRecent,
-            salesUrl: this.salesData.salesUrl
+            salesUrl: this.salesData.salesUrl,
+            currentWidget: this.currentWidget
           };
-          
-          this.$el.html(this.template({canNavForward: this.canNavForward, canNavBack: this.canNavBack}));
+
+          this.$el.html(this.template({canNavForward: this.canNavForward, canNavBack: this.canNavBack, display: this.display}));
           this.$el.find('.sales-figure').append(this.salesTemplate(templateData));
         },
 
         formatSalesWidgets: function(salesData) {
           var widgets = [
             {
-              label: 'QTD $ Sales',
+              label: 'QTD YOY $ Sales',
               change: salesData.salesChange
             },
             {
-              label: 'Units Sold',
+              label: 'QTD YOY Units Sold',
               change: salesData.unitsSoldChange
             },
             {

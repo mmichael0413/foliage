@@ -3,7 +3,10 @@
         <h3>{{accountName}}</h3>
         <div class="address">{{address}}</div>
         <div class="expansions">
-            <a href="/programs/Merchandising/stores/{{id}}">View Recent Activity</a>
+            <a href="/programs/Merchandising/stores/{{id}}/activity" target="_blank">View Recent Activity</a>
+            {{#if canViewSalesData}}
+              | <a href="/programs/Merchandising/stores/{{id}}/sales" target="_blank">View Store Sales</a>
+            {{/if}}
         </div>
     </div>
     <div class="indicator">
