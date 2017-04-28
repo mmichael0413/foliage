@@ -42,7 +42,9 @@ define(function(require) {
             "mousewheel input[type=number]": "disableScroll"
         },
         initialize: function() {
-            new StoreSalesRegistry();
+            if (window.bootstrap) {
+              new StoreSalesRegistry();
+            }
 
             _.bindAll(this, 'errorPlacement', 'validateSuccess', 'highlight', 'unhighlight');
             this.$form = this.$('.checkin-form');
@@ -56,7 +58,7 @@ define(function(require) {
         render: function() {
             var self = this;
 
-            if (window.bootstrap.store) {
+            if (window.bootstrap) {
               context.trigger("store.sales.register", window.bootstrap.store);
             }
 
