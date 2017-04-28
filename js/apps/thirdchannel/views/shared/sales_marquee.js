@@ -27,12 +27,10 @@ define(function(require) {
         },
 
         render: function () {
-          var templateData;
-
           this.canNavBack = (this.salesWidgets.length !== 0 && this.currentWidget !== 0);
           this.canNavForward = (this.salesWidgets.length !== 0 && this.currentWidget !== this.salesWidgets.length - 1);
 
-          templateData = {
+          var templateData = {
             showMessage: this.salesData.message && this.salesWidgets.length === 0,
             message: this.salesData.message,
             widgets: this.salesWidgets,
