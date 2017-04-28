@@ -117,22 +117,22 @@ define(function(require) {
         },
 
         setStartPointFromFilters: function() {
+          var startPoint = Object.keys(this.dateMap).length - 1; // Set a default startPoint to last item in dateMap
           var startDateFilter = _.find(this.filters.components, function(filter) {
             return filter.filterParam === "start_date";
-          }).activeFilters[0].options.value;
+          }).activeFilters[0].getQueryValue(); // start_date should only ever have a max of one active item
           var endDateFilter = _.find(this.filters.components, function(filter) {
             return filter.filterParam === "end_date";
-          }).activeFilters[0].options.value;
+          }).activeFilters[0].getQueryValue(); // end_date should only ever have a max of one active item
           var endDateMatch = endDateFilter === this.endDate;
 
           for (var property in this.dateMap) {
             if (endDateMatch && (this.dateMap[property].start_date) === startDateFilter) {
-              return property;
+              startPoint = property; // If we get a range match, update startPoint
             }
           }
 
-          // If no matches in the map, return the last filter index (Custom)
-          return Object.keys(this.dateMap).length - 1;
+          return startPoint;
         },
 
         focusDateFilters: function() {
