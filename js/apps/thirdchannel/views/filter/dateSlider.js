@@ -41,15 +41,17 @@ define(function(require) {
         },
 
         initialize: function(options) {
-          if (options.startPoint) {
-            this.startPoint = options.startPoint;
-          }
+          this.dateMap = options.dateMap || this.defaultDateMap;
 
           if (options.pageFilters) {
             this.filters = options.pageFilters;
           }
 
-          this.dateMap = options.dateMap || this.defaultDateMap;
+          if (options.startPoint) {
+            this.startPoint = options.startPoint;
+          } else {
+            this.startPoint = this.setStartPointFromFilters();
+          }
 
           this.render();
         },
@@ -112,6 +114,25 @@ define(function(require) {
           }.bind(this));
 
           context.trigger('filter:set', filterUpdates);
+        },
+
+        setStartPointFromFilters: function() {
+          var startDateFilter = _.find(this.filters.components, function(filter) {
+            return filter.filterParam === "start_date";
+          }).activeFilters[0].options.value;
+          var endDateFilter = _.find(this.filters.components, function(filter) {
+            return filter.filterParam === "end_date";
+          }).activeFilters[0].options.value;
+          var endDateMatch = endDateFilter === this.endDate;
+
+          for (var property in this.dateMap) {
+            if (endDateMatch && (this.dateMap[property].start_date) === startDateFilter) {
+              return property;
+            }
+          }
+
+          // If no matches in the map, return the last filter index (Custom)
+          return Object.keys(this.dateMap).length - 1;
         },
 
         focusDateFilters: function() {

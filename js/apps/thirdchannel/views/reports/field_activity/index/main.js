@@ -9,7 +9,7 @@ define(function(require) {
         init: function (options) {
             this.filters = Filter.init();
             new FieldActivitiesReportView(options).render();
-            new DateSliderView({el: '.date-slider-container', startPoint: 3, pageFilters: this.filters});
+            new DateSliderView({el: '.date-slider-container', pageFilters: this.filters});
         }
     };
 });
