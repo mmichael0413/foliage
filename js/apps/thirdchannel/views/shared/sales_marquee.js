@@ -15,6 +15,7 @@ define(function(require) {
           'click .previous': 'previous'
         },
 
+
         initialize: function (data) {
           this.currentWidget = 0;
           this.salesData = data.salesData;
@@ -30,30 +31,55 @@ define(function(require) {
           this.canNavForward = (this.salesWidgets.length !== 0 && this.currentWidget !== this.salesWidgets.length - 1);
 
           var templateData = {
-            showMessage: this.salesData.message && this.salesWidgets.length === 0,
-            message: this.salesData.message,
+            showMessage: this.salesData.salesDataFor && this.salesWidgets.length === 0,
+            message: this.getSalesDataMessage(this.salesData.salesDataFor),
             widget: this.salesWidgets[this.currentWidget],
             mostRecent: this.salesData.mostRecent,
             salesUrl: this.salesData.salesUrl
           };
-          
+
           this.$el.html(this.template({canNavForward: this.canNavForward, canNavBack: this.canNavBack}));
           this.$el.find('.sales-figure').append(this.salesTemplate(templateData));
+        },
+
+        getSalesDataMessage: function(salesDataFor){
+            if(!salesDataFor){
+                return "No Sales Data Available";
+            } else if (salesDataFor === "TY") {
+                return "Sales data Available For TY";
+            } else if(salesDataFor === "LY") {
+                return "No Sales Data Available for TY";
+            }  else if (salesDataFor === "NA"){
+                return "Sales Data Incomplete";
+            }
+            return "";
         },
 
         formatSalesWidgets: function(salesData) {
           var widgets = [
             {
               label: 'QTD $ Sales',
-              change: salesData.salesChange
+              change: salesData.salesInCents
             },
             {
               label: 'Units Sold',
-              change: salesData.unitsSoldChange
+              change: salesData.unitsSold
             },
             {
               label: 'Units OH',
-              change: salesData.unitsOnHandChange
+              change: salesData.unitsOnHand
+            },
+            {
+              label: 'QTD $ Sales',
+              change: salesData.salesInCents
+            },
+            {
+              label: 'Units Sold',
+              change: salesData.unitsSold
+            },
+            {
+              label: 'Units OH',
+              change: salesData.unitsOnHand
             }
           ];
 
