@@ -45,6 +45,10 @@ define(function(require) {
             this.startPoint = options.startPoint;
           }
 
+          if (options.pageFilters) {
+            this.filters = options.pageFilters;
+          }
+
           this.dateMap = options.dateMap || this.defaultDateMap;
 
           this.render();
@@ -96,10 +100,18 @@ define(function(require) {
         },
 
         triggerFilterSet: function(value) {
-          context.trigger('filter:set', [
+          var filterUpdates = [
             {name: "start_date", value: this.dateMap[value].start_date},
             {name: "end_date", value: this.endDate}
-          ]);
+          ];
+
+          filterUpdates.forEach(function(filter) {
+            var filterMatch = _.findWhere(this.filters.components, {filterParam: filter.name});
+            filterMatch.clear();
+            filterMatch.addFilterByValue(filter.value);
+          }.bind(this));
+
+          context.trigger('filter:set', filterUpdates);
         },
 
         focusDateFilters: function() {

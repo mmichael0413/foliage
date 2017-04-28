@@ -3,7 +3,6 @@ define(function(require) {
         _ = require('underscore'),
         context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
-        DateSliderView = require('thirdchannel/views/filter/dateSlider'),
         OverviewView = require('thirdchannel/views/reports/field_activity/overview'),
         ReportSection = require('thirdchannel/views/reports/field_activity/report_section');
 
@@ -14,8 +13,6 @@ define(function(require) {
 
         initialize: function(options) {
           this.$el.html(this.template({sections: this.sections}));
-
-          new DateSliderView({el: '.date-slider-container', startPoint: 3});
 
           this.listenTo(context, 'filter:query', this.handleFilter);
 
