@@ -5,16 +5,24 @@
     <a href={{salesUrl}} class="btn sales-message">{{message}}</a>
    </span>
   {{else}}
-    {{widget.label}}:
-    <span class="sales-button">
-        <a href={{salesUrl}} class="percentage-change activity-feed-qtd {{percentageChangeClass widget.change}}">
-            <i class="fa {{percentageChangeIcon widget.change}} change-icon"></i>
-            {{formatPercentageChange widget.change}}
-        </a>
-    </span>
-    {{#if mostRecent}}
-        <div class="through-date">through {{formatDateToLongDate mostRecent}}</div>
-    {{/if}}
+
+    {{#each widgets}}
+      <div class="sales-widget-item {{#unless_eq @index ../currentWidget}}hidden{{/unless_eq}}">
+        {{label}}:
+        <span class="sales-button">
+            <a href={{../salesUrl}} class="percentage-change activity-feed-qtd {{percentageChangeClass change}}">
+                <i class="fa {{percentageChangeIcon change}} change-icon"></i>
+                {{formatPercentageChange change}}
+            </a>
+        </span>
+      </div>
+    {{/each}}
   {{/if}}
   </div>
+  {{#if mostRecent}}
+    <div class="text col-2-3 most-recent">
+      <div class="through-date">through {{formatDateToLongDate mostRecent}}</div>
+    </div>
+  {{/if}}
+
 </section>

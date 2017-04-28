@@ -1,0 +1,26 @@
+<div class="kpi column reverse">
+  {{#if_eq chartType "icon"}}
+    <div class="col-md-1 col-4-5 legend">
+      {{#each data.breakdown}}
+        <div class="legend-item">
+          <span class="legend-box" style="background-color: {{../chartColor}}"></span>
+          {{this.percentage.value}}% {{this.percentage.label}} ({{this.subtotal.value}} {{this.subtotal.label}})
+        </div>
+      {{/each}}
+    </div>
+    <div class="metric-infograph">
+      <i class="{{chartIcon}}"></i>
+    </div>
+  {{else}}
+    <div class="chart {{name}}"></div>
+  {{/if_eq}}
+
+  <div class="metrics">
+      <div class="metric">
+        <a class="metric-figure link" href="{{href}}">{{format_number data.total}}</a>
+        <span class="metric-label">
+          {{label}}
+        </span>
+      </div>
+  </div>
+</div>
