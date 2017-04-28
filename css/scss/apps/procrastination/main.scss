@@ -1,5 +1,5 @@
 @import '../../../../js/libs/bower_components/normalize-css/normalize';
-@import 'js/libs/bower_components/jquery-ui/themes/base/jquery-ui.min.css';
+@import '../../../../js/libs/bower_components/jquery-ui/themes/base/jquery-ui.min.css';
 @import "../../lib/pure.grids-core";
 @import "../../lib/pure.responsive-grid";
 
@@ -36,6 +36,7 @@
 @import "../../modules/fullcalendar";
 @import "../../modules/calendar";
 @import "../../modules/subtle_instruction";
+@import "../../modules/tooltip";
 
 div.schedule-layout {
 	display:inline-block;
