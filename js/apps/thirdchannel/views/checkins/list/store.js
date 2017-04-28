@@ -14,6 +14,9 @@ define(function(require) {
         },
 
         render: function() {
+            if (window.bootstrap.canViewSalesData) {
+              this.model.set('canViewSalesData', true);
+            }
             this.$el.html(this.template(this.model.toJSON()));
             this.$body = this.$('.subsection .card');
             this.$expander = this.$('.expander');
