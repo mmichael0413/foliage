@@ -36,6 +36,7 @@ define(function(require) {
                     this.listenTo(context, 'report post render widget_' + this.model.uuid, this.renderChart);
                 } else {
                     this.listenTo(context, 'report post render', this.renderChart);
+                    this.listenTo(context, 'report resize', this.resizeChart);
                 }
             }
             return this;
@@ -59,7 +60,7 @@ define(function(require) {
                                   var label = value;
                                   label += ' ' + (self.model.config.count_text ? self.model.config.count_text : 'stores');
                                   if (ratio !== undefined) {
-                                      label = d3.format('.1%')(ratio) + "<br>" + label;
+                                      label = d3.format('.1%')(ratio) + label;
                                   }
                                   return label;
                                 }
