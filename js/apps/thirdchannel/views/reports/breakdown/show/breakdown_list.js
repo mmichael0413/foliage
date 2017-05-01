@@ -5,6 +5,7 @@ define(function(require) {
       LoadingView           = require('thirdchannel/views/utils/loading'),
       PaginationView        = require('thirdchannel/views/utils/pagination'),
       BreakdownListModel    = require('thirdchannel/models/reports/breakdown/breakdown_list'),
+      BreakdownStoresView   = require('thirdchannel/views/reports/breakdown/show/stores'),
       BreakdownVisitsView   = require('thirdchannel/views/reports/breakdown/show/visits'),
       BreakdownListItemView = require('thirdchannel/views/reports/breakdown/show/list_item');
 
@@ -27,6 +28,9 @@ define(function(require) {
     addListItem: function (value) {
       this.$el.find('.list-items').append(new BreakdownListItemView(value).render().$el);
     },
+    addStoreItem: function (value) {
+      this.$el.find('.list-items').append(new BreakdownStoresView(value).render().$el);
+    },
     addVisitItem: function (value) {
       this.$el.find('.list-items').append(new BreakdownVisitsView(value).render().$el);
     },
@@ -38,6 +42,10 @@ define(function(require) {
         if (this.model.type == 'visits') {
           $.each(model.get('items'), function (key, value) {
             that.addVisitItem(value);
+          });
+        } else if (this.model.type == 'stores') {
+          $.each(model.get('items'), function (key, value) {
+            that.addStoreItem(value);
           });
         } else {
           $.each(model.get('items'), function (key, value) {
