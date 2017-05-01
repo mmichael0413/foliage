@@ -85,6 +85,10 @@ $cornflower: #4684c5;
     margin-right: 1em;
   }
 
+  @include swb-medium {
+    padding: .75em .5em;
+  };
+
   &-infograph {
     padding: 1em 0 1em;
 
@@ -468,8 +472,14 @@ $cornflower: #4684c5;
       margin: 0;
     }
 
-    .widgets .kpi {
-      justify-content: flex-start;
+    .widgets {
+      .kpi {
+        justify-content: flex-start;
+      }
+
+      @include swb-medium {
+        display: flex;
+      }
     }
 
     @include swb-xlarge {
@@ -492,6 +502,7 @@ $cornflower: #4684c5;
         width: 33%;
       }
     }
+
   }
 }
 
