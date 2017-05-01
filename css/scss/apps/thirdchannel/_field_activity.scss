@@ -377,9 +377,9 @@ $cornflower: #4684c5;
     border-bottom: 0;
 
     @include swb-large {
-      flex-direction: column;
-      display: inline-block;
+      display: inline-flex;
       text-align: center;
+      flex-wrap: wrap;
     }
   }
 
