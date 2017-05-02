@@ -1,3 +1,16 @@
+{{#if isVega}}
+  <div class="group">
+    <div class="section">
+      To schedule, prepare, and confirm your visit to
+      <i>{{storeName}}</i>
+      please find
+      <i>{{accountName}}</i>
+      on the
+      <a href="//bit.ly/VegaRetailRef">Retailer Reference Sheet</a>
+      and follow its instructions.
+    </div>
+  </div>
+{{/if}}
 <div class="group">
   <div class="section">
     <h3>Type</h3>
@@ -31,11 +44,11 @@
             <span class="subtle-instruction">*</span>
           </div>
         {{else}}
-          {{#if ../../showOptionalTasks}}
+          {{#unless ../../isVega}}
           <div>
             {{name}}
           </div>
-          {{/if}}
+          {{/unless}}
         {{/if}}
     {{/each}}
   </div>

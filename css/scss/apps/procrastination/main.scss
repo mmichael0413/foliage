@@ -109,6 +109,9 @@ div.schedule-layout {
 }
 
 .details-modal {
+  a {
+    color: $link-color;
+  }
   padding-top: 1em !important;
   .group {
     display: flex;
