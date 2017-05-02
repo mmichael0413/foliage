@@ -51,12 +51,14 @@ define(function(require) {
         initialize: function(options) {
             _.bindAll(this, 'renderRanges', 'renderRange');
 
+            this.canChangeRequester = options.canChangeRequester;
             this.requiresLeadTime = options.requiresLeadTime;
             this.stores = options.stores;
             this.surveys = options.surveys;
             this.surveyTopics = options.surveyTopics;
             this.timezones = options.timezones;
             this.assignee = options.assignee;
+            this.requester = options.requester;
             this.assignmentsHistory = options.assignmentsHistory;
 
             var initialRange = [];
@@ -78,6 +80,7 @@ define(function(require) {
                 surveyTopics: this.surveyTopics,
                 timezones: this.timezones,
                 durationOptions: durationOptions,
+                canChangeRequester: this.canChangeRequester,
                 hasAssignmentsHistory: !(this.assignmentsHistory.isEmpty())
             };
             data = _.extend(data, this.model.attributes);
@@ -123,8 +126,44 @@ define(function(require) {
             });
 
             if(data.assignee_id) {
-                var display = this.assignee.name + ' <' + this.assignee.email + '> - ' + this.assignee.address;
-                $assigneeIdEl.append($("<option selected></option>").val(data.assignee_id).text(display));
+                var assigneeDisplay = this.assignee.name + ' <' + this.assignee.email + '> - ' + this.assignee.address;
+                $assigneeIdEl.append($("<option selected></option>").val(data.assignee_id).text(assigneeDisplay));
+            }
+
+            if(this.canChangeRequester) {
+                var $requesterIdEl = this.$('.requester_id');
+
+                $requesterIdEl.select2({
+                    ajax: {
+                        url: '/programs/' + context.programId + '/manage/users_search',
+                        dataType: 'json',
+                        delay: 200,
+                        data: function (params) {
+                            return {
+                                format: 'json',
+                                name: params.term,
+                                per: 25
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: data.map(function (item) {
+                                    item.text = item.name + ' <' + item.email + '> - ' + item.address;
+                                    return item;
+                                })
+                            };
+                        },
+                        cache: "false"
+                    },
+                    minimumInputLength: 3,
+                    placeholder: "Select...",
+                    allowClear: true
+                });
+
+                if(data.user_id) {
+                    var requesterDisplay = this.requester.name + ' <' + this.requester.email + '> - ' + this.requester.address;
+                    $requesterIdEl.append($("<option selected></option>").val(this.requester.id).text(requesterDisplay));
+                }
             }
 
             if(data.date_scheduled) {
@@ -197,6 +236,7 @@ define(function(require) {
                 survey_topic_uuids: this.$('.survey_topic_uuids').val(),
                 notes: this.$('.notes').val(),
                 assignee_id: this.$('.assignee_id').val(),
+                requester_id: this.$('.requester_id').val(),
                 schedulable_ranges : ranges
             };
 
@@ -238,6 +278,7 @@ define(function(require) {
                 survey_topic_uuids: this.$('.survey_topic_uuids').val(),
                 notes: this.$('.notes').val(),
                 assignee_id: this.$('.assignee_id').val(),
+                requester_id: this.$('.requester_id').val(),
                 program_store_uuids: programStoreIds,
                 schedulable_ranges : ranges
             };
