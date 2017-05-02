@@ -303,7 +303,7 @@ define(function(require) {
                             window.location = '/programs/' + context.programId + '/manage/jobs';
                         }
                     })
-                    .fail(function() {
+                    .fail(function(response) {
                         alert('Oops, there was a problem with your request, please try again.');
                         this.$(".submit-job-request").prop('disabled', false);
                         this.$(".submit-job-request i").removeClass("fa fa-spin fa-spinner").addClass('ic ic_check');
@@ -320,7 +320,7 @@ define(function(require) {
                 if(this.model.id) {
                     window.location = '/programs/' + context.programId + '/manage/jobs/' + this.model.id;
                 } else {
-                    window.location = '/programs/' + context.programId + '/stores';
+                    window.location = '/programs/' + context.programId + '/manage/jobs';
                 }
             }
         }
