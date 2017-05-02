@@ -50,8 +50,16 @@ define(function(require) {
           if (options.startPoint) {
             this.startPoint = options.startPoint;
           } else {
-            this.startPoint = this.setStartPointFromFilters();
+            this.startPoint = this.getSliderValueFromFilters();
           }
+
+          this.listenTo(context, 'filter:item:cleared', function() {
+            $(this.$el.find('.date-slider-component')).slider("value", this._getLastValue());
+          }.bind(this));
+
+          this.listenTo(context, 'filter:item:selected', function() {
+            $(this.$el.find('.date-slider-component')).slider("value", this.getSliderValueFromFilters());
+          }.bind(this));
 
           this.render();
         },
@@ -87,7 +95,7 @@ define(function(require) {
           if (value === (_.size(this.dateMap) - 1)) {
             this.focusDateFilters();
           } else {
-            this.triggerFilterSet(value);
+            this.setFiltersFromSliderValue(value);
           }
         },
 
@@ -101,7 +109,7 @@ define(function(require) {
           this.handleSliderUpdate(point);
         },
 
-        triggerFilterSet: function(value) {
+        setFiltersFromSliderValue: function(value) {
           var filterUpdates = [
             {name: "start_date", value: this.dateMap[value].start_date},
             {name: "end_date", value: this.endDate}
@@ -116,19 +124,25 @@ define(function(require) {
           context.trigger('filter:set', filterUpdates);
         },
 
-        setStartPointFromFilters: function() {
-          var startPoint = Object.keys(this.dateMap).length - 1; // Set a default startPoint to last item in dateMap
+        getSliderValueFromFilters: function() {
+          var startPoint = this._getLastValue(); // Set a default startPoint to last item in dateMap
           var startDateFilter = _.find(this.filters.components, function(filter) {
             return filter.filterParam === "start_date";
-          }).activeFilters[0].getQueryValue(); // start_date should only ever have a max of one active item
+          }).activeFilters[0]; // start_date should only ever have a max of one active item
           var endDateFilter = _.find(this.filters.components, function(filter) {
             return filter.filterParam === "end_date";
-          }).activeFilters[0].getQueryValue(); // end_date should only ever have a max of one active item
-          var endDateMatch = endDateFilter === this.endDate;
+          }).activeFilters[0]; // end_date should only ever have a max of one active item
 
-          for (var property in this.dateMap) {
-            if (endDateMatch && (this.dateMap[property].start_date) === startDateFilter) {
-              startPoint = property; // If we get a range match, update startPoint
+          // If we have both an end date and start date filter applied, attempt to match a range.
+          // If we don't, that means we're in a custom date range, so just get to the return.
+          if (endDateFilter && startDateFilter) {
+            var endDateMatch = endDateFilter.getQueryValue() === this.endDate;
+            var startDateValue = startDateFilter.getQueryValue();
+
+            for (var property in this.dateMap) {
+              if (endDateMatch && (this.dateMap[property].start_date) === startDateValue) {
+                startPoint = property; // If we get a range match, update startPoint
+              }
             }
           }
 
@@ -146,6 +160,10 @@ define(function(require) {
                      .animate({ backgroundColor: "#e3eef9" }, 150)
                      .animate({ backgroundColor: "#73afef" }, 150)
                      .animate({ backgroundColor: "rgba(255,255,255,0)" }, 150);
+        },
+
+        _getLastValue: function() {
+          return Object.keys(this.dateMap).length - 1;
         }
     });
 });
