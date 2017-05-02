@@ -32,12 +32,14 @@ define(function(require) {
             var stores = new Stores();
 
             var createView = new CreateView({
+                canChangeRequester: context.canChangeRequester,
                 requiresLeadTime: context.requiresLeadTime,
                 stores: stores,
                 surveys: context.surveys,
                 surveyTopics: context.survey_topics,
                 timezones: context.timezones,
                 assignee: null,
+                requester: null,
                 assignmentsHistory: new Backbone.Collection(),
                 model: jobRequest
             });
@@ -64,12 +66,14 @@ define(function(require) {
             var stores = new Stores();
 
             var createView = new CreateView({
+                canChangeRequester: context.canChangeRequester,
                 requiresLeadTime: context.requiresLeadTime,
                 stores: stores,
                 surveys: context.surveys,
                 surveyTopics: context.survey_topics,
                 timezones: context.timezones,
                 assignee: context.assignee,
+                requester: context.requester,
                 assignmentsHistory: new Backbone.Collection(context.assignments_history),
                 model: jobRequest
             });
