@@ -15,6 +15,11 @@ define(function(require) {
           'click .previous': 'previous'
         },
 
+        messages: {
+            "TY": "Sales data Available For TY",
+            "LY": "Sales data Available For LY",
+            "NA": "Sales Data Incomplete"
+        },
 
         initialize: function (data) {
           this.currentWidget = 0;
@@ -45,16 +50,11 @@ define(function(require) {
         },
 
         getSalesDataMessage: function(salesDataFor){
-            if(!salesDataFor){
+            if (!salesDataFor) {
                 return "No Sales Data Available";
-            } else if (salesDataFor === "TY") {
-                return "Sales data Available For TY";
-            } else if(salesDataFor === "LY") {
-                return "No Sales Data Available for TY";
-            }  else if (salesDataFor === "NA"){
-                return "Sales Data Incomplete";
+            } else {
+                return this.messages[salesDataFor] || "";
             }
-            return "";
         },
 
         formatSalesWidgets: function(salesData) {
@@ -67,7 +67,7 @@ define(function(require) {
             {
               label: 'QTD YOY Units Sold',
               value: salesData.unitsSoldChange,
-                template: "decimal_percent_change_badge"
+              template: "decimal_percent_change_badge"
             },
             {
               label: 'YOY Units OH',
@@ -77,7 +77,7 @@ define(function(require) {
             {
               label: 'QTD $ Sales',
               value: salesData.salesInCents,
-                template: "dollar_number_badge"
+              template: "dollar_number_badge"
             },
             {
               label: 'Units Sold',
