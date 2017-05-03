@@ -2,13 +2,17 @@
   background: #FFF;
   border-radius: 15px;
   margin: 2em 0;
-  padding: 0 0 0 1.5em;
+  padding: 0 1.5em 0 1.5em;
 }
 
 .date-slider-component.ui-widget-content {
   border: 0;
-  width: 93%;
+  width: 95%;
   height: 0;
+
+  @include swb-medium {
+    width: 90%;
+  }
 }
 
 .date-slider-handle.ui-slider-handle {
@@ -45,6 +49,7 @@
   justify-content: space-between;
   font-size: .9em;
   color: $light-blue;
+  text-align: center;
 
   a {
     display: inline-block;

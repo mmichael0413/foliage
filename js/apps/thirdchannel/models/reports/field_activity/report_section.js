@@ -3,7 +3,7 @@ define(function(require) {
 
   return Backbone.Model.extend({
 
-    params: '',
+    params: window.location.search.substr(1),
 
     initialize: function (options) {
       this.options = options;

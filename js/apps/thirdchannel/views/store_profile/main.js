@@ -34,7 +34,7 @@ define(function (require) {
             wrapper.setElement('#site-canvas').render();
         },
         activity: function () {
-            var url = '/programs/' + context.programId + '/activities/posts?customer_store=' +context.requestParameters[1];
+            var url = '/programs/' + context.programId + '/activities/posts?customer_store_uuid=' + context.requestParameters[1];
             ActivitiesMain.init(url, null, false);
         },
         intel: function () {

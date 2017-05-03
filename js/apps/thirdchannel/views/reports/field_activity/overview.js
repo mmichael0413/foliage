@@ -12,6 +12,10 @@ define(function(require) {
       el: ".field-activities-overview",
       template: HandlebarsTemplates['thirdchannel/reports/field_activity/overview'],
 
+      events: {
+        'click .anchor': 'scrollToSection'
+      },
+
       initialize: function(options) {
         this.loadingView = new LoadingView();
         this.$el.html(this.loadingView.render().$el);
@@ -42,6 +46,20 @@ define(function(require) {
         this.model.updateFilters(params);
         this.$el.html(this.loadingView.render().$el);
         this.fetchReport();
+      },
+
+      scrollToSection: function(event) {
+        event.preventDefault();
+        /*
+          Normally we can use traditional page anchors to scrool to sections, but with the filter params,
+          this practice doesn't work, and we instead get some filtering bugs.
+        */
+
+        var section = $(event.target).data('section');
+
+        $('.content-holder').animate({
+          scrollTop: $(section).offset().top
+        }, 500);
       }
     });
 });

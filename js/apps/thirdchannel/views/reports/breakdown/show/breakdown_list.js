@@ -1,40 +1,35 @@
 define(function(require) {
-  var Backbone               = require('backbone'),
-      HandlebarsTemplates    = require('handlebarsTemplates'),
-      context                = require('context'),
-      LoadingView            = require('thirdchannel/views/utils/loading'),
-      PaginationView         = require('thirdchannel/views/utils/pagination'),
-      BreakdownListModel     = require('thirdchannel/models/reports/breakdown/breakdown_list'),
-      BreakdownVisitsView    = require('thirdchannel/views/reports/breakdown/show/visits'),
-      BreakdownListItemView  = require('thirdchannel/views/reports/breakdown/show/list_item'),
-      FilterCollection       = require('thirdchannel/collections/reports/info/filters'),
-      Filter = require('thirdchannel/views/filter/main');
+  var Backbone              = require('backbone'),
+      HandlebarsTemplates   = require('handlebarsTemplates'),
+      context               = require('context'),
+      LoadingView           = require('thirdchannel/views/utils/loading'),
+      PaginationView        = require('thirdchannel/views/utils/pagination'),
+      BreakdownListModel    = require('thirdchannel/models/reports/breakdown/breakdown_list'),
+      BreakdownStoresView   = require('thirdchannel/views/reports/breakdown/show/stores'),
+      BreakdownVisitsView   = require('thirdchannel/views/reports/breakdown/show/visits'),
+      BreakdownListItemView = require('thirdchannel/views/reports/breakdown/show/list_item');
 
   return Backbone.View.extend({
     el: ".report-breakdown",
     template: HandlebarsTemplates['thirdchannel/reports/breakdown/show/breakdown_list'],
     initialize: function (options) {
       this.model = new BreakdownListModel(options);
-      this.filters = new FilterCollection(options);
       this.listenTo(context, 'filter:query', this.applyItem);
-      // this.listenTo(context, 'filter:set', this.applyItem);
       this.loadingView = new LoadingView();
     },
     render: function () {
       var self = this;
       this.$el.html(this.loadingView.render().$el);
-      this.applyItem();
-      this.addFilters(this.filters);
       return this;
-    },
-    addFilters: function (value) {
-        Filter.init(value);
     },
     addPages: function (value) {
       this.$el.find('.pages').empty().append(new PaginationView(value).render().$el);
     },
     addListItem: function (value) {
       this.$el.find('.list-items').append(new BreakdownListItemView(value).render().$el);
+    },
+    addStoreItem: function (value) {
+      this.$el.find('.list-items').append(new BreakdownStoresView(value).render().$el);
     },
     addVisitItem: function (value) {
       this.$el.find('.list-items').append(new BreakdownVisitsView(value).render().$el);
@@ -47,6 +42,10 @@ define(function(require) {
         if (this.model.type == 'visits') {
           $.each(model.get('items'), function (key, value) {
             that.addVisitItem(value);
+          });
+        } else if (this.model.type == 'stores') {
+          $.each(model.get('items'), function (key, value) {
+            that.addStoreItem(value);
           });
         } else {
           $.each(model.get('items'), function (key, value) {

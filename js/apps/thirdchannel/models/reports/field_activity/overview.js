@@ -4,7 +4,7 @@ define(function(require) {
 
   return Backbone.Model.extend({
 
-    params: '',
+    params: window.location.search.substr(1),
 
     imageMapping: {
       "States/Provinces Visited": "g_flags"

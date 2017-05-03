@@ -14,9 +14,6 @@ define(function (require) {
         moment = require('moment');
     return Backbone.View.extend({
         el: '.main-content',
-        events: {
-            "click #restrictions-toggle": "toggleRestrictions",
-        },
         initialize: function (options) {
             this.unlockButton = $('.unlock-button');
             this.unlockButton.click(this.unlockSchedule.bind(this));
@@ -118,7 +115,6 @@ define(function (require) {
             _.each(this.groupedJobsByScheduled().unscheduled, this.renderModel);
             this.$('.schedule-container .unscheduled .instructions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/' + this.fsm.current]());
             this.$('.finalize-button').click(this.finalizeSchedule.bind(this));
-            this.$('#restrictions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/restrictions'](context));
             return this;
         },
         fetch: function (callback) {
@@ -231,10 +227,6 @@ define(function (require) {
                 this.$el.unblock();
                 this.unlockButton.prop("disabled",false);
             }.bind(this));
-        },
-        toggleRestrictions: function(e){
-            e.preventDefault();
-            this.$('#restrictions').slideToggle(200);
-        },
+        }
     });
 });

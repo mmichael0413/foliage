@@ -1,4 +1,4 @@
-@import url('http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+@import url('//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
 
 $cornflower: #4684c5;
 
@@ -84,6 +84,10 @@ $cornflower: #4684c5;
     display: inline-block;
     margin-right: 1em;
   }
+
+  @include swb-medium {
+    padding: .75em .5em;
+  };
 
   &-infograph {
     padding: 1em 0 1em;
@@ -358,6 +362,9 @@ $cornflower: #4684c5;
   &.actualSales {
     background-image: url('../images/g_money.svg');
   }
+  &.averageSalesPerVisit {
+    background-image: url('../images/g_averageSales.svg');
+  }
 }
 
 .kpi-units {
@@ -373,9 +380,9 @@ $cornflower: #4684c5;
     border-bottom: 0;
 
     @include swb-large {
-      flex-direction: column;
-      display: inline-block;
+      display: inline-flex;
       text-align: center;
+      flex-wrap: wrap;
     }
   }
 
@@ -468,8 +475,14 @@ $cornflower: #4684c5;
       margin: 0;
     }
 
-    .widgets .kpi {
-      justify-content: flex-start;
+    .widgets {
+      .kpi {
+        justify-content: flex-start;
+      }
+
+      @include swb-medium {
+        display: flex;
+      }
     }
 
     @include swb-xlarge {
@@ -492,6 +505,7 @@ $cornflower: #4684c5;
         width: 33%;
       }
     }
+
   }
 }
 

@@ -30,3 +30,22 @@
     display: block;
   }
 }
+
+div:not(.zipcode) {
+  > .tooltip {
+    float: none;
+    color: $text-color;
+    text-align: left;
+    cursor: help;
+
+    & + .tip {
+      right: auto;
+      z-index: 10;
+      max-width: 34em;
+
+      ul {
+        padding-left: 2em;
+      }
+    }
+  }
+}
