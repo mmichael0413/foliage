@@ -3,7 +3,7 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates');
 
     return Backbone.View.extend({
-        template: HandlebarsTemplates['thirdchannel/manage/jobs/job_requests/list_item'],
+        template: HandlebarsTemplates['thirdchannel/manage/jobs/list_item'],
         tagName: 'tr',
         className: 'scheduled-visit-row',
 
