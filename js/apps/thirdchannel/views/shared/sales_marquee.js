@@ -15,6 +15,12 @@ define(function(require) {
           'click .previous': 'previous'
         },
 
+        messages: {
+            "TY": "Sales data Available For TY",
+            "LY": "Sales data Available For LY",
+            "NA": "Sales Data Incomplete"
+        },
+
         initialize: function (data) {
           this.currentWidget = 0;
           this.salesData = data.salesData;
@@ -31,8 +37,8 @@ define(function(require) {
           this.canNavForward = (this.salesWidgets.length !== 0 && this.currentWidget !== this.salesWidgets.length - 1);
 
           var templateData = {
-            showMessage: this.salesData.message && this.salesWidgets.length === 0,
-            message: this.salesData.message,
+            showMessage: (!this.salesData.salesDataFor || this.salesData.salesDataFor == "NA") || this.salesWidgets.length === 0,
+            message: this.getSalesDataMessage(this.salesData.salesDataFor),
             widgets: this.salesWidgets,
             mostRecent: this.salesData.mostRecent,
             salesUrl: this.salesData.salesUrl,
@@ -43,24 +49,50 @@ define(function(require) {
           this.$el.find('.sales-figure').append(this.salesTemplate(templateData));
         },
 
+        getSalesDataMessage: function(salesDataFor){
+            if (!salesDataFor) {
+                return "No Sales Data Available";
+            } else {
+                return this.messages[salesDataFor] || "";
+            }
+        },
+
         formatSalesWidgets: function(salesData) {
           var widgets = [
             {
               label: 'QTD YOY $ Sales',
-              change: salesData.salesChange
+              value: salesData.salesChange,
+              template: "decimal_percent_change_badge"
             },
             {
               label: 'QTD YOY Units Sold',
-              change: salesData.unitsSoldChange
+              value: salesData.unitsSoldChange,
+              template: "decimal_percent_change_badge"
+            },
+            {
+              label: 'YOY Units OH',
+              template: "decimal_percent_change_badge",
+              value:  salesData.unitsOnHandChange
+            },
+            {
+              label: 'QTD $ Sales',
+              value: salesData.salesInCents,
+              template: "dollar_number_badge"
+            },
+            {
+              label: 'Units Sold',
+              value: salesData.unitsSold,
+              template: "quantity_number_badge"
             },
             {
               label: 'Units OH',
-              change: salesData.unitsOnHandChange
+              value: salesData.unitsOnHand,
+              template: "quantity_number_badge"
             }
           ];
 
           return _.filter(widgets, function(widget) {
-            return _.isNumber(widget.change) && widget.change !== 0;
+            return _.isNumber(widget.value) && widget.value!== 0;
           });
         },
 

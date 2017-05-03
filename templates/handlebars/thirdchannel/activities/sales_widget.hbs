@@ -1,23 +1,13 @@
 <section class="sales-widget pure-g">
   <div class="text col-2-3">
-  {{#if showMessage}}
-  <span>
-    <a href={{salesUrl}} class="btn sales-message">{{message}}</a>
-   </span>
-  {{else}}
-
+  {{#unless showMessage}}
     {{#each widgets}}
       <div class="sales-widget-item {{#unless_eq @index ../currentWidget}}hidden{{/unless_eq}}">
         {{label}}:
-        <span class="sales-button">
-            <a href={{../salesUrl}} class="percentage-change activity-feed-qtd {{percentageChangeClass change}}">
-                <i class="fa {{percentageChangeIcon change}} change-icon"></i>
-                {{formatPercentageChange change}}
-            </a>
-        </span>
+        {{ salesPartial template ../salesUrl this }}
       </div>
     {{/each}}
-  {{/if}}
+  {{/unless}}
   </div>
   {{#if mostRecent}}
     <div class="text col-2-3 most-recent">
