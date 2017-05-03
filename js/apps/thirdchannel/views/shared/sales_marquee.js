@@ -32,7 +32,7 @@ define(function(require) {
           this.canNavForward = (this.salesWidgets.length !== 0 && this.currentWidget !== this.salesWidgets.length - 1);
 
           var templateData = {
-            showMessage: this.salesData.salesDataFor && this.salesWidgets.length === 0,
+            showMessage: (!this.salesData.salesDataFor || this.salesData.salesDataFor == "NA") || this.salesWidgets.length === 0,
             message: this.getSalesDataMessage(this.salesData.salesDataFor),
             widgets: this.salesWidgets,
             mostRecent: this.salesData.mostRecent,
@@ -61,32 +61,38 @@ define(function(require) {
           var widgets = [
             {
               label: 'QTD YOY $ Sales',
-              change: salesData.salesChange
+              value: salesData.salesChange,
+              template: "decimal_percent_change_badge"
             },
             {
               label: 'QTD YOY Units Sold',
-              change: salesData.unitsSoldChange
+              value: salesData.unitsSoldChange,
+                template: "decimal_percent_change_badge"
             },
             {
-               label: 'YOY Units OH',
-               change: salesData.unitsOnHandChange
+              label: 'YOY Units OH',
+              template: "decimal_percent_change_badge",
+              value:  salesData.unitsOnHandChange
             },
             {
               label: 'QTD $ Sales',
-              change: salesData.salesInCents
+              value: salesData.salesInCents,
+                template: "dollar_number_badge"
             },
             {
               label: 'Units Sold',
-              change: salesData.unitsSold
+              value: salesData.unitsSold,
+              template: "quantity_number_badge"
             },
             {
               label: 'Units OH',
-              change: salesData.unitsOnHand
+              value: salesData.unitsOnHand,
+              template: "quantity_number_badge"
             }
           ];
 
           return _.filter(widgets, function(widget) {
-            return _.isNumber(widget.change) && widget.change !== 0;
+            return _.isNumber(widget.value) && widget.value!== 0;
           });
         },
 
