@@ -15,7 +15,7 @@ define(function (require) {
             "click .unassign" : "unassign",
             "click .remove" : "remove",
             "click .task-count": "toggleTaskList",
-            "click": "showDetails",
+            "click": "showDetails"
         },
         render: function () {
             var data = this.model.toJSON();

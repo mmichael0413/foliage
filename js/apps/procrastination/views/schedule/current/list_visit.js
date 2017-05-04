@@ -20,11 +20,10 @@ define(function (require) {
         events: {
             'click .unschedule': 'unschedule',
             'click .unassign' : 'unassign',
-            'click .confirmVisit' : 'confirmVisit',
             'click .remove' : 'remove',
             'click .expand' : 'expand',
             'click .collapse' : 'collapse',
-            "click .visit-confirm-button" : "confirmVisit",
+            "click .visit-confirm-button" : "confirmVisit"
         },
 
         render: function() {
@@ -43,6 +42,7 @@ define(function (require) {
                 canUnschedule: this.model.get('canUnschedule'),
                 canConfirm: this.model.get('canConfirm'),
                 isConfirmed: this.model.get('status') === 'confirmed',
+                lastStatusChange: this.model.get('lastStatusChange'),
                 showCompleted: this.showCompleted,
                 totalDuration: this.model.get('totalDuration'),
                 tasks: this.model.get('tasks'),
@@ -89,15 +89,10 @@ define(function (require) {
             var url = context.base_url+"/"+ this.model.get('personId')+"/show/"+this.model.get('aggregateId')+"/"+this.model.get('id')+"/confirm";
             var self = this;
             $.post(url, function (response) {
-                    console.log(response);
-                    self.model.set('isConfirmed', true);
+                self.model.set('isConfirmed', true);
+                self.model.set('lastStatusChanged', Date.now());
+                self.model.set('status', 'confirmed');
             });
-            // /{personUUID}/show/{aggregateUUID}/{visitUUID}/confirm
-
-            console.log('visit confirm triggered');
-            console.log(this);
-            console.log(this.model);
-            console.log(this);
         },
 
         remove: function(e) {
