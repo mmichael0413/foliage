@@ -1,7 +1,7 @@
 <div class="col-6-12 col-sm-7-12">
-    <p class="bold">{{storeName}}</p>
-    <p>{{address}}</p>
-    <p>{{jobDetails.name}}</p>
+    <p class="visit-data bold">{{storeName}}</p>
+    <p class="visit-data">{{address}}</p>
+    <p class="visit-data">{{jobDetails.name}}</p>
     {{#if canUnschedule}}
         <div><a href="#" class="unschedule">Unschedule Visit</a></div>
     {{/if}}
@@ -15,11 +15,12 @@
     <div class="col-2-12">{{totalDuration}} mins</div>
     {{#if canConfirm}}
         {{#if isConfirmed}}
-            {{#if dateCompleted }}
-                <div class="col-3-12 hidden-xs">{{localizedUTCDate dateCompleted}}</div>
-            {{else}}
-                <div class="col-3-12 hidden-xs"><span class="confirmVisit">Confirmed With Location</span></div>
-            {{/if}}
+            <div class="col-3-12 hidden-xs">
+                {{#if dateCompleted }}
+                    <div class="">{{localizedUTCDate dateCompleted}}</div>
+                {{/if}}
+                <div class=""><span class="confirmedVisit">Confirmed on {{dateFormat lastStatusChange 'l'}} </span></div>
+            </div>
         {{else}}
             <div class="col-3-12 hidden-xs"><a href="#" class="visit-confirm-button">Confirmed With Location</a></div>
         {{/if}}

@@ -5,7 +5,7 @@ define(function (require) {
 
     Handlebars.registerHelper('localizedUTCDate', function(iso8601Date){
         if(iso8601Date){
-            return moment.utc(iso8601Date).format("l");
+            return moment.utc(iso8601Date).format("MMM DD, YYYY");
         } else {
             return "";
         }

@@ -80,6 +80,14 @@ div.schedule-layout {
   color: white;
   background: #DA5348;
 }
+.confirmedVisit {
+  font-style: italic;
+  font-size: .75em;
+  color: $medium-blue-rgba;
+}
+p.visit-data {
+  margin-top: 0;
+}
 
 .set-schedule {
   margin-top: 1em;
