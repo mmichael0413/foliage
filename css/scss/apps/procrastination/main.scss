@@ -74,16 +74,20 @@ div.schedule-layout {
   color: white;
   background-color: $link-color;
   padding: 0.5em;
+  &:hover {
+    color: white;
+    background: #DA5348;
+  }
 }
 
-.visit-confirm-button:hover {
-  color: white;
-  background: #DA5348;
-}
 .confirmedVisit {
   font-style: italic;
   font-size: .75em;
   color: $medium-blue-rgba;
+  .instructions {
+    display: inline-flex;
+    margin-left: .5em;
+  }
 }
 p.visit-data {
   margin-top: 0;

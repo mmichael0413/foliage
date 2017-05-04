@@ -51,6 +51,9 @@ define(function (require) {
             };
 
             this.$el.html(this.template(attrs));
+            if (attrs.canConfirm && !attrs.dateCompleted) {
+                this.$('.instructions').html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/visitConfirmation']);
+            }
 
             return this;
         },

@@ -1,4 +1,4 @@
-<div class="col-6-12 col-sm-7-12">
+<div class="col-6-12 col-sm-7-12" xmlns="http://www.w3.org/1999/html">
     <p class="visit-data bold">{{storeName}}</p>
     <p class="visit-data">{{address}}</p>
     <p class="visit-data">{{jobDetails.name}}</p>
@@ -19,7 +19,7 @@
                 {{#if dateCompleted }}
                     <div class="">{{localizedUTCDate dateCompleted}}</div>
                 {{/if}}
-                <div class=""><span class="confirmedVisit">Confirmed on {{dateFormat lastStatusChange 'l'}} </span></div>
+                <div class=""><span class="confirmedVisit">Confirmed on {{dateFormat lastStatusChange 'l'}}<span class="instructions"></span></span></div>
             </div>
         {{else}}
             <div class="col-3-12 hidden-xs"><a href="#" class="visit-confirm-button">Confirmed With Location</a></div>
