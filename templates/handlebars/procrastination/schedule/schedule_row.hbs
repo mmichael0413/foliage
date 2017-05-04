@@ -13,10 +13,35 @@
 
 {{#if showCompleted}}
     <div class="col-2-12">{{totalDuration}} mins</div>
-    <div class="col-3-12 hidden-xs">{{localizedUTCDate dateCompleted}}</div>
+    {{#if canConfirm}}
+        {{#if isConfirmed}}
+            {{#if dateCompleted }}
+                <div class="col-3-12 hidden-xs">{{localizedUTCDate dateCompleted}}</div>
+            {{else}}
+                <div class="col-3-12 hidden-xs"><span class="confirmVisit">Confirmed With Location</span></div>
+            {{/if}}
+        {{else}}
+            <div class="col-3-12 hidden-xs"><a href="#" class="visit-confirm-button">Confirmed With Location</a></div>
+        {{/if}}
+    {{else}}
+        <div class="col-3-12 hidden-xs">{{localizedUTCDate dateCompleted}}</div>
+    {{/if}}
     <div class="col-1-12 col-sm-3-12 center">{{taskCount}} <span class="expand"></span></div>
 {{else}}
     <div class="col-4-12">{{totalDuration}} mins</div>
+    {{#if canConfirm}}
+        {{#if isConfirmed}}
+            {{#if dateCompleted }}
+                <div class="col-3-12 hidden-xs">{{localizedUTCDate dateCompleted}}</div>
+            {{else}}
+                <div class="col-3-12 hidden-xs"><span class="confirmVisit">Confirmed With Location</span></div>
+            {{/if}}
+        {{else}}
+            <div class="col-3-12 hidden-xs"><a href="#" class="visit-confirm-button">Confirmed With Location</a></div>
+        {{/if}}
+    {{else}}
+        <div class="col-3-12 hidden-xs">{{localizedUTCDate dateCompleted}}</div>
+    {{/if}}
     <div class="col-2-12 col-sm-3-12 center">{{taskCount}} <span class="expand"></span></div>
 {{/if}}
 

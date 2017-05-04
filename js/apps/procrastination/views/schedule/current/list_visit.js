@@ -4,6 +4,7 @@ define(function (require) {
         HandlebarsHelpers = require('handlebarsHelpers'),
         HandlebarsHelpersExt = require('handlebarsHelpersExt'),
         HandlebarsTemplates = require('handlebarsTemplates'),
+        $ = require('jquery'),
         moment = require('moment');
 
     return Backbone.View.extend({
@@ -19,9 +20,11 @@ define(function (require) {
         events: {
             'click .unschedule': 'unschedule',
             'click .unassign' : 'unassign',
+            'click .confirmVisit' : 'confirmVisit',
             'click .remove' : 'remove',
             'click .expand' : 'expand',
-            'click .collapse' : 'collapse'
+            'click .collapse' : 'collapse',
+            "click .visit-confirm-button" : "confirmVisit",
         },
 
         render: function() {
@@ -38,6 +41,8 @@ define(function (require) {
                 zip: this.model.get('zip'),
                 canUnassign: this.model.get('canUnassign'),
                 canUnschedule: this.model.get('canUnschedule'),
+                canConfirm: this.model.get('canConfirm'),
+                isConfirmed: this.model.get('status') === 'confirmed',
                 showCompleted: this.showCompleted,
                 totalDuration: this.model.get('totalDuration'),
                 tasks: this.model.get('tasks'),
@@ -76,6 +81,23 @@ define(function (require) {
             if(confirm('This operation cannot be undone. Are you sure you want to unassign this visit?')) {
                 this.model.destroy({wait:true, data: {id: this.model.id, remove: false, aggregateId: context.aggregateId}});
             }
+        },
+
+        confirmVisit: function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var url = context.base_url+"/"+ this.model.get('personId')+"/show/"+this.model.get('aggregateId')+"/"+this.model.get('id')+"/confirm";
+            var self = this;
+            $.post(url, function (response) {
+                    console.log(response);
+                    self.model.set('isConfirmed', true);
+            });
+            // /{personUUID}/show/{aggregateUUID}/{visitUUID}/confirm
+
+            console.log('visit confirm triggered');
+            console.log(this);
+            console.log(this.model);
+            console.log(this);
         },
 
         remove: function(e) {
