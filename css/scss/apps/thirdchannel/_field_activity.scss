@@ -130,6 +130,14 @@ $cornflower: #4684c5;
     font-size: .9em;
     margin-top: .25em;
   }
+
+  .metric-footnote {
+    font-size: 0.7em;
+
+    a {
+      @extend %metrics-link;
+    }
+  }
 }
 
 .activity-reports {
