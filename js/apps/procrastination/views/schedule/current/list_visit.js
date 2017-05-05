@@ -93,7 +93,7 @@ define(function (require) {
             var self = this;
             $.post(url, function (response) {
                 self.model.set('isConfirmed', true);
-                self.model.set('lastStatusChanged', Date.now());
+                self.model.set('lastStatusChange', Date.now());
                 self.model.set('status', 'confirmed');
             });
         },
