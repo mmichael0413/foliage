@@ -87,6 +87,10 @@ div.schedule-layout {
   .instructions {
     display: inline-flex;
     margin-left: .5em;
+    .tip {
+      font-size: .75em;
+      text-align: start;
+    }
   }
 }
 p.visit-data {
