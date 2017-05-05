@@ -17,7 +17,7 @@
         {{#if isConfirmed}}
             <div class="col-3-12 hidden-xs">
                 {{#if dateCompleted }}
-                    <div class="">{{localizedUTCDate dateCompleted}}</div>
+                    <div class="">Completed on {{localizedUTCDate dateCompleted}}</div>
                 {{/if}}
                 <div class=""><span class="confirmedVisit">Confirmed on {{dateFormat lastStatusChange 'l'}}<span class="instructions"></span></span></div>
             </div>
@@ -32,11 +32,12 @@
     <div class="col-4-12">{{totalDuration}} mins</div>
     {{#if canConfirm}}
         {{#if isConfirmed}}
-            {{#if dateCompleted }}
-                <div class="col-3-12 hidden-xs">{{localizedUTCDate dateCompleted}}</div>
-            {{else}}
-                <div class="col-3-12 hidden-xs"><span class="confirmVisit">Confirmed With Location</span></div>
-            {{/if}}
+            <div class="col-3-12 hidden-xs">
+                {{#if dateCompleted }}
+                    <div class="">Completed on {{localizedUTCDate dateCompleted}}</div>
+                {{/if}}
+                <div class=""><span class="confirmedVisit">Confirmed on {{dateFormat lastStatusChange 'l'}}<span class="instructions"></span></span></div>
+            </div>
         {{else}}
             <div class="col-3-12 hidden-xs"><a href="#" class="visit-confirm-button">Confirmed With Location</a></div>
         {{/if}}
