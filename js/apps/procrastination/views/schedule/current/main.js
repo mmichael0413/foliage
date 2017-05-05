@@ -19,9 +19,6 @@ define(function (require) {
             this.showCompleted = options.showCompleted;
             this.listenTo(this.collection, 'destroy', this.destroy);
             this.listenTo(this.collection, 'change', this.render);
-            console.log(options);
-            console.log(this);
-            console.log(context);
         },
 
         fetch: function (reset) {
