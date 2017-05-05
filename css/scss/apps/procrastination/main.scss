@@ -50,6 +50,7 @@ div.schedule-layout {
       cursor: pointer;
     }
   }
+  max-height: 100%;
 }
 
 .store-schedule {
@@ -68,6 +69,32 @@ div.schedule-layout {
     margin: .5em 0;
 
   }
+}
+
+.visit-confirm-button {
+  color: white;
+  background-color: $link-color;
+  padding: 0.5em;
+  &:hover {
+    color: white;
+    background: #DA5348;
+  }
+}
+
+.confirmedVisit {
+  font-style: italic;
+  color: $medium-blue-rgba;
+  .instructions {
+    display: inline-flex;
+    margin-left: .5em;
+    .tip {
+      font-size: .75em;
+      text-align: start;
+    }
+  }
+}
+p.visit-data {
+  margin-top: 0;
 }
 
 .set-schedule {

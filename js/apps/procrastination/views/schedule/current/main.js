@@ -1,6 +1,7 @@
 define(function (require) {
     var Backbone = require('backbone'),
         context = require('context'),
+        HandlebarsTemplates = require('handlebarsTemplates'),
         ScheduleRowGroup = require('procrastination/views/schedule/current/list_days'),
         ScheduledVisitsCollection = require('procrastination/collections/schedule/current/list_schedules');
 
@@ -13,9 +14,11 @@ define(function (require) {
                 personId: context.personId,
                 programId: context.programId
             });
-
+            
+            this.canConfirm = context.canConfirm;
             this.showCompleted = options.showCompleted;
             this.listenTo(this.collection, 'destroy', this.destroy);
+            this.listenTo(this.collection, 'change', this.render);
         },
 
         fetch: function (reset) {
@@ -28,7 +31,11 @@ define(function (require) {
 
         render: function () {
             var self = this;
-            this.$el.html("");
+            if (this.canConfirm) {
+                this.$el.html(HandlebarsTemplates['procrastination/schedule/upcoming/instructions/visitConfirmationHowTo']);
+            } else {
+                this.$el.html("");
+            }
             if (this.collection.models.length === 0) {
                 this.$el.append('No visits have been scheduled for this month.');
                 return this;

@@ -1,13 +1,13 @@
 define(function(require) {
     var context = require('context'),
         handlebarsTemplates = require('handlebarsTemplates'),
-        JobRequest = require('thirdchannel/views/manage/jobs/job_requests/list_item'),
+        JobRequest = require('thirdchannel/views/manage/jobs/list_item'),
         PaginationView = require('thirdchannel/views/utils/pagination'),
         Filter = require('thirdchannel/views/filter/main');
 
     return Backbone.View.extend({
         el: "#job-requests",
-        template: 'thirdchannel/manage/jobs/job_requests/list',
+        template: handlebarsTemplates['thirdchannel/manage/jobs/list'],
         loading: handlebarsTemplates["thirdchannel/loading_icon"](),
         initialize: function(){
             this.listenTo(context, 'filter:query', this.applyFilter);
@@ -20,7 +20,7 @@ define(function(require) {
                 this.$el.empty();
                 this.addPages(jobRequest);
                 var $table = $(document.createElement('table'));
-                $table.append(handlebarsTemplates[this.template]());
+                $table.append(this.template());
                 _.each(jobRequest.data, function(v){
                     $table.append(new JobRequest({model: v}).render().$el);
                 }.bind(this));
