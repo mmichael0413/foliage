@@ -25,7 +25,7 @@
             <div class="col-3-12 hidden-xs"><a href="#" class="visit-confirm-button">Confirmed With Location</a></div>
         {{/if}}
     {{else}}
-        <div class="col-3-12 hidden-xs">{{dateFormat dateCompleted 'l'}}</div>
+        <div class="col-3-12 hidden-xs">Completed on {{dateFormat dateCompleted 'l'}}</div>
     {{/if}}
     <div class="col-1-12 col-sm-3-12 center">{{taskCount}} <span class="expand"></span></div>
 {{else}}
@@ -42,7 +42,7 @@
             <div class="col-3-12 hidden-xs"><a href="#" class="visit-confirm-button">Confirmed With Location</a></div>
         {{/if}}
     {{else}}
-        <div class="col-3-12 hidden-xs">{{dateCompleted dateCompleted 'l'}}</div>
+        <div class="col-3-12 hidden-xs">Completed on {{dateCompleted dateCompleted 'l'}}</div>
     {{/if}}
     <div class="col-2-12 col-sm-3-12 center">{{taskCount}} <span class="expand"></span></div>
 {{/if}}
