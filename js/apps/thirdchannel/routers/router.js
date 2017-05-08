@@ -40,6 +40,7 @@ define(function(require){
         ViewOpportunity = require('thirdchannel/views/opportunities/main'),
         ViewOpportunities = require('thirdchannel/views/opportunities/list'),
         AnswersExportView = require('thirdchannel/views/exports/answers/main'),
+        GeolocationDataExportView = require('thirdchannel/views/exports/geolocation_data/main'),
         SalesStoresExportView = require('thirdchannel/views/exports/sales_stores/main'),
         SalesStoresAuditExportView = require('thirdchannel/views/exports/sales_stores_audit/main'),
         RoiExportView = require('thirdchannel/views/exports/roi/main'),
@@ -117,6 +118,7 @@ define(function(require){
             'programs/:program_id/labs/sales_comparison': 'labsSalesCompare',
             'programs/:program_id/exports/roi': 'exportsRoi',
             'programs/:program_id/exports/survey_answers': 'answerExports',
+            'programs/:program_id/exports/geolocation_data': 'geolocationDataExports',
             'programs/:program_id/exports/sales_stores': 'salesStoresExports',
             'programs/:program_id/exports/sales_stores_audits': 'salesStoresAuditExports',
             'programs/:program_id/visits': 'visits',
@@ -356,6 +358,10 @@ define(function(require){
 
         answerExports: function() {
             new AnswersExportView().render();
+        },
+
+        geolocationDataExports: function() {
+            new GeolocationDataExportView().render();
         },
 
         salesStoresExports: function() {
