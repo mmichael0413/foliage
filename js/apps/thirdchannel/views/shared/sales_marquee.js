@@ -37,7 +37,7 @@ define(function(require) {
           this.canNavForward = (this.salesWidgets.length !== 0 && this.currentWidget !== this.salesWidgets.length - 1);
 
           var templateData = {
-            showMessage: (!this.salesData.salesDataFor || this.salesData.salesDataFor == "NA") || this.salesWidgets.length === 0,
+            showMessage: !this.salesData.salesDataFor || this.salesWidgets.length === 0,
             message: this.getSalesDataMessage(this.salesData.salesDataFor),
             widgets: this.salesWidgets,
             mostRecent: this.salesData.mostRecent,

@@ -1,18 +1,17 @@
 <section class="sales-widget pure-g">
-  <div class="text col-2-3">
   {{#unless showMessage}}
-    {{#each widgets}}
-      <div class="sales-widget-item {{#unless_eq @index ../currentWidget}}hidden{{/unless_eq}}">
-        {{label}}:
-        {{ salesPartial template ../salesUrl this }}
-      </div>
-    {{/each}}
-  {{/unless}}
-  </div>
-  {{#if mostRecent}}
-    <div class="text col-2-3 most-recent">
-      <div class="through-date">through {{formatDateToLongDate mostRecent}}</div>
+    <div class="text col-2-3">
+      {{#each widgets}}
+        <div class="sales-widget-item {{#unless_eq @index ../currentWidget}}hidden{{/unless_eq}}">
+          {{label}}:
+          {{ salesPartial template ../salesUrl this }}
+        </div>
+      {{/each}}
     </div>
-  {{/if}}
-
+    {{#if mostRecent}}
+      <div class="text col-2-3 most-recent">
+        <div class="through-date">through {{formatDateToLongDate mostRecent}}</div>
+      </div>
+    {{/if}}
+  {{/unless}}
 </section>
