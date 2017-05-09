@@ -213,7 +213,7 @@
   &.collapsed-nav {
     #site-canvas {
       #site-menu {
-        width: $collapsed-nav-width-win;
+        width: $standard-nav-width + $collapsed-nav-width-win;
       }
       .content-holder {
         padding-left: $collapsed-nav-width-win;
@@ -239,7 +239,7 @@
   &.collapsed-nav {
     #site-canvas {
       #site-menu {
-        width: $collapsed-nav-width-ie;
+        width: $standard-nav-width + $collapsed-nav-width-ie;
       }
       .content-holder {
         padding-left: $collapsed-nav-width-win;
