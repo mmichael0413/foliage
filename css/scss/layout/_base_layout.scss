@@ -213,7 +213,7 @@
   &.collapsed-nav {
     #site-canvas {
       #site-menu {
-        width: $standard-nav-width + $collapsed-nav-width-win;
+        width: $collapsed-nav-width-win;
       }
       .content-holder {
         padding-left: $collapsed-nav-width-win;
@@ -230,7 +230,7 @@
     }
   }
   &.collapsed-nav #site-canvas #site-submenu.show-subnav {
-    @include transform($collapsed-nav-width-win);
+    @include transform($standard-nav-width + $collapsed-nav-width-win);
   }
 }
 
@@ -239,7 +239,7 @@
   &.collapsed-nav {
     #site-canvas {
       #site-menu {
-        width: $standard-nav-width + $collapsed-nav-width-ie;
+        width: $collapsed-nav-width-ie;
       }
       .content-holder {
         padding-left: $collapsed-nav-width-win;
@@ -256,7 +256,7 @@
     }
   }
   &.collapsed-nav #site-canvas #site-submenu.show-subnav {
-    @include transform($collapsed-nav-width-ie);
+    @include transform($standard-nav-width + $collapsed-nav-width-ie);
   }
 }
 
