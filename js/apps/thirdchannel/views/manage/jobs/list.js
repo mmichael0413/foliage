@@ -3,7 +3,9 @@ define(function(require) {
         handlebarsTemplates = require('handlebarsTemplates'),
         JobRequest = require('thirdchannel/views/manage/jobs/list_item'),
         PaginationView = require('thirdchannel/views/utils/pagination'),
-        Filter = require('thirdchannel/views/filter/main');
+        Filter = require('thirdchannel/views/filter/main'),
+        ExportModel = require('thirdchannel/models/exports/job_requests'),
+        ExportModal = require('thirdchannel/modals/export');
 
     return Backbone.View.extend({
         el: "#job-requests",
@@ -38,6 +40,18 @@ define(function(require) {
         },
         addPages: function (jobRequest) {
             this.$el.prepend(new PaginationView(jobRequest.pagination).render().$el);
+        },
+        initiateExport: function(e) {
+            e.preventDefault();
+            var filters = {};
+            var model = new ExportModel(_.extend(filters, {programId: context.programId}));
+            model.save().then(function() {
+                var modal = new ExportModal({model: model});
+                $("body").append(modal.render().el);
+            }).fail(function(response) {
+                console.error(response);
+                alert('Something went wrong, please try again.');
+            }.bind(this));
         }
     });
 });
