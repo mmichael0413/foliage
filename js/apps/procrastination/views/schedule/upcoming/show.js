@@ -13,7 +13,7 @@ define(function (require) {
         events: {
             "change input": "updateScheduledDate",
             "click .unassign" : "unassign",
-            "click .remove" : "remove",
+            "click .remove" : "removeFromSchedule",
             "click .task-count": "toggleTaskList",
             "click .decline": "declineRequest",
             "click": "showDetails"
@@ -48,6 +48,7 @@ define(function (require) {
 
             return this;
         },
+
         updateScheduledDate: function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -60,7 +61,7 @@ define(function (require) {
                 }
             }
         },
-        unassign: function(e){
+        unassign: function(e) {
             e.preventDefault();
             e.stopPropagation();
             if(confirm('This operation cannot be undone. Are you sure you want to unassign this visit?')) {
@@ -68,7 +69,7 @@ define(function (require) {
             }
         },
 
-        remove: function(e){
+        removeFromSchedule: function(e) {
             e.preventDefault();
             e.stopPropagation();
             if(confirm('This operation cannot be undone. Are you sure you want to remove this visit?')) {
