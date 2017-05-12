@@ -15,8 +15,10 @@ define(function (require) {
             "click .unassign" : "unassign",
             "click .remove" : "remove",
             "click .task-count": "toggleTaskList",
+            "click .decline": "declineRequest",
             "click": "showDetails"
         },
+
         render: function () {
             var data = this.model.toJSON();
             data.taskCount = data.tasks.length;
@@ -91,6 +93,36 @@ define(function (require) {
             e.stopPropagation();
             new DetailsModal({model: this.model.attributes}).render();
         },
+
+        declineRequest: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if(confirm("Are you sure you want to decline request?")) {
+                var data = {
+                    aggregateId: context.aggregateId,
+                    scheduledVisitId: this.model.id,
+                    jobId: this.model.get('jobId'),
+                    personId: this.model.get('personId'),
+                    programStoreId: this.model.get('programStoreUUID')
+                };
+
+                var request = $.ajax({
+                    url: context.base_url + '/schedule/decline',
+                    method: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=UTF-8',
+                    data: JSON.stringify(data)
+                });
+
+                // On success, remove the job request from the list
+                request.then(function() { this.remove(); }.bind(this));
+
+                request.fail(function(response) {
+                    console.error(response);
+                    alert('Failed to decline request. Please try again later.');
+                }.bind(this));
+            }
+        }
     });
 
     return ScheduleView;
