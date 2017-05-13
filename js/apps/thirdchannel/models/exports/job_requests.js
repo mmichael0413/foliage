@@ -3,7 +3,7 @@ define(function(require) {
 
     return Backbone.Model.extend({
         url: function() {
-            return '/programs/' + this.get('programId') + '/manage/jobs/exports';
+            return '/programs/' + this.get('programId') + '/manage/jobs/exports' + (this.id === undefined ? '' : '/' + this.id);
         }
     });
 });
