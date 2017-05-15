@@ -19,6 +19,14 @@
             <input name="program_store_id" type="hidden" value="{{collection.0.program_store_id}}">
             <input name="date" type="hidden" value="{{title}}">
             <input name="authenticity_token" value="{{collection.0.auth_token}}" type="hidden">
+            <!-- Geolocation fields -->
+            <input type="hidden" name="exif[latitude]" />
+            <input type="hidden" name="exif[longitude]" />
+            <input type="hidden" name="exif[accuracy]" />
+            <input type="hidden" name="exif[altitude]" />
+            <input type="hidden" name="exif[altitudeAccuracy]" />
+            <input type="hidden" name="exif[speed]" />
+            <input type="hidden" name="exif[timestamp]" />
             <button class="btn primary">
                 <i class="ic ic_visit"></i> <span class="hidden-xs">Start Visit</span>
             </button>
