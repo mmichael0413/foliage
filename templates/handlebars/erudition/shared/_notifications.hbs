@@ -5,8 +5,8 @@
 
         <label for="emailOpportunities">Would you like to receive emails about future opportunities?</label>
 
-        <select name="emailOpportunities" id="emailOpportunities" data-placeholder="Select Preference" data-rule-required="true">
-            <option></option>
+        <select name="emailOpportunities" id="emailOpportunities" data-rule-required="true">
+            <option value="">Select Preference</option>
             {{#select person.emailOpportunities}}
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
