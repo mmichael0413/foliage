@@ -3,8 +3,6 @@ define(function(require) {
 
     return Backbone.Model.extend({
         initialize: function (options) {
-            console.log(options.programId);
-            console.log(options.userId);
             this.options = options;
         },
         url: function() {
