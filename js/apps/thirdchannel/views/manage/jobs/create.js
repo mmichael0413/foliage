@@ -133,6 +133,24 @@ define(function(require) {
 
             if(!this.canChangeAssignee) {
                 $assigneeIdEl.attr('disabled', true);
+            } else if(this.canChangeAssignee && data.assignee_id && data.date_scheduled) {
+                $assigneeIdEl.on('select2:unselecting', function(e) {
+                    if(data.date_scheduled) {
+                        if(!confirm("This request has been scheduled already, are you sure you want to remove the assignee?")) {
+                            e.preventDefault();
+                            return null;
+                        }
+                    }
+                });
+
+                $assigneeIdEl.on('select2:selecting', function(e) {
+                    if(data.date_scheduled) {
+                        if(!confirm("This request has been scheduled already, are you sure you want to change the assignee?")) {
+                            e.preventDefault();
+                            return null;
+                        }
+                    }
+                });
             }
 
             if(this.canChangeRequester) {
