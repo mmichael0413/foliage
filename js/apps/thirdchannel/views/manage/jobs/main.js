@@ -32,6 +32,7 @@ define(function(require) {
             var stores = new Stores();
 
             var createView = new CreateView({
+                canChangeAssignee: context.canChangeAssignee,
                 canChangeRequester: context.canChangeRequester,
                 requiresLeadTime: context.requiresLeadTime,
                 stores: stores,
@@ -66,6 +67,7 @@ define(function(require) {
             var stores = new Stores();
 
             var createView = new CreateView({
+                canChangeAssignee: context.canChangeAssignee,
                 canChangeRequester: context.canChangeRequester,
                 requiresLeadTime: context.requiresLeadTime,
                 stores: stores,

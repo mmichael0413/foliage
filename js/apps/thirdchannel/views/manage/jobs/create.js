@@ -51,6 +51,7 @@ define(function(require) {
         initialize: function(options) {
             _.bindAll(this, 'renderRanges', 'renderRange');
 
+            this.canChangeAssignee = options.canChangeAssignee;
             this.canChangeRequester = options.canChangeRequester;
             this.requiresLeadTime = options.requiresLeadTime;
             this.stores = options.stores;
@@ -130,6 +131,10 @@ define(function(require) {
                 $assigneeIdEl.append($("<option selected></option>").val(data.assignee_id).text(assigneeDisplay));
             }
 
+            if(!this.canChangeAssignee) {
+                $assigneeIdEl.attr('disabled', true);
+            }
+
             if(this.canChangeRequester) {
                 var $requesterIdEl = this.$('.requester_id');
 
@@ -164,10 +169,6 @@ define(function(require) {
                     var requesterDisplay = this.requester.name + ' <' + this.requester.email + '> - ' + this.requester.address;
                     $requesterIdEl.append($("<option selected></option>").val(this.requester.id).text(requesterDisplay));
                 }
-            }
-
-            if(data.date_scheduled) {
-                $assigneeIdEl.attr('disabled', true);
             }
 
             this.renderRanges();
