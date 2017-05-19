@@ -34,7 +34,7 @@ define(function (require) {
                 this.queryString =  this.queryString.replace(/[page]*(\d+)/, this.currentPage);
 
                 this.fetch().success(function(data){
-                    if(data.activities.length === 0){
+                    if((data.activities && data.activities.length === 0) || data.length === 0){
                         self.trigger('reachedEnd');
                     } else {
                         self.trigger('nextPage');
