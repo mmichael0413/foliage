@@ -103,3 +103,77 @@
     }
   }
 }
+
+#google-section {
+  .powered-by-google {
+    float: right;
+  }
+  h3 {
+    display: inline-block;
+  }
+  .split {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-bottom: 1em;
+    .place-details {
+      margin-right: 1em;
+      margin-bottom: 1em;
+      .place-detail > td {
+        padding: 0.5em;
+      }
+      flex-grow: 1;
+      .fa {
+        display: inline-block;
+        color: $medium-blue;
+        font-size: 20px;
+        vertical-align: middle;
+      }
+      .hours {
+        .day-of-week {
+          padding-right: 1em; /* spacing between day and period */
+        }
+        .period {
+          white-space: nowrap; /* do not allow time periods to break */
+        }
+        td {
+          vertical-align: top; /* aligns the clock icon with the first displayed day */
+        }
+      }
+    }
+    .map {
+      flex-grow: 1;
+      min-height: 300px;
+      iframe {
+        /* iframe size determined by flexbox child container */
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+    }
+  }
+  .photos {
+    /* force horizontal scroll */
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    height: 200px;
+
+    .photo {
+      margin: 1em;
+      display: inline-block;
+
+      /* styling for links inside htmlAttributions */
+      a {
+        color: $medium-blue;
+
+        /* use the same font as the links in the gmaps iframe */
+        font-family: Roboto,Arial;
+        font-size: 12px;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
