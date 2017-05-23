@@ -51,6 +51,7 @@ define(function(require) {
         initialize: function(options) {
             _.bindAll(this, 'renderRanges', 'renderRange');
 
+            this.canChangeAssignee = options.canChangeAssignee;
             this.canChangeRequester = options.canChangeRequester;
             this.requiresLeadTime = options.requiresLeadTime;
             this.stores = options.stores;
@@ -130,6 +131,28 @@ define(function(require) {
                 $assigneeIdEl.append($("<option selected></option>").val(data.assignee_id).text(assigneeDisplay));
             }
 
+            if(!this.canChangeAssignee) {
+                $assigneeIdEl.attr('disabled', true);
+            } else if(this.canChangeAssignee && data.assignee_id && data.date_scheduled) {
+                $assigneeIdEl.on('select2:unselecting', function(e) {
+                    if(data.date_scheduled) {
+                        if(!confirm("This request has been scheduled already, are you sure you want to remove the assignee?")) {
+                            e.preventDefault();
+                            return null;
+                        }
+                    }
+                });
+
+                $assigneeIdEl.on('select2:selecting', function(e) {
+                    if(data.date_scheduled) {
+                        if(!confirm("This request has been scheduled already, are you sure you want to change the assignee?")) {
+                            e.preventDefault();
+                            return null;
+                        }
+                    }
+                });
+            }
+
             if(this.canChangeRequester) {
                 var $requesterIdEl = this.$('.requester_id');
 
@@ -164,10 +187,6 @@ define(function(require) {
                     var requesterDisplay = this.requester.name + ' <' + this.requester.email + '> - ' + this.requester.address;
                     $requesterIdEl.append($("<option selected></option>").val(this.requester.id).text(requesterDisplay));
                 }
-            }
-
-            if(data.date_scheduled) {
-                $assigneeIdEl.attr('disabled', true);
             }
 
             this.renderRanges();

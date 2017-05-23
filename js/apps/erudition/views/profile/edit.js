@@ -53,8 +53,6 @@ define(function (require) {
 
             this.$el.append(this.template(model));
 
-            this.$('select').chosen({disable_search: true, width: "100%"});
-
             if(context.content.requireValidation) {
                 this.beginValidation();
             }

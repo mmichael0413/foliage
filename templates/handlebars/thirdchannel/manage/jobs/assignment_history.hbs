@@ -20,6 +20,11 @@
                     {{/if}}
                 </div>
                 <div><strong>Assigned On:</strong> {{ dateFormat this.changed_on "MMMM Do YYYY, h:mm:ss a" }}</div>
+                {{#if this.reason}}
+                    <div>
+                        <strong>Reason:</strong> {{this.reason}}
+                    </div>
+                {{/if}}
             </div>
         </div>
     {{/each}}
