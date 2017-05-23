@@ -157,7 +157,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-    height: 200px;
+    min-height: 200px;
 
     .photo {
       margin: 1em;
