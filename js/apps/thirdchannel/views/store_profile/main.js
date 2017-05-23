@@ -27,6 +27,7 @@ define(function (require) {
         init: function () {
             _.extend(context, window.bootstrap);
             $(".google-open-close-time").each(function() {
+                // Localize format of open and close times
                 this.textContent = moment(this.textContent,'HH:mm').format('LT');
             });
         },
