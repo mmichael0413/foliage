@@ -257,6 +257,53 @@
             </div>
         </div>
         <div class="divider"></div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Cover Letter:</div>
+            <div class="col-3-4">
+                {{#if person.cover_letter}}
+                    <a href="{{person.cover_letter.url}}" target="_blank" title="{{person.cover_letter.filename}}">Download</a>
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Resume:</div>
+            <div class="col-3-4">
+                {{#if person.resume}}
+                    <a href="{{person.resume.url}}" target="_blank" title="{{person.resume.filename}}">Download</a>
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Instagram:</div>
+            <div class="col-3-4">
+                {{#if person.instagram_handle}}
+                    <a href="http://www.instagram.com/{{replaceString person.instagram_handle "@" ""}}">{{person.instagram_handle}}</a>
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="body pure-g">
+            <div class="col-1-4">Facebook:</div>
+            <div class="col-3-4">
+                {{#if person.facebook_url}}
+                    <a href="{{person.facebook_url}}">{{person.facebook_url}}</a>
+                {{else}}
+                    Not Available
+                {{/if}}
+            </div>
+        </div>
     </div>
 {{/if}}
 

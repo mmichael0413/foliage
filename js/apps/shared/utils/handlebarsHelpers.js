@@ -340,4 +340,8 @@ define(function (require) {
         context.salesUrl = salesUrl;
         return Handlebars.helpers.partial(template, context, opts);
     });
+
+    Handlebars.registerHelper('replaceString', function(passedString, searchValue, newValue) {
+        return passedString.replace(searchValue, newValue);
+    });
 });
