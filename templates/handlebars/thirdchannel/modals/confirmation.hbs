@@ -10,6 +10,9 @@
         <h2>{{confirm}}</h2>
         <p>Warning: This cannot be undone.</p>
         <p>Deleting will permanently erase all information collected for this {{type}}.</p>
+        {{#if additional}}
+            <p>{{additional}}</p>
+        {{/if}}
         <div class="modal-action">
             <button type="submit" class="bbm-submit btn primary">Yes, {{confirm}}</button>
         </div>
