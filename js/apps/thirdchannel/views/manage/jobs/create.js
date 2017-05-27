@@ -16,7 +16,7 @@ define(function(require) {
 
     var durationOptions = [];
     var currentDuration = 60;
-    while(currentDuration <= 600) {
+    while(currentDuration <= 840) {
         var hours = Math.floor(currentDuration / 60);
         var minutes = currentDuration % 60;
         var display = hours + " Hour" + (hours > 1 ? "s " : " ");
