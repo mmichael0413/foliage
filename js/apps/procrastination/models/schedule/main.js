@@ -12,6 +12,7 @@ define(function (require) {
                 if(!this.get('dateCompleted')) {
                     this.set({canUnassign: context.canUnassign});
                     this.set({canUnschedule: context.canUnschedule});
+                    this.set({canConfirm: context.canConfirm});
                 }
             },
             url: function () {

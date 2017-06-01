@@ -2,13 +2,15 @@ define(function(require) {
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
+        context = require('context'),
         HandlebarsTemplates = require('handlebarsTemplates'),
         SerializeObject = require('serializeObject'),
         Chosen = require('chosen'),
         Expanding = require('expanding'),
         DateTimePicker = require('dateTimePicker'),
-        //context = require('context'),
-        FileView = require('shared/views/s3uploader/checkin_file');
+        FileView = require('shared/views/s3uploader/checkin_file'),
+        SalesMarquee = require('thirdchannel/views/shared/sales_marquee'),
+        StoreSalesRegistry = require('thirdchannel/registries/activities/store_sales');
 
     var dtPickerOptions = {
         timepicker: false,
@@ -18,8 +20,8 @@ define(function(require) {
     };
 
     /**
-     * 
-     * 
+     *
+     *
      * @return {View}   SurveyView
      */
     return Backbone.View.extend({
@@ -40,15 +42,25 @@ define(function(require) {
             "mousewheel input[type=number]": "disableScroll"
         },
         initialize: function() {
+            if (window.bootstrap) {
+              new StoreSalesRegistry();
+            }
+
             _.bindAll(this, 'errorPlacement', 'validateSuccess', 'highlight', 'unhighlight');
             this.$form = this.$('.checkin-form');
             this.inventoryTotal = this.$('input.inventory-total');
             this.inventories = this.$('input.inventory');
             this.errorPlacementClass = '.question';
             this.model.beforeImages = new Backbone.Collection();
+
+            this.listenTo(context, 'store.sales.update', this.updateSalesWidget);
         },
         render: function() {
             var self = this;
+
+            if (window.bootstrap) {
+              context.trigger("store.sales.register", window.bootstrap.store);
+            }
 
             this.$('select').chosen({disable_search: true, width: "100%"});
             this.$('.datetime').datetimepicker(dtPickerOptions);
@@ -243,6 +255,9 @@ define(function(require) {
             if ($(e.currentTarget).is(':focus')) {
                 e.preventDefault();
             }
+        },
+        updateSalesWidget: function(event) {
+          new SalesMarquee({el: this.$el.find('.sales-marquee'), salesData: event, display: 'full'});
         }
     });
 });

@@ -4,6 +4,7 @@ define(function (require) {
         _ = require('underscore'),
         Handlebars = require('handlebars');
 
+
     Handlebars.registerHelper('if_eq', function (a, b, opts) {
         if (a == b) // Or === depending on your needs
             return opts.fn(this);
@@ -333,5 +334,14 @@ define(function (require) {
 
     Handlebars.registerHelper('capitalize', function(value) {
         return value.charAt(0).toUpperCase() + value.slice(1);
+    });
+
+    Handlebars.registerHelper('salesPartial', function(template, salesUrl, context, opts){
+        context.salesUrl = salesUrl;
+        return Handlebars.helpers.partial(template, context, opts);
+    });
+
+    Handlebars.registerHelper('replaceString', function(passedString, searchValue, newValue) {
+        return passedString.replace(searchValue, newValue);
     });
 });

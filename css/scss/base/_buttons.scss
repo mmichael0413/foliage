@@ -168,6 +168,11 @@ a.underline {
   text-decoration: underline;
 }
 
+a[disabled] {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
 .fileUpload {
   position: relative;
   overflow: hidden;

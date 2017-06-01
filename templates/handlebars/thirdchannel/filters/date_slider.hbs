@@ -1,0 +1,11 @@
+<div class="date-slider">
+  <div class="date-ticks">
+    {{#each dates}}
+      <a class="slider-label" href="#" data-point="{{@index}}">{{this.label}}</a>
+    {{/each}}
+  </div>
+
+  <div class="date-slider-component">
+    <div class="date-slider-handle ui-slider-handle"></div>
+  </div>
+</div>

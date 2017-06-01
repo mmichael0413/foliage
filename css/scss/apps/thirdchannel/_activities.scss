@@ -259,7 +259,7 @@ $padding: 1.5em;
 }
 
 .sales-marquee {
-  min-width: 18.5em;
+  min-width: 21.5em;
 
   @include swb-medium {
     border-top: 1px solid $border-color;
@@ -300,7 +300,7 @@ $padding: 1.5em;
 .sales-widget {
   display: inline-block;
   line-height: 1.75em;
-  min-width: 12.5em;
+  min-width: 16em;
   text-align: right;
 
   .sales-message {
@@ -344,9 +344,52 @@ $padding: 1.5em;
   @include swb-small {
     text-align: center;
   }
+
+  .hidden {
+    display: none;
+  }
 }
 
+/* Attempted to use swa-medium but it doesnt seem to actually work */
+@media screen and (min-width: 60em) {
+  .sales-figure.full {
+    width: 100%;
 
+    .sales-widget {
+      width: 100%;
+      text-align: center;
+      padding-bottom: .5em;
+
+      .text {
+        display: flex;
+        flex-wrap: wrap;
+        width: 95%;
+        justify-content: space-between;
+        margin: 0 auto;
+
+        &.most-recent {
+          display: inline-block;
+        }
+      }
+    }
+
+    .sales-widget-item {
+      display: inline-flex;
+      width: 26%;
+      justify-content: space-between;
+      padding: 0 2em;
+
+      @include swb-xlarge {
+        padding: 0;
+        width: 30%;
+      }
+    }
+
+    ~ .marquee-nav {
+      display: none;
+    }
+  }
+}
 
 .comment.new-comment {
   padding-bottom: $padding;

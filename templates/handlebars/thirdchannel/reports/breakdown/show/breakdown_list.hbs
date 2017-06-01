@@ -1,0 +1,17 @@
+<div class="report-info-list">
+  <div class="pages"></div>
+
+  <div class="section">
+    <table>
+      <thead>
+        {{#each headers}}
+          <th>{{this}}</th>
+        {{/each}}
+        {{#if_eq visits type}}
+          <th></th>
+        {{/if_eq}}
+      </thead>
+      <tbody class="list-items"></tbody>
+    </table>
+  </div>
+</div>

@@ -1,7 +1,7 @@
-<div class="col-6-12 col-sm-7-12">
-    <p class="bold">{{storeName}}</p>
-    <p>{{address}}</p>
-    <p>{{jobDetails.name}}</p>
+<div class="col-6-12 col-sm-8-12">
+    <p class="visit-data bold">{{storeName}}</p>
+    <p class="visit-data">{{address}}</p>
+    <p class="visit-data">{{jobDetails.name}}</p>
     {{#if canUnschedule}}
         <div><a href="#" class="unschedule">Unschedule Visit</a></div>
     {{/if}}
@@ -11,14 +11,27 @@
     {{/if}}
 </div>
 
-{{#if showCompleted}}
-    <div class="col-2-12">{{totalDuration}} mins</div>
-    <div class="col-3-12 hidden-xs">{{localizedUTCDate dateCompleted}}</div>
-    <div class="col-1-12 col-sm-3-12 center">{{taskCount}} <span class="expand"></span></div>
+<div class="col-2-12 col-sm-2-12">{{totalDuration}} mins</div>
+
+<div class="col-sm-2-12 visible-xs center">{{taskCount}} <span class="expand"></span></div>
+
+{{#if canConfirm}}
+    <div class="col-3-12 col-sm-1">
+        {{#if isConfirmed}}
+            {{#if dateCompleted}}
+                <div class="">Completed on {{dateFormat dateCompleted 'l'}}</div>
+            {{/if}}
+            <div class=""><span class="confirmedVisit">Confirmed on {{dateFormat lastStatusChange 'l'}}<span class="instructions"></span></span></div>
+        {{else}}
+            <a href="#" class="visit-confirm-button">Confirmed With Location</a>
+        {{/if}}
+    </div>
 {{else}}
-    <div class="col-4-12">{{totalDuration}} mins</div>
-    <div class="col-2-12 col-sm-3-12 center">{{taskCount}} <span class="expand"></span></div>
+    {{#if dateCompleted}}
+        <div class="col-3-12 col-sm-1">Completed on {{dateFormat dateCompleted 'l'}}</div>
+    {{/if}}
 {{/if}}
 
+<div class="col-1-12 hidden-xs center">{{taskCount}} <span class="expand"></span></div>
 
 {{> 'tasks'}}

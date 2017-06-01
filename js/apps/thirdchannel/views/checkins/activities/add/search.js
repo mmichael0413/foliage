@@ -13,7 +13,9 @@ define(function(require) {
         },
 
         render: function () {
-            this.$('select').select2();
+            this.$('select').select2({
+                allowClear: true
+            });
             this.$form = this.$('form');
             this.$expander = this.$('.filter-group-expanded');
             this.$indicator = this.$('.advanced-filters i');

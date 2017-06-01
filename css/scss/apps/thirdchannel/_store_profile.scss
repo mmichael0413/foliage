@@ -26,6 +26,9 @@
     &.negative {
       background-color: $palette8;
     }
+    &.sales-qty {
+      background-color: $palette3;
+    }
   }
 
   &.overview-qtd {
@@ -46,6 +49,9 @@
   }
   &.negative {
     background-color: $palette9;
+  }
+  &.sales-qty {
+    background-color: $palette4;
   }
 }
 

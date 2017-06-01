@@ -1,5 +1,5 @@
 # Pull base image.
-FROM node
+FROM node:alpine
 MAINTAINER tech@thirdchannel.com
 EXPOSE 3031
 

@@ -1,0 +1,17 @@
+<div class="sales-and-units">
+  {{#each data}}
+    <div class="kpi gauge" data-metric="gauge-{{@index}}">
+      <div class="gauge-container"></div>
+      <div class="metrics">
+          <div class="metric">
+            <span class="metric-figure">
+              {{format_number this.value}}{{this.postfix}}
+            </span>
+            <span class="metric-label">
+              {{this.label}}
+            </span>
+          </div>
+      </div>
+    </div>
+  {{/each}}
+</div>

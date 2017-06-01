@@ -28,7 +28,9 @@ define(function(require){
         DashboardsSpecialProjectStoresMain = require('thirdchannel/views/dashboards/special_projects/stores/main'),
         FixturesMain = require('thirdchannel/views/fixtures/main'),
         ReportMain = require('thirdchannel/views/reports/index/main'),
+        FieldActivitiesMain = require('thirdchannel/views/reports/field_activity/index/main'),
         CheckinReportView = require('thirdchannel/views/reports/checkins/show/report'),
+        ReportBreakdownMain = require('thirdchannel/views/reports/breakdown/show/main'),
         ReportInfoMain = require('thirdchannel/views/reports/info/show/main'),
         ContentView = require('thirdchannel/views/global/content_view'),
         NotificationSectionView = require('thirdchannel/views/notifications/notification_section'),
@@ -38,6 +40,7 @@ define(function(require){
         ViewOpportunity = require('thirdchannel/views/opportunities/main'),
         ViewOpportunities = require('thirdchannel/views/opportunities/list'),
         AnswersExportView = require('thirdchannel/views/exports/answers/main'),
+        GeolocationDataExportView = require('thirdchannel/views/exports/geolocation_data/main'),
         SalesStoresExportView = require('thirdchannel/views/exports/sales_stores/main'),
         SalesStoresAuditExportView = require('thirdchannel/views/exports/sales_stores_audit/main'),
         RoiExportView = require('thirdchannel/views/exports/roi/main'),
@@ -51,7 +54,7 @@ define(function(require){
         FlashView = require('thirdchannel/views/shared/flash'),
         LoginView = require('thirdchannel/views/authentication/login'),
         ScheduledVisitsView = require('thirdchannel/views/scheduled_visits/scheduled_visits'),
-        JobRequestsView = require('thirdchannel/views/manage/jobs/job_requests/list'),
+        JobRequestsView = require('thirdchannel/views/manage/jobs/list'),
         ContractView = require('thirdchannel/views/legal/contract'),
         ManageJobsMain = require('thirdchannel/views/manage/jobs/main');
 
@@ -68,6 +71,7 @@ define(function(require){
             'programs/:program_id/admin/activities/topics/*path' : 'adminActivitiesTopics',
             'programs/:program_id/manage/jobs/new': 'createJobRequest',
             'programs/:program_id/manage/jobs/:id/edit': 'updateJobRequest',
+            'programs/:program_id/manage/jobs/:id(/)': 'viewJobRequest',
             'programs/:program_id/activities' : 'activitiesFeed',
             'programs/:program_id/activities/:activity_id' : 'activityFeed',
             'programs/:program_id/profiles/:user_id' : 'programProfile',
@@ -102,6 +106,8 @@ define(function(require){
             'programs/:program_id/fixture_tracking/problems(/)': 'problemsList',
             'programs/:program_id/reports': 'reports',
             'programs/:program_id/reports.pdf': 'reports',
+            'programs/:program_id/reports/field_activities': 'fieldActivities',
+            'programs/:program_id/reports/field_activities/breakdown/:type': 'reportBreakdown',
             'programs/:program_id/reports/checkin/:id': 'checkinReport',
             'programs/:program_id/reports/:report_id/info/:id': 'reportInfo',
             'programs/:program_id/legal/new(/)': 'signContract',
@@ -112,6 +118,7 @@ define(function(require){
             'programs/:program_id/labs/sales_comparison': 'labsSalesCompare',
             'programs/:program_id/exports/roi': 'exportsRoi',
             'programs/:program_id/exports/survey_answers': 'answerExports',
+            'programs/:program_id/exports/geolocation_data': 'geolocationDataExports',
             'programs/:program_id/exports/sales_stores': 'salesStoresExports',
             'programs/:program_id/exports/sales_stores_audits': 'salesStoresAuditExports',
             'programs/:program_id/visits': 'visits',
@@ -306,6 +313,10 @@ define(function(require){
             ReportMain.init({programId: programId});
         },
 
+        fieldActivities: function(programId){
+            FieldActivitiesMain.init({programId: programId});
+        },
+
         submission: function(programId, checkinId, submissionId) {
             new ActionsDropDown().render();
             new SurveyView({model: new SurveyModel({programId: programId, checkinId: checkinId, submissionId: submissionId})}).render();
@@ -313,6 +324,10 @@ define(function(require){
 
         checkinReport: function(programId, id){
             new CheckinReportView({programId: programId, id: id}).render();
+        },
+
+        reportBreakdown: function(programId, type){
+            ReportBreakdownMain.init({ programId: programId, type: type, filters: location.search });
         },
 
         reportInfo: function(programId, reportId, infoId){
@@ -345,6 +360,10 @@ define(function(require){
             new AnswersExportView().render();
         },
 
+        geolocationDataExports: function() {
+            new GeolocationDataExportView().render();
+        },
+
         salesStoresExports: function() {
             new SalesStoresExportView().render();
         },
@@ -373,6 +392,10 @@ define(function(require){
 
         updateJobRequest: function(programId, id) {
             ManageJobsMain.update(id);
+        },
+
+        viewJobRequest: function(programId, id) {
+            ManageJobsMain.show(id);
         },
 
         defaultPath: function(programId) { },

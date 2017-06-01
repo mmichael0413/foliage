@@ -14,13 +14,24 @@ define(function(require) {
         },
 
         render: function() {
+            if (window.bootstrap) {
+              this.model.set('canViewSalesData', window.bootstrap.canViewSalesData);
+              this.model.set('canEnableGeolocation', window.bootstrap.canEnableGeolocation);
+            }
             this.$el.html(this.template(this.model.toJSON()));
             this.$body = this.$('.subsection .card');
             this.$expander = this.$('.expander');
             this.$expansions = this.$('.expansions');
             this.$indicator = this.$('.indicator .ic');
             _.chain(this.model.get('jobs')).groupBy('date').each(function(jobs, date) {
-                this.$body.append(new JobView({model: {title: (date == 'null') ? '' : date, collection: jobs}}).render().el);
+                this.$body.append(
+                    new JobView({
+                        model: {
+                            title: (date == 'null') ? '' : date,
+                            collection: jobs,
+                            canEnableGeolocation: this.model.attributes.canEnableGeolocation
+                        }
+                    }).render().el);
             }, this);
 
             return this;

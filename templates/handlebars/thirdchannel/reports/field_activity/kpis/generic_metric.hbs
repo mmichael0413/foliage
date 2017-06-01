@@ -1,0 +1,25 @@
+<div class="kpi {{displayDirection}}">
+  <div class="kpi-image {{name}}"></div>
+
+  <div class="metrics">
+    {{#each data}}
+      <div class="metric">
+        <span class="metric-figure">
+          {{this.prefix}}{{format_number this.value}}{{this.postfix}}
+        </span>
+        <span class="metric-label">
+          {{this.label}}
+        </span>
+      </div>
+    {{/each}}
+
+    {{#if footnote_label}}
+    <div class="metric">
+      <span class="metric-footnote">
+        (*) Source:
+        <a class="link" href="{{footnote_url}}">{{footnote_label}}</a>
+      </span>
+    </div>
+    {{/if}}
+  </div>
+</div>

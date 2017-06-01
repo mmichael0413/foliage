@@ -5,6 +5,9 @@
     <input type="text" value="{{dateScheduled}}" style="display: none;"/>
     <p>{{jobDetails.name}}: <a href="#" class="task-count">{{taskCount}} task(s)</a>, {{totalDuration}} minutes</p>
     {{> 'tasks'}}
+    {{#if jobDetails.jobRequestUuid}}
+        <a href="#" class="decline btn primary small solid">Decline Request</a>
+    {{/if}}
     {{#if canUnassign}}
         <a href="#" class='unassign btn primary small solid '>Unassign Visit</a>
         <a href="#" class='remove btn primary small solid '>Remove this store from this job</a>

@@ -11,11 +11,12 @@ define(function(require) {
         context = require('context'),
         DateRange = require('thirdchannel/models/manage/dateRange'),
         StoreItem = require('thirdchannel/views/manage/jobs/store_item'),
-        DateRangeView = require('thirdchannel/views/manage/jobs/dateRange');
+        DateRangeView = require('thirdchannel/views/manage/jobs/dateRange'),
+        AssignmentHistoryModal = require('thirdchannel/views/manage/jobs/assignmentHistory');
 
     var durationOptions = [];
     var currentDuration = 60;
-    while(currentDuration <= 600) {
+    while(currentDuration <= 840) {
         var hours = Math.floor(currentDuration / 60);
         var minutes = currentDuration % 60;
         var display = hours + " Hour" + (hours > 1 ? "s " : " ");
@@ -41,7 +42,8 @@ define(function(require) {
             'click .recommend_start_time': 'toggleRecommendedTimeFields',
             'click .add-date-range': 'addDateRange',
             'click .submit-job-request': 'handleSubmit',
-            'click .cancel-job-request': 'handleCancel'
+            'click .cancel-job-request': 'handleCancel',
+            'click .display-assignment-history': 'loadModal'
         },
 
         template: HandlebarsTemplates['thirdchannel/manage/jobs/create'],
@@ -49,12 +51,16 @@ define(function(require) {
         initialize: function(options) {
             _.bindAll(this, 'renderRanges', 'renderRange');
 
+            this.canChangeAssignee = options.canChangeAssignee;
+            this.canChangeRequester = options.canChangeRequester;
             this.requiresLeadTime = options.requiresLeadTime;
             this.stores = options.stores;
             this.surveys = options.surveys;
             this.surveyTopics = options.surveyTopics;
             this.timezones = options.timezones;
             this.assignee = options.assignee;
+            this.requester = options.requester;
+            this.assignmentsHistory = options.assignmentsHistory;
 
             var initialRange = [];
             if(this.model.get('schedulable_ranges')) {
@@ -74,7 +80,9 @@ define(function(require) {
                 surveys: this.surveys,
                 surveyTopics: this.surveyTopics,
                 timezones: this.timezones,
-                durationOptions: durationOptions
+                durationOptions: durationOptions,
+                canChangeRequester: this.canChangeRequester,
+                hasAssignmentsHistory: !(this.assignmentsHistory.isEmpty())
             };
             data = _.extend(data, this.model.attributes);
 
@@ -119,12 +127,66 @@ define(function(require) {
             });
 
             if(data.assignee_id) {
-                var display = this.assignee.name + ' <' + this.assignee.email + '> - ' + this.assignee.address;
-                $assigneeIdEl.append($("<option selected></option>").val(data.assignee_id).text(display));
+                var assigneeDisplay = this.assignee.name + ' <' + this.assignee.email + '> - ' + this.assignee.address;
+                $assigneeIdEl.append($("<option selected></option>").val(data.assignee_id).text(assigneeDisplay));
             }
 
-            if(data.date_scheduled) {
+            if(!this.canChangeAssignee) {
                 $assigneeIdEl.attr('disabled', true);
+            } else if(this.canChangeAssignee && data.assignee_id && data.date_scheduled) {
+                $assigneeIdEl.on('select2:unselecting', function(e) {
+                    if(data.date_scheduled) {
+                        if(!confirm("This request has been scheduled already, are you sure you want to remove the assignee?")) {
+                            e.preventDefault();
+                            return null;
+                        }
+                    }
+                });
+
+                $assigneeIdEl.on('select2:selecting', function(e) {
+                    if(data.date_scheduled) {
+                        if(!confirm("This request has been scheduled already, are you sure you want to change the assignee?")) {
+                            e.preventDefault();
+                            return null;
+                        }
+                    }
+                });
+            }
+
+            if(this.canChangeRequester) {
+                var $requesterIdEl = this.$('.requester_id');
+
+                $requesterIdEl.select2({
+                    ajax: {
+                        url: '/programs/' + context.programId + '/manage/users_search',
+                        dataType: 'json',
+                        delay: 200,
+                        data: function (params) {
+                            return {
+                                format: 'json',
+                                name: params.term,
+                                per: 25
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: data.map(function (item) {
+                                    item.text = item.name + ' <' + item.email + '> - ' + item.address;
+                                    return item;
+                                })
+                            };
+                        },
+                        cache: "false"
+                    },
+                    minimumInputLength: 3,
+                    placeholder: "Select...",
+                    allowClear: true
+                });
+
+                if(data.user_id) {
+                    var requesterDisplay = this.requester.name + ' <' + this.requester.email + '> - ' + this.requester.address;
+                    $requesterIdEl.append($("<option selected></option>").val(this.requester.id).text(requesterDisplay));
+                }
             }
 
             this.renderRanges();
@@ -146,6 +208,12 @@ define(function(require) {
         renderRange: function(range) {
             var view = new DateRangeView({model: range, requiresLeadTime: this.requiresLeadTime});
             this.$('.date-range-list').append(view.render().el);
+        },
+
+        loadModal: function(e) {
+            e.preventDefault();
+            this.modal = new AssignmentHistoryModal({collection: this.assignmentsHistory});
+            this.$el.append(this.modal.render().$el);
         },
 
         toggleRecommendedTimeFields: function(e) {
@@ -187,6 +255,7 @@ define(function(require) {
                 survey_topic_uuids: this.$('.survey_topic_uuids').val(),
                 notes: this.$('.notes').val(),
                 assignee_id: this.$('.assignee_id').val(),
+                requester_id: this.$('.requester_id').val(),
                 schedulable_ranges : ranges
             };
 
@@ -228,6 +297,7 @@ define(function(require) {
                 survey_topic_uuids: this.$('.survey_topic_uuids').val(),
                 notes: this.$('.notes').val(),
                 assignee_id: this.$('.assignee_id').val(),
+                requester_id: this.$('.requester_id').val(),
                 program_store_uuids: programStoreIds,
                 schedulable_ranges : ranges
             };
@@ -293,7 +363,7 @@ define(function(require) {
                             window.location = '/programs/' + context.programId + '/manage/jobs';
                         }
                     })
-                    .fail(function() {
+                    .fail(function(response) {
                         alert('Oops, there was a problem with your request, please try again.');
                         this.$(".submit-job-request").prop('disabled', false);
                         this.$(".submit-job-request i").removeClass("fa fa-spin fa-spinner").addClass('ic ic_check');
@@ -310,7 +380,7 @@ define(function(require) {
                 if(this.model.id) {
                     window.location = '/programs/' + context.programId + '/manage/jobs/' + this.model.id;
                 } else {
-                    window.location = '/programs/' + context.programId + '/stores';
+                    window.location = '/programs/' + context.programId + '/manage/jobs';
                 }
             }
         }

@@ -230,7 +230,10 @@
     }
   }
   &.collapsed-nav #site-canvas #site-submenu.show-subnav {
-    @include transform($collapsed-nav-width-win);
+    @include transform( $collapsed-nav-width-win);
+  }
+  &.collapsed-nav.show-filter #site-canvas #site-submenu.show-subnav {
+    @include transform( $standard-nav-width + $collapsed-nav-width-win);
   }
 }
 
@@ -242,7 +245,7 @@
         width: $collapsed-nav-width-ie;
       }
       .content-holder {
-        padding-left: $collapsed-nav-width-win;
+        padding-left: $collapsed-nav-width-ie;
       }
     }
   }
@@ -250,13 +253,16 @@
     #site-canvas {
       @include swa-small() {
         .content-holder {
-          padding-left: $standard-nav-width + $collapsed-nav-width-win;
+          padding-left: $standard-nav-width + $collapsed-nav-width-ie;
         }
       }
     }
   }
   &.collapsed-nav #site-canvas #site-submenu.show-subnav {
     @include transform($collapsed-nav-width-ie);
+  }
+  &.collapsed-nav.show-filter #site-canvas #site-submenu.show-subnav {
+    @include transform( $standard-nav-width + $collapsed-nav-width-ie);
   }
 }
 

@@ -1,0 +1,31 @@
+<div class="header-bar">
+    <h2 class="name">Assignment History</h2>
+    <span class="close-container"><i class="fa ic ic_x bbm-button"></i></span>
+</div>
+
+<div class="content">
+    {{#each assignments}}
+        <div class="assignment-record">
+            <div>
+                <div>
+                    <strong>Assignee:</strong> {{this.assignee}}
+                    {{#if this.assignee_email}}
+                        - {{this.assignee_email}}
+                    {{/if}}
+                </div>
+                <div>
+                    <strong>Assigned By:</strong> {{this.changed_by}}
+                    {{#if this.changed_by_email}}
+                        - {{this.changed_by_email}}
+                    {{/if}}
+                </div>
+                <div><strong>Assigned On:</strong> {{ dateFormat this.changed_on "MMMM Do YYYY, h:mm:ss a" }}</div>
+                {{#if this.reason}}
+                    <div>
+                        <strong>Reason:</strong> {{this.reason}}
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    {{/each}}
+</div>
