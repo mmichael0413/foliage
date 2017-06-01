@@ -373,6 +373,12 @@ $cornflower: #4684c5;
   &.averageSalesPerVisit {
     background-image: url('../images/g_averagesales.svg');
   }
+  &.visitsDemandFromManagement {
+    background-image: url('../images/g_supplydemand.svg');
+  }
+  &.visitsWithCurrentPop {
+    background-image: url('../images/g_pop.svg');
+  }
 }
 
 .kpi-units {
