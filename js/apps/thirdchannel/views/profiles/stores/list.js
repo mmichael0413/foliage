@@ -3,7 +3,7 @@ define(function(require) {
         context = require('context'),
         PageableListView = require('thirdchannel/views/shared/pageable_list'),
         ExportView = require('thirdchannel/views/utils/report_export_button'),
-        StoresExportModel = require('thirdchannel/models/profiles/stores_export'),
+        ExportModel = require('thirdchannel/models/exports/stores'),
 
         StoreListView = PageableListView.extend({
             el: '#stores',
@@ -12,11 +12,6 @@ define(function(require) {
                 context.trigger('filter:query', "page=" + page);
             },
             init: function (options) {
-                $(".actions .export").each(function() {
-                    var data = {};
-                    var model = new StoresExportModel(_.extend(data, options));
-                    new ExportView({model: model}).render(this);
-                });
                 return this;
             }
         });

@@ -48,7 +48,7 @@ define(function(require){
         ProgramProfileView = require('erudition/views/profile/view_profile'),
         ProgramProfileEditView = require('erudition/views/profile/edit'),
         programProfileSecurityView = require('erudition/views/profile/security'),
-        ProfileStoreListView = require('thirdchannel/views/profiles/stores/list'),
+        ProfileStoreMain = require('thirdchannel/views/profiles/stores/main'),
         ProfileAdminView = require('thirdchannel/views/profiles/admin/main'),
         ApplicationView = require('thirdchannel/views/application/main'),
         FlashView = require('thirdchannel/views/shared/flash'),
@@ -289,7 +289,7 @@ define(function(require){
         },
 
         programProfileStores: function(programId, userId) {
-            new ProfileStoreListView().init({programId: programId, userId: userId}).bootstrapCollection(window.bootstrap);
+            ProfileStoreMain.init({programId: programId, user_id: userId});
         },
 
         programProfileAdmin: function() {
