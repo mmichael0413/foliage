@@ -124,6 +124,14 @@ $cornflower: #4684c5;
     }
   }
 
+  &-top3 {
+    font-size: 0.9em;
+
+    ol {
+      padding-left: 1em;
+    }
+  }
+
   .metric-label {
     color: $slate;
     display: block;
@@ -361,6 +369,9 @@ $cornflower: #4684c5;
   &.numberAttendees {
     background-image: url('../images/g_cliptotals.svg');
   }
+  &.averageAndTop3 {
+    background-image: url('../images/g_cliptotals.svg');
+  }
   &.storeAssociatesEducated {
     background-image: url('../images/g_educated.svg');
   }
@@ -543,6 +554,11 @@ $cornflower: #4684c5;
         align-self: center;
         text-align: center;
         padding: .75em .5em;
+
+        &-figure,
+        &-label {
+          text-align: center;
+        }
       }
     }
 

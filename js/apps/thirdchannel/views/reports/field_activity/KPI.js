@@ -6,6 +6,7 @@ define(function(require) {
         HandlebarsTemplates = require('handlebarsTemplates'),
         GenericMetric = require('thirdchannel/views/reports/field_activity/kpis/generic_metric'),
         TotalWithBreakdownView = require('thirdchannel/views/reports/field_activity/kpis/total_with_breakdown'),
+        AverageAndTop3View = require('thirdchannel/views/reports/field_activity/kpis/average_and_top_3'),
         TotalView = require('thirdchannel/views/reports/field_activity/kpis/total'),
         SalesAndUnitsPercentageView = require('thirdchannel/views/reports/field_activity/kpis/sales_and_unit_percentage'),
         WidgetView = require('thirdchannel/views/reports/index/widget');
@@ -44,6 +45,9 @@ define(function(require) {
             break;
           case "TotalWithBreakdown":
             new TotalWithBreakdownView({model: this.model, el: this.el});
+            break;
+          case "averageAndTop3":
+            new AverageAndTop3View({model: this.model, el: this.el});
             break;
           default:
             new GenericMetric({model: this.model, el: this.el, displayDirection: this.model.displayDirection || 'row'});
