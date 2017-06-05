@@ -508,6 +508,13 @@ $cornflower: #4684c5;
       @include swb-medium {
         display: flex;
       }
+
+      & > div:not(.overview) {
+        a {
+          font-size: 1em;
+          vertical-align: inherit;
+        }
+      }
     }
 
     @include swb-xlarge {

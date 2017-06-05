@@ -11,18 +11,22 @@
   {{/if}}
 
   <div class="metrics">
-      <div class="metric">
-        {{#if url}}
-          <a class="metric-figure link" href="{{href}}">{{data.total}}</a>
-        {{else}}
-          <span class="metric-figure">
-            {{format_number data.total}}
-          </span>
-        {{/if}}
-
-        <span class="metric-label">
-          {{label}}
+    <div class="metric">
+      {{#if url}}
+        <a class="metric-figure link" href="{{href}}">{{data.total}}</a>
+      {{else}}
+        <span class="metric-figure">
+          {{format_number data.total}}
         </span>
-      </div>
+      {{/if}}
+
+      <span class="metric-label">
+        {{label}}
+      </span>
+    </div>
+
+    {{#if footnote}}
+      {{> footnote footnote}}
+    {{/if}}
   </div>
 </div>

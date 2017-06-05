@@ -13,13 +13,8 @@
       </div>
     {{/each}}
 
-    {{#if footnote_label}}
-    <div class="metric">
-      <span class="metric-footnote">
-        (*) Source:
-        <a class="link" href="{{footnote_url}}">{{footnote_label}}</a>
-      </span>
-    </div>
+    {{#if footnote}}
+      {{> footnote footnote}}
     {{/if}}
   </div>
 </div>

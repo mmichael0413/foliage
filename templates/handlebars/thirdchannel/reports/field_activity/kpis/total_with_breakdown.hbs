@@ -16,11 +16,15 @@
   {{/if_eq}}
 
   <div class="metrics">
-      <div class="metric">
-        <a class="metric-figure link" href="{{href}}">{{format_number data.total}}</a>
-        <span class="metric-label">
-          {{label}}
-        </span>
-      </div>
+    <div class="metric">
+      <a class="metric-figure link" href="{{href}}">{{format_number data.total}}</a>
+      <span class="metric-label">
+        {{label}}
+      </span>
+    </div>
+
+    {{#if footnote}}
+      {{> footnote footnote}}
+    {{/if}}
   </div>
 </div>

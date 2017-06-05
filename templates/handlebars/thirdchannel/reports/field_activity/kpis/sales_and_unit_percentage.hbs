@@ -3,14 +3,18 @@
     <div class="kpi gauge" data-metric="gauge-{{@index}}">
       <div class="gauge-container"></div>
       <div class="metrics">
-          <div class="metric">
-            <span class="metric-figure">
-              {{format_number this.value}}{{this.postfix}}
-            </span>
-            <span class="metric-label">
-              {{this.label}}
-            </span>
-          </div>
+        <div class="metric">
+          <span class="metric-figure">
+            {{format_number this.value}}{{this.postfix}}
+          </span>
+          <span class="metric-label">
+            {{this.label}}
+          </span>
+        </div>
+
+        {{#if footnote}}
+          {{> footnote footnote}}
+        {{/if}}
       </div>
     </div>
   {{/each}}

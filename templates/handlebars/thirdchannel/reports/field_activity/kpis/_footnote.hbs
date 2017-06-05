@@ -1,0 +1,8 @@
+<div class="metric">
+  <span class="metric-footnote">
+    {{label}}
+    {{#each items}}
+      <a class="link" href="{{this.footnote_url}}">{{this.footnote_label}}</a>{{#unless_eq (index_inc @index) ../items.length}},{{/unless_eq}}
+    {{/each}}
+  </span>
+</div>
