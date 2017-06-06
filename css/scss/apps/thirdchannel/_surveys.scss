@@ -48,7 +48,7 @@
   .question {
     margin-bottom: 2em;
 
-    [name*='question-'], .chosen-container, .expanding-wrapper {
+    [name*='question-'], .chosen-container {
       margin-top: 0.5em
     }
 
@@ -90,10 +90,6 @@
     &.open {
       display: block;
     }
-  }
-
-  .expanding-wrapper {
-    width: 100%;
   }
 
   .additional-notes {
