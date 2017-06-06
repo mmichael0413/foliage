@@ -1,4 +1,4 @@
-<div class="col-6-12 col-sm-7-12" xmlns="http://www.w3.org/1999/html">
+<div class="col-6-12 col-sm-8-12">
     <p class="visit-data bold">{{storeName}}</p>
     <p class="visit-data">{{address}}</p>
     <p class="visit-data">{{jobDetails.name}}</p>
@@ -11,45 +11,27 @@
     {{/if}}
 </div>
 
-{{#if showCompleted}}
-    <div class="col-2-12">{{totalDuration}} mins</div>
-    {{#if canConfirm}}
+<div class="col-2-12 col-sm-2-12">{{totalDuration}} mins</div>
+
+<div class="col-sm-2-12 visible-xs center">{{taskCount}} <span class="expand"></span></div>
+
+{{#if canConfirm}}
+    <div class="col-3-12 col-sm-1">
         {{#if isConfirmed}}
-            <div class="col-3-12 hidden-xs">
-                {{#if dateCompleted}}
-                    <div class="">Completed on {{dateFormat dateCompleted 'l'}}</div>
-                {{/if}}
-                <div class=""><span class="confirmedVisit">Confirmed on {{dateFormat lastStatusChange 'l'}}<span class="instructions"></span></span></div>
-            </div>
+            {{#if dateCompleted}}
+                <div class="">Completed on {{dateFormat dateCompleted 'l'}}</div>
+            {{/if}}
+            <div class=""><span class="confirmedVisit">Confirmed on {{dateFormat lastStatusChange 'l'}}<span class="instructions"></span></span></div>
         {{else}}
-            <div class="col-3-12 hidden-xs"><a href="#" class="visit-confirm-button">Confirmed With Location</a></div>
+            <a href="#" class="visit-confirm-button">Confirmed With Location</a>
         {{/if}}
-    {{else}}
-        {{#if dateCompleted}}
-            <div class="col-3-12 hidden-xs">Completed on {{dateFormat dateCompleted 'l'}}</div>
-        {{/if}}
-    {{/if}}
-    <div class="col-1-12 col-sm-3-12 center">{{taskCount}} <span class="expand"></span></div>
+    </div>
 {{else}}
-    <div class="col-4-12">{{totalDuration}} mins</div>
-    {{#if canConfirm}}
-        {{#if isConfirmed}}
-            <div class="col-3-12 hidden-xs">
-                {{#if dateCompleted }}
-                    <div class="">Completed on {{dateFormat dateCompleted 'l'}}</div>
-                {{/if}}
-                <div class=""><span class="confirmedVisit">Confirmed on {{dateFormat lastStatusChange 'l'}}<span class="instructions"></span></span></div>
-            </div>
-        {{else}}
-            <div class="col-3-12 hidden-xs"><a href="#" class="visit-confirm-button">Confirmed With Location</a></div>
-        {{/if}}
-    {{else}}
-        {{#if dateCompleted}}
-            <div class="col-3-12 hidden-xs">Completed on {{dateCompleted dateCompleted 'l'}}</div>
-        {{/if}}
+    {{#if dateCompleted}}
+        <div class="col-3-12 col-sm-1">Completed on {{dateFormat dateCompleted 'l'}}</div>
     {{/if}}
-    <div class="col-2-12 col-sm-3-12 center">{{taskCount}} <span class="expand"></span></div>
 {{/if}}
 
+<div class="col-1-12 hidden-xs center">{{taskCount}} <span class="expand"></span></div>
 
 {{> 'tasks'}}

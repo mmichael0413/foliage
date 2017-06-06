@@ -1,0 +1,32 @@
+<div class="kpi {{displayDirection}}">
+  <div class="kpi-image {{name}}"></div>
+
+  <div class="metrics">
+    <div class="metric">
+      <span class="metric-figure">
+        {{data.0.prefix}}{{format_number data.0.value}}{{data.0.postfix}}
+      </span>
+      <span class="metric-label">
+        {{data.0.label}}
+      </span>
+    </div>
+    <div class="metric">
+      <span class="metric-label">
+        {{data.1.label}}
+      </span>
+      <span class="metric-top3">
+        {{data.1.prefix}}
+          <ol>
+          {{#each data.1.value}}
+              <li>{{this}}</li>
+          {{/each}}
+          </ol>
+          {{data.1.postfix}}
+      </span>
+    </div>
+
+    {{#if footnote}}
+      {{> footnote footnote}}
+    {{/if}}
+  </div>
+</div>

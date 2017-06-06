@@ -1,3 +1,3 @@
 <tr>
-  <td><a href="{{links.self}}">{{name}}</a></td>
+  <td>{{#if links}}<a href="{{links.self}}">{{/if}}{{name}}{{#if links}}</a>{{/if}}</td>
   <td>{{visits_count}}</td>

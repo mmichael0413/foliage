@@ -23,7 +23,25 @@ define(function (require) {
         },
 
         beginValidation: function () {
+
+            $.validator.addMethod("validInstagramHandle", function(value, element){
+                var valid = true,
+                    handle = self.$("input[name*='instagram_handle']").val(),
+                    regex = /^@[a-zA-Z0-9\.\-_]{0,28}$/;
+
+                if(handle.length > 0) {
+                    valid = regex.exec(handle);
+                }
+
+                return valid;
+            }, "Invalid instagram handle.");
+
             $('.application-form').validate({
+                rules: {
+                    "program_application[instagram_handle]": {
+                        validInstagramHandle: true
+                    }
+                },
 
                 errorPlacement: function (error, element) {
                     $(error).addClass('clear');
