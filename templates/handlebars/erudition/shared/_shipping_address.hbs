@@ -3,6 +3,7 @@
     <div class="body">
         <label>Reliable address we can mail program materials to</label>
         <input type="text" class="low-margin" name="shippingAddress.street1" placeholder="Street" value="{{person.shippingAddress.street1}}" data-rule-required="true" />
+        <input type="text" class="low-margin" name="shippingAddress.street2" placeholder="Apt #, Suite, etc" value="{{person.shippingAddress.street2}}" data-rule-required="true" />
         <input type="text" class="low-margin" name="shippingAddress.city" placeholder="City" value="{{person.shippingAddress.city}}" data-rule-required="true"/>
         <select name="shippingAddress.state" data-placeholder="Select State/Province" data-rule-required="true">
             <option></option>
@@ -13,5 +14,6 @@
             {{/each}}
         </select>
         <input type="text" name="shippingAddress.zip" placeholder="Zip Code" value="{{person.shippingAddress.zip}}" data-rule-required="true"/>
+        <input type="text" name="shippingAddress.country" placeholder="Country" value="{{person.shippingAddress.country}}" data-rule-required="true"/>
     </div>
 </div>
