@@ -55,6 +55,7 @@ define(function(require){
         LoginView = require('thirdchannel/views/authentication/login'),
         ScheduledVisitsView = require('thirdchannel/views/scheduled_visits/scheduled_visits'),
         JobRequestsView = require('thirdchannel/views/manage/jobs/list'),
+        JobRequestsCoverageExportView = require('thirdchannel/views/manage/jobs/coverageExport'),
         ContractView = require('thirdchannel/views/legal/contract'),
         ManageJobsMain = require('thirdchannel/views/manage/jobs/main');
 
@@ -69,6 +70,7 @@ define(function(require){
             'opportunities/:id': 'viewOpportunity',
             'programs/:program_id/admin/activities/topics(/)' : 'adminActivitiesTopics',
             'programs/:program_id/admin/activities/topics/*path' : 'adminActivitiesTopics',
+            'programs/:program_id/manage/jobs/coverage_exports': 'exportJobRequestsCoverage',
             'programs/:program_id/manage/jobs/new': 'createJobRequest',
             'programs/:program_id/manage/jobs/:id/edit': 'updateJobRequest',
             'programs/:program_id/manage/jobs/:id(/)': 'viewJobRequest',
@@ -396,6 +398,10 @@ define(function(require){
 
         viewJobRequest: function(programId, id) {
             ManageJobsMain.show(id);
+        },
+
+        exportJobRequestsCoverage: function(programId) {
+            (new JobRequestsCoverageExportView()).render();
         },
 
         defaultPath: function(programId) { },
