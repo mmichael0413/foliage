@@ -105,6 +105,11 @@
 }
 
 #google-section {
+  table td {
+    // Undo our default table css >:(
+    border-top: 0;
+    padding: 0;
+  }
   .powered-by-google {
     float: right;
   }
