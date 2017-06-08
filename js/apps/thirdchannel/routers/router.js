@@ -20,6 +20,7 @@ define(function(require){
         StoresIntelEdit = require('thirdchannel/views/stores/intel/edit'),
         StoreProfileProductsEdit = require('thirdchannel/views/store_profile/products/edit'),
         StoreProfileSalesMain = require('thirdchannel/views/store_profile/sales/main'),
+        PersonnelSectionView = require('thirdchannel/views/store_profile/personnel'),
         SurveyView = require('thirdchannel/views/checkins/show/survey'),
         SurveyModel = require('thirdchannel/models/checkins/show/form'),
         DashboardsAlertsSectionsView = require('thirdchannel/views/dashboards/alerts/index/sections'),
@@ -98,6 +99,7 @@ define(function(require){
             'programs/:program_id/stores/:store_id/intel/edit': 'editStoreIntel',
             'programs/:program_id/stores/:store_id/fixtures': 'storeProfileFixtures',
             'programs/:program_id/stores/:store_id/sales': 'storeProfileSales',
+            'programs/:program_id/stores/:store_id/people': 'storeProfilePeople',
             'programs/:program_id/checkins/:checkin_id/submissions/:id': 'submission',
             'programs/:program_id/dashboards/alerts': 'dashboardAlerts',
             'programs/:program_id/dashboards/alerts/:id': 'dashboardAlert',
@@ -268,6 +270,10 @@ define(function(require){
 
         storeProfileSales: function() {
             StoreProfileSalesMain.init();
+        },
+
+        storeProfilePeople: function() {
+            new PersonnelSectionView().fetch();
         },
 
         programProfile: function() {

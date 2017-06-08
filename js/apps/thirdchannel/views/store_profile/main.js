@@ -26,12 +26,10 @@ define(function (require) {
     var main = {
         init: function () {
             _.extend(context, window.bootstrap);
-            new PersonnelSectionView().fetch();
-            new OpenAlertsView().fetch();
-            new CarouselView({collection: new Backbone.Collection(context.images)}).render();
-            var wrapper = new ExpandWrapperView();
-
-            wrapper.setElement('#site-canvas').render();
+            $(".google-open-close-time").each(function() {
+                // Localize format of open and close times
+                this.textContent = moment(this.textContent,'HH:mm').format('LT');
+            });
         },
         activity: function () {
             var url = '/programs/' + context.programId + '/activities/posts?customer_store_uuid=' + context.requestParameters[1];
@@ -39,8 +37,6 @@ define(function (require) {
         },
         intel: function () {
             new ChoicesView({surveyType: 'stores', typeId: context.requestParameters[1]});
-            var wrapper = new ExpandWrapperView();
-            wrapper.setElement('#site-canvas').render();
         },
         history: function () {
             new OpenAlertsView().bootstrapCollection(context.alerts.open);
@@ -57,8 +53,6 @@ define(function (require) {
         },
         fixtures: function () {
             new FixturesListView().render();
-            var wrapper = new ExpandWrapperView();
-            wrapper.setElement('#site-canvas').render();
         }
     };
     return main;

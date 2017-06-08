@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "license": "UNLICENSED",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/RSV2/foliage.git"
+    "type": "git",
+    "url": "https://github.com/RSV2/foliage.git"
   },
   "dependencies": {
     "grunt": "0.4.5",
