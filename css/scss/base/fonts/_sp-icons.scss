@@ -24,11 +24,13 @@
 
 [data-icon]:before,
 .sp_nordstrom:before,
+.sp_spins:before,
 .sp_sps:before,
 .sp_target:before,
-.sp_thc:before {
+.sp_thc:before,
+.sp_vega:before {
   display: inline-block;
-  font-family: "sp-icons";
+  font-family: "tc-icons";
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -41,12 +43,16 @@
   font-smoothing: antialiased;
 }
 
-.sp_nordstrom:before { content: "\f15c"; }
-.sp_sps:before { content: "\f15d"; }
-.sp_target:before { content: "\f15e"; }
-.sp_thc:before { content: "\f15f"; }
+.sp_nordstrom:before { content: "\f16c"; }
+.sp_spins:before { content: "\f16d"; }
+.sp_sps:before { content: "\f16e"; }
+.sp_target:before { content: "\f16f"; }
+.sp_thc:before { content: "\f170"; }
+.sp_vega:before { content: "\f171"; }
 
-$font-sp-icons-sp_nordstrom: "\f15c";
-$font-sp-icons-sp_sps: "\f15d";
-$font-sp-icons-sp_target: "\f15e";
-$font-sp-icons-sp_thc: "\f15f";
+$font-tc-icons-sp_nordstrom: "\f16c";
+$font-tc-icons-sp_spins: "\f16d";
+$font-tc-icons-sp_sps: "\f16e";
+$font-tc-icons-sp_target: "\f16f";
+$font-tc-icons-sp_thc: "\f170";
+$font-tc-icons-sp_vega: "\f171";
