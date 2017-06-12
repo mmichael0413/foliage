@@ -366,6 +366,18 @@ $cornflower: #4684c5;
     background-image: url('../images/g_handshake.svg');
     height: 6em;
   }
+  &.engagedPurchased {
+    background-image: url('../images/g_engagedpurchased.svg');
+    height: 6em;
+  }
+  &.engagedPurchasedFirstTime {
+    background-image: url('../images/g_engagedpurchased1time.svg');
+    height: 6em;
+  }
+  &.engagedSampled {
+    background-image: url('../images/g_engagedsampled.svg');
+    height: 6em;
+  }
   &.numberAttendees {
     background-image: url('../images/g_cliptotals.svg');
   }
