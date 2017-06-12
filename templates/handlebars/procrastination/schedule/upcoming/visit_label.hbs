@@ -78,6 +78,18 @@
     </div>
   {{/if}}
 </div>
+{{#if jobDetails.whiteoutDates}}
+    <div class="group">
+      <div class="section">
+        <h3>Available Scheduling Dates</h3>
+        <div>
+          {{#each jobDetails.whiteoutDates}}
+            <span class="availability-date">{{dateFormat this "MMM DD"}}</span>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+{{/if}}
 {{#if jobDetails.createdByPersonDetails}}
     <div class="group">
       <div class="section">

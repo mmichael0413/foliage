@@ -157,3 +157,12 @@ p.visit-data {
     }
   }
 }
+
+.availability-date {
+  background-color: $light-blue;
+  padding: 0.5em;
+  margin: 0.5em;
+  border-radius: $border-radius-base;
+  white-space: nowrap;
+  display: inline-block;
+}
