@@ -6,8 +6,6 @@ EXPOSE 3031
 WORKDIR /data
 COPY . /data
 
-RUN npm cache clean
-
 # Install Bower & Grunt
 RUN npm install -g bower grunt
 
