@@ -6,9 +6,9 @@
   font-family: "sp-icons";
   src: url("../../shared/fonts/sp-icons_17c256bff985f337b3bbf51a6da4645e.eot");
   src: url("../../shared/fonts/sp-icons_17c256bff985f337b3bbf51a6da4645e.eot?#iefix") format("embedded-opentype"),
-       url("../../shared/fonts/sp-icons_17c256bff985f337b3bbf51a6da4645e.woff") format("woff"),
-       url("../../shared/fonts/sp-icons_17c256bff985f337b3bbf51a6da4645e.ttf") format("truetype"),
-       url("../../shared/fonts/sp-icons_17c256bff985f337b3bbf51a6da4645e.svg#sp-icons") format("svg");
+  url("../../shared/fonts/sp-icons_17c256bff985f337b3bbf51a6da4645e.woff") format("woff"),
+  url("../../shared/fonts/sp-icons_17c256bff985f337b3bbf51a6da4645e.ttf") format("truetype"),
+  url("../../shared/fonts/sp-icons_17c256bff985f337b3bbf51a6da4645e.svg#sp-icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -24,9 +24,11 @@
 
 [data-icon]:before,
 .sp_nordstrom:before,
+.sp_spins:before,
 .sp_sps:before,
 .sp_target:before,
-.sp_thc:before {
+.sp_thc:before,
+.sp_vega:before {
   display: inline-block;
   font-family: "sp-icons";
   font-style: normal;
@@ -41,12 +43,16 @@
   font-smoothing: antialiased;
 }
 
-.sp_nordstrom:before { content: "\f15c"; }
-.sp_sps:before { content: "\f15d"; }
-.sp_target:before { content: "\f15e"; }
-.sp_thc:before { content: "\f15f"; }
+.sp_nordstrom:before { content: "\f16c"; }
+.sp_spins:before { content: "\f172"; }
+.sp_sps:before { content: "\f16e"; }
+.sp_target:before { content: "\f16f"; }
+.sp_thc:before { content: "\f170"; }
+.sp_vega:before { content: "\f171"; }
 
-$font-sp-icons-sp_nordstrom: "\f15c";
-$font-sp-icons-sp_sps: "\f15d";
-$font-sp-icons-sp_target: "\f15e";
-$font-sp-icons-sp_thc: "\f15f";
+$font-sp-icons-sp_nordstrom: "\f16c";
+$font-sp-icons-sp_spins: "\f172";
+$font-sp-icons-sp_sps: "\f16e";
+$font-sp-icons-sp_target: "\f16f";
+$font-sp-icons-sp_thc: "\f170";
+$font-sp-icons-sp_vega: "\f171";
